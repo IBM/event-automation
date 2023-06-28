@@ -1,0 +1,1006 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Earlier Event Streams versions - IBM Event Automation</title>
+<meta name="description" content="Find out about earlier Event Streams versions and their supported platforms, and other support information, including compatibility.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/support/matrix/es-earlier/" />
+<meta property="og:title" content="Support | Earlier Event Streams versions" />
+<meta property="og:description" content="Find out about earlier Event Streams versions and their supported platforms, and other support information, including compatibility." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Earlier Event Streams versions" />
+
+
+
+
+  <meta property="og:description" content="Find out about earlier Event Streams versions and their supported platforms, and other support information, including compatibility.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/support/matrix/es-earlier/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--pagesInsideCollection">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill"></a>
+        </div>
+      </div>
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        http://localhost:4000/event-automation/support
+      "><img alt="" role="presentation" src="http://localhost:4000/event-automation/assets/images/icons/previous.svg" />
+        Back to support
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap splashcollection ">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+        
+
+          
+          <headerInsideCollection>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Earlier Event Streams versions
+</h1>
+            
+          </headerInsideCollection>
+                    
+          <div class="content">
+            <style> 
+
+.mainContainer .mainContent .page {
+  display: flex;
+  background: white; 
+     
+}
+      
+   </style>
+
+<div class = page>
+   <h2 id="earlier-versions-in-support">Earlier versions in support</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>version</th>
+      <th>Operator version</th>
+      <th>Operator channel</th>
+      <th>Kafka version shipped</th>
+      <th>CASE version</th>
+      <th>Container platform</th>
+      <th>Systems</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>11.1.5</td>
+      <td>3.1.5</td>
+      <td>v3.1</td>
+      <td>3.4.0</td>
+      <td>1.7.5</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.12, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services <br /> <br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.1.4</td>
+      <td>3.1.4</td>
+      <td>v3.1</td>
+      <td>3.3.1</td>
+      <td>1.7.4</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.12, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services <br /> <br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.1.3</td>
+      <td>3.1.3</td>
+      <td>v3.1</td>
+      <td>3.2.3</td>
+      <td>1.7.3</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.12, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.1.2</td>
+      <td>3.1.2</td>
+      <td>v3.1</td>
+      <td>3.2.3</td>
+      <td>1.7.2</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.11, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.1.1</td>
+      <td>3.1.1</td>
+      <td>v3.1</td>
+      <td>3.2.3</td>
+      <td>1.7.1</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.11, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.1.0</td>
+      <td>3.1.0</td>
+      <td>v3.1</td>
+      <td>3.2.3</td>
+      <td>1.7.0</td>
+      <td>Red Hat OpenShift Container Platform versions 4.8 to 4.11, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.0.4</td>
+      <td>3.0.5</td>
+      <td>v3.0</td>
+      <td>3.2.0</td>
+      <td>1.6.6</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.11, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> Managed OpenShift services on cloud platforms (PaaS): <br />- Red Hat OpenShift on IBM Cloud <br /> - Azure Red Hat OpenShift <br /> - Red Hat OpenShift Service on AWS <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.0.3</td>
+      <td>3.0.4</td>
+      <td>v3.0</td>
+      <td>3.2.0</td>
+      <td>1.6.5</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.10, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.0.2</td>
+      <td>3.0.3 <br /> 3.0.2</td>
+      <td>v3.0</td>
+      <td>3.2.0</td>
+      <td>1.6.4</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.10, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.0.1</td>
+      <td>3.0.1</td>
+      <td>v3.0</td>
+      <td>3.1.0</td>
+      <td>1.6.2</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.10, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11.0.0</td>
+      <td>3.0.0</td>
+      <td>v3.0</td>
+      <td>3.0.0</td>
+      <td>1.6.1</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.10, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.5.0</td>
+      <td>2.5.3 <br /> 2.5.2 <br /> 2.5.1 <br /> 2.5.0</td>
+      <td>v2.5</td>
+      <td>2.8.1</td>
+      <td>1.5.3</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.10, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux on IBM Power Systems (ppc64le) <br /> - Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.4.0</td>
+      <td>2.4.0</td>
+      <td>v2.4</td>
+      <td>2.8.0</td>
+      <td>1.4.0</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.8, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.3.1</td>
+      <td>2.3.1</td>
+      <td>v2.3</td>
+      <td>2.6.2</td>
+      <td>1.3.1</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.8, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>)  <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.3.0</td>
+      <td>2.3.0</td>
+      <td>v2.3</td>
+      <td>2.6.0</td>
+      <td>1.3.0</td>
+      <td>Red Hat OpenShift Container Platform versions 4.6.8 to 4.7, all fix levels (see <a href="https://access.redhat.com/support/policy/updates/openshift#dates" target="_blank">support dates</a>) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services<br /></td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="end-of-support-versions">End of support versions</h2>
+
+<p>The following  versions are no longer supported.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>version</th>
+      <th>Operator version</th>
+      <th>Operator channel</th>
+      <th>Kafka version shipped</th>
+      <th>Container platform</th>
+      <th>Systems</th>
+      <th>Data storage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.2.1-eus  <br /> <br /> (Event Streams product version 10.2.1) <br /> <br /></td>
+      <td>2.2.6</td>
+      <td>v2.2</td>
+      <td>2.6.3</td>
+      <td>Red Hat OpenShift Container Platform versions: <br /> - 4.6 only (any fix level) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td>If you want to set up <a href="/event-automation/es/es_10.2/installing/planning/#planning-for-persistent-storage">persistent storage</a>,  requires block storage configured to use the XFS or ext4 file system. <br /> The use of file storage (for example, NFS) is not recommended. <br /> <br /> For example, you can use one of the following systems:<br /> <br />- <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a><br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a><br /> - <a href="https://rook.io/docs/rook/v1.3/ceph-storage.html" target="_blank">Rook Ceph</a><br /> - <a href="https://docs.openshift.com/container-platform/4.6/storage/persistent_storage/persistent-storage-ocs.html" target="_blank">Red Hat OpenShift Container Storage</a></td>
+    </tr>
+    <tr>
+      <td>10.2.1-eus  <br /> <br /> (Event Streams product version 10.2.1) <br /> <br /></td>
+      <td>2.2.5 <br />2.2.4 <br /> 2.2.3 <br /> 2.2.2 <br /> 2.2.1</td>
+      <td>v2.2</td>
+      <td>2.6.2</td>
+      <td>Red Hat OpenShift Container Platform versions: <br /> - 4.6 only (any fix level) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.2.0-eus  <br /> <br /> (Event Streams product version 10.2.0) <br /> <br /></td>
+      <td>2.2.0</td>
+      <td>v2.2</td>
+      <td>2.6.0</td>
+      <td>Red Hat OpenShift Container Platform versions: <br /> - 4.6 only (any fix level) <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.1.0</td>
+      <td>2.1.0</td>
+      <td>v2.1</td>
+      <td>2.6.0</td>
+      <td>Red Hat OpenShift Container Platform versions: <br /> - 4.5.6 or later fix levels <br /> - 4.4.4 or later fix levels  <br /> - 4.3.22 or later fix levels <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Linux on IBM z13 (s390x) or later systems</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10.0.0</td>
+      <td>2.0.1 <br /> 2.0.0</td>
+      <td>v2.0</td>
+      <td>2.5.0</td>
+      <td>Red Hat OpenShift Container Platform versions: <br /> - 4.5.4 or later fix levels <br /> - 4.4.4 or later fix levels <br /> - 4.3.22 or later fix levels <br /> <br /> OpenShift on cloud infrastructure (IaaS): <br /> - IBM Cloud <br /> - Microsoft Azure <br /> - Amazon Web Services</td>
+      <td>- Linux 64-bit (x86_64) systems</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Important:</strong> The end of support (EoS) date for  Helm-based releases was 30 April 2022. For more information, see <a href="https://www-01.ibm.com/common/ssi/ShowDoc.wss?docURL=/common/ssi/rep_ca/2/877/ENUSZP20-0232/index.html&amp;lang=en&amp;request_locale=en" target="_blank">announcement letter</a>.</p>
+
+<ul>
+  <li><a href="#red-hat-openshift-platforms">Helm-based releases on Red Hat OpenShift platforms</a></li>
+  <li><a href="#legacy-container-platforms">Helm-based releases on legacy container platforms</a></li>
+</ul>
+
+<h4 id="red-hat-openshift-platforms">Red Hat OpenShift platforms</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>version</th>
+      <th>Helm chart version</th>
+      <th>Kafka version shipped</th>
+      <th>Container platform</th>
+      <th>Systems</th>
+      <th>Data storage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2019.4.6  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.5</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.5  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.4</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.4  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.3</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.3 in <a href="https://www.ibm.com/support/knowledgecenter/SSGT7J_20.1/install/sysreqs.html" target="_blank">IBM Cloud Pak for Integration</a></td>
+      <td>1.4.2</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 4.2 and 4.3</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.3  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.2</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td> </td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.2 in <a href="https://www.ibm.com/support/knowledgecenter/SSGT7J_20.1/install/sysreqs.html" target="_blank">IBM Cloud Pak for Integration</a></td>
+      <td>1.4.1</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 4.2 and 4.3</td>
+      <td>- Linux 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.2  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.1</td>
+      <td>2.3.1</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td> </td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.1 in <a href="https://www.ibm.com/support/knowledgecenter/SSGT7J_19.4/install/sysreqs.html" target="_blank">IBM Cloud Pak for Integration</a></td>
+      <td>1.4.0</td>
+      <td>2.3.0</td>
+      <td>Red Hat OpenShift Container Platform 4.2</td>
+      <td> </td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.4.1</td>
+      <td>1.4.0</td>
+      <td>2.3.0</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.4/installing/installing-openshift/">cloud foundational services</a> 3.2.1</td>
+      <td> </td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+    </tr>
+    <tr>
+      <td>2019.2.3 <br /> <strong>Note:</strong> Only available in <br /><a href="/event-automation/es/es_2019.2.1/about/whats-new/">IBM Cloud Pak for Integration</a>.</td>
+      <td>1.3.2</td>
+      <td>2.2.0</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.2.1/installing/installing-openshift/">cloud foundational services</a> 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux 64-bit (x86_64) system <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+    </tr>
+    <tr>
+      <td>2019.2.2 <br /> <strong>Note:</strong> Only available in <br /><a href="/event-automation/es/es_2019.2.1/about/whats-new/">IBM Cloud Pak for Integration</a>.</td>
+      <td>1.3.1</td>
+      <td>2.2.0</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.2.1/installing/installing-openshift/">cloud foundational services</a> 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux 64-bit (x86_64) system <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+    </tr>
+    <tr>
+      <td>2019.2.1</td>
+      <td>1.3.0</td>
+      <td>2.2.0</td>
+      <td>Red Hat OpenShift Container Platform 3.11 with IBM <a href="/event-automation/es/es_2019.2.1/installing/installing-openshift/">cloud foundational services</a> 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>) and 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>Red Hat OpenShift Container Platform 3.10 with IBM <a href="/event-automation/es/es_2019.2.1/installing/installing-openshift/">cloud foundational services</a> 3.1.2</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.1.1</td>
+      <td>1.2.0</td>
+      <td>2.1.1</td>
+      <td>Red Hat OpenShift Container Platform 3.9 and 3.10 with IBM <a href="/event-automation/es/es_2019.1.1/installing/installing-openshift/">cloud foundational services</a> 3.1.2</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM Z systems</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="legacy-container-platforms">Legacy container platforms</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>version</th>
+      <th>Helm chart version</th>
+      <th>Kafka version shipped</th>
+      <th>Container platform</th>
+      <th>Systems</th>
+      <th>Data storage</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2019.4.6  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.5</td>
+      <td>2.3.1</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.4.5  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.4</td>
+      <td>2.3.1</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.4.4  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.3</td>
+      <td>2.3.1</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.4.3  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.2</td>
+      <td>2.3.1</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.4.2  <br /> <br /> <strong>Note:</strong> Only available through <a href="https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EOther%20software&amp;product=ibm/Other+software/IBM+Event+Streams&amp;release=2019.4.1&amp;platform=All&amp;function=all" target="_blank">Fix Central</a>.</td>
+      <td>1.4.1</td>
+      <td>2.3.1</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.4.1</td>
+      <td>1.4.0</td>
+      <td>2.3.0</td>
+      <td>IBM Cloud Private 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#local" target="_blank">Kubernetes local volumes</a>  <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#awselasticblockstore" target="_blank">Amazon Elastic Block Store (EBS)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.2.3 <br /> <strong>Note:</strong> Only available in <br /><a href="/event-automation/es/es_2019.2.1/about/whats-new/">IBM Cloud Pak for Integration</a>.</td>
+      <td>1.3.2</td>
+      <td>2.2.0</td>
+      <td>IBM Cloud Private 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux 64-bit (x86_64) system <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.2.2 <br /> <strong>Note:</strong> Only available in <br /><a href="/event-automation/es/es_2019.2.1/about/whats-new/">IBM Cloud Pak for Integration</a>.</td>
+      <td>1.3.1</td>
+      <td>2.2.0</td>
+      <td>IBM Cloud Private 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux 64-bit (x86_64) system <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.2.1</td>
+      <td>1.3.0</td>
+      <td>2.2.0</td>
+      <td>IBM Cloud Private 3.1.2, 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>), and 3.2.1</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM z13 or later systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1  <br /> - <a href="https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.3/com.ibm.spectrum.scale.v5r03.doc/bl1ins_intro.htm" target="_blank">IBM Spectrum Scale</a> version 5.0.3.0</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2019.1.1</td>
+      <td>1.2.0</td>
+      <td>2.1.1</td>
+      <td>IBM Cloud Private 3.1.1, 3.1.2, and 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM Z systems</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>IBM Cloud Private 3.1.2</td>
+      <td>- Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2018.3.1</td>
+      <td>1.1.0</td>
+      <td>2.0.1</td>
+      <td>IBM Cloud Private 3.1.1 and 3.1.2</td>
+      <td>- Linux 64-bit (x86_64) systems <br />- Linux on IBM Z systems</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>IBM Cloud Private 3.1.0</td>
+      <td>Linux 64-bit (x86_64) systems</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2018.3.0</td>
+      <td>1.0.0</td>
+      <td>2.0</td>
+      <td>IBM Cloud Private 3.1.0</td>
+      <td>Linux 64-bit (x86_64) systems</td>
+      <td>-  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#nfs" target="_blank">NFS</a> version 4 <br /> - <a href="https://kubernetes.io/docs/concepts/storage/volumes/#glusterfs" target="_blank">GlusterFS</a> version 3.10.1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#earlier-versions-in-support">Earlier versions in support</a></li>
+  <li><a href="#end-of-support-versions">End of support versions</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

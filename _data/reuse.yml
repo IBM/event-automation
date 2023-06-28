@@ -1,0 +1,322 @@
+#################
+# Product names #
+#################
+
+# {{site.data.reuse.ea_long}}
+ea_long: IBM Event Automation
+
+# {{site.data.reuse.ea_short}}
+ea_short: Event Automation
+
+# {{site.data.reuse.eem_name}}
+eem_name: "Event Endpoint Management"
+
+# {{site.data.reuse.egw}}
+egw: "Event Gateway"
+
+# {{site.data.reuse.eem_manager}}
+eem_manager: "Event Endpoint Management Manager"
+
+# {{site.data.reuse.eem_ubp_license_id}}
+eem_ubp_license_id: "L-NRHE-WFD7EY"
+
+# {{site.data.reuse.egw_short}}
+egw_short: "Event Gateway"
+
+# {{site.data.reuse.ep_name}}
+ep_name: "Event Processing"
+
+# {{site.data.reuse.es_name}}
+es_name: "Event Streams"
+
+# {{site.data.reuse.flink_long}}
+flink_long: "IBM Operator for Apache Flink"
+
+# No site.data.reuse.flink_short (without the "IBM"" prefix), because "Operator for Apache Flink" would be confusing,
+# due to the existence of the Apache Flink operator.
+# When referring to the operand pods (Flink jobmanager/taskmanager), or to the Flink capability in general, the words
+# have to be chosen on a case-by-case basis. Depending on the context, just saying "Flink", or "Flink operand" / "Flink
+# operand pods" can be appropriate.
+
+# {{site.data.reuse.jmx-secret}}
+jmx-secret: <releasename>ibm-es-jmx-secret
+
+# {{site.data.reuse.openshift}}
+openshift: "Red Hat OpenShift Container Platform"
+
+# {{site.data.reuse.openshift_short}}
+openshift_short: "OpenShift Container Platform"
+
+# {{site.data.reuse.cp4i}}
+cp4i: "IBM Cloud Pak for Integration"
+
+# {{site.data.reuse.icpcs}}
+icpcs: "IBM Cloud Platform Common Services"
+
+# {{site.data.reuse.cs}}
+cs: "Common Services"
+
+# {{site.data.reuse.icpfs}}
+icpfs: "IBM Cloud Pak foundational services"
+
+# {{site.data.reuse.fs}}
+fs: "foundational services"
+
+# {{site.data.reuse.icp_master_host}}
+icp_master_host: on the IBM Cloud Private [master host](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/manage_cluster/cluster_endpoints.html#master){:target=\"_blank\"}
+
+# {{site.data.reuse.icp_foundation}}
+icp_foundation: "IBM Cloud Private Foundation"
+
+# {{site.data.reuse.kafka-connect-mq-source}}
+kafka-connect-mq-source: "Kafka Connect source connector for IBM MQ"
+
+# {{site.data.reuse.kafka-connect-connecting-to-mq}}
+kafka-connect-connecting-to-mq: "Connecting to IBM MQ?"
+
+# {{site.data.reuse.kafka-connect-add-connectors-to-kafka-connect}}
+kafka-connect-add-connectors-to-kafka-connect: "Add connectors to your Kafka Connect environment"
+
+# {{site.data.reuse.kafka-connect-mq-source-short}}
+kafka-connect-mq-source-short: "MQ source connector"
+
+# {{site.data.reuse.kafka-connect-mq-sink}}
+kafka-connect-mq-sink: "Kafka Connect sink connector for IBM MQ"
+
+# {{site.data.reuse.kafka-connect-mq-sink-short}}
+kafka-connect-mq-sink-short: "MQ sink connector"
+
+# {{site.data.reuse.jmx-secret}}
+jmx-secret: <releasename>ibm-es-jmx-secret
+
+# {{site.data.reuse.jmx-secret-name}}
+jmx-secret-name: <clustername>-jmx
+
+
+
+
+###############
+# Common Tasks Steps #
+###############
+
+# {{site.data.reuse.icpfs_ui_login}}
+icpfs_ui_login: "Log in to your IBM Cloud Platform foundational services management console as an administrator. For more information, see the IBM Cloud Platform foundational services [documentation](https://www.ibm.com/docs/cpfs?topic=operator-accessing-cluster-console){:target=\"_blank\"}."
+
+# {{site.data.reuse.icpcs_ui_login}}
+icpcs_ui_login: "Log in to your IBM Cloud Platform Common Services management console as an administrator. For more information, see the IBM Cloud Platform Common Services [documentation](https://www.ibm.com/support/knowledgecenter/en/SSHKN6/common-web-ui/1.x.x/cfc_gui.html){:target=\"_blank\"}."
+
+# {{site.data.reuse.icp_ui_login}}
+icp_ui_login: "Log in to your IBM Cloud Private cluster management console from a supported web browser by using the URL `https://<Cluster Master Host>:<Cluster Master API Port>`. The master host and port for your cluster are set during the installation of IBM Cloud Private. For more information, see the IBM Cloud Private [documentation](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/cfc_gui.html){:target=\"_blank\"}."
+
+# {{site.data.reuse.icp_cli_login321}}
+icp_cli_login321: "Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> `cloudctl login -a https://<cluster-address>:<cluster-router-https-port>`"
+
+# {{site.data.reuse.icp_cli_login}}
+icp_cli_login: "Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> `cloudctl login -a https://<Cluster Master Host>:<Cluster Master API Port>`<br/>The master host and port for your cluster are set during the installation of IBM Cloud Private."
+
+# {{site.data.reuse.cp_cli_login}}
+cp_cli_login: "Log in to your cluster as an administrator by using the IBM Cloud Pak CLI:<br /> `cloudctl login -a https://<cluster_address>:<cluster_router_https_port>`"
+
+
+# {{site.data.reuse.openshift_cli_login}}
+openshift_cli_login: "Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"} (`oc login`)."
+
+# {{site.data.reuse.openshift_ui_login}}
+openshift_ui_login: "Log in to the OpenShift Container Platform [web console](https://docs.openshift.com/container-platform/4.12/web_console/web-console.html){:target=\"_blank\"} using your login credentials."
+
+
+# {{site.data.reuse.maven_prereq}}
+maven_prereq: "Ensure you have Java version 8. Also, ensure you have [Apache Maven](https://maven.apache.org/){:target=\"_blank\"} installed on your system."
+
+
+# {{site.data.reuse.task_openshift_navigate_installed_operators}}
+task_openshift_navigate_installed_operators: "Expand the **Operators** dropdown and select **Installed Operators** to open the **Installed Operators** page."
+
+# {{site.data.reuse.task_openshift_select_project}}
+task_openshift_select_project: "Expand the **Project** dropdown and select the project the instance is installed in."
+
+# {{site.data.reuse.task_openshift_select_routes}}
+task_openshift_select_routes: "Expand the **Networking** dropdown and select **Routes**."
+
+#########
+# Event Streams Tasks #
+#########
+
+# {{site.data.reuse.es_cli_init_k8s}}
+es_cli_init_k8s: "Run the following command to initialize the IBM Event Streams CLI: `kubectl es init`"
+
+
+# {{site.data.reuse.es_cli_init_111}}
+es_cli_init_111: "Initialize the Event Streams CLI by following the instructions in [logging in](../../getting-started/logging-in/#logging-in-to-event-streams-cli)."
+
+# {{site.data.reuse.es_cli_init_111_samesection}}
+es_cli_init_111_samesection: "Initialize the Event Streams CLI by following the instructions in [logging in](../logging-in/#logging-in-to-event-streams-cli)."
+
+# {{site.data.reuse.cncf_cli_login}}
+cncf_cli_login: "Log in to your Kubernetes cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target=\"_blank\"}."
+
+# {{site.data.reuse.enter_install_details}}
+enter_install_details: "Enter a release name that identifies your Event Streams installation, select the target namespace you created previously, select a target cluster (for example, **local-cluster**), and accept the terms of the license agreement."
+
+# {{site.data.reuse.es_ui_login}}
+es_ui_login: "Log in to your Event Streams UI as an administrator from a supported web browser (see how to determine the [login URL](../../getting-started/logging-in/) for your Event Streams UI)."
+
+# {{site.data.reuse.es_ui_login_samesection}}
+es_ui_login_samesection: "Log in to your Event Streams UI as an administrator from a supported web browser (see how to determine the [login URL](../logging-in/) for your Event Streams UI)."
+
+# {{site.data.reuse.es_ui_login_nonadmin}}
+es_ui_login_nonadmin: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../../../getting-started/logging-in/) for your Event Streams UI)."
+
+# {{site.data.reuse.es_ui_login_nonadmin_samesection}}
+es_ui_login_nonadmin_samesection: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../logging-in/) for your Event Streams UI)."
+
+# {{site.data.reuse.es_cli_init}}
+es_cli_init: "Run the following command to initialize the Event Streams CLI: `cloudctl es init`"
+
+# {{site.data.reuse.task_openshift_select_operator}}
+task_openshift_select_operator: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Streams** managing the project."
+
+# {{site.data.reuse.task_openshift_select_instance}}
+task_openshift_select_instance: "Select the **Event Streams** tab and search the **Name** column for the installed instance and click it."
+
+#########
+# Event Processing Tasks #
+#########
+
+# {{site.data.reuse.task_openshift_select_operator_ep}}
+task_openshift_select_operator_ep: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Processing** managing the project."
+
+# {{site.data.reuse.task_openshift_select_instance_ep}}
+task_openshift_select_instance_ep: "Select the **Event Processing** tab and search the **Name** column for the installed instance and click it."
+
+###############
+# Nodes Steps #
+###############
+
+# {{site.data.reuse.node_step1}}
+node_step1: Ensure that a stream of events is available, from an Event Source node or from the output of any previously configured node.
+
+# {{site.data.reuse.node_details}}
+node_details: In the **Details** section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.
+
+# {{site.data.reuse.node_connect}}
+node_connect: "Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node."
+
+###############
+# Flink Tasks #
+###############
+
+# {{site.data.reuse.task_openshift_select_operator_flink}}
+task_openshift_select_operator_flink: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Operator for Apache Flink**."
+
+# {{site.data.reuse.task_openshift_select_instance_flink}}
+task_openshift_select_instance_eem: "Click the **IBM Operator for Apache Flink** tab and search the **Name** column for the installed instance and click the name."
+
+#########
+# Event Endpoint Mangement Tasks #
+#########
+
+# {{site.data.reuse.task_openshift_select_operator_eem}}
+task_openshift_select_operator_eem: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Endpoint Management**."
+
+# {{site.data.reuse.task_openshift_select_instance_eem}}
+task_openshift_select_instance_eem: "Click the **Event Endpoint Management** tab and search the **Name** column for the installed instance and click the name."
+
+#########
+# Common Notes #
+#########
+
+#########
+# Event Streams Notes #
+#########
+
+# {{site.data.reuse.sample_select_note}}
+sample_select_note: "You can select this sample to use when [installing](../es/installing) your instance. You can also use it to start out with your configuration, and change settings as required for your purposes. For ways to customize your setup, see [configuring](../es/configuring)."
+
+# {{site.data.reuse.prod_persistence_note}}
+prod_persistence_note: "**Important:** For production deployments, ensure you configure a storage solution by editing the sample as described in [enabling persistent storage](../es/configuring/#enabling-persistent-storage)."
+
+# {{site.data.reuse.cli_options_short}}
+cli_options_short: "**Tip:** You can use short options instead of spelling out the long version. For example, use `-d` instead of `--destination`, or `-n` instead of `--name`."
+
+# {{site.data.reuse.replicator_origin_list}}
+replicator_origin_list: "**Note:** When logged in to the destination cluster, the origin cluster will not show up in the **Origin locations** section until you [define topics to replicate](#specifying-what-and-where-to-replicate), and the geo-replicator is created."
+
+# {{site.data.reuse.monitor_metrics_retention}}
+monitor_metrics_retention: "**Important:** By default, the metrics data used to provide monitoring information is only stored for a day. Modify the [time period](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/manage_metrics/monitoring_service.html?view=kc#promlogs){:target=\"_blank\"} for metric retention to be able to view monitoring data for longer time periods, such as 1 week or 1 month."
+
+# {{site.data.reuse.geo-rep_note}}
+geo-rep_note: "**Note:** Geo-replication is only available in the paid-for version of Event Streams (not available in the Community Edition)."
+
+# {{site.data.reuse.fsGroupGid}}
+fsGroupGid: "**Important:** If membership of a specific group is required to access the file system used for persistent volumes, ensure you specify in the [**File system group ID**](../es/configuring#global-install-settings) field the GID of the group that owns the file system."
+
+# {{site.data.reuse.kafkaConnectStep2_title}}
+kafkaConnectStep2_title: "Add the connector plugin to your Kafka Connect environment."
+
+# {{site.data.reuse.kafkaConnectStep2_content_1}}
+kafkaConnectStep2_content_1: "To add a connector, ensure you have your connector plugin directory or JAR files in the location specified in the `plugin.path` property of your Kafka Connect worker configuration (for example, `<kafka>/config/connect-distributed.properties`). The `plugin.path` property is a comma-separated list of paths to directories that contain connector plugins.\n\n"
+
+# {{site.data.reuse.kafkaConnectStep2_content1_example}}
+kafkaConnectStep2_content1_example: "For example:\n```\n plugin.path=/usr/local/share/java,/usr/local/share/kafka/plugins,/opt/connectors\n```\n\n"
+
+# {{site.data.reuse.kafkaConnectStep3_title}}
+kafkaConnectStep3_title: "Restart Kafka Connect to make the new connector available in the environment. <br> <br> For more information about how to set up a Kafka Connect environment, add connectors to it, and start the connectors, see how to [set up and run connectors](../../es/connecting/setting-up-connectors/)."
+
+# {{site.data.reuse.apicurio_note}}
+apicurio_note: "**Important:**  Support for Apicurio client libraries version 2.3.x and earlier is deprecated. Ensure all applications connecting to Event Streams that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../troubleshooting/upgrade-apicurio)."
+
+# {{site.data.reuse.iam_note}}
+iam_note: '**Note:** Identity and Access Management (IAM) authentication is only available on the OpenShift Container Platform with IBM Cloud Pak foundational services. It is not supported on other Kubernetes platforms.'
+
+# {{site.data.reuse.es_cli_kafkauser_note}}
+es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands can be run only when the Event Streams CLI has access to Kubernetes resources, which can be provided by IAM authentication. If your Event Streams instance uses SCRAM-SHA-512 authentication, you can create a Kafka User by using the OpenShift web console or the Kubernetes CLI."
+
+# {{site.data.reuse.jmx_deprecated}}
+jmx_deprecated: "**Note:** Support for JMXTrans in Event Streams version 11.1.5 and later is deprecated, as the JMXTrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating JMXTrans."
+#####################################################
+# DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #
+#####################################################
+
+# Product names
+
+# {{site.data.reuse.icp}}
+icp: "IBM Cloud Private"
+
+# {{site.data.reuse.ce_long}}
+ce_long: "Event Streams Community Edition"
+
+# {{site.data.reuse.ce_short}}
+ce_short: "Community Edition"
+
+# Task Steps
+
+# {{site.data.reuse.icp_ui_login321}}
+icp_ui_login321: "Log in to your IBM Cloud Private cluster management console as an administrator. For more information, see the IBM Cloud Private [documentation](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/manage_cluster/cfc_gui.html){:target=\"_blank\"}."
+
+# {{site.data.reuse.helm_charts_note}}
+helm_charts_note: "**Note:** Where `<charts.tgz>` is the name of the chart file you used to install Event Streams, including the full path to it if in a different directory. To run `helm upgrade` commands, [ensure you have the original chart file available](../../es/administering/helm-upgrade-command/)."
+
+# Notes
+# {{site.data.reuse.ce_deprecated}}
+ce_deprecated: "Event Streams Community Edition is no longer available from 1 May 2020. For information about trying out Kafka and Event Streams for free, see the [product pages](https://www.ibm.com/cloud/event-streams/get-started){:target=\"_blank\"}."
+
+# {{site.data.reuse.es_deprecated}}
+es_deprecated: "**Note:** The Event Streams component in IBM Cloud Pak for Integration has been deprecated. Event Streams will continue to be supported but will no longer be enhanced (see [announcement](https://www-01.ibm.com/common/ssi/ShowDoc.wss?docURL=/common/ssi/rep_ca/2/877/ENUSZP21-0082/index.html){:target=\"_blank\"}). For self-managed software solutions that require Apache Kafka, IBM recommends the Confluent Platform available as an add-on for Cloud Pak for Integration."
+
+
+# Icons
+
+# Event Streams 2018.3.0 only cueing graphic and text - example:
+#![Event Streams 2018.3.0 only icon](../../images/2018.3.0.svg "Only in Event Streams 2018.3.0.") In {{site.data.reuse.es_name}} 2018.3.0,
+
+# Event Streams 2018.3.1 or Fix Pack 1 and later cueing graphic and text - example:
+# ![Event Streams 2018.3.1 and later icon](../../images/2018.3.1.svg "Only in Event Streams 2018.3.1 and later.") In {{site.data.reuse.es_name}} 2018.3.1 and later,
+
+# {{site.data.reuse.more_options}}
+# more_options: "![Three vertical dots for the more options icon at end of each row.](../images/more_options.png){:height="30px" width="15px"}"
+
+
+
+
+

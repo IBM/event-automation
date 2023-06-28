@@ -1,0 +1,110 @@
+/* ==========================================================================
+  Collapsible Tiles LAYOUT
+  ========================================================================== 
+
+
+  details {
+    background-color: transparent;
+    color: #0000ff;
+    border-radius: 4px;
+    /*margin-bottom: 1rem; 
+    overflow: hidden;
+    display: flex;
+    align-items: left;
+    padding: 0.5rem; 
+    position: sticky;
+    top: 0rem;
+    /*font-weight: 600; 
+    summary {
+      color: #0000ff;
+      cursor: pointer;
+      outline: none;
+      font-size: 1.25rem;
+  
+      &:hover {
+        background-color: #ddd;
+      }
+  
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    summary + * {
+      margin-top: 10px; /* add some margin to separate from the summary 
+      margin-left: 20px; /* indent the content after the summary 
+    }
+  
+    &[open] {
+      summary {
+        color: #0000ff;
+
+      }
+    }
+  
+    > * {
+     padding: 0.5rem; 
+    }
+  }
+  ul {
+
+  }
+
+*/
+  .details {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 0.875rem;
+    /*transition: background-color 0.5s ease-out; */
+
+  }
+  
+  .details:hover,
+  .active .details {
+    background-color: #ddd;
+  }
+  
+  .details:after,
+  .active .details:after {
+   /*  content: '\25BE'; Unicode value for downward-pointing arrow */
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active .details:after {
+  /*  content: '\25B4';  Unicode value for upward-pointing arrow */
+  }
+  
+  .summary {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out; /* uncommented */
+    text-indent: 1rem;
+    content: "\e114";
+    color: black;
+  }
+  
+  
+  .summary:before {
+    padding-left: 20px;
+    display: inline-block; 
+    margin-right: 5px;
+  }
+  
+  .active .summary {
+    max-height: 500px;
+    box-sizing: border-box;
+    
+  }
+
+  .h2_landing {
+  padding-left: 2rem;
+  }

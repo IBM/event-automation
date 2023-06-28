@@ -1,0 +1,2802 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Performance and capacity planning - IBM Event Automation</title>
+<meta name="description" content="Consider the following when planning for the performance and capacity requirements of your installation.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_10.2/installing/capacity-planning/" />
+<meta property="og:title" content="Event Streams | Performance and capacity planning" />
+<meta property="og:description" content="Consider the following when planning for the performance and capacity requirements of your installation." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Performance and capacity planning" />
+
+
+
+
+  <meta property="og:description" content="Consider the following when planning for the performance and capacity requirements of your installation.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_10.2/installing/capacity-planning/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">10.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">10.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/capacity-planning/" onclick="openVersion('/event-automation/es/installing/capacity-planning/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/capacity-planning/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_11.1/installing/capacity-planning/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/capacity-planning/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_11.0/installing/capacity-planning/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/capacity-planning/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.5/installing/capacity-planning/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/capacity-planning/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.4/installing/capacity-planning/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/capacity-planning/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.3/installing/capacity-planning/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/capacity-planning/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.2/installing/capacity-planning/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/capacity-planning/" class="versionPill active">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.1/installing/capacity-planning/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/capacity-planning/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_10.0/installing/capacity-planning/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/capacity-planning/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_2019.4/installing/capacity-planning/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/capacity-planning/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/capacity-planning/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/capacity-planning/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/capacity-planning/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/capacity-planning/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/capacity-planning/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/capacity-planning/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/capacity-planning/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/capacity-planning/" class="active">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/migrating-to-apicurio/" class="">Migrating to Apicurio Registry</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/schema-api/" class="">Using the schema API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/cruise-control/" class="">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/firefox-black-images/" class="">UI shows black images in Firefox</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/schema-registry-not-authorized-error/" class="">Not authorized error when building maven schema registry project</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/504-ui-consumer-groups/" class="">504 timeout error when viewing consumer groups in the Event Streams UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-exporter-not-deployed/" class="">Kafka exporter is not deployed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/overriding-route-hostnames/" class="">Unable to override external listener route host</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/metrics-not-available/" class="">Event Streams metrics unavailable</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Performance and capacity planning
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <!--It's important to understand your requirements so that you set up your deployment to handle the intended workload. In addition,  [licensing](../planning/#licensing) is based on the number of virtual cores available to all Kafka, Kafka Connect and Geo-replicator containers deployed.-->
+
+<h2 id="guidance-for-production-environments">Guidance for production environments</h2>
+
+<p>You can use one of the sample configurations provided by Event Streams to set up a production deployment. For information about the provided samples, see the <a href="../planning/#sample-deployments">sample deployments</a> section.</p>
+
+<p>If needed, you can <a href="../configuring">modify the selected sample configuration</a> when you deploy a new instance, or make changes at a <a href="../../administering/modifying-installation">later time</a>.</p>
+
+<h2 id="tuning-event-streams-kafka-performance">Tuning Event Streams Kafka performance</h2>
+
+<p>When preparing for your Event Streams installation, review your workload requirements and consider the configuration options available for performance tuning your Event Streams installation.</p>
+
+<p>Kafka offers a number of configuration settings that can be adjusted as necessary for an Event Streams deployment. These can be used to address any bottlenecks in the system as well as perform fine tuning of Kafka performance.</p>
+
+<p>Kafka provides a wide range of configuration properties to set, but consider the following when reviewing performance requirements:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">num.replica.fetchers</code> property sets the number of threads available on each broker to replicate messages from topic leaders. Increasing this setting increases I/O parallelism in the follower broker, and can help reduce bottlenecks and message latency. You can start by setting this value to match the number of brokers deployed in the system.<br />
+<strong>Note:</strong> Increasing this value results in brokers using more CPU resources and network bandwidth.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">num.io.threads</code> property sets the number of threads available to a broker for processing requests. As the load on each broker increases, handling requests can become a bottleneck. Increasing this property value can help mitigate this issue. The value to set depends on the overall system load and the processing power of the worker nodes, which varies for each deployment. There is a correlation between this setting and the <code class="language-plaintext highlighter-rouge">num.network.threads</code> setting.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">num.network.threads</code> property sets the number of threads available to the broker for receiving and sending requests and responses to the network. The value to set depends on the overall network load, which varies for each deployment. There is a correlation between this setting and the <code class="language-plaintext highlighter-rouge">num.io.threads</code> setting.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">replica.fetch.min.bytes</code>, <code class="language-plaintext highlighter-rouge">replica.fetch.max.bytes</code>, and <code class="language-plaintext highlighter-rouge">replica.fetch.response.max.bytes</code> properties control the minimum and maximum sizes for message payloads when performing inter-broker replication. Set these values to be greater than the <code class="language-plaintext highlighter-rouge">message.max.bytes</code> property to ensure that all messages sent by a producer can be replicated between brokers. The value to set depends on message throughput and average size, which varies for each deployment.</li>
+</ul>
+
+<p>These properties are <a href="../configuring/#applying-kafka-broker-configuration-settings">configured</a> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource for an instance when it is first created and can be <a href="../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings">modified</a> at any time.</p>
+
+<h2 id="disk-space-for-persistent-volumes">Disk space for persistent volumes</h2>
+
+<p>You need to ensure you have sufficient disk space in the persistent storage for the Kafka brokers to meet your expected throughput and retention requirements. In Kafka, unlike other messaging systems, the messages on a topic are not immediately removed after they are consumed. Instead, the configuration of each topic determines how much space the topic is permitted and how it is managed.</p>
+
+<p>Each partition of a topic consists of a sequence of files called log segments. The size of the log segments is determined by the cluster-level configuration property <code class="language-plaintext highlighter-rouge">log.segment.bytes</code> (default is 1 GB). This can be overridden by using the topic-level configuration <code class="language-plaintext highlighter-rouge">segment.bytes</code>.</p>
+
+<p>For each log segment, there are two index files called the time index and the offset index. The size of the index is determined by the cluster-level configuration property <code class="language-plaintext highlighter-rouge">log.index.size.max.bytes</code> (default is 10 MB). This can be overridden by using the topic-level configuration property <code class="language-plaintext highlighter-rouge">segment.index.bytes</code>.</p>
+
+<p>Log segments can be deleted or compacted, or both, to manage their size. The topic-level configuration property <code class="language-plaintext highlighter-rouge">cleanup.policy</code> determines the way the log segments for the topic are managed.</p>
+
+<p>For more information about these settings, see <a href="https://kafka.apache.org/documentation/#configuration" target="_blank">the Kafka documentation</a>.</p>
+
+<p>The cluster-level settings are <a href="../configuring/#applying-kafka-broker-configuration-settings">configured</a> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource for an instance when it is first created and can be <a href="../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings">modified</a> at any time.</p>
+
+<p>You can specify the cluster and topic-level configurations by using the <a href="../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings">Event Streams CLI</a>. You can also set topic-level configuration when <a href="../../getting-started/creating-topics/">setting up the topic</a> in the Event Streams UI (click <strong>Create a topic</strong>, and set <strong>Show all available options</strong> to <strong>On</strong>).</p>
+
+<p><strong>Note:</strong> When using ephemeral storage, ensure you set retention limits for Kafka topics so that you do not run out of disk space.
+If <a href="../../getting-started/creating-topics/">message retention</a> is set to long periods and the message volume is high, the storage requirements for the topics could impact the OpenShift nodes that host the Kafka pods, and cause the nodes to run out of allocated disk space, which could impact normal operation.</p>
+
+<h3 id="log-cleanup-by-deletion">Log cleanup by deletion</h3>
+
+<p>If the topic-level configuration property <code class="language-plaintext highlighter-rouge">cleanup.policy</code> is set to <code class="language-plaintext highlighter-rouge">delete</code> (the default value), old log segments are discarded when the retention time or size limit is reached, as set by the following properties:</p>
+
+<ul>
+  <li>Retention time is set by <code class="language-plaintext highlighter-rouge">retention.ms</code>, and is the maximum time in milliseconds that a log segment is retained before being discarded to free up space.</li>
+  <li>Size limit is set by <code class="language-plaintext highlighter-rouge">retention.bytes</code>, and is the maximum size that a partition can grow to before old log segments are discarded.</li>
+</ul>
+
+<p>By default, there is no size limit, only a time limit. The default time limit is 7 days (604,800,000 ms).</p>
+
+<p>You also need to have sufficient disk space for the log segment deletion mechanism to operate. The cluster-level configuration property <code class="language-plaintext highlighter-rouge">log.retention.check.interval.ms</code> (default is 5 minutes) controls how often the broker checks to see whether log segments should be deleted. The cluster-level configuration property <code class="language-plaintext highlighter-rouge">log.segment.delete.delay.ms</code> (default is 1 minute) controls how long the broker waits before deleting the log segments. This means that by default you also need to ensure you have enough disk space to store log segments for an additional 6 minutes for each partition.</p>
+
+<h4 id="worked-example-1">Worked example 1</h4>
+
+<p>Consider a cluster that has 3 brokers, and 1 topic with 1 partition with a replication factor of 3. The expected throughput is 3,000 bytes per second. The retention time period is 7 days (604,800 seconds).</p>
+
+<p>Each broker hosts 1 replica of the topic’s single partition.</p>
+
+<p>The log capacity required for the 7 days retention period can be determined as follows: 3,000 * (604,800 + 6 * 60) = 1,815,480,000 bytes.</p>
+
+<p>So, each broker requires approximately 2GB of disk space allocated in its persistent volume, plus approximately 20 MB of space for index files. In addition, allow at least 1 log segment of extra space to make room for the actual cleanup process. Altogether, you need a total of just over 3 GB disk space for persistent volumes.</p>
+
+<h4 id="worked-example-2">Worked example 2</h4>
+
+<p>Consider a cluster that has 3 brokers, and 1 topic with 1 partition with a replication factor of 3. The expected throughput is 3,000 bytes per second. The retention size configuration is set to 2.5 GB.</p>
+
+<p>Each broker hosts 1 replica of the topic’s single partition.</p>
+
+<p>The number of log segments for 2.5 GB is 3, but you should also allow 1 extra log segment after cleanup.</p>
+
+<p>So, each broker needs approximately 4 GB of disk space allocated in its persistent volume, plus approximately 40 MB of space for index files.</p>
+
+<p>The retention period achieved at this rate is approximately 2,684,354,560 / 3,000 = 894,784 seconds, or 10.36 days.</p>
+
+<h3 id="log-cleanup-by-compaction">Log cleanup by compaction</h3>
+
+<p>If the topic-level configuration property <code class="language-plaintext highlighter-rouge">cleanup.policy</code> is set to <code class="language-plaintext highlighter-rouge">compact</code>, the log for the topic is compacted periodically in the background by the log cleaner. In a compacted topic, each message has a key. The log only needs to contain the most recent message for each key, while earlier messages can be discarded. The log cleaner calculates the offset of the most recent message for each key, and then copies the log from start to finish, discarding all but the last of each duplicate key in the log. As each copied segment is created, they are swapped into the log right away to keep the amount of additional space required to a minimum.</p>
+
+<p>Estimating the amount of space that a compacted topic will require is complex, and depends on factors such as the number of unique keys in the messages, the frequency with which each key appears in the uncompacted log, and the size of the messages.</p>
+
+<h3 id="log-cleanup-by-using-both">Log cleanup by using both</h3>
+
+<p>You can specify both <code class="language-plaintext highlighter-rouge">delete</code> and <code class="language-plaintext highlighter-rouge">compact</code> values for the <code class="language-plaintext highlighter-rouge">cleanup.policy</code> configuration property at the same time. In this case, the log is compacted, but the cleanup process also follows the retention time or size limit settings.</p>
+
+<p>When both methods are enabled, capacity planning is simpler than when you only have compaction set for a topic. However, some use cases for log compaction depend on messages not being deleted by log cleanup, so consider whether using both is right for your scenario.</p>
+
+<!--
+## Memory requirements
+
+TBD
+
+## CPU requirements
+
+TBD
+-->
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#guidance-for-production-environments">Guidance for production environments</a></li>
+  <li><a href="#tuning-event-streams-kafka-performance">Tuning Event Streams Kafka performance</a></li>
+  <li><a href="#disk-space-for-persistent-volumes">Disk space for persistent volumes</a>
+    <ul>
+      <li><a href="#log-cleanup-by-deletion">Log cleanup by deletion</a></li>
+      <li><a href="#log-cleanup-by-compaction">Log cleanup by compaction</a></li>
+      <li><a href="#log-cleanup-by-using-both">Log cleanup by using both</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_10.2/installing/planning/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.2/installing/planning/" class="pagination--pager" title="Previous Item: Planning your installation
+">Previous</a>
+          <h2 class="titlePreview">Planning your installation
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_10.2/installing/preparing-multizone/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.2/installing/preparing-multizone/" class="pagination--pager" title="Next Item: Preparing for multizone clusters
+">Next</a>
+          <h2 class="titlePreview">Preparing for multizone clusters
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

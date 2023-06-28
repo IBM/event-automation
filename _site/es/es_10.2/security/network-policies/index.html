@@ -1,0 +1,3427 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Network policies - IBM Event Automation</title>
+<meta name="description" content="Learn about the network connections allowed for Event Streams each pod.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_10.2/security/network-policies/" />
+<meta property="og:title" content="Event Streams | Network policies" />
+<meta property="og:description" content="Learn about the network connections allowed for Event Streams each pod." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Network policies" />
+
+
+
+
+  <meta property="og:description" content="Learn about the network connections allowed for Event Streams each pod.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_10.2/security/network-policies/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">10.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">10.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/security/network-policies/" onclick="openVersion('/event-automation/es/security/network-policies/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/security/network-policies/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/security/network-policies/" onclick="openVersion('/event-automation/es/es_11.1/security/network-policies/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/security/network-policies/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/security/network-policies/" onclick="openVersion('/event-automation/es/es_11.0/security/network-policies/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/security/network-policies/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.5/security/network-policies/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/security/network-policies/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.4/security/network-policies/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/security/network-policies/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.3/security/network-policies/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/security/network-policies/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.2/security/network-policies/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/security/network-policies/" class="versionPill active">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.1/security/network-policies/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/security/network-policies/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/security/network-policies/" onclick="openVersion('/event-automation/es/es_10.0/security/network-policies/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/security/network-policies/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/security/network-policies/" onclick="openVersion('/event-automation/es/es_2019.4/security/network-policies/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/security/network-policies/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/security/network-policies/" onclick="openVersion('/event-automation/es/es_2019.2.1/security/network-policies/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/security/network-policies/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/security/network-policies/" onclick="openVersion('/event-automation/es/es_2019.1.1/security/network-policies/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/security/network-policies/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/security/network-policies/" onclick="openVersion('/event-automation/es/es_2018.3.1/security/network-policies/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/security/network-policies/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/installing/migrating-to-apicurio/" class="">Migrating to Apicurio Registry</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/schema-api/" class="">Using the schema API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/network-policies/" class="active">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/cruise-control/" class="">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/firefox-black-images/" class="">UI shows black images in Firefox</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/schema-registry-not-authorized-error/" class="">Not authorized error when building maven schema registry project</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/504-ui-consumer-groups/" class="">504 timeout error when viewing consumer groups in the Event Streams UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/kafka-exporter-not-deployed/" class="">Kafka exporter is not deployed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/overriding-route-hostnames/" class="">Unable to override external listener route host</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.2/troubleshooting/metrics-not-available/" class="">Event Streams metrics unavailable</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Network policies
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="inbound-network-connections-ingress">Inbound network connections (ingress)</h2>
+
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Network policies</a> are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.</p>
+
+<p>When you install an instance of Event Streams, the required network policies will be automatically created. To review the network policies that have been applied:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Run the following command to display the installed network policies for a specific namespace:<br />
+<code class="language-plaintext highlighter-rouge">oc get netpol -n &lt;namespace&gt;</code></li>
+</ol>
+
+<p>The following tables provide information about the network policies that are applicable to each pod within the Event Streams instance. If a particular pod is not required by a given Event Streams configuration, the associated network policy will not be applied.</p>
+
+<p><strong>Note:</strong> Where a network policy exposes a port to the Event Streams Cluster operator, it is configured to allow connections from any namespace.</p>
+
+<h3 id="kafka-pod">Kafka pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>REST API, REST Producer and Schema Registry pods</td>
+      <td>8091</td>
+      <td>Broker communication</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka, Cluster operator, Entity operator, Kafka Cruise Control and Kafka Exporter pods</td>
+      <td>9091</td>
+      <td>Broker communication</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere (can be restricted by including <code class="language-plaintext highlighter-rouge">networkPolicyPeers</code> in the listener configuration)</td>
+      <td>9092</td>
+      <td>Kafka access for Plain listener</td>
+      <td>If the <a href="../../installing/configuring/#kafka-access">Plain listener</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere (can be restricted by including <code class="language-plaintext highlighter-rouge">networkPolicyPeers</code> in the listener configuration)</td>
+      <td>9093</td>
+      <td>Kafka access for TLS listener</td>
+      <td>If the <a href="../../installing/configuring/#kafka-access">TLS listener</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere (can be restricted by including <code class="language-plaintext highlighter-rouge">networkPolicyPeers</code> in the listener configuration)</td>
+      <td>9094</td>
+      <td>Kafka access for External listener</td>
+      <td>If the <a href="../../installing/configuring/#kafka-access">External listener</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9404</td>
+      <td>Prometheus access to Kafka metrics</td>
+      <td>If <a href="../../installing/configuring/#configuring-external-monitoring-through-prometheus">metrics</a> are enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9999</td>
+      <td>JMX access to Kafka metrics</td>
+      <td>If <a href="../secure-jmx-connections#exposing-a-jmx-port-on-kafka">JMX port is exposed</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> If required, access to listener ports can be restricted to only those pods with specific labels by including additional configuration in the Event Streams custom resource under <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.&lt;listener&gt;.networkPolicyPeers</code>.</p>
+
+<h3 id="zookeeper-pod">ZooKeeper pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka, ZooKeeper, Cluster operator, Entity operator, Kafka Cruise Control pods</td>
+      <td>2181</td>
+      <td>ZooKeeper client connections</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Other ZooKeeper pods</td>
+      <td>2888</td>
+      <td>ZooKeeper follower connection to leader</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Other ZooKeeper pods</td>
+      <td>3888</td>
+      <td>ZooKeeper leader election</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9404</td>
+      <td>Exported Prometheus metrics</td>
+      <td>If <a href="../../installing/configuring/#configuring-external-monitoring-through-prometheus">metrics</a> are enabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="geo-replicator-pod">Geo-replicator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>REST API pods</td>
+      <td>8083</td>
+      <td>Geo-replicator API traffic</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Cluster operator and other geo-replicator pods</td>
+      <td>8083</td>
+      <td>Geo-replicator cluster traffic</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9404</td>
+      <td>Exported Prometheus metrics</td>
+      <td>If <a href="../../installing/configuring/#configuring-external-monitoring-through-prometheus">metrics</a> are enabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="schema-registry-pod">Schema registry pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9443</td>
+      <td>External access to API</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7443</td>
+      <td>TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7080</td>
+      <td>Non-TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is disabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="administration-ui-pod">Administration UI pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>3000</td>
+      <td>External access to UI</td>
+      <td>Always</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="administration-server-pod">Administration server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9443</td>
+      <td>External access to API</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7443</td>
+      <td>TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7080</td>
+      <td>Non-TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is disabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-producer-server-pod">REST producer server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9443</td>
+      <td>External access to API</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7443</td>
+      <td>TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7080</td>
+      <td>Non-TLS cluster traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is disabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="metrics-collector-pod">Metrics collector pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>7888</td>
+      <td>Exported Prometheus metrics</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7443</td>
+      <td>TLS inbound metrics traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is enabled</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Streams instance</td>
+      <td>7080</td>
+      <td>Non-TLS inbound metrics traffic</td>
+      <td>If <a href="../../installing/configuring/#configuring-encryption-between-pods">internal TLS</a> is disabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-operator-pod">Cluster operator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>8080</td>
+      <td>Exported Prometheus metrics</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>8081</td>
+      <td>EventStreams custom resource validator</td>
+      <td>Always</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cruise-control-pod">Cruise Control pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Cluster operator</td>
+      <td>9090</td>
+      <td>Access to API</td>
+      <td>Always</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="kafka-connect-pod">Kafka Connect pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Cluster operator and Kafka Connect pods</td>
+      <td>8083</td>
+      <td>Access to Kafka Connect REST API</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9404</td>
+      <td>Exported Prometheus metrics</td>
+      <td>If <a href="../../installing/configuring/#configuring-external-monitoring-through-prometheus">metrics</a> are enabled</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="outbound-network-connections-egress">Outbound network connections (egress)</h2>
+
+<p>The following tables provide information about the outbound network connections (egress) initiated by pods in an Event Streams installation. If a particular pod is not required by an Event Streams configuration, the associated outbound connection is not applicable.</p>
+
+<h3 id="kafka-pod-1">Kafka pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>9091</td>
+      <td>Broker replication</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>ZooKeeper</td>
+      <td>app.kubernetes.io/name=zookeeper</td>
+      <td>2181</td>
+      <td>ZooKeeper communication</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="zookeeper-pod-1">ZooKeeper pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>ZooKeeper</td>
+      <td>app.kubernetes.io/name=zookeeper</td>
+      <td>2888</td>
+      <td>ZooKeeper clustering</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>ZooKeeper</td>
+      <td>app.kubernetes.io/name=zookeeper</td>
+      <td>3888</td>
+      <td>ZooKeeper leader elections</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="geo-replicator-pod-1">Geo-replicator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Geo-replicator</td>
+      <td>app.kubernetes.io/name=kafka-mirror-maker-2</td>
+      <td>8083</td>
+      <td>Geo-replicator cluster traffic</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> Geo-replicator destination is external to the cluster.</p>
+
+<h3 id="schema-registry-pod-1">Schema registry pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>8091</td>
+      <td>Broker communication</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="administration-server-pod-1">Administration server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>8091</td>
+      <td>Broker API traffic</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Geo-replicator</td>
+      <td>app.kubernetes.io/name=kafka-mirror-maker-2</td>
+      <td>8083</td>
+      <td>Geo-replicator API traffic</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka Connect</td>
+      <td>app.kubernetes.io/name=kafka-connect</td>
+      <td>8083</td>
+      <td>Kafka Connect API traffic</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-producer-server-pod-1">REST producer server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>8091</td>
+      <td>Producer messages</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-operator-pod-1">Cluster operator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>9091</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>ZooKeeper</td>
+      <td>app.kubernetes.io/name=zookeeper</td>
+      <td>2181</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Geo-replicator</td>
+      <td>app.kubernetes.io/name=kafka-mirror-maker-2</td>
+      <td>8083</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka Connect</td>
+      <td>app.kubernetes.io/name=kafka-connect</td>
+      <td>8083</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Admin API</td>
+      <td>app.kubernetes.io/name=admin-api</td>
+      <td>7443</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Metrics collector</td>
+      <td>app.kubernetes.io/name=metrics</td>
+      <td>7443</td>
+      <td>Configuration</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Rest producer</td>
+      <td>app.kubernetes.io/name=rest-producer</td>
+      <td>7443</td>
+      <td>Configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cruise-control-pod-1">Cruise Control pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>app.kubernetes.io/name=kafka</td>
+      <td>9091</td>
+      <td>Broker communication</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>ZooKeeper</td>
+      <td>app.kubernetes.io/name=zookeeper</td>
+      <td>2181</td>
+      <td>ZooKeeper client connections</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="kafka-connect-pod-1">Kafka Connect pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Pod Label</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka Connect</td>
+      <td>app.kubernetes.io/name=kafka-connect</td>
+      <td>8083</td>
+      <td>Access to Kafka Connect REST API</td>
+    </tr>
+  </tbody>
+</table>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#inbound-network-connections-ingress">Inbound network connections (ingress)</a>
+    <ul>
+      <li><a href="#kafka-pod">Kafka pod</a></li>
+      <li><a href="#zookeeper-pod">ZooKeeper pod</a></li>
+      <li><a href="#geo-replicator-pod">Geo-replicator pod</a></li>
+      <li><a href="#schema-registry-pod">Schema registry pod</a></li>
+      <li><a href="#administration-ui-pod">Administration UI pod</a></li>
+      <li><a href="#administration-server-pod">Administration server pod</a></li>
+      <li><a href="#rest-producer-server-pod">REST producer server pod</a></li>
+      <li><a href="#metrics-collector-pod">Metrics collector pod</a></li>
+      <li><a href="#cluster-operator-pod">Cluster operator pod</a></li>
+      <li><a href="#cruise-control-pod">Cruise Control pod</a></li>
+      <li><a href="#kafka-connect-pod">Kafka Connect pod</a></li>
+    </ul>
+  </li>
+  <li><a href="#outbound-network-connections-egress">Outbound network connections (egress)</a>
+    <ul>
+      <li><a href="#kafka-pod-1">Kafka pod</a></li>
+      <li><a href="#zookeeper-pod-1">ZooKeeper pod</a></li>
+      <li><a href="#geo-replicator-pod-1">Geo-replicator pod</a></li>
+      <li><a href="#schema-registry-pod-1">Schema registry pod</a></li>
+      <li><a href="#administration-server-pod-1">Administration server pod</a></li>
+      <li><a href="#rest-producer-server-pod-1">REST producer server pod</a></li>
+      <li><a href="#cluster-operator-pod-1">Cluster operator pod</a></li>
+      <li><a href="#cruise-control-pod-1">Cruise Control pod</a></li>
+      <li><a href="#kafka-connect-pod-1">Kafka Connect pod</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_10.2/security/secure-jmx-connections/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.2/security/secure-jmx-connections/" class="pagination--pager" title="Previous Item: Configuring secure JMX connections
+">Previous</a>
+          <h2 class="titlePreview">Configuring secure JMX connections
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_10.2/security/gdpr-considerations/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.2/security/gdpr-considerations/" class="pagination--pager" title="Next Item: Considerations for GDPR
+">Next</a>
+          <h2 class="titlePreview">Considerations for GDPR
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

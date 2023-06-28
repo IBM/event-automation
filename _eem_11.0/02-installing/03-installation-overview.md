@@ -1,0 +1,28 @@
+---
+title: "Installation overview"
+excerpt: "Find out about the high-level steps required to install Event Endpoint Management."
+categories: installing
+slug: overview
+toc: true
+---
+
+The following sections provide instructions about installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
+
+## Overview
+
+{{site.data.reuse.eem_name}} is an operator-based release and uses custom resources to deploy and manage the lifecycle of your instances of {{site.data.reuse.eem_name}}.
+
+An instance of {{site.data.reuse.eem_name}} (also referred to as Manager or {{site.data.reuse.eem_manager}}) consists of a single instance of a `manager` component that is configured along with one or more instances of a `gateway` component.
+Custom resources are presented as YAML configuration documents that define instances of the `manager` component and the `gateway` component by using custom resources of type `EventEndpointManagement` and `EventGateway`.
+
+Installing {{site.data.reuse.eem_name}} has three phases:
+
+1. Decide if you want to install in an [online environment](../installing/) which has access to the internet, or if you will be installing in an [offline environment](../offline/) (also referred to as air-gapped or disconnected).
+
+   **Note:** Stand-alone {{site.data.reuse.egw}} instances can only be installed in an online environment (see later steps).
+2. Install the {{site.data.reuse.eem_name}} operator. The operator will then be available to install and manage your {{site.data.reuse.eem_manager}} instances, and any {{site.data.reuse.egw}} instances you want to install on the same cluster.
+3. Using the operator, install an instance of the `manager` component by applying the `EventEndpointManagement` custom resource type.
+4. Install one or more instances of the {{site.data.reuse.egw}} on the same cluster or as a stand-alone deployment:
+   - If you want to install the {{site.data.reuse.egw}} on the same cluster as the {{site.data.reuse.eem_manager}}, use the {{site.data.reuse.eem_name}} operator to install instances by applying the `EventGateway` custom resource type. For more information, see [installing {{site.data.reuse.egw}} on the same cluster](http://localhost:4000/event-integration/event-automation-docs/eem/installing/deploy-gateways/).
+   - If you want to install the {{site.data.reuse.egw}} on a different cluster, for example, to locate it closer to where your Kafka installation is, you can install a [stand-alone {{site.data.reuse.egw}}](../standalone-gateways/).
+

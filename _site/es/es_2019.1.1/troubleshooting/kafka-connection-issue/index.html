@@ -1,0 +1,2431 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Unable to connect to Kafka cluster - IBM Event Automation</title>
+<meta name="description" content="Error is displayed when trying to connect to your Kafka cluster.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" />
+<meta property="og:title" content="Event Streams | Unable to connect to Kafka cluster" />
+<meta property="og:description" content="Error is displayed when trying to connect to your Kafka cluster." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Unable to connect to Kafka cluster" />
+
+
+
+
+  <meta property="og:description" content="Error is displayed when trying to connect to your Kafka cluster.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">2019.1.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">2019.1.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/troubleshooting/kafka-connection-issue/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/troubleshooting/kafka-connection-issue/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_11.1/troubleshooting/kafka-connection-issue/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/troubleshooting/kafka-connection-issue/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_11.0/troubleshooting/kafka-connection-issue/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/troubleshooting/kafka-connection-issue/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.5/troubleshooting/kafka-connection-issue/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.4/troubleshooting/kafka-connection-issue/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.3/troubleshooting/kafka-connection-issue/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.2/troubleshooting/kafka-connection-issue/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.1/troubleshooting/kafka-connection-issue/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_10.0/troubleshooting/kafka-connection-issue/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/troubleshooting/kafka-connection-issue/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_2019.4/troubleshooting/kafka-connection-issue/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/troubleshooting/kafka-connection-issue/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_2019.2.1/troubleshooting/kafka-connection-issue/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/troubleshooting/kafka-connection-issue/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" class="versionPill active">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/troubleshooting/kafka-connection-issue/" onclick="openVersion('/event-automation/es/es_2018.3.1/troubleshooting/kafka-connection-issue/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-connection-issue/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/prerequisites/" class="">Pre-requisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/planning/" class="">Planning for installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/capacity-planning/" class="">Capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing/" class="">Installing on IBM Cloud Private</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing-openshift/" class="">Installing on OpenShift</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/migrating/" class="">Migrating from Community Edition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/rolling-back/" class="">Rolling back</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/generating-starter-app/" class="">Generating a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/client/" class="">Creating Kafka Java client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/rest-api/" class="">Producing messages using REST</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-configs/" class="">Modifying Kafka broker configurations</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/helm-upgrade-command/" class="">Running Helm upgrade commands</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/diagnosing-installation-issues/" class="">Diagnosing installation issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cleanup-uninstall/" class="">Full cleanup after uninstallation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pod-timeout-error/" class="">ConsumerTimeoutException when pods available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-image-policy/" class="">Chart deployment fails with 'no ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/image-policy-missing-repository/" class="">Chart deployment fails with 'no matching repositories in the ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-helm-release-is-created/" class="">Chart deployment starts but no helm release is created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/messages-page-blank/" class="">The Messages page is blank</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" class="active">Unable to connect to Kafka cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-connect-error/" class="">Geo-replication fails to start</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pods-apparmor-blocked/" class="">Pods fail to start, status is blocked</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/client-connect-error/" class="">Kafka client apps unable to connect to cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/rollback-fails/" class="">Rollback fails</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/failed-to-read-log/" class="">Failed to read 'log header' errors in Kafka logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Unable to connect to Kafka cluster
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="symptoms">Symptoms</h2>
+
+<p>The following error is displayed when trying to connect to your Kafka cluster using SSL, for example, when <a href="../../connecting/mq/">running the Kafka Connect source connector for IBM MQ</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.apache.kafka.common.errors.SslAuthenticationException: SSL handshake failed
+</code></pre></div></div>
+
+<h2 id="causes">Causes</h2>
+
+<p>The Java process might replace the IP address of your cluster with the corresponding <code class="language-plaintext highlighter-rouge">hostname</code> value found in your <code class="language-plaintext highlighter-rouge">/etc/hosts</code> file.</p>
+
+<p>For example, to be able to access Docker images from your IBM Cloud Private cluster, you might have added an entry in your <code class="language-plaintext highlighter-rouge">/etc/hosts</code> file that corresponds to the IP address of your cluster, such as <code class="language-plaintext highlighter-rouge">192.0.2.24 mycluster.icp</code>.</p>
+
+<p>In such cases, the following Java exception is displayed after the previously mentioned error message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Caused by: java.security.cert.CertificateException: No subject alternative DNS name matching XXXXX found.
+</code></pre></div></div>
+
+<h2 id="resolving-the-problem">Resolving the problem</h2>
+
+<p>If you see the exception mentioned previously, comment out the <code class="language-plaintext highlighter-rouge">hostname</code> value in your <code class="language-plaintext highlighter-rouge">/etc/hosts</code> file to solve this connection issue.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#symptoms">Symptoms</a></li>
+  <li><a href="#causes">Causes</a></li>
+  <li><a href="#resolving-the-problem">Resolving the problem</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_2019.1.1/troubleshooting/messages-page-blank/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/troubleshooting/messages-page-blank/" class="pagination--pager" title="Previous Item: The Messages page is blank
+">Previous</a>
+          <h2 class="titlePreview">The Messages page is blank
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_2019.1.1/troubleshooting/error-removing-destination/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/troubleshooting/error-removing-destination/" class="pagination--pager" title="Next Item: Unable to remove destination cluster
+">Next</a>
+          <h2 class="titlePreview">Unable to remove destination cluster
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

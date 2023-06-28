@@ -1,0 +1,1564 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Uninstalling - IBM Event Automation</title>
+<meta name="description" content="Uninstalling Event Processing.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/ep/installing/uninstalling/" />
+<meta property="og:title" content="Event Processing | Uninstalling" />
+<meta property="og:description" content="Uninstalling Event Processing." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Uninstalling" />
+
+
+
+
+  <meta property="og:description" content="Uninstalling Event Processing.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/ep/installing/uninstalling/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.0</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.0</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/installing/uninstalling/" onclick="openVersion('/event-automation/ep/installing/uninstalling/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/installing/uninstalling/" class="versionPill active">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/installing/" class="">Installing in an online environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/uninstalling/" class="active">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/joins/" class="">Joins</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Uninstalling
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Find out how to remove your Event Processing and related Flink deployments.</p>
+
+<h2 id="uninstalling-instances">Uninstalling instances</h2>
+
+<h3 id="by-using-the-openshift-container-platform-web-console">By using the OpenShift Container Platform web console</h3>
+
+<p>To delete a Flink instance:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Operator for Apache Flink</strong>.</li>
+  <li>In the <strong>Operator Details</strong> panel, select the <strong>Flink Deployment</strong> tab to show the  Event Processing instances in the selected namespace.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the instance to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete FlinkDeployment</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and instance name and click <strong>Uninstall</strong> to shutdown the associated pods and delete the instance.</li>
+</ol>
+
+<p>To delete an Event Processing instance:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Event Processing</strong> managing the project.</li>
+  <li>In the <strong>Operator Details</strong> panel, select the <strong>Event Processing</strong> tab to show the  Event Processing instances in the selected namespace.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the instance to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete EventProcessing</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and instance name and click <strong>Delete</strong> to shutdown the associated pods and delete the instance.</li>
+</ol>
+
+<h4 id="check-uninstallation-progress">Check uninstallation progress</h4>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Workloads</strong> dropdown and select <strong>Pods</strong> to open the <strong>Pods</strong> dashboard.</li>
+  <li>Click <strong>Select All Filters</strong> to display pods in any state.</li>
+  <li>Enter the name of the Event Processing or the Flink instance being deleted in the <strong>Filter by name</strong> box.</li>
+  <li>Wait for all the Event Processing or the Flink instance pods to be displayed as <strong>Terminating</strong> and then be removed from the list.</li>
+</ol>
+
+<h4 id="removing-persistence-resources">Removing persistence resources</h4>
+
+<p>If you had enabled persistence for the Event Processing and the Flink instance, but set the <code class="language-plaintext highlighter-rouge">deleteClaim</code> storage property to <code class="language-plaintext highlighter-rouge">false</code>, you need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">deleteClaim</code> property is configured in the <code class="language-plaintext highlighter-rouge">EventProcessing</code> and the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource and can be set to <code class="language-plaintext highlighter-rouge">true</code> during installation to ensure the PVs and PVCs are automatically removed when the instance is deleted.</p>
+
+<p>You can find this property under <code class="language-plaintext highlighter-rouge">spec.&lt;component_name&gt;.storage.deleteClaim</code>.</p>
+
+<p><strong>Important:</strong> This change will cause data to be removed during an upgrade.</p>
+
+<p>To remove any remaining storage, delete the PVCs first, and then delete any remaining PVs as follows.</p>
+
+<p>Delete the Persistent Volume Claims (PVCs) related to Event Processing and Flink as follows:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Storage</strong> dropdown and select <strong>Persistent Volume Claims</strong> to open the <strong>Persistent Volume Claims</strong> page.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace.</li>
+  <li>Click <strong>Select All Filters</strong> to display PVCs in any state.</li>
+  <li>For each PVC to be deleted, make a note of the <strong>Persistent Volume</strong> listed for that PVC and then click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> to open the actions menu.</li>
+  <li>Click the <strong>Delete Persistent Volume Claim</strong> menu option to open the confirmation panel.</li>
+  <li>Check the PVC name and namespace, then click <strong>Delete</strong> to remove the PVC.</li>
+</ol>
+
+<p>Delete remaining Persistent Volumes (PVs) related to Event Processing and Flink as follows:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Storage</strong> dropdown and select <strong>Persistent Volumes</strong> to open the <strong>Persistent Volumes</strong> page.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace.</li>
+  <li>For each PV you made a note of when deleting PVCs, click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> to open the actions menu.</li>
+  <li>Click the <strong>Delete Persistent Volume</strong> menu option to open the confirmation panel.</li>
+  <li>Check the PV name and click <strong>Delete</strong> to remove the PV.</li>
+</ol>
+
+<h3 id="by-using-the-cli">By using the CLI</h3>
+
+<p>You can delete your Flink and Event Processing instances by using the <code class="language-plaintext highlighter-rouge">oc</code> command-line tool:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Ensure you are using the project where your Event Processing and Flink instance is located:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc project &lt;project_name&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following commands to delete your Event Processing and Flink instances from the project:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc delete eventprocessing <span class="nt">--all</span>
+oc delete flinkdeployment <span class="nt">--all</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="check-uninstallation-progress-1">Check uninstallation progress</h4>
+
+<p>Run the following command to check the progress:
+<code class="language-plaintext highlighter-rouge">oc get pods --selector app.kubernetes.io/instance=&lt;instance_name&gt;</code></p>
+
+<p>Pods will initially display a <strong>STATUS</strong> <code class="language-plaintext highlighter-rouge">Terminating</code> and then be removed from the output as they are deleted.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>oc get pods <span class="nt">--selector</span> app.kubernetes.io/instance<span class="o">=</span>quick-start
+<span class="o">&gt;</span>
+NAME                                              READY     STATUS        RESTARTS   AGE
+quick-start-flink-kubernetes-65f555b884-fvtks     0/2       Terminating   0          7d17h
+quick-start-flink-stream-authoring-ep-sts-0       0/1       Terminating   0          46h
+quick-start-flink-ep-operator-578556d4cc-p5w58    0/1       Terminating   0          7d11h
+</code></pre></div></div>
+
+<h4 id="removing-persistence-resources-1">Removing persistence resources</h4>
+
+<p>If you had enabled persistence for the Event Processing and the Flink instance, but set the <code class="language-plaintext highlighter-rouge">deleteClaim</code> storage property to <code class="language-plaintext highlighter-rouge">false</code>, you must manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">deleteClaim</code> property is configured in the <code class="language-plaintext highlighter-rouge">EventProcessing</code> and the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource and can be set to <code class="language-plaintext highlighter-rouge">true</code> during installation to ensure the PVs and PVCs are automatically removed when the instance is deleted.</p>
+
+<p>You can find this property under <code class="language-plaintext highlighter-rouge">spec.&lt;component_name&gt;.storage.deleteClaim</code>.</p>
+
+<p><strong>Important:</strong> This change will cause data to be removed during an upgrade.</p>
+
+<p>To remove any remaining storage, delete the PVCs first, and then delete any remaining PVs as follows.</p>
+
+<p>Delete the PVCs:</p>
+
+<ol>
+  <li>
+    <p>Run the following command to list the remaining PVCs associated with the deleted instances:
+<code class="language-plaintext highlighter-rouge">oc get pvc --selector app.kubernetes.io/instance=&lt;instance_name&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following to delete a PVC:
+<code class="language-plaintext highlighter-rouge">oc delete pvc &lt;pvc_name&gt;</code></p>
+  </li>
+</ol>
+
+<p>Delete remaining PVs:</p>
+
+<ol>
+  <li>
+    <p>Run the following command to list the remaining PVs:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc get pv</code></p>
+  </li>
+  <li>
+    <p>Run the following command to delete any PVs that were listed in the <strong>Volume</strong> column of the deleted PVCs.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc delete pv &lt;pv_name&gt;</code></p>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.</p>
+
+<h2 id="uninstalling-operators">Uninstalling operators</h2>
+
+<h3 id="by-using-the-openshift-container-platform-web-console-1">By using the OpenShift Container Platform web console</h3>
+
+<p>To delete the IBM Operator for Apache Flink operator:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Operators</strong> and click <strong>Installed Operators</strong>.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace. For cluster-wide operators, select the <code class="language-plaintext highlighter-rouge">openshift-operators</code> project.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the IBM Operator for Apache Flink operator to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Uninstall Operator</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and operator name, then click <strong>Remove</strong> to uninstall the operator.</li>
+</ol>
+
+<p>To delete the Event Processing operator:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Operators</strong> and click <strong>Installed Operators</strong>.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace. For cluster-wide operators, select the <code class="language-plaintext highlighter-rouge">openshift-operators</code> project.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the Event Processing operator to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Uninstall Operator</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and operator name, then click <strong>Remove</strong> to uninstall the operator.</li>
+</ol>
+
+<p>To delete the IBM Cert Manager operator:</p>
+
+<p>Follow the instructions in the <a href="https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-manual-steps-uninstalling-singleton-services-cert" target="_blank">IBM Cloud Pak foundational services documentation</a> to delete the IBM Cert Manager operator.</p>
+
+<h3 id="by-using-the-cli-1">By using the CLI</h3>
+
+<p>Run the following commands to uninstall your Event Processing operator and the IBM Operator for Apache Flink from the project:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc delete subscription ibm-eventprocessing
+oc delete subscription ibm-eventautomation-flink
+
+oc delete clusterserviceversion ibm-eventprocessing.v&lt;version&gt;
+oc delete clusterserviceversion ibm-eventautomation-flink.v&lt;version&gt;
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">&lt;version&gt;</code> is the version of your operator. For example:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc delete clusterserviceversion ibm-eventprocessing.v1.0.0
+oc delete clusterserviceversion ibm-eventautomation-flink.v1.0.0
+</code></pre></div></div>
+
+<p>To see the version of your operators, run the following commands:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get subscription ibm-eventprocessing <span class="nt">-o</span> yaml | <span class="nb">grep </span>currentCSV
+oc get subscription ibm-eventautomation-flink <span class="nt">-o</span> yaml | <span class="nb">grep </span>currentCSV
+</code></pre></div></div>
+
+<h2 id="uninstalling-the-ibm-cert-manager">Uninstalling the IBM Cert Manager</h2>
+
+<p>To delete the IBM Cert Manager operator:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Operators</strong> and click <strong>Installed Operators</strong>.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace. For cluster-wide operators, select the <code class="language-plaintext highlighter-rouge">openshift-operators</code> project.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the IBM Cert Manager operator to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Uninstall Operator</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and operator name, then click <strong>Remove</strong> to uninstall the operator.</li>
+</ol>
+
+<h2 id="removing-the-secrets">Removing the secrets</h2>
+
+<p>Secrets that are created by the IBM Cert Manager are not are not deleted automatically. You must manually delete any secrets that you do not want.</p>
+
+<p>To delete Event Processing and IBM Operator for Apache Flink secrets by using the web console:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Workloads</strong> dropdown and select <strong>Secrets</strong> to open the <strong>Secrets</strong> dashboard.</li>
+  <li>The secrets created for Flink and Event Processing begin with the name of your Event Processing and Flink instances.</li>
+  <li>Search the instance by name and click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the secret to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete Secret</strong> menu option to open the confirmation panel.</li>
+  <li>Check the name of the secret and click <strong>Delete</strong> to remove the secret.</li>
+</ol>
+
+<h2 id="removing-event-processing-custom-resource-definitions">Removing Event Processing Custom Resource Definitions</h2>
+
+<p>The IBM Operator for Apache Flink and the Event Processing Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want.</p>
+
+<p>To delete Flink CRDs:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Administration</strong> and click <strong>CustomResourceDefinitions</strong>.</li>
+  <li>Enter <code class="language-plaintext highlighter-rouge">flinkdeployment</code> in the <strong>Filter by name</strong> box to filter the CRDs associated with IBM Operator for Apache Flink.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the CRD to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete Custom Resource Definition</strong> menu option to open the confirmation panel.</li>
+  <li>Check the name of the CRD and click <strong>Delete</strong> to remove the CRD.</li>
+</ol>
+
+<p>To delete Event Processing CRDs:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Administration</strong> and click <strong>CustomResourceDefinitions</strong>.</li>
+  <li>Enter <code class="language-plaintext highlighter-rouge">eventprocessing</code> in the <strong>Filter by name</strong> box to filter the CRDs associated with Event Processing.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the CRD to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete Custom Resource Definition</strong> menu option to open the confirmation panel.</li>
+  <li>Check the name of the CRD and click <strong>Delete</strong> to remove the CRD.</li>
+</ol>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#uninstalling-instances">Uninstalling instances</a>
+    <ul>
+      <li><a href="#by-using-the-openshift-container-platform-web-console">By using the OpenShift Container Platform web console</a></li>
+      <li><a href="#by-using-the-cli">By using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#uninstalling-operators">Uninstalling operators</a>
+    <ul>
+      <li><a href="#by-using-the-openshift-container-platform-web-console-1">By using the OpenShift Container Platform web console</a></li>
+      <li><a href="#by-using-the-cli-1">By using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#uninstalling-the-ibm-cert-manager">Uninstalling the IBM Cert Manager</a></li>
+  <li><a href="#removing-the-secrets">Removing the secrets</a></li>
+  <li><a href="#removing-event-processing-custom-resource-definitions">Removing Event Processing Custom Resource Definitions</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/installing/backup-restore/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/backup-restore/" class="pagination--pager" title="Previous Item: Backing up and restoring
+">Previous</a>
+          <h2 class="titlePreview">Backing up and restoring
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/installing/upgrading/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/upgrading/" class="pagination--pager" title="Next Item: Upgrading
+">Next</a>
+          <h2 class="titlePreview">Upgrading
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

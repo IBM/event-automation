@@ -1,0 +1,2379 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Setting up geo-replication - IBM Event Automation</title>
+<meta name="description" content="Set up geo-replication for your clusters.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_2018.3.1/georeplication/setting-up/" />
+<meta property="og:title" content="Event Streams | Setting up geo-replication" />
+<meta property="og:description" content="Set up geo-replication for your clusters." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Setting up geo-replication" />
+
+
+
+
+  <meta property="og:description" content="Set up geo-replication for your clusters.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_2018.3.1/georeplication/setting-up/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">2018.3.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">2018.3.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/georeplication/setting-up/" onclick="openVersion('/event-automation/es/georeplication/setting-up/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/georeplication/setting-up/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_11.1/georeplication/setting-up/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/georeplication/setting-up/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_11.0/georeplication/setting-up/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/georeplication/setting-up/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.5/georeplication/setting-up/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/georeplication/setting-up/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.4/georeplication/setting-up/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/georeplication/setting-up/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.3/georeplication/setting-up/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/georeplication/setting-up/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.2/georeplication/setting-up/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/georeplication/setting-up/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.1/georeplication/setting-up/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/georeplication/setting-up/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_10.0/georeplication/setting-up/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/georeplication/setting-up/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_2019.4/georeplication/setting-up/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/georeplication/setting-up/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_2019.2.1/georeplication/setting-up/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/georeplication/setting-up/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_2019.1.1/georeplication/setting-up/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/georeplication/setting-up/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/georeplication/setting-up/" onclick="openVersion('/event-automation/es/es_2018.3.1/georeplication/setting-up/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/georeplication/setting-up/" class="versionPill active">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/prerequisites/" class="">Pre-requisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/planning/" class="">Planning for installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/capacity-planning/" class="">Capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/migrating/" class="">Migrating from Community Edition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/generating-starter-app/" class="">Generating a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/client/" class="">Creating Kafka Java client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/setting-up/" class="active">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/health/" class="">Monitoring and managing of geo-replication</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/modifying-configs/" class="">Modifying Kafka broker configurations</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/helm-upgrade-command/" class="">Running Helm upgrade commands</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/diagnosing-installation-issues/" class="">Diagnosing installation issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cleanup-uninstall/" class="">Full cleanup after uninstallation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/pod-timeout-error/" class="">ConsumerTimeoutException when pods available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/no-image-policy/" class="">Chart deployment fails with 'no ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/image-policy-missing-repository/" class="">Chart deployment fails with 'no matching repositories in the ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/no-helm-release-is-created/" class="">Chart deployment starts but no helm release is created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/messages-page-blank/" class="">The Messages page is blank</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-connection-issue/" class="">Unable to connect to Kafka cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/georeplication-connect-error/" class="">Geo-replication fails to start</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/pods-apparmor-blocked/" class="">Pods fail to start, status is blocked</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/client-connect-error/" class="">Kafka client apps unable to connect to cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/failed-to-read-log/" class="">Failed to read 'log header' errors in Kafka logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Setting up geo-replication
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>You can set up geo-replication using the Event Streams UI or CLI. You can then switch your applications to use another cluster when needed.</p>
+
+<p>Ensure you <a href="../planning/">plan for geo-replication</a> before setting it up.</p>
+
+<h2 id="defining-destination-clusters">Defining destination clusters</h2>
+
+<p>To be able to replicate topics, you must define destination clusters. The process involves logging in to your intended destination cluster and copying its connection details to the clipboard. You then log in to the origin cluster and use the connection details to point to the intended destination cluster and define it as a possible target for your geo-replication.</p>
+
+<h3 id="using-the-ui">Using the UI</h3>
+
+<ol>
+  <li>Log in to your destination Event Streams cluster as an administrator.</li>
+  <li>Click the <strong>Topics</strong> tab and then click <strong>Geo-replication</strong>.</li>
+  <li>Go to the <strong>Origin locations</strong> section, and click <strong>Generate connection information for this cluster</strong> under <strong>Want to replicate topics to this cluster?</strong></li>
+  <li>Click <strong>Copy connection information</strong> to copy the connection details to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.<br />
+ <strong>Note:</strong> This step generates an API key for your destination cluster that is then used by your origin cluster to authenticate it.</li>
+  <li>Log in to your origin Event Streams cluster as an administrator.</li>
+  <li>Click the <strong>Topics</strong> tab and then click <strong>Geo-replication</strong>.</li>
+  <li>Click <strong>Add destination cluster</strong>.</li>
+  <li>Paste the information you copied in step 4, wait for the validation of your payload to complete and click <strong>Add destination</strong>.<br />
+<img src="../../../images/2018.3.1.svg" alt="Event Streams 2018.3.1 icon" title="In Event Streams 2018.3.1." /> In Event Streams 2018.3.1, click <strong>Connect cluster</strong>.<br />
+The cluster is added as a destination to where you can replicate topics to.<br />
+<strong>Note:</strong> When logged in to the destination cluster, the origin cluster will not show up in the <strong>Origin locations</strong> section until you <a href="#specifying-what-and-where-to-replicate">define topics to replicate</a>, and the geo-replicator is created.</li>
+</ol>
+
+<p><img src="../../../images/2018.3.1.svg" alt="Event Streams 2018.3.1 icon" title="In Event Streams 2018.3.1." /> In Event Streams 2018.3.1, you can also use the following steps:</p>
+<ol>
+  <li>Log in to your destination Event Streams cluster as an administrator.</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right, and then go to the <strong>Geo-replication</strong> tab.</li>
+  <li>Click the <strong>I want this cluster to be able to receive topics from another cluster</strong> tile.</li>
+  <li>Click <strong>Copy connection information</strong> to copy the connection details to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.<br />
+ <strong>Note:</strong> This step generates an API key for your destination cluster that is then used by your origin cluster to authenticate it.</li>
+  <li>Log in to your origin Event Streams cluster as an administrator.</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right, and then go to the <strong>Geo-replication</strong> tab.</li>
+  <li>Click <strong>I want to replicate topics from this cluster to another cluster</strong>.</li>
+  <li>Paste the information you copied in step 4, wait for the validation of your payload to complete and click <strong>Connect cluster</strong>.<br />
+The cluster is added as a destination to where you can replicate topics to.<br />
+<strong>Note:</strong> When logged in to the destination cluster, the origin cluster will not show up in the <strong>Origin locations</strong> section until you <a href="#specifying-what-and-where-to-replicate">define topics to replicate</a>, and the geo-replicator is created.</li>
+</ol>
+
+<h3 id="using-the-cli">Using the CLI</h3>
+
+<ol>
+  <li>Go to your destination cluster. Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;Cluster Master Host&gt;:&lt;Cluster Master API Port&gt;</code><br />The master host and port for your cluster are set during the installation of IBM Cloud Private.</li>
+  <li>Run the following command to initialize the Event Streams CLI on the destination cluster: <code class="language-plaintext highlighter-rouge">cloudctl es init</code></li>
+  <li>Run the following command to create an API key for your destination cluster:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es geo-cluster-apikey</code><br />
+ The command provides the API URL and the API key required for creating a destination cluster, for example:<br />
+<code class="language-plaintext highlighter-rouge">--rest-api-url https://192.0.2.24:32046 --rest-api-key H4C2S6Moq7KuDcYRJaM4Ye_6-XShEnB6JHnATaDaBFQZ</code></li>
+  <li>Go to your origin cluster. Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;Cluster Master Host&gt;:&lt;Cluster Master API Port&gt;</code><br />The master host and port for your cluster are set during the installation of IBM Cloud Private.</li>
+  <li>Run the following command to initialize the Event Streams CLI on the origin cluster: <code class="language-plaintext highlighter-rouge">cloudctl es init</code></li>
+  <li>Run the following command to add the cluster as a destination to where you can replicate your topics to:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es geo-cluster-add --rest-api-url &lt;api-url-from-step-3&gt; --rest-api-key &lt;api-key-from-step-3&gt;</code></li>
+</ol>
+
+<h2 id="specifying-what-and-where-to-replicate">Specifying what and where to replicate</h2>
+
+<p>To select the topics you want to replicate and set the destination cluster to replicate to, use the following steps.</p>
+
+<h3 id="using-the-ui-1">Using the UI</h3>
+
+<ol>
+  <li>Log in to your origin Event Streams cluster as an administrator.</li>
+  <li>Click the <strong>Topics</strong> tab and then click <strong>Geo-replication</strong>.</li>
+  <li>Choose a destination cluster to replicate to by clicking the name of the cluster from the <strong>Destination locations</strong> list.</li>
+  <li>Choose the topics you want to replicate by selecting the checkbox next to each, and click <strong>Geo-replicate to destination</strong>.<br />
+<strong>Tip:</strong> <img src="../../../images/2018.3.1.svg" alt="Event Streams 2018.3.1 icon" title="In Event Streams 2018.3.1." /> In Event Streams 2018.3.1, you can also click the <img src="../../../images/add_to_georeplication_icon.png" alt="Add topic to geo-replication icon" title="Add to geo-replication icon that is displayed in each topic row." /> icon in the topic’s row to add it to the destination cluster. The icon turns into a <strong>Remove</strong> button, and the topic is added to the list of topics that are geo-replicated to the destination cluster.</li>
+  <li>Optional: Select whether to add a prefix to the name of the new replicated topic that is created on the destination cluster. Click <strong>Add prefix to destination topic names</strong> to add the release name of the origin cluster as a prefix to the replicated topics.</li>
+  <li>Optional: Select whether you want to include the message history in the replication, or if you only want to copy the messages from the time of setting up geo-replication. Click <strong>Include message history</strong> if you want to include history.</li>
+  <li>Click <strong>Create</strong> to create geo-replicators for the selected topics on the chosen destination cluster. Geo-replication starts automatically when the geo-replicators for the selected topics are set up successfully.</li>
+</ol>
+
+<p>For each topic that has geo-replication set up, a visual indicator is shown in the topic’s row as follows:</p>
+<ul>
+  <li>
+    <p>If topics are being replicated from the cluster you are logged into, the <img src="../../../images/georeplication_onorigin_icon.png" alt="Geo-replication icon" title="Geo-replication icon that is displayed for topics that have geo-replication set up from the cluster you are logged into." /> icon is displayed in the topic’s row. The number in the brackets indicates the number of destination clusters the topic is being replicated to. Clicking <img src="../../../images/georeplication_onorigin_icon.png" alt="Geo-replication icon" title="Geo-replication icon that is displayed on the origin cluster for topics that have geo-replication set up." /> expands the row to show details about the geo-replication for the topic. You can then click <strong>View</strong> to see more details about the geo-replicated topic in the side panel:<br />
+<img src="../../../images/georeplication_onorigin_detail.png" alt="Geo-replication for topic on origin" title="Screen capture showing geo-replication detail after expanding row by clicking icon for topics that have geo-replication set up from the cluster you are logged into." /></p>
+  </li>
+  <li>
+    <p>If topics are being replicated to the cluster you are logged in to, the topics have the following indication that geo-replication is set up for them. Clicking the <strong>From</strong> <code class="language-plaintext highlighter-rouge">&lt;cluster-name&gt;</code> link opens the geo-replication panel with more information about the origin cluster:<br />
+<img src="../../../images/georeplication_ondestination_icon.png" alt="Geo-replication for topic on destination" title="Screen capture showing geo-replication indicated for topics that are being replicated to the cluster you are logged in to." /></p>
+  </li>
+</ul>
+
+<h3 id="using-the-cli-1">Using the CLI</h3>
+
+<p>To set up replication by using the CLI:</p>
+
+<ol>
+  <li>Go to your origin cluster. Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;Cluster Master Host&gt;:&lt;Cluster Master API Port&gt;</code><br />The master host and port for your cluster are set during the installation of IBM Cloud Private.</li>
+  <li>Run the following command to initialize the Event Streams CLI: <code class="language-plaintext highlighter-rouge">cloudctl es init</code></li>
+  <li>Choose a destination cluster to replicate to by listing all available destination clusters, making the ID of the clusters available to select and copy: <code class="language-plaintext highlighter-rouge">cloudctl es geo-clusters</code></li>
+  <li>Choose the topics you want to replicate by listing your topics, making their names available to select and copy: <code class="language-plaintext highlighter-rouge">cloudctl es topics</code></li>
+  <li>Specify the destination cluster to replicate to, and set the topics you want to replicate. Use the required destination cluster ID and topic names retrieved in the previous steps. The command creates one replicator for each topic. To set up more that one geo-replicators at once, list each topic you want to replicate using a comma-separated list without spaces in between:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es geo-replicator-create --destination &lt;cluster-ID-from-step-3&gt; --topics &lt;comma-separated-list-of-topic-names-from-step-4&gt;</code><br />
+Geo-replication starts automatically when the geo-replicators for the selected topics are set up successfully.
+    <ul>
+      <li>Optional: You can specify to add a prefix to the name of the new replicated topic that is created on the destination cluster by using the <code class="language-plaintext highlighter-rouge">--prefix &lt;prefix-name&gt;</code> option.</li>
+      <li>Optional: Select whether you want to include message history in the replication, or if you only want to copy the messages from the time of setting up geo-replication. Set one of the following:
+        <ul>
+          <li>Use the <code class="language-plaintext highlighter-rouge">--from earliest</code> option to include available message history in geo-replication. This means all available message data for the topic is copied.</li>
+          <li>Use the <code class="language-plaintext highlighter-rouge">--from latest</code> option to exclude available message history. This means that only message data from the time of setting up replication is copied.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>For example, to use all options to create the geo-replicators:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es geo-replicator-create --destination &lt;cluster-ID-from-step-3&gt; --topics &lt;comma-separated-list-of-topic-names-from-step-4&gt; --from &lt;earliest or latest&gt; --prefix &lt;topic-name-prefix&gt;</code><br />
+<br />
+For example:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es geo-replicator-create --destination DestinationClusterId --topics MyTopicName1,MyTopicName2 --from latest --prefix GeoReplica-</code></p>
+
+<p>When your geo-replication is set up, you can <a href="../health">monitor and manage it</a>.</p>
+
+<h2 id="switching-clusters">Switching clusters</h2>
+
+<p>When one of your origin Event Streams clusters experiences problems and goes down, you are notified on the destination cluster UI that the origin cluster is offline.</p>
+
+<p>You can switch your applications over to use the geo-replicated topics on the destination cluster as follows.</p>
+
+<p><img src="../../../images/2018.3.1.svg" alt="Event Streams 2018.3.1 icon" title="In Event Streams 2018.3.1." /> In Event Streams 2018.3.1, use the following steps:</p>
+<ol>
+  <li>Log in to your destination Event Streams cluster as an administrator.</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right.</li>
+  <li>Go to the <strong>Connect a client</strong> tab, and use the information on the page to change your client application settings to use the geo-replicated topic on the destination cluster. You need the following information to do this:<br />
+    <ul>
+      <li><strong>Bootstrap server</strong>: Copy the Broker URL to connect an application to this topic.</li>
+      <li><strong>Certificates</strong>: Download a certificate that is required by your Kafka clients to connect securely to this cluster.</li>
+      <li><strong>API key</strong>: To connect securely to Event Streams, your application needs an API key with permission to access the cluster and resources such as topics. Follow the instructions to generate an API key authorized to connect to the cluster, and select what level of access you want it to grant to your resources (topics). You can then select which topics you want included or to include all topics, and set consumer groups as well.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="../../../images/2018.3.0.svg" alt="Event Streams 2018.3.0 icon" title="In Event Streams 2018.3.0." /> In Event Streams 2018.3.0, use the following steps:</p>
+<ol>
+  <li>Log in to your destination Event Streams cluster as an administrator.</li>
+  <li>Click the <strong>Topics</strong> tab, and click the name of the topic you want your application to use.</li>
+  <li>Click the <strong>Connection information</strong> tab, and use the information on the page to change your client application settings to use the geo-replicated topic on the destination cluster. You need the following information to do this:<br />
+    <ul>
+      <li><strong>Connection information</strong>: Make a note of the topic name and the Broker URL to connect an application to this topic.</li>
+      <li><strong>Certificates</strong>: Download a certificate that is required by your Kafka clients to connect securely to this cluster.</li>
+      <li><strong>Credentials and access control</strong>: To connect securely to Event Streams, your application needs an API key with permission to access the cluster and resources such as topics. Follow the link on the UI to <a href="../../getting-started/client/#securing-the-connection">generate an API key</a>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>After the connection is configured, your client application can continue to operate using the geo-replicated topics on the destination cluster.</p>
+
+<p>Decide whether you want your client application to continue processing messages on the destination cluster from the point they reached on the topic on the origin cluster, or if you want your client application to start processing messages from the beginning of the topic.</p>
+
+<ul>
+  <li>
+    <p>To continue processing messages from the point they reached on the topic on the origin cluster, you can specify the offset for the consumer group that your client application is using:<br />
+<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es group-reset --group &lt;your-consumer-group-id&gt; --topic &lt;topic-name&gt; --mode datetime --value &lt;timestamp&gt;</code><br />
+<br />
+For example, the following command instructs the applications in consumer group <code class="language-plaintext highlighter-rouge">consumer-group-1</code> to start consuming messages with timestamps from after midday on 28th September 2018:<br />
+<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode datetime --value 2018-09-28T12:00:00+00:00 --execute</code></p>
+  </li>
+  <li>
+    <p>To start processing messages from the beginning of the topic, you can use the <code class="language-plaintext highlighter-rouge">--mode earliest</code> option, for example:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode earliest --execute</code></p>
+  </li>
+</ul>
+
+<p>These methods also avoid the need to make code changes to your client application.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#defining-destination-clusters">Defining destination clusters</a>
+    <ul>
+      <li><a href="#using-the-ui">Using the UI</a></li>
+      <li><a href="#using-the-cli">Using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#specifying-what-and-where-to-replicate">Specifying what and where to replicate</a>
+    <ul>
+      <li><a href="#using-the-ui-1">Using the UI</a></li>
+      <li><a href="#using-the-cli-1">Using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#switching-clusters">Switching clusters</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_2018.3.1/georeplication/planning/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2018.3.1/georeplication/planning/" class="pagination--pager" title="Previous Item: Planning for geo-replication
+">Previous</a>
+          <h2 class="titlePreview">Planning for geo-replication
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_2018.3.1/georeplication/health/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2018.3.1/georeplication/health/" class="pagination--pager" title="Next Item: Monitoring and managing geo-replication
+">Next</a>
+          <h2 class="titlePreview">Monitoring and managing geo-replication
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

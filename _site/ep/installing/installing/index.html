@@ -1,0 +1,1983 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Installing in an online environment - IBM Event Automation</title>
+<meta name="description" content="Installing Event Processing.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/ep/installing/installing/" />
+<meta property="og:title" content="Event Processing | Installing in an online environment" />
+<meta property="og:description" content="Installing Event Processing." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Installing in an online environment" />
+
+
+
+
+  <meta property="og:description" content="Installing Event Processing.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/ep/installing/installing/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.0</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.0</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/installing/installing/" onclick="openVersion('/event-automation/ep/installing/installing/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/installing/installing/" class="versionPill active">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/installing/" class="active">Installing in an online environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/joins/" class="">Joins</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Installing in an online environment
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>The following sections provide instructions about installing Event Processing on the Red Hat OpenShift Container Platform. The instructions are based on using the OpenShift Container Platform web console and <code class="language-plaintext highlighter-rouge">oc</code> command-line utility.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Event Processing is an operator-based release and uses custom resources to define the deployment configuration.
+Event Processing requires the installation of the IBM Operator for Apache Flink and the Event Processing
+operator. These operators deploy and manage the entire lifecycle of your Flink and Event Processing instances. Custom resources are presented as YAML configuration documents that define instances of the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> and <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resources.</p>
+
+<p>Installing Event Processing has the following phases:</p>
+
+<ol>
+  <li>Install the IBM Operator for Apache Flink: this deploys the operator that will install and manage your Flink instances.</li>
+  <li>Install the Event Processing operator: this deploys the operator that will install and manage your Event Processing instances.</li>
+  <li>Install one or more instances of Flink by using the IBM Operator for Apache Flink.</li>
+  <li>Install one or more instances of Event Processing by using the Event Processing operator.</li>
+</ol>
+
+<h2 id="before-you-begin">Before you begin</h2>
+
+<ul>
+  <li>Ensure you have set up your environment <a href="../prerequisites">according to the prerequisites</a>, including setting up your OpenShift Container Platform and <a href="../prerequisites#ibm-cert-manager">installing</a> a supported version of the IBM Cert Manager.</li>
+  <li>Ensure you have <a href="../planning">planned for your installation</a>, such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.</li>
+  <li>Obtain the connection details for your OpenShift Container Platform cluster from your administrator.</li>
+</ul>
+
+<h2 id="create-a-project-namespace">Create a project (namespace)</h2>
+
+<p>Create a namespace into which the Event Processing instance will be installed by creating a <a href="https://docs.openshift.com/container-platform/4.12/applications/projects/working-with-projects.html" target="_blank">project</a>.
+When you create a project, a namespace with the same name is also created.</p>
+
+<p>Ensure you use a namespace that is dedicated to a single instance of Event Processing. This is required because Event Processing uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.</p>
+
+<p><strong>Important:</strong> Do not use any of the default or system namespaces to install an instance of Event Processing (some examples of these are: <code class="language-plaintext highlighter-rouge">default</code>, <code class="language-plaintext highlighter-rouge">kube-system</code>, <code class="language-plaintext highlighter-rouge">kube-public</code>, and <code class="language-plaintext highlighter-rouge">openshift-operators</code>).</p>
+
+<h3 id="creating-a-project-by-using-the-web-console">Creating a project by using the web console</h3>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Home</strong> dropdown and select <strong>Projects</strong> to open the <strong>Projects</strong> panel.</li>
+  <li>Click <strong>Create Project</strong>.</li>
+  <li>Enter a new project name in the <strong>Name</strong> field, and optionally, a display name in the <strong>Display Name</strong> field, and a description in the <strong>Description</strong> field.</li>
+  <li>Click <strong>Create</strong>.</li>
+</ol>
+
+<h3 id="creating-a-project-by-using-the-cli">Creating a project by using the CLI</h3>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Run the following command to create a new project:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc new-project &lt;project_name&gt; <span class="nt">--description</span><span class="o">=</span><span class="s2">"&lt;description&gt;"</span> <span class="nt">--display-name</span><span class="o">=</span><span class="s2">"&lt;display_name&gt;"</span>
+</code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">description</code> and <code class="language-plaintext highlighter-rouge">display-name</code> command arguments are optional settings you can use to specify a description and a custom name for your project.</p>
+  </li>
+  <li>
+    <p>When you create a project, your namespace automatically switches to your new namespace. Ensure you are using the project that you created by selecting it as follows:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sb">`</span>oc project &lt;new-project-name&gt;<span class="sb">`</span>
+</code></pre></div>    </div>
+
+    <p>The following message is displayed if successful:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Now using project <span class="s2">"&lt;new-project-name&gt;"</span> on server <span class="s2">"https://&lt;OpenShift-host&gt;:6443"</span><span class="nb">.</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="create-an-image-pull-secret">Create an image pull secret</h2>
+
+<p>Before installing an instance, create an image pull secret called <code class="language-plaintext highlighter-rouge">ibm-entitlement-key</code> in the namespace where you want to create an instance of Flink. The secret enables container images to be pulled from the registry.</p>
+
+<ol>
+  <li>Obtain an entitlement key from the <a href="https://myibm.ibm.com/products-services/containerlibrary" target="_blank">IBM Container software library</a>.</li>
+  <li>
+    <p>Create the secret in the namespace that will be used to deploy an instance of Event Processing as follows.</p>
+
+    <p>Name the secret <code class="language-plaintext highlighter-rouge">ibm-entitlement-key</code>, use <code class="language-plaintext highlighter-rouge">cp</code> as the username, your entitlement key as the password, and <code class="language-plaintext highlighter-rouge">cp.icr.io</code> as the docker server:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc create secret docker-registry ibm-entitlement-key <span class="nt">--docker-username</span><span class="o">=</span><span class="nb">cp</span> <span class="nt">--docker-password</span><span class="o">=</span><span class="s2">"&lt;your-entitlement-key&gt;"</span> <span class="nt">--docker-server</span><span class="o">=</span><span class="s2">"cp.icr.io"</span> <span class="nt">-n</span> &lt;target-namespace&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> If you do not create the required secret, pods will fail to start with <code class="language-plaintext highlighter-rouge">ImagePullBackOff</code> errors. In this case, ensure the secret is created and allow the pod to restart.</p>
+
+<h2 id="choose-the-operator-installation-mode">Choose the operator installation mode</h2>
+
+<p>Before installing an operator, decide whether you want the operator to:</p>
+
+<ul>
+  <li>
+    <p>Manage instances in <strong>any namespace</strong>.</p>
+
+    <p>To use this option, select <code class="language-plaintext highlighter-rouge">All namespaces on the cluster (default)</code> later. The operator will be deployed into the system namespace <code class="language-plaintext highlighter-rouge">openshift-operators</code>, and will be able to manage instances in any namespace.</p>
+  </li>
+  <li>
+    <p>Only manage instances in a <strong>single namespace</strong>.</p>
+
+    <p>To use this option, select <code class="language-plaintext highlighter-rouge">A specific namespace on the cluster</code> later. The operator will be deployed into the specified namespace, and will not be able to manage instances in any other namespace.</p>
+  </li>
+</ul>
+
+<h2 id="decide-version-control-and-catalog-source">Decide version control and catalog source</h2>
+
+<p>Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Selecting how the catalog source is added will determine the versions you receive.</p>
+
+<p>Consider how you want to control your deployments, whether you want to install specific versions, and how you want to receive updates.</p>
+
+<ul>
+  <li>
+    <p>Latest versions: You can install the latest versions of all operators from the IBM Operator Catalog as described in <a href="#adding-latest-versions">adding latest versions</a>. This means that every deployment will always have the latest versions made available, and you cannot specify which version is installed. In addition, upgrades to latest versions are automatic and provided when they become available. This path is more suitable for development or proof of concept deployments.</p>
+  </li>
+  <li>
+    <p>Specific versions: You can control the version of the operator and instances that are installed by downloading specific Container Application Software for Enterprises (CASE) files as described in <a href="#adding-specific-versions">adding specific versions</a>. This means you can specify the version you deploy, and only receive updates when you take action manually to do so. This is often required in production environments where the deployment of any version might require it to go through a process of validation and verification before it can be pushed to production use.</p>
+  </li>
+</ul>
+
+<h3 id="adding-latest-versions">Adding latest versions</h3>
+
+<p><strong>Important:</strong> Use this method of installation only if you want your deployments to always have the latest version and if you want upgrades to always be automatic.</p>
+
+<p>Before you can install the latest operators and use them to create instances of Flink and Event Processing, make the IBM Operator Catalog available in your cluster.</p>
+
+<p>If you have other IBM products that are installed in your cluster, then you might already have the IBM Operator Catalog available. If it is configured for automatic updates as described in the following section, it already contains the required operators, and you can skip the deployment of the IBM Operator Catalog.</p>
+
+<p>If you are installing the IBM Operator for Apache Flink or the Event Processing operator as the first IBM operator in your cluster, to make the operators available in the OpenShift OperatorHub catalog, create the following YAML file and apply it as follows.</p>
+
+<p>To add the IBM Operator Catalog:</p>
+
+<ol>
+  <li>
+    <p>Create a file for the IBM Operator Catalog source with the following content, and save as <code class="language-plaintext highlighter-rouge">ibm_catalogsource.yaml</code>:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">operators.coreos.com/v1alpha1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">CatalogSource</span>
+<span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-operator-catalog</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">openshift-marketplace</span>
+<span class="na">spec</span><span class="pi">:</span>
+   <span class="na">displayName</span><span class="pi">:</span> <span class="s2">"</span><span class="s">IBM</span><span class="nv"> </span><span class="s">Operator</span><span class="nv"> </span><span class="s">Catalog"</span>
+   <span class="na">publisher</span><span class="pi">:</span> <span class="s">IBM</span>
+   <span class="na">sourceType</span><span class="pi">:</span> <span class="s">grpc</span>
+   <span class="na">image</span><span class="pi">:</span> <span class="s">icr.io/cpopen/ibm-operator-catalog</span>
+   <span class="na">updateStrategy</span><span class="pi">:</span>
+     <span class="na">registryPoll</span><span class="pi">:</span>
+       <span class="na">interval</span><span class="pi">:</span> <span class="s">45m</span>
+</code></pre></div>    </div>
+
+    <p>Automatic updates of your IBM Operator Catalog can be disabled by removing the polling attribute, <code class="language-plaintext highlighter-rouge">spec.updateStrategy.registryPoll</code>.
+To disable automatic updates, remove the following parameters in the IBM Operator Catalog source YAML under the <code class="language-plaintext highlighter-rouge">spec</code> field:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">updateStrategy</span><span class="pi">:</span>
+     <span class="na">registryPoll</span><span class="pi">:</span>
+       <span class="na">interval</span><span class="pi">:</span> <span class="s">45m</span>
+</code></pre></div>    </div>
+
+    <p><strong>Important:</strong> Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, <a href="#adding-specific-versions">add specific versions</a> of the CASE bundle, and install the operators by using the <a href="#install-the-operators-by-using-the-cli-oc-ibm-pak">CLI</a>.</p>
+  </li>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Apply the source by using the following command:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc apply -f ibm_catalogsource.yaml</code></p>
+  </li>
+</ol>
+
+<p>Alternatively, you can add the catalog source through the OpenShift web console by using the Import YAML option:</p>
+
+<ol>
+  <li>Select the plus icon on the upper right.</li>
+  <li>Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag-and-drop the YAML files into the editor.</li>
+  <li>Select <strong>Create</strong>.</li>
+</ol>
+
+<p>This adds the catalog source for both the IBM Operator for Apache Flink and Event Processing to the OperatorHub catalog, making these operators available to install.</p>
+
+<h3 id="adding-specific-versions">Adding specific versions</h3>
+
+<p><strong>Important:</strong> Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.</p>
+
+<p>Before you can install the required operator versions and use them to create instances of Flink and Event Processing, make their catalog source available in your cluster as described in the following sections.</p>
+
+<p>This procedure must be performed by using the CLI. Before you begin, ensure that you have the following set up for your environment:</p>
+
+<ul>
+  <li>The OpenShift Container Platform CLI (<code class="language-plaintext highlighter-rouge">oc</code>) <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html" target="_blank">installed</a>.</li>
+  <li>
+    <p>The IBM Catalog Management Plug-in for IBM Cloud Paks (<code class="language-plaintext highlighter-rouge">ibm-pak</code>) <a href="https://github.com/IBM/ibm-pak#readme" target="_blank">installed</a>. After installing the plug-in, you can run <code class="language-plaintext highlighter-rouge">oc ibm-pak</code> commands against the cluster. Run the following command to confirm that <code class="language-plaintext highlighter-rouge">ibm-pak</code> is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc ibm-pak <span class="nt">--help</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="downloading-the-case-bundle">Downloading the CASE bundle</h4>
+
+<p>Download the CASE bundle of IBM Operator for Apache Flink and the Event Processing as described in the <a href="../offline#download-the-case-bundle">offline installation</a>.</p>
+
+<h4 id="applying-catalog-sources-to-your-cluster">Applying catalog sources to your cluster</h4>
+
+<p>Apply the catalog sources for the operator to the cluster by running the following command:</p>
+
+<ul>
+  <li>
+    <p>For IBM Operator for Apache Flink:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc ibm-pak launch ibm-eventautomation-flink <span class="nt">--version</span> &lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span> <span class="nt">--inventory</span> flinkKubernetesOperatorSetup <span class="nt">--action</span> installCatalog <span class="nt">-n</span> &lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>For Event Processing:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc ibm-pak launch ibm-event-processing <span class="nt">--version</span> &lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span> <span class="nt">--inventory</span> epOperatorSetup <span class="nt">--action</span> installCatalog <span class="nt">-n</span> &lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;case-version&gt;</code> is the version of the CASE you want to install.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;namespace&gt;</code> is the namespace you created previously or <code class="language-plaintext highlighter-rouge">openshift-marketplace</code> if you are installing in all namespaces.</li>
+</ul>
+
+<h2 id="install-the-operators-by-using-the-web-console">Install the operators by using the web console</h2>
+
+<p>Event Processing consists of two operators that must be installed in the Red Hat OpenShift Container Platform:</p>
+
+<ul>
+  <li>IBM Operator for Apache Flink</li>
+  <li>Event Processing</li>
+</ul>
+
+<p>Follow the instructions to install the operators by using the OpenShift web console.</p>
+
+<p><strong>Important:</strong> To install the operators by using the OpenShift web console, you must add the operators to the OperatorHub catalog. OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, install the IBM Operator for Apache Flink and the Event Processing operator by using the <a href="#install-the-operators-by-using-the-cli-oc-ibm-pak">CLI</a>.</p>
+
+<h3 id="installing-the-ibm-operator-for-apache-flink">Installing the IBM Operator for Apache Flink</h3>
+
+<p>Ensure you have considered the IBM Operator for Apache Flink <a href="../prerequisites/#operator-requirements">requirements</a>,
+including resource requirements and, if installing in <strong>any namespace</strong>, the required cluster-scoped permissions.</p>
+
+<p><strong>Important:</strong></p>
+<ul>
+  <li>IBM Operator for Apache Flink must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
+IBM Operator for Apache Flink leverages the Apache Flink <code class="language-plaintext highlighter-rouge">CustomResourceDefinition</code> (CRD) resources. These resources
+cannot be managed by more than one operator
+(for details, <a href="https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary" target="_blank">Operator Framework documentation</a>).</li>
+  <li>Before installing IBM Operator for Apache Flink on a cluster where Apache Flink operator is already installed, to avoid
+possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
+the Apache Flink CRDs as described in the
+<a href="https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/development/guide/#generating-and-upgrading-the-crd" target="_blank">Apache Flink operator documentation</a>.</li>
+  <li>Only one version of IBM Operator for Apache Flink should be installed in a cluster. Installing multiple versions
+is not supported, due to the possible conflicts between versions of the <code class="language-plaintext highlighter-rouge">CustomResourceDefinition</code> resources.</li>
+</ul>
+
+<h4 id="installing-ibm-operator-for-apache-flink-by-using-the-web-console">Installing IBM Operator for Apache Flink by using the web console</h4>
+
+<p>To install the operator by using the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>OperatorHub</strong> to open the <strong>OperatorHub</strong> dashboard.</li>
+  <li>Select the project that you want to deploy the Event Processing instance in.</li>
+  <li>In the <strong>All Items</strong> search box, enter <code class="language-plaintext highlighter-rouge">IBM Operator for Apache Flink</code> to locate the operator title.</li>
+  <li>Click the <strong>IBM Operator for Apache Flink</strong> tile to open the install side panel.</li>
+  <li>Click the <strong>Install</strong> button to open the <strong>Create Operator Subscription</strong> dashboard.</li>
+  <li>Select the chosen <a href="#choose-the-operator-installation-mode">installation mode</a> that suits your requirements.
+If the installation mode is <strong>A specific namespace on the cluster</strong>, select the target namespace that you created previously.</li>
+  <li>Click <strong>Install</strong> to begin the installation.</li>
+</ol>
+
+<p>The installation can take a few minutes to complete.</p>
+
+<h4 id="checking-the-operator-status">Checking the operator status</h4>
+
+<p>You can see the installed operator and check its status as follows:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Operator for Apache Flink</strong>.</li>
+  <li>Scroll down to the <strong>ClusterServiceVersion details</strong> section of the page.</li>
+  <li>Check the <strong>Status</strong> field. After the operator is successfully installed, this will change to <code class="language-plaintext highlighter-rouge">Succeeded</code>.</li>
+</ol>
+
+<p>In addition to the status, information about key events that occur can be viewed under the <strong>Conditions</strong> section of the same page. After a successful installation, a condition with the following message is displayed: <code class="language-plaintext highlighter-rouge">install strategy completed with no errors</code>.</p>
+
+<p><strong>Note:</strong> If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select <strong>all projects</strong> from the <strong>Project</strong> dropdown, the operator will be shown multiple times in the resulting list, once for each project.</p>
+
+<h3 id="installing-the-event-processing-operator">Installing the Event Processing operator</h3>
+
+<p>Ensure you have considered the Event Processing operator <a href="../prerequisites/#operator-requirements">requirements</a>, including resource requirements and the required cluster-scoped permissions.</p>
+
+<h4 id="installing-by-using-the-web-console">Installing by using the web console</h4>
+
+<p>To install the operator by using the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>OperatorHub</strong> to open the <strong>OperatorHub</strong> dashboard.</li>
+  <li>Select the project that you want to deploy the Event Processing instance in.</li>
+  <li>In the <strong>All Items</strong> search box, enter <code class="language-plaintext highlighter-rouge">Event Processing</code> to locate the operator title.</li>
+  <li>Click the <strong>Event Processing</strong> tile to open the install side panel.</li>
+  <li>Click the <strong>Install</strong> button to open the <strong>Create Operator Subscription</strong> dashboard.</li>
+  <li>Select the chosen <a href="#choose-the-operator-installation-mode">installation mode</a> that suits your requirements.
+If the installation mode is <strong>A specific namespace on the cluster</strong>, select the target namespace that you created previously.</li>
+  <li>Click <strong>Install</strong> to begin the installation.</li>
+</ol>
+
+<p>The installation can take a few minutes to complete.</p>
+
+<h4 id="checking-the-operator-status-1">Checking the operator status</h4>
+
+<p>You can see the installed operator and check its status as follows:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Operator for Apache Flink</strong>.</li>
+  <li>Scroll down to the <strong>ClusterServiceVersion details</strong> section of the page.</li>
+  <li>Check the <strong>Status</strong> field. After the operator is successfully installed, this will change to <code class="language-plaintext highlighter-rouge">Succeeded</code>.</li>
+</ol>
+
+<p>In addition to the status, information about key events that occur can be viewed under the <strong>Conditions</strong> section of the same page. After a successful installation, a condition with the following message is displayed: <code class="language-plaintext highlighter-rouge">install strategy completed with no errors</code>.</p>
+
+<p><strong>Note:</strong> If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select <strong>all projects</strong> from the <strong>Project</strong> dropdown, the operator will be shown multiple times in the resulting list, once for each project.</p>
+
+<!--When the Event Processing operator is installed, the following additional operators will appear in the installed operator list:
+- Operand Deployment Lifecycle Manager.
+- IBM Common Service Operator.
+--->
+
+<h2 id="install-the-operators-by-using-the-cli-oc-ibm-pak">Install the operators by using the CLI (<code class="language-plaintext highlighter-rouge">oc ibm-pak</code>)</h2>
+
+<p>To install the IBM Operator for Apache Flink and the Event Processing operator by using the IBM Catalog Management Plug-in for IBM Cloud Paks (<code class="language-plaintext highlighter-rouge">ibm-pak</code>), run the following command:</p>
+
+<ul>
+  <li>
+    <p>For IBM Operator for Apache Flink:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc ibm-pak launch ibm-eventautomation-flink <span class="nt">--version</span> &lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span> <span class="nt">--inventory</span> flinkKubernetesOperatorSetup <span class="nt">--action</span> installOperator <span class="nt">-n</span> &lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>For Event Processing:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc ibm-pak launch ibm-event-processing <span class="nt">--version</span> &lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span> <span class="nt">--inventory</span> epOperatorSetup <span class="nt">--action</span> installOperator <span class="nt">-n</span> &lt;namespace&gt;
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;case-version&gt;</code> is the version of the CASE you want to install.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;namespace&gt;</code> is the namespace you created previously or <code class="language-plaintext highlighter-rouge">openshift-operators</code> if you are installing in all namespaces.</li>
+</ul>
+
+<h2 id="install-a-flink-instance">Install a Flink instance</h2>
+
+<p>Instances of Flink can be created after the IBM Operator for Apache Flink is installed. If the operator
+was installed into <strong>a specific namespace</strong>, then it can only be used to manage instances of Flink in that namespace.</p>
+
+<p>If the operator was installed for <strong>all namespaces</strong>, then it can be used to manage instances of Flink in any namespace,
+including those created after the operator was deployed.</p>
+
+<p>A Flink instance is installed by deploying the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource to a namespace managed by an instance of IBM Operator for Apache Flink.</p>
+
+<h3 id="installing-a-flink-instance-by-using-the-web-console">Installing a Flink instance by using the web console</h3>
+
+<p>To install a Flink instance through the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>
+    <p>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator
+called <strong>IBM Operator for Apache Flink</strong> managing the project.</p>
+
+    <p><strong>Note:</strong> If the operator is not shown, it is either not installed or not available for the selected namespace.</p>
+  </li>
+  <li>In the <strong>Operator Details</strong> dashboard, click the <strong>Flink Deployment</strong> tab.</li>
+  <li>Click the <strong>Create FlinkDeployment</strong> button to open the <strong>Create FlinkDeployment</strong> panel. You can use this panel
+to define a <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource.</li>
+</ol>
+
+<p>From here you can install by using the <a href="#installing-a-flink-instance-using-the-yaml-view">YAML view</a> or the <a href="#installing-a-flink-instance-by-using-the-form-view">form view</a>. For advanced configurations or to install one of the samples, see <a href="#installing-a-flink-instance-using-the-yaml-view">installing by using the YAML view</a>.</p>
+
+<h4 id="installing-a-flink-instance-using-the-yaml-view">Installing a Flink instance using the YAML view</h4>
+
+<p>Alternatively, you can configure the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource by editing YAML documents. To do this, select <strong>YAML view</strong>.</p>
+
+<p>A number of sample configurations are provided on which you can base your deployment. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload. Alternatively, a pre-configured YAML file containing the custom resource can be dragged and dropped onto this screen to apply the configuration.</p>
+
+<p>To view the samples, complete the following steps:</p>
+
+<ol>
+  <li>Click the <strong>Samples</strong> tab to view the available sample configurations.</li>
+  <li>Click the <strong>Try it</strong> link under any of the samples to open the configuration in the <strong>Create FlinkDeployment</strong> panel.</li>
+</ol>
+
+<p>More information about these samples is available in the <a href="../planning/#flink-sample-deployments">planning</a> section.
+You can base your deployment on the sample that most closely reflects your requirements and apply <a href="../configuring">customizations</a>
+on top as required. You can also directly edit the custom resource YAML by clicking on the editor.</p>
+
+<p>When modifying the sample configuration, the updated document can be exported from the <strong>Create FlinkDeployment</strong> panel
+by clicking the <strong>Download</strong> button and re-imported by dragging the resulting file back into the window.</p>
+
+<p><strong>Note:</strong> If you experiment with IBM Operator for Apache Flink and want a minimal CPU and memory footprint,
+the <strong>Quick start</strong> sample is the smallest and simplest example. For the smallest production setup, use the
+<strong>Minimal production</strong> sample configuration.</p>
+
+<p><strong>Important:</strong> All Flink samples except <strong>Quick start</strong> use a <code class="language-plaintext highlighter-rouge">PersistentVolumeClaim</code> (PVC), which must be deployed manually as described in <a href="../planning/#deploying-the-flink-pvc">planning</a>.</p>
+
+<p><strong>Important:</strong> In all Flink samples, just as in any <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource, accept the
+license agreement(<code class="language-plaintext highlighter-rouge">spec.flinkConfiguration.license.accept: 'true'</code>), and set the required <a href="https://ibm.biz/ea-license" target="_blank">licensing configuration parameters</a> for your deployment.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">flinkConfiguration</span><span class="pi">:</span>
+    <span class="s">license.use</span><span class="pi">:</span> <span class="s">&lt;license-use-value&gt;</span>
+    <span class="s">license.license</span><span class="pi">:</span> <span class="s">L-HRZF-DWHH7A</span>
+    <span class="s">license.accept</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+</code></pre></div></div>
+<p>Where <code class="language-plaintext highlighter-rouge">&lt;license-use-value&gt;</code> must be either <code class="language-plaintext highlighter-rouge">EventAutomationProduction</code> or <code class="language-plaintext highlighter-rouge">EventAutomationNonProduction</code>, depending on your case.</p>
+
+<p>To deploy a Flink instance, use the following steps:</p>
+
+<ol>
+  <li>Complete any changes to the sample configuration in the <strong>Create FlinkDeployment</strong> panel.</li>
+  <li>Click <strong>Create</strong> to begin the installation process.</li>
+  <li>Wait for the installation to complete.</li>
+</ol>
+
+<h4 id="installing-a-flink-instance-by-using-the-form-view">Installing a Flink instance by using the form view</h4>
+
+<p><strong>Note:</strong> For advanced configurations, such as configuring parameters under <code class="language-plaintext highlighter-rouge">spec.flinkConfiguration</code>, see <a href="#installing-a-flink-instance-using-the-yaml-view">installing by using the YAML view</a>.</p>
+
+<p>To configure a <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource in the <strong>Form view</strong>, do the following:</p>
+
+<ol>
+  <li>Enter a name for the instance in the <strong>Name</strong> field.</li>
+  <li>
+    <p>You can optionally configure the fields such as <strong>Job Manager</strong>, <strong>Task Manager</strong>, or <strong>Job</strong> to suit your <a href="../configuring">requirements</a>.</p>
+
+    <p><strong>Note:</strong> Do not fill the fields <strong>Flink Version</strong> and <strong>Image</strong>, as they are automatically filled by IBM Operator for Apache Flink.</p>
+  </li>
+  <li>
+    <p>Switch to the YAML view, accept the license agreement (<code class="language-plaintext highlighter-rouge">spec.flinkConfiguration.license.accept: 'true'</code>), and set the required <a href="https://ibm.biz/ea-license" target="_blank">licensing configuration parameters</a> for your deployment.</p>
+
+    <p>For example:</p>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">flinkConfiguration</span><span class="pi">:</span>
+    <span class="s">license.use</span><span class="pi">:</span> <span class="s">&lt;license-use-value&gt;</span>
+    <span class="s">license.license</span><span class="pi">:</span> <span class="s">L-HRZF-DWHH7A</span>
+    <span class="s">license.accept</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+</code></pre></div>    </div>
+    <p>Where <code class="language-plaintext highlighter-rouge">&lt;license-use-value&gt;</code> must be either <code class="language-plaintext highlighter-rouge">EventAutomationProduction</code> or <code class="language-plaintext highlighter-rouge">EventAutomationNonProduction</code>, depending on your deployment.</p>
+
+    <p><strong>Note:</strong> License configuration parameters for your Flink instance can only be set by using the YAML view.</p>
+  </li>
+  <li>Scroll down and click the <strong>Create</strong> button to deploy the Flink instance.</li>
+  <li>Wait for the installation to complete.</li>
+</ol>
+
+<h3 id="installing-a-flink-instance-by-using-the-cli">Installing a Flink instance by using the CLI</h3>
+
+<p>To install an instance of Flink from the command-line, you must first prepare a <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource configuration in a YAML file.</p>
+
+<p>A number of sample configuration files are available in <a href="https://ibm.biz/ea-flink-samples">GitHub</a>, where you can select the GitHub tag for your Flink version, and then go to <code class="language-plaintext highlighter-rouge">/cr-examples/flinkdeployment</code> to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.</p>
+
+<p><strong>Important:</strong> All Flink samples except <strong>Quick start</strong> use a <code class="language-plaintext highlighter-rouge">PersistentVolumeClaim</code> (PVC), which must be deployed manually as described in <a href="../planning/#deploying-the-flink-pvc">planning</a>.</p>
+
+<p>To deploy a Flink instance, run the following commands:</p>
+
+<ol>
+  <li>
+    <p>Prepare a <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource in a YAML file, using the information provided in
+<a href="https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/custom-resource/reference/#flinkdeployment-reference" target="_blank">FlinkDeployment Reference</a>.</p>
+
+    <p><strong>Note:</strong> Do not include the fields <code class="language-plaintext highlighter-rouge">spec.image</code> and <code class="language-plaintext highlighter-rouge">spec.flinkVersion</code>, as they are automatically included
+by IBM Operator for Apache Flink. Also, accept the license agreement(<code class="language-plaintext highlighter-rouge">spec.flinkConfiguration.license.accept: 'true'</code>), and set the required <a href="https://ibm.biz/ea-license" target="_blank">licensing configuration parameters</a> for your deployment.</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">flinkConfiguration</span><span class="pi">:</span>
+    <span class="s">license.use</span><span class="pi">:</span> <span class="s">&lt;license-use-value&gt;</span>
+    <span class="s">license.license</span><span class="pi">:</span> <span class="s">L-HRZF-DWHH7A</span>
+    <span class="s">license.accept</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+</code></pre></div>    </div>
+    <p>Where <code class="language-plaintext highlighter-rouge">&lt;license-use-value&gt;</code> must be either <code class="language-plaintext highlighter-rouge">EventAutomationProduction</code> or <code class="language-plaintext highlighter-rouge">EventAutomationNonProduction</code>, depending on your deployment.</p>
+  </li>
+  <li>
+    <p>Set the project where your <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource will be deployed in:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc project &lt;project-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Apply the configured <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> &lt;custom-resource-file-path&gt;
+</code></pre></div>    </div>
+
+    <p>For example: <code class="language-plaintext highlighter-rouge">oc apply -f flinkdeployment_demo.yaml</code></p>
+  </li>
+  <li>
+    <p>Wait for the installation to complete.</p>
+  </li>
+</ol>
+
+<h2 id="install-an-event-processing-instance">Install an Event Processing instance</h2>
+
+<p>Instances of Event Processing can be created after the Event Processing operator is installed. If the operator was installed into <strong>a specific namespace</strong>, then it can only be used to manage instances of Event Processing in that namespace. If the operator was installed for <strong>all namespaces</strong>, then it can be used to manage instances of Event Processing in any namespace, including those created after the operator was deployed.</p>
+
+<p>When installing an instance of Event Processing, ensure you are using a namespace that an operator is managing.</p>
+
+<h3 id="retrieving-the-flink-rest-endpoint">Retrieving the Flink REST endpoint</h3>
+
+<p>To retrieve the REST endpoint URL, do the following:</p>
+
+<ol>
+  <li>Expand <strong>Networking</strong> in the navigation on the left, and select <strong>Services</strong>.</li>
+  <li>Select your service to open <strong>Service details</strong>.</li>
+  <li>Your endpoint URL is hostname and port separated by colon(:). For example, if your hostname is <code class="language-plaintext highlighter-rouge">my-flink-rest.namespace.svc.cluster.local</code> and the port is <code class="language-plaintext highlighter-rouge">8081</code>, your REST endpoint URL is <code class="language-plaintext highlighter-rouge">my-flink-rest.namespace.svc.cluster.local:8081</code>.</li>
+</ol>
+
+<h3 id="installing-an-event-processing-instance-by-using-the-web-console">Installing an Event Processing instance by using the web console</h3>
+
+<p>To install an Event Processing instance through the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>
+    <p>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Event Processing</strong> managing the project.</p>
+
+    <p><strong>Note:</strong> If the operator is not shown, it is either not installed or not available for the selected namespace.</p>
+  </li>
+  <li>In the <strong>Operator Details</strong> dashboard, click the <strong>Event Processing</strong> tab.</li>
+  <li>Click the <strong>Create EventProcessing</strong> button to open the <strong>Create EventProcessing</strong> panel. You can use this panel to define an <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource.</li>
+</ol>
+
+<p>From here you can install by using the <a href="#installing-an-event-processing-instance-by-using-the-yaml-view">YAML view</a> or the <a href="#installing-an-event-processing-instance-by-using-the-form-view">form view</a>. For advanced configurations or to install one of the samples, see <a href="#installing-an-event-processing-instance-by-using-the-yaml-view">installing by using the YAML view</a>.</p>
+
+<h4 id="installing-an-event-processing-instance-by-using-the-yaml-view">Installing an Event Processing instance by using the YAML view</h4>
+
+<p>You can configure the <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource by editing YAML documents. To do this, select <strong>YAML view</strong>.</p>
+
+<p>A number of sample configurations are provided on which you can base your deployment. These range from smaller deployments for non-production development or general experimentation to large scale clusters ready to handle a production workload. Alternatively, a pre-configured YAML file containing the custom resource sample can be dragged and dropped onto this screen to apply the configuration.</p>
+
+<p>To view the samples, complete the following steps:</p>
+
+<ol>
+  <li>Click the <strong>Samples</strong> tab to view the available sample configurations.</li>
+  <li>Click the <strong>Try it</strong> link under any of the samples to open the configuration in the <strong>Create EventProcessing</strong> panel.</li>
+</ol>
+
+<p>More information about these samples is available in the <a href="../planning/#event-processing-sample-deployments">planning</a> section. You can base your deployment on the sample that most closely reflects your requirements and apply <a href="../configuring">customizations</a> as required.</p>
+
+<p><strong>Note:</strong> If experimenting with Event Processing for the first time, the <strong>Quick start</strong> sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the <strong>Production</strong> sample configuration.</p>
+
+<p>When modifying the sample configuration, the updated document can be exported from the <strong>Create EventProcessing</strong> panel by clicking the <strong>Download</strong> button and re-imported by dragging the resulting file back into the window. You can also directly edit the custom resource YAML by clicking on the editor.</p>
+
+<p>When modifying the sample configuration, ensure that the following fields are updated:</p>
+
+<ul>
+  <li>
+    <p><a href="#retrieving-the-flink-rest-endpoint">Flink REST endpoint</a> in the <code class="language-plaintext highlighter-rouge">spec.flink.endpoint</code> field.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">spec.license.accept</code> field in the custom resource YAML is set to <code class="language-plaintext highlighter-rouge">true</code>, and that the <a href="/event-automation/support/licensing">correct values are selected</a> for the <code class="language-plaintext highlighter-rouge">spec.license.license</code> and <code class="language-plaintext highlighter-rouge">spec.license.use</code> fields before deploying the Event Processing instance. See the <a href="/event-automation/support/licensing">licensing</a> section for more details about selecting the correct value.</p>
+  </li>
+</ul>
+
+<p>To deploy an Event Processing instance, use the following steps:</p>
+
+<ol>
+  <li>Complete any changes to the sample configuration in the <strong>Create EventProcessing</strong> panel.</li>
+  <li>Click <strong>Create</strong> to begin the installation process.</li>
+  <li>Wait for the installation to complete.</li>
+  <li>You can now verify your installation and consider other <a href="../post-installation/">post-installation tasks</a>.</li>
+</ol>
+
+<h4 id="installing-an-event-processing-instance-by-using-the-form-view">Installing an Event Processing instance by using the form view</h4>
+
+<p>Alternatively, you can configure an <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource using the interactive form.  You can load
+samples into the form and then edit as required.</p>
+
+<p>To view a sample in the form view, complete the following steps:</p>
+
+<ol>
+  <li>Select <strong>YAML view</strong> in the <strong>Configure via</strong> section at the top of the form.</li>
+  <li>Click the <strong>Samples</strong> tab to view the available sample configurations.</li>
+  <li>Click the <strong>Try it</strong> link under any of the samples.</li>
+  <li>Select <strong>Form view</strong> in the <strong>Configure via</strong> section to switch back to the form view with the data from the sample populated.</li>
+  <li>Edit as required.</li>
+</ol>
+
+<p><strong>Note:</strong> If experimenting with Event Endpoint Management for the first time, the <strong>Quick start</strong> sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the <strong>Production</strong> sample configuration.</p>
+
+<p>To configure an <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource,  complete the following steps:</p>
+
+<ol>
+  <li>Enter a name for the instance in the <strong>Name</strong> field.</li>
+  <li>Under <strong>License Acceptance</strong>, select the <strong>accept</strong> checkbox.</li>
+  <li>Ensure that the <a href="/event-automation/support/licensing">correct values</a> for <strong>License</strong> and <strong>Use</strong> are entered.</li>
+  <li>Under <strong>Flink</strong>, enter the <a href="#retrieving-the-flink-rest-endpoint">Flink REST endpoint</a> in the <strong>flink &gt; endpoint</strong> text-box.</li>
+  <li>You can optionally configure other components such as <strong>storage</strong>, and <strong>TLS</strong> to suit your <a href="../configuring">requirements</a>.</li>
+  <li>Scroll down and click the <strong>Create</strong> button to deploy the Event Processing instance.</li>
+  <li>Wait for the installation to complete.</li>
+  <li>You can now verify your installation and consider other <a href="../post-installation/">post-installation tasks</a>.</li>
+</ol>
+
+<h3 id="installing-an-event-processing-instance-by-using-the-cli">Installing an Event Processing instance by using the CLI</h3>
+
+<p>To install an instance of Event Processing from the command-line, you must first prepare an <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource configuration in a YAML file.</p>
+
+<p>A number of sample configuration files are available in <a href="https://ibm.biz/ea-ep-samples">GitHub</a>, where you can select the GitHub tag for your Event Processing version, and then go to <code class="language-plaintext highlighter-rouge">/cr-examples/eventprocessing</code> to access the samples. These sample configurations range from smaller deployments for non-production development or general experimentation to large scale clusters ready to handle a production workload.</p>
+
+<p>More information about these samples is available in the <a href="../planning/#event-processing-sample-deployments">planning</a> section. You can base your deployment on the sample that most closely reflects your requirements and apply <a href="../configuring">customizations</a> as required.</p>
+
+<p><strong>Note:</strong> If experimenting with Event Processing for the first time, the <strong>Quick start</strong> sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the <strong>Production</strong> sample configuration.</p>
+
+<p>When modifying the sample configuration, ensure that the following fields are updated:</p>
+
+<ul>
+  <li>
+    <p><a href="#retrieving-the-flink-rest-endpoint">Flink REST endpoint</a> in the <code class="language-plaintext highlighter-rouge">spec.flink.endpoint</code> field.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">spec.license.accept</code> field in the custom resource YAML is set to <code class="language-plaintext highlighter-rouge">true</code>, and that the <a href="/event-automation/support/licensing">correct values are selected</a> for the <code class="language-plaintext highlighter-rouge">spec.license.license</code> and <code class="language-plaintext highlighter-rouge">spec.license.use</code> fields before deploying the Event Processing instance.</p>
+  </li>
+</ul>
+
+<p>To deploy an Event Processing instance, run the following commands:</p>
+
+<ol>
+  <li>
+    <p>Set the project where your <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource will be deployed in:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc project &lt;project-name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Apply the configured <code class="language-plaintext highlighter-rouge">EventProcessing</code> custom resource:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> &lt;custom-resource-file-path&gt;
+</code></pre></div>    </div>
+
+    <p>For example: <code class="language-plaintext highlighter-rouge">oc apply -f production.yaml</code></p>
+  </li>
+  <li>Wait for the installation to complete.</li>
+  <li>You can now verify your installation and consider other <a href="../post-installation/">post-installation tasks</a>.</li>
+</ol>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#before-you-begin">Before you begin</a></li>
+  <li><a href="#create-a-project-namespace">Create a project (namespace)</a>
+    <ul>
+      <li><a href="#creating-a-project-by-using-the-web-console">Creating a project by using the web console</a></li>
+      <li><a href="#creating-a-project-by-using-the-cli">Creating a project by using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#create-an-image-pull-secret">Create an image pull secret</a></li>
+  <li><a href="#choose-the-operator-installation-mode">Choose the operator installation mode</a></li>
+  <li><a href="#decide-version-control-and-catalog-source">Decide version control and catalog source</a>
+    <ul>
+      <li><a href="#adding-latest-versions">Adding latest versions</a></li>
+      <li><a href="#adding-specific-versions">Adding specific versions</a></li>
+    </ul>
+  </li>
+  <li><a href="#install-the-operators-by-using-the-web-console">Install the operators by using the web console</a>
+    <ul>
+      <li><a href="#installing-the-ibm-operator-for-apache-flink">Installing the IBM Operator for Apache Flink</a></li>
+      <li><a href="#installing-the-event-processing-operator">Installing the Event Processing operator</a></li>
+    </ul>
+  </li>
+  <li><a href="#install-the-operators-by-using-the-cli-oc-ibm-pak">Install the operators by using the CLI (oc ibm-pak)</a></li>
+  <li><a href="#install-a-flink-instance">Install a Flink instance</a>
+    <ul>
+      <li><a href="#installing-a-flink-instance-by-using-the-web-console">Installing a Flink instance by using the web console</a></li>
+      <li><a href="#installing-a-flink-instance-by-using-the-cli">Installing a Flink instance by using the CLI</a></li>
+    </ul>
+  </li>
+  <li><a href="#install-an-event-processing-instance">Install an Event Processing instance</a>
+    <ul>
+      <li><a href="#retrieving-the-flink-rest-endpoint">Retrieving the Flink REST endpoint</a></li>
+      <li><a href="#installing-an-event-processing-instance-by-using-the-web-console">Installing an Event Processing instance by using the web console</a></li>
+      <li><a href="#installing-an-event-processing-instance-by-using-the-cli">Installing an Event Processing instance by using the CLI</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/installing/planning/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/planning/" class="pagination--pager" title="Previous Item: Planning your installation
+">Previous</a>
+          <h2 class="titlePreview">Planning your installation
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/installing/offline/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/offline/" class="pagination--pager" title="Next Item: Installing in an offline environment
+">Next</a>
+          <h2 class="titlePreview">Installing in an offline environment
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

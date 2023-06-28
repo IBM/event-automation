@@ -1,0 +1,2611 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Running the MQ source connector - IBM Event Automation</title>
+<meta name="description" content="Running MQ source connector">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_2019.1.1/connecting/mq/source/" />
+<meta property="og:title" content="Event Streams | Running the MQ source connector" />
+<meta property="og:description" content="Running MQ source connector" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Running the MQ source connector" />
+
+
+
+
+  <meta property="og:description" content="Running MQ source connector">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_2019.1.1/connecting/mq/source/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">2019.1.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">2019.1.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/connecting/mq/source/" onclick="openVersion('/event-automation/es/connecting/mq/source/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/connecting/mq/source/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_11.1/connecting/mq/source/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/connecting/mq/source/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_11.0/connecting/mq/source/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/connecting/mq/source/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.5/connecting/mq/source/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/connecting/mq/source/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.4/connecting/mq/source/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/connecting/mq/source/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.3/connecting/mq/source/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/connecting/mq/source/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.2/connecting/mq/source/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/connecting/mq/source/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.1/connecting/mq/source/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/connecting/mq/source/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_10.0/connecting/mq/source/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/connecting/mq/source/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_2019.4/connecting/mq/source/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/connecting/mq/source/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_2019.2.1/connecting/mq/source/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/connecting/mq/source/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_2019.1.1/connecting/mq/source/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/connecting/mq/source/" class="versionPill active">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/connecting/mq/source/" onclick="openVersion('/event-automation/es/es_2018.3.1/connecting/mq/source/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/connecting/mq/source/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/prerequisites/" class="">Pre-requisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/planning/" class="">Planning for installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/capacity-planning/" class="">Capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing/" class="">Installing on IBM Cloud Private</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing-openshift/" class="">Installing on OpenShift</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/migrating/" class="">Migrating from Community Edition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/rolling-back/" class="">Rolling back</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/generating-starter-app/" class="">Generating a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/client/" class="">Creating Kafka Java client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/rest-api/" class="">Producing messages using REST</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/source/" class="active">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-configs/" class="">Modifying Kafka broker configurations</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/helm-upgrade-command/" class="">Running Helm upgrade commands</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/diagnosing-installation-issues/" class="">Diagnosing installation issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cleanup-uninstall/" class="">Full cleanup after uninstallation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pod-timeout-error/" class="">ConsumerTimeoutException when pods available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-image-policy/" class="">Chart deployment fails with 'no ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/image-policy-missing-repository/" class="">Chart deployment fails with 'no matching repositories in the ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-helm-release-is-created/" class="">Chart deployment starts but no helm release is created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/messages-page-blank/" class="">The Messages page is blank</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" class="">Unable to connect to Kafka cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-connect-error/" class="">Geo-replication fails to start</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pods-apparmor-blocked/" class="">Pods fail to start, status is blocked</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/client-connect-error/" class="">Kafka client apps unable to connect to cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/rollback-fails/" class="">Rollback fails</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/failed-to-read-log/" class="">Failed to read 'log header' errors in Kafka logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Running the MQ source connector
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>You can use the MQ source connector to copy data from IBM MQ into Event Streams or Apache Kafka. The connector copies messages from a source MQ queue to a target Kafka topic.</p>
+
+<p>This document contains steps for running the connector in standalone mode for development and test purposes.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>The connector runs inside the Kafka Connect runtime, which is part of the Apache Kafka distribution. Event Streams does not run connectors as part of its deployment, so you need an Apache Kafka distribution to get the Kafka Connect runtime environment.</p>
+
+<p>Ensure you have the following available:</p>
+
+<ul>
+  <li><a href="https://www.ibm.com/support/knowledgecenter/SSFKSJ_8.0.0/com.ibm.mq.helphome.v80.doc/WelcomePagev8r0.htm" target="_blank">IBM MQ</a> v8 or later installed.
+ <strong>Note:</strong> These instructions are for IBM MQ v9 running on Linux. If you’re using a different version or platform, you might have to adjust some steps slightly.</li>
+  <li>The Kafka Connect runtime environment that comes as part of an <a href="http://kafka.apache.org/downloads" target="_blank">Apache Kafka</a> distribution. These instructions are for Apache Kafka 2.0.0 or later.</li>
+</ul>
+
+<h2 id="downloading-the-connector">Downloading the connector</h2>
+
+<p>You can obtain the Kafka Connect source connector for IBM MQ as follows:</p>
+<ol>
+  <li>Log in to your Event Streams UI.</li>
+  <li>Click the <strong>Toolbox</strong> tab, and click <strong>Kafka Connect source connector for IBM MQ</strong>.</li>
+  <li>Download both the <code class="language-plaintext highlighter-rouge">connector JAR</code> and the <code class="language-plaintext highlighter-rouge">sample connector properties</code> files from the page.</li>
+</ol>
+
+<p>Alternatively, you can <a href="https://github.com/ibm-messaging/kafka-connect-mq-source" target="_blank">clone the project from GitHub</a>. However, if you clone from GitHub, you have to build the connector yourself as described in the <a href="https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/README.md" target="_blank">README</a>.</p>
+
+<h2 id="setting-up-the-queue-manager">Setting up the queue manager</h2>
+
+<p>These sample instructions set up an IBM MQ queue manager that uses its local operating system to authenticate the user ID and password. The user ID and password you provide must already be created on the operating system where IBM MQ is running.</p>
+
+<ol>
+  <li>Log in as a user authorized to administer IBM MQ, and ensure the MQ commands are on the path.</li>
+  <li>Create a queue manager with a TCP/IP listener on port 1414:
+<code class="language-plaintext highlighter-rouge">crtmqm -p 1414 &lt;queue_manager_name&gt;</code>
+for example to create a queue manager called <code class="language-plaintext highlighter-rouge">QM1</code> use <code class="language-plaintext highlighter-rouge">crtmqm -p 1414 QM1</code></li>
+  <li>Start the queue manager:
+<code class="language-plaintext highlighter-rouge">strmqm &lt;queue_manager_name&gt;</code></li>
+  <li>Start the <code class="language-plaintext highlighter-rouge">runmqsc</code> tool to configure the queue manager:
+<code class="language-plaintext highlighter-rouge">runmqsc &lt;queue_manager_name&gt;</code></li>
+  <li>In <code class="language-plaintext highlighter-rouge">runmqsc</code>, create a server-connection channel:
+<code class="language-plaintext highlighter-rouge">DEFINE CHANNEL(&lt;channel_name&gt;) CHLTYPE(SVRCONN)</code></li>
+  <li>Set the channel authentication rules to accept connections requiring userid and password:
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">SET CHLAUTH(&lt;channel_name&gt;) TYPE(BLOCKUSER) USERLIST('nobody')</code></li>
+      <li><code class="language-plaintext highlighter-rouge">SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)</code></li>
+      <li><code class="language-plaintext highlighter-rouge">SET CHLAUTH(&lt;channel_name&gt;) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)</code></li>
+    </ol>
+  </li>
+  <li>Set the identity of the client connections based on the supplied context (the user ID):
+<code class="language-plaintext highlighter-rouge">ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)</code></li>
+  <li>Refresh the connection authentication information:
+<code class="language-plaintext highlighter-rouge">REFRESH SECURITY TYPE(CONNAUTH)</code></li>
+  <li>Create a queue for the Kafka Connect connector to use:
+<code class="language-plaintext highlighter-rouge">DEFINE QLOCAL(&lt;queue_name&gt;)</code></li>
+  <li>Authorize the IBM MQ user ID to connect to and inquire the queue manager:
+   <code class="language-plaintext highlighter-rouge">SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('&lt;user_id&gt;') AUTHADD(CONNECT,INQ)</code></li>
+  <li>Authorize the IBM MQ user ID to use the queue:
+   <code class="language-plaintext highlighter-rouge">SET AUTHREC PROFILE(&lt;queue_name&gt;) OBJTYPE(QUEUE) PRINCIPAL('&lt;user_id&gt;') AUTHADD(ALLMQI)</code></li>
+  <li>Stop the <code class="language-plaintext highlighter-rouge">runmqsc</code> tool by typing <code class="language-plaintext highlighter-rouge">END</code>.</li>
+</ol>
+
+<p>For example, for a queue manager called <code class="language-plaintext highlighter-rouge">QM1</code>, with user ID <code class="language-plaintext highlighter-rouge">alice</code>, creating a server-connection channel called <code class="language-plaintext highlighter-rouge">MYSVRCONN</code> and a queue called <code class="language-plaintext highlighter-rouge">MYQSOURCE</code>, you run the following commands in <code class="language-plaintext highlighter-rouge">runmqsc</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEFINE CHANNEL(MYSVRCONN) CHLTYPE(SVRCONN)
+SET CHLAUTH(MYSVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
+SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)
+SET CHLAUTH(MYSVRCONN) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)
+ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)
+REFRESH SECURITY TYPE(CONNAUTH)
+DEFINE QLOCAL(MYQSOURCE)
+SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('alice') AUTHADD(CONNECT,INQ)
+SET AUTHREC PROFILE(MYQSOURCE) OBJTYPE(QUEUE) PRINCIPAL('alice') AUTHADD(ALLMQI)
+END
+</code></pre></div></div>
+
+<p>The queue manager is now ready to accept connection from the connector and get messages from a queue.</p>
+
+<h2 id="setting-up-apache-kafka">Setting up Apache Kafka</h2>
+
+<p>To send messages from IBM MQ to Event Streams, create a topic and obtain security information for your Event Streams installation. You then use this information later to configure the connection to your Event Streams instance.</p>
+
+<p>You can also send IBM MQ messages to Apache Kafka running locally on your machine, see the <a href="https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/UsingMQwithKafkaConnect.md" target="_blank">public GitHub repository</a> for more details.</p>
+
+<p>To obtain security information:</p>
+<ol>
+  <li>Log in to your Event Streams UI.</li>
+  <li>Click the <strong>Topics</strong> tab.</li>
+  <li>If you have not previously created the topic to use with the connector, create it now by clicking <strong>Create topic</strong>.</li>
+  <li>Select the topic in the list of topics.</li>
+  <li>Click <strong>Connect to this topic</strong> on the right.</li>
+  <li>On the <strong>Connect a client</strong> tab, copy the address from the <strong>Bootstrap server</strong> section. This gives the bootstrap address for Kafka clients.</li>
+  <li>From the <strong>Certificates</strong> section, download the server certificate from the <strong>Java truststore</strong> section, and choose a location for the downloaded file that can be accessed by the Kafka Connect worker.</li>
+  <li>Go to the <strong>API key</strong> section, and follow the instructions to generate an API key authorized to connect to the cluster and produce to the topic.</li>
+</ol>
+
+<p><strong>Note:</strong> For the distributed worker, the API key will also need to be able to write to the Kafka Connect framework’s internal topics.</p>
+
+<h2 id="configuring-the-connector-to-connect-to-mq">Configuring the connector to connect to MQ</h2>
+
+<p>The connector requires details to connect to IBM MQ and to your Event Streams or Apache Kafka cluster.</p>
+
+<p>To provide connection details for IBM MQ, use the sample connector properties file you downloaded (<code class="language-plaintext highlighter-rouge">mq-source.properties</code>). Create a copy of it and save it to the location where you have the connector JAR file.</p>
+
+<p>The connector connects to IBM MQ using a client connection. You must provide the following connection information for your queue manager:</p>
+<ul>
+  <li>The name of the IBM MQ queue manager.</li>
+  <li>The connection name (one or more host and port pairs).</li>
+  <li>The channel name.</li>
+  <li>The name of the source IBM MQ queue.</li>
+  <li>The user name and password if the queue manager is configured to require them for client connections.</li>
+  <li>The name of the target Kafka topic.</li>
+</ul>
+
+<p>For example:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mq.queue.manager=QM1
+mq.connection.name.list=localhost(1414)
+mq.channel.name=MYSVRCONN
+mq.queue=MYQSOURCE
+mq.user.name=alice
+mq.password=passw0rd
+topic=TSOURCE
+</code></pre></div></div>
+
+<p>See the sample properties file for a full list of properties you can configure, and also see the <a href="https://github.com/ibm-messaging/kafka-connect-mq-source" target="_blank">GitHub README</a> for all available configuration options.</p>
+
+<h2 id="configuring-the-connector-to-connect-to-event-streams-or-apache-kafka">Configuring the connector to connect to Event Streams or Apache Kafka</h2>
+
+<p>To provide the connection details for your Kafka cluster, the Kafka distribution includes a file called <code class="language-plaintext highlighter-rouge">connect-standalone.properties</code>. Edit the file to include the following connection information:</p>
+<ul>
+  <li>A list of one or more Kafka brokers for bootstrapping connections.</li>
+  <li>Whether the cluster requires connections to use SSL/TLS.</li>
+  <li>Authentication credentials if the cluster requires clients to authenticate.</li>
+</ul>
+
+<p>To connect to Event Streams, you will need the broker URL and security details you collected earlier when you <a href="#setting-up-apache-kafka">configured Event Streams</a>.</p>
+
+<p>The following example shows the required properties for the Kafka Connect standalone properties file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bootstrap.servers=&lt;broker_url&gt;
+security.protocol=SASL_SSL
+ssl.protocol=TLSv1.2
+ssl.truststore.location=&lt;certs.jks_file_location&gt;
+ssl.truststore.password=&lt;truststore_password&gt;
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="&lt;api_key&gt;";
+producer.security.protocol=SASL_SSL
+producer.ssl.protocol=TLSv1.2
+producer.ssl.truststore.location=&lt;certs.jks_file_location&gt;
+producer.ssl.truststore.password=&lt;truststore_password&gt;
+producer.sasl.mechanism=PLAIN
+producer.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="&lt;api_key&gt;";
+</code></pre></div></div>
+
+<p>You replace <code class="language-plaintext highlighter-rouge">&lt;broker_url&gt;</code> with your cluster’s broker URL, <code class="language-plaintext highlighter-rouge">&lt;certs.jks_file_location&gt;</code> with the path of your downloaded truststore file, <code class="language-plaintext highlighter-rouge">&lt;truststore_password&gt;</code> with <code class="language-plaintext highlighter-rouge">"password"</code>, and <code class="language-plaintext highlighter-rouge">&lt;api_key&gt;</code> with the API key.</p>
+
+<p><strong>Note:</strong> If you are running Apache Kafka locally you can use the default <code class="language-plaintext highlighter-rouge">connect-standalone.properties</code> file.</p>
+
+<h2 id="generate-a-consumer-application">Generate a consumer application</h2>
+
+<p>To test the connector you will need an application to consume events from the your topic.</p>
+
+<ol>
+  <li>Log in to your Event Streams UI.</li>
+  <li>Click the <strong>Toolbox</strong> tab.</li>
+  <li>Click <strong>Generate application</strong> under <strong>Starter application</strong></li>
+  <li>Enter a name for the application</li>
+  <li>Select only <strong>Consume messages</strong></li>
+  <li>Select <strong>Choose existing topic</strong> and choose the topic you provided in the MQ connector configuration</li>
+  <li>Click <strong>Generate</strong></li>
+  <li>Once the application has been generated, click <strong>Download</strong> and follow the instructions in the UI to get the application running</li>
+</ol>
+
+<h2 id="running-the-connector">Running the connector</h2>
+
+<ol>
+  <li>Open a terminal window and change to the Kafka root directory. Start the connector worker as follows, replacing the <code class="language-plaintext highlighter-rouge">&lt;path-to-*&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;jar-version&gt;</code> placeholders:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CLASSPATH=&lt;path-to-connector-jar&gt;/kafka-connect-mq-source-&lt;jar-version&gt;-jar-with-dependencies.jar bin/connect-standalone.sh config/connect-standalone.properties &lt;path-to-mq-properties&gt;/mq-source.properties
+</code></pre></div>    </div>
+    <p>The log output will include the following messages that indicate the connector worker has started and successfully connected to IBM MQ:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> INFO Created connector mq-source
+ INFO Connection to MQ established
+</code></pre></div>    </div>
+  </li>
+  <li>Navigate to the UI of the <a href="#generate-a-consumer-application">sample application</a> you generated earlier and start consuming messages from Event Streams.</li>
+  <li>To add messages to the IBM MQ queue, run the <code class="language-plaintext highlighter-rouge">amqsput</code> sample and type in some messages:<br />
+<code class="language-plaintext highlighter-rouge">/opt/mqm/samp/bin/amqsput &lt;queue_name&gt; &lt;queue_manager_name&gt;</code></li>
+</ol>
+
+<p>The messages are printed by the Kafka console consumer, and are transferred from the IBM MQ queue into the Kafka topic using the queue manager you configured.</p>
+
+<p><strong>NOTE:</strong> Messages sent to the IBM MQ queue can also be viewed by clicking the <strong>Topics</strong> tab in the Event Streams UI and selecting your topic name.</p>
+
+<h2 id="advanced-configuration">Advanced configuration</h2>
+
+<p>For more details about the connector and to see all configuration options, see the <a href="https://github.com/ibm-messaging/kafka-connect-mq-source" target="_blank">GitHub README</a>.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#downloading-the-connector">Downloading the connector</a></li>
+  <li><a href="#setting-up-the-queue-manager">Setting up the queue manager</a></li>
+  <li><a href="#setting-up-apache-kafka">Setting up Apache Kafka</a></li>
+  <li><a href="#configuring-the-connector-to-connect-to-mq">Configuring the connector to connect to MQ</a></li>
+  <li><a href="#configuring-the-connector-to-connect-to-event-streams-or-apache-kafka">Configuring the connector to connect to Event Streams or Apache Kafka</a></li>
+  <li><a href="#generate-a-consumer-application">Generate a consumer application</a></li>
+  <li><a href="#running-the-connector">Running the connector</a></li>
+  <li><a href="#advanced-configuration">Advanced configuration</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_2019.1.1/connecting/mq/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/connecting/mq/" class="pagination--pager" title="Previous Item: Connecting to IBM MQ
+">Previous</a>
+          <h2 class="titlePreview">Connecting to IBM MQ
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_2019.1.1/connecting/mq/sink/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/connecting/mq/sink/" class="pagination--pager" title="Next Item: Running the MQ sink connector
+">Next</a>
+          <h2 class="titlePreview">Running the MQ sink connector
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,687 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
+
+# remote_theme             : "mmistakes/minimal-mistakes"
+
+# minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+# Site Settings
+locale: "en-US"
+title: "IBM Event Automation"
+title_separator: "-"
+version: &name "IBM" # &name is a YAML anchor which can be *referenced later
+description: &description "IBM Event Automation provides features to collect, distribute, and process your stream of event data."
+url: "https://ibm.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl: "/event-automation" # the subpath of your site, e.g. "/blog"
+repository: "event-automation"
+relative_permalinks: false
+teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+# breadcrumbs            : false # true, false (default)
+words_per_minute: 200
+comments:
+  provider: "false" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman_v2", "staticman" "custom"
+  disqus:
+    shortversion:
+  discourse:
+    server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    # https://developers.facebook.com/docs/plugins/comments
+    appid:
+    num_posts: # 5 (default)
+    colorscheme: # "light" (default), "dark"
+staticman:
+  allowedFields: # ['name', 'email', 'url', 'message']
+  branch: # "master"
+  commitMessage: # "New comment"
+  fileversion: # comment-{@timestamp}
+  format: # "yml"
+  moderation: # true
+  path: # "_data/comments/{options.slug}"
+  requiredFields: # ['name', 'email', 'message']
+  transforms:
+    email: # "md5"
+  generatedFields:
+    date:
+      type: # "date"
+      options:
+        format: # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+reCaptcha:
+  siteKey:
+  secret:
+
+atom_feed:
+  path: # blank (default) uses feed.xml
+
+search: true # true, false (default)
+search_full_content: true # true, false (default)
+search_provider: lunr # lunr (default), algolia
+# algolia:
+#  application_id         : QB6HVGBSBA # YOUR_APPLICATION_ID
+#  index_name             : minimal_mistakes # YOUR_INDEX_NAME
+#  search_only_api_key    : 9d5014e5bbc77372547bce778dfa5663 # YOUR_SEARCH_ONLY_API_KEY
+#  powered_by             : true # true (default), false
+#  files_to_exclude:
+#    - _posts/2017-11-28-post-exclude-search.md
+
+# SEO Related
+google_site_verification: # Replace this with your ID, or delete
+bing_site_verification:
+yandex_site_verification:
+naver_site_verification:
+
+# Social Sharing
+twitter:
+  userversion:
+facebook:
+  userversion:
+  app_id:
+  publisher:
+twitter_image: /assets/siteMeta/appIcon_og_square.png # Open Graph/Twitter default site image
+og_image: /assets/siteMeta/appIcon_og_fb.png # Open Graph/Twitter default site image
+# For specifying social profiles, used in _includes/seo.html
+# - https://developers.google.com/structured-data/customize/social-profiles
+social:
+  type: # Person or Organization (defaults to Person)
+  version: # If the user or organization name differs from the site's name
+  links: # An array of links to social media profiles
+
+# Analytics
+analytics:
+  provider: false # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id: "" # Replace this with your ID, or delete
+    anonymize_ip: true
+
+# Site Author
+author:
+  version: *name # *name is a YAML reference pointing to the &anchor earlier
+  avatar:
+  bio:
+  location:
+  email:
+  uri:
+  home:
+  bitbucket:
+  codepen:
+  dribbble:
+  flickr:
+  facebook:
+  foursquare:
+  github:
+  gitlab:
+  google_plus:
+  keybase:
+  instagram:
+  lastfm:
+  linkedin:
+  pinterest:
+  soundcloud:
+  stackoverflow: # https://stackoverflow.com/users/123456/username
+  steam:
+  tumblr:
+  twitter:
+  vine:
+  weibo:
+  xing:
+  youtube:
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - Rakefile
+  - README
+  - tmp
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "<!--more-->"
+incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Collections
+collections:
+  "es_2018.3.1":
+    version: "2018.3.1"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 1
+    product: es
+  "es_2019.1.1":
+    version: "2019.1.1"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 2
+    product: es
+  "es_2019.2.1":
+    version: "2019.2.1"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 3
+    product: es
+  "es_2019.4":
+    version: "2019.4"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 4
+    product: es
+  "es_10.0":
+    version: "10.0"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 5
+    product: es
+  "es_10.1":
+    version: "10.1"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 6
+    product: es
+  "es_10.2":
+    version: "10.2"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 7
+    product: es
+  "es_10.3":
+    version: "10.3"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 8
+    product: es
+  "es_10.4":
+    version: "10.4"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 9
+    product: es
+  "es_10.5":
+    version: "10.5"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 10
+    product: es
+  "es_11.0":
+    version: "11.0"
+    output: true
+    permalink: /es/:collection/:categories/:slug/
+    order: 11
+    product: es
+  "es_11.1":
+    output: true
+    version: "11.1"
+    permalink: /es/:collection/:categories/:slug/
+    order: 12
+    product: es
+  "es_11.2":
+    output: true
+    version: "11.2"
+    tag: Latest
+    latest: true
+    permalink: /es/:categories/:slug/
+    order: 13
+    product: es
+  "eem_11.0":
+    version: "11.0"
+    output: true
+    latest: true
+    permalink: /eem/:categories/:slug/
+    product: eem
+    tag: Latest
+    order: 2
+  "ep_1.0":
+    version: "1.0"
+    output: true
+    latest: true
+    permalink: /ep/:categories/:slug/
+    product: ep
+    tag: Latest
+    order: 1
+  "tutorials":
+    output: true
+    permalink: /:collection/:path/
+  "support":
+    output: true
+    permalink: /:collection/:path/
+  "keyFeatures":
+    output: true
+    permalink: /:path/
+  "connectors":
+    output: true
+    permalink: /:collection/:path/
+  "landing":
+    output: false
+    permalink: /:collection/:path/
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: single
+      author_profile: false
+      read_time: true
+      comments: false
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: "pages"
+    values:
+      layout: single
+      author_profile: false
+  # _tutorials
+  - scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: single
+      author_profile: false
+      share: false
+      comments: false
+      mastheadNavItem: Tutorials
+  # _connectors
+  - scope:
+      path: ""
+      type: "connectors"
+    values:
+      layout: connectorHome
+      permalink: /:collection/:path
+      mastheadNavItem: Connectors
+      collection: connectors
+  # - scope:
+  #     path: "_connectors/*/index.md"
+  #     type: connectors
+  #   values:
+  #     permalink: /:collection/:path:output_ext
+  #     mastheadNavItem: Connectors
+
+  # Landing
+  - scope:
+      path: ""
+      type: "landing"
+    values:
+      layout: single
+      author_profile: false
+      share: false
+      comments: false
+      mastheadNavItem: Landing
+
+  # _keyFeatures
+  - scope:
+      path: ""
+      type: "keyFeatures"
+    values:
+      product: es
+      permalink: /:path
+      layout: featureHeroContent
+      mastheadNavItem: Event Streams
+      latest: true
+      sidebar:
+        nav: "latestdocs"
+  # Support
+  - scope:
+      path: ""
+      type: "support"
+    values:
+      product: es
+      layout: single
+      author_profile: false
+      share: false
+      comments: false
+      mastheadNavItem: Support
+  # _2018.3.1
+  - scope:
+      path: ""
+      type: "es_2018.3.1"
+    values:
+      collection: "es_2018.3.1"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "201831docs"
+  # _2019.1.1
+  - scope:
+      path: ""
+      type: "es_2019.1.1"
+    values:
+      collection: "es_2019.1.1"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "201911docs"
+  # _2019.2.1
+  - scope:
+      path: ""
+      type: "es_2019.2.1"
+    values:
+      collection: "es_2019.2.1"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "201921docs"
+  # _2019.4
+  - scope:
+      path: ""
+      type: "es_2019.4"
+    values:
+      collection: "es_2019.4"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "20194docs"
+  # _10.0
+  - scope:
+      path: ""
+      type: "es_10.0"
+    values:
+      collection: "es_10.0"
+      version: "10.0"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "100docs"
+  # _10.1
+  - scope:
+      path: ""
+      type: "es_10.1"
+    values:
+      collection: "es_10.1"
+      version: "10.1"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "101docs"
+  # _10.2
+  - scope:
+      path: ""
+      type: "es_10.2"
+    values:
+      collection: "es_10.2"
+      version: "10.2"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "102docs"
+  # _10.3
+  - scope:
+      path: ""
+      type: "es_10.3"
+    values:
+      collection: "es_10.3"
+      version: "10.3"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "103docs"
+  # _10.4
+  - scope:
+      path: ""
+      type: "es_10.4"
+    values:
+      collection: "es_10.4"
+      version: "10.4"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "104docs"
+  # _10.5
+  - scope:
+      path: ""
+      type: "es_10.5"
+    values:
+      collection: "es_10.5"
+      version: "10.5"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "105docs"
+  # _11.0
+  - scope:
+      path: ""
+      type: "es_11.0"
+    values:
+      collection: "es_11.0"
+      version: "11.0"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "110docs"
+  # _11.1
+  - scope:
+      path: ""
+      type: "es_11.1"
+    values:
+      collection: "es_11.1"
+      version: "11.1"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "111docs"
+  # _11.2
+  - scope:
+      path: ""
+      type: "es_11.2"
+    values:
+      collection: "es_11.2"
+      version: "11.2"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      latest: true
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "latestdocs"
+  #_eem_11.0
+  - scope:
+      path: ""
+      type: "eem_11.0"
+    values:
+      collection: "eem_11.0"
+      version: "11.0"
+      product: eem
+      layout: single
+      latest: true
+      mastheadNavItem: Endpoint Management
+      versioned: true
+      sidebar:
+        nav: "latest_eemdocs"
+  #_ep_1.0
+  - scope:
+      path: ""
+      type: "ep_1.0"
+    values:
+      collection: "ep_1.0"
+      version: "1.0"
+      product: ep
+      layout: single
+      latest: true
+      mastheadNavItem: Event Processing
+      versioned: true
+      sidebar:
+        nav: "latest_epdocs"
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
+# Outputting
+permalink: /:categories/:title/
+# paginate: 5 # amount of posts to show
+# paginate_path: /page:num/
+timezone: America/New_York # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-contentblocks
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-contentblocks
+
+# Archives
+#  Type
+#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
+#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
+#  Path (examples)
+#  - Archive page should exist at path when using Liquid method or you can
+#    expect broken links (especially with breadcrumbs enabled)
+#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
+#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path/my-awesome-category/index.html ~> path: /
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+# https://github.com/jekyll/jekyll-archives
+# jekyll-archives:
+#   enabled:
+#     - categories
+#     - tags
+#   layouts:
+#     category: archive-taxonomy
+#     tag: archive-taxonomy
+#   permalinks:
+#     category: /categories/:name/
+#     tag: /tags/:name/
+
+# HTML Compression
+# - http://jch.penibelst.de/
+compress_html:
+  clippings: all
+  ignore:
+    envs: development

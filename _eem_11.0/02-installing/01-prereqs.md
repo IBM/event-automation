@@ -131,9 +131,9 @@ If you are installing {{site.data.reuse.eem_name}} on a cluster where {{site.dat
    spec:
    requests:
       - operands:
-         - name: ibm-cert-manager-operator
-         registry: common-service
-         registryNamespace: ibm-common-services
+        - name: ibm-cert-manager-operator
+        registry: common-service
+        registryNamespace: ibm-common-services
 
    ```
 

@@ -1,10 +1,11 @@
 ---
 title: "Monitoring Flink with Prometheus and Grafana"
-description: "Find out how to monitor flink with Prometheus and setup Grafana."
+description: "Find out how to monitor Flink with Prometheus and setup Grafana."
 permalink: /tutorials/flink-monitoring/
 section: "Tutorials for Event Processing"
 cardType: "large"
 toc: true
+order: 12
 ---
 
 Prometheus and Grafana can be used to monitor a Flink instance by showing key metrics on dashboards and setting up alerts that trigger when the cluster is not functioning normally. Monitoring Flink is essential for ensuring the stability, performance, and reliability of Flink jobs.
@@ -87,7 +88,7 @@ Ensure you have the following set up:
 
 ### Installing Grafana
 
-Install the Grafana operator and instance in the `openshift-user-workload-monitoring` namespace, and configuring the Grafana service account as described in the following sections. 
+Install the Grafana operator and instance in the `openshift-user-workload-monitoring` namespace, and configuring the Grafana service account as described in the following sections.
 
 
 #### Installing the Grafana operator
@@ -214,7 +215,7 @@ You can use this Grafana URL to create dashboards.
 
 ## Access the Prometheus instance from an external Grafana instance
 
-If you have configured an external Grafana instance and want to access your Prometheus instance from the external Grafana instance, follow these steps. 
+If you have configured an external Grafana instance and want to access your Prometheus instance from the external Grafana instance, follow these steps.
 
 ### Prerequisites
 
@@ -222,6 +223,7 @@ Ensure you have the following set up:
 
 - Ensure you have [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}) the {{site.data.reuse.flink_long}} on the {{site.data.reuse.openshift}}. Also ensure you have installed the Prometheus stack on your cluster by using the `kube-prometheus` project. For more information, see the [kube-prometheus GitHub repository](https://github.com/prometheus-operator/kube-prometheus){:target="_blank"}.
 - [Integration of Flink with Prometheus](#integrating-flink-with-prometheus) is completed. 
+
 
 ### Configuring integration between external Grafana and Prometheus
 

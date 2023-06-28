@@ -193,9 +193,9 @@ If you are installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_na
    spec:
    requests:
       - operands:
-         - name: ibm-cert-manager-operator
-         registry: common-service
-         registryNamespace: ibm-common-services
+        - name: ibm-cert-manager-operator
+        registry: common-service
+        registryNamespace: ibm-common-services
 
    ```
 

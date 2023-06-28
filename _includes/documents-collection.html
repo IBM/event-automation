@@ -30,12 +30,13 @@
 
 {%- for post in entries -%}
   {% if post.cardType == "large" %}
+  {% if post.section == item.name %}
     <div class="card">
         <div class="largeCard">
           {% include archive-single.html %}
         </div>
     </div>
-  {% endif %}
+  {% endif %}{% endif %}
 {%- endfor -%}
 
 

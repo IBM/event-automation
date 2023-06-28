@@ -53,3 +53,12 @@ $event-streams-primary-action: #602797;
     }
   }
 }
+
+img.tutorial-screenshot {
+  max-width: 550px;
+  border: thin black solid;
+}
+video.tutorial-video {
+  display: block;
+  border: thin $event-streams-gray-2 solid;
+}

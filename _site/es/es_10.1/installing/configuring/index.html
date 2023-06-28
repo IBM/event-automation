@@ -1,0 +1,3600 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Configuring - IBM Event Automation</title>
+<meta name="description" content="Configure your Event Streams installation.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_10.1/installing/configuring/" />
+<meta property="og:title" content="Event Streams | Configuring" />
+<meta property="og:description" content="Configure your Event Streams installation." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Configuring" />
+
+
+
+
+  <meta property="og:description" content="Configure your Event Streams installation.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_10.1/installing/configuring/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">10.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">10.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/configuring/" onclick="openVersion('/event-automation/es/installing/configuring/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/configuring/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/configuring/" onclick="openVersion('/event-automation/es/es_11.1/installing/configuring/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/configuring/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/configuring/" onclick="openVersion('/event-automation/es/es_11.0/installing/configuring/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/configuring/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.5/installing/configuring/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/configuring/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.4/installing/configuring/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/configuring/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.3/installing/configuring/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/configuring/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.2/installing/configuring/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/configuring/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.1/installing/configuring/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/configuring/" class="versionPill active">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/configuring/" onclick="openVersion('/event-automation/es/es_10.0/installing/configuring/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/configuring/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/configuring/" onclick="openVersion('/event-automation/es/es_2019.4/installing/configuring/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/configuring/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/configuring/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/configuring/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/configuring/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/configuring/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/configuring/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/configuring/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/configuring/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/configuring/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/configuring/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/configuring/" class="active">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/schemas/schema-api/" class="">Using the schema API</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/firefox-black-images/" class="">UI shows black images in Firefox</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/schema-registry-not-authorized-error/" class="">Not authorized error when building maven schema registry project</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/required-value-error/" class="">Required value error when installing on OpenShift 4.5.0-4.5.5</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/operator-keeps-reconciling/" class="">Operator is generating constant log output</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/operator-upgrade-issue/" class="">Operator upgrade causes Kafka pod errors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/504-ui-consumer-groups/" class="">504 timeout error when viewing consumer groups in the Event Streams UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/kafka-exporter-not-deployed/" class="">Kafka exporter is not deployed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/overriding-route-hostnames/" class="">Unable to override external listener route host</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.1/troubleshooting/metrics-not-available/" class="">Event Streams metrics unavailable</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Configuring
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Event Streams provides samples to help you get started with deployments, as described in the <a href="../planning/#sample-deployments">planning</a> section. Choose one of the samples suited to your requirements to get started:</p>
+
+<ul>
+  <li>Lightweight without security</li>
+  <li>Development</li>
+  <li>Minimal production</li>
+  <li>Production 3 brokers</li>
+  <li>Production 6 brokers</li>
+  <li>Production 9 brokers</li>
+</ul>
+
+<p>You can modify the samples, save them, and apply custom configuration settings as well. See the following sections for guidance about configuring your instance of Event Streams.</p>
+
+<p><strong>Note:</strong> The <strong>Production 6 brokers</strong> and <strong>Production 9 brokers</strong> samples are only available on <a href="http://ibm.biz/es-cr-samples" target="_blank">GitHub</a> (download and extract the resources for your Event Streams version, then go to <code class="language-plaintext highlighter-rouge">/cr-examples/eventstreams</code> to access the samples). You can configure and apply them by using the <a href="../installing/#installing-an-instance-by-using-the-cli">command line</a> or by dragging and dropping them onto the OpenShift Container Platform <a href="../installing/#installing-by-using-the-yaml-view">web console</a>, and editing them.</p>
+
+<h2 id="checking-configuration-settings">Checking configuration settings</h2>
+
+<p>This page gives information about many configuration options. To see further information about specific configuration options, or to see what options are available, you can use the <code class="language-plaintext highlighter-rouge">oc explain</code> command. To see information about a specific field, run the following:</p>
+
+<p><code class="language-plaintext highlighter-rouge">oc explain eventstreams.&lt;path-of-field&gt;</code></p>
+
+<p>Where <code class="language-plaintext highlighter-rouge">path-of-field</code> is the JSON path of the field of interest.</p>
+
+<p>For example, if you want to see more information about configuring external listeners for Kafka you can run the following command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">oc explain eventstreams.spec.strimziOverrides.kafka.listeners.external</code></p>
+
+<h2 id="enabling-persistent-storage">Enabling persistent storage</h2>
+
+<p>If you want your data to be preserved in the event of a restart, configure persistent storage for Kafka and ZooKeeper in your Event Streams installation.</p>
+
+<p><strong>Note:</strong> Ensure you have sufficient <a href="../capacity-planning/#disk-space-for-persistent-volumes">disk space</a> for persistent storage.</p>
+
+<p>These settings are specified in the YAML configuration document that defines an instance of the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource and can be applied when defining a new Event Streams instance under the “Event Streams” operator in the OpenShift Container Platform web console.</p>
+
+<ul>
+  <li>To enable persistent storage for Kafka, add the <code class="language-plaintext highlighter-rouge">storage</code> property under <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka</code></li>
+  <li>To enable persistent storage for ZooKeeper, add the <code class="language-plaintext highlighter-rouge">storage</code> property under <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.zookeeper</code></li>
+</ul>
+
+<p>Complete the configuration by adding additional fields to these storage properties as follows:</p>
+
+<ol>
+  <li>
+    <p>Specify the storage type in <code class="language-plaintext highlighter-rouge">storage.type</code> (for example, <code class="language-plaintext highlighter-rouge">"ephemeral"</code> or <code class="language-plaintext highlighter-rouge">"persistent-claim"</code>).</p>
+
+    <p><strong>Note:</strong> When using ephemeral storage, ensure you set retention limits for Kafka topics so that you do not run out of disk space.
+If <a href="../../getting-started/creating-topics/">message retention</a> is set to long periods and the message volume is high, the storage requirements for the topics could impact the OpenShift nodes that host the Kafka pods, and cause the nodes to run out of allocated disk space, which could impact normal operation.</p>
+  </li>
+  <li>Specify the storage size in <code class="language-plaintext highlighter-rouge">storage.size</code> (for example, <code class="language-plaintext highlighter-rouge">"100Gi"</code>).</li>
+  <li>Optionally, specify the storage class in <code class="language-plaintext highlighter-rouge">storage.class</code> (for example, <code class="language-plaintext highlighter-rouge">"rook-ceph-block-internal"</code>).</li>
+  <li>Optionally, specify the retention setting for the storage if the cluster is deleted in <code class="language-plaintext highlighter-rouge">storage.deleteClaim</code> (for example, <code class="language-plaintext highlighter-rouge">"true"</code>).</li>
+</ol>
+
+<p>An example of these configuration options:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  strimziOverrides:
+    kafka:
+      # ...
+      storage:
+        type: "persistent-claim"
+        size: "100Gi"
+        class: "ceph-block"
+    zookeeper:
+      # ...
+      storage:
+        type: "persistent-claim"
+        size: "100Gi"
+        class: "ceph-block"
+# ...
+</code></pre></div></div>
+
+<p>If present, existing persistent volumes with the specified storage class are used after installation, or if a <a href="https://docs.openshift.com/container-platform/4.4/storage/dynamic-provisioning.html" target="_blank">dynamic provisioner</a> is configured for the specified storage class, new persistent volumes are created.</p>
+
+<p>Where optional values are not specified:</p>
+
+<ul>
+  <li>If no storage class is specified and a default storage class has been defined in the OpenShift Container Platform settings, the default storage class will be used.</li>
+  <li>If no storage class is specified and no default storage class has been defined in the OpenShift Container Platform settings, the deployment will use any <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">persistent volume claims</a> that have at least the set size value.</li>
+  <li>If no retention setting is provided, the storage will be retained when the cluster is deleted.</li>
+</ul>
+
+<p>The following example YAML document shows an example <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource with dynamically allocated storage provided using CephFS for Kafka and ZooKeeper. To try this deployment, set the required <code class="language-plaintext highlighter-rouge">namespace</code> and accept the license by changing the <code class="language-plaintext highlighter-rouge">spec.license.accept</code> value to <code class="language-plaintext highlighter-rouge">"true"</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+metadata:
+  name: example-storage
+  namespace: myproject
+spec:
+  license:
+    accept: false
+  version: 10.1.0
+  adminApi: {}
+  adminUI: {}
+  apicurioRegistry: {}
+  collector: {}
+  restProducer: {}
+  strimziOverrides:
+    kafka:
+      replicas: 1
+      config:
+        interceptor.class.names: com.ibm.eventstreams.interceptors.metrics.ProducerMetricsInterceptor
+        offsets.topic.replication.factor: 1
+        transaction.state.log.min.isr: 1
+        transaction.state.log.replication.factor: 1
+      listeners:
+        external:
+          type: route
+        plain: {}
+        tls: {}
+      storage:
+        type: persistent-claim
+        size: 100Gi
+        class: rook-ceph-block-internal
+        deleteClaim: true
+      metrics: {}
+    zookeeper:
+      replicas: 1
+      storage:
+        type: persistent-claim
+        size: 100Gi
+        class: rook-ceph-block-internal
+      deleteClaim: true
+      metrics: {}
+</code></pre></div></div>
+
+<h2 id="configuring-encryption-between-pods">Configuring encryption between pods</h2>
+
+<p>Pod-to-Pod encryption is enabled by default for all Event Streams pods. Unless explicitly overridden in an <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource, the configuration option <code class="language-plaintext highlighter-rouge">spec.security.internalTls</code> will be set to <code class="language-plaintext highlighter-rouge">TLSv1.2</code>. This value can be set to <code class="language-plaintext highlighter-rouge">NONE</code> which will disable Pod-to-Pod encryption.</p>
+
+<p>For example, the following YAML snippet disables encryption between pods:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+metadata:
+  name: example-internal-disabled
+  namespace: myproject
+spec:
+  # ...
+  security:
+    # ...
+    internalTls: NONE
+# ...
+</code></pre></div></div>
+
+<h2 id="configuring-ui-security">Configuring UI security</h2>
+
+<p>By default, accessing the Event Streams UI requires an IBM Cloud Platform Common Services Identity and Access Management (IAM) user that has been assigned access to Event Streams (see <a href="../../security/managing-access/#accessing-the-event-streams-ui-and-cli">managing access</a> for details).</p>
+
+<p>The login requirement for the UI is <em>disabled</em> when all Kafka authentication and authorization is disabled. This is demonstrated by the proof-of-concept <a href="../planning/#development-deployments"><strong>lightweight without security</strong></a> sample.</p>
+
+<p><strong>Important:</strong> When security is not configured, the <strong><a href="../../administering/topic-health/">Producers</a></strong> and the <strong><a href="../../administering/cluster-health/#viewing-the-preconfigured-dashboard">Monitoring</a></strong> dashboards are not available in the UI.</p>
+
+<h2 id="applying-kafka-broker-configuration-settings">Applying Kafka broker configuration settings</h2>
+
+<p>Kafka supports a number of <a href="http://kafka.apache.org/documentation/#brokerconfigs">broker configuration settings</a>, typically provided in a properties file.</p>
+
+<p>When creating an instance of Event Streams, these settings are defined in an <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource under a the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.config</code> property.</p>
+
+<p>The following example uses Kafka broker settings to configure replication for system topics:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+metadata:
+  name: example-broker-config
+  namespace: myproject
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafka:
+      # ...
+      config:
+        offsets.topic.replication.factor: 1
+        transaction.state.log.min.isr: 1
+        transaction.state.log.replication.factor: 1
+</code></pre></div></div>
+
+<p>This custom resource can be created using the <code class="language-plaintext highlighter-rouge">oc</code> command or the OpenShift Container Platform web console under the <strong>Event Streams</strong> operator page.</p>
+
+<p>You can specify all the broker configuration options supported by Kafka except from those managed directly by Event Streams. For further information, see the list of <a href="https://strimzi.io/docs/operators/0.19.0/using.html#ref-kafka-broker-configuration-deployment-configuration-kafka" target="_blank">supported configuration options</a>.</p>
+
+<p>After deployment, these settings can be <a href="../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings">modified</a> by updating the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource.</p>
+
+<h2 id="applying-kafka-rack-awareness">Applying Kafka rack awareness</h2>
+
+<p>Kafka rack awareness is configured by setting the <code class="language-plaintext highlighter-rouge">rack</code> property in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource using the zone label as the topology key in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.rack</code> field. This key needs to match the <a href="../preparing-multizone/#zone-awareness">zone label</a> name applied to the nodes.</p>
+
+<p><strong>Note:</strong> Before this is applied, ensure the <a href="../preparing-multizone/#kafka-rack-awareness">Kafka cluster role</a> for rack awareness has been applied.</p>
+
+<p>The following example sets the <code class="language-plaintext highlighter-rouge">rack</code> topologyKey to <code class="language-plaintext highlighter-rouge">topology.kubernetes.io/zone</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+metadata:
+  name: example-broker-config
+  namespace: myproject
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafka:
+      # ...
+      rack:
+        topologyKey: topology.kubernetes.io/zone
+      # ...
+</code></pre></div></div>
+
+<h2 id="setting-geo-replication-nodes">Setting geo-replication nodes</h2>
+
+<p>You can install geo-replication in a cluster to enable messages to be automatically synchronized between local and remote topics. A cluster can be a geo-replication origin or destination. Origin clusters send messages to a remote system, while destination clusters receive messages from a remote system. A cluster can be both an origin and a destination cluster at the same time.</p>
+
+<p>To enable geo-replication, create an <code class="language-plaintext highlighter-rouge">EventStreamsGeoReplicator</code> custom resource alongside the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource. This can be defined in a YAML configuration document under the <strong>Event Streams</strong> operator in the OpenShift Container Platform web console.</p>
+
+<p>When setting up geo-replication, consider the <a href="../../georeplication/planning/#preparing-a-destination-cluster">number of geo-replication worker nodes (replicas)</a> to deploy and configure this in the <code class="language-plaintext highlighter-rouge">spec.replicas</code> property.</p>
+
+<p>Ensure that the following properties match the name of the Event Streams instance:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">metadata.name</code></li>
+  <li><code class="language-plaintext highlighter-rouge">metadata.labels["eventstreams.ibm.com/cluster"]</code></li>
+</ul>
+
+<p>For example, to configure geo-replication with <code class="language-plaintext highlighter-rouge">2</code> replicas for an Event Streams instance called <code class="language-plaintext highlighter-rouge">sample-three</code> in the namespace <code class="language-plaintext highlighter-rouge">myproject</code>, create the following <code class="language-plaintext highlighter-rouge">EventStreamsGeoReplicator</code> configuration:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreamsGeoReplicator
+metadata:
+  labels:
+    eventstreams.ibm.com/cluster: sample-three
+  name: sample-three
+  namespace: myproject
+spec:
+  # ...
+  replicas: 2
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Geo-replication can be deployed or reconfigured at any time. For more information, see <a href="../../georeplication/setting-up/">Setting up geo-replication</a>.</p>
+
+<h2 id="configuring-access">Configuring access</h2>
+
+<p>External access using OpenShift Container Platform routes is automatically configured for the following services if they are included in the Event Streams installation:</p>
+
+<ul>
+  <li>The Event Streams UI</li>
+  <li>The Apicurio Registry</li>
+  <li>The Admin API</li>
+  <li>The REST Producer</li>
+</ul>
+
+<h3 id="rest-services-access">REST services access</h3>
+
+<p>The REST services for Event Streams are configured with defaults for the container port, type, TLS version, certificates, and authentication mechanisms. If the Kafka listeners have been configured without authentication requirements then the authentication mechanisms are automatically removed from the REST endpoints.</p>
+
+<p>The schema for REST endpoint configuration is described in the following table, followed by an example of an endpoint configuration for the Admin API. In the example, the potential values for <code class="language-plaintext highlighter-rouge">&lt;component&gt;</code> in <code class="language-plaintext highlighter-rouge">spec.&lt;component&gt;.endpoints</code> are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">adminApi</code> for the Admin API</li>
+  <li><code class="language-plaintext highlighter-rouge">restProducer</code> for the REST Producer</li>
+  <li><code class="language-plaintext highlighter-rouge">apicurioRegistry</code> for the Apicurio Registry</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Key</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">name</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">Name to uniquely identify the endpoint among other endpoints in the list for a component.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">containerPort</code></td>
+      <td style="text-align: left">Integer</td>
+      <td style="text-align: left">A unique port to open on the container that this endpoint will serve requests on. Restricted ranges are 0-1000 and 7000-7999.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">type</code></td>
+      <td style="text-align: left">String [<code class="language-plaintext highlighter-rouge">internal</code>, <code class="language-plaintext highlighter-rouge">route</code>]</td>
+      <td style="text-align: left">Event Streams REST components support internal type endpoints and OpenShift Container Platform Routes.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">tlsVersion</code></td>
+      <td style="text-align: left">String [<code class="language-plaintext highlighter-rouge">TLSv1.2</code>,<code class="language-plaintext highlighter-rouge">NONE</code>]</td>
+      <td style="text-align: left">Specifies the TLS version where <code class="language-plaintext highlighter-rouge">NONE</code> will disable HTTPS.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">authenticationMechanisms</code></td>
+      <td style="text-align: left">List of Strings</td>
+      <td style="text-align: left">List of authentication mechanisms to be supported at this endpoint. By default, all authentication mechanisms: [<code class="language-plaintext highlighter-rouge">iam-bearer</code>,<code class="language-plaintext highlighter-rouge">tls</code>,<code class="language-plaintext highlighter-rouge">scram-sha-512</code>] are enabled. Optionally a subset or even none (<code class="language-plaintext highlighter-rouge">[]</code>) can be configured.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">certOverrides.certificate</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">The name of the key in the provided <code class="language-plaintext highlighter-rouge">certOverrides.secretName</code> secret that contains the base64 encoded certificate.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">certOverrides.key</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">The name of the key in the provided <code class="language-plaintext highlighter-rouge">certOverrides.secretName</code> secret that contains the base64 encoded key.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">certOverrides.secretName</code></td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">The name of the secret in the instance namespace that contains the encoded certificate and key to secure the endpoint with.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">host</code></td>
+      <td style="text-align: left">String (DNS rules apply)</td>
+      <td style="text-align: left">An optional override for the default host that an OpenShift Container Platform route will generate.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# ...
+spec:
+  # ...
+  adminApi:
+    # ...
+    endpoints:
+      - name: example
+        containerPort: 9080
+        type: route
+        tlsVersion: TLSv1.2
+        authenticationMechanisms:
+          - iam-bearer
+          - tls
+          - scram-sha-512
+        certOverrides:
+            certificate: mycert.crt
+            key: mykey.key
+            secretName: custom-endpoint-cert
+        host: example-host.apps.example-domain.com
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Changing an endpoint in isolation might have adverse effects if Kafka is configured to require authentication and the configured endpoint has no authentication mechanisms specified. In such cases, a warning message might be displayed in the instance status conditions.</p>
+
+<p>The Event Streams REST components also allow for the default set of cipher suites to be overridden. Though not a recommended practice, it is possible to enable alternative cipher suites to facilitate connectivity of legacy systems. This capability is provided through the <code class="language-plaintext highlighter-rouge">CIPHER_SUITES</code> environment variable as shown in this example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  restProducer:
+    # ...
+    env:
+      - name: CIPHER_SUITES
+        value: &gt;-
+          TLS_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+</code></pre></div></div>
+
+<h3 id="kafka-access">Kafka access</h3>
+
+<p>All examples provided for Event Streams include an external listener for Kafka and varying internal listener types by default. The supported external listener is of type <code class="language-plaintext highlighter-rouge">route</code>. This indicates the use of an OpenShift Container Platform route, and it can have either <code class="language-plaintext highlighter-rouge">tls</code> or <code class="language-plaintext highlighter-rouge">scram-sha-512</code> configured as the authentication mechanisms.</p>
+
+<p>The following example snippet defines an external listener that exposes the Kafka brokers using an OpenShift Container Platform route with SCRAM-SHA-512 authentication enabled.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafka:
+      listeners:
+        external:
+          type: route
+          authentication:
+            type: scram-sha-512
+</code></pre></div></div>
+
+<p>Internal listeners for Kafka can also be configured. In addition to the <code class="language-plaintext highlighter-rouge">external</code> listener, there are <code class="language-plaintext highlighter-rouge">plain</code> and <code class="language-plaintext highlighter-rouge">tls</code> internal listeners. Each of these can be configured to have an authentication mechanism as shown in the following example.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafka:
+      listeners:
+        plain:
+          authentication:
+            type: scram-sha-512
+        tls:
+          authentication:
+            type: tls
+</code></pre></div></div>
+
+<p>The Kafka listener security protocols are mapped to the internal listener configurations as shown in the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Security protocol</th>
+      <th style="text-align: left">Listener configuration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">PLAINTEXT</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.plain: {}</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SSL (no-authentication)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.tls: {}</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SSL (mutual-authentication)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.tls.authentication.type: tls</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SASL_PLAINTEXT</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.plain.authentication.type: scram-sha-512</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SASL_SSL</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.listeners.tls.authentication.type: scram-sha-512</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When secure listeners are configured, Event Streams will automatically generate cluster and client CA certificates, and a valid certificate for the listener endpoint. The generated CA certificates and the certificate for the endpoint can be replaced by provided certificates as described in <a href="#using-your-own-certificates">providing certificate overrides</a>.</p>
+
+<h2 id="configuring-external-monitoring-through-prometheus">Configuring external monitoring through Prometheus</h2>
+
+<p>Metrics provide information about the health and operation of the Event Streams instance.</p>
+
+<p>Metrics can be enabled for Kafka, ZooKeeper, geo-replicator, and Kafka Connect pods.</p>
+
+<p><strong>Note:</strong> Kafka metrics can also be exposed externally through JMX by <a href="#configuring-external-monitoring-through-jmx">configuring external monitoring tools</a>.</p>
+
+<p>Kafka metrics can be enabled by setting <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.metrics</code> to <code class="language-plaintext highlighter-rouge">{}</code> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  strimziOverrides:
+    kafka:
+      # ...
+      metrics: {}
+# ...
+</code></pre></div></div>
+
+<p>ZooKeeper metrics can be enabled by setting <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.zookeeper.metrics</code> to <code class="language-plaintext highlighter-rouge">{}</code> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  strimziOverrides:
+    zookeeper:
+      # ...
+      metrics: {}
+# ...
+</code></pre></div></div>
+
+<p>Geo-replicator metrics can be enabled by setting <code class="language-plaintext highlighter-rouge">spec.metrics</code> to <code class="language-plaintext highlighter-rouge">{}</code> in the <code class="language-plaintext highlighter-rouge">KafkaMirrorMaker2</code> custom resource. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1alpha1
+kind: KafkaMirrorMaker2
+# ...
+spec:
+  # ...
+  metrics: {}
+# ...
+</code></pre></div></div>
+
+<p><strong>Note:</strong> The Event Streams operator automatically applies a <code class="language-plaintext highlighter-rouge">KafkaMirrorMaker2</code> custom resource when a <code class="language-plaintext highlighter-rouge">EventStreamsGeoReplicator</code> custom resource is created. Metrics can then be enabled by editing the generated <code class="language-plaintext highlighter-rouge">KafkaMirrorMaker2</code> custom resource.</p>
+
+<p>Kafka Connect metrics can be enabled by setting <code class="language-plaintext highlighter-rouge">spec.metrics</code> to <code class="language-plaintext highlighter-rouge">{}</code> in the <code class="language-plaintext highlighter-rouge">KafkaConnectS2I</code> custom resource. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: KafkaConnectS2I
+# ...
+spec:
+  # ...
+  metrics: {}
+# ...
+</code></pre></div></div>
+
+<p>To complement the default Kafka metrics, Event Streams can be configured to publish additional information about the Event Streams instance by setting the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.config.interceptor.class.name</code> to <code class="language-plaintext highlighter-rouge">com.ibm.eventstreams.interceptors.metrics.ProducerMetricsInterceptor</code>, for example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  strimziOverrides:
+    kafka:
+      # ...
+        config:
+          # ...
+          interceptor.class.names: com.ibm.eventstreams.interceptors.metrics.ProducerMetricsInterceptor
+# ...
+</code></pre></div></div>
+
+<p><strong>Note:</strong> For details about viewing metrics information, see the <a href="../../administering/cluster-health">cluster health</a> and <a href="../../administering/topic-health">topic health</a> sections.</p>
+
+<h2 id="configuring-external-monitoring-through-jmx">Configuring external monitoring through JMX</h2>
+
+<p>You can use third-party monitoring tools to monitor the deployed Event Streams Kafka cluster by collecting Kafka metrics. To set this up, you need to:</p>
+
+<ul>
+  <li>Have a third-party monitoring tool set up to be used within your OpenShift Container Platform cluster.</li>
+  <li>Enable access to the broker JMX port by setting <code class="language-plaintext highlighter-rouge">spec.strimizOverrides.kafka.jmxOptions</code>.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafka:
+      jmxOptions: {}
+</code></pre></div>    </div>
+  </li>
+  <li>Include any configuration settings for Event Streams as required by your monitoring tool. For example, Datadog’s autodiscovery requires you to annotate Kafka broker pods (<code class="language-plaintext highlighter-rouge">strimziOverrides.kafka.template.statefulset.metadata.annotations</code>)</li>
+  <li>Configure your monitoring applications to <a href="../../security/secure-jmx-connections/">consume JMX metrics</a>.</li>
+</ul>
+
+<h2 id="enabling-and-configuring-cruise-control">Enabling and configuring Cruise Control</h2>
+
+<p>To enable Cruise Control, set the <code class="language-plaintext highlighter-rouge">spec.strimizOverrides.cruiseControl</code> property to <code class="language-plaintext highlighter-rouge">{}</code> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1beta1
+kind: EventStreams
+# ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    cruiseControl: {}
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Ensure you have more than 1 Kafka broker configured to take advantage of Cruise Control. All <a href="../planning/#sample-deployments">sample configurations</a> provided have more than 1 broker except the <strong>Lightweight without security</strong> sample.</p>
+
+<p>When enabled, you can use the <a href="#cruise-control-defaults">default</a> Cruise Control configuration to optimize your Kafka cluster. You can also specify your required configuration as described in the following sections.</p>
+
+<p>When configuring Cruise Control, you can define the following settings in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource:</p>
+<ul>
+  <li>Master optimization goals in <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config.goals</code></li>
+  <li>
+    <p>Default optimization goals in <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["default.goals"]</code></p>
+
+    <p><strong>Note:</strong> If you do not set master optimization goals and default goals, then the <a href="#cruise-control-defaults">Cruise Control defaults</a> are used.</p>
+  </li>
+  <li>Hard goals in <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["hard.goals"]</code></li>
+  <li>The capacity limits for broker resources, which Cruise Control uses to determine if resource-based optimization goals are being broken. The <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity</code> property defines the Kafka broker resource capacities that Cruise Control will optimize around.</li>
+</ul>
+
+<p>Cruise Control includes a number of <a href="https://github.com/linkedin/cruise-control/wiki/Configurations#cruise-control-configurations" target="_blank">configuration options</a>. You can modify these configuration options for Event Streams, except the options managed directly by <a href="https://strimzi.io/docs/operators/0.19.0/using.html#ref-cruise-control-configuration-str" target="_blank">Strimzi</a>.</p>
+
+<p>When enabled, you can use Cruise Control and the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resources to <a href="../../administering/cruise-control/">optimize</a> your deployed Event Streams Kafka cluster.</p>
+
+<h3 id="cruise-control-defaults">Cruise Control defaults</h3>
+
+<p>Event Streams supports a subset of the Cruise Control goals. If the master optimization goals and default goals (<code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config.goals</code> and <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["default.goals"]</code>, respectively) are not set, then the Cruise Control configuration defaults to the following goals (in descending order of priority):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.DiskCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.PotentialNwOutGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.DiskUsageDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundUsageDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundUsageDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuUsageDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.TopicReplicaDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.LeaderReplicaDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.LeaderBytesInDistributionGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.PreferredLeaderElectionGoal</code></li>
+</ul>
+
+<p>For more information about the optimization goals, see the Cruise Control <a href="https://github.com/linkedin/cruise-control/wiki/Pluggable-Components#goals" target="_blank">documentation</a>.</p>
+
+<h3 id="master-optimization-goals">Master optimization goals</h3>
+
+<p>The master optimization goals define the goals available to be used in Cruise Control operations. Goals not listed cannot be used.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config.goals</code> property defines the list of goals Cruise Control can use.</p>
+
+<p>The master optimization goals have <a href="#cruise-control-defaults">defaults</a> if not configured.</p>
+
+<p>For example, if you want Cruise Control to only consider using <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal</code> and <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal</code>, set values for <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config.goals</code> property as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    cruiseControl:
+      # ...
+      config:
+        # ...
+        goals: &gt;
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal,
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal
+</code></pre></div></div>
+
+<h3 id="default-goals">Default goals</h3>
+
+<p>The default goals define the set of goals that you want your cluster to meet most often. They are set in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["default.goals"]</code> property. By default, every 15 minutes, Cruise Control will use the current state of your Kafka cluster to generate a cached optimization proposal by using the configured <code class="language-plaintext highlighter-rouge">default.goals</code> list.</p>
+
+<p>If no default goals are set, the master optimization goals are used as the <a href="#cruise-control-defaults">default</a> optimization goals.</p>
+
+<p>For example, if you want Cruise Control to always consider meeting <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundUsageDistributionGoal</code>, <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundUsageDistributionGoal</code>, and <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuUsageDistributionGoal</code>, set values for the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["default.goals"]</code> property as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    cruiseControl:
+      # ...
+      config:
+        # ...
+        default.goals: &gt;
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundUsageDistributionGoal,
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundUsageDistributionGoal,
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuUsageDistributionGoal
+</code></pre></div></div>
+
+<h3 id="hard-goals">Hard goals</h3>
+
+<p>Hard goals define the list of goals that must be met by an optimization proposal and cannot be violated in any of the optimization functions of Cruise Control.</p>
+
+<p>Hard goals can be set by the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["hard.goals"]</code> property.</p>
+
+<p>In Cruise Control, the following <a href="#cruise-control-defaults">master optimization goals</a> are preset as hard goals:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.DiskCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal</code></li>
+  <li><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal</code></li>
+</ul>
+
+<p>For example, to configure Cruise Control to always consider <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal</code> and <code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal</code> in an optimization proposal, provide these goals as values in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["hard.goals"]</code> property as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    cruiseControl:
+      # ...
+      config:
+        # ...
+        hard.goals: &gt;
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal,
+          com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal
+</code></pre></div></div>
+
+<p><strong>Note:</strong> The longer the list of hard goals, the less likely it is that Cruise Control will be able to find a viable optimization proposal. Consider configuring fewer hard goals and more goals for the <a href="../../administering/cruise-control/#setting-up-optimization">optimization proposals</a> in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</p>
+
+<h3 id="cruise-control-brokercapacity">Cruise Control BrokerCapacity</h3>
+
+<p>Specifies capacity limits for broker resources.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity</code> property to define capacity limits for Kafka broker resources. Cruise Control will use the set limits to determine if resource-based optimization goals are being broken. The following table provides information about the resource capacity settings, the goals they affect, and the units they use:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">brokerCapacity</th>
+      <th style="text-align: left">Goal</th>
+      <th style="text-align: left">unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">inboundNetwork</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkInboundCapacityGoal</code></td>
+      <td style="text-align: left">KB/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">outboundNetwork</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.NetworkOutboundCapacityGoal</code></td>
+      <td style="text-align: left">KB/s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">disk</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.DiskUsageDistributionGoal</code></td>
+      <td style="text-align: left">Bytes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">cpuUtilization</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">com.linkedin.kafka.cruisecontrol.analyzer.goals.CpuUsageDistributionGoal</code></td>
+      <td style="text-align: left">Percent (0-100)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> Ensure you add the unit when configuring a <code class="language-plaintext highlighter-rouge">brokerCapacity</code> key, except for <code class="language-plaintext highlighter-rouge">cpuUtilization</code> where the percentage is not required.</p>
+
+<p>For example, to configure Cruise Control to optimize around having an inbound network byte rate of <code class="language-plaintext highlighter-rouge">1000</code> kilobytes per second and a cpu utilization of 80 percent, configure the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity</code> property as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+spec:
+  # ...
+  strimziOverrides:
+    # ...
+    cruiseControl:
+      # ...
+      brokerCapacity:
+        # ...
+        inboundNetwork: 1000KB/s
+        # Optimize for CPU utilization of 80%
+        cpuUtilization: 80
+</code></pre></div></div>
+
+<h2 id="configuring-the-kafka-exporter">Configuring the Kafka Exporter</h2>
+
+<p>You can configure the Kafka Exporter to expose additional metrics to Prometheus on top of the default ones. For example, you can obtain the consumer group lag information for each topic.</p>
+
+<p>The Kafka Exporter can be configured using a <code class="language-plaintext highlighter-rouge">regex</code> to expose metrics for a collection of topics and consumer groups that match the expression. For example, to enable JMX metrics collection for the topic <code class="language-plaintext highlighter-rouge">orders</code> and the group <code class="language-plaintext highlighter-rouge">buyers</code>, configure the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  apiVersion: eventstreams.ibm.com/v1beta1
+  kind: EventStreams
+  # ...
+  spec:
+  # ...
+  strimziOverrides:
+    # ...
+    kafkaExporter:
+      groupRegex: orders
+      topicRegex: buyers
+      template:
+        pod:
+          metadata:
+            annotations:
+              prometheus.io/port: '9404'
+              prometheus.io/scheme: https
+              prometheus.io/scrape: 'true'
+</code></pre></div></div>
+
+<p>For more information about configuration options, see <a href="https://strimzi.io/docs/operators/0.19.0/deploying.html#proc-kafka-exporter-configuring-str" target="_blank">configuring the Kafka Exporter</a>.</p>
+
+<h2 id="configuring-the-jmx-exporter">Configuring the JMX Exporter</h2>
+
+<p>You can configure the JMX Exporter to expose JMX metrics from Kafka brokers, ZooKeeper nodes, and Kafka Connect nodes to Prometheus.</p>
+
+<p>To enable the collection of all JMX metrics available on the Kafka brokers and ZooKeeper nodes, configure the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  apiVersion: eventstreams.ibm.com/v1beta1
+  kind: EventStreams
+  # ...
+  spec:
+  # ...
+  strimziOverrides:
+    kafka:
+      metrics: {}
+      # ...
+    zookeepers:
+      #
+    # ...
+</code></pre></div></div>
+
+<p>For more information about configuration options, see the following documentation:</p>
+
+<ul>
+  <li><a href="https://strimzi.io/docs/operators/0.19.0/deploying.html#assembly-metrics-setup-str" target="_blank">Kafka and ZooKeeper JMX metrics configuration</a></li>
+  <li><a href="https://strimzi.io/docs/operators/0.19.0/using.html#assembly-metrics-deployment-configuration-kafka-connect" target="_blank">Kafka JMX metrics configuration</a></li>
+</ul>
+
+<h2 id="using-your-own-certificates">Using your own certificates</h2>
+
+<p>Event Streams offers the capability to provide your own CA certificates and private keys instead of using the ones generated by the operator. If a CA certificate and private key are provided, the listener certificate is generated automatically and signed using the CA certificate.</p>
+
+<p>Event Streams also offers the capability to provide your own certificates.</p>
+
+<p><strong>Note:</strong> You must complete the process of providing your own certificates before installing an instance of Event Streams.</p>
+
+<p>You must provide your own X.509 certificates and keys in PEM format with the addition of a PKCS12-formatted certificate and the CA password. If you want to use a CA which is not a Root CA, you have to include the whole chain in the certificate file. The chain should be in the following order:</p>
+
+<ol>
+  <li>The cluster or clients CA</li>
+  <li>One or more intermediate CAs</li>
+  <li>The root CA</li>
+</ol>
+
+<p>All CAs in the chain should be configured as a CA with the X509v3 Basic Constraints.</p>
+
+<h3 id="providing-a-ca-certificate-and-key">Providing a CA certificate and key</h3>
+
+<p><strong>Note:</strong> In the following instructions, the CA public certificate file is denoted <code class="language-plaintext highlighter-rouge">CA.crt</code> and the CA private key is denoted <code class="language-plaintext highlighter-rouge">CA.key</code>.</p>
+
+<p>As Event Streams also serves the <code class="language-plaintext highlighter-rouge">truststore</code> in PKCS12 format, generate a <code class="language-plaintext highlighter-rouge">.p12</code> file containing the relevant CA Certificates. When generating your PKCS12 truststore, ensure that the truststore does not contain the CA private key. This is important because the <code class="language-plaintext highlighter-rouge">.p12</code> file will be available to download from the Event Streams UI and distributed to clients.</p>
+
+<p>The following is an example showing how to use the Java <code class="language-plaintext highlighter-rouge">keytool</code> utility to generate a PKCS12 truststore that does not contain a private key: <br />
+<br />
+<code class="language-plaintext highlighter-rouge">keytool -import -file &lt;ca.pem&gt; -keystore ca.jks</code> <br />
+<code class="language-plaintext highlighter-rouge">keytool -importkeystore -srckeystore ca.jks -srcstoretype JKS -deststoretype PKCS12 -destkeystore ca.p12</code></p>
+
+<p><strong>Note:</strong> Using OpenSSL PKCS12 commands to generate a truststore without private keys can break the cluster, because the resulting truststore is not compatible with Java runtimes.<br />
+One way to test that the truststore is compatible and contains the correct certificates is to use the following java <code class="language-plaintext highlighter-rouge">keytool</code> utility command: <br />
+<br />
+<code class="language-plaintext highlighter-rouge">keytool -list -keystore ca.p12 -storepass &lt;keystore password&gt;</code></p>
+
+<p>The cluster and/or clients certificates, and keys must be added to secrets in the namespace that the Event Streams instance is intended to be created in. The naming of the secrets and required labels must follow the conventions detailed in the following command templates.</p>
+
+<p>The following four commands can be used to create and label the secrets for custom certificates and keys. The templates demonstrate providing cluster certificates but the same commands can be re-used substituting <code class="language-plaintext highlighter-rouge">cluster</code> with <code class="language-plaintext highlighter-rouge">clients</code> in each secret name.</p>
+
+<p>For each command, provide the intended name and namespace for the Event Streams instance.</p>
+
+<p><code class="language-plaintext highlighter-rouge">oc create --namespace &lt;namespace&gt; secret generic &lt;instance-name&gt;-cluster-ca --from-file=ca.key=CA.key</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">oc label --namespace &lt;namespace&gt; secret &lt;instance-name&gt;-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=&lt;instance-name&gt;</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">oc create --namespace &lt;namespace&gt; secret generic &lt;instance-name&gt;-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='&lt;CA_PASSWORD&gt;'</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">oc label --namespace &lt;namespace&gt; secret &lt;instance-name&gt;-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=&lt;instance-name&gt;</code></p>
+
+<p>To make use of the provided secrets, Event Streams will require the following overrides to be added to the custom resource.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spec:
+  # ...
+  strimziOverrides:
+    clusterCa:
+      generateCertificateAuthority: false
+
+  # And/Or
+
+    clientsCa:
+      generateCertificateAuthority: false
+</code></pre></div></div>
+
+<p>It is also possible to configure the <code class="language-plaintext highlighter-rouge">renewalDays</code> (default 30) and <code class="language-plaintext highlighter-rouge">validityDays</code> (default 365) under the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.clusterCa</code> and <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.clientsCa</code> keys. Validity periods are expressed as a number of days after certificate generation.</p>
+
+<h3 id="providing-listener-certificates">Providing listener certificates</h3>
+
+<p>To use TLS hostname verification with your own Kafka listener certificates, ensure you use the correct Subject Alternative Names (SANs) for each listener. The certificate SANs must specify hostnames for:</p>
+
+<ul>
+  <li>
+    <p>All of the Kafka brokers in your cluster</p>
+  </li>
+  <li>
+    <p>The Kafka cluster bootstrap service</p>
+  </li>
+</ul>
+
+<p>You can use wildcard certificates if they are supported by your CA.</p>
+
+<p>For internal listeners, the hostnames will be service names. For external listeners, the hostnames will be the route addresses.</p>
+
+<p>Create a secret containing the private key and server certificate:</p>
+
+<p><code class="language-plaintext highlighter-rouge">oc create secret generic my-secret --from-file=my-listener-key.key --from-file=my-listener-certificate.crt</code></p>
+
+<p>To make use of the secret, Event Streams will require the following overrides to be added to the custom resource.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spec:
+  # ...
+  strimziOverrides:
+    kafka:
+      listeners:
+        external:
+          # ...
+          configuration:
+            brokerCertChainAndKey:
+              certificate: my-listener-certificate.crt
+              key: my-listener-key.key
+              secretName: my-secret
+</code></pre></div></div>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#checking-configuration-settings">Checking configuration settings</a></li>
+  <li><a href="#enabling-persistent-storage">Enabling persistent storage</a></li>
+  <li><a href="#configuring-encryption-between-pods">Configuring encryption between pods</a></li>
+  <li><a href="#configuring-ui-security">Configuring UI security</a></li>
+  <li><a href="#applying-kafka-broker-configuration-settings">Applying Kafka broker configuration settings</a></li>
+  <li><a href="#applying-kafka-rack-awareness">Applying Kafka rack awareness</a></li>
+  <li><a href="#setting-geo-replication-nodes">Setting geo-replication nodes</a></li>
+  <li><a href="#configuring-access">Configuring access</a>
+    <ul>
+      <li><a href="#rest-services-access">REST services access</a></li>
+      <li><a href="#kafka-access">Kafka access</a></li>
+    </ul>
+  </li>
+  <li><a href="#configuring-external-monitoring-through-prometheus">Configuring external monitoring through Prometheus</a></li>
+  <li><a href="#configuring-external-monitoring-through-jmx">Configuring external monitoring through JMX</a></li>
+  <li><a href="#enabling-and-configuring-cruise-control">Enabling and configuring Cruise Control</a>
+    <ul>
+      <li><a href="#cruise-control-defaults">Cruise Control defaults</a></li>
+      <li><a href="#master-optimization-goals">Master optimization goals</a></li>
+      <li><a href="#default-goals">Default goals</a></li>
+      <li><a href="#hard-goals">Hard goals</a></li>
+      <li><a href="#cruise-control-brokercapacity">Cruise Control BrokerCapacity</a></li>
+    </ul>
+  </li>
+  <li><a href="#configuring-the-kafka-exporter">Configuring the Kafka Exporter</a></li>
+  <li><a href="#configuring-the-jmx-exporter">Configuring the JMX Exporter</a></li>
+  <li><a href="#using-your-own-certificates">Using your own certificates</a>
+    <ul>
+      <li><a href="#providing-a-ca-certificate-and-key">Providing a CA certificate and key</a></li>
+      <li><a href="#providing-listener-certificates">Providing listener certificates</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_10.1/installing/installing/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.1/installing/installing/" class="pagination--pager" title="Previous Item: Installing
+">Previous</a>
+          <h2 class="titlePreview">Installing
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_10.1/installing/post-installation/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.1/installing/post-installation/" class="pagination--pager" title="Next Item: Post-installation tasks
+">Next</a>
+          <h2 class="titlePreview">Post-installation tasks
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

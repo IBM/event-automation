@@ -1,0 +1,57 @@
+---
+layout: single
+---
+
+{% assign currentVersion = site.collections | where: "label", page.collection | first %}
+{% assign mastheadNavTitle = page.mastheadNavItem %}
+
+<div id="splashHeaderContent" class="splashHeaderContent">
+  <div id="homePanel" class="panel homepanel">
+    <div class="heroContainer pageSpacing">
+          {% if mastheadNavTitle == "Event Streams" %}
+            <div class="intro">
+                <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/movement-of-items-white.svg" />
+              <h1 class="hero small">
+              Welcome to Event Streams {% endif %}
+          {% if mastheadNavTitle == "Endpoint Management" %}
+            <div class="intro">
+              <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/collaboration-white.svg" />
+            <h1 class="hero small">
+            Welcome to Event Endpoint Management {% endif %}
+          {% if mastheadNavTitle == "Event Processing" %}
+            <div class="intro">
+              <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/accelerating-transformation-white.svg" />
+            <h1 class="hero small">
+            Welcome to Event Processing {% endif %}
+          <a onclick="toggleDropdown('open');" href="#" aria-label="Change Version"
+            tabindex="0" class="versionPill">{{ currentVersion.version }}</a>
+        </h1>
+        <h1 class="hero">
+          Documentation
+        </h1>
+        {% if page.latest %}
+        {% if mastheadNavTitle == "Event Streams" %}
+        <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Streams is a high-throughput, fault-tolerant, event
+          streaming platform that helps you build intelligent, responsive, event-driven applications.</p> {% endif %}
+          {% if mastheadNavTitle == "Endpoint Management" %}
+          <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Endpoint Management provides the capability to describe and catalog your Kafka event sources, and to socialize them with application developers.</p> {% endif %}
+          {% if mastheadNavTitle == "Event Processing" %}
+          <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Processing is a scalable, low-code, event stream processing platform that helps you transform and act on data in real time. Event Processing offers web-based authoring experience for gaining insights from the stream of event data available to your organization.</p> {% endif %}
+            {% endif %}
+      </div>
+    </div>
+
+
+
+  </div>
+  <div id="remotePanel" class="panel remotePanel pageSpacing">
+
+  </div>
+  <div class='loading'>
+    <p class='loadingText'>
+      Loading...
+    </p>
+  </div>
+</div>
+
+{% include splashContent.html %}

@@ -1,0 +1,1731 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Network policies - IBM Event Automation</title>
+<meta name="description" content="Learn about the network policies for Event Processing and Flink pods.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/ep/security/network-policies/" />
+<meta property="og:title" content="Event Processing | Network policies" />
+<meta property="og:description" content="Learn about the network policies for Event Processing and Flink pods." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Network policies" />
+
+
+
+
+  <meta property="og:description" content="Learn about the network policies for Event Processing and Flink pods.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/ep/security/network-policies/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.0</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.0</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/security/network-policies/" onclick="openVersion('/event-automation/ep/security/network-policies/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/security/network-policies/" class="versionPill active">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/installing/" class="">Installing in an online environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/offline/" class="">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/network-policies/" class="active">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/joins/" class="">Joins</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Network policies
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="inbound-network-connections-ingress">Inbound network connections (ingress)</h2>
+
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">Network policies</a> are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.</p>
+
+<p>When you install an instance of Event Processing, the required network policies for Event Processing pods are automatically created unless they are disabled through a configuration option. To review the network policies that have been applied:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Run the following command to display the installed network policies for a specific namespace:<br />
+<code class="language-plaintext highlighter-rouge">oc get netpol -n &lt;namespace&gt;</code></li>
+</ol>
+
+<p>For the operator and operand pods of IBM Operator for Apache Flink, network policies are not deployed automatically, but can be deployed as described in <a href="#flink-network-policies">Flink network policies</a>.</p>
+
+<p>The following tables provide information about the network connections of Event Processing and Flink pods.</p>
+
+<h3 id="event-processing-operator-pod">Event Processing operator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>8443</td>
+      <td>Operator validating webhook</td>
+      <td>Always</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> To delete the network policy of the Event Processing operator, modify the subscription that was used to install the operator and set the <code class="language-plaintext highlighter-rouge">DEPLOY_OPERATOR_NETWORK_POLICY</code> environment variable to <code class="language-plaintext highlighter-rouge">false</code>.  This is best done after the initial installation of the operator, not in advance.</p>
+
+<h3 id="flink-operator-pod">Flink operator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>9443</td>
+      <td>Operator validating webhook</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> The <a href="#flink-network-policies">network policies for Flink</a> pods are not deployed automatically. They can be manually deployed.</p>
+
+<h3 id="event-processing-pod">Event Processing pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+      <th><strong>Enabled in policy</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>8443</td>
+      <td>External access to UI</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Processing instance</td>
+      <td>7000</td>
+      <td>Kafka administration</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Processing instance</td>
+      <td>3000</td>
+      <td>UI frontend</td>
+      <td>Always</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Any pod in Event Processing instance</td>
+      <td>8888</td>
+      <td>UI backend</td>
+      <td>Always</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> To disable the automatic deployment of the instance’s network policy, set the <code class="language-plaintext highlighter-rouge">spec.deployNetworkPolicies</code> option for the instance to <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<h3 id="flink-operand-pods-job-and-task-managers">Flink operand pods (job and task managers)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Origin</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Anywhere</td>
+      <td>8081</td>
+      <td>REST API inside the Kubernetes cluster</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Flink pods</td>
+      <td>6123</td>
+      <td>RPC inside the Flink cluster</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Flink pods</td>
+      <td>6124</td>
+      <td>Blob server inside the Flink cluster</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> The <a href="#flink-network-policies">network policies for Flink</a> pods are not deployed automatically. They can be manually deployed.</p>
+
+<h3 id="considerations-for-ingress">Considerations for ingress</h3>
+
+<p>Consider the use of a deny-all-ingress network policy to limit communication with all pods in a namespace to only those communications specifically allowed in network policies.  A deny-all network policy is not created by default as it would interfere with other applications
+installed in the namespace that do not have the required network policies set to allow inbound communications.</p>
+
+<p>To create a deny-all-ingress network policy you can simply apply the following yaml to your cluster in the relevant namespace(s).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">default-deny-ingress</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span> <span class="pi">{}</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Ingress</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> When deploying the deny-all-ingress network policy, ensure the network policies for Flink and Event Processing
+are deployed. The network policies for Event Processing pods are automatically deployed by default.
+The network policies for Flink are not automatically deployed and can be deployed as described in <a href="#flink-network-policies">Flink network policies</a>.</p>
+
+<h2 id="outbound-network-connections-egress">Outbound network connections (egress)</h2>
+
+<p>The following tables provide information about the outbound network connections (egress) initiated by pods in an Event Processing installation.</p>
+
+<p><strong>Note:</strong> Egress policies are not added by default. You must configure the egress policies based on your requirements.</p>
+
+<h3 id="event-processing-pod-1">Event Processing pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Flink</td>
+      <td>User Supplied</td>
+      <td>Submission of Flink jobs</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Kafka</td>
+      <td>User Supplied</td>
+      <td>Display topics and define connection details</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="flink-pods">Flink pods</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Type</strong></th>
+      <th><strong>Destination</strong></th>
+      <th><strong>Port</strong></th>
+      <th><strong>Reason</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TCP</td>
+      <td>Flink pods</td>
+      <td>6123</td>
+      <td>RPC inside the Flink cluster</td>
+    </tr>
+    <tr>
+      <td>TCP</td>
+      <td>Flink pods</td>
+      <td>6124</td>
+      <td>Blob server inside the Flink cluster</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="flink-network-policies">Flink network policies</h2>
+
+<p>Network policies are not deployed automatically when installing IBM Operator for Apache Flink. For increased security, you can
+deploy the deny-all-ingress policy as shown in <a href="#considerations-for-ingress">Considerations for ingress</a>. In this case,
+network policies for Flink pods need to be deployed following these steps:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
+installing the Flink instance, ensure the namespace is already created.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FLINK_NAMESPACE</span><span class="o">=</span>&lt;your-namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Run the following command to deploy the network policies for Flink:</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">oc apply -n ${FLINK_NAMESPACE} -f - &lt;&lt; EOF</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">olm</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">flink-kubernetes-operator</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">9443</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">443</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-jobmanager</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="na">component</span><span class="pi">:</span> <span class="s">taskmanager</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">olm</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">flink-kubernetes-operator</span>
+              <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">8081</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-jobmanager-rpc-blob</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="na">component</span><span class="pi">:</span> <span class="s">taskmanager</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">6123</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">6124</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-jobmanager-stream-authoring</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/component</span><span class="pi">:</span> <span class="s">ibm-sp</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-sp-operator</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">8081</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-taskmanager</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+        <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+            <span class="na">matchLabels</span><span class="pi">:</span>
+              <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+              <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+              <span class="na">component</span><span class="pi">:</span> <span class="s">taskmanager</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="m">8081</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="s">EOF</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> custom resource,
+ensure the ports used in the network policies match the custom ports.</p>
+
+<p>If you configure Flink to <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/metric_reporters" target="_blank">export</a>
+the <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/metrics" target="_blank">Flink Metrics</a>, the port
+configured for emitting metrics needs to be opened by following these steps:</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
+installing the Flink instance, ensure the namespace is already created.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FLINK_NAMESPACE</span><span class="o">=</span>&lt;your-namespace&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Set the following environment variable to hold the port you configured for emitting metrics.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">METRICS_PORT_NUMBER</span><span class="o">=</span>&lt;your-port&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Run the following command to deploy the network policy for metrics exporter:</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">oc apply -n ${FLINK_NAMESPACE} -f - &lt;&lt; EOF</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-jobmanager-monitoring</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="s">app.kubernetes.io/instance</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="s">app.kubernetes.io/managed-by</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink-operator</span>
+      <span class="s">app.kubernetes.io/name</span><span class="pi">:</span> <span class="s">ibm-eventautomation-flink</span>
+      <span class="na">component</span><span class="pi">:</span> <span class="s">jobmanager</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="s">${METRICS_PORT_NUMBER}</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">Ingress</span>
+<span class="s">EOF</span>
+</code></pre></div></div>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#inbound-network-connections-ingress">Inbound network connections (ingress)</a>
+    <ul>
+      <li><a href="#event-processing-operator-pod">Event Processing operator pod</a></li>
+      <li><a href="#flink-operator-pod">Flink operator pod</a></li>
+      <li><a href="#event-processing-pod">Event Processing pod</a></li>
+      <li><a href="#flink-operand-pods-job-and-task-managers">Flink operand pods (job and task managers)</a></li>
+      <li><a href="#considerations-for-ingress">Considerations for ingress</a></li>
+    </ul>
+  </li>
+  <li><a href="#outbound-network-connections-egress">Outbound network connections (egress)</a>
+    <ul>
+      <li><a href="#event-processing-pod-1">Event Processing pod</a></li>
+      <li><a href="#flink-pods">Flink pods</a></li>
+    </ul>
+  </li>
+  <li><a href="#flink-network-policies">Flink network policies</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/security/verifying-signature/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/security/verifying-signature/" class="pagination--pager" title="Previous Item: Verifying container image signatures
+">Previous</a>
+          <h2 class="titlePreview">Verifying container image signatures
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/security/gdpr-considerations/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/security/gdpr-considerations/" class="pagination--pager" title="Next Item: Considerations for GDPR
+">Next</a>
+          <h2 class="titlePreview">Considerations for GDPR
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

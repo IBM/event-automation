@@ -1,0 +1,3077 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Upgrading and migrating - IBM Event Automation</title>
+<meta name="description" content="Upgrade your installation to the latest version.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/installing/upgrading/" />
+<meta property="og:title" content="Event Streams | Upgrading and migrating" />
+<meta property="og:description" content="Upgrade your installation to the latest version." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Upgrading and migrating" />
+
+
+
+
+  <meta property="og:description" content="Upgrade your installation to the latest version.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/installing/upgrading/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">11.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">11.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/upgrading/" onclick="openVersion('/event-automation/es/installing/upgrading/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/upgrading/" class="versionPill active">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/upgrading/" onclick="openVersion('/event-automation/es/es_11.1/installing/upgrading/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/upgrading/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/upgrading/" onclick="openVersion('/event-automation/es/es_11.0/installing/upgrading/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/upgrading/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.5/installing/upgrading/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/upgrading/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.4/installing/upgrading/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/upgrading/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.3/installing/upgrading/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/upgrading/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.2/installing/upgrading/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/upgrading/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.1/installing/upgrading/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/upgrading/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/upgrading/" onclick="openVersion('/event-automation/es/es_10.0/installing/upgrading/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/upgrading/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/upgrading/" onclick="openVersion('/event-automation/es/es_2019.4/installing/upgrading/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/upgrading/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/upgrading/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/upgrading/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/upgrading/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/upgrading/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/upgrading/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/upgrading/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/upgrading/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/upgrading/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/upgrading/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/multizone-considerations/" class="">Considerations for multizone deployments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/installing/" class="">Installing on OpenShift Container Platform</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/upgrading/" class="active">Upgrading and migrating</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/renewing-certificates/" class="">Renewing certificates</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/expose-service/" class="">Exposing services for external access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/kafka-bridge/" class="">Kafka Bridge</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/cruise-control/" class="">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/es-install-fails/" class="">Event Streams installation reports Blocked status</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/pkcs12-keystore-java-client/" class="">Client receives 'Failed to load SSL keystore' message when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/ocp-upgrade-fail/" class="">OpenShift upgrade: fixing scheduling on node and node degraded errors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/watched-namespace/" class="">Apicurio authentication errors due to User Operator watchedNamespace</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/upgrade-apicurio/" class="">Clients using schemas fail with Apicurio 2.4.1 or later</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafkarebalance-pendingproposal/" class="">KafkaRebalance custom resource remains in PendingProposal state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/default-psp-issues/" class="">Event Streams not installing due to Pod Security Policies (PSP) issues</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Upgrading and migrating
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Upgrade your Event Streams installation as follows. The Event Streams operator handles the upgrade of your Event Streams instance.</p>
+
+<p><strong>Note:</strong> There is no downtime during the Event Streams upgrade. The Kafka pods are rolled one at a time, so a Kafka instance will always be present to serve traffic. However, if the number of brokers you have matches the <code class="language-plaintext highlighter-rouge">min.insync.replicas</code> value set for any of your topics, then that topic will be unavailable to write to while the Kafka pods are rolling.</p>
+
+<h2 id="upgrade-paths">Upgrade paths</h2>
+
+<p>Understand the upgrade paths available for Continuous Delivery (CD) releases and Extended Update Support (EUS) releases.</p>
+
+<h3 id="upgrade-paths-for-cd-releases">Upgrade paths for CD releases</h3>
+
+<p>If you are on OpenShift, you can upgrade Event Streams to the latest 11.2.1 version directly from 11.2.0 or any 11.1.x version by using the operator version 3.2.1. If you are on OpenShift and have an earlier Event Streams version than 11.1.x, you must first upgrade it to <a href="/event-automation/es/es_11.1/installing/upgrading/">version 11.1.x</a> before upgrading to 11.2.x.</p>
+
+<p>If you are running on other Kubernetes platforms, you can upgrade Event Streams to the latest 11.2.1 version directly from 11.2.0 by using the operator version 3.2.1.  .</p>
+
+<p><strong>Note:</strong> If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the Event Streams operator is upgraded to 3.2.x when it is available in the catalog, and your Event Streams instance is then also automatically upgraded, unless you <a href="#scheduling-the-upgrade-of-an-instance">set a schedule for the upgrade</a> by pausing the reconciliation.</p>
+
+<h3 id="upgrade-paths-for-openshift-eus-releases">Upgrade paths for OpenShift EUS releases</h3>
+
+<p>No direct upgrade from an OpenShift EUS version to the latest version is supported. Upgrade to <a href="/event-automation/11.1/installing/upgrading/">CD version 11.1.x</a> and then proceed to upgrade your Event Streams version to the latest by following the instructions on this page starting with the <a href="#prerequisites">prerequisites</a>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>
+    <p>If you are running on the OpenShift Container Platform, ensure you have followed the <a href="https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.2?topic=upgrading" target="_blank">upgrade steps for IBM Cloud Pak for Integration</a> before upgrading Event Streams.</p>
+  </li>
+  <li>
+    <p>If you are running on other Kubernetes platforms, ensure you have added the <a href="../installing-on-kubernetes/#add-the-helm-repository">IBM helm repository</a> before upgrading Event Streams.</p>
+  </li>
+  <li>
+    <p>The images for Event Streams release 11.2.x are available in the IBM Cloud Container Registry. Ensure you redirect your catalog source to use <code class="language-plaintext highlighter-rouge">icr.io/cpopen</code> as described in <a href="https://www.ibm.com/docs/en/cloud-paks/1.0?topic=clusters-migrating-from-docker-container-registry#implementing-imagecontentsourcepolicy-to-redirect-to-the-ibm-container-registry" target="_blank">Implementing ImageContentSourcePolicy to redirect to the IBM Container Registry</a>.</p>
+  </li>
+  <li>
+    <p>To upgrade successfully, your Event Streams instance must have more than one ZooKeeper node or have persistent storage enabled. If you upgrade an Event Streams instance with a single ZooKeeper node that has ephemeral storage, all messages and all topics will be lost and both ZooKeeper and Kafka pods will move to an error state. To avoid this issue, increase the number of ZooKeeper nodes before upgrading as follows:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">EventStreams</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">example-pre-upgrade</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">myproject</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">strimziOverrides</span><span class="pi">:</span>
+     <span class="na">zookeeper</span><span class="pi">:</span>
+       <span class="na">replicas</span><span class="pi">:</span> <span class="m">3</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>If you <a href="/event-automation/installpagedivert">installed the Event Streams operator</a> to manage instances of Event Streams in any namespace (one per namespace), then you might need to control when each of these instances is upgraded to the latest version. You can control the updates by pausing the reconciliation of the instance configuration as described in the following sections.</p>
+  </li>
+  <li>
+    <p>When upgrading to Event Streams 11.2.x from 11.1.x or earlier, you must <a href="#set-the-license-id">set a license ID</a> after successfully completing the upgrade.</p>
+  </li>
+</ul>
+
+<h3 id="scheduling-the-upgrade-of-an-instance">Scheduling the upgrade of an instance</h3>
+
+<p>In 11.1.x and later, the Event Streams operator handles the upgrade of your Event Streams instance automatically after the operator is upgraded. No additional step is required to change the instance (product) version.</p>
+
+<p>If your operator manages more than one instance of Event Streams, you can control when each instance is upgraded by pausing the reconciliation of the configuration settings for each instance, running the upgrade, and then unpausing the reconciliation when ready to proceed with the upgrade for a selected instance.</p>
+
+<h4 id="pausing-reconciliation-by-using-the-cli">Pausing reconciliation by using the CLI</h4>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank"><code class="language-plaintext highlighter-rouge">kubectl</code> context</a>.</li>
+  <li>
+    <p>To apply the annotation first to the <code class="language-plaintext highlighter-rouge">EventStreams</code> and then to the <code class="language-plaintext highlighter-rouge">Kafka</code> custom resource, run the following command, where <code class="language-plaintext highlighter-rouge">&lt;type&gt;</code> is either <code class="language-plaintext highlighter-rouge">EventStreams</code> or <code class="language-plaintext highlighter-rouge">Kafka</code>:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl annotate &lt;type&gt; &lt;instance-name&gt; -n &lt;instance-namespace&gt; eventstreams.ibm.com/pause-reconciliation='true'</code></p>
+  </li>
+  <li>Follow the steps to upgrade by using <a href="#upgrading-by-using-the-cli">the Kuberenetes CLI</a> or <a href="#upgrading-by-using-the-openshift-web-console">the OpenShift web console</a>.</li>
+</ol>
+
+<h4 id="unpausing-reconciliation-by-using-the-cli">Unpausing reconciliation by using the CLI</h4>
+<p>To unpause the reconciliation and continue with the upgrade of an Event Streams instance, run the following command to first remove the annotations from the <code class="language-plaintext highlighter-rouge">Kafka</code> custom resource, and then from the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource, where <code class="language-plaintext highlighter-rouge">&lt;type&gt;</code> is either <code class="language-plaintext highlighter-rouge">Kafka</code> or <code class="language-plaintext highlighter-rouge">EventStreams</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">kubectl annotate &lt;type&gt; &lt;instance-name&gt; -n &lt;instance-namespace&gt; eventstreams.ibm.com/pause-reconciliation-</code></p>
+
+<p>When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of Event Streams completes.</p>
+
+<h4 id="pausing-reconciliation-by-using-the-openshift-web-console">Pausing reconciliation by using the OpenShift web console</h4>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>
+    <p>Expand <strong>Operators</strong> in the navigation on the left, and click <strong>Installed Operators</strong>.</p>
+
+    <p><img src="/event-automation/images/rhocp_menu_installedoperators.png" alt="Operators &gt; Installed Operators" title="Screen capture showing how to select Operators &gt; Installed Operators from navigation menu" height="50%" width="50%" /></p>
+  </li>
+  <li>From the <strong>Project</strong> list, select the namespace (project) the instance is installed in.</li>
+  <li>Locate the operator that manages your Event Streams instance in the namespace. It is called <strong>Event Streams</strong> in the <strong>Name</strong> column. Click the <strong>Event Streams</strong> link in the row.</li>
+  <li>Select the instance you want to pause and click the <code class="language-plaintext highlighter-rouge">YAML</code> tab.</li>
+  <li>
+    <p>In the <code class="language-plaintext highlighter-rouge">YAML</code> for the custom resource, add <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/pause-reconciliation: 'true'</code> to the <code class="language-plaintext highlighter-rouge">metadata.annotations</code> field as follows:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">EventStreams</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">&lt;instance-name&gt;</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">&lt;instance-namespace&gt;</span>
+   <span class="na">annotations</span><span class="pi">:</span>
+     <span class="s">eventstreams.ibm.com/pause-reconciliation</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>This annotation also needs to be applied to the corresponding <code class="language-plaintext highlighter-rouge">Kafka</code> custom resource. Expand <strong>Home</strong> in the navigation on the left,  click <strong>API Explorer</strong>, and type <code class="language-plaintext highlighter-rouge">Kafka</code> in the <code class="language-plaintext highlighter-rouge">Filter by kind...</code> field. Select <code class="language-plaintext highlighter-rouge">Kafka</code>.</li>
+  <li>From the <strong>Project</strong> list, select the namespace (project) the instance is installed in and click the <strong>Instances</strong> tab.</li>
+  <li>Select the instance with the name <code class="language-plaintext highlighter-rouge">&lt;instance-name&gt;</code> (the same as the Event Streams instance).</li>
+  <li>
+    <p>In the <code class="language-plaintext highlighter-rouge">YAML</code> for the custom resource, add <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/pause-reconciliation: 'true'</code> to the <code class="language-plaintext highlighter-rouge">metadata.annotations</code> field as follows:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Kafka</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">&lt;instance-name&gt;</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">&lt;instance-namespace&gt;</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="s">eventstreams.ibm.com/pause-reconciliation</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Follow the steps to upgrade by using <a href="#upgrading-by-using-the-cli">the Kuberenetes CLI</a> or <a href="#upgrading-by-using-the-openshift-web-console">the OpenShift web console</a>.</li>
+</ol>
+
+<h4 id="unpausing-reconciliation-by-using-the-openshift-web-console">Unpausing reconciliation by using the OpenShift web console</h4>
+<p>To unpause the reconciliation and continue with the upgrade of an Event Streams instance, first remove the annotations from the <code class="language-plaintext highlighter-rouge">Kafka</code> custom resource, and then from the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource. When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of Event Streams completes.</p>
+
+<h2 id="upgrading-on-the-openshift-container-platform">Upgrading on the OpenShift Container Platform</h2>
+
+<p>Upgrade your Event Streams instance running on the OpenShift Container Platform by using the CLI or web console as follows.</p>
+
+<h3 id="upgrading-by-using-the-cli">Upgrading by using the CLI</h3>
+
+<p>If you are using the OpenShift command-line interface (CLI), the <code class="language-plaintext highlighter-rouge">oc</code> command, complete the steps in the following sections to upgrade your Event Streams installation.</p>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Ensure the required Event Streams Operator Upgrade Channel is available:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc get packagemanifest ibm-eventstreams -o=jsonpath='{.status.channels[*].name}'</code></p>
+  </li>
+  <li>
+    <p>Change the subscription to move to the required update channel, where <code class="language-plaintext highlighter-rouge">vX.Y</code> is the required update channel (for example, <code class="language-plaintext highlighter-rouge">v3.2</code>):</p>
+
+    <p><code class="language-plaintext highlighter-rouge">oc patch subscription -n &lt;namespace&gt; ibm-eventstreams --patch '{"spec":{"channel":"vX.Y"}}' --type=merge</code></p>
+  </li>
+</ol>
+
+<p>All Event Streams pods that need to be updated as part of the upgrade will be gracefully rolled. Where required, ZooKeeper pods will roll one at a time, followed by Kafka brokers rolling one at a time.</p>
+
+<h3 id="upgrading-by-using-the-openshift-web-console">Upgrading by using the OpenShift web console</h3>
+
+<p>If you are using the  web console, complete the steps in the following sections to upgrade your Event Streams installation.</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>
+    <p>Expand <strong>Operators</strong> in the navigation on the left, and click <strong>Installed Operators</strong>.</p>
+
+    <p><img src="/event-automation/images/rhocp_menu_installedoperators.png" alt="Operators &gt; Installed Operators" title="Screen capture showing how to select Operators &gt; Installed Operators from navigation menu" height="50%" width="50%" /></p>
+  </li>
+  <li>From the <strong>Project</strong> list, select the namespace (project) the instance is installed in.</li>
+  <li>Locate the operator that manages your Event Streams instance in the namespace. It is called <strong>Event Streams</strong> in the <strong>Name</strong> column. Click the <strong>Event Streams</strong> link in the row.</li>
+  <li>Click the <strong>Subscription</strong> tab to display the <strong>Subscription details</strong> for the Event Streams operator.</li>
+  <li>Click the version number link in the <strong>Update channel</strong> section (for example, <strong>v3.1</strong>). The <strong>Change Subscription update channel</strong> dialog is displayed, showing the channels that are available to upgrade to.</li>
+  <li>Select <strong>v3.2</strong> and click the <strong>Save</strong> button on the <strong>Change Subscription Update Channel</strong> dialog.</li>
+</ol>
+
+<p>All Event Streams pods that need to be updated as part of the upgrade will be gracefully rolled. Where required, ZooKeeper pods will roll one at a time, followed by Kafka brokers rolling one at a time.</p>
+
+<p><strong>Note:</strong> The number of containers in each Kafka broker will reduce from 2 to 1 as the TLS-sidecar container will be removed from each broker during the upgrade process.</p>
+
+<!--- Alternative steps for PlatformUI to be added. Sounds like CP4I don’t support our latest setting in this release, but might do in the next (or later).-->
+
+<h2 id="upgrading-on-other-kubernetes-platforms">Upgrading on other Kubernetes platforms</h2>
+
+<p>If you are running Event Streams on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers, you can upgrade Event Streams by using the Helm chart.</p>
+
+<p>To upgrade Event Streams to the latest version, run the following command:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm upgrade <span class="se">\</span>
+&lt;release-name&gt; ibm-helm/ibm-eventstreams-operator <span class="se">\</span>
+<span class="nt">-n</span> &lt;namespace&gt; <span class="se">\</span>
+<span class="nt">--set</span> <span class="nv">watchAnyNamespace</span><span class="o">=</span>&lt;<span class="nb">true</span>/false&gt;
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;release-name&gt;</code> is the name you provide to identify your operator.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;namespace&gt;</code> is the name of the namespace where you want to install the operator.</li>
+  <li><code class="language-plaintext highlighter-rouge">watchAnyNamespace=&lt;true/false&gt;</code> determines whether the operator manages instances of Event Streams in any namespace or only a single namespace (default is <code class="language-plaintext highlighter-rouge">false</code> if not specified). For more information, see <a href="../installing-on-kubernetes/#choosing-operator-installation-mode">choosing operator installation mode</a>.</li>
+</ul>
+
+<h2 id="post-upgrade-tasks">Post-upgrade tasks</h2>
+
+<h3 id="set-the-license-id">Set the license ID</h3>
+
+<p>After upgrading to Event Streams 11.2.x from 11.1.x or earlier, you must set a <a href="../planning/#license-usage">valid license ID</a> value for the <code class="language-plaintext highlighter-rouge">spec.license.license</code> field based on the program that you purchased. The following example shows the license ID set as <code class="language-plaintext highlighter-rouge">L-YBXJ-ADJNSM</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">EventStreams</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">example-license-upgrade</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">myproject</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">license</span><span class="pi">:</span>
+    <span class="na">license</span><span class="pi">:</span> <span class="s">L-YBXJ-ADJNSM</span>
+    <span class="na">use</span><span class="pi">:</span> <span class="s">CloudPakForIntegrationProduction</span>
+    <span class="na">accept</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="enable-collection-of-producer-metrics">Enable collection of producer metrics</h3>
+
+<p>In Event Streams version 11.0.0 and later, a Kafka Proxy handles gathering metrics from producing applications. The information is displayed in the <a href="../../administering/topic-health/"><strong>Producers</strong> dashboard</a>. The proxy is optional and is not enabled by default. To enable metrics gathering and have the information displayed in the dashboard, <a href="../../installing/configuring/#enabling-collection-of-producer-metrics">enable the Kafka Proxy</a>.</p>
+
+<h3 id="enable-metrics-for-monitoring">Enable metrics for monitoring</h3>
+
+<p>To display metrics in the monitoring dashboards of the Event Streams UI:</p>
+
+<ul>
+  <li>
+    <p>If you are running Event Streams on the OpenShift Container Platform, ensure you <a href="https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.4?topic=administering-enabling-openshift-container-platform-monitoring" target="_blank">enable</a> the monitoring stack.</p>
+  </li>
+  <li>
+    <p>If you are running Event Streams on other Kubernetes platforms, you can use any monitoring solution compatible with Prometheus and JMX formats to collect, store, visualize, and set up alerts based on metrics provided by Event Streams.</p>
+  </li>
+</ul>
+
+<h3 id="migrate-to-latest-apicurio-registry">Migrate to latest Apicurio Registry</h3>
+
+<p>Apicurio client libraries versions 2.3.1 and earlier use a <a href="../../troubleshooting/upgrade-apicurio">date format that is not compatible</a> with Apicurio Registry server versions 2.4.1 or later. Apicurio Registry is only deployed when you update the Event Streams custom resource to use the latest version of Apicurio Registry included with Event Streams.</p>
+
+<p>Migrate your schema registry to use the latest Apicurio Registry as follows:</p>
+
+<ol>
+  <li>Ensure all applications connecting to your instance of Event Streams that use the schema registry are using Apicurio client libraries version 2.4.1 or later before migrating.</li>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Add the <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/apicurio-registry-version='&gt;=2.4'</code> annotation to your Event Streams custom resource with the following command:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc annotate <span class="nt">--namespace</span> &lt;namespace&gt; EventStreams &lt;instance-name&gt; eventstreams.ibm.com/apicurio-registry-version<span class="o">=</span><span class="s1">'&gt;=2.4'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>The Event Streams operator will update your schema registry to use the latest version of Apicurio Registry included with Event Streams.</p>
+
+<h3 id="remove-jmxtrans">Remove JMXTrans</h3>
+
+<p>JMXTrans is removed in Event Streams <code class="language-plaintext highlighter-rouge">11.2.0</code> and later. If your Event Streams custom resource uses <code class="language-plaintext highlighter-rouge">jmxTrans</code>, the following error is displayed:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Jmx Trans is now removed, remove the 'spec.strimziOverrides.jmxTrans' field.
+</code></pre></div></div>
+
+<p>To resolve this error, remove the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.jmxTrans</code> field and any related configurations within the <code class="language-plaintext highlighter-rouge">jmxTrans</code> field from your Event Streams custom resource.</p>
+
+<h2 id="verifying-the-upgrade">Verifying the upgrade</h2>
+
+<ol>
+  <li>Wait for all Event Streams pods to reconcile. This is indicated by the <code class="language-plaintext highlighter-rouge">Running</code> state.</li>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank"><code class="language-plaintext highlighter-rouge">kubectl</code> context</a>.</li>
+  <li>
+    <p>To retrieve a list of Event Streams instances, run the following command:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get eventstreams -n &lt;namespace&gt;</code></p>
+  </li>
+  <li>
+    <p>For the instance of Event Streams that you upgraded, check that the status returned by the following command is <code class="language-plaintext highlighter-rouge">Ready</code>.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get eventstreams -n &lt;namespace&gt; &lt;name-of-the-es-instance&gt; -o jsonpath="{.status.phase}"</code></p>
+  </li>
+  <li>
+    <p>To check the version of your Event Streams instance, run the following command:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get eventstreams -n &lt;namespace&gt; &lt;name-of-the-es-instance&gt; -o jsonpath="{.status.versions.reconciled}"</code></p>
+  </li>
+</ol>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#upgrade-paths">Upgrade paths</a>
+    <ul>
+      <li><a href="#upgrade-paths-for-cd-releases">Upgrade paths for CD releases</a></li>
+      <li><a href="#upgrade-paths-for-openshift-eus-releases">Upgrade paths for OpenShift EUS releases</a></li>
+    </ul>
+  </li>
+  <li><a href="#prerequisites">Prerequisites</a>
+    <ul>
+      <li><a href="#scheduling-the-upgrade-of-an-instance">Scheduling the upgrade of an instance</a></li>
+    </ul>
+  </li>
+  <li><a href="#upgrading-on-the-openshift-container-platform">Upgrading on the OpenShift Container Platform</a>
+    <ul>
+      <li><a href="#upgrading-by-using-the-cli">Upgrading by using the CLI</a></li>
+      <li><a href="#upgrading-by-using-the-openshift-web-console">Upgrading by using the OpenShift web console</a></li>
+    </ul>
+  </li>
+  <li><a href="#upgrading-on-other-kubernetes-platforms">Upgrading on other Kubernetes platforms</a></li>
+  <li><a href="#post-upgrade-tasks">Post-upgrade tasks</a>
+    <ul>
+      <li><a href="#set-the-license-id">Set the license ID</a></li>
+      <li><a href="#enable-collection-of-producer-metrics">Enable collection of producer metrics</a></li>
+      <li><a href="#enable-metrics-for-monitoring">Enable metrics for monitoring</a></li>
+      <li><a href="#migrate-to-latest-apicurio-registry">Migrate to latest Apicurio Registry</a></li>
+      <li><a href="#remove-jmxtrans">Remove JMXTrans</a></li>
+    </ul>
+  </li>
+  <li><a href="#verifying-the-upgrade">Verifying the upgrade</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/installing/uninstalling/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/installing/uninstalling/" class="pagination--pager" title="Previous Item: Uninstalling
+">Previous</a>
+          <h2 class="titlePreview">Uninstalling
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/getting-started/logging-in/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/getting-started/logging-in/" class="pagination--pager" title="Next Item: Logging in
+">Next</a>
+          <h2 class="titlePreview">Logging in
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

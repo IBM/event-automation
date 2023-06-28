@@ -1,0 +1,3141 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Optimizing Kafka cluster with Cruise Control - IBM Event Automation</title>
+<meta name="description" content="Use Cruise Control to manage your brokers and topic partitions.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_10.3/administering/cruise-control/" />
+<meta property="og:title" content="Event Streams | Optimizing Kafka cluster with Cruise Control" />
+<meta property="og:description" content="Use Cruise Control to manage your brokers and topic partitions." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Optimizing Kafka cluster with Cruise Control" />
+
+
+
+
+  <meta property="og:description" content="Use Cruise Control to manage your brokers and topic partitions.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_10.3/administering/cruise-control/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">10.3</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">10.3</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/administering/cruise-control/" onclick="openVersion('/event-automation/es/administering/cruise-control/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/administering/cruise-control/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_11.1/administering/cruise-control/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/administering/cruise-control/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_11.0/administering/cruise-control/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/administering/cruise-control/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.5/administering/cruise-control/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/administering/cruise-control/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.4/administering/cruise-control/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/administering/cruise-control/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.3/administering/cruise-control/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/administering/cruise-control/" class="versionPill active">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.2/administering/cruise-control/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/administering/cruise-control/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.1/administering/cruise-control/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/administering/cruise-control/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_10.0/administering/cruise-control/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/administering/cruise-control/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_2019.4/administering/cruise-control/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/administering/cruise-control/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_2019.2.1/administering/cruise-control/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/administering/cruise-control/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_2019.1.1/administering/cruise-control/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/administering/cruise-control/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/administering/cruise-control/" onclick="openVersion('/event-automation/es/es_2018.3.1/administering/cruise-control/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/administering/cruise-control/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/installing/migrating-to-apicurio/" class="">Migrating to Apicurio Registry</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/schema-api/" class="">Using the schema API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/cruise-control/" class="active">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/firefox-black-images/" class="">UI shows black images in Firefox</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/schema-registry-not-authorized-error/" class="">Not authorized error when building maven schema registry project</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/504-ui-consumer-groups/" class="">504 timeout error when viewing consumer groups in the Event Streams UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/kafka-exporter-not-deployed/" class="">Kafka exporter is not deployed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/overriding-route-hostnames/" class="">Unable to override external listener route host</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/metrics-not-available/" class="">Event Streams metrics unavailable</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/failed-status-during-cs-install/" class="">Event Streams installation reports failed status</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/kcs2i-airgapped/" class="">KafkaConnectS2I build fails in an air-gapped installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.3/troubleshooting/dockerio-image-pull-fails/" class="">Pulling images for Event Streams 10.3.0 fails</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Optimizing Kafka cluster with Cruise Control
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <h2 id="overview">Overview</h2>
+
+<p>Cruise Control is an open-source system for optimizing your Kafka cluster by monitoring cluster workload, rebalancing a cluster based on predefined constraints, and detecting and fixing anomalies.</p>
+
+<p>You can set up Event Streams to use the following Cruise Control features:</p>
+
+<ul>
+  <li>Generating optimization proposals from multiple optimization goals.</li>
+  <li>Rebalancing a Kafka cluster based on an optimization proposal.</li>
+</ul>
+
+<p><strong>Note:</strong> Event Streams does not support other Cruise Control features.</p>
+
+<!-- Copied from Strmzi -->
+
+<p>Cruise Control can be used to dynamically optimize the distribution of the partitions on your brokers so that resources are used more efficiently.</p>
+
+<p>Cruise Control reduces the time and effort involved in running an efficient and balanced Kafka cluster.</p>
+
+<p>A typical cluster can become unevenly loaded over time. Partitions that handle large amounts of message traffic might be unevenly distributed across the available brokers. To rebalance the cluster, administrators must monitor the load on brokers and manually reassign busy partitions to brokers with spare capacity.</p>
+
+<p>Cruise Control automates the cluster rebalancing process. It constructs a workload model of resource utilization for the cluster based on CPU, disk, and network load, ​and generates optimization proposals (that you can approve or reject) for more balanced partition assignments. A set of configurable optimization goals is used to calculate these proposals.</p>
+
+<p>When you approve an optimization proposal, Cruise Control applies it to your Kafka cluster. When the cluster rebalancing operation is complete, the broker pods are used more effectively and the Kafka cluster is more evenly balanced.</p>
+
+<!-- Copied from Strmzi -->
+
+<h3 id="steps-for-rebalancing-a-cluster">Steps for rebalancing a cluster</h3>
+
+<p>Follow these steps to rebalance a cluster by using Cruise Control:</p>
+
+<ol>
+  <li>Ensure you have an Event Streams installation that has Cruise Control <a href="../../installing/configuring/#enabling-and-configuring-cruise-control">enabled</a> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource.</li>
+  <li>
+    <p>In your <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource, configure the optimization goals that are available for rebalancing, and set capacity limits for broker resources. You can use Cruise Control defaults or define your own goals and capacity limits, as described in <a href="../../installing/configuring/#enabling-and-configuring-cruise-control">enabling and configuring Cruise Control</a>.</p>
+
+    <p><strong>Important:</strong> The configuration settings in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource are used by all optimization proposals defined in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource, and can constrain the possible proposals a user can make.</p>
+  </li>
+  <li>
+    <p><a href="#setting-up-optimization">Set up the optimization proposal</a> by using the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</p>
+
+    <p><strong>Important:</strong> Deploying Cruise Control allows for rebalancing a cluster based on the predefined constraints defined in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource. If Cruise Control is not enabled, the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource has no effect on a cluster, and similarly, without a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource Cruise Control will make no changes to a cluster even if it is enabled.</p>
+  </li>
+  <li>Wait for an <a href="#receiving-an-optimization-proposal">optimization proposal</a> to appear in the status of the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</li>
+  <li><a href="#approving-an-optimization-proposal">Accept the optimization proposal</a> in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource by annotating it.</li>
+  <li>Check for the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> proposal to be finished processed.</li>
+  <li>Depending on the outcome of the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> proposal, perform the following steps:
+    <ul>
+      <li>If <strong><code class="language-plaintext highlighter-rouge">status.condtions[0].status</code> = Ready:</strong> Cruise Control has successfully optimized the Kafka cluster and no further action is needed.</li>
+      <li>If <strong><code class="language-plaintext highlighter-rouge">status.condtions[0].status</code> = NotReady:</strong> Cruise Control was unable to optimize the Kafka cluster and you need to <a href="#dealing-with-rebalancing-errors">address the error</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="setting-up-optimization">Setting up optimization</h2>
+
+<p>To rebalance a Kafka cluster, Cruise Control uses the <a href="../../installing/configuring/#enabling-and-configuring-cruise-control">available</a> optimization goals to generate optimization proposals, which you can approve or reject.</p>
+
+<h3 id="creating-an-optimization-proposal">Creating an optimization proposal</h3>
+
+<p>To define the <a href="#optimization-goals">goals</a> to use when rebalancing the cluster, use the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource. The goals defined in the custom resource determine how the cluster will be optimized during the calculation of the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> proposal.</p>
+
+<p><strong>Important:</strong> The <a href="../../installing/configuring/#hard-goals">hard goals</a> that are configured in <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.config["hard.goals"]</code> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource must be satisfied, whereas the goals defined in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource will be optimized if possible, but not at the cost of violating any of the hard goals.</p>
+
+<p>To create a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource that creates a proposal that does not consider the hard goals set in <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.config["hard.goals"]</code> in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource, set <code class="language-plaintext highlighter-rouge">spec.skipHardGoalsCheck</code> to true in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</p>
+
+<p>Hard goals include settings that must be met by an optimization proposal and cannot be ignored. Other goals in the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource are optimized only if possible.</p>
+
+<p>To create a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource for your Event Streams instance, add the <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/cluster=&lt;instance-name&gt;</code> label to <code class="language-plaintext highlighter-rouge">metadata.labels</code> in your <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource as follows, where <code class="language-plaintext highlighter-rouge">&lt;instance-name&gt;</code> is the name of your Event Streams cluster.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+metadata:
+  # ...
+  labels:
+    eventstreams.ibm.com/cluster: &lt;instance-name&gt;
+spec:
+  # ...
+  goals:
+    - NetworkInboundCapacityGoal
+    - NetworkOutboundCapacityGoal
+  skipHardGoalCheck: true
+</code></pre></div></div>
+
+<p>To add a list of goals to your <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource, add the subset of <a href="#optimization-goals">defined goals</a> to the <code class="language-plaintext highlighter-rouge">spec.goals</code> property. The previous example has the <code class="language-plaintext highlighter-rouge">NetworkInboundCapacityGoal</code> and <code class="language-plaintext highlighter-rouge">NetworkOutboundCapacityGoal</code> goals added.</p>
+
+<p>To configure a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource, use the OpenShift Container Platform web console or the OpenShift Container Platform CLI as follows.</p>
+
+<h4 id="using-the-openshift-container-platform-web-console">Using the OpenShift Container Platform web console</h4>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>From the navigation menu, click <strong>Operators &gt; Installed Operators</strong>.</li>
+  <li>In the <strong>Projects</strong> dropdown list, select the project that contains the Event Streams instance.</li>
+  <li>Select the <strong>Event Streams Operator</strong> in the list of Installed Operators.</li>
+  <li>In the <strong>Operator Details &gt; Overview</strong> page, find the <strong>KafkaRebalance</strong> tile in the list of <strong>Provided APIs</strong> and click <strong>Create Instance</strong>.</li>
+  <li>In the <strong>Create KafkaRebalance</strong> page, edit the provided YAML to set values for the following properties.
+    <ul>
+      <li>In the <strong>metadata.labels</strong> section, set the <strong>eventstreams.ibm.com/cluster</strong> property value to the name of your Event Streams instance that you want to rebalance.</li>
+      <li>Set the <code class="language-plaintext highlighter-rouge">metadata.name</code> property value to what you want to call the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</li>
+      <li>Set the <code class="language-plaintext highlighter-rouge">spec.goals</code> to provide a list of goals you want to optimize.</li>
+      <li>Set the <code class="language-plaintext highlighter-rouge">spec.skipHardGoalCheck</code> to provide true if you want to skip the hard goals.</li>
+    </ul>
+
+    <p>See the previous YAML snippet as an example.</p>
+  </li>
+  <li>Click <strong>Create</strong>.</li>
+  <li>The new <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource is listed in the <strong>Operator Details &gt; KafkaRebalance</strong> page.</li>
+</ol>
+
+<h4 id="using-the-openshift-container-platform-cli">Using the OpenShift Container Platform CLI</h4>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Run the following command to select the project that contains the existing Event Streams cluster:<br />
+<code class="language-plaintext highlighter-rouge">oc project &lt;project-name&gt;</code></li>
+  <li>
+    <p>Define a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource in a file. For example, the following YAML defines a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource that will rebalance the Kafka cluster associated with the Event Streams instance named <code class="language-plaintext highlighter-rouge">my-cluster</code> and will create a proposal to satisfy the <code class="language-plaintext highlighter-rouge">NetworkInboundCapacityGoal</code> goal.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: eventstreams.ibm.com/v1alpha1
+kind: KafkaRebalance
+metadata:
+  labels:
+    eventstreams.ibm.com/cluster: my-cluster
+  name: my-test-kafka-rebalance
+spec:
+  goals:
+    - NetworkInboundCapacityGoal
+</code></pre></div>    </div>
+
+    <p><strong>Note:</strong> The <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> must have a label under <code class="language-plaintext highlighter-rouge">metadata.labels</code> with the key <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/cluster</code>, and the value must be set to the name of the Event Streams instance that you are rebalancing.</p>
+  </li>
+  <li>Run the following command to create the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource:<br />
+<code class="language-plaintext highlighter-rouge">oc create -f &lt;path-to-your-KafkaRebalance-file&gt;</code></li>
+  <li>Verify the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource has been created by running:<br />
+<code class="language-plaintext highlighter-rouge">oc get kafkarebalances</code><br />
+Ensure the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource you are trying to create is listed.</li>
+  <li>To view the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> proposal by running:<br />
+<code class="language-plaintext highlighter-rouge">oc get KafkaRebalance &lt;KafkaRebalance-instance-name&gt; -o yaml</code></li>
+</ol>
+
+<h3 id="receiving-an-optimization-proposal">Receiving an optimization proposal</h3>
+
+<p>After you have created the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource, Cruise Control creates an optimization proposal if it can, and will add the <code class="language-plaintext highlighter-rouge">ProposalReady</code> status to the <code class="language-plaintext highlighter-rouge">status.conditions</code> property and display an overview of the proposal in the <code class="language-plaintext highlighter-rouge">status.optimizationResult</code> field.</p>
+
+<p>The following is an example of a successful proposal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+status:
+  # ...
+  conditions:
+    - lastTransitionTime: '2020-07-07T08:36:09.193Z'
+      status: ProposalReady
+      type: State
+  observedGeneration: 5
+  optimizationResult:
+    intraBrokerDataToMoveMB: 0
+    onDemandBalancednessScoreBefore: 0
+    recentWindows: 1
+    dataToMoveMB: 3
+    excludedTopics: []
+    excludedBrokersForReplicaMove: []
+    numReplicaMovements: 7
+    onDemandBalancednessScoreAfter: 100
+    numLeaderMovements: 0
+    monitoredPartitionsPercentage: 100
+    numIntraBrokerReplicaMovements: 0
+    excludedBrokersForLeadership: []
+  sessionId: 03974f67-b208-4133-9f54-305d268a1a22
+</code></pre></div></div>
+
+<p>For more information about optimization proposals, see the Strimzi <a href="https://strimzi.io/docs/operators/0.19.0/using.html#con-optimization-proposals-str" target="_blank">documentation</a>.</p>
+
+<h3 id="refreshing-an-optimization-proposal">Refreshing an optimization proposal</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource does not automatically refresh the optimization proposal, it requires a manual refresh to be triggered. This is to ensure that a proposal does not change without your permission, and also to ensure the proposal does not change before it is approved.</p>
+
+<p>To refresh the optimization proposal, you will need to add <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/rebalance: refresh</code> to the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource as described in <a href="#adding-annotations-to-a-kafkarebalance-custom-resource">adding an annotation</a>.</p>
+
+<p>If a valid optimization exists for the configuration and the goals specified, then the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource will get updated, and <code class="language-plaintext highlighter-rouge">status.optimizationResult</code> shows the updated proposal.</p>
+
+<h3 id="approving-an-optimization-proposal">Approving an optimization proposal</h3>
+
+<p>Cruise Control is used for generating and implementing Kafka rebalance proposals. The <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource is the way a user interacts with Cruise Control via the operator. The operator has automated the process of generating a proposal request, but to approve the proposal a user needs to annotate their <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource.</p>
+
+<p>If the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource contains a rebalance proposal that you want to accept, then you will need to approve the proposal by adding the <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/rebalance: approve</code> annotation to your <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource by <a href="#adding-annotations-to-a-kafkarebalance-custom-resource">adding an annotation</a></p>
+
+<p>When approved, the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource is updated to show the status <code class="language-plaintext highlighter-rouge">Rebalancing</code> in <code class="language-plaintext highlighter-rouge">status.conditions</code>. This means that Cruise Control is currently rebalancing the Kafka cluster. The amount of time required for a rebalance depends on various factors such as the amount of data on a partition and the goals being accomplished. If the rebalance is successful, then the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource will have the status updated to <code class="language-plaintext highlighter-rouge">Ready</code> in the <code class="language-plaintext highlighter-rouge">status.conditions</code> field.</p>
+
+<h4 id="dealing-with-rebalancing-errors">Dealing with rebalancing errors</h4>
+
+<p>If Cruise Control is unsuccessful in rebalancing the Kafka brokers, then the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource will be updated to show the <code class="language-plaintext highlighter-rouge">NotReady</code> status in the <code class="language-plaintext highlighter-rouge">status.conditions</code> field, and <code class="language-plaintext highlighter-rouge">status.conditions</code> will contain the error and how to remediate. After you have followed the guidance to fix the error, trigger a <a href="#refreshing-an-optimization-proposal">KafkaRebalance refresh</a> and then <a href="#approving-an-optimization-proposal">approve the KafkaRebalance proposal</a>.</p>
+
+<h3 id="stopping-an-inflight-optimization-proposal">Stopping an inflight optimization proposal</h3>
+
+<p>If you want to stop the process of rebalancing a Kafka cluster, you can add the <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/rebalance: stop</code> annotation by <a href="#adding-annotations-to-a-kafkarebalance-custom-resource">adding an annotation</a>.</p>
+
+<p><strong>Note:</strong> Cruise Control will not restore the state of the topics and partitions that existed before rebalancing. This means the state of the Kafka brokers might not be the same as before rebalancing started.</p>
+
+<h3 id="adding-annotations-to-a-kafkarebalance-custom-resource">Adding annotations to a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource</h3>
+
+<p>To add annotations to the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource, use the OpenShift Container Platform web console or the OpenShift Container Platform CLI as follows.</p>
+
+<h4 id="using-the-openshift-container-platform-web-console-1">Using the OpenShift Container Platform web console</h4>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>The new <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource is listed in the <strong>Operator Details &gt; KafkaRebalance</strong> page.</li>
+  <li>Click the name of the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource you want to edit.</li>
+  <li>Click the <strong>YAML</strong> tab.</li>
+  <li>Add the <code class="language-plaintext highlighter-rouge">eventstreams.ibm.com/rebalance</code> annotation to the <code class="language-plaintext highlighter-rouge">metadata.annotations</code> field.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ...
+metadata:
+  # ...
+  annotations:
+ eventstreams.ibm.com/rebalance: &lt;annotation-value&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Click <strong>Save</strong>.</li>
+</ol>
+
+<h4 id="using-the-openshift-container-platform-cli-1">Using the OpenShift Container Platform CLI</h4>
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Run the following command to select the project that contains the existing <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource:<br />
+<code class="language-plaintext highlighter-rouge">oc project &lt;project-name&gt;</code></li>
+  <li>Run the following command to see a list of all the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resources:<br />
+<code class="language-plaintext highlighter-rouge">oc get kafkarebalances</code></li>
+  <li>Find the name of the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource you want to annotate.</li>
+  <li>Run the following command to view the YAML for your <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> instance:<br />
+<code class="language-plaintext highlighter-rouge">oc annotate kafkarebalances &lt;rebalance-cr-name&gt; &lt;annotation-key&gt;=&lt;annotation-value&gt;</code></li>
+</ol>
+
+<h2 id="optimization-goals">Optimization goals</h2>
+
+<p>Optimization goals determine what the <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> proposal chooses to optimize when rebalancing the Kafka cluster.</p>
+
+<p><strong>Note:</strong> The more goals you use, the harder it will be for Cruise Control to create an optimization proposal that will satisfy all of the goals. Consider creating a <code class="language-plaintext highlighter-rouge">KafkaRebalance</code> custom resource with fewer goals.</p>
+
+<p><strong>Important:</strong> Most goals might result in the moving of partitions across brokers. This might impact performance during the operation, and cause issues with connecting clients.</p>
+
+<p>You can configure the following optimization goals. the goals are listed in <strong>order of decreasing priority</strong>.</p>
+
+<h3 id="rackawaregoal">RackAwareGoal</h3>
+
+<p>Ensures that all replicas of each partition are assigned in a rack-aware manner. This means no more than one replica of each partition resides on the same rack.</p>
+
+<p>Using it in a multi-zone environment ensures that partitions are spread across different zones. This will improve the availability of topic data.</p>
+
+<h3 id="replicacapacitygoal">ReplicaCapacityGoal</h3>
+
+<p>Ensures that the maximum number of replicas per broker is under the specified maximum limit.</p>
+
+<p>This goal does not ensure that the replicas are evenly distributed across brokers. It ensures that the total replicas on a single broker remains under a specified maximum limit.</p>
+
+<p>For even distribution of replicas amongst brokers, see <a href="#replicadistributiongoal">ReplicaDistributionGoal</a>.</p>
+
+<h3 id="diskcapacitygoal">DiskCapacityGoal</h3>
+
+<p>Ensures that disk space usage of each broker is below the threshold set in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity.disk</code> property in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource.</p>
+
+<p>Use this goal to optimize the distribution of partitions amongst brokers based on the disk usage of a partition. This might not lead to an even distribution of partitions amongst the brokers. For even distribution of disk space usage on brokers, see <a href="#diskusagedistributiongoal">DiskUsageDistributionGoal</a>.</p>
+
+<h3 id="networkinboundcapacitygoal">NetworkInboundCapacityGoal</h3>
+
+<p>Ensures that inbound network utilization of each broker is below the threshold set in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity.inboundNetwork</code> property in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource.</p>
+
+<p>This is mainly affected by the number of producers producing and the size of produced messages. Use this goal to rebalance the partitions to optimize the distribution of the partitions on the inbound network traffic. This might not result in the inbound network being evenly distributed amongst brokers, it only ensures that the inbound network of each broker is under a given threshold. For even distribution of inbound network traffic amongst brokers, see <a href="#networkinboundusagedistributiongoal">NetworkInboundDistributionUsageGoal</a></p>
+
+<h3 id="networkoutboundcapacitygoal">NetworkOutboundCapacityGoal</h3>
+
+<p>Ensures that outbound network utilization of each broker is below a given threshold set in the <code class="language-plaintext highlighter-rouge">spec.strimziOverrides.cruiseControl.brokerCapacity.inboundNetwork</code> property in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource.</p>
+
+<p>This is mainly affected by the number of consumers consuming and communication between the Kafka Brokers. Use this goal to rebalance the partitions to optimize the distribution of the partitions on the outbound network traffic. This might not result in the outbound network being evenly distributed amongst brokers, it only ensures that the outbound network of each broker is under a given threshold. For even distribution of outbound network traffic amongst brokers, see <a href="#networkoutboundusagedistributiongoal">NetworkOutboundDistributionUsageGoal</a>.</p>
+
+<h3 id="replicadistributiongoal">ReplicaDistributionGoal</h3>
+
+<p>Attempts to make all the brokers in a cluster have a similar number of replicas.</p>
+
+<p>Use this goal to ensure that the total number of partition replicas are distributed evenly amongst brokers. This does not mean that partitions will be optimally distributed for other metrics such as network traffic and disk usage, so it might still cause brokers to be unevenly loaded.</p>
+
+<h3 id="potentialnwoutgoal">PotentialNwOutGoal</h3>
+
+<p>Ensures that the potential network output (when all the replicas in the broker become leaders) on each of the broker do not exceed the broker’s network outbound bandwidth capacity.</p>
+
+<p>This is mainly affected by the number of consumers consuming and the size of the consumed messages. Use this goal to rebalance the partitions to optimize the distribution of the partitions on the potential outbound network traffic. This will ensure that the partitions with the most outbound traffic are moved to the most idle brokers.</p>
+
+<p>The difference between this goal and <a href="#networkoutboundcapacitygoal">NetworkOutboundCapacityGoal</a> is that this goal will rebalance the cluster based on the worst-case network outbound usage around the outbound network capacity specified, and the <code class="language-plaintext highlighter-rouge">NetworkOutboundCapacityGoal</code> will rebalance the outbound network usage around the outbound network capacity specified.</p>
+
+<h3 id="diskusagedistributiongoal">DiskUsageDistributionGoal</h3>
+
+<p>Attempts to keep the disk space usage variance among brokers within a certain range relative to the average disk utilization.</p>
+
+<p>Use this goal to optimize the distribution of partitions amongst brokers to ensure that the disk utilization amongst brokers are similar.</p>
+
+<h3 id="networkinboundusagedistributiongoal">NetworkInboundUsageDistributionGoal</h3>
+
+<p>Attempts to keep the inbound network utilization variance among brokers within a certain range relative to the average inbound network utilization.</p>
+
+<p>This is mainly affected by the number of producers producing and the size of produced messages. Use this goal to rebalance the partitions to optimize the distribution of the partitions on the inbound network traffic. This will ensure that the partitions with the most inbound traffic are moved to the most idle brokers and the inbound network traffic amongst brokers are similar.</p>
+
+<h3 id="networkoutboundusagedistributiongoal">NetworkOutboundUsageDistributionGoal</h3>
+
+<p>Attempts to keep the outbound network utilization variance among brokers within a certain range relative to the average outbound network utilization.</p>
+
+<p>This is mainly affected by the number of consumers consuming and the size of the consumed messages. Use this goal to rebalance the partitions to optimize the distribution of the partitions on the outbound network traffic. This will ensure that the partitions with the most outbound traffic are moved to the most idle brokers and the outbound network traffic amongst brokers are similar.</p>
+
+<h3 id="cpuusagedistributiongoal">CpuUsageDistributionGoal</h3>
+
+<p>Attempts to keep the CPU usage variance among brokers within a certain range relative to the average CPU utilization.</p>
+
+<p>Use this goal to rebalance the partitions to optimize the distribution of the partitions on the CPU usage of brokers. This will ensure that the CPU usage of brokers are similar.</p>
+
+<h3 id="leaderreplicadistributiongoal">LeaderReplicaDistributionGoal</h3>
+
+<p>Attempts to make all the brokers in a cluster have a similar number of leader replicas.</p>
+
+<p>Use this goal to ensure the total number of partitions leaders are similar amongst brokers.</p>
+
+<h3 id="leaderbytesindistributiongoal">LeaderBytesInDistributionGoal</h3>
+
+<p>Attempts to equalize the leader bytes in rate on each host.</p>
+
+<p>This goal may not result in an even distribution of replicas across brokers as it is optimizing the leader bytes on each broker.</p>
+
+<h3 id="topicreplicadistributiongoal">TopicReplicaDistributionGoal</h3>
+
+<p>Attempts to maintain an even distribution of any topic’s partitions across the entire cluster.</p>
+
+<p>Use this goal to ensure that the total number of partition replicas are distributed evenly amongst brokers. This does not mean that partitions will be optimally distributed for other metrics such as network traffic and disk usage, so might cause brokers to be unevenly loaded. This might also cause a partition on a topic to be present on a subset of the total brokers.</p>
+
+<h3 id="preferredleaderelectiongoal">PreferredLeaderElectionGoal</h3>
+
+<p>Simply moves the leaders to the first replica of each partition.</p>
+
+<p>Cruise Control does not try to optimize the distribution of replicas. Before using this goal, check the state of the partitions to see where the leaders will end up to ensure the required outcome.</p>
+
+<h3 id="intrabrokerdiskcapacitygoal">IntraBrokerDiskCapacityGoal</h3>
+
+<p>Ensures that disk space usage of each disk is below a given threshold.</p>
+
+<p>Use this goal to rebalance the distribution of the partitions on disk space usage under a given threshold. This may not result in the disk space usage being evenly distributed amongst brokers, it only ensures that the disk space usage of each broker is under a given threshold.</p>
+
+<p>For even distribution of disk space usage amongst brokers, see <a href="#intrabrokerdiskusagedistributiongoal">IntraBrokerDiskUsageDistributionGoal</a>.</p>
+
+<h3 id="intrabrokerdiskusagedistributiongoal">IntraBrokerDiskUsageDistributionGoal</h3>
+
+<p>Attempts to keep the disk space usage variance among disks within a certain range relative to the average broker disk utilization.</p>
+
+<p>Use this goal to rebalance the distribution of the partitions on disk space usage. This goal will ensure that the disk space usage amongst brokers are similar.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#steps-for-rebalancing-a-cluster">Steps for rebalancing a cluster</a></li>
+    </ul>
+  </li>
+  <li><a href="#setting-up-optimization">Setting up optimization</a>
+    <ul>
+      <li><a href="#creating-an-optimization-proposal">Creating an optimization proposal</a></li>
+      <li><a href="#receiving-an-optimization-proposal">Receiving an optimization proposal</a></li>
+      <li><a href="#refreshing-an-optimization-proposal">Refreshing an optimization proposal</a></li>
+      <li><a href="#approving-an-optimization-proposal">Approving an optimization proposal</a></li>
+      <li><a href="#stopping-an-inflight-optimization-proposal">Stopping an inflight optimization proposal</a></li>
+      <li><a href="#adding-annotations-to-a-kafkarebalance-custom-resource">Adding annotations to a KafkaRebalance custom resource</a></li>
+    </ul>
+  </li>
+  <li><a href="#optimization-goals">Optimization goals</a>
+    <ul>
+      <li><a href="#rackawaregoal">RackAwareGoal</a></li>
+      <li><a href="#replicacapacitygoal">ReplicaCapacityGoal</a></li>
+      <li><a href="#diskcapacitygoal">DiskCapacityGoal</a></li>
+      <li><a href="#networkinboundcapacitygoal">NetworkInboundCapacityGoal</a></li>
+      <li><a href="#networkoutboundcapacitygoal">NetworkOutboundCapacityGoal</a></li>
+      <li><a href="#replicadistributiongoal">ReplicaDistributionGoal</a></li>
+      <li><a href="#potentialnwoutgoal">PotentialNwOutGoal</a></li>
+      <li><a href="#diskusagedistributiongoal">DiskUsageDistributionGoal</a></li>
+      <li><a href="#networkinboundusagedistributiongoal">NetworkInboundUsageDistributionGoal</a></li>
+      <li><a href="#networkoutboundusagedistributiongoal">NetworkOutboundUsageDistributionGoal</a></li>
+      <li><a href="#cpuusagedistributiongoal">CpuUsageDistributionGoal</a></li>
+      <li><a href="#leaderreplicadistributiongoal">LeaderReplicaDistributionGoal</a></li>
+      <li><a href="#leaderbytesindistributiongoal">LeaderBytesInDistributionGoal</a></li>
+      <li><a href="#topicreplicadistributiongoal">TopicReplicaDistributionGoal</a></li>
+      <li><a href="#preferredleaderelectiongoal">PreferredLeaderElectionGoal</a></li>
+      <li><a href="#intrabrokerdiskcapacitygoal">IntraBrokerDiskCapacityGoal</a></li>
+      <li><a href="#intrabrokerdiskusagedistributiongoal">IntraBrokerDiskUsageDistributionGoal</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_10.3/administering/modifying-installation/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.3/administering/modifying-installation/" class="pagination--pager" title="Previous Item: Modifying installation settings
+">Previous</a>
+          <h2 class="titlePreview">Modifying installation settings
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_10.3/administering/scaling/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.3/administering/scaling/" class="pagination--pager" title="Next Item: Scaling
+">Next</a>
+          <h2 class="titlePreview">Scaling
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,3073 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Event Streams producer API - IBM Event Automation</title>
+<meta name="description" content="Use the Event Streams producer API to connect other systems to your Kafka cluster.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_10.5/connecting/rest-api/" />
+<meta property="og:title" content="Event Streams | Event Streams producer API" />
+<meta property="og:description" content="Use the Event Streams producer API to connect other systems to your Kafka cluster." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Event Streams producer API" />
+
+
+
+
+  <meta property="og:description" content="Use the Event Streams producer API to connect other systems to your Kafka cluster.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_10.5/connecting/rest-api/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">10.5</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">10.5</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/connecting/rest-api/" onclick="openVersion('/event-automation/es/connecting/rest-api/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/connecting/rest-api/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_11.1/connecting/rest-api/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/connecting/rest-api/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_11.0/connecting/rest-api/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/connecting/rest-api/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.5/connecting/rest-api/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/connecting/rest-api/" class="versionPill active">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.4/connecting/rest-api/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/connecting/rest-api/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.3/connecting/rest-api/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/connecting/rest-api/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.2/connecting/rest-api/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/connecting/rest-api/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.1/connecting/rest-api/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/connecting/rest-api/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_10.0/connecting/rest-api/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/connecting/rest-api/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_2019.4/connecting/rest-api/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/connecting/rest-api/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_2019.2.1/connecting/rest-api/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/connecting/rest-api/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_2019.1.1/connecting/rest-api/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/connecting/rest-api/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/connecting/rest-api/" onclick="openVersion('/event-automation/es/es_2018.3.1/connecting/rest-api/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/connecting/rest-api/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/installing/migrating-to-apicurio/" class="">Migrating to Apicurio Registry</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/rest-api/" class="active">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/cruise-control/" class="">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/firefox-black-images/" class="">UI shows black images in Firefox</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/schema-registry-not-authorized-error/" class="">Not authorized error when building maven schema registry project</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/504-ui-consumer-groups/" class="">504 timeout error when viewing consumer groups in the Event Streams UI</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/kafka-exporter-not-deployed/" class="">Kafka exporter is not deployed</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/overriding-route-hostnames/" class="">Unable to override external listener route host</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/metrics-not-available/" class="">Event Streams metrics unavailable</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/failed-status-during-cs-install/" class="">Event Streams installation reports failed status</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/kcs2i-airgapped/" class="">KafkaConnectS2I build fails in an air-gapped installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/no-metrics-ui/" class="">Metrics do not display in operator Grafana dashboard</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/admin-api-mount-failure/" class="">Admin API pod does not start when using OpenShift 4.6</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/pkcs12-keystore-java-client/" class="">Client receives 'Failed to load SSL keystore' message when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/foundational-services-320-upgrade-block/" class="">Foundational services 3.20 blocks upgrade to Event Streams 11.0.x</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_10.5/troubleshooting/watched-namespace/" class="">Apicurio authentication errors due to User Operator watchedNamespace</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Event Streams producer API
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Event Streams provides a REST API to help connect your existing systems to your Event Streams Kafka cluster. Using the API, you can integrate Event Streams with any system that supports RESTful APIs.</p>
+
+<p>The REST producer API is a scalable REST interface for producing messages to Event Streams over a secure HTTP endpoint. Send event data to Event Streams, utilize Kafka technology to handle data feeds, and take advantage of Event Streams features to manage your data.</p>
+
+<p>Use the API to connect existing systems to Event Streams, such as IBM Z mainframe systems with IBM z/OS Connect, systems using IBM DataPower Gateway, and so on.</p>
+
+<h2 id="about-authorization">About authorization</h2>
+
+<p>By default Event Streams requires clients to be authorized to write to topics. The available authentication mechanisms for use with the REST Producer are MutualTLS (<code class="language-plaintext highlighter-rouge">tls</code>) and SCRAM SHA 512 (<code class="language-plaintext highlighter-rouge">scram-sha-512</code>). For more information about these authentication mechanisms, see the information about <a href="../../security/managing-access/">managing access</a>.</p>
+
+<p>The REST producer API requires any authentication credentials be provided with each REST call to grant access to the requested topic. This can be done in one of the following ways:</p>
+<ol>
+  <li><strong>In an HTTP authorization header</strong>: <br />
+You can use this method when you have control over what HTTP headers are sent with each call to the REST producer API. For example, this is the case when the API calls are made by code you control.</li>
+  <li><strong>Mutual TLS authentication</strong> (also referred to as <strong>SSL client authentication</strong> or <strong>SSL mutual authentication</strong>):<br />
+You can use this method when you cannot control what HTTP headers are sent with each REST call. For example, this is the case when you are using third-party software or systems such as CICS events over HTTP.</li>
+</ol>
+
+<p><strong>Note:</strong> You must have Event Streams version 2019.1.1 or later to use the REST API. In addition, you must have Event Streams version 2019.4.1 or later to use the REST API with SSL client authentication.</p>
+
+<h2 id="content-types">Content types</h2>
+
+<p>The following are supported for the value of the <code class="language-plaintext highlighter-rouge">Content-Type</code> header:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">application/octet-stream</code></li>
+  <li><code class="language-plaintext highlighter-rouge">text/plain</code></li>
+  <li><code class="language-plaintext highlighter-rouge">application/json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">text/xml</code></li>
+  <li><code class="language-plaintext highlighter-rouge">application/xml</code></li>
+</ul>
+
+<p>For each content type the message body is copied “as is” into the Kafka record value. Both the <code class="language-plaintext highlighter-rouge">application/octet-stream</code> and <code class="language-plaintext highlighter-rouge">text/plain</code> types must specify a length header to avoid accidental truncation if the HTTP connection drops prematurely. The payload of a request that uses the <code class="language-plaintext highlighter-rouge">application/json</code> header must parse as valid JSON. Otherwise, the request will be rejected.</p>
+
+<p>The Event Streams REST Producer API also supports the following vendor content types:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vnd.ibm-event-streams.json.v1</code> as a synonym for <code class="language-plaintext highlighter-rouge">application/json</code></li>
+  <li><code class="language-plaintext highlighter-rouge">vnd.ibm-event-streams.binary.v1</code> as a synonym for <code class="language-plaintext highlighter-rouge">application/octet-stream</code></li>
+  <li><code class="language-plaintext highlighter-rouge">vnd.ibm-event-streams.text.v1</code> as a synonym for <code class="language-plaintext highlighter-rouge">text/plain</code></li>
+</ul>
+
+<p>These content types can be used to pin applications at the version 1 API level.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>To be able to produce to a topic, ensure you have the following available:</p>
+<ul>
+  <li>The URL of the Event Streams REST Producer API endpoint.</li>
+  <li>The topic you want to produce to.</li>
+  <li>If using a REST Producer API endpoint that requires HTTPS, the Event Streams certificate.</li>
+</ul>
+
+<p>To retrieve the full URL for the Event Streams API endpoint, you can use the OpenShift Container Platform <code class="language-plaintext highlighter-rouge">oc</code> CLI or Event Streams UI.</p>
+
+<p>Using the OpenShift Container Platform <code class="language-plaintext highlighter-rouge">oc</code> CLI:</p>
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Run the following command to list available Event Streams REST Producer API endpoints:<br />
+<code class="language-plaintext highlighter-rouge">oc get routes -n &lt;namespace&gt; --selector app.kubernetes.io/name=rest-producer</code></li>
+  <li>Copy the full URL of the required endpoint from the <code class="language-plaintext highlighter-rouge">HOST/PORT</code> section of the response.</li>
+</ol>
+
+<p>Using the UI:</p>
+<ol>
+  <li>Log in to the Event Streams UI from a supported web browser (see how to determine the <a href="../../../getting-started/logging-in/">login URL</a> for your Event Streams UI).</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right.</li>
+  <li>Go to the <strong>Resources</strong> tab.</li>
+  <li>Scroll down to the <strong>Producer endpoint and credentials</strong> section.</li>
+  <li>Click <strong>Copy Producer API endpoint</strong>.</li>
+</ol>
+
+<p>By default the Event Streams REST Producer API endpoint requires a HTTPS connection. If this has not been disabled for the endpoint the Event Streams certificate must be retrieved. You can use the Event Streams CLI or UI.</p>
+
+<p>Using the CLI:</p>
+<ol>
+  <li>Ensure you have the Event Streams CLI <a href="../../installing/post-installation/#installing-the-event-streams-command-line-interface">installed</a>.</li>
+  <li>Log in to your cluster as an administrator by using the IBM Cloud Pak CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;cluster_address&gt;:&lt;cluster_router_https_port&gt;</code></li>
+  <li>Run the following command to initialize the Event Streams CLI: <code class="language-plaintext highlighter-rouge">cloudctl es init</code>.<br />
+If you have more than one Event Streams instance installed, select the one where the topic you want to produce to is.<br />
+Details of your Event Streams installation are displayed.</li>
+  <li>Download the server certificate for Event Streams:<br />
+<code class="language-plaintext highlighter-rouge">cloudctl es certificates --format pem</code> <br />
+By default, the certificate is written to a file called <code class="language-plaintext highlighter-rouge">es-cert.pem</code>.</li>
+</ol>
+
+<p>Using the UI:</p>
+<ol>
+  <li>Log in to the Event Streams UI from a supported web browser (see how to determine the <a href="../../../getting-started/logging-in/">login URL</a> for your Event Streams UI).</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right.</li>
+  <li>Go to the <strong>Resources</strong> tab.</li>
+  <li>Scroll down to the <strong>Certificates</strong> section.</li>
+  <li>In the <strong>PEM certificate</strong> section, click <strong>Download certificate</strong>.</li>
+</ol>
+
+<p>For information on how to create a topic to produce to, see the information about <a href="../../getting-started/creating-topics/">creating topics</a>.</p>
+
+<h3 id="key-and-message-size-limits">Key and message size limits</h3>
+
+<p>The REST producer API has a configured limit for the key size (default is <code class="language-plaintext highlighter-rouge">4096</code> bytes) and the message size (default is <code class="language-plaintext highlighter-rouge">65536</code> bytes). If the request sent has a larger key or message size than the limits set, the request will be rejected.</p>
+
+<p>You can configure the key and message size limits at the time of <a href="../../installing/configuring/">installation</a> or later as described in <a href="../../administering/modifying-installation/">modifying</a> installation settings. The limits are configured by setting environment variables on the REST Producer component:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spec:
+  restProducer:
+    env:
+      - name: MAX_KEY_SIZE
+        value: "4096"
+      - name: MAX_MESSAGE_SIZE
+        value: "65536"
+</code></pre></div></div>
+
+<p><strong>Important:</strong> Do not set the <code class="language-plaintext highlighter-rouge">MAX_MESSAGE_SIZE</code> to a higher value than the maximum message size that can be received by the Kafka broker or the individual topic (<code class="language-plaintext highlighter-rouge">max.message.bytes</code>). By default, the maximum message size for Kafka brokers is <code class="language-plaintext highlighter-rouge">1000012</code> bytes. If the limit is set for an individual topic, then that setting overrides the broker setting. Any message larger than the maximum limit will be rejected by Kafka.</p>
+
+<p><strong>Note:</strong> Sending large requests to the REST producer increases latency, as it will take the REST producer longer to process the requests.</p>
+
+<h2 id="producing-messages-using-rest-with-http-authorization">Producing messages using REST with HTTP authorization</h2>
+
+<p>Ensure you have gathered all the details required to use the producer API, as described in the <a href="#prerequisites">prerequisites</a>. Before producing you must also create authentication credentials.</p>
+
+<p>To create authentication credentials to use in an HTTP authorization header, you can use the Event Streams CLI or UI.</p>
+
+<p>Using the CLI:</p>
+<ol>
+  <li>Ensure you have the Event Streams CLI <a href="../../installing/post-installation/#installing-the-event-streams-command-line-interface">installed</a>.</li>
+  <li>Log in to your cluster as an administrator by using the IBM Cloud Pak CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;cluster_address&gt;:&lt;cluster_router_https_port&gt;</code></li>
+  <li>Run the following command to initialize the Event Streams CLI: <code class="language-plaintext highlighter-rouge">cloudctl es init</code>.<br />
+If you have more than one Event Streams instance installed, select the one where the topic you want to produce to is.<br />
+Details of your Event Streams installation are displayed.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">kafka-user-create</code> command to create a KafkaUser that can produce to your topic:<br />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudctl es kafka-user-create --topic &lt;topic_name&gt; --name &lt;user_name&gt; --producer --auth-type scram-sha-512
+</code></pre></div>    </div>
+  </li>
+  <li>Follow the steps in <a href="../../security/managing-access/#retrieving-credentials-later">managing access</a> to retrieve the SCRAM SHA 512 username and password.</li>
+</ol>
+
+<p>Using the UI:</p>
+<ol>
+  <li>Log in to the Event Streams UI from a supported web browser (see how to determine the <a href="../../../getting-started/logging-in/">login URL</a> for your Event Streams UI).</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right.</li>
+  <li>Go to the <strong>Resources</strong> tab.</li>
+  <li>Scroll down to the <strong>Producer endpoint and credentials</strong> section, then click <strong>Generate credentials</strong>.</li>
+  <li>Select <strong>SCRAM username and password</strong>, then click <strong>Next</strong>.</li>
+  <li>Fill in a <strong>Credential Name</strong>, this name must be unique.</li>
+  <li>Select <strong>Produce messages, consume messages and create topics and schemas</strong>, then click <strong>Next</strong>.</li>
+  <li>Select <strong>A specific topic</strong> and fill in the topic name, then click <strong>Next</strong>.</li>
+  <li>Click <strong>Next</strong> on the consumer group panel, then <strong>Generate credentials</strong> on the transactional IDs panel using the default settings.</li>
+  <li>Take a copy of either the username and password or Basic authentication token.</li>
+</ol>
+
+<p>You can use the usual languages for making the API call. For example, to use cURL to produce messages to a topic with the producer API using a Basic authentication header, run the <code class="language-plaintext highlighter-rouge">curl</code> command as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">curl -v -X POST -H "Authorization: Basic &lt;auth_token&gt;" -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://&lt;api_endpoint&gt;/topics/&lt;topic_name&gt;/records"</code></p>
+
+<p>Where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;auth_token&gt;</code> is the Basic authentication token you generated earlier.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;api_endpoint&gt;</code> is the full URL copied from the <code class="language-plaintext highlighter-rouge">Producer API endpoint</code> field earlier. Use <code class="language-plaintext highlighter-rouge">http</code> instead of <code class="language-plaintext highlighter-rouge">https</code> if the provided Producer API endpoint has TLS disabled.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;topic_name&gt;</code> is the name of the topic you want to produce messages to.</li>
+  <li><code class="language-plaintext highlighter-rouge">--cacert es-cert.pem</code> can be ommitted if the provided Producer API endpoint has TLS disabled</li>
+</ul>
+
+<p>To use cURL to produce messages to a topic with the producer API using a SCRAM username and password, run the <code class="language-plaintext highlighter-rouge">curl</code> command as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">curl -v -X POST -u &lt;user&gt;:&lt;password&gt; -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://&lt;api_endpoint&gt;/topics/&lt;topic_name&gt;/records"</code></p>
+
+<p>Where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;user&gt;</code> is the SCRAM username provided when generating credentials.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;password&gt;</code> is the SCRAM password retrieved earlier.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;api_endpoint&gt;</code> is the full URL copied from the <code class="language-plaintext highlighter-rouge">Producer API endpoint</code> field earlier.  Use <code class="language-plaintext highlighter-rouge">http</code> instead of <code class="language-plaintext highlighter-rouge">https</code> if the provided Producer API endpoint has TLS disabled.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;topic_name&gt;</code> is the name of the topic you want to produce messages to.</li>
+  <li><code class="language-plaintext highlighter-rouge">--cacert es-cert.pem</code> can be ommitted if the provided Producer API endpoint has TLS disabled</li>
+</ul>
+
+<p>For full details of the API, see the <a href="/event-automation/api" target="_blank">API reference</a>.</p>
+
+<h2 id="producing-messages-using-rest-with-mutual-tls-authentication">Producing messages using REST with Mutual TLS authentication</h2>
+
+<p>Ensure you have gathered all the details required to use the producer API, as described in the <a href="#prerequisites">prerequisites</a>. Before producing you must also create TLS credentials.</p>
+
+<p>To create authentication credentials to use with Mutual TLS authentication, you can use the Event Streams CLI or UI.</p>
+
+<p>Using the CLI:</p>
+<ol>
+  <li>Ensure you have the Event Streams CLI <a href="../../installing/post-installation/#installing-the-event-streams-command-line-interface">installed</a>.</li>
+  <li>Log in to your cluster as an administrator by using the IBM Cloud Pak CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;cluster_address&gt;:&lt;cluster_router_https_port&gt;</code></li>
+  <li>Run the following command to initialize the Event Streams CLI: <code class="language-plaintext highlighter-rouge">cloudctl es init</code>.<br />
+If you have more than one Event Streams instance installed, select the one where the topic you want to produce to is.<br />
+Details of your Event Streams installation are displayed.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">kafka-user-create</code> command to create a KafkaUser that can produce to your topic:<br />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudctl es kafka-user-create --topic &lt;topic_name&gt; --name &lt;user_name&gt; --producer --auth-type tls
+</code></pre></div>    </div>
+  </li>
+  <li>Follow the steps in <a href="../../security/managing-access/#retrieving-credentials-later">managing access</a> to TLS certificates and keys.</li>
+</ol>
+
+<p>Using the UI:</p>
+<ol>
+  <li>Log in to the Event Streams UI from a supported web browser (see how to determine the <a href="../../../getting-started/logging-in/">login URL</a> for your Event Streams UI).</li>
+  <li>Click <strong>Connect to this cluster</strong> on the right.</li>
+  <li>Go to the <strong>Resources</strong> tab.</li>
+  <li>Scroll down to the <strong>Producer endpoint and credentials</strong> section, then click <strong>Generate credentials</strong>.</li>
+  <li>Select <strong>Mutual TLS certificate</strong>, then click <strong>Next</strong>.</li>
+  <li>Fill in a <strong>Credential Name</strong>, this name must be unique.</li>
+  <li>Select <strong>Produce messages, consume messages and create topics and schemas</strong>, then click <strong>Next</strong>.</li>
+  <li>Select <strong>A specific topic</strong> and fill in the topic name, then click <strong>Next</strong>.</li>
+  <li>Click <strong>Next</strong> on the consumer group panel, then <strong>Generate credentials</strong> on the transactional IDs panel using the default settings.</li>
+  <li>Click <strong>Download certificates</strong> and unzip the downloaded ZIP archive containing the TLS certificates and keys.</li>
+</ol>
+
+<p>For some systems, for example CICS, you need to download and import the client CA certificate into your truststore. The client CA certificate can be downloaded using the OpenShift Container Platform <code class="language-plaintext highlighter-rouge">oc</code> and Event Streams CLI:</p>
+<ol>
+  <li>Log in to the Event Streams UI from a supported web browser (see how to determine the <a href="../../../getting-started/logging-in/">login URL</a> for your Event Streams UI).</li>
+  <li>Run the following command to view details of the KafkaUser you want the client CA certificate for: <br />
+<code class="language-plaintext highlighter-rouge">cloudctl es kafka-user &lt;user-name&gt;</code></li>
+  <li>Note down the name of the secret associated with the KafkaUser</li>
+  <li>Run the following <code class="language-plaintext highlighter-rouge">oc</code> command to get the client CA certificate from the secret found in the previous command: <br />
+<code class="language-plaintext highlighter-rouge">oc extract secret/&lt;user-secret-name&gt; --keys=ca.crt --to=- &gt; ca.crt</code></li>
+</ol>
+
+<p>If you are using Java keystores, the client certificate can be imported by using the <code class="language-plaintext highlighter-rouge">keytool -importcert ...</code> command as described in the <a href="https://www.ibm.com/support/knowledgecenter/en/SSYKE2_7.0.0/com.ibm.java.security.component.70.doc/security-component/keytoolDocs/importcert.html" target="_blank">IBM SDK, Java Technology Edition documentation</a>.</p>
+
+<p>Some systems require the client certificate and private key to be combined into one PKCS12 file (with extension <code class="language-plaintext highlighter-rouge">.p12</code> or <code class="language-plaintext highlighter-rouge">.pfx</code>). A PKCS12 file and associated password file is included in the KafkaUser secret and the ZIP file downloaded from the Event Streams UI.</p>
+
+<p>You can use the usual languages for making the API call. Consult the documentation for your system to understand how to specify the client certificate and private key for the outgoing REST calls to Event Streams. For example, to use cURL to produce messages to a topic with the producer API, run the <code class="language-plaintext highlighter-rouge">curl</code> command as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">curl -v -X POST -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem --key user.key --cert user.crt "https://&lt;api_endpoint&gt;/topics/&lt;topic_name&gt;/records"</code></p>
+
+<p>Where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;api_endpoint&gt;</code> is the full URL copied from the <code class="language-plaintext highlighter-rouge">Producer API endpoint</code> field earlier.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;topic_name&gt;</code> is the name of the topic you want to produce messages to.</li>
+  <li><code class="language-plaintext highlighter-rouge">es-cert.pem</code> is the Event Streams server certificate downloaded as part of the <a href="#prerequisites">prerequisites</a></li>
+  <li><code class="language-plaintext highlighter-rouge">user.key</code> is the private key of the user downloaded from the UI or read from the KafkaUser secret</li>
+  <li><code class="language-plaintext highlighter-rouge">user.crt</code> is the user certificate that contains the public key of the user downloaded from the UI or read from the KafkaUser secret</li>
+</ul>
+
+<p>For example, the steps to configure a CICS URIMAP as an HTTP client is described in the  <a href="https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/web/dfhtl_urioutbound.html" target="_blank">CICS Transaction Server documentation</a>. In this case, load the client certificate and private key, together with the Event Streams server certificate into your RACF key ring. When defining the URIMAP:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host</code> is the client authentication API endpoint obtained as part of the <a href="#prerequisites">prerequisites</a>, without the leading <code class="language-plaintext highlighter-rouge">https://</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Path</code> is <code class="language-plaintext highlighter-rouge">/topics/&lt;topic-name&gt;/records</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Certificate</code> is the label given to the client certificate when it was loaded into the key ring.</li>
+</ul>
+
+<p>For full details of the API, see the <a href="/event-automation/api" target="_blank">API reference</a>.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#about-authorization">About authorization</a></li>
+  <li><a href="#content-types">Content types</a></li>
+  <li><a href="#prerequisites">Prerequisites</a>
+    <ul>
+      <li><a href="#key-and-message-size-limits">Key and message size limits</a></li>
+    </ul>
+  </li>
+  <li><a href="#producing-messages-using-rest-with-http-authorization">Producing messages using REST with HTTP authorization</a></li>
+  <li><a href="#producing-messages-using-rest-with-mutual-tls-authentication">Producing messages using REST with Mutual TLS authentication</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_10.5/georeplication/failover/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.5/georeplication/failover/" class="pagination--pager" title="Previous Item: Switching clusters
+">Previous</a>
+          <h2 class="titlePreview">Switching clusters
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_10.5/connecting/connectors/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_10.5/connecting/connectors/" class="pagination--pager" title="Next Item: Kafka Connect and connectors
+">Next</a>
+          <h2 class="titlePreview">Kafka Connect and connectors
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

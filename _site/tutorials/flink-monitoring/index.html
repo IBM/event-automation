@@ -1,0 +1,747 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Monitoring Flink with Prometheus and Grafana - IBM Event Automation</title>
+<meta name="description" content="Find out how to monitor flink with Prometheus and setup Grafana.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/tutorials/flink-monitoring/" />
+<meta property="og:title" content="Tutorials | Monitoring Flink with Prometheus and Grafana" />
+<meta property="og:description" content="Find out how to monitor flink with Prometheus and setup Grafana." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Monitoring Flink with Prometheus and Grafana" />
+
+
+
+
+  <meta property="og:description" content="Find out how to monitor flink with Prometheus and setup Grafana.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/tutorials/flink-monitoring/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+
+    
+  
+
+
+
+  <div class="mainContent">
+    
+      
+      
+      <div class="subMenu backMenu"> 
+    <a href="
+        http://localhost:4000/event-automation/tutorials
+      "><img alt="" role="presentation" src="http://localhost:4000/event-automation/assets/images/icons/previous.svg" />
+        Back to tutorials
+      </a>
+  </div>
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Monitoring Flink with Prometheus and Grafana
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Prometheus and Grafana can be used to monitor a Flink instance by showing key metrics on dashboards and setting up alerts that trigger when the cluster is not functioning normally. Monitoring Flink is essential for ensuring the stability, performance, and reliability of Flink jobs.</p>
+
+<p>To set up Prometheus for your Flink instance and visualize the collected metrics in Grafana dashboards, complete the following tasks as described in the following sections:</p>
+
+<ol>
+  <li>Integrate Flink with Prometheus.</li>
+  <li>Install and configure Grafana with Prometheus.</li>
+</ol>
+
+<h2 id="integrating-flink-with-prometheus">Integrating Flink with Prometheus</h2>
+
+<p>Before you can configure Grafana dashboards to view the metrics, integrate your Flink instance with Prometheus as follows.</p>
+
+<ol>
+  <li>
+    <p>Ensure you have <a href="/event-automation/ep/installing/installing/#installing-the-ibm-operator-for-apache-flink">installed</a> the IBM Operator for Apache Flink on the Red Hat OpenShift Container Platform. Also ensure you have installed the Prometheus stack on your cluster by using the <code class="language-plaintext highlighter-rouge">kube-prometheus</code> project. For more information, see the <a href="https://github.com/prometheus-operator/kube-prometheus" target="_blank">kube-prometheus GitHub repository</a>.</p>
+  </li>
+  <li>
+    <p>Create the following ConfigMap in the <code class="language-plaintext highlighter-rouge">openshift-monitoring</code> namespace if it does not yet exist. If a ConfigMap already exist, ensure that the configuration is similar to the following:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-monitoring-config</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">openshift-monitoring</span>
+ <span class="na">data</span><span class="pi">:</span>
+   <span class="s">config.yaml</span><span class="pi">:</span> <span class="pi">|</span>
+     <span class="s">enableUserWorkload: true</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Change the existing <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> to include the following metrics parameters:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">flinkConfiguration</span><span class="pi">:</span>
+     <span class="s">metrics.reporter.prom.class</span><span class="pi">:</span> <span class="s">org.apache.flink.metrics.prometheus.PrometheusReporter</span>
+     <span class="s">metrics.reporter.prom.factory.class</span><span class="pi">:</span> <span class="s">org.apache.flink.metrics.prometheus.PrometheusReporterFactory</span>
+     <span class="s">metrics.reporter.prom.port</span><span class="pi">:</span> <span class="s">9250-9260</span>
+     <span class="s">metrics.reporters</span><span class="pi">:</span> <span class="s">prom</span>
+     <span class="s">taskmanager.network.detailed-metrics</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div>    </div>
+
+    <p><strong>Important:</strong> The <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> must be deployed in the namespace where the Flink operator is installed.</p>
+  </li>
+  <li>
+    <p>Deploy the <code class="language-plaintext highlighter-rouge">PodMonitor</code> resource in the same namespace where <code class="language-plaintext highlighter-rouge">FlinkDeployment</code> instance is deployed:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">monitoring.coreos.com/v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">PodMonitor</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">labels</span><span class="pi">:</span>
+     <span class="na">release</span><span class="pi">:</span> <span class="s">prometheus</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">flink-pod-monitor</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">namespaceSelector</span><span class="pi">:</span>
+     <span class="na">matchNames</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">flink</span>
+   <span class="na">podMetricsEndpoints</span><span class="pi">:</span>
+     <span class="pi">-</span> <span class="na">path</span><span class="pi">:</span> <span class="s">/</span>
+       <span class="na">relabelings</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="na">action</span><span class="pi">:</span> <span class="s">replace</span>
+           <span class="na">replacement</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$1:9250'</span>
+           <span class="na">sourceLabels</span><span class="pi">:</span>
+             <span class="pi">-</span> <span class="s">__meta_kubernetes_pod_ip</span>
+           <span class="na">targetLabel</span><span class="pi">:</span> <span class="s">__address__</span>
+   <span class="na">selector</span><span class="pi">:</span>
+     <span class="na">matchLabels</span><span class="pi">:</span>
+       <span class="na">type</span><span class="pi">:</span> <span class="s">flink-native-kubernetes</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>The metrics sent by Flink to Prometheus are now visible in OpenShift Container Platform. To verify that the data is being made available, ensure that the data is visible by clicking <strong>Observe &gt; Metrics</strong>.</p>
+
+<h2 id="install-and-configure-grafana-with-prometheus-metrics">Install and configure Grafana with Prometheus metrics</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>Ensure you have the following set up:</p>
+
+<ul>
+  <li>The IBM Operator for Apache Flink <a href="/event-automation/ep/installing/installing/#installing-the-ibm-operator-for-apache-flink">installed</a>.</li>
+  <li>The <a href="#integrating-flink-with-prometheus">integration of Flink with Prometheus</a> completed.</li>
+</ul>
+
+<h3 id="installing-grafana">Installing Grafana</h3>
+
+<p>Install the Grafana operator and instance in the <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code> namespace, and configuring the Grafana service account as described in the following sections.</p>
+
+<h4 id="installing-the-grafana-operator">Installing the Grafana operator</h4>
+
+<p>To install the operator by using the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>OperatorHub</strong> to open the <strong>OperatorHub</strong> dashboard.</li>
+  <li>Select the project you want to deploy the  instance in.</li>
+  <li>In the <strong>All Items</strong> search box enter <code class="language-plaintext highlighter-rouge">Grafana</code> to locate the operator title.</li>
+  <li>Click the <strong>Grafana Operator provided by Red Hat</strong> tile to open the install side panel.</li>
+  <li>Click the <strong>Install</strong> button to open the <strong>Create Operator Subscription</strong> dashboard.</li>
+  <li>Select the installation mode as <strong>A specific namespace on the cluster</strong>, select the target namespace as <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code>.</li>
+  <li>
+    <p>Click <strong>Subscribe</strong> to begin the installation.</p>
+
+    <p>The installation can take a few minutes to complete.</p>
+  </li>
+</ol>
+
+<h4 id="installing-a-grafana-instance">Installing a Grafana instance</h4>
+
+<p>To install a Grafana instance through the OpenShift Container Platform web console, do the following:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>
+    <p>Expand the <strong>Project</strong> dropdown and select the project where you installed Grafana operator.</p>
+
+    <p><strong>Note:</strong> If the operator is not shown, it is either not installed or not available for the selected namespace.</p>
+  </li>
+  <li>In the <strong>Operator Details</strong> dashboard, click the <strong>Grafana</strong> tab.</li>
+  <li>Click the <strong>Create Grafana</strong> button to open the <strong>Create Grafana</strong> panel. You can use this panel to define an <code class="language-plaintext highlighter-rouge">Grafana</code> custom resource.</li>
+  <li>
+    <p>In the <strong>YAML view</strong>, add the following YAML:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">integreatly.org/v1alpha1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Grafana</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">example-grafana</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">test01</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">config</span><span class="pi">:</span>
+     <span class="na">auth</span><span class="pi">:</span>
+       <span class="na">disable_signout_menu</span><span class="pi">:</span> <span class="no">true</span>
+     <span class="s">auth.anonymous</span><span class="pi">:</span>
+       <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+     <span class="na">log</span><span class="pi">:</span>
+       <span class="na">level</span><span class="pi">:</span> <span class="s">warn</span>
+       <span class="na">mode</span><span class="pi">:</span> <span class="s">console</span>
+     <span class="na">security</span><span class="pi">:</span>
+       <span class="na">admin_password</span><span class="pi">:</span> <span class="s">secret</span>
+       <span class="na">admin_user</span><span class="pi">:</span> <span class="s">root</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Click <strong>Create</strong>.</li>
+</ol>
+
+<h4 id="configuring-the-grafana-service-account">Configuring the Grafana service account</h4>
+<p>To configure the Grafana service account, do the following:</p>
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>
+    <p>Configure role-based access control (RBAC) for the Grafana service account:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc adm policy add-cluster-role-to-user cluster-monitoring-view <span class="nt">-z</span> grafana-serviceaccount <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The bearer API token for this service account is used to authenticate access to Prometheus in the <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code> namespace. The following command will display this token.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc serviceaccounts get-token grafana-serviceaccount <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+
+    <p>For new clusters in OpenShift 4.11 and above, a service account token secret can be created as follows:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc create token grafana-serviceaccount <span class="nt">--duration</span><span class="o">=</span>8760h <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+
+    <p>Alternatively, In the OpenShift web console, expand the <code class="language-plaintext highlighter-rouge">grafana-serviceaccount</code> service account in the <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code> namespace and copy the bearer API token from the secret. This bearer API token will be used in the following sections.</p>
+  </li>
+</ol>
+
+<h3 id="configuring-a-grafana-data-source">Configuring a Grafana data source</h3>
+
+<p>Create and configure a Grafana data source for Prometheus to integrate the Grafana with Prometheus. To create a Grafana data source, follow these steps.</p>
+
+<ol>
+  <li>
+    <p>Get the Prometheus API URL by running the following command:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc get route <span class="nt">-n</span> openshift-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a <code class="language-plaintext highlighter-rouge">GrafanaDataSource</code> custom resource in the namespace <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code>:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">integreatly.org/v1alpha1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">GrafanaDataSource</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus-grafanadatasource</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">openshift-user-workload-monitoring</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">datasources</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">access</span><span class="pi">:</span> <span class="s">proxy</span>
+     <span class="na">editable</span><span class="pi">:</span> <span class="no">true</span>
+     <span class="na">isDefault</span><span class="pi">:</span> <span class="no">true</span>
+     <span class="na">jsonData</span><span class="pi">:</span>
+       <span class="na">httpHeaderName1</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Authorization'</span>
+       <span class="na">timeInterval</span><span class="pi">:</span> <span class="s">5s</span>
+       <span class="na">tlsSkipVerify</span><span class="pi">:</span> <span class="no">true</span>
+     <span class="na">name</span><span class="pi">:</span> <span class="s">Prometheus</span>
+     <span class="na">secureJsonData</span><span class="pi">:</span>
+       <span class="na">httpHeaderValue1</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Bearer</span><span class="nv"> </span><span class="s">&lt;token&gt;'</span>
+     <span class="na">type</span><span class="pi">:</span> <span class="s">prometheus</span>
+     <span class="na">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">&lt;prometheus-thanos-querier-url&gt;'</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus-grafanadatasource.yaml</span>
+</code></pre></div>    </div>
+
+    <p>Where <code class="language-plaintext highlighter-rouge">&lt;token&gt;</code> is the bearer API token that you obtained earlier, and <code class="language-plaintext highlighter-rouge">&lt;prometheus-thanos-querier-url&gt;</code> is the Prometheus API URL.</p>
+  </li>
+  <li>
+    <p>Create a route by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc expose svc/grafana-service <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Retrieve the Grafana credentials from the <code class="language-plaintext highlighter-rouge">grafana-admin-credentials</code> secret in the <code class="language-plaintext highlighter-rouge">openshift-user-workload-monitoring</code> namespace.</p>
+  </li>
+  <li>
+    <p>In the OpenShift web console, go to <strong>Workload &gt; Networking &gt; Routes</strong> and get the Grafana URL.</p>
+  </li>
+</ol>
+
+<p>You can use this Grafana URL to create dashboards.</p>
+
+<h2 id="access-the-prometheus-instance-from-an-external-grafana-instance">Access the Prometheus instance from an external Grafana instance</h2>
+
+<p>If you have configured an external Grafana instance and want to access your Prometheus instance from the external Grafana instance, follow these steps.</p>
+
+<h3 id="prerequisites-1">Prerequisites</h3>
+
+<p>Ensure you have the following set up:</p>
+
+<ul>
+  <li>Ensure you have <a href="/event-automation/ep/installing/installing/#installing-the-ibm-operator-for-apache-flink">installed</a> the IBM Operator for Apache Flink on the Red Hat OpenShift Container Platform. Also ensure you have installed the Prometheus stack on your cluster by using the <code class="language-plaintext highlighter-rouge">kube-prometheus</code> project. For more information, see the <a href="https://github.com/prometheus-operator/kube-prometheus" target="_blank">kube-prometheus GitHub repository</a>.</li>
+  <li><a href="#integrating-flink-with-prometheus">Integration of Flink with Prometheus</a> is completed.</li>
+</ul>
+
+<h3 id="configuring-integration-between-external-grafana-and-prometheus">Configuring integration between external Grafana and Prometheus</h3>
+
+<p>To enable a cluster to be monitored by an external Grafana, configure the cluster as follows.</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>
+    <p>Create a service account for Grafana in the <strong>openshift-user-workload-monitoring</strong> namespace.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc create serviceaccount grafana-serviceaccount <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the same namespace, add the <strong>cluster-monitoring-view</strong> role to the Grafana service account.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc adm policy add-cluster-role-to-user cluster-monitoring-view <span class="nt">-z</span> grafana-serviceaccount <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Go to the <strong>openshift-monitoring</strong> namespace, search <code class="language-plaintext highlighter-rouge">thanos-querier</code>, and obtain the endpoint URL.</p>
+  </li>
+  <li>
+    <p>Obtain the Grafana service account token that is used in the configuration of the external Grafana data source:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc sa get-token grafana-serviceaccount <span class="nt">-n</span> openshift-user-workload-monitoring
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Log in to Grafana and in the <strong>Settings &gt; Data Sources</strong>, create a new Grafana data source (or change the existing prometheus data source).</p>
+  </li>
+  <li>
+    <p>In the <strong>HTTP</strong> section, paste the endpoint URL that is obtained from step 3.</p>
+  </li>
+  <li>
+    <p>If you are using self-signed certificates, enable the <strong>Skip TLS Verify</strong> flag in the <strong>Auth</strong> section.</p>
+  </li>
+  <li>
+    <p>In the <strong>Custom HTTP Headers</strong> section, add a header called <code class="language-plaintext highlighter-rouge">Authorization</code> and in the <strong>Value</strong> field, enter <strong>Bearer <code class="language-plaintext highlighter-rouge">&lt;token&gt;</code></strong>, where <code class="language-plaintext highlighter-rouge">&lt;token&gt;</code> is the bearer API token you obtained earlier.</p>
+  </li>
+  <li>Click <strong>Save &amp; test</strong>.</li>
+</ol>
+
+<p>Grafana data source is configured and you can create dashboards based on your requirement.</p>
+
+<h2 id="creating-a-dashboard">Creating a dashboard</h2>
+
+<p>Follow the instructions in the <a href="https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard" target="_blank">Grafana documentation</a> to create a dashboard.</p>
+
+<p><img src="/event-automation/images/Flink_grafana.png" alt="Dashboard example of Grafana." title="Diagram that shows the dashboard for Grafana with Flink" /></p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#integrating-flink-with-prometheus">Integrating Flink with Prometheus</a></li>
+  <li><a href="#install-and-configure-grafana-with-prometheus-metrics">Install and configure Grafana with Prometheus metrics</a>
+    <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#installing-grafana">Installing Grafana</a></li>
+      <li><a href="#configuring-a-grafana-data-source">Configuring a Grafana data source</a></li>
+    </ul>
+  </li>
+  <li><a href="#access-the-prometheus-instance-from-an-external-grafana-instance">Access the Prometheus instance from an external Grafana instance</a>
+    <ul>
+      <li><a href="#prerequisites-1">Prerequisites</a></li>
+      <li><a href="#configuring-integration-between-external-grafana-and-prometheus">Configuring integration between external Grafana and Prometheus</a></li>
+    </ul>
+  </li>
+  <li><a href="#creating-a-dashboard">Creating a dashboard</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

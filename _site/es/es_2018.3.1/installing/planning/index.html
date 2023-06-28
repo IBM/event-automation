@@ -1,0 +1,2332 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Planning for installation - IBM Event Automation</title>
+<meta name="description" content="Planning your installation of Event Streams.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_2018.3.1/installing/planning/" />
+<meta property="og:title" content="Event Streams | Planning for installation" />
+<meta property="og:description" content="Planning your installation of Event Streams." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Planning for installation" />
+
+
+
+
+  <meta property="og:description" content="Planning your installation of Event Streams.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_2018.3.1/installing/planning/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">2018.3.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">2018.3.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/planning/" onclick="openVersion('/event-automation/es/installing/planning/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/planning/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/planning/" onclick="openVersion('/event-automation/es/es_11.1/installing/planning/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/planning/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/planning/" onclick="openVersion('/event-automation/es/es_11.0/installing/planning/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/planning/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/planning/" onclick="openVersion('/event-automation/es/es_10.5/installing/planning/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/planning/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/planning/" onclick="openVersion('/event-automation/es/es_10.4/installing/planning/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/planning/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/planning/" onclick="openVersion('/event-automation/es/es_10.3/installing/planning/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/planning/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/planning/" onclick="openVersion('/event-automation/es/es_10.2/installing/planning/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/planning/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/planning/" onclick="openVersion('/event-automation/es/es_10.1/installing/planning/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/planning/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/planning/" onclick="openVersion('/event-automation/es/es_10.0/installing/planning/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/planning/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/planning/" onclick="openVersion('/event-automation/es/es_2019.4/installing/planning/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/planning/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/planning/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/planning/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/planning/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/planning/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/planning/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/planning/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/planning/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/planning/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/planning/" class="versionPill active">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/prerequisites/" class="">Pre-requisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/planning/" class="active">Planning for installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/capacity-planning/" class="">Capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/installing/" class="">Installing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/migrating/" class="">Migrating from Community Edition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/generating-starter-app/" class="">Generating a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/client/" class="">Creating Kafka Java client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/georeplication/health/" class="">Monitoring and managing of geo-replication</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/modifying-configs/" class="">Modifying Kafka broker configurations</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/helm-upgrade-command/" class="">Running Helm upgrade commands</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/diagnosing-installation-issues/" class="">Diagnosing installation issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cleanup-uninstall/" class="">Full cleanup after uninstallation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/pod-timeout-error/" class="">ConsumerTimeoutException when pods available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/no-image-policy/" class="">Chart deployment fails with 'no ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/image-policy-missing-repository/" class="">Chart deployment fails with 'no matching repositories in the ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/no-helm-release-is-created/" class="">Chart deployment starts but no helm release is created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/messages-page-blank/" class="">The Messages page is blank</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/kafka-connection-issue/" class="">Unable to connect to Kafka cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/georeplication-connect-error/" class="">Geo-replication fails to start</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/pods-apparmor-blocked/" class="">Pods fail to start, status is blocked</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/client-connect-error/" class="">Kafka client apps unable to connect to cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2018.3.1/troubleshooting/failed-to-read-log/" class="">Failed to read 'log header' errors in Kafka logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Planning for installation
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Consider the following when planning your installation.</p>
+
+<h2 id="event-streams-community-edition">Event Streams Community Edition</h2>
+
+<p>The Event Streams Community Edition is a free version intended for trial and demonstration purposes. It can be installed and used without charge.</p>
+
+<p>You can <a href="../trying-out/">install the Community Edition</a> from the catalog included with IBM Cloud Private.</p>
+
+<h2 id="event-streams">Event Streams</h2>
+
+<p>Event Streams is the paid-for version intended for enterprise use, and includes full IBM support and additional features such as geo-replication.</p>
+
+<p>You can install Event Streams by downloading the image from IBM Passport Advantage, and making it available in the IBM Cloud Private catalog.</p>
+
+<p><strong>Note:</strong> If you do not have IBM Cloud Private already, Event Streams includes entitlement to IBM Cloud Private Foundation which you can download from IBM Passport Advantage as well, and <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/installing/install_containers.html">install as a prerequisite</a>. IBM Cloud Private Foundation can only be used to deploy Event Streams. No other service can be deployed without <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/getting_started/bundles.html">upgrading IBM Cloud Private</a>.</p>
+
+<!--
+**Note:** Event Streams Foundation is also available for embedding in IBM products.
+-->
+
+<h2 id="persistent-storage">Persistent storage</h2>
+
+<p>Persistence is not enabled by default, so no persistent volumes are required. Enable persistence if you want messages in topics and configuration settings to be retained in the event of a restart. You should enable persistence for production use and whenever you want your data to survive a restart.</p>
+
+<p>If you plan to have persistent volumes, <a href="../capacity-planning/">consider the disk space</a> required for storage.</p>
+
+<p>Also, as both Kafka and ZooKeeper rely on fast write access to disks, ensure you use separate dedicated disks for storing Kafka and ZooKeeper data. For more information, see the disks and filesystems guidance in the <a href="https://kafka.apache.org/documentation/#diskandfs" target="_blank">Kafka documentation</a>, and the deployment guidance in the <a href="https://zookeeper.apache.org/doc/r3.1.2/zookeeperAdmin.html#sc_designing" target="_blank">ZooKeeper documentation</a>.</p>
+
+<p>If persistence is enabled, each Kafka broker and ZooKeeper server requires one physical volume each. You either need to create a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static">persistent volume</a> for each Kafka broker and ZooKeeper server, or specify a storage class that supports <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic">dynamic provisioning</a>. Kafka and ZooKeeper can use different storage classes to control how physical volumes are allocated.</p>
+
+<p>See the IBM Cloud Private documentation for information about <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_cluster/pv_land.html">creating persistent volumes</a> and <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_cluster/sc_land.html">creating a storage class</a> that supports dynamic provisioning. For both, you must have the IBM Cloud Private Cluster administrator role.</p>
+
+<p><strong>Important:</strong> When creating persistent volumes to use with Event Streams, ensure you set <strong>Access mode</strong> to <code class="language-plaintext highlighter-rouge">ReadWriteOnce</code>.</p>
+
+<p>More information about persistent volumes and the system administration steps required before installing Event Streams can be found in the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Kubernetes documentation</a>.</p>
+
+<p>If these persistent volumes are to be created manually, this must be done by the system administrator before installing Event Streams. The administrator will add these to a central pool before the Helm chart can be installed. The installation will then claim the required number of persistent volumes from this pool. For manual creation, <strong>dynamic provisioning</strong> must be disabled when <a href="../configuring/#enabling-persistent-storage">configuring your installation</a>. It is up to the administrator to provide appropriate storage to contain these physical volumes.</p>
+
+<p>If these persistent volumes are to be created automatically at the time of installation, the system administrator must enable support for this prior to installing Event Streams. For automatic creation, enable <strong>dynamic provisioning</strong> when <a href="../configuring/#enabling-persistent-storage">configuring your installation</a>, and provide the storage class names to define the persistent volumes that get allocated to the deployment.</p>
+
+<p><strong>Important:</strong> If membership of a specific group is required to access the file system used for persistent volumes, ensure you specify in the <a href="../es/configuring#global-install-settings"><strong>File system group ID</strong></a> field the GID of the group that owns the file system.</p>
+
+<h2 id="configmap-for-kafka-static-configuration">ConfigMap for Kafka static configuration</h2>
+
+<p>You can choose to create a ConfigMap to specify Kafka configuration settings for your Event Streams installation. This is optional.</p>
+
+<p>You can use a ConfigMap to override default Kafka configuration settings <a href="../configuring/#specifying-a-configmap-for-kafka-configuration">when installing</a> Event Streams.</p>
+
+<p>You can also use a ConfigMap to modify read-only Kafka broker settings for an existing Event Streams installation. Read-only parameters are defined by Kafka as settings that require a broker restart. <a href="../../administering/modifying-configs/">Find out more</a> about the Kafka configuration options and how to modify them for an existing installation.</p>
+
+<p>To create a ConfigMap:</p>
+<ol>
+  <li>Log in to your cluster as an administrator by using the IBM Cloud Private CLI:<br /> <code class="language-plaintext highlighter-rouge">cloudctl login -a https://&lt;Cluster Master Host&gt;:&lt;Cluster Master API Port&gt;</code><br />The master host and port for your cluster are set during the installation of IBM Cloud Private.<br />
+  <strong>Note:</strong> To create a ConfigMap, you must have the Operator, Administrator, or Cluster administrator role in IBM Cloud Private.</li>
+  <li>To create a ConfigMap from an existing Kafka <code class="language-plaintext highlighter-rouge">server.properties</code> file, use the following command (where namespace is where you install Event Streams):<br />
+  <code class="language-plaintext highlighter-rouge">kubectl -n &lt;namespace_name&gt; create configmap &lt;configmap_name&gt; --from-env-file=&lt;full_path/server.properties&gt;</code></li>
+  <li>To create a blank ConfigMap for future configuration updates, use the following command:<br />
+  <code class="language-plaintext highlighter-rouge">kubectl -n &lt;namespace_name&gt; create configmap &lt;configmap_name&gt;</code></li>
+</ol>
+
+<h2 id="geo-replication">Geo-replication</h2>
+
+<p>You can deploy multiple instances of Event Streams and use the included geo-replication feature to synchronize data between your clusters. Geo-replication helps maintain service availability.</p>
+
+<p><a href="../../georeplication/about/">Find out more</a> about geo-replication.</p>
+
+<p><a href="../configuring/#setting-geo-replication-nodes">Prepare your destination cluster</a> by setting the number of geo-replication worker nodes during installation.</p>
+
+<p><strong>Note:</strong> Geo-replication is only available in the paid-for version of Event Streams (not available in the Community Edition).</p>
+
+<h2 id="connecting-clients">Connecting clients</h2>
+
+<p>By default, Kafka client applications connect to the IBM Cloud Private master node directly without any configuration required. If you want clients to connect through a different route, <a href="../configuring/#configuring-external-access">specify the target endpoint</a> host name or IP address when configuring your installation.</p>
+
+<h2 id="sizing-considerations">Sizing considerations</h2>
+
+<p>Consider the capacity requirements of your deployment before installing Event Streams. See the <a href="../../administering/scaling/">information about scaling</a> for guidance. You can modify the capacity settings for existing installations as well.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>IBM Cloud Private uses the Elastic Stack for managing logs (Elasticsearch, Logstash, and Kibana products). Event Streams logs are written to <code class="language-plaintext highlighter-rouge">stdout</code> and are picked up by the default Elastic Stack setup.</p>
+
+<p>Consider setting up the IBM Cloud Private logging for your environment to help resolve problems with your deployment and aid general troubleshooting. See the IBM Cloud Private documentation <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_metrics/logging_elk.html">about logging</a> for information about the built-in Elastic Stack.</p>
+
+<p>As part of setting up the IBM Cloud Private logging for Event Streams, ensure you consider the following:</p>
+<ul>
+  <li><a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_metrics/capacity_planning.html">Capacity planning guidance</a>: set up your system to have sufficient resources towards the capture, storage, and management of logs.</li>
+  <li><a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.1/manage_metrics/logging_elk.html#curator-usage-in-ibm-cloud-private">Log retention</a>: The logs captured using the Elastic Stack persist during restarts. However, logs older than a day are deleted at midnight by default to prevent log data from filling up available storage space. Consider changing the log data retention in line with your capacity planning. Longer retention of logs provides access to older data that might help troubleshoot problems.</li>
+</ul>
+
+<p>You can use log data to investigate any problems affecting your <a href="../../administering/deployment-health/">system health</a>.</p>
+
+<h2 id="monitoring-kafka-clusters">Monitoring Kafka clusters</h2>
+
+<p>Event Streams uses the IBM Cloud Private monitoring service to provide you with information about the health of your Event Streams Kafka clusters. You can view data for the last 1 hour, 1 day, 1 week, or 1 month in the metrics charts.</p>
+
+<p><strong>Important:</strong> By default, the metrics data used to provide monitoring information is only stored for a day. Modify the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/manage_metrics/monitoring_service.html?view=kc#promlogs" target="_blank">time period</a> for metric retention to be able to view monitoring data for longer time periods, such as 1 week or 1 month.</p>
+
+<p>For more information about keeping an eye on the health of your Kafka cluster, see the <a href="../../administering/cluster-health/">monitoring Kafka</a> topic.</p>
+
+<h2 id="licensing">Licensing</h2>
+
+<p>You require a license to use Event Streams. Licensing is based on a Virtual Processing Cores (VPC) metric.</p>
+
+<p>An Event Streams deployment consists of a number of different types of containers, as described in the <a href="../prerequisites/#helm-resource-requirements">components of the helm chart</a>. To use Event Streams you must have a license for all of the virtual cores that are available to all Kafka and Geo-replicator containers deployed. All other container types are pre-requisite components that are supported as part of Event Streams, and do not require additional licenses.</p>
+
+<p>The number of virtual cores available to each Kafka and geo-replicator container can be specified <a href="../configuring/#kafka-broker-settings">during installation</a> or <a href="../../administering/modifying-configs/">modified later</a>.</p>
+
+<p>To check the number of cores, use the IBM Cloud Private metering report as follows:</p>
+
+<ol>
+  <li>Log in to your IBM Cloud Private cluster management console from a supported web browser by using the URL <code class="language-plaintext highlighter-rouge">https://&lt;Cluster Master Host&gt;:&lt;Cluster Master API Port&gt;</code>. The master host and port for your cluster are set during the installation of IBM Cloud Private. For more information, see the IBM Cloud Private <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/cfc_gui.html" target="_blank">documentation</a>.</li>
+  <li>From the navigation menu, click <strong>Platform &gt; Metering</strong>.</li>
+  <li>Select your namespace, and select <strong>Event Streams (Chargeable)</strong>.</li>
+  <li>Click <strong>Containers</strong>.</li>
+  <li>Go to the <strong>Containers</strong> section on the right, and ensure you select the <strong>Usage</strong> tab.</li>
+  <li>Select <strong>Capped Processors</strong> from the first drop-down list, and select <strong>1 Month</strong> from the second drop-down list.<br />
+A page similar to the following is displayed:<br />
+<img src="../../../images/download_report_example.png" alt="Chargeable containers page" title="Screen capture of page showing information about chargeable containers for the selected Event Streams deployment. The page is displayed to provide an example from where you can download a metrics report." /></li>
+  <li>Click <strong>Download Report</strong>, and save the CSV file to a location of your choice.</li>
+  <li>Open the downloaded report file.</li>
+  <li>Look for the month in <strong>Period</strong>, for example, <strong>2018/9</strong>, then in the rows underneath look for <strong>Event Streams (Chargeable)</strong>, and check the <strong>CCores/max Cores</strong> column. The value is the maximum aggregate number of cores provided to all Kafka and geo-replicator containers. You are charged based on this number.<br />
+For example, the following excerpt from a downloaded report shows that for the period 2018/9 the chargeable Event Streams containers had a total of 4 cores available (see the highlighted fields):<br />
+<img src="../../../images/csv_example.png" alt="Report example" title="Excerpt from a downloaded report showing through highlighting that for the period 2018/9 the chargeable Event Streams containers had a total of 4 cores available." /></li>
+</ol>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#event-streams-community-edition">Event Streams Community Edition</a></li>
+  <li><a href="#event-streams">Event Streams</a></li>
+  <li><a href="#persistent-storage">Persistent storage</a></li>
+  <li><a href="#configmap-for-kafka-static-configuration">ConfigMap for Kafka static configuration</a></li>
+  <li><a href="#geo-replication">Geo-replication</a></li>
+  <li><a href="#connecting-clients">Connecting clients</a></li>
+  <li><a href="#sizing-considerations">Sizing considerations</a></li>
+  <li><a href="#logging">Logging</a></li>
+  <li><a href="#monitoring-kafka-clusters">Monitoring Kafka clusters</a></li>
+  <li><a href="#licensing">Licensing</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_2018.3.1/installing/prerequisites/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2018.3.1/installing/prerequisites/" class="pagination--pager" title="Previous Item: Pre-requisites
+">Previous</a>
+          <h2 class="titlePreview">Pre-requisites
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_2018.3.1/installing/capacity-planning/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2018.3.1/installing/capacity-planning/" class="pagination--pager" title="Next Item: Capacity planning
+">Next</a>
+          <h2 class="titlePreview">Capacity planning
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

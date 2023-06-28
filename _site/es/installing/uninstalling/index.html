@@ -1,0 +1,3036 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Uninstalling - IBM Event Automation</title>
+<meta name="description" content="Uninstalling Event Streams.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/installing/uninstalling/" />
+<meta property="og:title" content="Event Streams | Uninstalling" />
+<meta property="og:description" content="Uninstalling Event Streams." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Uninstalling" />
+
+
+
+
+  <meta property="og:description" content="Uninstalling Event Streams.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/installing/uninstalling/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">11.2</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">11.2</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/uninstalling/" onclick="openVersion('/event-automation/es/installing/uninstalling/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/uninstalling/" class="versionPill active">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_11.1/installing/uninstalling/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/uninstalling/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_11.0/installing/uninstalling/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/uninstalling/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.5/installing/uninstalling/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/uninstalling/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.4/installing/uninstalling/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/uninstalling/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.3/installing/uninstalling/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/uninstalling/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.2/installing/uninstalling/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/uninstalling/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.1/installing/uninstalling/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/uninstalling/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_10.0/installing/uninstalling/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/uninstalling/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_2019.4/installing/uninstalling/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/uninstalling/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/uninstalling/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/uninstalling/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/uninstalling/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/uninstalling/" class="versionPill inactive">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/uninstalling/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/uninstalling/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/uninstalling/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing and upgrading</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/multizone-considerations/" class="">Considerations for multizone deployments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/capacity-planning/" class="">Performance and capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/preparing-multizone/" class="">Preparing for multizone clusters</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/installing/" class="">Installing on OpenShift Container Platform</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/installing-on-kubernetes/" class="">Installing on other Kubernetes platforms</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/moving-from-oss-kafka/" class="">Migrating from open-source Kafka</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/uninstalling/" class="active">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/installing/upgrading/" class="">Upgrading and migrating</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/creating-topics/" class="">Creating a Kafka topic</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/generating-starter-app/" class="">Running a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/client/" class="">Creating Kafka client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/connecting/" class="">Connecting clients</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Schemas</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/overview/" class="">Schemas overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/creating/" class="">Creating and adding schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/manage-lifecycle/" class="">Managing schema lifecycle</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-java-apps/" class="">Setting Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-nonjava-apps/" class="">Setting non-Java applications to use schemas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/migrating/" class="">Migrating to Event Streams schema registry</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/using-with-rest-producer/" class="">Using schemas with the REST producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/schemas/setting-java-apps-apicurio-serdes/" class="">Setting Java applications to use schemas with the Apicurio Registry serdes library</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/renewing-certificates/" class="">Renewing certificates</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/georeplication/failover/" class="">Switching clusters</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting external systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/rest-api/" class="">Event Streams producer API</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/expose-service/" class="">Exposing services for external access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/kafka-bridge/" class="">Kafka Bridge</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/connectors/" class="">Kafka Connect and connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/setting-up-connectors/" class="">Setting up and running connectors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/consumer-lag/" class="">Monitoring consumer group lag</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/tracing/" class="">Monitoring applications with distributed tracing</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/cruise-control/" class="">Optimizing Kafka cluster with Cruise Control</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/managing-multizone/" class="">Managing a multizone setup</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/administering/stopping-starting/" class="">Stopping and starting Event Streams</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/es-install-fails/" class="">Event Streams installation reports Blocked status</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/default-scc-issues/" class="">Event Streams not installing due to Security Context Constraint (SCC) issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/authorization-failed-exceptions/" class="">Client receives AuthorizationException when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/pkcs12-keystore-java-client/" class="">Client receives 'Failed to load SSL keystore' message when communicating with brokers</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/ocp-upgrade-fail/" class="">OpenShift upgrade: fixing scheduling on node and node degraded errors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/watched-namespace/" class="">Apicurio authentication errors due to User Operator watchedNamespace</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/upgrade-apicurio/" class="">Clients using schemas fail with Apicurio 2.4.1 or later</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/kafkarebalance-pendingproposal/" class="">KafkaRebalance custom resource remains in PendingProposal state</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/troubleshooting/default-psp-issues/" class="">Event Streams not installing due to Pod Security Policies (PSP) issues</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Uninstalling
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>You can remove the Event Streams from your platform as follows:</p>
+
+<h2 id="uninstalling-an-event-streams-instance-by-using-the-cli">Uninstalling an Event Streams instance by using the CLI</h2>
+<p>You can delete an Event Streams installation using the Kubernetes command-line tool (<code class="language-plaintext highlighter-rouge">kubectl</code>):</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank"><code class="language-plaintext highlighter-rouge">kubectl</code> context</a>.</li>
+  <li>
+    <p>Ensure you are using the namespace where your Event Streams instance is located:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl config set-context --current --namespace=&lt;insert-namespace-name-here&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following command to display the Event Streams instances:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get eventstreams -n &lt;namespace&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following command to delete your instance:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl delete eventstreams &lt;instance-name&gt; -n &lt;namespace&gt;</code></p>
+  </li>
+</ol>
+
+<h3 id="check-uninstallation-progress">Check uninstallation progress</h3>
+<p>Run the following command to check the progress:</p>
+
+<p><code class="language-plaintext highlighter-rouge">kubectl get pods --selector app.kubernetes.io/instance=&lt;instance_name&gt;</code></p>
+
+<p>Pods will initially display a <strong>STATUS</strong> <code class="language-plaintext highlighter-rouge">Terminating</code> and then be removed from the output as they are deleted.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ kubectl get pods --selector app.kubernetes.io/instance=minimal-prod
+&gt;
+NAME                                            READY     STATUS        RESTARTS   AGE
+minimal-prod-entity-operator-77dfff7c79-cnrx5   0/2       Terminating   0          5h35m
+minimal-prod-ibm-es-admapi-b49f976c9-xhsrv      0/1       Terminating   0          5h35m
+minimal-prod-ibm-es-recapi-6f6bd784fc-jvf9z     0/1       Terminating   0          5h35m
+minimal-prod-ibm-es-ac-reg-6dffdb54f9-dfdpl     0/3       Terminating   0          5h35m
+minimal-prod-ibm-es-ui-5dd7496dbc-qks7m         0/2       Terminating   0          5h35m
+minimal-prod-kafka-0                            2/2       Terminating   0          5h36m
+minimal-prod-zookeeper-0                        0/2       Terminating   0          5h37m
+</code></pre></div></div>
+
+<h3 id="removing-persistence-resources">Removing persistence resources</h3>
+<p>If you had enabled persistence for the Event Streams instance but set the <code class="language-plaintext highlighter-rouge">deleteClaim</code> storage property to <code class="language-plaintext highlighter-rouge">false</code>, you will need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">deleteClaim</code> property is configured in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource and can be set to <code class="language-plaintext highlighter-rouge">true</code> during installation to ensure the PVs and PVCs are automatically removed when the instance is deleted.</p>
+
+<p>For Kafka and ZooKeeper, this property can be found as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.storage.deleteClaim</code></li>
+  <li><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.zookeeper.storage.deleteClaim</code></li>
+</ul>
+
+<p>For other components, this property can be found as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spec.&lt;component_name&gt;.storage.deleteClaim</code></li>
+</ul>
+
+<p><strong>Important:</strong> This change will cause data to be removed during an upgrade.</p>
+
+<p>For example, to configure automatic deletion for the Kafka storage when uninstalling:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">EventStreams</span>
+<span class="nn">...</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">strimziOverrides</span><span class="pi">:</span>
+    <span class="s">...</span>
+    <span class="s">kafka</span><span class="pi">:</span>
+      <span class="s">...</span>
+      <span class="s">storage</span><span class="pi">:</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">persistent-claim</span>
+        <span class="s">...</span>
+        <span class="na">deleteClaim</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>To remove any remaining storage, delete the PVCs first then delete any remaining PVs.</p>
+
+<p>Delete the Persistent Volume Claims (PVCs):</p>
+
+<ol>
+  <li>
+    <p>Run the following command to list the remaining PVCs associated with the deleted instance:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get pvc --selector app.kubernetes.io/instance=&lt;instance_name&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following to delete a PVC:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl delete pvc &lt;pvc_name&gt;</code></p>
+  </li>
+</ol>
+
+<p>Delete remaining Persistent Volumes (PVs):</p>
+
+<ol>
+  <li>
+    <p>Run the following command to list the remaining PVs:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl get pv</code></p>
+  </li>
+  <li>
+    <p>Run the following command to delete any PVs that were listed in the <strong>Volume</strong> column of the deleted PVCs.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl delete pv &lt;pv_name&gt;</code></p>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.</p>
+
+<h2 id="uninstalling-an-event-streams-instance-by-using-the-openshift-web-console">Uninstalling an Event Streams instance by using the OpenShift web console</h2>
+<p>To delete an Event Streams instance on OpenShift Container Platform:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Operators</strong> dropdown and select <strong>Installed Operators</strong> to open the <strong>Installed Operators</strong> page.</li>
+  <li>Expand the <strong>Project</strong> dropdown and select the project the instance is installed in. Click the operator called <strong>IBM Event Streams</strong> managing the project.</li>
+  <li>In the <strong>Operator Details</strong> panel, select the <strong>Event Streams</strong> tab to show the  Event Streams instances in the selected namespace.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the instance to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete EventStreams</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and instance name and click <strong>Delete</strong> to shutdown the associated pods and delete the instance.</li>
+</ol>
+
+<h3 id="check-uninstallation-progress-1">Check uninstallation progress</h3>
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Workloads</strong> dropdown and select <strong>Pods</strong> to open the <strong>Pods</strong> dashboard.</li>
+  <li>Click <strong>Select All Filters</strong> to display pods in any state.</li>
+  <li>Enter the name of the Event Streams instance being deleted in the <strong>Filter by name</strong> box.</li>
+  <li>Wait for all the Event Streams pods to be displayed as <strong>Terminating</strong> and then be removed from the list.</li>
+</ol>
+
+<h3 id="removing-persistence-resources-1">Removing persistence resources</h3>
+<p>If you had enabled persistence for the Event Streams instance but set the <code class="language-plaintext highlighter-rouge">deleteClaim</code> storage property to <code class="language-plaintext highlighter-rouge">false</code>, you will need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">deleteClaim</code> property is configured in the <code class="language-plaintext highlighter-rouge">EventStreams</code> custom resource and can be set to <code class="language-plaintext highlighter-rouge">true</code> during installation to ensure the PVs and PVCs are automatically removed when the instance is deleted.</p>
+
+<p>For Kafka and ZooKeeper, this property can be found as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.kafka.storage.deleteClaim</code></li>
+  <li><code class="language-plaintext highlighter-rouge">spec.strimziOverrides.zookeeper.storage.deleteClaim</code></li>
+</ul>
+
+<p>For other components, this property can be found as follows:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">spec.&lt;component_name&gt;.storage.deleteClaim</code></li>
+</ul>
+
+<p><strong>Important:</strong> This change will cause data to be removed during an upgrade.</p>
+
+<p>For example, to configure automatic deletion for the Kafka storage when uninstalling:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">eventstreams.ibm.com/v1beta2</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">EventStreams</span>
+<span class="nn">...</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">strimziOverrides</span><span class="pi">:</span>
+    <span class="s">...</span>
+    <span class="s">kafka</span><span class="pi">:</span>
+      <span class="s">...</span>
+      <span class="s">storage</span><span class="pi">:</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">persistent-claim</span>
+        <span class="s">...</span>
+        <span class="na">deleteClaim</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>To remove any remaining storage, delete the PVCs first then delete any remaining PVs.</p>
+
+<p>Delete the Persistent Volume Claims (PVCs):</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Storage</strong> dropdown and select <strong>Persistent Volume Claims</strong> to open the <strong>Persistent Volume Claims</strong> page.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace.</li>
+  <li>Click <strong>Select All Filters</strong> to display PVCs in any state.</li>
+  <li>Enter the name of the Event Streams instance in the <strong>Filter by name</strong> box.</li>
+  <li>For each PVC to be deleted, make a note of the <strong>Persistent Volume</strong> listed for that PVC and then click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> to open the actions menu.</li>
+  <li>Click the <strong>Delete Persistent Volume Claim</strong> menu option to open the confirmation panel.</li>
+  <li>Check the PVC name and namespace, then click <strong>Delete</strong> to remove the PVC.</li>
+</ol>
+
+<p>Delete remaining Persistent Volumes (PVs):</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand the <strong>Storage</strong> dropdown and select <strong>Persistent Volumes</strong> to open the <strong>Persistent Volumes</strong> page.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace.</li>
+  <li>For each PV you made a note of when deleting PVCs, click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> to open the actions menu.</li>
+  <li>Click the <strong>Delete Persistent Volume</strong> menu option to open the confirmation panel.</li>
+  <li>Check the PV name and click <strong>Delete</strong> to remove the PV.</li>
+</ol>
+
+<p><strong>Note:</strong> Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.</p>
+
+<h2 id="uninstalling-an-event-streams-operator-on-openshift-container-platform">Uninstalling an Event Streams operator on OpenShift Container Platform</h2>
+<p>To delete an Event Streams operator:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Operators</strong> and click <strong>Installed Operators</strong>.</li>
+  <li>In the <strong>Project</strong> dropdown select the required namespace. For cluster-wide operators, select the <code class="language-plaintext highlighter-rouge">openshift-operators</code> project.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the Event Streams operator to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Uninstall Operator</strong> menu option to open the confirmation panel.</li>
+  <li>Check the namespace and operator name, then click <strong>Remove</strong> to uninstall the operator.</li>
+</ol>
+
+<p>The Event Streams Custom Resource Definitions (CRDs) are not deleted automatically on OpenShift Container Platform. You must manually delete any CRDs that you do not want:</p>
+
+<ol>
+  <li>Log in to the OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html" target="_blank">web console</a> using your login credentials.</li>
+  <li>Expand <strong>Administration</strong> and click <strong>Custom Resource Definitions</strong>.</li>
+  <li>Enter <code class="language-plaintext highlighter-rouge">eventstreams</code> in the <strong>Filter by name</strong> box to filter the CRDs associated with Event Streams.</li>
+  <li>Click <img src="/event-automation/images/more_options.png" alt="More options icon" title="More options icon at end of each row." height="30px" width="15px" /> <strong>More options</strong> next to the CRD to be deleted to open the actions menu.</li>
+  <li>Click the <strong>Delete Custom Resource Definition</strong> menu option to open the confirmation panel.</li>
+  <li>Check the name of the CRD and click <strong>Delete</strong> to remove the CRD.</li>
+</ol>
+
+<h2 id="uninstalling-an-event-streams-operator-on-other-kubernetes-platforms">Uninstalling an Event Streams operator on other Kubernetes platforms</h2>
+<p>To delete an Event Streams operator:</p>
+
+<ol>
+  <li>Log in to your Kubernetes cluster as a cluster administrator by setting your <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank"><code class="language-plaintext highlighter-rouge">kubectl</code> context</a>.</li>
+  <li>
+    <p>Run the following command to select the namespace the operator is installed on:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">kubectl config set-context --current --namespace=&lt;operator-namespace-name-here&gt;</code></p>
+  </li>
+  <li>
+    <p>Run the following command to list the helm releases installed on that namespace:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">helm list</code></p>
+  </li>
+  <li>Find the Event Streams operator release, it should have the chart as <code class="language-plaintext highlighter-rouge">ibm-eventstreams-operator-&lt;version-number&gt;</code></li>
+  <li>
+    <p>Run the following command to uninstall the Event Streams operator and the Event Streams Custom Resoure Definitions (CRDs):</p>
+
+    <p><code class="language-plaintext highlighter-rouge">helm uninstall &lt;release-name&gt;</code></p>
+  </li>
+</ol>
+
+<h2 id="uninstalling-ibm-cloud-pak-foundational-services-on-openshift">Uninstalling IBM Cloud Pak foundational services on OpenShift</h2>
+<p>If you have IBM Cloud Pak foundational services, see the <a href="https://www.ibm.com/support/knowledgecenter/en/SSHKN6/installer/3.x.x/uninstallation.html" target="_blank">foundational services documentation</a> for information about uninstalling it.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#uninstalling-an-event-streams-instance-by-using-the-cli">Uninstalling an Event Streams instance by using the CLI</a>
+    <ul>
+      <li><a href="#check-uninstallation-progress">Check uninstallation progress</a></li>
+      <li><a href="#removing-persistence-resources">Removing persistence resources</a></li>
+    </ul>
+  </li>
+  <li><a href="#uninstalling-an-event-streams-instance-by-using-the-openshift-web-console">Uninstalling an Event Streams instance by using the OpenShift web console</a>
+    <ul>
+      <li><a href="#check-uninstallation-progress-1">Check uninstallation progress</a></li>
+      <li><a href="#removing-persistence-resources-1">Removing persistence resources</a></li>
+    </ul>
+  </li>
+  <li><a href="#uninstalling-an-event-streams-operator-on-openshift-container-platform">Uninstalling an Event Streams operator on OpenShift Container Platform</a></li>
+  <li><a href="#uninstalling-an-event-streams-operator-on-other-kubernetes-platforms">Uninstalling an Event Streams operator on other Kubernetes platforms</a></li>
+  <li><a href="#uninstalling-ibm-cloud-pak-foundational-services-on-openshift">Uninstalling IBM Cloud Pak foundational services on OpenShift</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/installing/moving-from-oss-kafka/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/installing/moving-from-oss-kafka/" class="pagination--pager" title="Previous Item: Migrating from open-source Apache Kafka to Event Streams
+">Previous</a>
+          <h2 class="titlePreview">Migrating from open-source Apache Kafka to Event Streams
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/installing/upgrading/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/installing/upgrading/" class="pagination--pager" title="Next Item: Upgrading and migrating
+">Next</a>
+          <h2 class="titlePreview">Upgrading and migrating
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

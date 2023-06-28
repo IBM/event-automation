@@ -1,0 +1,1617 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Installing in an offline environment - IBM Event Automation</title>
+<meta name="description" content="Find out how to install in an offline (also referred to as air-gapped or disconnected) environment.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/ep/installing/offline/" />
+<meta property="og:title" content="Event Processing | Installing in an offline environment" />
+<meta property="og:description" content="Find out how to install in an offline (also referred to as air-gapped or disconnected) environment." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Installing in an offline environment" />
+
+
+
+
+  <meta property="og:description" content="Find out how to install in an offline (also referred to as air-gapped or disconnected) environment.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/ep/installing/offline/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">1.0</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">1.0</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/ep/installing/offline/" onclick="openVersion('/event-automation/ep/installing/offline/','ep_1.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/ep/installing/offline/" class="versionPill active">1.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/prerequisites/" class="">Prerequisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/planning/" class="">Planning your installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/installing/" class="">Installing in an online environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/offline/" class="active">Installing in an offline environment</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/backup-restore/" class="">Backing up and restoring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started with Authoring</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/getting-started/canvas/" class="">Building a simple flow</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/user-roles/" class="">Managing user roles</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/verifying-signature/" class="">Verifying container image signatures</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/administering/flink-health/" class="">Monitoring Flink health</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Nodes</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/summary/" class="">Node overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/eventnodes/" class="">Events</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/processornodes/" class="">Processors</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/nodes/joins/" class="">Joins</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Deploying advanced flows</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/exporting-flows/" class="">Exporting and importing flows</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-development/" class="">Deploying jobs in development environments</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/advanced/deploying-production/" class="">Deploying jobs in production environments</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Reference</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/reference/api-reference/" class="">API reference for the CRDs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/ep/troubleshooting/gathering-logs/" class="">Gathering logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap  latestVersion">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Installing in an offline environment
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>If you are working in an environment where your cluster is not connected to the internet, you can install Event Processing by using the container-based software that is provided as a Container Application Software for Enterprises (CASE) bundle.</p>
+
+<p>CASE is a specification that defines metadata and structure for packaging, managing, and unpacking containerized applications. When deploying in an offline (also referred to as air-gapped or disconnected) environment, you mimic a typical online installation by using images in your own registry. You can use the CASE content to mirror images to an internal registry within your restricted environment, and to install the images from that registry.</p>
+
+<p>Event Processing has two operators that must be installed:</p>
+
+<ul>
+  <li>IBM Operator for Apache Flink</li>
+  <li>Event Processing</li>
+</ul>
+
+<p>Follow the instructions to download the IBM Operator for Apache Flink and Event Processing CASE bundles, mirror the images, apply catalog sources, and install the operators.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Ensure you have the following set up for your environment:</p>
+
+<ul>
+  <li>A computer with access to both the public internet and the network-restricted environment on which you can run the required commands. This computer must also have access to a local registry and to the OpenShift Container Platform clusters, and is referred to as a <em>bastion host</em>.</li>
+  <li><a href="https://docs.docker.com/engine/install/" target="_blank">Docker</a> or <a href="https://podman.io/getting-started/installation.html" target="_blank">Podman CLI</a> installed.</li>
+  <li>A private Docker registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.</li>
+  <li>A supported version of OpenShift Container Platform <a href="https://docs.openshift.com/container-platform/4.12/installing/index.html#installation-overview_ocp-installation-overview" target="_blank">installed</a>. See the <a href="/event-automation/support/matrix/#event-processing">support matrix</a> for supported versions.</li>
+  <li>A supported version of the IBM Cert Manager <a href="../prerequisites#ibm-cert-manager">installed</a>.</li>
+  <li>The OpenShift Container Platform CLI (<code class="language-plaintext highlighter-rouge">oc</code>) <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html" target="_blank">installed</a>.</li>
+  <li>
+    <p>The IBM Catalog Management Plug-in for IBM Cloud Paks (<code class="language-plaintext highlighter-rouge">ibm-pak</code>) <a href="https://github.com/IBM/ibm-pak#readme" target="_blank">installed</a>. This plug-in allows you to run <code class="language-plaintext highlighter-rouge">oc ibm-pak</code> commands against the cluster. Run the following command to confirm that <code class="language-plaintext highlighter-rouge">ibm-pak</code> is installed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc ibm-pak <span class="nt">--help</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="prepare-your-host">Prepare your host</h2>
+
+<p>You must be able to connect your bastion host to the internet and to the restricted network environment (with access to the OpenShift Container Platform cluster and the local registry) at the same time.</p>
+
+<p>Ensure that the prerequisites are set up and that the bastion host can access:</p>
+
+<ul>
+  <li>The public internet to download the CASE and images.</li>
+  <li>The target (internal) image registry where all the images will be mirrored to.</li>
+  <li>The OpenShift cluster to install the operator on.</li>
+</ul>
+
+<p>Note: In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.</p>
+
+<h2 id="download-the-case-bundle">Download the CASE bundle</h2>
+
+<p>Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:</p>
+
+<ol>
+  <li>
+    <p>Set the environment variables for the IBM Operator for Apache Flink and version by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CASE_NAME</span><span class="o">=</span>ibm-eventautomation-flink <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">CASE_VERSION</span><span class="o">=</span>1.0.0 <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">CASE_INVENTORY_SETUP</span><span class="o">=</span>flinkKubernetesOperatorSetup 
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to download, validate, and extract the CASE.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc ibm-pak get <span class="nv">$CASE_NAME</span> <span class="nt">--version</span> <span class="nv">$CASE_VERSION</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Set the environment variables for the Event Processing and version by running the following command:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CASE_NAME</span><span class="o">=</span>ibm-eventprocessing <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">CASE_VERSION</span><span class="o">=</span>1.0.0 <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">CASE_INVENTORY_SETUP</span><span class="o">=</span>epOperatorSetup
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the following command to download, validate, and extract the Event Processing CASE.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc ibm-pak get <span class="nv">$CASE_NAME</span> <span class="nt">--version</span> <span class="nv">$CASE_VERSION</span>
+</code></pre></div>    </div>
+
+    <p>The latest CASE is downloaded in <code class="language-plaintext highlighter-rouge">~/.ibm-pak</code> and the following output is displayed:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Downloading and extracting the CASE ...
+- Success
+Retrieving CASE version ...
+- Success
+Validating the CASE ...
+Validating the signature <span class="k">for </span>the ibm-event-processing CASE...
+- Success
+Creating inventory ...
+- Success
+Finding inventory items
+- Success
+Resolving inventory items ...
+Parsing inventory items
+- Success
+Download of CASE: ibm-event-processing, version: 1.0.0 is <span class="nb">complete</span>
+</code></pre></div>    </div>
+
+    <p><strong>Note:</strong>  To download the latest version of CASE, do not specify the CASE version. For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc ibm-pak get <span class="nv">$CASE_NAME</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Verify that the CASE and images (<code class="language-plaintext highlighter-rouge">.csv</code>) files have been generated for IBM Operator for Apache Flink and Event Processing.</p>
+
+    <p>For example, ensure that the following files have been generated for Event Processing.</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tree ~/.ibm-pak
+
+├── config
+│   └── config.yaml
+├── data
+│   ├── cases
+│   │   └── ibm-event-processing
+│   │       └── 1.0.0
+│   │           ├── caseDependencyMapping.csv
+│   │           ├── charts
+│   │           ├── ibm-event-processing-1.0.0-airgap-metadata.yaml
+│   │           ├── ibm-event-processing-1.0.0-charts.csv
+│   │           ├── ibm-event-processing-1.0.0-images.csv
+│   │           ├── ibm-event-processing-1.0.0.tgz
+│   │           └── resourceIndexes
+│   │               └── ibm-event-processing-resourcesIndex.yaml
+│   └── mirror
+└── logs
+ └── oc-ibm_pak.log
+
+9 directories, 8 files
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="configure-registry-authentication">Configure registry authentication</h2>
+
+<!--Only offline environment -->
+
+<p>To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. You need a Docker CLI login (<code class="language-plaintext highlighter-rouge">docker login</code>) or Podman CLI login (<code class="language-plaintext highlighter-rouge">podman login</code>) for configuring the registry.</p>
+
+<p>For Event Processing, all images are either present in the IBM Entitled Registry (<code class="language-plaintext highlighter-rouge">cp.icr.io</code>), which requires authentication, or in the IBM Container Registry (<code class="language-plaintext highlighter-rouge">icr.io/cpopen</code>), which does not.</p>
+
+<p>Run the following command to create an authentication secret for the source registry:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login &lt;source-registry&gt; <span class="nt">--username</span> &lt;source-registry-user&gt; <span class="nt">--password</span> &lt;source-registry-pass&gt;
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;source-registry&gt;</code> is the Entitled Registry (<code class="language-plaintext highlighter-rouge">cp.icr.io</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;source-registry-user&gt;</code> is your username.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;source-registry-pass&gt;</code> is your entitlement key.</li>
+</ul>
+
+<p>Run the following command to create an authentication secret for the target registry:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login &lt;target-registry&gt; <span class="nt">--username</span> &lt;target-registry-user&gt; <span class="nt">--password</span> &lt;target-registry-pass&gt;
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">target-registry</code> is the internal docker registry.</li>
+  <li><code class="language-plaintext highlighter-rouge">target-registry-user</code> is the username for the internal docker registry.</li>
+  <li><code class="language-plaintext highlighter-rouge">target-registry-pass</code> is the password for the internal docker registry.</li>
+</ul>
+
+<p><strong>Note:</strong> You can configure with separate target registry for IBM Operator for Apache Flink and Event Processing. The following documentation instructions consider one target registry for both IBM Operator for Apache Flink and Event Processing.</p>
+
+<h2 id="mirror-the-images">Mirror the images</h2>
+
+<!--Only offline environment -->
+
+<p>The process of mirroring images pulls the image from the internet and pushes it to your local registry. After mirroring your images, you can configure your cluster and complete the offline installation.</p>
+
+<p>Complete the following steps to mirror the images from your host to your offline environment:</p>
+
+<ol>
+  <li>Run the following command to generate mirror manifests:
+    <ul>
+      <li>
+        <p>For IBM Operator for Apache Flink:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc ibm-pak generate mirror-manifests ibm-eventautomation-flink &lt;target-registry&gt; 
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>For Event Processing:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc ibm-pak generate mirror-manifests ibm-event-processing &lt;target-registry&gt;
+</code></pre></div>        </div>
+
+        <p>Where<code class="language-plaintext highlighter-rouge">target-registry</code> is the internal docker registry.</p>
+      </li>
+    </ul>
+
+    <p><strong>Note</strong>: If you need to filter for a specific image group, add the parameter <code class="language-plaintext highlighter-rouge">--filter &lt;image_group&gt;</code> to this command.</p>
+
+    <p>This generates the following files based on the target internal registry provided:</p>
+
+    <ul>
+      <li>catalog-sources.yaml</li>
+      <li>catalog-sources-linux-<code class="language-plaintext highlighter-rouge">&lt;arch&gt;</code>.yaml (if there are architecture specific catalog sources)</li>
+      <li>image-content-source-policy.yaml</li>
+      <li>images-mapping.txt</li>
+    </ul>
+  </li>
+  <li>
+    <p>Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.</p>
+
+    <ul>
+      <li>
+        <p>To copy the images of IBM Operator for Apache Flink:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc image mirror <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/images-mapping.txt <span class="nt">--filter-by-os</span> <span class="s1">'.*'</span>  <span class="nt">--skip-multiple-scopes</span> <span class="nt">--max-per-registry</span><span class="o">=</span>1
+</code></pre></div>        </div>
+
+        <p>For example:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc image mirror <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/images-mapping.txt <span class="nt">--filter-by-os</span> <span class="s1">'.*'</span>  <span class="nt">--skip-multiple-scopes</span> <span class="nt">--max-per-registry</span><span class="o">=</span>1
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>To copy the images of Event Processing:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc image mirror <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-event-processing/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/images-mapping.txt <span class="nt">--filter-by-os</span> <span class="s1">'.*'</span> <span class="nt">--skip-multiple-scopes</span> <span class="nt">--max-per-registry</span><span class="o">=</span>1
+</code></pre></div>        </div>
+
+        <p>For example:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc image mirror <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.0/images-mapping.txt <span class="nt">--filter-by-os</span> <span class="s1">'.*'</span> <span class="nt">--skip-multiple-scopes</span> <span class="nt">--max-per-registry</span><span class="o">=</span>1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>Where:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;case-version&gt;</code> is the version of the CASE file to be copied.</li>
+      <li><code class="language-plaintext highlighter-rouge">target-registry</code> is the internal docker registry.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="create-imagecontentsourcepolicy">Create <code class="language-plaintext highlighter-rouge">ImageContentSourcePolicy</code></h2>
+
+<!--Only offline environment -->
+
+<ol>
+  <li>Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands" target="_blank"><code class="language-plaintext highlighter-rouge">oc</code> CLI</a> (<code class="language-plaintext highlighter-rouge">oc login</code>).</li>
+  <li>Update the global image pull secret for your OpenShift cluster by following the steps in <a href="https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets" target="_blank">OpenShift documentation</a>. This enables your cluster to have proper authentication credentials to pull images from your <code class="language-plaintext highlighter-rouge">target-registry</code>, as specified in the <code class="language-plaintext highlighter-rouge">image-content-source-policy.yaml</code>.</li>
+  <li>
+    <p>Apply <code class="language-plaintext highlighter-rouge">ImageContentSourcePolicy</code> YAML by running the following command for Apache Flink:</p>
+
+    <ul>
+      <li>
+        <p>For IBM Operator for Apache Flink:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span>  ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/image-content-source-policy.yaml
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>For Event Processing:</p>
+
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> oc apply <span class="nt">-f</span>  ~/.ibm-pak/data/mirror/ibm-event-processing/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/image-content-source-policy.yaml
+</code></pre></div>        </div>
+      </li>
+    </ul>
+
+    <p>Where <code class="language-plaintext highlighter-rouge">&lt;case-version&gt;</code> is the version of the CASE file.</p>
+  </li>
+</ol>
+
+<p>Verify that the <code class="language-plaintext highlighter-rouge">ImageContentSourcePolicy</code> resource is created:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get imageContentSourcePolicy
+</code></pre></div></div>
+
+<p><strong>Important</strong>: After the <code class="language-plaintext highlighter-rouge">ImageContentsourcePolicy</code> and global image pull secret are applied, you might see the node status as <code class="language-plaintext highlighter-rouge">Ready</code>, <code class="language-plaintext highlighter-rouge">Scheduling</code>, or <code class="language-plaintext highlighter-rouge">Disabled</code>. Wait until all the nodes show a <code class="language-plaintext highlighter-rouge">Ready</code> status.</p>
+
+<p>Verify your cluster node status and wait for all nodes to be updated before proceeding:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc get MachineConfigPool <span class="nt">-w</span>
+</code></pre></div></div>
+
+<h2 id="apply-catalog-sources-to-your-cluster">Apply catalog sources to your cluster</h2>
+
+<p>Apply the catalog sources for the operator to the cluster by running the following command:</p>
+
+<ul>
+  <li>
+    <p>For IBM Operator for Apache Flink:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/catalog-sources.yaml
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/catalog-sources.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>For Event Processing:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-event-processing/&lt;<span class="k">case</span><span class="nt">-version</span><span class="o">&gt;</span>/catalog-sources.yaml
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oc apply <span class="nt">-f</span> ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.0/catalog-sources.yaml
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="install-the-operator">Install the operator</h2>
+
+<p>After considering the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the OpenShift Container Platform web console. For more information, see the instructions for installing <a href="../../installing/installing/#installing-the-ibm-operator-for-apache-flink">IBM operator for Apache Flink</a> and the <a href="../../installing/installing/#installing-the-event-processing-operator">Event Processing operator</a>.</p>
+
+<h2 id="install-an-instance">Install an instance</h2>
+
+<p>Event Processing and Flink Deployment instances can be created after the operators are installed. You can install the instances by using the OpenShift Container Platform web console. For more information, see the instructions for installing the <a href="../../installing/installing/#install-a-flink-deployment-instance">Flink Deployment instances</a> and the <a href="../../installing/installing/#install-an-event-processing-instance">Event Processing instances</a>.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#prepare-your-host">Prepare your host</a></li>
+  <li><a href="#download-the-case-bundle">Download the CASE bundle</a></li>
+  <li><a href="#configure-registry-authentication">Configure registry authentication</a></li>
+  <li><a href="#mirror-the-images">Mirror the images</a></li>
+  <li><a href="#create-imagecontentsourcepolicy">Create ImageContentSourcePolicy</a></li>
+  <li><a href="#apply-catalog-sources-to-your-cluster">Apply catalog sources to your cluster</a></li>
+  <li><a href="#install-the-operator">Install the operator</a></li>
+  <li><a href="#install-an-instance">Install an instance</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/ep/installing/installing/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/installing/" class="pagination--pager" title="Previous Item: Installing in an online environment
+">Previous</a>
+          <h2 class="titlePreview">Installing in an online environment
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/ep/installing/configuring/','_self')">
+        <div class="container">
+          <a href="/event-automation/ep/installing/configuring/" class="pagination--pager" title="Next Item: Configuring
+">Next</a>
+          <h2 class="titlePreview">Configuring
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

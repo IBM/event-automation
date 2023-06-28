@@ -1,0 +1,2920 @@
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Pre-requisites - IBM Event Automation</title>
+<meta name="description" content="Pre-requisites for installing Event Streams.">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IBM Event Automation">
+<meta property="og:url" content="http://localhost:4000/event-automation/es/es_2019.1.1/installing/prerequisites/" />
+<meta property="og:title" content="Event Streams | Pre-requisites" />
+<meta property="og:description" content="Pre-requisites for installing Event Streams." />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="IBM Event Automation | Pre-requisites" />
+
+
+
+
+  <meta property="og:description" content="Pre-requisites for installing Event Streams.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png">
+  <meta name="twitter:image" content="http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_square.png">
+
+
+
+  <meta property="article:published_time" content="2023-06-28T12:13:19-04:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/event-automation/es/es_2019.1.1/installing/prerequisites/">
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "http://localhost:4000/event-automation",
+      "logo": "http://localhost:4000/event-automation/assets/siteMeta/appIcon_og_fb.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": null,
+      "url": "http://localhost:4000/event-automation",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/event-automation/feed.xml" type="application/atom+xml" rel="alternate" title="IBM Event Automation Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/event-automation/assets/css/main.css">
+
+
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/event-automation/assets/siteMeta/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/event-automation/assets/siteMeta/site.webmanifest">
+<link rel="mask-icon" href="http://localhost:4000/event-automation/assets/siteMeta/safari-pinned-tab.svg" color="#000000">
+<link rel="shortcut icon" href="http://localhost:4000/event-automation/assets/siteMeta/favicon.ico">
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-16x16.png"/>
+<link rel="shortcut icon" type="image/png" href="http://localhost:4000/event-automation/assets/siteMeta/favicon-32x32.png"/>
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="http://localhost:4000/event-automation/assets/siteMeta/browserconfig.xml">
+<meta name="theme-color" content="#000000">
+
+
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600%7CIBM+Plex+Serif:300,400,500%7CIBM+Plex+Mono:300,400,500,700" rel="stylesheet">
+
+<!-- end custom head snippets -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="/event-automation/assets/favicon.ico" >
+    
+    <base target="_parent">
+
+  </head>
+  <script src="/event-automation/assets/animation/lottie.js" type="text/javascript"></script>
+  <script src="/event-automation/assets/js/connectors.js"></script>
+
+
+  
+  <body onload="urlChecker()" class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+
+
+
+<div id="masthead" class="masthead">
+  <!--
+  <div class="masthead__goToIBMCloud">
+  <div>
+    You are viewing the documentation for the container-native version of IBM Event Automation.
+  </div>
+    <a class="link" target="_self" href="https://cloud.ibm.com/docs/EventStreams?topic=EventStreams-getting-started">Looking for the managed service on IBM Cloud? Click here.</a>
+</div>
+-->
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="mastheadNav">
+
+      
+
+
+        <div class="mastheadTitle">
+          
+          <a class="site-title" href="/event-automation/" target="_self"><span>IBM</span>&nbsp;Event Automation</a>
+          <div class="viewOnIBMcom">
+            <a href="https://www.ibm.com/products/event-automation" target="_blank">View product page</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="mastheadControls">
+            <div class="menuScrollContainer">
+
+        
+
+                <ul id="visible-links" class="visible-links">
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item active" onclick="window.open('http://localhost:4000/event-automation/es/','_self')">
+                      <a href="http://localhost:4000/event-automation/es/" >Event Streams</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/eem/','_self')">
+                      <a href="http://localhost:4000/event-automation/eem/" >Endpoint Management</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/ep/','_self')">
+                      <a href="http://localhost:4000/event-automation/ep/" >Event Processing</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/connectors/','_self')">
+                      <a href="http://localhost:4000/event-automation/connectors/" >Connectors</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/tutorials/','_self')">
+                      <a href="http://localhost:4000/event-automation/tutorials/" >Tutorials</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/api/','_self')">
+                      <a href="http://localhost:4000/event-automation/api/" >APIs...</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/support/','_self')">
+                      <a href="http://localhost:4000/event-automation/support/" >Support</a>
+                    </li>
+                  
+
+                  
+                  
+                  
+
+                  
+
+
+
+
+                  
+                    <li class="masthead__menu-item " onclick="window.open('http://localhost:4000/event-automation/search/','_self')">
+                      <button aria-label="Search Button" role="button" id="searchButton" class="search__toggle " type="button" name="search Button">
+                        <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path
+                            d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z"
+                            transform="translate(-.01)"></path>
+                        </svg>
+                      </button>
+                    </li>
+                  
+
+                  
+                </ul>
+        
+
+      </div>
+    </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div id="initial-content" class="initial-content" role="main">
+
+
+
+
+
+
+<main id="main" class="mainContainer" role="main">
+    
+      <div id="subMenu" class="subMenu">
+        <div tabindex="0" class="menuIcon" id="menuIcon">
+          <svg id="mobileMenu" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <g id="bottomLine">
+              <line class="burgerLine" x1="14" y1="29" x2="34" y2="29" />
+            </g>
+            <g id="middleLine">
+              <line class="burgerLine" x1="14" y1="24" x2="34" y2="24" />
+            </g>
+            <g id="topLine">
+              <line class="burgerLine" x1="14" y1="19" x2="34" y2="19" />
+            </g>
+          </svg>
+        </div>
+        <div id="mobileVersionShortcut" class="versionContainer" tabindex="0">
+          <a id="mobileVersionPillCurrent" class="versionPill">2019.1.1</a>
+        </div>
+      </div>
+    
+  
+
+
+
+<div id="sidebarMask" class="sidebarMask">
+
+  </div>
+  <div id="sidebar" class="sidebar sticky">
+      <div aria-label="Change Version" role="button" aria-expanded="false"
+      
+        id="versionDropdown"
+        tabindex="0"
+        class="versionsBar"
+       >
+          <div class="selectedVersion" id="selectedVersion">
+            <div class="versionContainer" >
+              
+                <a id="versionPillCurrent" class="versionPill">2019.1.1</a>
+                <a class="versionChange">Change Version</a>
+              
+            </div>
+          </div>
+          
+
+
+          <div class="allVersions" id="allVersions">
+            <ul>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/installing/prerequisites/" onclick="openVersion('/event-automation/es/installing/prerequisites/','es_11.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/installing/prerequisites/" class="versionPill inactive">11.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        Latest
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.1/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_11.1/installing/prerequisites/','es_11.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.1/installing/prerequisites/" class="versionPill inactive">11.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_11.0/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_11.0/installing/prerequisites/','es_11.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_11.0/installing/prerequisites/" class="versionPill inactive">11.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.5/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.5/installing/prerequisites/','es_10.5')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.5/installing/prerequisites/" class="versionPill inactive">10.5</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.4/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.4/installing/prerequisites/','es_10.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.4/installing/prerequisites/" class="versionPill inactive">10.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.3/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.3/installing/prerequisites/','es_10.3')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.3/installing/prerequisites/" class="versionPill inactive">10.3</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.2/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.2/installing/prerequisites/','es_10.2')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.2/installing/prerequisites/" class="versionPill inactive">10.2</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.1/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.1/installing/prerequisites/','es_10.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.1/installing/prerequisites/" class="versionPill inactive">10.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_10.0/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_10.0/installing/prerequisites/','es_10.0')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_10.0/installing/prerequisites/" class="versionPill inactive">10.0</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.4/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_2019.4/installing/prerequisites/','es_2019.4')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.4/installing/prerequisites/" class="versionPill inactive">2019.4</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.2.1/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_2019.2.1/installing/prerequisites/','es_2019.2.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.2.1/installing/prerequisites/" class="versionPill inactive">2019.2.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2019.1.1/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_2019.1.1/installing/prerequisites/','es_2019.1.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2019.1.1/installing/prerequisites/" class="versionPill active">2019.1.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                          <img alt="" src="http://localhost:4000/event-automation/images/checkbox.svg" />
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+                        
+
+
+                    
+                    
+                    
+
+                    
+
+                    <li class="version" data-url="/event-automation/es/es_2018.3.1/installing/prerequisites/" onclick="openVersion('/event-automation/es/es_2018.3.1/installing/prerequisites/','es_2018.3.1')">
+                      <div class="pillContainer">
+                        
+                        <a tabindex="-1" href="/event-automation/es/es_2018.3.1/installing/prerequisites/" class="versionPill inactive">2018.3.1</a>
+                      </div>
+                      <div class="activeContainer">
+                        
+                      </div>
+                      <div class="latest">
+                        
+                      </div>
+                    </li>
+
+                
+
+            </ul>
+          </div>
+        </div>
+
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <ul class="nav__items">
+
+    
+      <li>
+        
+          <span class="nav__sub-title">About</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/overview/" class="">Introduction</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/whats-new/" class="">What's new</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/key-concepts/" class="">Key concepts</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/producing-messages/" class="">Producing messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/consuming-messages/" class="">Consuming messages</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/about/partition-leadership/" class="">Partition leadership</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Installing</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/trying-out/" class="">Trying out Event Streams</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/prerequisites/" class="active">Pre-requisites</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/planning/" class="">Planning for installation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/capacity-planning/" class="">Capacity planning</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing/" class="">Installing on IBM Cloud Private</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/installing-openshift/" class="">Installing on OpenShift</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/configuring/" class="">Configuring</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/migrating/" class="">Migrating from Community Edition</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/post-installation/" class="">Post-installation tasks</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/uninstalling/" class="">Uninstalling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/upgrading/" class="">Upgrading</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/installing/rolling-back/" class="">Rolling back</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Getting started</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/logging-in/" class="">Logging in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/generating-starter-app/" class="">Generating a starter application</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/testing-loads/" class="">Creating and testing message loads</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/client/" class="">Creating Kafka Java client applications</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/getting-started/using-kafka-console-tools/" class="">Using Apache Kafka console tools</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Security</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/managing-access/" class="">Managing access</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/encrypting-data/" class="">Encrypting your data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/secure-jmx-connections/" class="">Configuring secure JMX connections</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/network-policies/" class="">Network policies</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/security/gdpr-considerations/" class="">Considerations for GDPR</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Geo-replication</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/about/" class="">About geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/planning/" class="">Planning for geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/setting-up/" class="">Setting up geo-replication</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/georeplication/health/" class="">Monitoring and managing geo-replication</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Connecting other systems</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/rest-api/" class="">Producing messages using REST</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/" class="">Connecting to IBM MQ</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/source/" class="">Running the MQ source connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/sink/" class="">Running the MQ sink connector</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/connecting/mq/zos/" class="">Running connectors on IBM z/OS</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Administering</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/deployment-health/" class="">Monitoring deployment health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/cluster-health/" class="">Monitoring Kafka cluster health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/topic-health/" class="">Monitoring topic health</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/external-monitoring/" class="">Monitoring with external tools</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-configs/" class="">Modifying Kafka broker configurations</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/modifying-installation/" class="">Modifying installation settings</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/helm-upgrade-command/" class="">Running Helm upgrade commands</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/scaling/" class="">Scaling</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/administering/quotas/" class="">Setting client quotas</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Troubleshooting</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/intro/" class="">Troubleshooting overview</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/diagnosing-installation-issues/" class="">Diagnosing installation issues</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/resources-not-available/" class="">Resources not available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cleanup-uninstall/" class="">Full cleanup after uninstallation</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pod-timeout-error/" class="">ConsumerTimeoutException when pods available</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-error/" class="">Error when creating multiple geo-replicators</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-producer-error/" class="">TimeoutException when using standard Kafka producer</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-consumer-hangs/" class="">Standard Kafka consumer hangs</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-not-registered/" class="">Command 'cloudctl es' fails with 'not a registered command' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/cloudctl-es-fails/" class="">Command 'cloudctl es' produces 'FAILED' message</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/chrome-ubuntu-issue/" class="">UI does not open when using Chrome on Ubuntu</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-image-policy/" class="">Chart deployment fails with 'no ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/image-policy-missing-repository/" class="">Chart deployment fails with 'no matching repositories in the ImagePolicies' error</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/no-helm-release-is-created/" class="">Chart deployment starts but no helm release is created</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/messages-page-blank/" class="">The Messages page is blank</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/kafka-connection-issue/" class="">Unable to connect to Kafka cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/error-removing-destination/" class="">Unable to remove destination cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/georeplication-connect-error/" class="">Geo-replication fails to start</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/ui-403-error/" class="">403 error when signing in</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/pods-apparmor-blocked/" class="">Pods fail to start, status is blocked</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/client-connect-error/" class="">Kafka client apps unable to connect to cluster</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/rollback-fails/" class="">Rollback fails</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/problem-with-piping/" class="">The UI cannot load data</a>
+            </li>
+          
+            
+            
+
+            
+            
+
+
+      
+
+            
+
+            <li>
+
+
+          
+
+                    
+
+              <a href="/event-automation/es/es_2019.1.1/troubleshooting/failed-to-read-log/" class="">Failed to read 'log header' errors in Kafka logs</a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <div class="mainContent">
+    
+    <div id="pageContainer" class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      
+      <div class="page__inner-wrap">
+      
+
+        
+        <section class="page__content pageSpacing" itemprop="text">
+          
+        
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">
+              Pre-requisites
+</h1>
+            
+          </header>  
+        
+        
+
+                    
+          <div class="content">
+            <p>Ensure your environment meets the following prerequisites before installing Event Streams.</p>
+
+<h2 id="container-environment">Container environment</h2>
+
+<p>Event Streams 2019.1.1 is supported on the following platforms and systems:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container platform</th>
+      <th>Systems</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Red Hat OpenShift Container Platform 3.9 and 3.10 with IBM cloud foundational services 3.1.2*</td>
+      <td>- Linux® 64-bit (x86_64) systems <br /> - Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+    </tr>
+    <tr>
+      <td>IBM Cloud Private 3.1.1, 3.1.2, and 3.2.0.1907 (or later <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.0/manage_cluster/patching_cluster.html" target="_blank">fix pack</a>)</td>
+      <td>- Linux® 64-bit (x86_64) systems <br />- Linux on IBM® Z systems</td>
+    </tr>
+    <tr>
+      <td>IBM Cloud Private 3.1.2</td>
+      <td>- Microsoft Azure (IaaS) <br /> - Amazon Web Services (IaaS)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>*Provided by IBM Cloud Private</p>
+
+<p>Event Streams 2019.1.1 has Helm chart version 1.2.0 and includes Kafka version 2.1.1. For an overview of supported component and platform versions, see the <a href="/event-automation/support/matrix/#event-streams">support matrix</a>.</p>
+
+<p>Ensure you have the following set up for your environment:</p>
+<ul>
+  <li>If you are installing Event Streams on the OpenShift Container Platform, ensure you have OpenShift <a href="https://docs.openshift.com/container-platform/3.10/getting_started/install_openshift.html" target="_blank">installed</a>, and also ensure you <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/supported_environments/openshift/overview.html" target="_blank">install and integrate</a> IBM Cloud Private version 3.1.2.<br />
+ <strong>Note:</strong> Event Streams Community Edition is not supported on Red Hat OpenShift Container Platform.</li>
+  <li>Install and configure <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/installing/install.html" target="_blank">IBM Cloud Private</a>.<br />
+  <strong>Important:</strong> In high throughput environments, ensure you <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/installing/set_loadbalancer.html" target="_blank">configure an external load balancer</a> for your IBM Cloud Private cluster to take full advantage of Event Streams <a href="../../administering/scaling/">scaling</a>, and avoid potential bottlenecks.<br />
+  <strong>Note:</strong> Event Streams includes entitlement to IBM Cloud Private Foundation which you can download from IBM Passport Advantage.</li>
+  <li>If you are installing Event Streams on an IBM Cloud Private cluster <a href="https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.2/supported_environments/aws/overview.html" target="_blank">deployed on Amazon Web Services (AWS)</a>, ensure your proxy address uses <a href="../installing/#before-you-begin">lowercase characters</a>.</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/cfc_cli.html" target="_blank">Kubernetes command line tool</a>, and configure access to your cluster.</li>
+  <li>If you are installing Event Streams on the OpenShift Container Platform, ensure you also install the <a href="https://docs.openshift.com/container-platform/3.10/cli_reference/get_started_cli.html" target="_blank">OpenShift Container Platform CLI</a>.</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/install_cli.html" target="_blank">IBM Cloud Private Command Line Interface (CLI)</a>.</li>
+  <li>Install the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/app_center/create_helm_cli.html" target="_blank">Helm CLI</a> required for your version of IBM Cloud Private, and add the IBM Cloud Private <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/app_center/add_int_helm_repo_to_cli.html" target="_blank">internal Helm repository</a> called <code class="language-plaintext highlighter-rouge">local-charts</code> to the Helm CLI as an external repository.</li>
+  <li>For message indexing capabilities (enabled by default), ensure you set the <code class="language-plaintext highlighter-rouge">vm.max_map_count</code> property to at least <code class="language-plaintext highlighter-rouge">262144</code> on all IBM Cloud Private nodes in your cluster (not only the master node). Run the following commands on each node: <br />
+<code class="language-plaintext highlighter-rouge">sudo sysctl -w vm.max_map_count=262144</code><br />
+<code class="language-plaintext highlighter-rouge">echo "vm.max_map_count=262144" | tee -a /etc/sysctl.conf</code><br />
+<strong>Important:</strong> This property might have already been updated by other workloads to be higher than the minimum required.</li>
+</ul>
+
+<h2 id="hardware-requirements">Hardware requirements</h2>
+
+<p>The Helm chart for Event Streams specifies default values for the CPU and memory usage of the Apache Kafka brokers and Apache ZooKeeper servers.</p>
+
+<p>See the <a href="#helm-resource-requirements">following table</a> for memory requirements of each Helm chart component. Ensure you have sufficient physical memory to service these requirements.</p>
+
+<p>Kubernetes manages the allocation of containers within your cluster. This allows resources to be available for other Event Streams components which might be required to reside on the same node.</p>
+
+<p>Ensure you have one IBM Cloud Private worker node per Kafka broker, and a minimum of 3 worker nodes available for use by Event Streams.</p>
+
+<h2 id="helm-resource-requirements">Helm resource requirements</h2>
+
+<p>The following table lists the resource requirements of the Event Streams Helm chart. For details about the requirements for each pod and their containers, see the tables in the following sections.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pod</th>
+      <th>Number of replicas</th>
+      <th>Total CPU per pod</th>
+      <th>Total memory per pod (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Kafka</td>
+      <td>3*</td>
+      <td>1*</td>
+      <td>3.5*</td>
+    </tr>
+    <tr>
+      <td>ZooKeeper</td>
+      <td>3</td>
+      <td>0.1*</td>
+      <td>1*</td>
+    </tr>
+    <tr>
+      <td>Geo-replicator</td>
+      <td>0*</td>
+      <td>1 per replica</td>
+      <td>1 per replica</td>
+    </tr>
+    <tr>
+      <td>Administration UI</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Administration server</td>
+      <td>1</td>
+      <td>4.5</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <td>REST producer server</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>REST proxy</td>
+      <td>1</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+    <tr>
+      <td>Collector</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Network proxy</td>
+      <td>2</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+    <tr>
+      <td>Access controller</td>
+      <td>1</td>
+      <td>0.1</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <td>Index manager</td>
+      <td>1</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+    <tr>
+      <td>Elasticsearch</td>
+      <td>2</td>
+      <td>unlimited</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Important:</strong> You can configure the settings marked with an asterisk (*).</p>
+
+<p><strong>Note:</strong> Before installing Event Streams (not Community Edition), consider the number of Kafka replicas and geo-replicator nodes you plan to use. Each Kafka replica and geo-replicator node is a separate chargeable unit.</p>
+
+<p>The CPU and memory limits for some components are not limited by the chart, so they inherit the resource limits for the namespace that the chart is being installed into. If there are no resource limits set for the namespace, the containers run with unbounded CPU and memory limits.</p>
+
+<p><strong>Note:</strong> Geo-replication is only available in the paid-for version of Event Streams (not available in the Community Edition).</p>
+
+<h3 id="kafka-pod">Kafka pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Kafka</td>
+      <td>1*</td>
+      <td>2*</td>
+    </tr>
+    <tr>
+      <td>Metrics reporter</td>
+      <td>unlimited</td>
+      <td>1.5*</td>
+    </tr>
+    <tr>
+      <td>Metrics proxy</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+    <tr>
+      <td>Healthcheck</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="zookeeper-pod">ZooKeeper pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ZooKeeper</td>
+      <td>0.1*</td>
+      <td>1*</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="geo-replicator-pod">Geo-replicator pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Replicator</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Metrics reporter</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="administration-ui-pod">Administration UI pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UI</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Redis</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+    <tr>
+      <td>Proxy</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="administration-server-pod">Administration server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rest</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Codegen</td>
+      <td>0.5</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-producer-server-pod">REST producer server pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rest-producer</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-proxy-pod">REST proxy pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rest-proxy</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="collector-pod">Collector pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Collector</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="network-proxy-pod">Network proxy pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Proxy</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="access-controller-pod">Access controller pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Access controller</td>
+      <td>0.1</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <td>Redis</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="index-manager-pod">Index manager pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Index manager</td>
+      <td>unlimited</td>
+      <td>unlimited</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="elasticsearch-pod">Elasticsearch pod</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>CPU per container</th>
+      <th>Memory per container (Gi)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Elastic</td>
+      <td>unlimited</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="podsecuritypolicy-requirements">PodSecurityPolicy requirements</h2>
+
+<p>To install the Event Streams chart, you must have the <code class="language-plaintext highlighter-rouge">ibm-restricted-psp</code> <a href="https://ibm.biz/cpkspec-psp" target="_blank">PodSecurityPolicy</a> selected for the target namespace.</p>
+
+<p>You can define the PodSecurityPolicy when creating the <a href="../installing/#create-a-namespace">namespace</a> for your installation.</p>
+
+<p>Event Streams applies network policies to control the traffic within the namespace where it is deployed, limiting the traffic to that required by Event Streams. For more information about the network policies and the traffic they permit, see <a href="../../security/network-policies/">network policies</a>.</p>
+
+<p>For more information about PodSecurityPolicy definitions, see the <a href="https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/security.html" target="_blank">IBM Cloud Private documentation</a>.</p>
+
+<p><strong>Note:</strong> The PodSecurityPolicy requirements do not apply to the Red Hat OpenShift Container Platform.</p>
+
+<h2 id="red-hat-openshift-securitycontextconstraints-requirements">Red Hat OpenShift SecurityContextConstraints Requirements</h2>
+
+<p>If you  are installing on the OpenShift Container Platform, the Event Streams chart requires a custom SecurityContextConstraints to be bound to the target namespace prior to installation. The custom SecurityContextConstraints controls the permissions and capabilities required to deploy this chart.</p>
+
+<p>You can enable this custom SecurityContextConstraints resource using the supplied pre-installation <a href="../installing-openshift/#run-the-setup-script">setup script</a>.</p>
+
+<h2 id="network-requirements">Network requirements</h2>
+
+<p>Event Streams is supported for use with IPv4 networks only.</p>
+
+<h2 id="file-systems-for-storage">File systems for storage</h2>
+
+<p>If you want to set up <a href="../planning/#persistent-storage">persistent storage</a>, you must have physical volumes available, backed by one of the following file systems:</p>
+<ul>
+  <li>NFS version 4</li>
+  <li>GlusterFS version 3.10.1</li>
+</ul>
+
+<h2 id="event-streams-user-interface">Event Streams user interface</h2>
+
+<p>The Event Streams user interface (UI) is supported on the following web browsers:</p>
+
+<ul>
+  <li>Google Chrome version 65 or later</li>
+  <li>Mozilla Firefox version 59 or later</li>
+  <li>Safari version 11.1 or later</li>
+</ul>
+
+<h2 id="event-streams-cli">Event Streams CLI</h2>
+
+<p>The Event Streams command line interface (CLI) is supported on the following systems:</p>
+
+<ul>
+  <li>Windows 10 or later</li>
+  <li>Linux® Ubuntu 16.04 or later</li>
+  <li>macOS 10.13 (High Sierra) or later</li>
+</ul>
+
+<h2 id="clients">Clients</h2>
+
+<p>The Apache Kafka Java client included with Event Streams is supported for use with the following Java versions:</p>
+
+<ul>
+  <li>IBM Java 8</li>
+  <li>Oracle Java 8</li>
+</ul>
+
+<p>You can also use other Kafka version 2.0 or later clients when connecting to Event Streams. If you encounter client-side issues, IBM can assist you to resolve those issues (see our <a href="../../../support#support-policy">support policy</a>).</p>
+
+<p>Event Streams is designed for use with clients based on the <code class="language-plaintext highlighter-rouge">librdkafka</code> implementation of the Apache Kafka protocol.</p>
+
+          </div>
+
+
+          
+        </section>
+
+        <aside class="sidebar__right ">
+          
+          <div class="fixedSidebar">
+            <nav class="toc">
+              <ul class="toc__menu">
+  <li><a href="#container-environment">Container environment</a></li>
+  <li><a href="#hardware-requirements">Hardware requirements</a></li>
+  <li><a href="#helm-resource-requirements">Helm resource requirements</a>
+    <ul>
+      <li><a href="#kafka-pod">Kafka pod</a></li>
+      <li><a href="#zookeeper-pod">ZooKeeper pod</a></li>
+      <li><a href="#geo-replicator-pod">Geo-replicator pod</a></li>
+      <li><a href="#administration-ui-pod">Administration UI pod</a></li>
+      <li><a href="#administration-server-pod">Administration server pod</a></li>
+      <li><a href="#rest-producer-server-pod">REST producer server pod</a></li>
+      <li><a href="#rest-proxy-pod">REST proxy pod</a></li>
+      <li><a href="#collector-pod">Collector pod</a></li>
+      <li><a href="#network-proxy-pod">Network proxy pod</a></li>
+      <li><a href="#access-controller-pod">Access controller pod</a></li>
+      <li><a href="#index-manager-pod">Index manager pod</a></li>
+      <li><a href="#elasticsearch-pod">Elasticsearch pod</a></li>
+    </ul>
+  </li>
+  <li><a href="#podsecuritypolicy-requirements">PodSecurityPolicy requirements</a></li>
+  <li><a href="#red-hat-openshift-securitycontextconstraints-requirements">Red Hat OpenShift SecurityContextConstraints Requirements</a></li>
+  <li><a href="#network-requirements">Network requirements</a></li>
+  <li><a href="#file-systems-for-storage">File systems for storage</a></li>
+  <li><a href="#event-streams-user-interface">Event Streams user interface</a></li>
+  <li><a href="#event-streams-cli">Event Streams CLI</a></li>
+  <li><a href="#clients">Clients</a></li>
+</ul>
+            </nav>
+          </div>
+          
+        </aside>
+
+
+      </div>
+      <div class="pageEnd">
+        
+          
+  <nav class="pagination">
+    
+      <div class="previous" onclick="window.open('/event-automation/es/es_2019.1.1/installing/trying-out/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/installing/trying-out/" class="pagination--pager" title="Previous Item: Trying out Event Streams
+">Previous</a>
+          <h2 class="titlePreview">Trying out Event Streams
+</h2>
+        </div>
+      </div>
+    
+    
+      <div class="next" onclick="window.open('/event-automation/es/es_2019.1.1/installing/planning/','_self')">
+        <div class="container">
+          <a href="/event-automation/es/es_2019.1.1/installing/planning/" class="pagination--pager" title="Next Item: Planning for installation
+">Next</a>
+          <h2 class="titlePreview">Planning for installation
+</h2>
+        </div>
+      </div>
+      
+  </nav>
+
+        
+      </div>
+    </div>
+
+
+  </div> <!-- Main content -->
+
+</main></div>
+
+
+    
+      <div class="page__footer">
+          <footer>
+            <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+            
+<div class="page__footer-copyright"><a href="https://www.ibm.com/privacy/us/en/" rel="nofollow" target="_blank">Privacy Policy</a>  &nbsp;© Copyright IBM Corporation 2023</br>
+<a href="http://localhost:4000/event-automation/accessibility/" rel="nofollow" target="_blank">Accessibility</a> </br> <a href="http://localhost:4000/event-automation/notices/" rel="nofollow" target="_blank">Notices</a></br>
+          </footer>
+      </div>      
+    
+
+
+    
+  <script src="/event-automation/assets/js/main.min.js"></script>
+  <!-- <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+
+
+
+
+
+
+<script src="/event-automation/assets/js/design.js"></script>
+
+
+
+
+
+<script src="/event-automation/assets/js/lunr/lunr.min.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-store.js"></script>
+<script src="/event-automation/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

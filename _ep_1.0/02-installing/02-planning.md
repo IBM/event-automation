@@ -7,7 +7,7 @@ toc: true
 ---
 
 
-Consider the following when planning your installation of {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+Consider the following when planning your installation of {{site.data.reuse.ep_name}} and Flink.
 
 Decide the purpose of your deployment, for example, whether you want a starter deployment for testing purposes, or a production deployment.
 
@@ -18,7 +18,7 @@ Decide the purpose of your deployment, for example, whether you want a starter d
 
 ## {{site.data.reuse.ep_name}} sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target=”_blank”}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following {{site.data.reuse.ep_name}} sample configurations are available to deploy:
 - Quick start: A development instance with reduced resources, using ephemeral storage and Local authentication.
@@ -36,7 +36,7 @@ If you are [installing](../installing/#installing-an-event-processing-instance-b
 
 ## Flink sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target=”_blank”}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following table provides an overview of the Flink sample configurations and their resource requirements:
 

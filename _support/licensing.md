@@ -188,8 +188,9 @@ To work out the licenses required for a deployment, you can use the sample confi
 See the planning sections for information about chargeable cores for each sample:
 
 - [{{site.data.reuse.es_name}} samples]({{ '/es/installing/planning/#sample-deployments' | relative_url }})
-- [{{site.data.reuse.eem_name}} samples]({{ '/eem/installing/planning/#sample-deployments' | relative_url }})
+- [{{site.data.reuse.eem_name}} samples]({{ '/eem/installing/planning/#sample-deployments-for-event-endpoint-management' | relative_url }})
+- [{{site.data.reuse.egw}} samples]({{ '/eem/installing/planning/#sample-deployments-for-event-gateway' | relative_url }})
 - [{{site.data.reuse.ep_name}} samples]({{ '/ep/installing/planning/#event-processing-sample-deployments' | relative_url }})
-- [{{site.data.reuse.flink_long}} samples]({{ '/ep/installing/planning/#flink-sample-deployments' | relative_url }})
+- [Flink samples]({{ '/ep/installing/planning/#flink-sample-deployments' | relative_url }})
 
 **Note:** The chargeable cores for your deployment will depend on the configuration you specify. If you change the chargeable core values, you will require additional licenses.

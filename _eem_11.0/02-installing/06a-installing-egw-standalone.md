@@ -65,7 +65,7 @@ To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse
 
 ```
 docker login cp.icr.io -u cp
-docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw@sha256:cfdf937b0c1e20debb4f13bb63027ee8cb0840f96850095e3ceb6141f490a590
+docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:v{{site.data.reuse.eem_current_version}}
 ```
 
 The password to log in to the IBM Container software library is your entitlement key, which you can obtain from the container software library [site](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.
@@ -74,7 +74,7 @@ The password to log in to the IBM Container software library is your entitlement
 
 Before you start the {{site.data.reuse.egw}}, define the following options:
 
-- **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to {{site.data.reuse.eem_manager}}.
+- **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint defined in the {{site.data.reuse.eem_manager}}, and will contain `ibm-eem-gateway` in the URL.
 - **GATEWAY_PORT**: The port on the host that is exposed for external connections from Kafka applications.
 - **PATH_TO_CERTIFICATES**: A local directory in which the [Certificates](#certificates) are placed.
 - **KAFKA_ADVERTISED_LISTENER**: The host and port that Kafka applications should receive when making requests. If applications have direct access, then this will be the host and port of the {{site.data.reuse.egw}}, otherwise it should be the host and port of the routing or proxy service that is in front of the {{site.data.reuse.egw}}.

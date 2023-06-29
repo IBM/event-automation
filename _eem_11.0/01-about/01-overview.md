@@ -15,7 +15,7 @@ Access to the event sources are managed by the Event Gateway. The Event Gateway 
 
 The following diagram provides an overview of {{site.data.reuse.eem_name}}.
 
-![Overview of Event Endpoint Management Next.]({{ 'images' | relative_url }}/EEM_Overview.jpg "Diagram that shows the overview of Event Endpoint Management Next"){:height=“100%” width=“100%“}
+![Overview of Event Endpoint Management.]({{ 'images' | relative_url }}/EEM_Overview.jpg "Diagram that shows the overview of Event Endpoint Management."){:height=“100%” width=“100%“}
 
 1. The Kafka administrator describes the Kafka topic, which is the event source. They can select a topic from an existing Kafka cluster or specify a new cluster, after which the topics on that cluster can be made available by adding and describing them.
 2. The Kafka administrator publishes the Kafka topic. The topic is then available in the catalog for application developers to discover and use as an event source.

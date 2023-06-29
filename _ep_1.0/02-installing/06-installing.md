@@ -417,7 +417,7 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
 
 To install an instance of Flink from the command-line, you must first prepare a `FlinkDeployment` custom resource configuration in a YAML file.
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target=”_blank”}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
 
 **Important:** All Flink samples except **Quick start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 
@@ -544,7 +544,7 @@ To configure an `EventProcessing` custom resource,  complete the following steps
 
 To install an instance of {{site.data.reuse.ep_name}} from the command-line, you must first prepare an `EventProcessing` custom resource configuration in a YAML file.
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target=”_blank”}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These sample configurations range from smaller deployments for non-production development or general experimentation to large scale clusters ready to handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These sample configurations range from smaller deployments for non-production development or general experimentation to large scale clusters ready to handle a production workload.
 
 More information about these samples is available in the [planning](../planning/#event-processing-sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
 

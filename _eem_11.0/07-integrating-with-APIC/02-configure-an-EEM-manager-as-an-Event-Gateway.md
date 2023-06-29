@@ -8,17 +8,18 @@ toc: true
 
 You can configure your {{site.data.reuse.eem_name}} instance (Manager) to be registered as an {{site.data.reuse.egw}} Service in IBM API Connect, which you can use to manage events and APIs in one place.
 
-
 To register {{site.data.reuse.eem_name}} instance as an {{site.data.reuse.egw}} Service:
 
 1. Add the server certificate of API Connect and the JSON Web Key Set (JWKS) endpoint as configuration in your {{site.data.reuse.eem_name}} instance so that communications received from API Connect are trusted. 
 2. Use the {{site.data.reuse.egw}} API and the {{site.data.reuse.eem_manager}} Manager endpoint to configure an {{site.data.reuse.egw}} Service in Cloud Manager.
 
+**Important:** Ensure you install and configure an instance of both an {{site.data.reuse.eem_manager}} and an {{site.data.reuse.egw}} before configuring API Connect integration with that {{site.data.reuse.eem_manager}} instance.
+
 Follow the steps to configure your {{site.data.reuse.eem_name}} Manager as an {{site.data.reuse.egw}} Service.
 
-## Retrieve the Manager endpoint
+## Retrieve the API Connect API endpoint
 
-Before beginning, you must retrieve the {{site.data.reuse.eem_manager}} Manager endpoint, as this is needed for the following sections.
+Before beginning, you must retrieve the API Connect `platformApi` endpoint.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -28,19 +29,19 @@ Before beginning, you must retrieve the {{site.data.reuse.eem_manager}} Manager 
 6. In the **YAML**, find the `status.endpoints` section of the `APIConnectCluster` custom resource. 
 7. Retrieve the value in the `platformApi` field.
 
-The value that you retrieved previously is the Manager endpoint, which is used in the following sections.
+The value that you retrieved is required to configure trust between API Connect and {{site.data.reuse.eem_name}}.
 
 ## Configure {{site.data.reuse.eem_name}} to trust API Connect
 
-To allow communication between API Connect and the {{site.data.reuse.egw}} Service, you must add the API Connect certificate to {{site.data.reuse.eem_name}} trusted certificates. Additionally, you need to provide JWKS endpoint, which will be used to authenticate messages received from API Connect.
+To allow communication between API Connect and {{site.data.reuse.eem_name}}, you must add the certificate presented on the `platformApi` endpoint to {{site.data.reuse.eem_name}} as a trusted certificate. Additionally, you must provide a JWKS endpoint, which will be used to authenticate messages received from API Connect.
 
-1. Download the server certificate from the {{site.data.reuse.eem_manager}} endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
+1. Download the server certificate from an API Connect endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
 
     ```bash
-    openssl s_client -connect <manager endpoint hostname>:443
+    openssl s_client -connect <platformApi value>
     ```
 
-    Where `<manager endpoint hostname>` is the {{site.data.reuse.eem_manager}} endpoint that you retrieved earlier.
+    Where `<platformApi value>` is the API Connect `platformApi` endpoint that you retrieved earlier.
 2. In the {{site.data.reuse.openshift_short}}, [create a secret](#creating-a-secret) that contains the downloaded certificate.
 3. {{site.data.reuse.openshift_ui_login}}
 4. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -94,7 +95,7 @@ Create a secret to store the API Connect certificate as follows:
 
     ```bash
     cat <<EOF | oc apply -f -
-    apiVersion: events.ibm.com/v1beta1
+    apiVersion: v1
     kind: Secret
     metadata:
       name: apim-cpd
@@ -133,14 +134,6 @@ Based on your security requirements, you can optionally choose to also enable mu
 ## Registering {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service in API Connect
 
 After configuring the {{site.data.reuse.eem_name}} to trust API Connect, register the {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service as follows:
-
-### Retrieve the {{site.data.reuse.egw}} API and management endpoints
-
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_select_routes}}
-3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
-4. Use the search bar to find the route with the **Name** ending in `gateway`. The URL in the **Location** column is the {{site.data.reuse.egw}} API endpoint.
-5. Use the search bar to find the route with the **Name** ending in `apic`. The URL in the **Location** column is the management endpoint.
 
 ### Obtain certificates for a TLS client profile 
 
@@ -190,15 +183,40 @@ Create the TLS server profile that the {{site.data.reuse.egw}} Service uses for 
 8. In the **Keystore** section, select the store that is created earlier.
 9. Click **Save**.
 
+### Retrieving the {{site.data.reuse.egw}} management endpoint
+
+To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where configuration updates from API Connect are sent. This is referred to as the **Service Endpoint** when registering an {{site.data.reuse.egw}} Service in the Cloud Manager. This endpoint can be retrieved from {{site.data.reuse.eem_name}} as follows:
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. {{site.data.reuse.task_openshift_select_routes}}
+3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
+4. Use the search bar to find the route with the **Name** ending in `apic`. The URL in the **Location** column is the management endpoint.
+
+## Retrieving the {{site.data.reuse.egw}} client endpoint
+
+To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where clients should connect to in order to consume events. Depending where you have [deployed your {{site.data.reuse.egw}}](../../installing/deploy-gateways), the steps to retrieve the client endpoint will differ:
+
+### Openshift cluster deployment
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. {{site.data.reuse.task_openshift_select_routes}}
+3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.egw}} instance is installed in.
+4. Use the search bar to find the route with the **Name** ending in `ibm-egw-rt`. The URL in the **Location** column is the client endpoint.
+5. Having retrieved the **Location** value, remove the `https://` protocol prefixing the endpoint.
+
+### Stand-alone deployment
+
+When [deployed as a stand-alone gateway](../../installing/standalone-gateways), the client endpoint value to use will be the name of the docker host running the gateway, and the `GATEWAY_PORT` value specified when starting the gateway container.
+
 ### Register {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service
 
 To socialize the {{site.data.reuse.egw}} client endpoint, register the {{site.data.reuse.egw}} through the Cloud Manager as follows.
 
 1. In the Cloud Manager UI, select **Topology > Register Service > Event Gateway Service**.
 2. Enter a title and an optional summary.
-3. In the **Service endpoint**, enter the management endpoint that you obtained earlier.
+3. In the **Service endpoint** field, enter the management endpoint that you [obtained earlier](#retrieving-the-event-gateway-management-endpoint).
 4. Select the TLS client profile that you created earlier from the **TLS client profile** drop-down menu. 
-5. In the **API invocation endpoint**, enter the {{site.data.reuse.egw}} API endpoint base that you obtained earlier and add `:443` at the end of the value. For example, `eem-manager-instance-ibm-eem-gateway.mycompany.com:443`
+5. In the **API invocation endpoint** field, enter the [{{site.data.reuse.egw}} API endpoint that you obtained earlier](#retrieving-the-event-gateway-client-endpoint).
 6. Select the TLS server profile that you created earlier from the drop-down menu.
 7. Click **Save**.
 

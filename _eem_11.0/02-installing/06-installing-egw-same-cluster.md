@@ -50,7 +50,7 @@ When modifying the sample configuration, the updated document can be exported fr
 When modifying the sample configuration, ensure the following fields are updated based on your requirements:
 
 - `spec.license.accept` field in the custom resource YAML is set to `true` and that the [correct values](../planning/#licensing) are selected for `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields.
-- `spec.ManagerEndpoint` is set to the endpoint URI of an {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance.
+- `spec.ManagerEndpoint` is set to the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance. The `gateway` API endpoint will contain `ibm-eem-gateway` in the URL.
 - `spec.tls.caSecretName` field is updated with the name of a secret that contains the root CA certificate.
 
    **Important:** The `caSecretName` of an {{site.data.reuse.egw}} instance must be the same as the `caSecretName` of the {{site.data.reuse.eem_name}} instance you referred to when setting the endpoint URI in `spec.ManagerEndpoint`. If you are using the [operator-provided certificate](../configuring/#operator-configured-ca-certificate), enter the value as `<my-instance>-ibm-eem-manager-ca`.
@@ -100,7 +100,7 @@ To configure an `EventGateway` custom resource,  complete the following steps:
 
 To install an instance of {{site.data.reuse.egw}} from the command-line, you must first prepare an `EventGateway` custom resource configuration in a YAML file.
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-eem-samples){:target=”_blank”} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
 
 More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
 

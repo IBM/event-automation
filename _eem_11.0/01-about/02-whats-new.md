@@ -8,6 +8,14 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.0.x.
 
+## Release {{site.data.reuse.eem_current_version}}
+
+{{site.data.reuse.eem_name}} 11.0.1 contains stability and bug fixes.
+
+### Known issues
+
+- [Manager logs contain `java.security.NoSuchAlgorithmException` messages](../../troubleshooting/no-such-algorithm-log).
+
 ## Release 11.0.0
 
 {{site.data.reuse.eem_name}} 11.0.0 simplifies how users can discover, socialize, and use events in your organization. This release also makes {{site.data.reuse.eem_name}} a stand-alone capability, meaning it no longer requires an instance of IBM API Connect instance to be deployed.

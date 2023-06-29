@@ -34,7 +34,8 @@ See the following table for information about the latest {{site.data.reuse.es_na
 
 {{site.data.reuse.eem_name}} version | Operator version | Operator channel | CASE version | Container platform  | Systems | 
 -----------------------------------------------|------------------|------------------|-----------------------|---------------------|---------|
-11.0.0  | 11.0.0  | v11.0  | 11.0.0 | {{site.data.reuse.openshift}} versions 4.10 to 4.12, all fix levels (see [support dates](https://access.redhat.com/support/policy/updates/openshift#dates){:target="_blank"}). <br> <br> Managed OpenShift services on cloud platforms (PaaS): <br>- Red Hat OpenShift on IBM Cloud <br> - Azure Red Hat OpenShift <br> - Red Hat OpenShift Service on AWS <br> <br> **Note:** [AWS ECS Fargate](https://aws.amazon.com/fargate/){:target="_blank"} is not supported. <br> <br> OpenShift on cloud infrastructure (IaaS): <br> - IBM Cloud <br> - Microsoft Azure <br> - Amazon Web Services  | - Linux 64-bit (x86_64) systems | 
+11.0.1  | 11.0.1  | v11.0  | 11.0.1 | {{site.data.reuse.openshift}} versions 4.10 to 4.12, all fix levels (see [support dates](https://access.redhat.com/support/policy/updates/openshift#dates){:target="_blank"}). <br> <br> Managed OpenShift services on cloud platforms (PaaS): <br>- Red Hat OpenShift on IBM Cloud <br> - Azure Red Hat OpenShift <br> - Red Hat OpenShift Service on AWS <br> <br> **Note:** [AWS ECS Fargate](https://aws.amazon.com/fargate/){:target="_blank"} is not supported. <br> <br> OpenShift on cloud infrastructure (IaaS): <br> - IBM Cloud <br> - Microsoft Azure <br> - Amazon Web Services  | - Linux 64-bit (x86_64) systems | 
+11.0.0  | 11.0.0  | v11.0  | 11.0.0 | &nbsp;  | &nbsp; | 
 
 
 ## {{site.data.reuse.ep_name}}

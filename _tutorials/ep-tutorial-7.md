@@ -1,5 +1,5 @@
 ---
-title: "Process out of sequence events"
+title: "Process out-of-sequence events"
 description: "Events generated from a wide range of producers can be out of sequence on the topic, making it important to resolve this before time-sensitive processing."
 permalink: /tutorials/event-processing-examples/example-07
 toc: true
@@ -46,15 +46,15 @@ For this scenario, you need to find information about the source of door badge e
 
     Note the warning in the catalog:
 
-    > Note that door events can take up to 3 minutes to reach the Kafka topic, so the badgetime value in the message payload should be treated as the canonical timestamp for the event.
+    > Note that door events can take up to 3 minutes to reach the Kafka topic, so the badge time value in the message payload should be treated as the canonical timestamp for the event.
     >
     > This delay can be inconsistent, so messages on the topic are often out of sequence as a result.
 
 1. If the topic owner hadn't provided this warning, you would have needed to observe messages on the Kafka topic itself to identify this. Confirm this by observing messages on the topic in the {{site.data.reuse.es_name}} topic viewer.
 
-    If you need a reminder of how to access **{{site.data.reuse.es_name}}** catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
+    If you need a reminder about how to access the **{{site.data.reuse.es_name}}** catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
-    Look for examples of messages that, even on the same partition, result in an older badge event (according to the `badgetime` property) is on the topic after an earlier badge event.
+    Look for examples of messages that, even on the same partition, result in an older badge event (according to the `badgetime` property) being on the topic after an earlier badge event.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the ES topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the ES topic")
 
@@ -68,15 +68,15 @@ For this scenario, you need to find information about the source of door badge e
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
 
-    If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
+    If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 
 1. Create a flow, and give it a name and description to explain that you will use it to track hourly badge events.
 
-1. Create an **Event source** node
+1. Create an **Event source** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-4.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-4.png "creating an event source node")
 
-1. Add an event source
+1. Add an event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-5.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-5.png "creating an event source node")
 
@@ -86,7 +86,7 @@ For this scenario, you need to find information about the source of door badge e
 
     You need to accept the certificates to continue.
 
-1. Fill in credentials using a username and password created in {{site.data.reuse.eem_name}} using the **Generate access credentials** button
+1. Fill in credentials by using a username and password created in {{site.data.reuse.eem_name}} using the **Generate access credentials** button.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node")
 
@@ -106,7 +106,7 @@ For this scenario, you need to find information about the source of door badge e
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node")
 
-1. Configure the event source to use the `badgetime` property as the source of event time, and to tolerate lateness of up to **3 minutes**
+1. Configure the event source to use the `badgetime` property as the source of the event time, and to tolerate lateness of up to **3 minutes**.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-12.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-12.png "creating an event source node")
 
@@ -114,7 +114,7 @@ For this scenario, you need to find information about the source of door badge e
 
 ### Step 3 : Extract information to aggregate on
 
-1. Add a **Transform** node to the flow
+1. Add a **Transform** node to the flow.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-13.png "processing the door events"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-13.png "processing the door events")
 
@@ -145,21 +145,21 @@ For this scenario, you need to find information about the source of door badge e
 
 ### Step 4 : Count the occurrences
 
-1. Add an **Aggregate** node to the flow
+1. Add an **Aggregate** node to the flow.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-15.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-15.png "creating the processing flow")
 
     Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
 
-1. Define the time window to group badge events by as **1 hour**
+1. Define the time window to group badge events by as **1 hour**.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-16.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-16.png "creating the processing flow")
 
-1. Count the number of door badge events (by counting the unique record ID), grouped by the building
+1. Count the number of door badge events (by counting the unique record ID), grouped by the building.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-17.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-17.png "creating the processing flow")
 
-1. Rename the output properties to make the results easier to understand
+1. Rename the output properties to make the results easier to understand.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow")
 

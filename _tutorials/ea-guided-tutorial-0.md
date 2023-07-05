@@ -71,7 +71,7 @@ Set this to `true` if you accept the terms of the {{ site.data.reuse.ea_short }}
 
 {{site.data.reuse.ea_long}} requires a certificate manager operator to create and manage SSL/TLS certificates. If you already have a certificate manager operator, you can use that for the tutorial.
 
-Review the installed operators in your OpenShift cluster for the operator with the name "IBM Cert Manager".
+Review the installed operators in your OpenShift cluster for operators with names such as "IBM Cert Manager" or "cert-manager Operator for Red Hat OpenShift".
 
 If you don't have an existing certificate manager operator, set `install_certmgr` to `true`.
 

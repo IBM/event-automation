@@ -148,8 +148,10 @@ function searchResults(theSearchInput) {
               value = "Event Processing - " + topic.version.substr(3);
             } else if (topic.version.startsWith("eem")) {
               value = "Event Endpoint Management - " + topic.version.substr(4);
+            } else if (topic.version.startsWith("es")) {
+              value =  "Event Streams - " + topic.version.substr(3);
             } else {
-              value = "Event Streams - " + topic.version;
+              value = topic.version;
             }
             structure += '<div class="versionPillContainer '+initial+'" onMouseOver="pillHover(this);" onMouseOut="pillBlur(this);" href="'+topic.url+'">'
             structure += '<a class="versionPill" href="'+topic.url+'">'+value+'</a>'

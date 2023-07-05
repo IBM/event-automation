@@ -49,7 +49,7 @@ For this scenario, you need access to the sensor reading events.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
 
-    If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
+    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
     If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
@@ -67,45 +67,45 @@ The first event processing flow will read the events from the sensor readings to
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
 
-    If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
+    If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 
-1. Create a flow, and give it a name and description to explain that it will pre-process sensor readings to rewrite the timestamp
+1. Create a flow, and give it a name and description to explain that it will pre-process sensor readings to rewrite the timestamp.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-2.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-2.png "creating a pre-processing flow")
 
-1. Create an **Event source** node
+1. Create an **Event source** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-3.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-3.png "creating a pre-processing flow")
 
     Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
 
-1. Add an event source
+1. Add an event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-4.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-4.png "creating a pre-processing flow")
 
-    Configure the event source node by clicking the three dot menu, and choosing "Edit".
+    Configure the event source node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
 
-1. Use the server address from the {{site.data.reuse.eem_name}} catalog
+1. Use the server address from the {{site.data.reuse.eem_name}} catalog.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-5.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-5.png "creating a pre-processing flow")
 
     Click the Copy button next to the Servers address in the {{site.data.reuse.eem_name}} catalog to copy the address to the clipboard.
 
-1. Use the **Generate access credentials** button in the {{site.data.reuse.eem_name}} catalog to create a username and password, and use that to configure the {{site.data.reuse.ep_name}} event source
+1. Use the **Generate access credentials** button in the {{site.data.reuse.eem_name}} catalog to create a username and password, and use that to configure the {{site.data.reuse.ep_name}} event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-6.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-6.png "creating a pre-processing flow")
 
-1. Select the `SENSOR.READINGS` topic, then click "Next"
+1. Select the `SENSOR.READINGS` topic, then click "Next".
 
-1. Click the "Upload a schema or sample message" button
+1. Click the "Upload a schema or sample message" button.
 
-1. Paste in the event schema from the catalog
+1. Paste in the event schema from the catalog.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-7.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-7.png "creating a pre-processing flow")
 
 1. Click **Configure** to finalize the event source.
 
-1. Add a **Transform** node and link it to your event source
+1. Add a **Transform** node and link it to your event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-8.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-8.png "creating a pre-processing flow")
 
@@ -113,11 +113,11 @@ The first event processing flow will read the events from the sensor readings to
 
     Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
-1. Name the transform node `rewrite timestamp`
+1. Name the transform node `rewrite timestamp`.
 
-    Configure the transform node by clicking the three dot menu, and choosing "Edit".
+    Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
 
-1. Create a new property called `timestamp`
+1. Create a new property called `timestamp`.
 
 1. Use the assistant to create a `TO_TIMESTAMP` expression.
 
@@ -125,12 +125,12 @@ The first event processing flow will read the events from the sensor readings to
 
     The catalog gives you:
 
-    - the name of the property containing the existing timestamp value (`sensortime`)
-    - the format that it is in (`EEE MMM dd HH:mm:ss zzz yyyy`).
+    - The name of the property containing the existing timestamp value (`sensortime`).
+    - The format that it is in (`EEE MMM dd HH:mm:ss zzz yyyy`).
 
     Use these values to create the expression.
 
-1. Click "Insert into expression", and then click "Next"
+1. Click **Insert into expression**, and then click "Next".
 
 1. Remove the `event_time` and `sensortime` properties as you won't need them.
 
@@ -146,37 +146,37 @@ The next step is to send the modified events to a new topic that can be used as 
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "Event Streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "Event Streams")
 
-    If you need a reminder of how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
+    If you need a reminder about how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
 
-1. Click the "Create a topic" tile.
+1. Click the **Create a topic** tile.
 
-1. Create a topic called `SENSOR.READINGS.SQLTIME`
+1. Create a topic called `SENSOR.READINGS.SQLTIME`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-11.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-11.png "creating a pre-processing flow")
 
     You can use the default values for all the properties of the topic.
 
-1. Click into the new topic page, and then click the "Connect to this topic" button
+1. Click into the new topic page, and then click **Connect to this topic**.
 
-1. Get the server address for the new topic from the {{site.data.reuse.es_name}} topic page
+1. Get the server address for the new topic from the {{site.data.reuse.es_name}} topic page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-13.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-13.png "creating a pre-processing flow")
 
     Click the copy button for the **Internal** Kafka listener to copy the address to the clipboard.
 
-1. Create an **Event destination** node
+1. Create an **Event destination** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-12.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-12.png "creating a pre-processing flow")
 
     Create an event destination node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
 
-1. Configure the event destination node using the {{site.data.reuse.es_name}} server address and credentials
+1. Configure the event destination node using the {{site.data.reuse.es_name}} server address and credentials.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-14.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-14.png "creating a pre-processing flow")
 
     If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics) section of the Tutorial Setup instructions.
 
-1. Choose the new `SENSOR.READINGS.SQLTIME` topic
+1. Choose the new `SENSOR.READINGS.SQLTIME` topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-15.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-15.png "creating a pre-processing flow")
 
@@ -186,11 +186,11 @@ The next step is to send the modified events to a new topic that can be used as 
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-16.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-16.png "running the pre-processing flow")
 
-1. Confirm that the events have rewritten timestamps from {{site.data.reuse.ep_name}}
+1. Confirm that the events have re-written timestamps from {{site.data.reuse.ep_name}}.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-17.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-17.png "running the pre-processing flow")
 
-1. Confirm that the transformed events are produced to the new topic from {{site.data.reuse.es_name}}
+1. Confirm that the transformed events are produced to the new topic from {{site.data.reuse.es_name}}.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-18.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-18.png "running the pre-processing flow")
 
@@ -207,7 +207,7 @@ Any other teams or colleagues who want to perform time-based analysis on the sen
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page")
 
-1. Click the **Add topic** button
+1. Click **Add topic**.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page")
 
@@ -219,15 +219,15 @@ Any other teams or colleagues who want to perform time-based analysis on the sen
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-19.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-19.png "running the pre-processing flow")
 
-1. Click **Add topic**
+1. Click **Add topic**.
 
 1. Click the new `SENSOR.READINGS.SQLTIME` topic.
 
-1. Use **Edit information** to provide documentation for the topic
+1. Use **Edit information** to provide documentation for the topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-20.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-20.png "running the pre-processing flow")
 
-1. Include a sample message from the {{site.data.reuse.es_name}} topic page
+1. Include a sample message from the {{site.data.reuse.es_name}} topic page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-21.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-21.png "running the pre-processing flow")
 
@@ -235,7 +235,7 @@ Any other teams or colleagues who want to perform time-based analysis on the sen
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-22.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-22.png "running the pre-processing flow")
 
-1. Choose the default gateway group
+1. Choose the default gateway group.
 
 ### Step 5 : Process the transformed sensor readings
 
@@ -243,19 +243,19 @@ The final step is to process the transformed sensor readings to identify the min
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-1. Create a flow, and give it a name and description to explain that it will process sensor readings
+1. Create a flow, and give it a name and description to explain that it will process sensor readings.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-23.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-23.png "creating the processing flow")
 
-1. Create an **Event source** node using the `SENSOR.READINGS.SQLTIME` topic from the {{site.data.reuse.eem_name}} catalog
+1. Create an **Event source** node using the `SENSOR.READINGS.SQLTIME` topic from the {{site.data.reuse.eem_name}} catalog.
 
-1. Use the sample message from the catalog to configure the event source
+1. Use the sample message from the catalog to configure the event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-24.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-24.png "creating the processing flow")
 
     Notice that this is a different tab to providing an Avro schema.
 
-1. Modify the type of the `timestamp` property that you created to be `TIMESTAMP` (instead of the default "STRING")
+1. Modify the type of the `timestamp` property that you created to be `TIMESTAMP` (instead of the default "STRING").
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-25.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-25.png "creating the processing flow")
 
@@ -267,9 +267,9 @@ The final step is to process the transformed sensor readings to identify the min
 
 1. Click **Configure** to finalize the event source.
 
-1. Create a **Transform** node to extract the building name from the sensor id.
+1. Create a **Transform** node to extract the building name from the sensor ID.
 
-    The sensor id is made up of:
+    The sensor ID is made up of:
     ```
     <building id> - <floor number> - <sensor number>
     ```
@@ -288,23 +288,23 @@ The final step is to process the transformed sensor readings to identify the min
 
     The regular expression function is simply capturing the first set of letters before the first hyphen character.
 
-1. Add an **Aggregate** node to the flow
+1. Add an **Aggregate** node to the flow.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-28.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-28.png "creating the processing flow")
 
-1. Configure the aggregate to work in **1-hour** windows
+1. Configure the aggregate to work in **1-hour** windows.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-29.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-29.png "creating the processing flow")
 
-1. Create aggregate functions to get the `MIN` and `MAX` values for `temperature` and `humidity`
+1. Create aggregate functions to get the `MIN` and `MAX` values for `temperature` and `humidity`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-30.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-30.png "creating the processing flow")
 
-1. Group by `building`
+1. Group by `building`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-31.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-31.png "creating the processing flow")
 
-1. Rename the output properties to be readable
+1. Rename the output properties to be readable.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-32.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-32.png "creating the processing flow")
 

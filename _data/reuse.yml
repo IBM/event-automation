@@ -174,6 +174,9 @@ es_ui_login_nonadmin: "Log in to the Event Streams UI from a supported web brows
 # {{site.data.reuse.es_ui_login_nonadmin_samesection}}
 es_ui_login_nonadmin_samesection: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../logging-in/) for your Event Streams UI)."
 
+# {{site.data.reuse.es_ui_login_nonadmin_mq}}
+es_ui_login_nonadmin_mq: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../../../getting-started/logging-in/) for your Event Streams UI)."
+
 # {{site.data.reuse.es_cli_init}}
 es_cli_init: "Run the following command to initialize the Event Streams CLI: `cloudctl es init`"
 

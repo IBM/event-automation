@@ -1,6 +1,6 @@
 ---
-title: "Processing MQ messages"
-description: "MQ queues and topics are a valuable source of events for processing."
+title: "Processing IBM MQ messages"
+description: "IBM MQ queues and topics are a valuable source of events for processing."
 permalink: /tutorials/event-processing-examples/example-11
 toc: true
 section: "Tutorials for Event Processing"
@@ -8,9 +8,11 @@ cardType: "large"
 order: 11
 ---
 
+{% include video.html videoSource="videos/tutorials/examples/11-mqmessages.mp4" %}{: class="tutorial-video" }
+
 ## Scenario
 
-MQ queues and topics are a valuable source of events for processing. In this tutorial, you will see how MQ messages can be surfaced on Kafka topics, from where they can be used as a source of events for {{site.data.reuse.ep_name}}.
+IBM MQ queues and topics are a valuable source of events for processing. In this tutorial, you will see how MQ messages can be surfaced on Kafka topics, from where they can be used as a source of events for {{site.data.reuse.ep_name}}.
 
 ## Before you begin
 
@@ -22,7 +24,7 @@ You will also need to [run the optional instructions for deploying an MQ queue m
 
 ### Operator versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+This tutorial was written by using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots can differ from the current interface if you are using a newer version.
 
 - Event Streams 3.2.1
 - Event Endpoint Management 11.0.1
@@ -39,7 +41,7 @@ Messages in this scenario will start life on an MQ queue called `COMMANDS`. Star
 
     You can get the URL for the web console from the `queuemanager-ibm-mq-web` route, and the password from the `platform-auth-idp-credentials` secret.
 
-    If you have `oc` CLI access to your OpenShift cluster, you can use this:
+    If you have `oc` CLI access to your {{site.data.reuse.openshift}} cluster, you can use the following commands:
 
     ```sh
     # URL
@@ -73,9 +75,23 @@ The next step is to verify that MQ messages are surfaced on the Kafka topic as a
 
     ```json
     {
-        "id": 1000,
-        "count": 11,
-        "destination": "ABC"
+        "id": "cbeecfcb-27da-4e59-bbcd-8a974fe22917",
+        "customer": {
+            "id": "79df63d7-7522-4972-8546-1f1c33531e44",
+            "name": "Lelia Langworth"
+        },
+        "creditcard": {
+            "number": "5532169298805994",
+            "expiry": "04/25"
+        },
+        "product": {
+            "description": "L Denim Ripped Jeans",
+            "price": 45.48
+        },
+        "order": {
+            "quantity": "2"
+        },
+        "ordertime": "2023-06-28 22:38:35.089"
     }
     ```
 
@@ -91,7 +107,206 @@ The next step is to verify that MQ messages are surfaced on the Kafka topic as a
 
     The use of a [streaming queue](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=scenarios-streaming-queues) means that a copy of messages can be made available for transferring to Kafka without disrupting any existing MQ application that is getting the messages.
 
-### Step 3 : MQ messages as a source of events
+### Step 3 : Flattening the MQ messages
+
+To process the messages in **{{site.data.reuse.ep_name}}**, you first need to flatten the nested JSON payloads.
+
+1. Open the specification for the Kafka MQ Source Connector in a text editor.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-20.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-20.png "editing the MQ connector")
+
+    It is the [`install/supporting-demo-resources/mq/templates/06-connector.yaml`](https://github.com/IBM/event-automation-demo/blob/main/install/supporting-demo-resources/mq/templates/06-connector.yaml) file, included in the folder for the files you used to [set up the MQ queue manager](../guided/tutorial-0#ibm-mq) for this tutorial.
+
+2. Add a transform definition to flatten the message value.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-21.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-21.png "editing the MQ connector")
+
+    ```yaml
+    transforms.flatten.type: org.apache.kafka.connect.transforms.Flatten$Value
+    transforms.flatten.delimiter: "_"
+    ```
+
+    Add this definition to the `.spec.config` section of the connector definition.
+
+    In the screenshot it is added to the end of the config, but the order is not significant, as long as it is within `.spec.config`.
+
+3. Add your new transform to the list of transformations that are to be applied to messages.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-22.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-22.png "editing the MQ connector")
+
+    ```yaml
+    transforms: flatten
+    ```
+
+    Add this line to the `.spec.config` section of the connector definition.
+
+4. Apply your changes to the connector definition.
+
+    ```sh
+    oc apply -n event-automation \
+        -f install/supporting-demo-resources/mq/templates/06-connector.yaml
+    ```
+
+    You need to be logged in to run this command.
+
+    {{site.data.reuse.openshift_cli_login}}
+
+5. Test the transform by putting a new test message to the `COMMANDS` queue in the MQ queue manager.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-23.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-23.png "editing the MQ connector")
+
+    ```json
+    {
+        "id": "6446ef47-79a1-4b8a-a441-a58de8a90188",
+        "customer": {
+            "id": "a20533e6-88ee-478e-b42f-7a1a028b0b12",
+            "name": "Roseanna Cremin"
+        },
+        "creditcard": {
+            "number": "5532144297701443",
+            "expiry": "09/24"
+        },
+        "product": {
+            "description": "XS Acid-washed Low-rise Jeans",
+            "price": 33.88
+        },
+        "order": {
+            "quantity": "1"
+        },
+        "ordertime": "2023-07-01 10:51:48.125"
+    }
+    ```
+
+6. Verify that the transform is working by checking the {{site.data.reuse.es_name}} topic page.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-24.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-24.png "editing the MQ connector")
+
+    You should see the message that is produced to the Kafka topic:
+
+    ```json
+    {
+        "product_price": 33.88,
+        "product_description": "XS Acid-washed Low-rise Jeans",
+        "id": "6446ef47-79a1-4b8a-a441-a58de8a90188",
+        "ordertime": "2023-07-01 10:51:48.125",
+        "creditcard_number": "5532144297701443",
+        "creditcard_expiry": "09/24",
+        "customer_name": "Roseanna Cremin",
+        "customer_id": "a20533e6-88ee-478e-b42f-7a1a028b0b12",
+        "order_quantity": "1"
+    }
+    ```
+
+    Changes to connector specifications can sometimes take a moment to apply. If the message produced to the Kafka topic is not flattened, try waiting for 30 seconds, and then put the MQ message again.
+
+This topic is now ready for use by {{site.data.reuse.ep_name}}. Before trying that, we will add some additional transformations to see what is possible.
+
+### Step 4 : Transforming the MQ messages
+
+The flatten transformation that you have applied is one of a wide range of transformations available.
+
+In this step, you will apply a few more of these to see what transformations are possible:
+
+- Redact the credit card number from the events
+- Remove the customer name from the events
+- Insert a static property to identify where the event came from
+- Cast the quantity property from a string to an integer
+
+Other available transformations are described in the [Kafka Connect documentation](https://kafka.apache.org/documentation/#connect_included_transformation).
+
+1. Add the following transformation definitions to the Connector specification.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-25.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-25.png "editing the MQ connector")
+
+    ```yaml
+    transforms.redact.type: org.apache.kafka.connect.transforms.MaskField$Value
+    transforms.redact.fields: creditcard_number
+    transforms.redact.replacement: XXXXXXXXXXXXXXXX
+
+    transforms.drop.type: org.apache.kafka.connect.transforms.ReplaceField$Value
+    transforms.drop.blacklist: customer_name
+
+    transforms.origin.type: org.apache.kafka.connect.transforms.InsertField$Value
+    transforms.origin.static.field: origin
+    transforms.origin.static.value: mq-connector
+
+    transforms.casts.type: org.apache.kafka.connect.transforms.Cast$Value
+    transforms.casts.spec: order_quantity:int16
+    ```
+
+1. Add your new transforms to the list of transformations that are to be applied to messages.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-26.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-26.png "editing the MQ connector")
+
+    ```yaml
+    transforms: flatten,redact,drop,origin,casts
+    ```
+
+    **Tip**: The order of these in the comma-separated list is the order that the transformations are applied in.
+
+    In this case, it is important that the `flatten` transformation is applied first. This is because properties referred to in the later transformations (for example, `creditcard_number` and `customer_name`) do not exist until after the flatten transformation is complete.
+
+4. Apply your changes to the connector definition.
+
+    ```sh
+    oc apply -n event-automation \
+        -f install/supporting-demo-resources/mq/templates/06-connector.yaml
+    ```
+
+5. Test the transform by putting a new test message to the `COMMANDS` queue in the MQ queue manager.
+
+    ```json
+    {
+        "id": "d83bb1f5-933a-4251-b29b-0a1ec7d4e56e",
+        "customer": {
+            "id": "bd02c5f3-3246-4701-9c0b-159c7a7334b0",
+            "name": "Fernanda Hermiston"
+        },
+        "creditcard": {
+            "number": "5226589295805765",
+            "expiry": "01/24"
+        },
+        "product": {
+            "description": "L White Jogger Jeans",
+            "price": 42.88
+        },
+        "order": {
+            "quantity": "2"
+        },
+        "ordertime": "2023-07-01 11:10:48.124"
+    }
+    ```
+
+6. Verify that the transform is working by checking the {{site.data.reuse.es_name}} topic page.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-27.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-27.png "editing the MQ connector")
+
+    You should see the message that is produced to the Kafka topic:
+
+    ```json
+    {
+        "origin": "mq-connector",
+        "order_quantity": 2,
+        "product_price": 42.88,
+        "id": "d83bb1f5-933a-4251-b29b-0a1ec7d4e56e",
+        "creditcard_expiry": "01/24",
+        "product_description": "L White Jogger Jeans",
+        "ordertime": "2023-07-01 11:10:48.124",
+        "customer_id": "bd02c5f3-3246-4701-9c0b-159c7a7334b0",
+        "creditcard_number": "XXXXXXXXXXXXXXXX"
+    }
+    ```
+
+    Notice that:
+
+    - The message contains an `origin` property, which was inserted by the connector
+    - The `creditcard_number` property has been masked out with `X` characters
+    - The `customer_name` property has been removed
+    - The string `order_quantity` property has been cast to an integer
+
+This is now ready for use by {{site.data.reuse.ep_name}}.
+
+### Step 5 : MQ messages as a source of events
 
 The next step is to create an event source in {{site.data.reuse.ep_name}} based on the source of events from the MQ queue.
 
@@ -107,7 +322,7 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-6.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-6.png "adding an event source node")
 
-    Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Add a new event source.
 
@@ -133,71 +348,159 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node")
 
-1. Copy the message payload from the {{site.data.reuse.es_name}} topic view.
+1. Copy the most recent message payload from the {{site.data.reuse.es_name}} topic view.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node")
+
+    The first message, produced before you added the transform definition, will not be compatible for use with {{site.data.reuse.ep_name}}.
 
 1. Paste the message payload into the {{site.data.reuse.ep_name}} event source as a sample message.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node")
 
+1. Identify the `ordertime` property in the message contents as describing a timestamp.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-30.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-30.png "adding an event source node")
+
+    In the **Event structure** table, choose `TIMESTAMP` as the Type mapping for the `ordertime` property.
+
+1. Identify the `ordertime` property as the timestamp to use for events.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-31.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-31.png "adding an event source node")
+
+    In the **Event time** options, choose `ordertime` as the source of event time.
+
+    This means that any delay introduced by the connector transferring the message from MQ to the Kafka topic will not impact any time-based processing you perform.
+
+    The timestamp in the message payload will be treated as the canonical timestamp for the message, rather than when it was produced to the Kafka topic.
+
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Filter the events
+### Step 6 : Aggregate the events
 
-1. Create a **Filter** node.
+1. Create an **Aggregate** node.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-14.png "adding a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-14.png "adding a filter node")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-40.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-40.png "adding an aggregate node")
 
-    Create a filter node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+    Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
-    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
+    Click and drag from the small gray dot on the event source to the matching dot on the aggregate node.
 
     **Did you know?** You can add a node onto the canvas and automatically connect it to the last node added by double-clicking it in the palette.
 
-2. Suggested filter expression:
+1. Name the aggregate node `Order quantities`
 
-    ```sql
-    `count` > 10
-    ```
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-41.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-41.png "adding an aggregate node")
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-15.png "adding a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-15.png "adding a filter node")
+    Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choose "Edit".
 
-1. Click **Configure** to finalize the filter.
+1. Aggregate the order events in **1-minute** windows.
 
-### Step 5 : Testing the flow
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-42.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-42.png "adding an aggregate node")
+
+    Making the window very small is useful for the tutorial as it means you will see results quickly.
+
+1. Sum the `order_quantity` properties.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-43.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-43.png "adding an aggregate node")
+
+    Select **SUM** as the aggregate function, and `order_quantity` as the property to aggregate.
+
+    This configures the aggregate node to add up the quantity in each of the order events, emitting a total for all of the events in each 1-minute window.
+
+1. Rename the output to display the total number of ordered items in the time window, and the start and end time for the window.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-44.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-44.png "adding an aggregate node")
+
+1. Click **Configure** to finalize the aggregate.
+
+### Step 7 : Testing the flow
 
 The final step is to run your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Go to the **Run** menu, and select **Events from now** to run your flow on the new messages you are about to put to the MQ queue.
 
-1. Click the Filter node to see a live view of results from your filter. It is updated as new events are emitted onto the orders topic.
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-45.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-45.png "running the flow")
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-16.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-16.png "running the flow")
+1. Click the aggregate node to see a live view of results from your flow. It will be updated as new events are emitted onto the commands topic.
 
-1. Put additional JSON messages to the MQ queue using the MQ console, and verify that messages that match your filter are displayed in the event processing view.
-
-    Suggested messages:
+1. Put these JSON messages to the MQ queue by using the MQ console.
 
     ```json
     {
-        "id": 1001,
-        "count": 15,
-        "destination": "XYZ"
+        "id": "37169553-1b97-49c2-b16d-924257f4e888",
+        "customer": {
+            "id": "3ba7c289-6d02-40fd-9925-837d9573d5f6",
+            "name": "Darin Becker"
+        },
+        "creditcard": {
+            "number": "5434297065054394",
+            "expiry": "12/29"
+        },
+        "product": {
+            "description": "XXS Blue Crochet Jeans",
+            "price": 30.59
+        },
+        "order": {
+            "quantity": "2"
+        },
+        "ordertime": "2023-07-01 11:26:18.124"
     }
     ```
 
     ```json
     {
-        "id": 1002,
-        "count": 7,
-        "destination": "MNO"
+        "id": "87193fcd-0ca5-437f-b377-d2beb7e2fca4",
+        "customer": {
+            "id": "0c6767e4-3eee-4016-91a8-1c0b1699076e",
+            "name": "Sharie Nolan"
+        },
+        "creditcard": {
+            "number": "5300726992175816",
+            "expiry": "07/23"
+        },
+        "product": {
+            "description": "XL Blue Skinny Jeans",
+            "price": 40.99
+        },
+        "order": {
+            "quantity": "3"
+        },
+        "ordertime": "2023-07-01 11:31:18.124"
     }
     ```
+
+    ```json
+    {
+        "id": "6e6885f0-8655-4ba3-bb1f-6834a7d5059c",
+        "customer": {
+            "id": "003f8d4e-5488-4923-beb7-0846463e2b54",
+            "name": "Brandi Lubowitz"
+        },
+        "creditcard": {
+            "number": "5505432597412091",
+            "expiry": "07/26"
+        },
+        "product": {
+            "description": "L Retro Flare Jeans",
+            "price": 28.99
+        },
+        "order": {
+            "quantity": "1"
+        },
+        "ordertime": "2023-07-01 11:33:48.125"
+    }
+    ```
+
+1. Verify that the results are displayed in the {{site.data.reuse.ep_name}} flow.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-46.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-46.png "running the flow")
 
 1. When you have finished reviewing the results, you can stop this flow.
 
 
 ## Recap
 
-Connectors make it easy to bring streams of events from a wide variety of external systems into Kafka topics, from where you can analyze them using {{site.data.reuse.ep_name}}.
+Connectors enable you to bring streams of events from a wide variety of external systems into Kafka topics, from where you can analyze them by using {{site.data.reuse.ep_name}}.
+
+Transformations are a helpful way to prepare the events to be in a format suitable for use with {{site.data.reuse.ep_name}}.

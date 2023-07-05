@@ -1,6 +1,6 @@
 ---
 title: "Identify combinations of events occurring multiple times"
-description: "Aggregate processors can identify events which are interesting if they occur multiple times within a time window."
+description: "Aggregate processors can identify events that are interesting if they occur multiple times within a time window."
 permalink: /tutorials/event-processing-examples/example-04
 toc: true
 section: "Tutorials for Event Processing"
@@ -10,13 +10,13 @@ order: 4
 
 ## Scenario
 
-In this scenario, we will look for suspicious orders.
+In this scenario, we look for suspicious orders.
 
-This is an extension to the [Identify suspicious orders](../guided/tutorial-4) tutorial. In that tutorial, we looked for a single incidence of a large order being made (to influence a dynamic pricing algorithm) followed by a small order of the same item, with the large order later cancelled.
+This tutorial is an extension to the [Identify suspicious orders](../guided/tutorial-4) tutorial. In that tutorial, we looked for a single incidence of a large order being made (to influence a dynamic pricing algorithm) followed by a small order of the same item, with the large order later cancelled.
 
-That approach identified suspicious orders, however it also identified a number of false positives. Looking at these false positives in more detail, what many of them have in common is that the dynamic price was manipulated by making multiple large orders, not just one.
+That approach identified suspicious orders, however it also identified several false positives. Looking at these false positives in more detail, what many of them have in common is that the dynamic price was manipulated by making multiple large orders, not just one.
 
-To refine that approach, this tutorial shows how to combine the join with an aggregate, to identify where repeated large orders were made and then cancelled. This will allow you to identify repeated attempts to manipulate dynamic pricing.
+To refine that approach, this tutorial shows how to combine the join with an aggregate, to identify where repeated large orders were made and then cancelled. This allows you to identify repeated attempts to manipulate dynamic pricing.
 
 ## Before you begin
 
@@ -36,7 +36,7 @@ This tutorial was written using the following versions of {{ site.data.reuse.ea_
 
 For this scenario, you need a source of order events and new customer signup events.
 
-A good place to discover sources of event streams to process is the catalog, so start there.
+A good place to discover sources of event streams to process is in the catalog, so start there.
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
@@ -62,7 +62,7 @@ Use the server address information and **Generate access credentials** button on
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-2.png "event source nodes"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-2.png "event source nodes")
 
-**Tip**: If you need a reminder on how to create an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
+**Tip**: If you need a reminder about how to create an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
 
 ### Step 3 : Identify large orders
 
@@ -127,9 +127,9 @@ The next step is to count the number of times within a 1-hour window that a larg
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-10.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-10.png "aggregate node")
 
-1. Call the node `Cancellation counts`
+1. Call the node `Cancellation counts`.
 
-1. Specify to count cancellations of large orders that are made in 1-hour windows.
+1. Specify that you want to count cancellations of large orders that are made within a 1-hour window time-frame.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-11.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-11.png "aggregate node")
 
@@ -149,13 +149,13 @@ The next step is to filter out cancelled large orders for a product where they o
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-14.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-14.png "filter node")
 
-1. Call the node `Repeated cancelled orders`
+1. Call the node `Repeated cancelled orders`.
 
 1. Define a filter that matches where that has been more than one large cancelled order of a product within a one-hour window.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-15.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-15.png "filter node")
 
-### Step 8 : Testing the flow
+### Step 8 : Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -165,7 +165,7 @@ The next step is to test your event processing flow and view the results.
 
 ### Step 9 : Identify small orders
 
-The next step is identify small orders.
+The next step is to identify small orders.
 
 1. Add a **Filter** node to the orders events.
 
@@ -185,7 +185,7 @@ The next step is to identify small orders of the same product as the repeated ca
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-19.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-19.png "filter node")
 
-1. Give the join node a name that describes the results that it produces: `Suspicious orders`
+1. Give the join node a name that describes the results that it produces: `Suspicious orders`.
 
 1. Join the two streams based on the description of the product that was ordered.
 
@@ -203,7 +203,7 @@ The next step is to identify small orders of the same product as the repeated ca
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node")
 
-### Step 11 : Testing the flow
+### Step 11 : Test the flow
 
 Test the flow again to confirm that it is identifying orders that could be investigated.
 
@@ -221,7 +221,7 @@ The next step is to create a topic that you will use for the results from this f
 
     If you need a reminder of how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
 
-1. Create a topic called `ORDERS.SUSPICIOUS`
+1. Create a topic called `ORDERS.SUSPICIOUS`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-24.png "destination topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-24.png "destination topic")
 
@@ -229,11 +229,11 @@ The next step is to create a topic that you will use for the results from this f
 
 The next step is to define the event destination for your flow.
 
-1. Create an **Event destination** node
+1. Create an **Event destination** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-25.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-25.png "adding an event destination node")
 
-1. Use the server address from {{site.data.reuse.es_name}}
+1. Use the server address from {{site.data.reuse.es_name}}.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-26.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-26.png "adding an event destination node")
 
@@ -251,7 +251,7 @@ The next step is to define the event destination for your flow.
 
 The final step is to run the flow and confirm that the notifications about suspicious orders are produced to the new topic.
 
-1. Run the flow as before
+1. Run the flow as before.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-29.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-29.png "running the flow")
 
@@ -266,7 +266,7 @@ The final step is to run the flow and confirm that the notifications about suspi
 
 ## Recap
 
-You used filter nodes to divide the stream of orders into separate subsets - of large and small orders.
+You used filter nodes to divide the stream of orders into separate subsets of large and small orders.
 
 You used a join node to combine the orders events with the corresponding cancellation events.
 

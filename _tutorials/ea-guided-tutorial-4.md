@@ -16,6 +16,8 @@ When looking for patterns in an event stream, sometimes we need to examine event
 
 When processing events we can use filter operations to select a subset that we want to use. Filtering works on individual events in the stream.
 
+{% include video.html videoSource="videos/tutorials/guided/04-join.mp4" %}{: class="tutorial-video" }
+
 ## Scenario : Identify suspicious orders
 {: #scenario}
 

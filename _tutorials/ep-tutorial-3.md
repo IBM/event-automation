@@ -8,13 +8,13 @@ cardType: "large"
 order: 3
 ---
 
-Writing custom filter expressions that use dynamically generated properties added to events can help to identify specific situations
+Writing custom filter expressions that use dynamically generated properties added to events can help to identify specific situations.
 
 ## Scenario
 
 In this scenario, the EMEA operations team wants to move away from reviewing quarterly sales reports and start to look for high-value orders in their region as they occur throughout the quarter.
 
-Identifying large orders as they occur will help the team identify as early as possible any changes they need to make to sales forecasts, which can be fed back into their manufacturing cycle.
+Identifying large orders as they occur will help the team identify as early as possible any changes they need to make to sales forecasts. This information can then be fed back into their manufacturing cycle.
 
 ## Before you begin
 
@@ -22,7 +22,7 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 ### Operator versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots can differ from the current interface if you are using a newer version.
 
 - Event Streams 3.2.1
 - Event Endpoint Management 11.0.1
@@ -38,9 +38,9 @@ For this scenario, you need a source of order events. A good place to discover s
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
 
-    If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
+    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
-    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
+    If there are no topics in the catalog, you need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
 1. The `ORDERS.NEW` topic contains events about orders that are made.
 
@@ -68,17 +68,17 @@ The next step is to calculate the total value of each order, that you will use t
 
     Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
-1. Call the transform node `Calculate order total`
+1. Call the transform node `Calculate order total`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node")
 
     Configure the transform node by clicking the three dot menu and choosing "Edit".
 
-1. Create a new property called `order total`
+1. Create a new property called `order total`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node")
 
-    An order event includes the unit cost of an item, and the quantity of items in the order. The order total can be computed by multiplying these two numbers
+    An order event includes the unit cost of an item, and the quantity of items in the order. The order total can be computed by multiplying these two numbers.
 
     Suggested value for the property:
     ```sql
@@ -91,7 +91,7 @@ The next step is to calculate the total value of each order, that you will use t
 
 ### Step 4 : Identify high-value EMEA orders
 
-The next step is to filter the stream of events based on this new total order value property, to select the high value EMEA orders.
+The next step is to filter the stream of events based on this new total order value property to select the high value EMEA orders.
 
 1. Add a **Filter** node.
 
@@ -105,15 +105,15 @@ The next step is to filter the stream of events based on this new total order va
 
 1. Name the filter node to show that it is going to select high value EMEA orders.
 
-    Configure the filter node by clicking the three dot menu, and choosing "Edit".
+    Configure the filter node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
 
 1. Use the assistant to start a filter based on orders with an `order total` greater than `800`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node")
 
-1. Click **Add to expression**
+1. Click **Add to expression**.
 
-1. Edit the filter so that it also only matches orders made in the EMEA `region`.
+1. Edit the filter so that it also only matches orders that are made in the EMEA `region`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node")
 
@@ -124,7 +124,7 @@ The next step is to filter the stream of events based on this new total order va
 
 1. Click **Configure** to finalize the filter.
 
-### Step 5 : Testing the flow
+### Step 5 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 
@@ -141,5 +141,5 @@ The final step is to run your event processing flow and view the results.
 
 You used a transform node to dynamically compute additional properties in the events.
 
-You also used a filter node to specify a custom, complex expression - more detailed than the simple expressions created using the Assistant.
+You also used a filter node to specify a custom, complex expression - more detailed than the simple expressions created by using the Assistant.
 

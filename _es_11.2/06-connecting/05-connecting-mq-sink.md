@@ -133,7 +133,7 @@ The connector connects to IBM MQ using a client connection. You must provide the
 
 Use the {{site.data.reuse.es_name}} UI to generate and download the `KafkaConnector` custom resource YAML file for your IBM MQ sink connector.
 
-1. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 5. Ensure the **MQ Sink** tab is selected and click **Generate**.
@@ -188,7 +188,7 @@ A list of all the possible flags can be found by running the command `kubectl es
 
 ## Downloading the MQ Sink connector
 
-1. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 4. Ensure the `MQ Sink` tab is selected and click **Go to GitHub**. Download the JAR file from the list of assets for the latest release.
@@ -211,7 +211,7 @@ INFO Connection to MQ established
 
 To test the connector you will need an application to produce events to your topic.
 
-1. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+1. {{site.data.reuse.es_ui_login_nonadmin}}
 1. Click **Toolbox** in the primary navigation.
 1. Go to the **Starter application** tile under **Applications**, and click **Get started**.
 2. Click **Download JAR from GitHUb**. Download the JAR file from the list of assets for the latest release.

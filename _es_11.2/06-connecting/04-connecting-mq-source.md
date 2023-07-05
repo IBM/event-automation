@@ -133,7 +133,7 @@ The connector connects to IBM MQ using a client connection. You must provide the
 
 Use the {{site.data.reuse.es_name}} UI to generate and download the `KafkaConnector` custom resource YAML file for your IBM MQ source connector.
 
-1. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 4. Ensure the **MQ Source** tab is selected and click **Generate**.
@@ -187,7 +187,7 @@ A list of all the possible flags can be found by running the command `kubectl es
 
 ## Downloading the MQ Source connector
 
-1. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 4. Ensure the `MQ Source` tab is selected and click **Go to GitHub**. Download the JAR file from the list of assets for the latest release.
@@ -211,7 +211,7 @@ INFO Connection to MQ established
 1. To add messages to the IBM MQ queue, run the `amqsput` sample and type in some messages:
 
    `/opt/mqm/samp/bin/amqsput <queue_name> <queue_manager_name>`
-2. {{site.data.reuse.es_ui_login_nonadmin_mq}}
+2. {{site.data.reuse.es_ui_login_nonadmin}}
 3. Click **Topics** in the primary navigation and select the connected topic. Messages will appear in the message browser of that topic.
 
 ## Advanced configuration

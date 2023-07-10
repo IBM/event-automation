@@ -55,7 +55,7 @@ For more information about retrieving the `user subjects`, see [managing access]
 
 Custom role identifiers can be used as the `id` in the user mappings JSON stored in the `<custom-resource-name>-ibm-eem-user-roles` secret.
 
-Continuing from the example in [managing access](../managing-access#setting-up-oidc-based-authorization-with-a-custom-role-identifier), the following is an example of user mappings:
+Continuing from the example in [managing access](../managing-access#setting-up-oidc-based-authentication-with-a-custom-role-identifier), the following is an example of user mappings:
 
 ```json
 {

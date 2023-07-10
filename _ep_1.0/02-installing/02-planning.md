@@ -47,6 +47,10 @@ The following table provides an overview of the Flink sample configurations and 
 | Production | 2 | 4GB | 10 | 1 | 5 | Yes | 3
 | Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1, set to 1 in the sample | 1 | No, but can be configured | 3
 
+**Important:**
+- Quick start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
+- The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
+
 Points to consider for resource requirements:
 
 - Both the Minimal Production and Production [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples are preconfigured with 10 Task Manager slots, allowing for a maximum of 5 {{site.data.reuse.ep_name}}-authored flows to run at the same time on one Task Manager (one Java Virtual Machine). 
@@ -85,7 +89,7 @@ To create a configuration optimized for jobs that have high throughput, low late
 
 ### Flink quick start sample
 
-The Quick Start sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable only for very small workloads that have no persistence or reliability requirements. It is capable of running in a single Flink Task Manager a maximum of 2 parallel flows submitted from the {{site.data.reuse.ep_name}} flow authoring tool. If you need to run more than 2 flows, a new Task Manager will be automatically created.
+The Quick start sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable only for very small workloads that have no persistence or reliability requirements. It is capable of running in a single Flink Task Manager a maximum of 2 parallel flows submitted from the {{site.data.reuse.ep_name}} flow authoring tool. If you need to run more than 2 flows, a new Task Manager will be automatically created.
 
 ### Flink minimal production sample
 

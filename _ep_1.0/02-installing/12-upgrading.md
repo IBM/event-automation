@@ -12,7 +12,7 @@ Upgrade your {{site.data.reuse.ep_name}} installation as follows. The {{site.dat
 
 ## Upgrade path
 
-You will be able to upgrade {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} to the latest 1.0.x version directly from the 1.0.0 version by using the operator version v1.0.
+You can upgrade {{site.data.reuse.ep_name}} to the latest 1.0.x version by using the operator channel v1.0. 
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators will be upgraded to 1.0.x when it is available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
 

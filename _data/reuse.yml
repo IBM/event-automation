@@ -12,6 +12,7 @@ ea_short: Event Automation
 eem_name: "Event Endpoint Management"
 
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
+
 # {{site.data.reuse.eem_current_version}} 
 eem_current_version: "11.0.1"
 
@@ -171,11 +172,11 @@ es_ui_login_samesection: "Log in to your Event Streams UI as an administrator fr
 # {{site.data.reuse.es_ui_login_nonadmin}}
 es_ui_login_nonadmin: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../../../getting-started/logging-in/) for your Event Streams UI)."
 
-# {{site.data.reuse.es_ui_login_nonadmin_samesection}}
-es_ui_login_nonadmin_samesection: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../logging-in/) for your Event Streams UI)."
-
 # {{site.data.reuse.es_ui_login_nonadmin_mq}}
 es_ui_login_nonadmin_mq: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../../../getting-started/logging-in/) for your Event Streams UI)."
+
+# {{site.data.reuse.es_ui_login_nonadmin_samesection}}
+es_ui_login_nonadmin_samesection: "Log in to the Event Streams UI from a supported web browser (see how to determine the [login URL](../logging-in/) for your Event Streams UI)."
 
 # {{site.data.reuse.es_cli_init}}
 es_cli_init: "Run the following command to initialize the Event Streams CLI: `cloudctl es init`"

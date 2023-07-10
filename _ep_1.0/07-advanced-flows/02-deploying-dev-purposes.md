@@ -10,9 +10,9 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
 ## Prerequisites
 
-- You have [installed](../../installing/installing#install-a-flink-deployment-instance) an instance of Flink by using a `FlinkDeployment` custom resource and it is up and running.
+- You have [installed](../../installing/installing#install-a-flink-instance) a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource, and you successfully [verified](../../installing/post-installation/#verifying-an-installation) it.
 
-  For more information, see [Installing a Flink deployment instance](../../installing/installing#install-a-flink-deployment-instance).
+  For more information, see [Installing a Flink deployment instance](../../installing/installing#install-a-flink-instance) and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
@@ -116,12 +116,12 @@ SET 'key' = 'value';
    a. List the available `FlinkDeployment` custom resources.
 
    ```shell
-   oc get FlinkDeployment
+   oc get flinkdeployment
    ```
    For example:
 
    ```
-   oc get FlinkDeployment
+   oc get flinkdeployment
    
    NAME                   JOB STATUS   LIFECYCLE STATE
    my-flink-deployment    RUNNING      STABLE
@@ -137,9 +137,8 @@ SET 'key' = 'value';
 
    ```
    export FLINK_JOB_MANAGER=$(oc get pods --selector component=jobmanager,app=my-flink-deployment --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
-
-   NAME                   JOB STATUS   LIFECYCLE STATE
-   my-flink-deployment    RUNNING      STABLE
+   echo ${FLINK_JOB_MANAGER}
+   my-flink-deployment-b5d95dc77-nmgnj
    ```
 
 ## Submit a Flink SQL job

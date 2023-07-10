@@ -97,9 +97,9 @@ ansible-playbook \
     -e install_certmgr=true \
     -e ibm_entitlement_key=<your Entitled Registry key> \
     -e eventautomation_namespace=event-automation \
-    -e eventstreams_storage_class=ibmc-file-gold-gid \
-    -e eventendpointmanagement_storage_class=ibmc-file-bronze-gid \
-    -e eventprocessing_storage_class=ibmc-file-bronze-gid \
+    -e eventstreams_storage_class=ibmc-block-gold \
+    -e eventendpointmanagement_storage_class=ibmc-block-bronze \
+    -e eventprocessing_storage_class=ibmc-block-bronze \
     install/event-automation.yaml
 ```
 

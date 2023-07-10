@@ -14,7 +14,7 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 {{site.data.reuse.ep_name}} 1.0.x is supported on the {{site.data.reuse.openshift}}.
 
-Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}, and that you have [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} the {{site.data.reuse.openshift_short}} CLI . For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}, and that you have [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} the {{site.data.reuse.openshift_short}} CLI. For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
 
 
 ## Hardware requirements
@@ -36,7 +36,7 @@ Flink:
 | [Operator](#operator-requirements)                                                                 | 0.2         | 1.0         | N/A  |
 | [Quick start](../planning/#flink-quick-start-sample)                                               | 1.0         | 4.0         | 1    |
 | [Minimal production](../planning/#flink-minimal-production-sample)                                 | 1.25        | 4.0         | 2    |
-| [Production](../planning/##flink-production-sample)                                                | 3.0         | 12.0        | 3    |
+| [Production](../planning/#flink-production-sample)                                                 | 3.0         | 12.0        | 3    |
 | [Production - Flink Application cluster](../planning/#flink-production-application-cluster-sample) | 2.5         | 8.0         | 3    |
 
 

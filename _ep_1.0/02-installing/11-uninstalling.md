@@ -175,7 +175,7 @@ oc delete clusterserviceversion ibm-eventautomation-flink.v<version>
 Where `<version>` is the version of your operator. For example:
 
 ```shell
-oc delete clusterserviceversion ibm-eventprocessing.v1.0.0
+oc delete clusterserviceversion ibm-eventprocessing.v1.0.1
 oc delete clusterserviceversion ibm-eventautomation-flink.v1.0.0
 ```
 

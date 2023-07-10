@@ -59,15 +59,15 @@ Follow the [instructions](https://github.com/apache/flink-kubernetes-operator/tr
 
 Some adaptations to this procedure are required to build the Docker image and use the file `statements.sql`:
 
-1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the image of the {{site.data.reuse.flink_long}}:
+1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the IBM Flink image:
 
-   a. Execute the following command to extract the IBM Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV).
+   a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV).
 
    ```sql
-   oc get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE_V1_0_0")].value}' ibm-flink.v1.0.0
+   oc get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE_V1_0_0")].value}' ibm-eventautomation-flink.v1.0.0
    ```
 
-   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to use the IBM Flink image name with its SHA digest.
+   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
 
    ```shell
    FROM <IBM Flink image with digest>
@@ -77,10 +77,11 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    d. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/release-1.5/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
+   e. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.flink_long}} `FlinkDeployment` custom resource.
 
-   a. Choose the "Production - Flink Application cluster" sample, or a production sample with persistent storage in {{site.data.reuse.openshift_short}} OperatorHub. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
+   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a production sample with persistent storage in the {{site.data.reuse.openshift_short}} OperatorHub. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
 
    ```yaml
    spec:
@@ -88,17 +89,24 @@ Some adaptations to this procedure are required to build the Docker image and us
        table.exec.source.idle-timeout: '30 s'
    ```
   
-   For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"} in the Flink documentation.
+   For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
 
-   b. Append the following `spec.job` parameter, or edit the existing parameter if using the "Production - Flink Application cluster" sample:
+   b. Append the following `spec.job` parameter, or edit the existing parameter if using the Production - Flink Application cluster sample:
 
    ```yaml
+   spec:
      job:
        jarURI: local:///opt/flink/usrlib/sql-runner.jar
        args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
        parallelism: 1
        state: running
        upgradeMode: savepoint
+   ```
+
+   c. Set the Flink image:
+   ```yaml
+   spec:
+     image: <image built at step 1.e>
    ```
 
 3. Deploy this `FlinkDeployment` custom resource.
@@ -119,17 +127,18 @@ hide autoscaler -->
    ```
 
    **Note:** In case there are not enough free task slots when the Flink job is redeployed with the targeted job parallelism value,
-   no additional `TaskManager` will be created even with `job.mode` set to `native`.
+   no additional `TaskManager` will be created even with `spec.job.mode` set to `native`.
 
-   b. Change the `job.parallelism` value, then set `job.state` to `running` and `job.upgradeMode` to `savepoint`.
+   b. Change the `spec.job.parallelism` value, then set `spec.job.state` to `running` and `spec.job.upgradeMode` to `savepoint`.
 
    ```yaml
+   spec:
      job:
-        jarURI: local:///opt/flink/usrlib/sql-runner.jar
-        args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-        parallelism: 2
-        state: running
-        upgradeMode: savepoint
+       jarURI: local:///opt/flink/usrlib/sql-runner.jar
+       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+       parallelism: 2
+       state: running
+       upgradeMode: savepoint
    ```
 
 2. Apply the modified `FlinkDeployment` custom resource.
@@ -147,14 +156,15 @@ hide autoscaler -->
 
 2. Edit the `FlinkDeployment` custom resource.
 
-   a. Ensure that `job.parallelism` option is not set and `job.upgradeMode` value is set to `savepoint`.
+   a. Ensure that `spec.job.parallelism` option is not set and `spec.job.upgradeMode` value is set to `savepoint`.
 
    ```yaml
+   spec:
      job:
-        jarURI: local:///opt/flink/usrlib/sql-runner.jar
-        args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-        state: running
-        upgradeMode: savepoint
+       jarURI: local:///opt/flink/usrlib/sql-runner.jar
+       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+       state: running
+       upgradeMode: savepoint
    ```
 
     b. In the `spec.flinkConfiguration`, add the Flink autoscaler parameters to match your workload expectations.
@@ -182,12 +192,13 @@ hide autoscaler -->
    c. Ensure that the value of `spec.job.savepointTriggerNonce` is an integer that has never been used before for that option.
 
    ```yaml
-   job:
-      jarURI: local:///opt/flink/usrlib/sql-runner.jar
-      args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-      savepointTriggerNonce: <integer value>
-      state: running
-      upgradeMode: savepoint
+   spec:
+     job:
+       jarURI: local:///opt/flink/usrlib/sql-runner.jar
+       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+       savepointTriggerNonce: <integer value>
+       state: running
+       upgradeMode: savepoint
    ```
 
 3. Apply the modified `FlinkDeployment` custom resource.
@@ -205,11 +216,12 @@ hide autoscaler -->
    b. Ensure that the value of `spec.job.state` is `suspended` to stop the Flink job.
 
    ```yaml
-   job:
-      jarURI: local:///opt/flink/usrlib/sql-runner.jar
-      args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-      state: suspended
-      upgradeMode: savepoint
+   spec:
+     job:
+       jarURI: local:///opt/flink/usrlib/sql-runner.jar
+       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+       state: suspended
+       upgradeMode: savepoint
    ```
 
 3. Apply the modified `FlinkDeployment` custom resource.
@@ -229,13 +241,14 @@ hide autoscaler -->
    c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
 
    ```yaml
-   job:
-      jarURI: local:///opt/flink/usrlib/sql-runner.jar
-      args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-      state: running
-      upgradeMode: savepoint
-      initialSavepointPath: <savepoint directory>
-      allowNonRestoredState: true
+   spec:
+     job:
+       jarURI: local:///opt/flink/usrlib/sql-runner.jar
+       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+       state: running
+       upgradeMode: savepoint
+       initialSavepointPath: <savepoint directory>
+       allowNonRestoredState: true
    ```
 
 3. Apply the modified `FlinkDeployment` custom resource.

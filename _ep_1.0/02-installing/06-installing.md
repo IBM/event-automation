@@ -365,7 +365,7 @@ by clicking the **Download** button and re-imported by dragging the resulting fi
 
 **Note:** If you experiment with {{site.data.reuse.flink_long}} and want a minimal CPU and memory footprint,
 the **Quick start** sample is the smallest and simplest example. For the smallest production setup, use the
-**Minimal production** sample configuration. 
+**Minimal Production** sample configuration. 
 
 **Important:** All Flink samples except **Quick start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 

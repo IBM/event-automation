@@ -12,9 +12,9 @@ Follow the instructions to export and import your flows in {{site.data.reuse.ep_
 
 Export your flow to the format that you require. Exported flows can be used as a backup of your work items you created in {{site.data.reuse.ep_name}}, and they can be imported later to reuse in other flows or {{site.data.reuse.ep_name}} instances.
 
-You can export your flow as a JSON or an SQL file. Flows that are exported as SQL can be updated and [deployed](../deploying-development) as a Flink job for development purposes.
+You can export your flow as a JSON or an SQL file. Flows that are exported as SQL can be updated and deployed as a Flink job in [development](../deploying-development) or [production](../deploying-production) environments.
 
-**Note:** Flows that are exported as SQL cannot be imported to the {{site.data.reuse.ep_name}} UI. To import flows, files must be in the JSON format.
+**Note:** Flows that are exported as SQL cannot be imported to the {{site.data.reuse.ep_name}} UI. To import flows, the files must be in JSON format.
 
 To export a flow, follow these steps:
 

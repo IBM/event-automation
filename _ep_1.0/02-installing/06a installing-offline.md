@@ -49,7 +49,7 @@ Note: In the absence of a bastion host, prepare a portable device with public in
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
-1. Set the environment variables for the {{site.data.reuse.flink_long}} and version by running the following command: 
+1. Set the environment variables for the {{site.data.reuse.flink_long}} and its version by running the following command: 
 
    ```shell
    export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION=1.0.0 && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup 
@@ -61,10 +61,10 @@ Before mirroring your images, set the environment variables for the CASE images 
    oc ibm-pak get $CASE_NAME --version $CASE_VERSION
    ```
 
-3. Set the environment variables for the {{site.data.reuse.ep_name}} and version by running the following command:
+3. Set the environment variables for the {{site.data.reuse.ep_name}} and its version by running the following command:
 
    ```shell
-   export CASE_NAME=ibm-eventprocessing && export CASE_VERSION=1.0.0 && export CASE_INVENTORY_SETUP=epOperatorSetup
+   export CASE_NAME=ibm-eventprocessing && export CASE_VERSION=1.0.1 && export CASE_INVENTORY_SETUP=epOperatorSetup
    ```
 
 4. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
@@ -90,7 +90,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-event-processing, version: 1.0.0 is complete
+   Download of CASE: ibm-event-processing, version: 1.0.1 is complete
    ```
 
    **Note:**  To download the latest version of CASE, do not specify the CASE version. For example:
@@ -111,13 +111,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-event-processing
-   │   │       └── 1.0.0
+   │   │       └── 1.0.1
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-event-processing-1.0.0-airgap-metadata.yaml
-   │   │           ├── ibm-event-processing-1.0.0-charts.csv
-   │   │           ├── ibm-event-processing-1.0.0-images.csv
-   │   │           ├── ibm-event-processing-1.0.0.tgz
+   │   │           ├── ibm-event-processing-1.0.1-airgap-metadata.yaml
+   │   │           ├── ibm-event-processing-1.0.1-charts.csv
+   │   │           ├── ibm-event-processing-1.0.1-images.csv
+   │   │           ├── ibm-event-processing-1.0.1.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-event-processing-resourcesIndex.yaml
    │   └── mirror
@@ -217,7 +217,7 @@ Complete the following steps to mirror the images from your host to your offline
       For example:
 
       ```shell
-      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.0/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.1/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
       ```
 
     Where:
@@ -286,13 +286,13 @@ Apply the catalog sources for the operator to the cluster by running the followi
   For example:
   
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.0/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.1/catalog-sources.yaml
   ```
 
 ## Install the operator
 
-After considering the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing [IBM operator for Apache Flink](../../installing/installing/#installing-the-ibm-operator-for-apache-flink) and the [{{site.data.reuse.ep_name}} operator](../../installing/installing/#installing-the-event-processing-operator).
+After considering the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing [IBM operator for Apache Flink](../installing/#installing-the-ibm-operator-for-apache-flink) and the [{{site.data.reuse.ep_name}} operator](../installing/#installing-the-event-processing-operator).
 
 ## Install an instance
 
-{{site.data.reuse.ep_name}} and Flink Deployment instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [Flink Deployment instances](../../installing/installing/#install-a-flink-deployment-instance) and the [{{site.data.reuse.ep_name}} instances](../../installing/installing/#install-an-event-processing-instance).
+{{site.data.reuse.ep_name}} and Flink Deployment instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [Flink Deployment instances](../installing/#install-a-flink-instance) and the [{{site.data.reuse.ep_name}} instances](../installing/#install-an-event-processing-instance).

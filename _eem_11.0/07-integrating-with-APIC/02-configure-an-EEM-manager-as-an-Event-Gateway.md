@@ -37,11 +37,11 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
 
 1. Download the server certificate from an API Connect endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
 
-    ```bash
-    openssl s_client -connect <platformApi value>
-    ```
+   ```bash
+   openssl s_client -connect <platformApi value>
+   ```
 
-    Where `<platformApi value>` is the API Connect `platformApi` endpoint that you retrieved earlier.
+   Where `<platformApi value>` is the API Connect `platformApi` endpoint that you retrieved earlier.
 2. In the {{site.data.reuse.openshift_short}}, [create a secret](#creating-a-secret) that contains the downloaded certificate.
 3. {{site.data.reuse.openshift_ui_login}}
 4. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -50,20 +50,20 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
 7. Click the **YAML** tab to edit the custom resource.
 8. In the `spec.manager` field, add the following snippet: 
 
-    ```yaml
-    apic:
-          jwks:
-              endpoint: >-
-                  <platformApi endpoint>/cloud/oauth2/certs   
-    ```
+   ```yaml
+   apic:
+         jwks:
+             endpoint: >-
+                 <platformApi endpoint>/cloud/oauth2/certs   
+   ```
 
 9. In the `spec.manager.tls` field, add the following snippet: 
 
-    ```yaml
-    trustedCertificates:
-          - certificate: ca.crt
-            secretName: apim-cpd
-    ```
+   ```yaml
+   trustedCertificates:
+         - certificate: ca.crt
+           secretName: apim-cpd
+   ```
 
 10. Click the **Save** button to apply your changes.
 
@@ -71,7 +71,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
 
 Create a secret to store the API Connect certificate as follows:
 
-#### Using {{site.data.reuse.openshift_short}} UI 
+#### Using {{site.data.reuse.openshift_short}} UI
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Workloads** drop-down menu and select **Secrets**.
@@ -86,31 +86,31 @@ Create a secret to store the API Connect certificate as follows:
 
 1. Run the following command to get a Base64 encoded string of the certificate that you downloaded:
 
-    ```bash
-    cat <path to the certificate> | base64
-    ```
+   ```bash
+   cat <path to the certificate> | base64
+   ```
 
 2. {{site.data.reuse.openshift_cli_login}}
 3. Run the following command to create a secret called `apim-cpd`:
 
-    ```bash
-    cat <<EOF | oc apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: apim-cpd
-      namespace: <namespace the {{site.data.reuse.eem_name}} instance is installed in>
-    data:
-      ca.crt: >-
-        <base64-certificate>
-    type: Opaque
-    EOF
-    ```
+   ```bash
+   cat <<EOF | oc apply -f -
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: apim-cpd
+     namespace: <namespace the {{site.data.reuse.eem_name}} instance is installed in>
+   data:
+     ca.crt: >-
+       <base64-certificate>
+   type: Opaque
+   EOF
+   ```
 
-    Where:
+   Where:
 
-    - `<namespace>` is the namespace the {{site.data.reuse.eem_name}} instance is installed in.
-    - `<base64-certificate>` is the Base64 encoded certificate that you obtained in step 1.
+   - `<namespace>` is the namespace the {{site.data.reuse.eem_name}} instance is installed in.
+   - `<base64-certificate>` is the Base64 encoded certificate that you obtained in step 1.
 
 ## Enabling mutual TLS
 
@@ -125,9 +125,10 @@ Based on your security requirements, you can optionally choose to also enable mu
 5. Click the **YAML** tab to edit the custom resource.
 6. In the `spec.manager.apic` field, add the following snippet:
 
-    ```yaml
-    clientSubjectDN: CN=<commonname>
-    ```
+   ```yaml
+   clientSubjectDN: CN=<commonname>
+   ```
+
     Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#obtain-certificates-for-a-tls-client-profile).
 7. Click the **Save** button to apply your changes.
 

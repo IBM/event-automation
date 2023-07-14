@@ -26,7 +26,9 @@ To run the log gathering script, ensure you have the following installed on your
 To gather logs from an online environment:
 1. Clone the Git repository `ibm-event-automation` as follows:
 
-   `git clone https://github.com/IBM/ibm-event-automation`
+   ```shell
+   git clone https://github.com/IBM/ibm-event-automation
+   ```
 
 2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 3. Change directory to the `/support` folder of the cloned repository.
@@ -79,20 +81,28 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
 
 1. Pull the {{site.data.reuse.es_name}} `must-gather` image as follows:
 
-   `docker pull icr.io/cpopen/ibm-events-must-gather`
+   ```shell
+   docker pull icr.io/cpopen/ibm-events-must-gather
+   ```
 
 2. Tag the image:
 
-   `docker image -t icr.io/cpopen/ibm-events-must-gather <private-registry-image-address>:<tag>`
+   ```shell
+   docker image -t icr.io/cpopen/ibm-events-must-gather <private-registry-image-address>:<tag>
+   ```
 
 3. Push the tagged image to the internal registry of your offline environments:
 
-   `docker push <private-registry-image-address:tag>`
+   ```shell
+   docker push <private-registry-image-address:tag>
+   ```
 
    **Note:** Automatic updates to the `must-gather` image are not supported in an offline environment. Repeat the previous steps frequently to ensure you are gathering logs with the most recent image.
 4. Clone the Git repository `ibm-event-automation` as follows:
 
-   `git clone https://github.com/IBM/ibm-event-automation`
+   ```shell
+   git clone https://github.com/IBM/ibm-event-automation
+   ```
 
 5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 
@@ -128,7 +138,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
      ./ibm-events-must-gather -n samplenamespace -m flink
      ```
 
-   Where: 
+   Where:
 
    - `<gather-modules>` is a comma separated list of [modules](#gather-modules), where valid values are `eventstreams`, `kafka`, `eem`, `eventprocessing`, `schema`, `failure`, `overview` and `system`.
    - `<image-address>` is the cluster accessible location where you have pushed the must gather image (see step 3).
@@ -141,8 +151,6 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
         - `--flink-namespace` specifies the namespace containing the {{site.data.reuse.flink_long}} instance to gather data from.
 
 The logs gathered are stored in an archive file called `ibm-events-must-gather-<timestamp>.tar.gz`, which is added to the current working directory.
-
-
 
 ## Gather modules
 

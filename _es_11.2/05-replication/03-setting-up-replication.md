@@ -19,8 +19,9 @@ To be able to replicate topics, you must define destination clusters. The proces
 1. Log in to your destination {{site.data.reuse.es_name}} cluster as an administrator.
 2. Click **Topics** in the primary navigation and then click **Geo-replication**.
 3. Click the **Origin locations** tab, and click **Generate connection information for this cluster**.
-4. Copy the connection information to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.\\
-    **Note:** This information includes the security credentials for your destination cluster, which is then used by your origin cluster to authenticate with the destination.
+4. Copy the connection information to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.
+
+   **Note:** This information includes the security credentials for your destination cluster, which is then used by your origin cluster to authenticate with the destination.
 5. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 6. Click **Topics** in the primary navigation and then click **Geo-replication**.
 7. Click **Add destination cluster** on the **Destination location** tab.
@@ -33,8 +34,9 @@ Alternatively, you can also use the following steps:
 1. Log in to your destination {{site.data.reuse.es_name}} cluster as an administrator.
 2. Click **Connect to this cluster** on the right, and then go to the **Geo-replication** tab.
 3. Click the **I want this cluster to be able to receive topics from another cluster** tile.
-4. Copy the connection information to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.\\
-    **Note:** This step includes the security credentials for your destination cluster which is then used by your origin cluster to authenticate.
+4. Copy the connection information to the clipboard. This information is what you need to specify the cluster as a destination for replication when you log in to your origin cluster.
+
+   **Note:** This step includes the security credentials for your destination cluster which is then used by your origin cluster to authenticate.
 5. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 6. Click **Connect to this cluster** on the right, and then go to the **Geo-replication** tab.
 7. Click **I want to replicate topics from this cluster to another cluster**.
@@ -47,14 +49,20 @@ Alternatively, you can also use the following steps:
 
 1. Go to your destination cluster. {{site.data.reuse.cncf_cli_login}}
 2. {{site.data.reuse.es_cli_init_111}}
-3. Run the following command to display the connection details for your destination cluster:\\
-   `kubectl es geo-cluster-connect`\\
-    The command returns a base64 encoded string consisting of the API URL and the security credentials required for creating a destination cluster that should be used to configure geo-replication using the CLI.  If the connection details are to be used to configure geo-replication using the UI, add the `--json` option to return a JSON-formatted string.
+3. Run the following command to display the connection details for your destination cluster:
+
+   ```shell
+   kubectl es geo-cluster-connect
+   ```
+
+   The command returns a base64 encoded string consisting of the API URL and the security credentials required for creating a destination cluster that should be used to configure geo-replication using the CLI.  If the connection details are to be used to configure geo-replication using the UI, add the `--json` option to return a JSON-formatted string.
 4. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
 5. {{site.data.reuse.es_cli_init_111}}
-6. Run the following command to add the cluster as a destination to where you can replicate your topics to:\\
-   `kubectl es geo-cluster-add  --cluster-connect <base64-encoded-string-from-step-3>`
+6. Run the following command to add the cluster as a destination to where you can replicate your topics to:
 
+   ```shell
+   kubectl es geo-cluster-add  --cluster-connect <base64-encoded-string-from-step-3>
+   ```
 
 ## Specifying what and where to replicate
 
@@ -65,13 +73,15 @@ To select the topics you want to replicate and set the destination cluster to re
 1. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 2. Click **Topics** in the primary navigation and then click **Geo-replication**.
 3. Choose a destination cluster to replicate to by clicking the name of the cluster from the **Destination locations** list.
-4. Choose the topics you want to replicate by selecting the checkbox next to each, and click **Geo-replicate to destination**.\\
+4. Choose the topics you want to replicate by selecting the checkbox next to each, and click **Geo-replicate to destination**.
+
    **Tip:** You can also click the ![Add topic to geo-replication icon]({{ 'images' | relative_url }}/add_to_georeplication_icon.png "Add to geo-replication icon that is displayed in each topic row.") icon in the topic's row to add it to the destination cluster. The icon turns into a **Remove** button, and the topic is added to the list of topics that are geo-replicated to the destination cluster.
 
    **Note:** A prefix of the origin cluster name will be added to the name of the new replicated topic that is created on the destination cluster, resulting in replicated topics named such as `<origin-cluster>.<topic-name>`.
 
    Message history is included in geo-replication. This means all available message data for the topic is copied. The amount of history is determined by the message retention options set when the topics were created on the origin cluster.
-5. Click **Create** to create a geo-replicator for the selected topics on the chosen destination cluster. Geo-replication starts automatically when the geo-replicator for the selected topics is set up successfully.\\
+5. Click **Create** to create a geo-replicator for the selected topics on the chosen destination cluster. Geo-replication starts automatically when the geo-replicator for the selected topics is set up successfully.
+
    **Note:** After clicking **Create**, it might take up to 5 to 10 minutes before geo-replication becomes active.
 
 For each topic that has geo-replication set up, a visual indicator is shown in the topic's row. If topics are being replicated from the cluster you are logged in to, the **Geo-replication** column displays the number of clusters the topic is being replicated to. Clicking the column for the topic expands the row to show details about the geo-replication for the topic. You can then click **View** to see more details about the geo-replicated topic in the side panel:\\
@@ -83,10 +93,24 @@ To set up replication by using the CLI:
 
 1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
 2. {{site.data.reuse.es_cli_init_111}}
-3. Choose a destination cluster to replicate to by listing all available destination clusters, making the ID of the clusters available to select and copy: `kubectl es geo-clusters`
-4. Choose the topics you want to replicate by listing your topics, making their names available to select and copy: `kubectl es topics`
-5. Specify the destination cluster to replicate to, and set the topics you want to replicate. Use the required destination cluster ID and topic names retrieved in the previous steps. List each topic you want to replicate by using a comma-separated list without spaces in between:\\
-   `kubectl es geo-replicator-create --destination <cluster-ID-from-step-3> --topics <comma-separated-list-of-topic-names-from-step-4>`\\
+3. Choose a destination cluster to replicate to by listing all available destination clusters, making the ID of the clusters available to select and copy:
+
+   ```shell
+   kubectl es geo-clusters
+   ```
+
+4. Choose the topics you want to replicate by listing your topics, making their names available to select and copy:
+
+   ```shell
+   kubectl es topics
+   ```
+
+5. Specify the destination cluster to replicate to, and set the topics you want to replicate. Use the required destination cluster ID and topic names retrieved in the previous steps. List each topic you want to replicate by using a comma-separated list without spaces in between:
+
+   ```shell
+   kubectl es geo-replicator-create --destination <cluster-ID-from-step-3> --topics <comma-separated-list-of-topic-names-from-step-4>
+   ```
+
    Geo-replication starts automatically when the geo-replicator for the selected topics is set up successfully.
 
 **Note:** A prefix of the origin cluster name will be added to the name of the new replicated topic that is created on the destination cluster, resulting in replicated topics named such as `<origin-cluster>.<topic-name>`.
@@ -120,5 +144,10 @@ To query the current values set on the destination cluster:
 
 1. Go to your destination cluster. {{site.data.reuse.cncf_cli_login}}
 2. {{site.data.reuse.es_cli_init_111}}
-3. List the broker configuration by using `kubectl es broker 0`
+3. List the broker configuration by using the following command:
+
+   ```shell
+   kubectl es broker 0
+   ```
+
 4. Update the [broker configuration](../../installing/configuring/#applying-kafka-broker-configuration-settings) to set these properties to the values if required before configuring geo-replication.

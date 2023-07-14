@@ -78,7 +78,9 @@ You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure you are using the project where your {{site.data.reuse.ep_name}} and Flink instance is located:
 
-   `oc project <project_name>`
+   ```shell
+   oc project <project_name>
+   ```
 
 3. Run the following commands to delete your {{site.data.reuse.ep_name}} and Flink instances from the project:
 
@@ -90,7 +92,10 @@ You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the
 #### Check uninstallation progress
 
 Run the following command to check the progress:
-`oc get pods --selector app.kubernetes.io/instance=<instance_name>`
+
+```shell
+oc get pods --selector app.kubernetes.io/instance=<instance_name>
+```
 
 Pods will initially display a **STATUS** `Terminating` and then be removed from the output as they are deleted.
 
@@ -118,19 +123,30 @@ To remove any remaining storage, delete the PVCs first, and then delete any rema
 Delete the PVCs:
 
 1. Run the following command to list the remaining PVCs associated with the deleted instances:
-`oc get pvc --selector app.kubernetes.io/instance=<instance_name>`
+
+   ```shell
+   oc get pvc --selector app.kubernetes.io/instance=<instance_name>
+   ```
 
 2. Run the following to delete a PVC:
-`oc delete pvc <pvc_name>`
+
+   ```shell
+   oc delete pvc <pvc_name>
+   ```
 
 Delete remaining PVs:
 
 1. Run the following command to list the remaining PVs:
 
-   `oc get pv`
+   ```shell
+   oc get pv
+   ```
+
 2. Run the following command to delete any PVs that were listed in the **Volume** column of the deleted PVCs.
 
-   `oc delete pv <pv_name>`
+   ```shell
+   oc delete pv <pv_name>
+   ```
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 

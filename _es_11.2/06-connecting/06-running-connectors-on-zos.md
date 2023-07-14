@@ -56,52 +56,92 @@ Extract the Apache Kafka distribution:
 2. Change to an empty directory that you want to use for the Apache Kafka distribution, and copy the `.tar` file to the new directory.
 3. Extract the `.tar` file, for example:
 
-   `tar -xvf kafka_2.13-2.8.1.tar`
+   ```shell
+   tar -xvf kafka_2.13-2.8.1.tar
+   ```
+
 4. Change to the resulting `kafka_<version>` directory.
 
 Convert the shell scripts:
 1. Copy the `connect-standalone.sh` shell script (or `connect-distributed.sh` for a distributed setup) into the current directory, for example:
 
-   `cp bin/connect-standalone.sh ./connect-standalone.sh.orig`
+   ```shell
+   cp bin/connect-standalone.sh ./connect-standalone.sh.orig
+   ```
+
 2. Determine the codeset on the IBM z/OS system by running:
 
-   `locale -k codeset`
+   ```shell
+   locale -k codeset
+   ```
+
 3. Convert the script to EBCDIC encoding and replace the original, for example for codeset IBM-1047:
 
-   `iconv -f ISO8859-1 -t IBM-1047 ./connect-standalone.sh.orig > bin/connect-standalone.sh`
+   ```shell
+   iconv -f ISO8859-1 -t IBM-1047 ./connect-standalone.sh.orig > bin/connect-standalone.sh
+   ```
+
 4. Ensure the file permissions are set so that the script is executable, for example:
 
-   `chmod +x bin/connect-standalone.sh`
+   ```shell
+   chmod +x bin/connect-standalone.sh
+   ```
+
 5. Copy the `kafka-run-class.sh` shell script into the current directory, for example:
 
-   `cp bin/kafka-run-class.sh ./kafka-run-class.sh.orig`
+   ```shell
+   cp bin/kafka-run-class.sh ./kafka-run-class.sh.orig
+   ```
+
 6. Convert the script to EBCDIC encoding and replace the original, for example for codeset IBM-1047:
 
-   `iconv -f ISO8859-1 -t IBM-1047 ./kafka-run-class.sh.orig > bin/kafka-run-class.sh`
+   ```shell
+   iconv -f ISO8859-1 -t IBM-1047 ./kafka-run-class.sh.orig > bin/kafka-run-class.sh
+   ```
+
 7. Ensure the file permissions are set so that the script is executable, for example:
 
-   `chmod +x bin/kafka-run-class.sh`
+   ```shell
+   chmod +x bin/kafka-run-class.sh
+   ```
 
 Convert the configuration files:
 1. Copy the `connect-standalone.properties` file (or `connect-distributed.properties` for a distributed setup) into the current directory, for example:
 
-   `cp config/connect-standalone.properties ./connect-standalone.properties.orig`
+   ```shell
+   cp config/connect-standalone.properties ./connect-standalone.properties.orig
+   ```
+
 2. Determine the codeset on the IBM z/OS system by running:
-   `locale -k codeset`
+
+   ```shell
+   locale -k codeset
+   ```
+
 3. Convert the script to EBCDIC encoding and replace the original, for example for codeset IBM-1047:
 
-   `iconv -f ISO8859-1 -t IBM-1047 ./connect-standalone.properties.orig > config/connect-standalone.properties`
+   ```shell
+   iconv -f ISO8859-1 -t IBM-1047 ./connect-standalone.properties.orig > config/connect-standalone.properties
+   ```
 
 If running in **standalone mode**:
 1. Copy the MQ `.properties` file into the current directory, for example:
 
-   `cp ./mq-source.properties ./mq-source.properties.orig`
+   ```shell
+   cp ./mq-source.properties ./mq-source.properties.orig
+   ```
+
 2. Determine the codeset on the IBM z/OS system by running:
 
-   `locale -k codeset`
+   ```shell
+   locale -k codeset
+   ```
+
 3. Convert the script to EBCDIC encoding and replace the original, for example for codeset IBM-1047:
 
-   `iconv -f ISO8859-1 -t IBM-1047 ./mq-source.properties.orig > ./mq-source.properties`
+   ```shell
+   iconv -f ISO8859-1 -t IBM-1047 ./mq-source.properties.orig > ./mq-source.properties
+   ```
 
 **Note:** For distributed mode the `.json` file must remain in ASCII format.
 
@@ -111,7 +151,7 @@ The `connect-standalone.properties` (or `connect-distributed.properties` for dis
 
 For example, if running against {{site.data.reuse.es_name}}, download the certificate for your install to your IBM z/OS system. Generate credentials that can produce, consume and create topics and update the `connect-standalone.properties` (or `connect-distributed.properties`) file to include:
 
-```
+```shell
 bootstrap.servers=<bootstrapServers>
 security.protocol=SASL_SSL
 ssl.protocol=TLSv1.2
@@ -149,12 +189,12 @@ As you are using the bindings connection mode for the connector to connect to th
 
    From UNIX and Linux System Services, you can add these using a line in your `.profile` file as shown in the following code snippet, replacing `thlqual` with the high-level data set qualifier that you chose when installing IBM MQ:
 
-   ```
+   ```shell
    export STEPLIB=thlqual.SCSQAUTH:thlqual.SCSQANLE:$STEPLIB
    ```
 2. The connector needs to load a native library. Set `LIBPATH` to include the following directory of your MQ installation:
 
-   ```
+   ```shell
    <path_to_MQ_installation>/mqm/<MQ_version>/java/lib
    ```
 
@@ -170,11 +210,16 @@ To install bash version 4.2.53 or later:
    **Note:** You must [register](https://my.rocketsoftware.com/RocketCommunity/s/login/?ec=302&startURL=%2FRocketCommunity%2Fs%2F){:target="_blank"} before downloading the bash archive.
 2. Extract the archive file to get the .tar file:
 
-    `gzip -d bash.tar.gz`
+    ```shell
+    gzip -d bash.tar.gz
+    ```
+
 3. FTP the .tar file to your z/OS USS directory such as `/bin`
 4. Extract the .tar file to install bash:
 
-   `tar -cvfo bash.tar`
+   ```shell
+   tar -cvfo bash.tar
+   ```
 
 If bash on your z/OS system is not in /bin, you need to update the `kafka-run-class.sh` file. For example, if bash is located in `/usr/local/bin` update the first line of `kafka-run-class.sh` to have `#!/usr/local/bin/bash`
 
@@ -182,7 +227,7 @@ If bash on your z/OS system is not in /bin, you need to update the `kafka-run-cl
 
 To start Kafka Connect in standalone mode navigate to your Kafka directory and run the `connect-standalone.sh` script, passing in your `connect-standalone.properties` and `mq-source.properties` or `mq-sink.properties`. For example:
 
-```
+```shell
 cd kafka
 ./bin/connect-standalone.sh connect-standalone.properties mq-source.properties
 ```
@@ -193,13 +238,14 @@ For more details on creating the properties files see the [connecting MQ documen
 
 To start Kafka Connect in distributed mode navigate to your Kafka directory and run the `connect-distributed.sh` script, passing in your `connect-distributed.properties`. Unlike in standalone mode, MQ properties are not passed in on startup. For example:
 
-```
+```shell
 cd kafka
 ./bin/connect-distributed.sh connect-distributed.properties
 ```
 
 To start an individual connector use the [Kafka Connect REST API](https://kafka.apache.org/documentation/#connect_rest){:target="_blank"}. For example, given a configuration file `mq-source.json` with the following contents:
-```
+
+```json
 {
     "name":"mq-source",
         "config" : {
@@ -217,7 +263,8 @@ To start an individual connector use the [Kafka Connect REST API](https://kafka.
 ```
 
 start the connector using:
-```
+
+```shell
 curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d @mq-source.json
 ```
 

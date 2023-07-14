@@ -196,7 +196,6 @@ If you are installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_na
         - name: ibm-cert-manager-operator
         registry: common-service
         registryNamespace: ibm-common-services
-
    ```
 
    Where `<namespace>` is the namespace from where you are creating the `OperandRequest` and planning to install the {{site.data.reuse.ep_name}} operator.

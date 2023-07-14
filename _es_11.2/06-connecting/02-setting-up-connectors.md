@@ -69,7 +69,7 @@ Edit the downloaded `kafka-connect.yaml` file to enable Kafka Connect to connect
 
    To get the `bootstrapServers`, run the following command:
 
-   ```
+   ```shell
    kubectl get eventstreams <instance-name> -n <namespace> -o=jsonpath='{.status.kafkaListeners[?(@.name=="<external_listener_name>")].bootstrapServers}{"\n"}'
    ```
 
@@ -81,7 +81,7 @@ Edit the downloaded `kafka-connect.yaml` file to enable Kafka Connect to connect
 
 For example, when connecting to a listener with `tls` authentication and  Mutual TLS encryption (`tls: true`), the Kafka Connect credentials will resemble the following:
 
-  ```
+  ```yaml
   tls:
     trustedCertificates:
         - secretName: kafka-connect-user
@@ -108,7 +108,7 @@ If your connector consists of multiple JAR files, create a directory for the con
 
 Here's an example of how the directory structure might look with 3 connectors:
 
-```
+```shell
 +--  my-plugins
 |    +--  connector1.jar
 |    +--  connector2
@@ -157,19 +157,19 @@ Click **Next** at the bottom of the page. You can also access this page by click
 
 By using the Kubernetes command-line tool (`kubectl`), deploy the Kafka Connect instance by applying the YAML file:
 
-```
+```shell
 kubectl apply -f kafka-connect.yaml
 ```
 
 Wait for the Kafka Connect pod to become ready. You can check status with the following command:
 
-```
+```shell
 kubectl get pods
 ```
 
 When it is ready, you can use the following command to check the status and view which connectors are available:
 
-```
+```shell
 kubectl describe kafkaconnect my-connect-cluster
 ```
 
@@ -177,7 +177,7 @@ kubectl describe kafkaconnect my-connect-cluster
 
 Create a YAML file for the connector configuration. For the MQ connectors, you can use the {{site.data.reuse.es_name}} UI or CLI to generate the YAML file. Alternatively, you can use the following template, taking care to replace `<kafka_connect_name>` with the name of the `KafkaConnect` instance:
 
-```
+```yaml
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaConnector
 metadata:
@@ -197,12 +197,12 @@ spec:
 
 Start the connector by applying the YAML file:
 
-```
+```shell
 kubectl apply -f <connector_filename>.yaml
 ```
 
 You can view the status of the connector by describing the custom resource:
 
-```
+```shell
 kubectl describe kafkaconnector <connector_name>
 ```

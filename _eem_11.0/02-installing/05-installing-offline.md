@@ -24,9 +24,9 @@ Ensure you have the following set up for your environment:
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
-    ```shell
-    oc ibm-pak --help
-    ```
+  ```shell
+  oc ibm-pak --help
+  ```
 
 ## Prepare your host
 
@@ -87,7 +87,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 
    **Note**: If you do not specify the CASE version, it downloads the latest version.
 
-5. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
+3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
 
    For example, ensure the following files have been generated for {{site.data.reuse.eem_name}}.
 

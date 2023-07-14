@@ -20,7 +20,7 @@ You can expose the JMX port (`9999`) of each Kafka broker to be accessible to se
 
 The JMX port can be password-protected to prevent unauthorized pods from accessing it. It is good practice to secure the JMX port, as an unprotected port could allow a user to invoke an MBean operation on the Java JVM. To enable security for the JMX port, set the `spec.strimiziOverrrides.kafka.jmxOptions.authentication.type` field to `password`. For example:
 
-```
+```yaml
 #...
 spec:
   #...
@@ -77,9 +77,13 @@ In addition, when initiating the JMX connection, if the port is secured then cli
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following commands:
 
-   `kubectl get secret {{site.data.reuse.jmx-secret-name}} -o jsonpath='{.data.jmx\-username}' -namespace <name_of_your_namespace> | base64 -decode > jmx_username.txt`
+   ```shell
+   kubectl get secret {{site.data.reuse.jmx-secret-name}} -o jsonpath='{.data.jmx\-username}' -namespace <name_of_your_namespace> | base64 -decode > jmx_username.txt
+   ```
 
-   `kubectl get secret {{site.data.reuse.jmx-secret-name}} -o jsonpath='{.data.jmx\-password}' -namespace <name_of_your_namespace> | base64 -decode > jmx_password.txt`
+   ```shell
+   kubectl get secret {{site.data.reuse.jmx-secret-name}} -o jsonpath='{.data.jmx\-password}' -namespace <name_of_your_namespace> | base64 -decode > jmx_password.txt
+   ```
 
 These will output the `jmx_username` and `jmx_password` values into the respective `.txt` files.
 
@@ -87,7 +91,7 @@ These will output the `jmx_username` and `jmx_password` values into the respecti
 
 Mounting the secret will project the `jmx_username` and `jmx_password` values as files under the mount path folder.
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -110,6 +114,6 @@ For more information, see [Kubernetes Secrets](https://kubernetes.io/docs/concep
 
 If the connecting application is not installed inside the {{site.data.reuse.es_name}} namespace, it must be copied to the application namespace using the following command:
 
-```
+```shell
 kubectl -n <instance_namespace> get secret {{site.data.reuse.jmx-secret-name}} -o yaml --export | kubectl -n <application_namespace> apply -f -
 ```

@@ -163,7 +163,7 @@ For more detailed information about the request paths, see the [Strimzi document
 The following are supported for the value of the `Content-Type` header.
 
 - For consumer operations, `POST` requests must provide the following `Content-Type` header:
-   ```
+   ```shell
    Content-Type: application/vnd.kafka.v2+json
    ```
 - For producer operations, `POST` requests must provide `Content-Type` headers specifying the embedded data format of the messages produced (JSON or binary:
@@ -180,7 +180,7 @@ After setting up Kafka Bridge, you can produce to specified topics over HTTP. To
 
 **Note:** If automatic topic creation is enabled (set by `auto.create.topics.enable` in the broker configuration, default is `true`), then you can specify a new topic in the following command and it will be created before messages are written to the topic.
 
-```
+```shell
 curl -X POST \
    http://<route-name>.apps.<cluster-name>.<namespace>.com/topics/<topic-name> \
    -H 'content-type: application/vnd.kafka.json.v2+json' \
@@ -200,7 +200,7 @@ curl -X POST \
 
 For example, to produce two messages about temperature readings to a topic called `my-topic`, you can use the following command:
 
-```
+```shell
 curl -X POST \
    http://my-bridge-route-es-kafka-bridge.apps.example.com/topics/my-topic \
    -H 'content-type: application/vnd.kafka.json.v2+json' \
@@ -221,7 +221,7 @@ curl -X POST \
 
 If the request to produce to the topic is successful, the Kafka Bridge returns an HTTP status code `200 OK` and a JSON payload describing for each message the partition that the message was sent to and the offset the messages are written to.
 
-```
+```json
 #...
 {
   "offsets":[
@@ -248,7 +248,7 @@ To consume messages over HTTP with Kafka Bridge:
 
 To interact with your Kafka cluster, the Kafka Bridge requires a consumer. To create the Kafka Bridge [consumer endpoint](https://strimzi.io/docs/bridge/latest/#_createconsumer){:target="_blank"}, create a consumer within a consumer group. For example, the following command creates a Kafka Bridge consumer called `my-consumer` in a new consumer group called `my-group`:
 
-```
+```shell
 curl -X POST http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group \
 -H 'content-type: application/vnd.kafka.json.v2+json' \
 -d '{
@@ -261,7 +261,7 @@ curl -X POST http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/m
 
 If the request is successful, the Kafka Bridge returns an HTTP status code `200 OK` and a JSON payload containing the consumer ID (`instance_id`) and the base URL (`base_uri`). The base URL is used by the HTTP client to interact with the consumer and receive messages from topics. The following is an example response:
 
-```
+```json
 {
    "instance_id":"my-consumer",
    "base_uri":"http://my-bridge-bridge-service:80/consumers/my-group/instances/my-consumer"
@@ -272,7 +272,7 @@ If the request is successful, the Kafka Bridge returns an HTTP status code `200 
 
 After creating a Kafka Bridge consumer, you can subscribe the Kafka Bridge consumer to topics by creating a [subscription endpoint](https://strimzi.io/docs/bridge/latest/#_subscribe){:target="_blank"}. For example, the following command subscribes the consumer to the topic called `my-topic`:
 
-```
+```shell
 curl -X POST http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group/instances/my-consumer/subscription \
 -H 'content-type: application/vnd.kafka.json.v2+json' \
 -d '{
@@ -289,7 +289,7 @@ After subscribing, the consumer receives all messages that are produced to the t
 
 After subscribing a Kafka Bridge consumer to a topic, your client applications can retrieve the messages on the topic from the Kafka Bridge consumer. To retrieve the latest messages, request data from the [records endpoint](https://strimzi.io/docs/bridge/latest/#_poll){:target="_blank"}. The fopllowing is an example command to retrieve messages from `my-topic`:
 
-```
+```shell
 curl -X GET http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group/instances/my-consumer/records \
 -H 'accept: application/vnd.kafka.json.v2+json'
 ```
@@ -300,7 +300,7 @@ If the request is successful, the Kafka Bridge returns an HTTP status code `200 
 
 In production, HTTP clients can call this endpoint repeatedly (in a loop), for example:
 
-```
+```shell
 while true; do sleep 1;  curl -X GET http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group/instances/my-consumer/records \
 -H 'accept: application/vnd.kafka.json.v2+json'; echo ; done
 ```
@@ -311,7 +311,7 @@ If you no longer need a Kafka Bridge consumer, delete it to free up resources on
 
 Use the [delete consumer endpoint](https://strimzi.io/docs/bridge/latest/#_deleteconsumer){:target="_blank"} to delete a consumer instance. For example, to delete the consumer [created earlier](#creating-a-kafka-bridge-consumer), run the following command:
 
-```
+```shell
 curl -X DELETE http://my-bridge-bridge-service:80/consumers/my-group/instances/my-consumer/
 ```
 

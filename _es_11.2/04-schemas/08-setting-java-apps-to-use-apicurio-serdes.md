@@ -49,18 +49,19 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
    Alternatively you can generate credentials later by using the {{site.data.reuse.es_name}} [UI](../../security/managing-access#creating-a-kafkauser-in-the-event-streams-ui) or [CLI](../../security/managing-access#creating-a-kafkauser-in-the-event-streams-cli).
 9. Click **Generate connection details**.
 10. Click **Download certificate** to download the cluster PKCS12 certificate. This is the Java truststore file which contains the server certificate. Take a copy of the **Certificate password** for use with the certificate in your application.
-11. Add the following dependency to your project Maven `pom.xml` file to use the Apicurio Registry  `serdes` library:
+11. Add the following dependency to your project Maven `pom.xml` file to use the Apicurio Registry `serdes` library:
 
-    ```
+    ```xml
     <dependency>
         <groupId>io.apicurio</groupId>
         <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
         <version>2.4.1.Final</version>
     </dependency>
     ```
+
 12. If you want to generate specific schema classes from your project Avro schema files, add the following Avro plugin to your project Maven `pom.xml` file, replacing `SCHEMA-FILE-NAME` with the name of your schema file.
 
-    ```
+    ```xml
     <profile>
       <id>avro</id>
       <build>
@@ -96,10 +97,10 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
 
 If you are connecting to a bootstrap address that is configured to use [OAuth authentication](../../installing/configuring/#enabling-oauth), complete the following additional steps:
 
-14. Download the OAuth authentication PKCS12 certificate. This is the Java truststore file which contains the OAuth server certificate. You will also need to know the truststore password as this will need to be configured in your application.
-15. You might need to configure the OAuth client libraries as dependencies in your project Maven `pom.xml` file, for example, to use the Strimzi OAuth client library:
+1. Download the OAuth authentication PKCS12 certificate. This is the Java truststore file which contains the OAuth server certificate. You will also need to know the truststore password as this will need to be configured in your application.
+2. You might need to configure the OAuth client libraries as dependencies in your project Maven `pom.xml` file, for example, to use the Strimzi OAuth client library:
 
-    ```
+    ```xml
     <dependency>
         <groupId>io.strimzi</groupId>
         <artifactId>kafka-oauth-client</artifactId>
@@ -134,7 +135,8 @@ By setting these values you can change the name of the header that the Apicurio 
 3. Add the following code snippets to your application code.
 
 ### Imports
-```
+
+```java
 import java.io.File;
 import java.util.Properties;
 
@@ -155,7 +157,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 ```
 
 ### Connection properties
-```
+
+```java
 Properties props = new Properties();
 
 // TLS Properties
@@ -197,7 +200,7 @@ props.put(ApicurioClientConfig.APICURIO_REQUEST_TRUSTSTORE_TYPE, "PKCS12");
   oauth.ssl.endpoint.identification.algorithm="" \
   oauth.client.id="<oauth_username>" \
   oauth.client.secret="<oauth_password>" \
-  oauth.token.endpoint.uri="<oauth_token_endpoint_uri>";";
+  oauth.token.endpoint.uri="<oauth_token_endpoint_uri>";
 //props.put(SaslConfigs.SASL_JAAS_CONFIG, saslJaasConfig);
 // You may need to provide a Callback Handler for OAuth. This example shows the Strimzi OAuth callback handler.
 //props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS, "io.strimzi.kafka.oauth.client.JaasClientOauthLoginCallbackHandler")
@@ -235,7 +238,7 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<kafka_bootstrap_addres
 
 ### Producer code example
 
-```
+```java
 // Set the value serializer for produced messages to use the Apicurio Registry serializer
 props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 props.put("value.serializer", "io.apicurio.registry.serde.avro.AvroKafkaSerializer;");
@@ -262,7 +265,6 @@ producer.send(producerRecord);
 
 // Close the producer
 producer.close();
-
 ```
 
 The Kafka configuration property `value.serializer` is set to `io.apicurio.registry.utils.serde.AvroKafkaSerializer`, telling Kafka to use the Apicurio Registry Avro serializer for message values when producing messages. You can also use the Apicurio Registry Avro serializer for message keys.
@@ -270,12 +272,13 @@ The Kafka configuration property `value.serializer` is set to `io.apicurio.regis
 **Note:** Use the `put` method in the `GenericRecord` class to set field names and values in your message.
 
 **Note:** Replace:
- - `<my_topic>` with the name of the topic to produce messages to.
- - `<path_to_schema_file.avsc>` with the path to the Avro schema file.
+
+- `<my_topic>` with the name of the topic to produce messages to.
+- `<path_to_schema_file.avsc>` with the path to the Avro schema file.
 
 **Note:** If you want to retrieve the schema from the registry instead of loading the file locally, you can use the following code:
 
-```
+```java
 // Convert kafka connection properties to a Map
 Map<String, Object> config = (Map) props;
 // Create the client
@@ -296,7 +299,8 @@ try {
 3. Add the following code snippets to your application code.
 
 ### Imports
-```
+
+```java
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
@@ -316,7 +320,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 ```
 
 ### Connection properties
-```
+
+```java
 Properties props = new Properties();
 
 // TLS Properties
@@ -374,8 +379,10 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<kafka_bootstrap_addres
  - For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.
 
 ### Consumer code example
-```
+
+```java
 // Set the value deserializer for consumed messages to use the Apicurio Registry deserializer
+
 props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 props.put("value.deserializer", "io.apicurio.registry.utils.serde.AvroKafkaDeserializer");
 
@@ -406,14 +413,14 @@ The Kafka configuration property `value.serializer` is set to `io.apicurio.regis
 **Note:** Use the `get` method in the `GenericRecord` class to get field names and values.
 
 **Note:** Replace:
- - `<my_consumer_group>` with the name of the consumer group to use.
- - `<my_topic>` with the name of the topic to consume messages from.
+- `<my_consumer_group>` with the name of the consumer group to use.
+- `<my_topic>` with the name of the topic to consume messages from.
 
 ## Setting up Kafka Streams applications
 
 Kafka Streams applications can also use the Apicurio Registry `serdes` library to serialize and deserialize messages. In particular, the `io.apicurio.registry.utils.serde.AvroSerde` class can be used to provide the Apicurio Avro serializer and deserializer for the `"default.value.serde"` or `"default.key.serdes"` properties. Additionally, setting the `"apicurio.registry.use-specific-avro-reader"` property to `"true"` tells the Apicurio Registry `serdes` library to use specific schema classes that have been generated from your project Avro schema files. For example:
 
-```
+```java
 import io.apicurio.registry.serde.SerdeConfig;
 import io.apicurio.registry.serde.avro.AvroSerde;
 import io.apicurio.registry.serde.avro.AvroKafkaSerdeConfig;
@@ -444,7 +451,7 @@ streamsConfiguration.put(AvroKafkaSerdeConfig.USE_SPECIFIC_AVRO_READER, "true");
 
 The Apicurio Registry `converter` library can be used in Kafka Connect to provide the converters that are required to convert between Kafka Connect's format and the Avro serialized format. Source connectors can use the converter to write Avro-formatted values, keys, and headers to Kafka. Sink connectors can use the converter to read Avro-formatted values, keys, and headers from Kafka. In particular, the `io.apicurio.registry.utils.converter.AvroConverter` class can be used to provide the Apicurio Avro converter for the `"key.converter"`, `"value.converter"`, or `"header.converter"` properties. For example:
 
-```
+```java
 key.converter=io.apicurio.registry.utils.converter.AvroConverter
 key.converter.apicurio.registry.url=https://<username>:<password>@<Schema registry endpoint>
 
@@ -454,27 +461,28 @@ value.converter.apicurio.registry.url=https://<username>:<password>@<Schema regi
 
 To use the Apicurio Registry  `converter` library, add the following dependency to your project Maven `pom.xml` file:
 
-```
+```xml
 <dependency>
     <groupId>io.apicurio</groupId>
     <artifactId>apicurio-registry-utils-converter</artifactId>
     <version>2.4.1.Final</version>
 </dependency>
 ```
+
 Alternatively, if you are not building your connector, you can download the Apicurio converter artifacts from [Maven](https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.4.1.Final/apicurio-registry-distro-connect-converter-2.4.1.Final.tar.gz){:target="_blank"}.
 
 After downloading, extract the `tar.gz` file and place the folder with all the JARs into a subdirectory within the folder where you are building your `KafkaConnect` image.
 
 To enable Kafka properties to be pulled from a file, add the following to your `KafkaConnector` or `KafkaConnect` custom resource definition:
 
-```
+```java
 config.providers: file
 config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider
 ```
 
 Then reference the Kafka connection details in the `KafkaConnector` custom resource of your connector. For example, the following shows a value converter with SCRAM credentials specified in the custom resource:
 
-```
+```java
 value.converter.apicurio.registry.url: <username>:<password>@<Schema registry endpoint>
 value.converter.apicurio.registry.request.ssl.truststore.location: "${file:/tmp/strimzi-connect.properties:ssl.truststore.location}"
 value.converter.apicurio.registry.request.ssl.truststore.password: "${file:/tmp/strimzi-connect.properties:ssl.truststore.password}"

@@ -33,11 +33,15 @@ If you are using the OpenShift command-line interface (CLI), the `oc` command, c
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure the required {{site.data.reuse.eem_name}} Operator Upgrade Channel is available:
 
-   `oc get packagemanifest ibm-eventendpointmanagement -o=jsonpath='{.status.channels[*].name}'`
+   ```shell
+   oc get packagemanifest ibm-eventendpointmanagement -o=jsonpath='{.status.channels[*].name}'
+   ```
 
-2. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v11.1`):
+3. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v11.1`):
 
-   `oc patch subscription -n <namespace> ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge`
+   ```shell
+   oc patch subscription -n <namespace> ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
+   ```
 
 
 All {{site.data.reuse.eem_name}} pods that need to be updated as part of the upgrade will be rolled.
@@ -52,9 +56,9 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
    ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.eem_name}} instance in the namespace. It is called **{{site.data.reuse.eem_name}}** in the **Name** column. Click the **{{site.data.reuse.eem_name}}** link in the row.
-4. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.eem_name}} operator.
-5. Click the version number link in the **Update channel** section (for example, **v11.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-6. Select the required channel, for example **v11.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
+5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.eem_name}} operator.
+6. Click the version number link in the **Update channel** section (for example, **v11.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+7. Select the required channel, for example **v11.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
 
 All {{site.data.reuse.eem_name}} pods that need to be updated as part of the upgrade will be rolled.
 
@@ -64,12 +68,18 @@ All {{site.data.reuse.eem_name}} pods that need to be updated as part of the upg
 2. {{site.data.reuse.openshift_cli_login}}
 3. To retrieve a list of {{site.data.reuse.eem_name}} instances, run the following command:
 
-   `oc get eem -n <namespace>`
+   ```shell
+   oc get eem -n <namespace>
+   ```
 
 4. For the instance of {{site.data.reuse.eem_name}} that you upgraded, check that the status returned by the following command is `Running`.
 
-   `oc get eem -n <namespace> <name-of-the-eem-instance> -o jsonpath="{.status.phase}"`
+   ```shell
+   oc get eem -n <namespace> <name-of-the-eem-instance> -o jsonpath="{.status.phase}"
+   ```
 
 5. To check the version of your {{site.data.reuse.eem_name}} instance, run the following command:
 
-   `oc get eem -n <namespace> <name-of-the-eem-instance> -o jsonpath="{.status.versions.reconciled}"`
+   ```shell
+   oc get eem -n <namespace> <name-of-the-eem-instance> -o jsonpath="{.status.versions.reconciled}"
+   ```

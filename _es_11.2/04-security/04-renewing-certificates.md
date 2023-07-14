@@ -35,7 +35,9 @@ If you provided your own CA certificates and keys, and need to renew only the CA
 2. Replace the value of the `ca.crt` in the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings if required.
 3. Increment the `ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
 
-   `kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1`
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1
+   ```
 
    When the operator reconciles the next time, the pods roll to process the certificate renewal.
 
@@ -45,13 +47,17 @@ If you provided your own CA Certificates and keys, and need to renew both the CA
 
 1. Pause the operator's reconcile loop by running the following command:
 
-   `kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="true" --overwrite=true`
+   ```shell
+   kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="true" --overwrite=true
+   ```
 
 2. Generate a new certificate and key pair. Optionally, create a PKCS12 truststore with the new certificate, if required.
 3. Replace the value of the `ca.key` in the `<instance-name>-cluster-ca` secret with a base64-encoded string of the new key.
 4. Increment the `ca-key-generation` annotation value in the `<instance-name>-cluster-ca` secret. If no annotation exists, add the annotation, setting the value to `1` with the following command:
 
-   `kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=1`
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=1
+   ```
 
 5. Find the expiration date and time of the previous CA certificate by using OpenSSL or other certificate tooling.
 6. Edit the `<instance-name>-cluster-ca-cert` secret. Rename the `ca.crt` element to be `ca-<expiry of ca.crt>.crt`.
@@ -61,11 +67,15 @@ If you provided your own CA Certificates and keys, and need to renew both the CA
 7. Add element `ca.crt` to the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings, if required.
 8. Increment the `ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
 
-   `kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1`
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1
+   ```
 
 9. Resume the operator's reconcile loop by running the following command:
 
-   `kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="false" --overwrite=true`
+   ```shell
+   kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="false" --overwrite=true
+   ```
 
    When the operator reconciles the next time, the pods roll to process the certificate renewal. The pods might roll multiple times during the renewal process.
 

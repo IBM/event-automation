@@ -28,12 +28,15 @@ To verify the status:
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the `kubectl get` command as follows:
 
-   `kubectl get eventstreams`
+   ```shell
+   kubectl get eventstreams
+   ```
 
 For example, the installation of the instance called `development` is complete when the `STATUS` returned by the `kubectl get` command displays `Ready`.
 
 An example output:
-```
+
+```shell
 $ kubectl get eventstreams
 >
 NAME             STATUS

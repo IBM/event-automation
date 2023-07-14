@@ -34,50 +34,50 @@ After your `DataProtectionApplication` is configured and other dependencies are 
 
 1. To ensure that only the main encryption key and the PVCs that contain the data are being backed up, and to easily separate them from the other resources that are related to the {{site.data.reuse.eem_name}} instance, add the `events.ibm.com/backup: required` label to the following resources:
 
-- The secret in the {{site.data.reuse.eem_name}} instance namespace with the name that ends with `-mek-bak`. For example, `<eem_instance_name>-ibm-eem-mek-bak`.
-- The PVCs in the {{site.data.reuse.eem_name}} instance namespace with the name `manager-storage-<eem_instance_name>-ibm-eem-manager-0`.
+   - The secret in the {{site.data.reuse.eem_name}} instance namespace with the name that ends with `-mek-bak`. For example, `<eem_instance_name>-ibm-eem-mek-bak`.
+   - The PVCs in the {{site.data.reuse.eem_name}} instance namespace with the name `manager-storage-<eem_instance_name>-ibm-eem-manager-0`.
 
 2. After the labels are applied, create a `Backup` custom resource as follows that backs up only the two required resources for {{site.data.reuse.eem_name}}. Also, include the snapshots in the custom resource if you are using a `CSI` storage provider.
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: <unique_name>
-  namespace: openshift-adp
-spec:
-  includedResources:
-    - secrets
-    - persistentvolumeclaims
-    # To ensure the volume data is backed up when using CSI
-    - volumesnapshots 
-    - volumesnapshotcontents
-  ttl: 720h0m0s
-  storageLocation: <backup_location_cr_name>
-  includeClusterResources: true
-  labelSelector:
-    matchLabels:
-      app.kubernetes.io/instance: <eem_instance_name>
-      app.kubernetes.io/name: ibm-event-endpoint-management
-      events.ibm.com/backup: required
-  includedNamespaces:
-    - <eem_instance_namespace>
-  excludedResources: []
-```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Backup
+   metadata:
+     name: <unique_name>
+     namespace: openshift-adp
+   spec:
+     includedResources:
+       - secrets
+       - persistentvolumeclaims
+       # To ensure the volume data is backed up when using CSI
+       - volumesnapshots 
+       - volumesnapshotcontents
+     ttl: 720h0m0s
+     storageLocation: <backup_location_cr_name>
+     includeClusterResources: true
+     labelSelector:
+       matchLabels:
+         app.kubernetes.io/instance: <eem_instance_name>
+         app.kubernetes.io/name: ibm-event-endpoint-management
+         events.ibm.com/backup: required
+     includedNamespaces:
+       - <eem_instance_namespace>
+     excludedResources: []
+   ```
 
-See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Backup` custom resource.
+   See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Backup` custom resource.
 
 3. After the backup is completed, check whether the `Backup` custom resource is updated with status information similar to the following:
 
-```yaml
-status:
-  progress:
-    itemsBackedUp: 4
-    totalItems: 4
-  csiVolumeSnapshotsCompleted: 1
-  csiVolumeSnapshotsAttempted: 1
-  phase: Completed
-```
+   ```yaml
+   status:
+     progress:
+       itemsBackedUp: 4
+       totalItems: 4
+     csiVolumeSnapshotsCompleted: 1
+     csiVolumeSnapshotsAttempted: 1
+     phase: Completed
+   ```
 
 If you are facing problems in creating a backup, see the [troubleshooting information for OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/troubleshooting.html){:target="_blank"}.
 
@@ -102,18 +102,18 @@ To restore your instance, follow these steps.
 
 1. Create a `Restore` custom resource similar to the following YAML:
 
-    ```yaml
-    apiVersion: velero.io/v1
-    kind: Restore
-    metadata:
-      name: <unique_name>
-      namespace: openshift-adp
-    spec:
-      backupName: <name_of_the_backup_to_restore>
-      excludedResources: []
-      includedResources: []
-      restorePVs: true
-    ```
+   ```yaml
+   apiVersion: velero.io/v1
+   kind: Restore
+   metadata:
+     name: <unique_name>
+     namespace: openshift-adp
+   spec:
+     backupName: <name_of_the_backup_to_restore>
+     excludedResources: []
+     includedResources: []
+     restorePVs: true
+   ```
 
     See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Restore` custom resource. For example, you can configure your custom resource to restore to an alternative namespace.
 

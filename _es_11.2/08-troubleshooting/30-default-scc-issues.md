@@ -14,31 +14,35 @@ This could result in symptoms such as:
 
 - Installation of the operator is pending and eventually times out.
 
-    - Navigating to the **Conditions** section for the specific operator deployment under **Workloads > Deployment** will display a message similar to the following example:
- ```
- pods "eventstreams-cluster-operator-55d6f4cdf7-" is forbidden: unable to validate against any security context constraint: [spec.volumes[0]: Invalid value: "secret": secret volumes are not allowed to be used spec.volumes[1]: Invalid value: "secret": secret volumes are not allowed to be used]
- ```
+  - Navigating to the **Conditions** section for the specific operator deployment under **Workloads > Deployment** will display a message similar to the following example:
+
+    ```shell
+    pods "eventstreams-cluster-operator-55d6f4cdf7-" is forbidden: unable to validate against any security context constraint: [spec.volumes[0]: Invalid value: "secret": secret volumes are not allowed to be used spec.volumes[1]: Invalid value: "secret": secret volumes are not allowed to be used]
+    ```
 
 - The installation of {{site.data.reuse.es_name}} instance is unsuccessful and the instance reports a `Failed` [status](../../installing/post-installation/).
 
-    - The `conditions` field under status contains the following error message:
-    ```
+  - The `conditions` field under status contains the following error message:
+
+    ```shell
     Exceeded timeout of 300000ms while waiting for Pods resource
     light-insecure-zookeeper-0 in namespace es-1 to be ready
     ```
 
-    - The status of the `<name-of-the-es-instance>-zookeeper` StrimziPodSet resource contains the following error message under the `conditions` field:
-    ```
+  - The status of the `<name-of-the-es-instance>-zookeeper` StrimziPodSet resource contains the following error message under the `conditions` field:
+
+    ```shell
     pods "light-insecure-zookeeper-0" is forbidden: unable to validate against any security context constraint: [provider "anyuid": 
     Forbidden: not usable by user or serviceaccount, spec.volumes[3]: Invalid value: "secret": secret volumes are not allowed to be used,
-    ```       
+    ```
 
 - On a running instance of {{site.data.reuse.es_name}}, a pod that has bounced never comes back up.
 
-    - Navigating to the **Conditions** section for the specific instance deployment under **Workloads > Deployment** will display a message similar to the following example:
-```
-is forbidden: unable to validate against any security context constraint: [spec.initContainers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true spec.containers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true]
-```
+  - Navigating to the **Conditions** section for the specific instance deployment under **Workloads > Deployment** will display a message similar to the following example:
+
+    ```shell
+    is forbidden: unable to validate against any security context constraint: [spec.initContainers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true spec.containers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true]
+    ```
 
 ## Causes
 
@@ -58,6 +62,12 @@ To do this, edit the `eventstreams-scc.yaml` file to add your namespace and appl
 
 3. Run the following command to apply the SCC:
 
-    `oc apply -f <custom_scc_file_path>`
+   ```shell
+   oc apply -f <custom_scc_file_path>
+   ```
 
-    For example: `oc apply -f eventstreams-scc.yaml`
+   For example:
+
+   ```shell
+   oc apply -f eventstreams-scc.yaml
+   ```

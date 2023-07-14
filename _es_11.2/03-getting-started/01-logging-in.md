@@ -44,25 +44,31 @@ To retrieve the URL for your {{site.data.reuse.es_name}} UI, use the following c
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Find the URL of your services as follows.
-- If you are running with route endpoint, run the following command:
-   ```
-   kubectl get routes -n <namespace> -l app.kubernetes.io/name=admin-ui
-   ```
-- If you are running with ingress endpoint, run the following command:
-   ```
-   kubectl get ingress -n <namespace> -l app.kubernetes.io/name=admin-ui
-   ```
+   - If you are running with route endpoint, run the following command:
 
-   The following is an example output, and you use the value from the **HOST/PORT** column to log in to your UI in a web browser:
-   
-   ```shell
-   NAME                        HOST/PORT                                                           PATH   SERVICES                    PORT   TERMINATION   WILDCARD
-   my-eventstreams-ibm-es-ui   my-eventstreams-ibm-es-ui-myproject.apps.my-cluster.my-domain.com          my-eventstreams-ibm-es-ui   3000   reencrypt     None
-   ```
+     ```shell
+     kubectl get routes -n <namespace> -l app.kubernetes.io/name=admin-ui
+     ```
+
+   - If you are running with ingress endpoint, run the following command:
+
+     ```shell
+     kubectl get ingress -n <namespace> -l app.kubernetes.io/name=admin-ui
+     ```
+
+     The following is an example output, and you use the value from the **HOST/PORT** column to log in to your UI in a web browser:
+
+     ```shell
+     NAME                        HOST/PORT                                                           PATH   SERVICES                    PORT   TERMINATION   WILDCARD
+     my-eventstreams-ibm-es-ui   my-eventstreams-ibm-es-ui-myproject.apps.my-cluster.my-domain.com          my-eventstreams-ibm-es-ui   3000   reencrypt     None
+     ```
+
 3. Enter the address in a web browser. Add `https://` in front of the **HOST/PORT** value. For example:
+
    ```shell
    https://my-eventstreams-ibm-es-ui-myproject.apps.my-cluster.my-domain.com
    ```
+
 4. Log in to your {{site.data.reuse.es_name}} UI from a supported [web browser](../../installing/prerequisites/#ibm-event-streams-ui). Use your credentials provided to you by your cluster administrator. A cluster administrator can manage access rights by following the instructions in [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli). Enter your username and password to access the {{site.data.reuse.es_name}} UI.
 
 

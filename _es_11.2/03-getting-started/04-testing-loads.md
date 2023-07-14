@@ -27,9 +27,16 @@ If you cloned the Git repository, build the producer as follows:
 3. Open a terminal and change to the root directory of the `event-streams-sample-producer` project.
 4. Run the following command:
 
-   `mvn install`
-   
-   You can also specify your root directory using the `-f` option as follows `mvn install -f <path_to>/pom.xml`
+   ```shell
+   mvn install
+   ```
+
+   You can also specify your root directory using the `-f` option as follows:
+
+   ```shell
+   mvn install -f <path_to>/pom.xml
+   ```
+
 5. The `es-producer.jar` file is created in the `/target` directory.
 
 
@@ -84,13 +91,13 @@ Update the `producer.config` file with your configuration details using the foll
 | Attribute                               | Description                                                                                                            |
 | -------------------------------------   | ---------------------------------------------------------------------------------------------------------------------- |
 | `bootstrap.servers`                     | The bootstrap address for the chosen external listener.  |                                              |
-| `security.protocol`                     | Set to `SSL`. Can be ommitted if the chosen external listener has TLS disabled.   |
-| `ssl.truststore.location`               | The full path and name of the {{site.data.reuse.es_name}} PKCS12 certificate file. Can be ommitted if the chosen external listener has TLS disabled.        |
-| `ssl.truststore.password`               | The password for the {{site.data.reuse.es_name}} PKCS12 certificate file. Can be ommitted if the chosen external listener has TLS disabled.        |
-| `sasl.mechanism`                        | Set to `SCRAM-SHA-512` if using SCRAM credentials, otherwise ommitted.   |
+| `security.protocol`                     | Set to `SSL`. Can be omitted if the chosen external listener has TLS disabled.   |
+| `ssl.truststore.location`               | The full path and name of the {{site.data.reuse.es_name}} PKCS12 certificate file. Can be omitted if the chosen external listener has TLS disabled.        |
+| `ssl.truststore.password`               | The password for the {{site.data.reuse.es_name}} PKCS12 certificate file. Can be omitted if the chosen external listener has TLS disabled.        |
+| `sasl.mechanism`                        | Set to `SCRAM-SHA-512` if using SCRAM credentials, otherwise omitted.   |
 | `sasl.jaas.config`                      | Set to `org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";`, where `<username>` and `<password>` are replaced with the SCRAM credentials. Omitted if not using SCRAM credentials.    |
-| `ssl.keystore.location`                 | Set to the full path and name of the `user.p12` keystore file downloaded from the {{site.data.reuse.es_name}} UI. Ommitted if not using TLS credentials.   |
-| `ssl.keystore.password`                 | Set to the password listed in the `user.password` file downloaded from the {{site.data.reuse.es_name}} UI. Ommitted if not using TLS credentials.       |
+| `ssl.keystore.location`                 | Set to the full path and name of the `user.p12` keystore file downloaded from the {{site.data.reuse.es_name}} UI. Omitted if not using TLS credentials.   |
+| `ssl.keystore.password`                 | Set to the password listed in the `user.password` file downloaded from the {{site.data.reuse.es_name}} UI. Omitted if not using TLS credentials.       |
 
 ## Running
 

@@ -53,16 +53,20 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 1. {{site.data.reuse.openshift_cli_login}}
 2. Run the following command to create a new project:
 
-   `oc new-project <project_name> --description="<description>" --display-name="<display_name>"`
+   ```shell
+   oc new-project <project_name> --description="<description>" --display-name="<display_name>"
+   ```
 
    where `description` and `display-name` are optional flags to set a description and custom descriptive name for your project.
 3. Ensure you are using the project you created by selecting it as follows:
 
-   `oc project <new-project-name>`
+   ```shell
+   oc project <new-project-name>
+   ```
 
 
    The following message is displayed if successful:
-   ```
+   ```shell
    Now using project "<new-project-name>" on server "https://<OpenShift-host>:6443".
    ```
 
@@ -99,7 +103,9 @@ To add the IBM Operator Catalog:
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
 
-   `oc apply -f IBMCatalogSource.yaml`
+   ```shell
+   oc apply -f IBMCatalogSource.yaml
+   ```
 
 The IBM Operator Catalog source is added to the OperatorHub catalog, making the {{site.data.reuse.es_name}} operator available to install.
 
@@ -108,7 +114,7 @@ To add the {{site.data.reuse.icpfs}} Catalog:
 
 1. Create a file for the {{site.data.reuse.icpfs}} Catalog source with the following content, and save as `IBMCSCatalogSource.yaml`:
 
-   ```
+   ```yaml
    apiVersion: operators.coreos.com/v1alpha1
    kind: CatalogSource
    metadata:
@@ -127,7 +133,9 @@ To add the {{site.data.reuse.icpfs}} Catalog:
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
 
-   `oc apply -f IBMCSCatalogSource.yaml`
+   ```shell
+   oc apply -f IBMCSCatalogSource.yaml
+   ```
 
 The {{site.data.reuse.icpfs}} Catalog source is added to the OperatorHub catalog, making the {{site.data.reuse.icpfs}} items available to install for {{site.data.reuse.es_name}}.
 --->
@@ -257,7 +265,9 @@ Before installing an {{site.data.reuse.es_name}} instance, create an image pull 
 
    Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
 
-   `oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <target-namespace>`
+   ```shell
+   oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <target-namespace>
+   ```
 
 
 **Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
@@ -334,12 +344,21 @@ To deploy an {{site.data.reuse.es_name}} instance, run the following commands:
 
 1. Set the project where your `EventStreams` custom resource will be deployed in:
 
-   `oc project <project-name>`
+   ```shell
+   oc project <project-name>
+   ```
 
 2. Apply the configured `EventStreams` custom resource:
 
-   `oc apply -f <custom-resource-file-path>`
+   ```shell
+   oc apply -f <custom-resource-file-path>
+   ```
 
-   For example: `oc apply -f development.yaml`
+   For example:
+
+   ```shell
+   oc apply -f development.yaml
+   ```
+
 3. Wait for the installation to complete.
 4. You can now verify your installation and consider other [post-installation tasks](../post-installation/).

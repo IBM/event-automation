@@ -32,7 +32,6 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.ep_
 3. Locate the route with the name matching your {{site.data.reuse.ep_name}} instance name. Click into this route and find the server or host address. This is your UI route that you can access to log into {{site.data.reuse.ep_name}}.
 4. Log in to your {{site.data.reuse.ep_name}} UI from a supported [web browser](../../installing/prerequisites/#event-processing-ui) and enter the credentials to go to the {{site.data.reuse.ep_name}} homepage.
 
-
    A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ### Using the {{site.data.reuse.openshift_short}} CLI
@@ -43,7 +42,7 @@ To retrieve the URL for your {{site.data.reuse.ep_name}} UI, use the following c
 2. Run the following command:
 
    ```shell
-   oc get routes -n <namespace> -l app.kubernetes.io/name=ibm-event-processing
+   oc get routes -n <namespace> -l app.kubernetes.io/name=ibm-eventprocessing
    ```
 
    The following is an example output, and you use the value from the **HOST/PORT** column to log in to your UI in a web browser:

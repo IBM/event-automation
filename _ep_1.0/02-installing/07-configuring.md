@@ -178,7 +178,7 @@ TLS can be configured for the `EventProcessing` instance in one of the following
 
 By default the operator configures its own TLS.
 The operator uses the IBM Certificate Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
-IBM Certificate manager puts the CA certificate into a secret named `<my-instance>-ibm-ep-manager-ca`. This secret can be used for configuring the `EventGateway` TLS communications.
+IBM Certificate manager puts the CA certificate into a secret named `<my-instance>-ibm-ep-root-ca`.
 
 #### User-provided CA certificate
 
@@ -208,7 +208,7 @@ spec:
 
 A custom certificate can be used for secure communication by the {{site.data.reuse.ep_name}} instance.
 This method does not use the IBM Certificate Manager so the certificates that are provided must be managed by the user.
-To use a custom certificate set `spec.authoring.tls.secretName` to be the name of the secret containing a CA certificate, server certificate, and a key that has the required DNS names for accessing the manager.
+To use a custom certificate set `spec.authoring.tls.secretName` to be the name of the secret containing a CA certificate, server certificate, and a key. The certificate must have the required DNS names.
 
 The following snippet is an example of a configuration that uses a user provided certificate:
 

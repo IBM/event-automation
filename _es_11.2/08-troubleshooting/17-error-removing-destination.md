@@ -22,8 +22,16 @@ There could be several reasons, for example, the cluster might be offline, or th
 
 1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
 2. {{site.data.reuse.es_cli_init_111}}
-3. Retrieve destination cluster IDs by using the following command:\\
-   `kubectl es geo-clusters`\\
+3. Retrieve destination cluster IDs by using the following command:
+
+   ```shell
+   kubectl es geo-clusters
+   ```
+
    Look for the destination cluster ID that you want to remove.
-4. Run the following command:\\
-   `kubectl es geo-cluster-remove --destination <destination-cluster-id> --force`
+
+4. Run the following command:
+
+   ```shell
+   kubectl es geo-cluster-remove --destination <destination-cluster-id> --force
+   ```

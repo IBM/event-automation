@@ -102,93 +102,93 @@ Complete the following steps to download the CASE archive:
 1. {{site.data.reuse.openshift_cli_login}}
 2. Configure the internal repository for downloading the CASE archive:
 
-    ```shell
-    oc ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
-    ```
+   ```shell
+   oc ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
+   ```
 
 3. Run the following command to download, validate, and extract the CASE archive.
 
-    ```shell
-    oc ibm-pak get ibm-eventstreams
-    ```
+   ```shell
+   oc ibm-pak get ibm-eventstreams
+   ```
 
-    Where `<path-to-case-archive>` is the location of the CASE archive. If you are running the command from the current location, set the path to the current directory (`.`).
+   Where `<path-to-case-archive>` is the location of the CASE archive. If you are running the command from the current location, set the path to the current directory (`.`).
     The following output is displayed:
 
-    ```shell
-    Downloading and extracting the CASE ...
-    - Success
-    Retrieving CASE version ...
-    - Success
-    Validating the CASE ...
-    Validating the signature for the ibm-eventstreams CASE...
-    - Success
-    Creating inventory ...
-    - Success
-    Finding inventory items
-    - Success
-    Resolving inventory items ...
-    Parsing inventory items
-    - Success
-    Download of CASE: ibm-eventstreams, version: 1.7.3 is complete
-    ```
+   ```shell
+   Downloading and extracting the CASE ...
+   - Success
+   Retrieving CASE version ...
+   - Success
+   Validating the CASE ...
+   Validating the signature for the ibm-eventstreams CASE...
+   - Success
+   Creating inventory ...
+   - Success
+   Finding inventory items
+   - Success
+   Resolving inventory items ...
+   Parsing inventory items
+   - Success
+   Download of CASE: ibm-eventstreams, version: 1.7.3 is complete
+   ```
 
 4. Verify that the CASE archive and images `.csv` files have been generated for the {{site.data.reuse.es_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.es_name}} CASE.
 
-    ```shell
+   ```shell
    $ tree ~/.ibm-pak
 
-    ├── config
-    │   └── config.yaml
-    ├── data
-    │   ├── cases
-    │   │   └── ibm-eventstreams
-    │   │       └── 1.7.3
-    │   │           ├── caseDependencyMapping.csv
-    │   │           ├── charts
-    │   │           ├── ibm-eventstreams-1.7.3-airgap-metadata.yaml
-    │   │           ├── ibm-eventstreams-1.7.3-charts.csv
-    │   │           ├── ibm-eventstreams-1.7.3-images.csv
-    │   │           ├── ibm-eventstreams-1.7.3.tgz
-    │   │           └── resourceIndexes
-    │   │               └── ibm-eventstreams-resourcesIndex.yaml
-    │   └── mirror
-    └── logs
-        └── oc-ibm_pak.log
+   ├── config
+   │   └── config.yaml
+   ├── data
+   │   ├── cases
+   │   │   └── ibm-eventstreams
+   │   │       └── 1.7.3
+   │   │           ├── caseDependencyMapping.csv
+   │   │           ├── charts
+   │   │           ├── ibm-eventstreams-1.7.3-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-1.7.3-charts.csv
+   │   │           ├── ibm-eventstreams-1.7.3-images.csv
+   │   │           ├── ibm-eventstreams-1.7.3.tgz
+   │   │           └── resourceIndexes
+   │   │               └── ibm-eventstreams-resourcesIndex.yaml
+   │   └── mirror
+   └── logs
+       └── oc-ibm_pak.log
 
-    9 directories, 8 files
-    ```
+   9 directories, 8 files
+   ```
 
 ### Obtain the files
 
-1\. After meeting the required prerequisites and downloading the CASE archive, obtain the following files:
+1. After meeting the required prerequisites and downloading the CASE archive, obtain the following files:
 
-- The downloaded CASE archives, which contain metadata for the container images required to deploy each {{site.data.reuse.es_name}} capability. Each CASE archive also contains the required scripts to mirror images to a private registry, and to configure the target cluster to use the private registry as a mirror.
-- Generated comma-separated value (CSV) files listing the images. Obtain an IBM Entitled Registry entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}. The CSV files, combined with your entitlement key, are used for downloading or mirroring the images manually.
+   - The downloaded CASE archives, which contain metadata for the container images required to deploy each {{site.data.reuse.es_name}} capability. Each CASE archive also contains the required scripts to mirror images to a private registry, and to configure the target cluster to use the private registry as a mirror.
+   - Generated comma-separated value (CSV) files listing the images. Obtain an IBM Entitled Registry entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}. The CSV files, combined with your entitlement key, are used for downloading or mirroring the images manually.
 
    To verify the image signatures for a {{site.data.reuse.es_name}}-certified container, use the file that is named in the format `ibm-eventstreams-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.es_name}} CASE version.
 
-2\. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their digests or tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `/tmp/cases` represents the directory where you downloaded the CASE archive.
+2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their digests or tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `/tmp/cases` represents the directory where you downloaded the CASE archive.
 
-- List images by digest:
+   - List images by digest:
 
-  ```shell
-  tail -q -n +2 /tmp/cases/ibm-eventstreams-*-images.csv | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-  if [[ "$mtype" == "LIST" ]]; then
-      echo "$registry/$image_name@$digest"
-  fi
-  done
-  ```
+     ```shell
+     tail -q -n +2 /tmp/cases/ibm-eventstreams-*-images.csv | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
+     if [[ "$mtype" == "LIST" ]]; then
+         echo "$registry/$image_name@$digest"
+     fi
+     done
+     ```
 
-- List images by tag:
-  
-  ```shell
-  tail -q -n +2 /tmp/cases/ibm-eventstreams-*-images.csv | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-  if [[ "$mtype" == "LIST" ]]; then
-      echo "$registry/$image_name:$tag"
-  fi
-  done
-  ```
+   - List images by tag:
+
+     ```shell
+     tail -q -n +2 /tmp/cases/ibm-eventstreams-*-images.csv | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
+     if [[ "$mtype" == "LIST" ]]; then
+         echo "$registry/$image_name:$tag"
+     fi
+     done
+     ```
 
   **Note**: You can also copy the output to a file for ease of reference while verifying the image signatures.
 
@@ -198,33 +198,33 @@ To verify the image signatures, complete the following steps:
 
 1. Import the {{site.data.reuse.es_name}}-certified container public key on the computer where you saved the public key to a file as described in the [Before you begin](#before-you-begin) section.
 
-    -  If you are running {{site.data.reuse.es_name}} versions 11.1.5 and later, run the following command:
+   - If you are running {{site.data.reuse.es_name}} versions 11.1.5 and later, run the following command:
 
-        ```shell
-        sudo gpg --import acecc-public.gpg
-        ```
+     ```shell
+     sudo gpg --import acecc-public.gpg
+     ```
 
-    - If you are running {{site.data.reuse.es_name}} versions 11.1.2, 11.1.3, and 11.1.4, run the following command:
+   - If you are running {{site.data.reuse.es_name}} versions 11.1.2, 11.1.3, and 11.1.4, run the following command:
 
-        ```shell
-        sudo gpg2 --import acecc-public.gpg
-        ```
+     ```shell
+     sudo gpg2 --import acecc-public.gpg
+     ```
 
-   **Note**: This step needs to be done only once on each computer that you use for signature verification.
+     **Note**: This step needs to be done only once on each computer that you use for signature verification.
 
 2. Calculate the fingerprint.
 
-    -  If you are running {{site.data.reuse.es_name}} versions 11.1.5 and later, run the following command:
+   - If you are running {{site.data.reuse.es_name}} versions 11.1.5 and later, run the following command:
 
-        ```shell
-        fingerprint=$(sudo gpg --fingerprint --with-colons | grep fpr | tr -d 'fpr:')
-        ```
+     ```shell
+     fingerprint=$(sudo gpg --fingerprint --with-colons | grep fpr | tr -d 'fpr:')
+     ```
 
-    - If you are running {{site.data.reuse.es_name}} versions 11.1.2, 11.1.3, and 11.1.4, run the following command:
+   - If you are running {{site.data.reuse.es_name}} versions 11.1.2, 11.1.3, and 11.1.4, run the following command:
 
-        ```shell
-        fingerprint=$(sudo gpg2 --fingerprint --with-colons 265Quinnipiacmay18sign1pfx | grep fpr | tr -d 'fpr:')
-        ```
+     ```shell
+     fingerprint=$(sudo gpg2 --fingerprint --with-colons 265Quinnipiacmay18sign1pfx | grep fpr | tr -d 'fpr:')
+     ```
 
     This command stores the key's fingerprint in an environment variable called `fingerprint`, which is needed for the command to verify the signature.
 
@@ -233,39 +233,39 @@ To verify the image signatures, complete the following steps:
 3. Log in to `skopeo` to access the entitled registry. Use `cp` as the username and your entitlement key as the password.
 For example:
 
-    ```shell
-    skopeo login cp.icr.io --username cp --password myEntitlementKey
-    ```
+   ```shell
+   skopeo login cp.icr.io --username cp --password myEntitlementKey
+   ```
 
 4. Create a directory (for example, `images`) for the image. Then use `skopeo` to pull the image into local storage, where `imageName` represents the image name.
 
-    ```shell
-    mkdir images
-    skopeo copy docker://<imageName> dir:./images
-    ```
+   ```shell
+   mkdir images
+   skopeo copy docker://<imageName> dir:./images
+   ```
 
-    For example:
+   For example:
 
-    ```shell
-    mkdir images
-    skopeo copy docker://icr.io/cpopen/ibm-eventstreams-catalog:3.0.0-00000000-000000 dir:./images
-    ```
+   ```shell
+   mkdir images
+   skopeo copy docker://icr.io/cpopen/ibm-eventstreams-catalog:3.0.0-00000000-000000 dir:./images
+   ```
 
-    This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
+   This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
 5. Verify the signature for each required image, where `imageName` is the name of the image and `signature-N` relates to a format for the name.
 
-    ```shell
-    sudo skopeo standalone-verify ./images/manifest.json <imageName> ${fingerprint} ./images/<signature-N>
-    ```
+   ```shell
+   sudo skopeo standalone-verify ./images/manifest.json <imageName> ${fingerprint} ./images/<signature-N>
+   ```
 
-    For example:
+   For example:
 
-    ```shell
-    sudo skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventstreams-catalog:3.0.0-00000000-000000 ${fingerprint} ./images/signature-1
-    ```
+   ```shell
+   sudo skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventstreams-catalog:3.0.0-00000000-000000 ${fingerprint} ./images/signature-1
+   ```
 
-    You will receive a confirmation similar to the following:
+   You will receive a confirmation similar to the following:
 
-    ```shell
-    Signature verified, digest sha256:0000000000000000000000000000000000000000000000000000000000000000
-    ```
+   ```shell
+   Signature verified, digest sha256:0000000000000000000000000000000000000000000000000000000000000000
+   ```

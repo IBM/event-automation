@@ -9,7 +9,8 @@ toc: true
 ## Symptoms
 
 Specifying `EventStreams.spec.strimziOverrides.entityOperator.userOperator.watchedNamespace` when installing {{site.data.reuse.es_name}} produces the following error in the Apicurio logs:
-```
+
+```shell
 2022-07-27 19:15:44,304 WARN  [org.apa.kaf.cli.adm.int.AdminMetadataManager] (kafka-admin-client-thread | eventstreams-apicurio-registry-1c2d1d16-63b2-4369-bfd0-6f51552a9a01-admin) [AdminClient clientId=eventstreams-apicurio-registry-1c2d1d16-63b2-4369-bfd0-6f51552a9a01-admin] Metadata update failed due to authentication error: org.apache.kafka.common.errors.SaslAuthenticationException: Authentication failed during authentication due to invalid credentials with SASL mechanism SCRAM-SHA-512
 ```
 

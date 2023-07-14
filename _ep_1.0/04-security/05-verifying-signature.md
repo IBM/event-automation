@@ -78,129 +78,129 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
 
 2. Configure the public IBM Cloud-Pak Github repository for downloading the CASE archive:
 
-    ```shell
-    oc ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
-    ```
+   ```shell
+   oc ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
+   ```
 
 3. Identify the available CASE versions:
 
-    For {{site.data.reuse.ep_name}}:
+   For {{site.data.reuse.ep_name}}:
 
-     ```shell
-     oc ibm-pak list ibm-eventprocessing
-     ```
+   ```shell
+   oc ibm-pak list ibm-eventprocessing
+   ```
 
-    For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.flink_long}}:
 
-     ```shell
-     oc ibm-pak list ibm-eventautomation-flink
-     ```
+   ```shell
+   oc ibm-pak list ibm-eventautomation-flink
+   ```
 
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
 
-    By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
+   By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
 
-    For {{site.data.reuse.ep_name}}:
+   For {{site.data.reuse.ep_name}}:
 
-     ```shell
-     oc ibm-pak get ibm-eventprocessing --version 1.0.1
-     ```
+   ```shell
+   oc ibm-pak get ibm-eventprocessing --version 1.0.1
+   ```
 
-    ```shell
-    Downloading and extracting the CASE ...
-    - Success
-    Retrieving CASE version ...
-    - Success
-    Validating the CASE ...
-    Validating the signature for the ibm-eventprocessing CASE...
-    - Success
-    Creating inventory ...
-    - Success
-    Finding inventory items
-    - Success
-    Resolving inventory items ...
-    Parsing inventory items
-    - Success
-    Download of CASE: ibm-eventprocessing, version: 1.0.1 is complete
-    ```
+   ```shell
+   Downloading and extracting the CASE ...
+   - Success
+   Retrieving CASE version ...
+   - Success
+   Validating the CASE ...
+   Validating the signature for the ibm-eventprocessing CASE...
+   - Success
+   Creating inventory ...
+   - Success
+   Finding inventory items
+   - Success
+   Resolving inventory items ...
+   Parsing inventory items
+   - Success
+   Download of CASE: ibm-eventprocessing, version: 1.0.1 is complete
+   ```
 
-    For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.flink_long}}:
 
-     ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version 1.0.0
-     ```
+   ```shell
+   oc ibm-pak get ibm-eventautomation-flink --version 1.0.0
+   ```
 
-    ```shell
-    Downloading and extracting the CASE ...
-    - Success
-    Retrieving CASE version ...
-    - Success
-    Validating the CASE ...
-    Validating the signature for the ibm-eventautomation-flink CASE...
-    - Success
-    Creating inventory ...
-    - Success
-    Finding inventory items
-    - Success
-    Resolving inventory items ...
-    Parsing inventory items
-    - Success
-    Download of CASE: ibm-eventautomation-flink, version: 1.0.0 is complete
-    ```
+   ```shell
+   Downloading and extracting the CASE ...
+   - Success
+   Retrieving CASE version ...
+   - Success
+   Validating the CASE ...
+   Validating the signature for the ibm-eventautomation-flink CASE...
+   - Success
+   Creating inventory ...
+   - Success
+   Finding inventory items
+   - Success
+   Resolving inventory items ...
+   Parsing inventory items
+   - Success
+   Download of CASE: ibm-eventautomation-flink, version: 1.0.0 is complete
+   ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated. For example, ensure you have the following files generated for the CASE.
 
-    For {{site.data.reuse.ep_name}}:
+   For {{site.data.reuse.ep_name}}:
 
-    ```shell
-    $ tree ~/.ibm-pak
+   ```shell
+   $ tree ~/.ibm-pak
 
-    ├── config
-    │   └── config.yaml
-    ├── data
-    │   ├── cases
-    │   │   └── ibm-eventprocessing
-    │   │       └── 1.0.1
-    │   │           ├── caseDependencyMapping.csv
-    │   │           ├── charts
-    │   │           ├── component-set-config.yaml
-    │   │           ├── ibm-eventprocessing-1.0.1-airgap-metadata.yaml
-    │   │           ├── ibm-eventprocessing-1.0.1-charts.csv
-    │   │           ├── ibm-eventprocessing-1.0.1-images.csv
-    │   │           ├── ibm-eventprocessing-1.0.1.tgz
-    │   │           └── resourceIndexes
-    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
-    │   └── mirror
-    └── logs
-        ├── case.log
-        └── oc-ibm_pak.log
-    ```
+   ├── config
+   │   └── config.yaml
+   ├── data
+   │   ├── cases
+   │   │   └── ibm-eventprocessing
+   │   │       └── 1.0.1
+   │   │           ├── caseDependencyMapping.csv
+   │   │           ├── charts
+   │   │           ├── component-set-config.yaml
+   │   │           ├── ibm-eventprocessing-1.0.1-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.0.1-charts.csv
+   │   │           ├── ibm-eventprocessing-1.0.1-images.csv
+   │   │           ├── ibm-eventprocessing-1.0.1.tgz
+   │   │           └── resourceIndexes
+   │   │               └── ibm-eventprocessing-resourcesIndex.yaml
+   │   └── mirror
+   └── logs
+       ├── case.log
+       └── oc-ibm_pak.log
+   ```
 
-    For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.flink_long}}:
 
-    ```shell
-    $ tree ~/.ibm-pak
+   ```shell
+   $ tree ~/.ibm-pak
 
-    ├── config
-    │   └── config.yaml
-    ├── data
-    │   ├── cases
-    │   │   ├── ibm-eventautomation-flink
-    │   │   │   └── 1.0.0
-    │   │   │       ├── caseDependencyMapping.csv
-    │   │   │       ├── charts
-    │   │   │       ├── component-set-config.yaml
-    │   │   │       ├── ibm-eventautomation-flink-1.0.0-airgap-metadata.yaml
-    │   │   │       ├── ibm-eventautomation-flink-1.0.0-charts.csv
-    │   │   │       ├── ibm-eventautomation-flink-1.0.0-images.csv
-    │   │   │       ├── ibm-eventautomation-flink-1.0.0.tgz
-    │   │   │       └── resourceIndexes
-    │   │   │           └── ibm-eventautomation-flink-resourcesIndex.yaml
-    │   └── mirror
-    └── logs
-        ├── case.log
-        └── oc-ibm_pak.log
-    ```
+   ├── config
+   │   └── config.yaml
+   ├── data
+   │   ├── cases
+   │   │   ├── ibm-eventautomation-flink
+   │   │   │   └── 1.0.0
+   │   │   │       ├── caseDependencyMapping.csv
+   │   │   │       ├── charts
+   │   │   │       ├── component-set-config.yaml
+   │   │   │       ├── ibm-eventautomation-flink-1.0.0-airgap-metadata.yaml
+   │   │   │       ├── ibm-eventautomation-flink-1.0.0-charts.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.0.0-images.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.0.0.tgz
+   │   │   │       └── resourceIndexes
+   │   │   │           └── ibm-eventautomation-flink-resourcesIndex.yaml
+   │   └── mirror
+   └── logs
+       ├── case.log
+       └── oc-ibm_pak.log
+   ```
 
 ### Obtain the files
 
@@ -218,27 +218,27 @@ Obtain the required files as follows:
 
 2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
-    For {{site.data.reuse.ep_name}}:
+   For {{site.data.reuse.ep_name}}:
 
-    ```shell
-    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/1.0.1/ibm-eventprocessing-1.0.1-images.csv \
-      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-        if [[ "$mtype" == "IMAGE" ]]; then
-           echo "$registry/$image_name:$tag"
-        fi
-      done
-    ```
-
-     For {{site.data.reuse.flink_long}}:
-
-    ```shell
-    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.0.0/ibm-eventautomation-flink-1.0.0-images.csv \
-      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-        if [[ "$mtype" == "IMAGE" ]]; then
+   ```shell
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/1.0.1/ibm-eventprocessing-1.0.1-images.csv \
+     | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
+       if [[ "$mtype" == "IMAGE" ]]; then
           echo "$registry/$image_name:$tag"
-        fi
-      done
-    ```
+       fi
+     done
+   ```
+
+   For {{site.data.reuse.flink_long}}:
+
+   ```shell
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.0.0/ibm-eventautomation-flink-1.0.0-images.csv \
+     | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
+       if [[ "$mtype" == "IMAGE" ]]; then
+         echo "$registry/$image_name:$tag"
+       fi
+     done
+   ```
 
   **Note**: You can also copy the output to a file for ease of reference while verifying the image signatures.
 
@@ -248,63 +248,64 @@ To verify the image signatures, complete the following steps:
 
 1. Import the certified container public key on the computer where you saved the public key to a file as described in the [Before you begin](#before-you-begin) section.
 
-    Run the following command to import the public GPG key:
+   Run the following command to import the public GPG key:
 
-        ```shell
-        gpg --import event-integration.pub.asc
-        ```
+   ```shell
+   gpg --import event-integration.pub.asc
+   ```
 
    **Note**: This step needs to be done only once on each computer that you use for signature verification.
 
 2. Retrieve the fingerprint of the public GPG key.
 
-    Run the following command:
+   Run the following command:
 
-        ```shell
-        fingerprint=$(gpg --fingerprint --with-colons | grep fpr | tr -d 'fpr:')
-        ```
+   ```shell
+   fingerprint=$(gpg --fingerprint --with-colons | grep fpr | tr -d 'fpr:')
+   ```
 
-    This command stores the key's fingerprint in an environment variable called `fingerprint`, which is needed for the command to verify the signature.
+   This command stores the key's fingerprint in an environment variable called `fingerprint`, which is needed for the command to verify the signature.
 
-    **Note:** When you exit your shell session, the variable will be deleted. The next time you log in to your computer, you can set the environment variable again by rerunning the command in this step.
+   **Note:** When you exit your shell session, the variable will be deleted. The next time you log in to your computer, you can set the environment variable again by rerunning the command in this step.
 
 3. Log in to `skopeo` to access the entitled registry. Use `cp` as the username and your entitlement key as the password. 
+
    For example:
 
-    ```shell
-    skopeo login cp.icr.io --username cp --password myEntitlementKey
-    ```
+   ```shell
+   skopeo login cp.icr.io --username cp --password myEntitlementKey
+   ```
 
 4. Create a directory (for example, `images`) for the image. Then use `skopeo` to pull the image into local storage, where `imageName` represents the image name.
 
-    ```shell
-    mkdir images
-    skopeo copy docker://<imageName> dir:./images
-    ```
+   ```shell
+   mkdir images
+   skopeo copy docker://<imageName> dir:./images
+   ```
 
-    For example:
+   For example:
 
-    ```shell
-    mkdir images
-    skopeo copy docker://icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.0.1 dir:./images
-    ```
+   ```shell
+   mkdir images
+   skopeo copy docker://icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.0.1 dir:./images
+   ```
 
-    This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
+   This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
 
 5. Verify the signature for each required image, where `imageName` is the name of the image and `signature-N` relates to a format for the name.
 
-    ```shell
-    skopeo standalone-verify ./images/manifest.json <imageName> ${fingerprint} ./images/<signature-N>
-    ```
+   ```shell
+   skopeo standalone-verify ./images/manifest.json <imageName> ${fingerprint} ./images/<signature-N>
+   ```
 
-    For example:
+   For example:
 
-    ```shell
-    skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.0.1 ${fingerprint} ./images/signature-1
-    ```
+   ```shell
+   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.0.1 ${fingerprint} ./images/signature-1
+   ```
 
-    You will receive a confirmation similar to the following:
+   You will receive a confirmation similar to the following:
 
-    ```shell
-    Signature verified, digest sha256:0000000000000000000000000000000000000000000000000000000000000000
-    ```
+   ```shell
+   Signature verified, digest sha256:0000000000000000000000000000000000000000000000000000000000000000
+   ```

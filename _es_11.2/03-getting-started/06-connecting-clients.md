@@ -17,7 +17,9 @@ Use one of the following methods to obtain the bootstrap address for your connec
 1. {{site.data.reuse.cncf_cli_login}}
 2. To find the type and address of the Kafka bootstrap host for each listener, run the following command:
 
-   `kubectl get eventstreams <instance-name> -o=jsonpath='{range .status.kafkaListeners[*]}{.type} {.bootstrapServers}{"\n"}{end}'`
+   ```shell
+   kubectl get eventstreams <instance-name> -o=jsonpath='{range .status.kafkaListeners[*]}{.type} {.bootstrapServers}{"\n"}{end}'
+   ```
 
    Where `<instance-name>` is the name of your {{site.data.reuse.es_name}} instance.
 
@@ -69,17 +71,23 @@ To connect client applications to a secured {{site.data.reuse.es_name}}, you mus
 
 To extract the server-side public certificate to a `ca.p12` file, run the following command:
 
-`kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.p12}' | base64 -d > ca.p12`
+```shell
+kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.p12}' | base64 -d > ca.p12
+```
 
 Where `<instance-name>` is the name of your {{site.data.reuse.es_name}} instance.
 
 To extract the password for the certificate to a `ca.password` file, run the following command:
 
-`kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.password}' | base64 -d > ca.password`
+```shell
+kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.password}' | base64 -d > ca.password
+```
 
 **Note:** If a `PEM` certificate is required, run the following command to extract the certificate to a `ca.crt` file:
 
-`kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt`
+```shell
+kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+```
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.es_name}} UI
 
@@ -92,11 +100,15 @@ To extract the password for the certificate to a `ca.password` file, run the fol
 1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 
 2. {{site.data.reuse.es_cli_init_111_samesection}}
-3. Use the `certificates` command to download the cluster's public certificate in the required format:\\
-   `kubectl es certificates --format p12`\\
+3. Use the `certificates` command to download the cluster's public certificate in the required format:
+
+   ```shell
+   kubectl es certificates --format p12
+   ```
+
    The truststore password will be displayed in the output for the command. The following example has a truststore password of `mypassword`:
 
-   ```
+   ```shell
    $ kubectl es certificates --format p12
 
    Trustore password is mypassword
@@ -130,7 +142,7 @@ Add the [truststore certificate details](#securing-the-connection) and the [SCRA
 
 You can configure a Java application as follows:
 
-```
+```shell
 Properties properties = new Properties();
 properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<bootstrap-address>");
 properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
@@ -156,7 +168,7 @@ Add the [truststore and keystore certificate details](#securing-the-connection) 
 
 You can configure a Java application as follows:
 
-```
+```shell
 Properties properties = new Properties();
 properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<bootstrap-address>");
 properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
@@ -181,7 +193,7 @@ Add the [truststore certificate details](#securing-the-connection) and the [OAut
 
 You can configure a Java application as follows:
 
-```
+```shell
 Properties properties = new Properties();
 properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<bootstrap-address>");
 properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");

@@ -19,6 +19,7 @@ After [configuring access](../managing-access) to your {{site.data.reuse.eem_nam
 Along with [configuring the user credentials](../managing-access), you must define user mappings through the secret `<custom-resource-name>-ibm-eem-user-roles` to define the roles for each local user.
 
 The following example shows a user mappings file:
+
 ```json
 {
   "mappings": [
@@ -37,6 +38,7 @@ The following example shows a user mappings file:
   ]
 }
 ```
+
 Where the `id` is the username specified for the user. 
 
 ## Setting up roles for OIDC based authorization
@@ -44,6 +46,7 @@ Where the `id` is the username specified for the user.
 You must provide user mappings through the secret `<custom-resource-name>-ibm-eem-user-roles` to match the OIDC Identification Provider's user subjects. 
 
 The following example shows a user mappings file:
+
 ```json
 {
   "mappings": [

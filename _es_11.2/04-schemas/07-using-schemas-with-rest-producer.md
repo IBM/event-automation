@@ -15,11 +15,15 @@ For example, to use cURL to produce messages to a topic with the producer API, a
 
  Using SCRAM Basic Authentication:
 
-`curl -H "Authorization: <basic-auth>" -H "Accept: application/json" -H "Content-Type: text/plain" -d '<avro-encoded-message>' --cacert es-cert.pem "https://<producer-endpoint>/topics/<my-topic>/records?schemaname=<schema-name>&schemaversion=<schema-version-name>"`
+```shell
+curl -H "Authorization: <basic-auth>" -H "Accept: application/json" -H "Content-Type: text/plain" -d '<avro-encoded-message>' --cacert es-cert.pem "https://<producer-endpoint>/topics/<my-topic>/records?schemaname=<schema-name>&schemaversion=<schema-version-name>"
+```
 
 Using TLS Mutual Authentication:
 
-`curl -H "Accept: application/json" -H "Content-Type: text/plain" -d '<avro-encoded-message>' --cacert es-cert.pem --key user.key --cert user.crt "https://<producer-endpoint>/topics/<my-topic>/records?schemaname=<schema-name>&schemaversion=<schema-version-name>"`
+```shell
+curl -H "Accept: application/json" -H "Content-Type: text/plain" -d '<avro-encoded-message>' --cacert es-cert.pem --key user.key --cert user.crt "https://<producer-endpoint>/topics/<my-topic>/records?schemaname=<schema-name>&schemaversion=<schema-version-name>"
+```
 
 **Note:** Replace the values in brackets as follows:
 - `<basic-auth>` with the **SCRAM Basic Authentication token** which is generated using the {{site.data.reuse.es_name}} [UI](../../security/managing-access#creating-a-kafkauser-in-the-event-streams-ui).
@@ -29,8 +33,11 @@ Using TLS Mutual Authentication:
 - `<schema-version-name>` with the version of your schema that is stored in Apicurio Registry in {{site.data.reuse.es_name}}.
 - `<avro-encoded-message>` with your avro encoded message.
 
-The `es-cert.pem` certificate is downloaded by running the following command:\\
-`kubectl es certificates --format pem`
+The `es-cert.pem` certificate is downloaded by running the following command:
+
+```shell
+kubectl es certificates --format pem
+```
 
 The `user.key` and `user.crt` files are downloaded in a .zip file by clicking **Generate credentials** in the **Producer endpoint and credentials** section of **Connect to this cluster** or **Connect to this topic**, selecting **Mutual TLS certificate**, following the instructions in the wizard and clicking **Download certificates**.
 

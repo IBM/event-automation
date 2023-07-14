@@ -58,7 +58,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 3. When you create a project, your namespace automatically switches to your new namespace. Ensure you are using the project that you created by selecting it as follows:
 
    ```shell
-   `oc project <new-project-name>`
+   oc project <new-project-name>
    ```
 
    The following message is displayed if successful:
@@ -148,7 +148,9 @@ To add the IBM Operator Catalog:
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
 
-   `oc apply -f ibm_catalogsource.yaml`
+   ```shell
+   oc apply -f ibm_catalogsource.yaml
+   ```
 
 Alternatively, you can add the catalog source through the OpenShift web console by using the Import YAML option:
 
@@ -169,9 +171,9 @@ This procedure must be performed by using the CLI. Before you begin, ensure that
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
-    ```shell
-    oc ibm-pak --help
-    ```
+  ```shell
+  oc ibm-pak --help
+  ```
 
 #### Downloading the CASE bundle
 
@@ -190,7 +192,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
 - For {{site.data.reuse.ep_name}}:
 
   ```shell
-    oc ibm-pak launch ibm-event-processing --version <case-version> --inventory epOperatorSetup --action installCatalog -n <namespace>
+  oc ibm-pak launch ibm-eventprocessing --version <case-version> --inventory epOperatorSetup --action installCatalog -n <namespace>
   ```
 
 Where:
@@ -309,7 +311,7 @@ To install the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}
 - For {{site.data.reuse.ep_name}}:
 
   ```shell
-    oc ibm-pak launch ibm-event-processing --version <case-version> --inventory epOperatorSetup --action installOperator -n <namespace>
+  oc ibm-pak launch ibm-eventprocessing --version <case-version> --inventory epOperatorSetup --action installOperator -n <namespace>
   ```
 
 Where:
@@ -365,7 +367,7 @@ by clicking the **Download** button and re-imported by dragging the resulting fi
 
 **Note:** If you experiment with {{site.data.reuse.flink_long}} and want a minimal CPU and memory footprint,
 the **Quick start** sample is the smallest and simplest example. For the smallest production setup, use the
-**Minimal Production** sample configuration. 
+**Minimal Production** sample configuration.
 
 **Important:** All Flink samples except **Quick start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 
@@ -379,6 +381,7 @@ spec:
     license.license: L-HRZF-DWHH7A
     license.accept: 'true'
 ```
+
 Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your case.
 
 To deploy a Flink instance, use the following steps:
@@ -394,12 +397,13 @@ To deploy a Flink instance, use the following steps:
 To configure a `FlinkDeployment` custom resource in the **Form view**, do the following:
 
 1. Enter a name for the instance in the **Name** field.
-2. You can optionally configure the fields such as **Job Manager**, **Task Manager**, or **Job** to suit your [requirements](../configuring). 
-   
+2. You can optionally configure the fields such as **Job Manager**, **Task Manager**, or **Job** to suit your [requirements](../configuring).
+
    **Note:** Do not fill the fields **Flink Version** and **Image**, as they are automatically filled by {{site.data.reuse.flink_long}}.
 3. Switch to the YAML view, accept the license agreement (`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
 
    For example:
+
    ```yaml
    spec:
      flinkConfiguration:
@@ -407,9 +411,11 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
        license.license: L-HRZF-DWHH7A
        license.accept: 'true'
    ```
+
    Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
-   
-   **Note:** License configuration parameters for your Flink instance can only be set by using the YAML view. 
+
+
+   **Note:** License configuration parameters for your Flink instance can only be set by using the YAML view.
 4. Scroll down and click the **Create** button to deploy the Flink instance.
 5. Wait for the installation to complete.
 
@@ -436,6 +442,7 @@ To deploy a Flink instance, run the following commands:
        license.license: L-HRZF-DWHH7A
        license.accept: 'true'
    ```
+
    Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
 
 2. Set the project where your `FlinkDeployment` custom resource will be deployed in:
@@ -450,7 +457,12 @@ To deploy a Flink instance, run the following commands:
    oc apply -f <custom-resource-file-path>
    ```
 
-   For example: `oc apply -f flinkdeployment_demo.yaml`
+   For example:
+
+   ```shell
+   oc apply -f flinkdeployment_demo.yaml
+   ```
+
 4. Wait for the installation to complete.
 
 ## Install an {{site.data.reuse.ep_name}} instance
@@ -570,6 +582,11 @@ To deploy an {{site.data.reuse.ep_name}} instance, run the following commands:
    oc apply -f <custom-resource-file-path>
    ```
 
-   For example: `oc apply -f production.yaml`
+   For example:
+
+   ```shell
+   oc apply -f production.yaml
+   ```
+
 3. Wait for the installation to complete.
 4. You can now verify your installation and consider other [post-installation tasks](../post-installation/).

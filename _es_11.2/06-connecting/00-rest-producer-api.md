@@ -59,7 +59,10 @@ Using the Kubernetes command-line tool (`kubectl`):
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to list available {{site.data.reuse.es_name}} REST Producer API endpoints:
 
-   `kubectl get eventstreams <instance-name> -n <namespace> -o=jsonpath='{.status.endpoints[?(@.name=="restproducer")].uri}{"\n"}'`
+   ```shell
+   kubectl get eventstreams <instance-name> -n <namespace> -o=jsonpath='{.status.endpoints[?(@.name=="restproducer")].uri}{"\n"}'
+   ```
+
 3. Copy the full URL of the required endpoint from the `HOST/PORT` section of the response.
 
 Using the UI:
@@ -101,7 +104,7 @@ The REST producer API has a configured limit for the key size (default is `4096`
 
 You can [configure](../../installing/configuring/) the key and message size limits at the time of [installation](({{ 'installpagedivert' | relative_url }})) or later as described in [modifying](../../administering/modifying-installation/) installation settings. The limits are configured by setting environment variables on the REST Producer component:
 
-```shell
+```yaml
 spec:
   restProducer:
     env:
@@ -151,7 +154,9 @@ Using the UI:
 
 You can use the usual languages for making the API call. For example, to use cURL to produce messages to a topic with the producer API using a Basic authentication header, run the `curl` command as follows:
 
-`curl -v -X POST -H "Authorization: Basic <auth_token>" -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://<api_endpoint>/topics/<topic_name>/records"`
+```shell
+curl -v -X POST -H "Authorization: Basic <auth_token>" -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://<api_endpoint>/topics/<topic_name>/records"
+```
 
 Where:
 - `<auth_token>` is the Basic authentication token you generated earlier.
@@ -161,7 +166,9 @@ Where:
 
 To use cURL to produce messages to a topic with the producer API using a SCRAM username and password, run the `curl` command as follows:
 
-`curl -v -X POST -u <user>:<password> -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://<api_endpoint>/topics/<topic_name>/records"`
+```shell
+curl -v -X POST -u <user>:<password> -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem "https://<api_endpoint>/topics/<topic_name>/records"
+```
 
 Where:
 - `<user>` is the SCRAM username provided when generating credentials.
@@ -221,11 +228,16 @@ Using the Kubernetes command-line tool (`kubectl`):
 1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Run the following command to view details of the KafkaUser you want the client CA certificate for:
 
-    `kubectl get ku/<kafka-user> -o jsonpath='{.status.secret}'`
+   ```shell
+   kubectl get ku/<kafka-user> -o jsonpath='{.status.secret}'
+   ```
+
 3. Note down the name of the secret associated with the KafkaUser.
 4. Run the following `kubectl` command to get the client CA certificate from the secret found in the previous command:
 
-    `kubectl get secret <KafkaUser-name> -o jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt`
+   ```shell
+   kubectl get secret <KafkaUser-name> -o jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
+   ```
 
    where `<KafkaUser-name>` is the name of your KafkaUser.
 
@@ -242,7 +254,9 @@ Some systems require the client certificate and private key to be combined into 
 
 You can use the usual languages for making the API call. Consult the documentation for your system to understand how to specify the client certificate and private key for the outgoing REST calls to {{site.data.reuse.es_name}}. For example, to use cURL to produce messages to a topic with the producer API, run the `curl` command as follows:
 
-`curl -v -X POST -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem --key user.key --cert user.crt "https://<api_endpoint>/topics/<topic_name>/records"`
+```shell
+curl -v -X POST -H "Content-Type: text/plain" -H "Accept: application/json" -d 'test message' --cacert es-cert.pem --key user.key --cert user.crt "https://<api_endpoint>/topics/<topic_name>/records"
+```
 
 Where:
 - `<api_endpoint>` is the full URL copied from the `Producer API endpoint` field earlier.
@@ -252,6 +266,7 @@ Where:
 - `user.crt` is the user certificate that contains the public key of the user downloaded from the UI or read from the KafkaUser secret
 
  For example, the steps to configure a CICS URIMAP as an HTTP client is described in the  [CICS Transaction Server documentation](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/web/dfhtl_urioutbound.html){:target="_blank"}. In this case, load the client certificate and private key, together with the {{site.data.reuse.es_name}} server certificate into your RACF key ring. When defining the URIMAP:
+
 - `Host` is the client authentication API endpoint obtained as part of the [prerequisites](#prerequisites), without the leading `https://`
 - `Path` is `/topics/<topic-name>/records`
 - `Certificate` is the label given to the client certificate when it was loaded into the key ring.

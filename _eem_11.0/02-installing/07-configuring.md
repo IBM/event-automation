@@ -163,7 +163,7 @@ By default, the operator configures TLS if no value is provided for CA certifica
 The operator uses the IBM Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self-signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.eem_name}} instance.
 IBM Cert Manager puts the CA certificate into a secret named `<my-instance>-ibm-eem-manager-ca`. This secret can be used for configuring the `EventGateway` TLS communications.
 
-### User provided CA certificate
+### User-provided CA certificate
 
 A custom CA certificate can be provided to the {{site.data.reuse.eem_name}} instance.
 The operator uses the IBM Cert Manager installed on the system to use this provided CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.eem_name}} instance.

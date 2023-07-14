@@ -10,7 +10,7 @@ toc: true
 
 When executing operations with a Java client connected to {{site.data.reuse.es_name}}, the client fails with an error similar to the following:
 
-```
+```shell
 org.apache.kafka.common.KafkaException: Failed to load SSL keystore /path/to/es-cert.p12 of type PKCS12
   at org.apache.kafka.common.security.ssl.DefaultSslEngineFactory$FileBasedStore.load(DefaultSslEngineFactory.java:377)
   at org.apache.kafka.common.security.ssl.DefaultSslEngineFactory$FileBasedStore.<init>(DefaultSslEngineFactory.java:349)
@@ -24,7 +24,7 @@ Caused by: java.io.IOException: Error extracting keyentry aliases from PFX
 
 or:
 
-```
+```shell
 Caused by: java.io.IOException: parseAlgParameters failed: ObjectIdentifier() -- data isn't an object ID (tag = 48)
   at sun.security.pkcs12.PKCS12KeyStore.parseAlgParameters(PKCS12KeyStore.java:829)
   at sun.security.pkcs12.PKCS12KeyStore.engineLoad(PKCS12KeyStore.java:2037)
@@ -47,7 +47,7 @@ The upgrade to the default algorithms used in PKCS12 was back-ported to various 
 
 To work around the issue you can convert the PCKS12-format keystore to a JKS-format keystore by using a tool such as `keytool`, and then provide that to the Java client instead. The following command will create a JKS-format keystore containing the certificates in the PKCS12-format keystore:
 
-```
+```shell
 keytool -importkeystore \
  -srckeystore es-cert.p12 \
  -srcstoretype PKCS12 \
@@ -59,7 +59,7 @@ keytool -importkeystore \
 
 The Java client properties will then need to be updated to point to the new file and set the truststore type, for example:
 
-```
+```shell
 ssl.truststore.location=/path/to/es-cert.jks
 ssl.truststore.password=<CERTIFICATE PASSWORD>
 ssl.truststore.type=JKS

@@ -16,7 +16,6 @@ You can export your existing {{site.data.reuse.ep_name}} flows to save them, mak
 
 A Flink savepoint is a consistent image of a Flink job's execution state. Backing up your Flink instances involves backing up savepoints.
 
-
 ### Prerequisites
 
 This procedure assumes that you have the following deployed: 
@@ -41,7 +40,7 @@ To back up your Flink instance, update each of your deployed instances by editin
      jobManagerDeploymentStatus: READY
      jobStatus:
        state: RUNNING
-   ```   
+   ```
 
 2. Edit the `FlinkDeployment` custom resource and make the following changes:
 
@@ -50,9 +49,9 @@ To back up your Flink instance, update each of your deployed instances by editin
    b. Set the value of `spec.job.state` to `running`.
 
    c. Set the value of `spec.job.savepointTriggerNonce` to an integer that has never been used before for that option.
-   
+
    For example:
-   
+
 
    ```yaml
    job:
@@ -63,7 +62,7 @@ To back up your Flink instance, update each of your deployed instances by editin
       upgradeMode: savepoint
    ```
 
-2. Save the `FlinkDeployment` custom resource to make it available later for restoring your deployment.
+3. Save the `FlinkDeployment` custom resource to make it available later for restoring your deployment.
 
 ### Restoring
 
@@ -89,5 +88,5 @@ To restore a Flink instance that you previously backed up, update your `FlinkDep
       allowNonRestoredState: true
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+2. Apply the modified `FlinkDeployment` custom resource.
 

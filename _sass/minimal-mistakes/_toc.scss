@@ -563,3 +563,38 @@
     }
   }
 }
+
+.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.toc__menu a {
+  text-decoration: none;
+}
+
+.toc__menu a.active-link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.toc__menu li ul li a.active-link {
+  font-weight: bold;
+  text-decoration: none;
+  text-decoration: underline;
+}
+
+.toc__menu li ul li a.active-link::before {
+  text-decoration: underline;
+  padding-right: 0.5em;
+  color: $primary-color;
+}
+
+.toc__menu li ul li a.active-link:hover {
+  text-decoration: underline;
+}
+
+.toc__menu li ul li a.active-link:hover::before {
+  color: $text-color;
+}
+

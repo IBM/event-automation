@@ -57,35 +57,58 @@ If the EventStreamsGeoReplicator instance is configured correctly, a KafkaMirror
 
 To create a new EventStreamsGeoReplicator instance for geo-replication by using the CLI:
 1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to set the namespace that contains the existing destination cluster:\\
-   `kubectl config set-context --current --namespace=<namespace-name>`
+2. Run the following command to set the namespace that contains the existing destination cluster:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace-name>
+   ```
+
 3. Define an EventStreamsGeoReplicator instance in a file. For example, the following YAML defines an EventStreamsGeoReplicator instance in the `my-project` project that is connected to the {{site.data.reuse.es_name}} instance named `my-dest-cluster` and has 3 geo-replication workers.
-```
-apiVersion: eventstreams.ibm.com/v1beta1
-kind: EventStreamsGeoReplicator
-metadata:
-  labels:
-       eventstreams.ibm.com/cluster: my-dest-cluster
-  name: my-dest-cluster
-  namespace: my-project
-spec:
-  version: 11.1.5
-  replicas: 3
-```
-  **Note:** The EventStreamsGeoReplicator `metadata.name` property and `eventstreams.ibm.com/cluster` label property must be set to the name of the destination {{site.data.reuse.es_name}} instance that you are geo-replicating to.
-4. Run the following command to create the EventStreamsGeoReplicator instance:\\
-   `kubectl create -f <path-to-your-eventstreamsgeoreplicator-file>`
+
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta1
+   kind: EventStreamsGeoReplicator
+   metadata:
+   labels:
+         eventstreams.ibm.com/cluster: my-dest-cluster
+   name: my-dest-cluster
+   namespace: my-project
+   spec:
+   version: 11.2.1
+   replicas: 3
+   ```
+
+   **Note:** The EventStreamsGeoReplicator `metadata.name` property and `eventstreams.ibm.com/cluster` label property must be set to the name of the destination {{site.data.reuse.es_name}} instance that you are geo-replicating to.
+4. Run the following command to create the EventStreamsGeoReplicator instance:
+
+   ```shell
+   kubectl create -f <path-to-your-eventstreamsgeoreplicator-file>
+   ```
+
 5. The new EventStreamsGeoReplicator instance is created.
-6. Run the following command to list your EventStreamsGeoReplicator instances:\\
-   `kubectl get eventstreamsgeoreplicators`
-7. Run the following command to view the YAML for your EventStreamsGeoReplicator instance:\\
-   `kubectl get eventstreamsgeoreplicator <eventstreamsgeoreplicator-instance-name> -o yaml`
+6. Run the following command to list your EventStreamsGeoReplicator instances:
 
-When the EventStreamsGeoReplicator instance is ready, a KafkaMirrorMaker2 instance will be created. Run the following command to list your KafkaMirrorMaker2 instances:\\
-  `kubectl get kafkamirrormaker2s`
+   ```shell
+   kubectl get eventstreamsgeoreplicators
+   ```
 
-Run the following command to view the YAML for your KafkaMirrorMaker2 instance:\\
-  `kubectl get kafkamirrormaker2 <kafka-mirror-make-2-instance-name> -o yaml`
+7. Run the following command to view the YAML for your EventStreamsGeoReplicator instance:
+
+   ```shell
+   kubectl get eventstreamsgeoreplicator <eventstreamsgeoreplicator-instance-name> -o yaml
+   ```
+
+When the EventStreamsGeoReplicator instance is ready, a KafkaMirrorMaker2 instance will be created. Run the following command to list your KafkaMirrorMaker2 instances:
+
+```shell
+kubectl get kafkamirrormaker2s
+```
+
+Run the following command to view the YAML for your KafkaMirrorMaker2 instance:
+
+```shell
+kubectl get kafkamirrormaker2 <kafka-mirror-make-2-instance-name> -o yaml
+```
 
 **Note:** If you have Strimzi installed, you might need to fully-qualify the resources you are requesting. The fully-qualified name for the KafkaMirrorMaker2 instances is `kafkamirrormaker2.eventstreams.ibm.com`.
 
@@ -110,11 +133,23 @@ If you are using {{site.data.reuse.openshift_short}}, to modify the number of wo
 
 To modify the number of workers by using the CLI:
 1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to set the namespace that contains the existing destination cluster:\\
-   `kubectl config set-context --current --namespace=<namespace-name>`
-3. Run the following command to list your EventStreamsGeoReplicator instances:\\
-   `kubectl get eventstreamsgeoreplicators`
-4. Run the following command to edit the YAML for your EventStreamsGeoReplicator instance:\\
-   `kubectl edit eventstreamsgeoreplicator <eventstreamsgeoreplicator-instance-name>`
+2. Run the following command to set the namespace that contains the existing destination cluster:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace-name>
+   ```
+
+3. Run the following command to list your EventStreamsGeoReplicator instances:
+
+   ```shell
+   kubectl get eventstreamsgeoreplicators
+   ```
+
+4. Run the following command to edit the YAML for your EventStreamsGeoReplicator instance:
+
+   ```shell
+   kubectl edit eventstreamsgeoreplicator <eventstreamsgeoreplicator-instance-name>
+   ```
+
 5. Update the **spec.replicas** property value to the number of geo-replication workers you want to run.
 6. Save your changes and close the editor.

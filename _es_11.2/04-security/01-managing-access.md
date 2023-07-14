@@ -35,11 +35,15 @@ The default cluster administrator (admin) IAM user credentials are stored in a s
 1. {{site.data.reuse.openshift_cli_login}}
 2. Extract and decode the current {{site.data.reuse.icpfs}} admin username:
 
-  `oc --namespace ibm-common-services get secret platform-auth-idp-credentials -o jsonpath='{.data.admin_username}' | base64 --decode`
+   ```shell
+   oc --namespace ibm-common-services get secret platform-auth-idp-credentials -o jsonpath='{.data.admin_username}' | base64 --decode
+   ```
 
 3. Extract and decode the current {{site.data.reuse.icpfs}} admin password:
   
-  `oc --namespace ibm-common-services get secret platform-auth-idp-credentials -o jsonpath='{.data.admin_password}' | base64 --decode`
+   ```shell
+   oc --namespace ibm-common-services get secret platform-auth-idp-credentials -o jsonpath='{.data.admin_password}' | base64 --decode
+   ```
 
 **Note:** The password is auto-generated in accordance with the default password rules for {{site.data.reuse.icpfs}}. To change the username or password of the admin user, see the instructions about [changing the cluster administrator access credentials](https://www.ibm.com/support/knowledgecenter/SSHKN6/iam/3.x.x/change_admin_passwd.html){:target="_blank"}.
 
@@ -272,50 +276,67 @@ When a `KafkaUser` custom resource is created, the Entity Operator within {{site
 
 You can retrieve the credentials by using the name of the `KafkaUser`. For example, you can retrieve the credentials as follows:
 
-1. Set the current namespace:\\
-\\
-`kubectl config set-context --current --namespace=<namespace>`
+1. Set the current namespace:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
 
 
 2. {{site.data.reuse.cncf_cli_login}}
 3. Use the following command to retrieve the required `KafkaUser` data, adding the `KafkaUser` name and your chosen namespace: \\
-  \\
-  `kubectl get kafkauser <name> -o jsonpath='{"username: "}{.status.username}{"\nsecret-name: "}{.status.secret}{"\n"}'`\\
-  \\
- The command provides the following output:
-- The principal username
-- The name of the Kubernetes `Secret`, which includes the namespace, containing the SCRAM password or the TLS certificates.
+
+   ```shell
+   kubectl get kafkauser <name> -o jsonpath='{"username: "}{.status.username}{"\nsecret-name: "}{.status.secret}{"\n"}'
+   ```
+
+   The command provides the following output:
+   - The principal username
+   - The name of the Kubernetes `Secret`, which includes the namespace, containing the SCRAM password or the TLS certificates.
+
 4. Decode the credentials.
 
     - For SCRAM, use the `secret-name` from the previous step to retrieve the password and decode it:
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.password}' | base64 --decode`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.password}' | base64 --decode
+      ```
 
     - For TLS, get the credentials, decode them, and write each certificates and keys to files:
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.crt`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.crt
+      ```
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.user\.crt}' | base64 --decode > user.crt`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.user\.crt}' | base64 --decode > user.crt
+      ```
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.user\.key}' | base64 --decode > user.key`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.user\.key}' | base64 --decode > user.key
+      ```
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.user\.p12}' | base64 --decode > user.p12`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.user\.p12}' | base64 --decode > user.p12
+      ```
 
-       `kubectl get secret <secret-name> -o jsonpath='{.data.user\.password}' | base64 --decode`
+      ```shell
+      kubectl get secret <secret-name> -o jsonpath='{.data.user\.password}' | base64 --decode
+      ```
 
 5. Additionally, you can also retrieve endpoint details such as the admin API URL and the schema registry URL by using the following commands:
 
-   - To retrieve the admin API URL from the `status.endpoints` list in the `EventStreams` custom resource, run the following command:
+  - To retrieve the admin API URL from the `status.endpoints` list in the `EventStreams` custom resource, run the following command:
 
-     ```shell
-     kubectl get eventstreams <instance-name> -n <namespace> -o jsonpath="{.status.endpoints[?(@.name=='admin')].uri}"
-     ```
+    ```shell
+    kubectl get eventstreams <instance-name> -n <namespace> -o jsonpath="{.status.endpoints[?(@.name=='admin')].uri}"
+    ```
 
-   - To retrieve the schema registry URL from the `status.endpoints` list in the `EventStreams` custom resource, run the following command:
+  - To retrieve the schema registry URL from the `status.endpoints` list in the `EventStreams` custom resource, run the following command:
 
-     ```shell
-     kubectl get eventstreams <instance-name> -n <namespace> -o jsonpath="{.status.endpoints[?(@.name=='apicurioregistry')].uri}"
-     ```
+    ```shell
+    kubectl get eventstreams <instance-name> -n <namespace> -o jsonpath="{.status.endpoints[?(@.name=='apicurioregistry')].uri}"
+    ```
 
 The cluster truststore certificate is required for all external connections and is available to download from the **Cluster connection** panel under the **Certificates** heading, within the {{site.data.reuse.openshift_short}} UI, or by running the command `kubectl es certificates`. Upon downloading the PKCS12 certificate, the certificate password will also be displayed.
 
@@ -437,6 +458,7 @@ The resource objects used in ACL rules adhere to the following schema:
 | `patternType` | string | Describes the pattern used in the resource field. The supported types are `literal` and `prefix`. With literal pattern type, the resource field will be used as a definition of a full topic name. With prefix pattern type, the resource name will be used only as a prefix. <br> The default value is `literal`. |
 
 Using the information about schemas and resource-operations described in the previous tables, the `spec.authorization.acls` list for a `KafkaUser` can be created as follows:
+
 ```yaml
 # ...
 spec:
@@ -452,19 +474,21 @@ spec:
         operations: 
           - Write
 ```
+
 In this example, an application using this `KafkaUser` would be allowed to write to any topic beginning with **client-** (for example, **client-records** or **client-billing**) from any host machine.
 
 **Note:** The write operation also implicitly derives the required describe operation that Kafka clients require to understand the data model of a topic.
 
 The following is an example ACL rule that provides access to read Schemas:
+
 ```yaml
-    - host: '*'
-      resource:
-        type: topic
-        name: '__schema_'
-        patternType: prefix
-      operations:
-        - Read
+- host: '*'
+  resource:
+    type: topic
+    name: '__schema_'
+    patternType: prefix
+  operations:
+    - Read
 ```
 
 ### Using OAuth

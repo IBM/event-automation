@@ -34,7 +34,7 @@ For example, if you are using the default `TopicNameStrategy` as your subject na
 
 For example, if you are using the `RecordNameStrategy` as your subject name strategy, and the schema definition file begins with the following, then the schema name you must provide when adding the schema in the UI must be `org.example.Book`:
 
-```
+```json
 {
     "type": "record",
     "name": "Book",
@@ -45,15 +45,21 @@ For example, if you are using the `RecordNameStrategy` as your subject name stra
 
 If you are using the {{site.data.reuse.es_name}} CLI, run the following command when adding the schema:
 
-`kubectl es schema-add --create --name org.example.Book --version 1.0.0 --file /path/to/Book.avsc`
+```shell
+kubectl es schema-add --create --name org.example.Book --version 1.0.0 --file /path/to/Book.avsc
+```
 
 ## Migrating a Kafka producer application
 
 To migrate a Kafka producer application that uses the Confluent Platform schema registry, secure the connection from your application to {{site.data.reuse.es_name}}, and add additional properties to enable the Confluent Platform schema registry client library to interact with the Apicurio Registry in {{site.data.reuse.es_name}}.
 
 1. Configure your producer application to [secure the connection](../../getting-started/connecting/#securing-the-connection) between the producer and {{site.data.reuse.es_name}}.
-2. Retrieve the full URL for the {{site.data.reuse.es_name}} [API endpoint](../../connecting/rest-api/#prerequisites), including the host name and port number by using the following command:\\
-  `kubectl es init`
+2. Retrieve the full URL for the {{site.data.reuse.es_name}} [API endpoint](../../connecting/rest-api/#prerequisites), including the host name and port number by using the following command:
+
+   ```shell
+   kubectl es init
+   ```
+
 3. Ensure you add the following schema properties to your Kafka producers:
 
    Property name        |  Property value
@@ -63,16 +69,16 @@ To migrate a Kafka producer application that uses the Confluent Platform schema 
 
    You can also use the following code snippet for Java applications:
 
-   ```
+   ```shell
    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<host name>:<API port>/apis/ccompat/v6");
    props.put(AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "SASL_INHERIT");
    ```
 
 4. Set the Java SSL truststore JVM properties to allow the Confluent Platform schema registry client library to make HTTPS calls to the the Apicurio Registry in {{site.data.reuse.es_name}}. For example:
 
-   ```
+   ```shell
    export KAFKA_OPTS="-Djavax.net.ssl.trustStore=/path/to/es-cert.jks \ 
-      -Djavax.net.ssl.trustStorePassword=password"
+         -Djavax.net.ssl.trustStorePassword=password"
    ```
 
 ## Migrating a Kafka consumer application
@@ -80,25 +86,29 @@ To migrate a Kafka producer application that uses the Confluent Platform schema 
 To migrate a Kafka consumer application that uses the Confluent Platform schema registry, secure the connection from your application to {{site.data.reuse.es_name}}, and add additional properties to enable the Confluent Platform schema registry client library to interact with the Apicurio Registry in {{site.data.reuse.es_name}}.
 
 1. Configure your consumer application to [secure the connection](../../getting-started/connecting/#securing-the-connection) between the consumer and {{site.data.reuse.es_name}}.
-2. Retrieve the full URL for the {{site.data.reuse.es_name}} [API endpoint](../../connecting/rest-api/#prerequisites), including the host name and port number by using the following command:\\
-  `kubectl es init`
+2. Retrieve the full URL for the {{site.data.reuse.es_name}} [API endpoint](../../connecting/rest-api/#prerequisites), including the host name and port number by using the following command:
+
+   ```shell
+   kubectl es init
+   ```
+
 3. Ensure you add the following schema properties to your Kafka producers:
 
    Property name        |  Property value
    ---------------------|----------------
-    `schema.registry.url` |  `https://<schema_registry_endpoint>/apis/ccompat/v6`
-    `basic.auth.credentials.source` |  `SASL_INHERIT`
+   `schema.registry.url` |  `https://<schema_registry_endpoint>/apis/ccompat/v6`
+   `basic.auth.credentials.source` |  `SASL_INHERIT`
 
    You can also use the following code snippet for Java applications:
 
-   ```
+   ```shell
    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<schema_registry_endpoint>/apis/ccompat/v6");
    props.put(AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "SASL_INHERIT");
    ```
 
 4. Set the Java SSL truststore JVM properties to allow the Confluent Platform schema registry client library to make HTTPS calls to the Apicurio Registry in {{site.data.reuse.es_name}}. For example:
 
-   ```
+   ```shell
    export KAFKA_OPTS="-Djavax.net.ssl.trustStore=/path/to/es-cert.jks \ 
        -Djavax.net.ssl.trustStorePassword=password"
    ```

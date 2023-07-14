@@ -9,7 +9,8 @@ toc: true
 ## Symptoms
 
 A `KafkaRebalance` custom resource remains in the `PendingProposal` state, does not move to the `ProposalReady` state, and does not populate the `status.optimizationResult` property. The Cruise Control pod logs contain the following error:
-```
+
+```shell
 2023-04-13 10:55:09 ERROR KafkaCruiseControlRequestHandler:88 - Error processing POST request '/rebalance' due to: 
 'com.linkedin.kafka.cruisecontrol.exception.KafkaCruiseControlException: com.linkedin.cruisecontrol.exception.NotEnoughValidWindowsException: 
 There is no window available in range [-1, 1681383309158] (index [1, -1]). Window index (current: 0, oldest: 0).'.
@@ -30,7 +31,7 @@ Cruise Control uses Kafka topics to store and process the metrics used to genera
 
 To set the correct topic names to be used by Cruise Control, add the following configuration to the `spec.strimziOverrides.cruiseControl.config` field in the `EventStreams` custom resource:
 
-```
+```yaml
 spec:
   strimziOverrides:
     cruiseControl:

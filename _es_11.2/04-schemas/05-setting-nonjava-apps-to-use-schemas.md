@@ -28,20 +28,35 @@ For a consumer application:
 
 1. {{site.data.reuse.es_ui_login}}
 2. Click **Schema registry** in the primary navigation and find your schema in the list.
-3. Copy the schema definition into a new local file.\\
-  - For the latest version of the schema, expand the row. Copy and paste the schema definition into a new local file.
-  - For a different version of the schema, click on the row and then select the version to use from the list of schema versions. Click the **Schema definition** tab and then copy and paste the schema definition into a new local file.
+3. Copy the schema definition into a new local file.
+
+   - For the latest version of the schema, expand the row. Copy and paste the schema definition into a new local file.
+   - For a different version of the schema, click on the row and then select the version to use from the list of schema versions. Click the **Schema definition** tab and then copy and paste the schema definition into a new local file.
 
 ### Using the CLI
 
 1. {{site.data.reuse.es_cli_init_111}}
-2. Run the following command to list all the schemas in the schema registry:\\
-    `kubectl es schemas`
-3. Select your schema from the list and run the following command to list all the versions of the schema:\\
-    `kubectl es schema <schema-name>`
-4. Select your version of the schema from the list and run the following command to retrieve the schema definition for the version and copy it into a new local file:\\
-    `kubectl es schema <schema-name> --version <schema-version-id> > <schema-definition-file>.avsc`
+2. Run the following command to list all the schemas in the schema registry:
+
+   ```shell
+   kubectl es schemas
+   ```
+
+3. Select your schema from the list and run the following command to list all the versions of the schema:
+
+   ```shell
+   kubectl es schema <schema-name>
+   ```
+
+4. Select your version of the schema from the list and run the following command to retrieve the schema definition for the version and copy it into a new local file:
+
+   ```shell
+   kubectl es schema <schema-name> --version <schema-version-id> > <schema-definition-file>.avsc
+   ```
 
 **Note:** `<schema-version-id>`is the integer ID that is displayed when listing schema versions using the following command:
-`kubectl es schema <schema-name>`.
+
+```shell
+kubectl es schema <schema-name>
+```
 

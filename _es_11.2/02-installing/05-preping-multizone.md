@@ -21,7 +21,9 @@ To determine if your cluster is zone aware:
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command:
 
-   `kubectl get nodes --show-labels`
+   ```shell
+   kubectl get nodes --show-labels
+   ```
 
 If your Kubernetes cluster is zone aware, the [label](https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/){:target="_blank"} `topology.kubernetes.io/zone` is displayed against each node.
  
@@ -29,7 +31,9 @@ The value of the label is the zone the node is in, for example, `es-zone-1`.
 
 If your Kubernetes cluster is not zone aware, all cluster nodes will need to be labeled using a value that identifies the zone that each node is in. For example, run the following command to label and allocate a node to `es-zone-1`:
 
-   `kubectl label node <node-name> topology.kubernetes.io/zone=es-zone-1`
+```shell
+kubectl label node <node-name> topology.kubernetes.io/zone=es-zone-1
+```
 
 The zone label is needed to set up rack awareness when [installing for multizone](../configuring/#applying-kafka-rack-awareness).
 
@@ -44,7 +48,7 @@ Before applying [Kafka rack awareness](../configuring/#applying-kafka-rack-aware
 
 1. Create a file called `eventstreams-kafka-broker.yaml` and copy the following YAML content to create the cluster role:
 
-   ```
+   ```yaml
    kind: ClusterRole
    apiVersion: rbac.authorization.k8s.io/v1
    metadata:
@@ -75,13 +79,16 @@ Before applying [Kafka rack awareness](../configuring/#applying-kafka-rack-aware
      resources:
          - nodes
       ```
+
 2. Apply the cluster role by using the following command:
 
-   `kubectl apply -f eventstreams-kafka-broker.yaml`
+   ```shell
+   kubectl apply -f eventstreams-kafka-broker.yaml
+   ```
 
 3. Create a file called `eventstreams-kafka-broker-crb.yaml` and copy the following YAML content to create the cluster role binding:
 
-   ```
+   ```yaml
    kind: ClusterRoleBinding
    apiVersion: rbac.authorization.k8s.io/v1
    metadata:
@@ -98,4 +105,6 @@ Before applying [Kafka rack awareness](../configuring/#applying-kafka-rack-aware
 
 4. Apply the cluster role  binding by using the following command:
 
-   `kubectl apply -f eventstreams-kafka-broker-crb.yaml`
+   ```shell
+   kubectl apply -f eventstreams-kafka-broker-crb.yaml
+   ```

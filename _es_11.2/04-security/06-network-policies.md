@@ -15,7 +15,9 @@ When you install an instance of {{site.data.reuse.es_name}}, the required networ
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to display the installed network policies for a specific namespace:
 
-   `kubectl get netpol -n <namespace>`
+   ```shell
+   kubectl get netpol -n <namespace>
+   ```
 
 The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.es_name}} instance. If a particular pod is not required by a given {{site.data.reuse.es_name}} configuration, the associated network policy will not be applied.
 

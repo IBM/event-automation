@@ -133,7 +133,9 @@ To add the IBM Operator Catalog:
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
 
-   `oc apply -f ibm_catalogsource.yaml`
+   ```shell
+   oc apply -f ibm_catalogsource.yaml
+   ```
 
 Alternatively, you can add the catalog source through the OpenShift web console by using the Import YAML option:
 
@@ -154,9 +156,9 @@ This procedure must be performed by using the CLI. Before you begin, ensure that
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
-    ```shell
-    oc ibm-pak --help
-    ```
+  ```shell
+  oc ibm-pak --help
+  ```
 
 #### Downloading the CASE bundle
 
@@ -166,9 +168,9 @@ Download the CASE bundle of the {{site.data.reuse.eem_name}} as described in the
 
 Apply the catalog sources for the operator to the cluster by running the following command:
 
-  ```shell
-  oc ibm-pak launch ibm-eventendpointmanagement --version <case-version> --inventory eemOperatorSetup --action installCatalog -n <namespace>
-  ```
+```shell
+oc ibm-pak launch ibm-eventendpointmanagement --version <case-version> --inventory eemOperatorSetup --action installCatalog -n <namespace>
+```
 
 Where:
 
@@ -211,9 +213,9 @@ In addition to the status, information about key events that occur can be viewed
 
 After you [downloaded the CASE bundle](#downloading-the-case-bundle) and [applied the catalog source](#applying-catalog-sources-to-your-cluster), you can install the {{site.data.reuse.eem_name}} operator to the cluster by running the following command:
 
-  ```shell
-  oc ibm-pak launch ibm-eventendpointmanagement --version <case-version> --inventory eemOperatorSetup --action installOperator -n <namespace>
-  ```
+```shell
+oc ibm-pak launch ibm-eventendpointmanagement --version <case-version> --inventory eemOperatorSetup --action installOperator -n <namespace>
+```
 
 Where:
 
@@ -269,36 +271,40 @@ When modifying the sample configuration, ensure that the following fields are up
 - Optionally, if you are installing with a usage-based license, ensure you [copy the secrets]({{ 'support/licensing#additional-steps-for-usage-based-license' | relative_url }}) created by the IBM License Service before installing the {{site.data.reuse.eem_name}} instance, and then follow these steps to provide details of your License Service:
 
   a. Update `spec.manager.extensionServices` to include license service details as follows:
-   ```yaml
-    extensionServices:
-      - endpoint: <licensing-service-endpoint>
-        name: licensing-service
-        secretName: <licensing-upload-token>
-   ```
+
+  ```yaml
+  extensionServices:
+    - endpoint: <licensing-service-endpoint>
+      name: licensing-service
+      secretName: <licensing-upload-token>
+  ```
 
   for example:
-   ```yaml
-    extensionServices:
-      - endpoint: https://ibm-licensing-service-instance-ibm-common-services.apps.eem-cluster.cp.fyre.ibm.com
-        name: licensing-service
-        secretName: ibm-licensing-upload-token
-   ```
+
+  ```yaml
+  extensionServices:
+    - endpoint: https://ibm-licensing-service-instance-ibm-common-services.apps.eem-cluster.cp.fyre.ibm.com
+      name: licensing-service
+      secretName: ibm-licensing-upload-token
+  ```
 
   b. Update `spec.manager.tls` to include trusted certs for license service:
-   ```yaml
-    tls:
-      trustedCertificates:
-        - certificate: <secret-key>
-          secretName: <licensing-service-cert-secret>
-   ```
+
+  ```yaml
+  tls:
+    trustedCertificates:
+      - certificate: <secret-key>
+        secretName: <licensing-service-cert-secret>
+  ```
 
   for example:
-   ```yaml
-    tls:
-      trustedCertificates:
-        - certificate: tls.crt
-          secretName: ibm-license-service-cert
-   ```
+
+  ```yaml
+  tls:
+    trustedCertificates:
+      - certificate: tls.crt
+        secretName: ibm-license-service-cert
+  ```
 
 To deploy an {{site.data.reuse.eem_name}} instance, use the following steps:
 
@@ -402,6 +408,11 @@ To deploy an {{site.data.reuse.eem_name}} instance, run the following commands:
    oc apply -f <custom-resource-file-path>
    ```
 
-   For example: `oc apply -f production.yaml`
+   For example:
+
+   ```shell
+   oc apply -f production.yaml
+   ```
+
 3. Wait for the installation to complete.
 

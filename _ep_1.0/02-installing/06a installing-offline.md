@@ -29,9 +29,9 @@ Ensure you have the following set up for your environment:
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. This plug-in allows you to run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
-    ```shell
-    oc ibm-pak --help
-    ```
+  ```shell
+  oc ibm-pak --help
+  ```
 
 ## Prepare your host
 
@@ -49,10 +49,10 @@ Note: In the absence of a bastion host, prepare a portable device with public in
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
-1. Set the environment variables for the {{site.data.reuse.flink_long}} and its version by running the following command: 
+1. Set the environment variables for the {{site.data.reuse.flink_long}} and its version by running the following command:
 
    ```shell
-   export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION=1.0.0 && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup 
+   export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION=1.0.0 && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup
    ```
 
 2. Run the following command to download, validate, and extract the CASE.
@@ -81,7 +81,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Retrieving CASE version ...
    - Success
    Validating the CASE ...
-   Validating the signature for the ibm-event-processing CASE...
+   Validating the signature for the ibm-eventprocessing CASE...
    - Success
    Creating inventory ...
    - Success
@@ -90,7 +90,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-event-processing, version: 1.0.1 is complete
+   Download of CASE: ibm-eventprocessing, version: 1.0.1 is complete
    ```
 
    **Note:**  To download the latest version of CASE, do not specify the CASE version. For example:
@@ -99,7 +99,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    oc ibm-pak get $CASE_NAME
    ```
 
-4. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+5. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
 
    For example, ensure that the following files have been generated for {{site.data.reuse.ep_name}}.
 
@@ -110,16 +110,16 @@ Before mirroring your images, set the environment variables for the CASE images 
    │   └── config.yaml
    ├── data
    │   ├── cases
-   │   │   └── ibm-event-processing
+   │   │   └── ibm-eventprocessing
    │   │       └── 1.0.1
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-event-processing-1.0.1-airgap-metadata.yaml
-   │   │           ├── ibm-event-processing-1.0.1-charts.csv
-   │   │           ├── ibm-event-processing-1.0.1-images.csv
-   │   │           ├── ibm-event-processing-1.0.1.tgz
+   │   │           ├── ibm-eventprocessing-1.0.1-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.0.1-charts.csv
+   │   │           ├── ibm-eventprocessing-1.0.1-images.csv
+   │   │           ├── ibm-eventprocessing-1.0.1.tgz
    │   │           └── resourceIndexes
-   │   │               └── ibm-event-processing-resourcesIndex.yaml
+   │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
    └── logs
     └── oc-ibm_pak.log
@@ -171,17 +171,18 @@ The process of mirroring images pulls the image from the internet and pushes it 
 Complete the following steps to mirror the images from your host to your offline environment:
 
 1. Run the following command to generate mirror manifests:
+
    - For {{site.data.reuse.flink_long}}:
 
-      ```shell
-      oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
-      ```
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
+     ```
 
    - For {{site.data.reuse.ep_name}}:
 
-      ```shell
-      oc ibm-pak generate mirror-manifests ibm-event-processing <target-registry>
-      ```
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
+     ```
 
      Where`target-registry` is the internal docker registry.
 
@@ -198,30 +199,32 @@ Complete the following steps to mirror the images from your host to your offline
 
    - To copy the images of {{site.data.reuse.flink_long}}:
 
-      ```shell
-      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
-      ```
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     ```
 
-      For example:
+     For example:
 
-      ```shell
-      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
-      ```
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     ```
 
    - To copy the images of {{site.data.reuse.ep_name}}:
 
-      ```shell
-      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-event-processing/<case-version>/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
-      ```
 
-      For example:
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     ```
 
-      ```shell
-      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.1/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
-      ```
+     For example:
 
+
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.1/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     ```
+     
     Where:
-    
+
     - `<case-version>` is the version of the CASE file to be copied.
     - `target-registry` is the internal docker registry.
 
@@ -241,9 +244,9 @@ Complete the following steps to mirror the images from your host to your offline
 
    - For {{site.data.reuse.ep_name}}:
 
-      ```shell
-      oc apply -f  ~/.ibm-pak/data/mirror/ibm-event-processing/<case-version>/image-content-source-policy.yaml
-      ```
+     ```shell
+     oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/image-content-source-policy.yaml
+     ```
 
    Where `<case-version>` is the version of the CASE file.
 
@@ -280,13 +283,13 @@ Apply the catalog sources for the operator to the cluster by running the followi
 - For {{site.data.reuse.ep_name}}:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-event-processing/<case-version>/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources.yaml
   ```
 
   For example:
-  
+
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-event-processing/1.0.1/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.1/catalog-sources.yaml
   ```
 
 ## Install the operator

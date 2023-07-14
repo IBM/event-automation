@@ -43,16 +43,24 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
 3. Run the following command to create a topic:
 
-   `kubectl es topic-create --name <topic-name> --partitions <number-of-partitions> --replication-factor <replication-factor>`
+   ```shell
+   kubectl es topic-create --name <topic-name> --partitions <number-of-partitions> --replication-factor <replication-factor>
+   ```
 
    For example, to create a topic called `my-topic` that has 1 partition, a replication factor of 1, and 1 day set for message retention time (provided in milliseconds):
 
-   `kubectl es topic-create --name my-topic --partitions 1 --replication-factor 1 --config retention.ms=86400000`
+   ```shell
+   kubectl es topic-create --name my-topic --partitions 1 --replication-factor 1 --config retention.ms=86400000
+   ```
 
    **Important:** Do not set `<replication-factor>` to a greater value than the number of available brokers.
 
 
-**Note:** To view all configuration options you can set for topics, use the help option as follows: `kubectl es topic-create --help`
+**Note:** To view all configuration options you can set for topics, use the help option as follows: 
+
+```shell
+kubectl es topic-create --help
+```
 
 Kafka supports additional [topic configuration](https://kafka.apache.org/documentation/#topicconfigs){:target="_blank"} settings. Extend the topic creation command with one or more `--config <property>=<value>` properties to apply additional configuration settings. The following additional properties are currently supported:
 

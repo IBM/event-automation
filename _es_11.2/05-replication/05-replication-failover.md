@@ -32,7 +32,9 @@ Consider providing your applications the same access to both the origin and dest
 1. Log in to your origin cluster. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to retrieve the name of the secret for the `KafkaUser`:
 
-   `kubectl get kafkauser <name> --namespace <namespace> -o jsonpath='{"username: "}{.status.username}{"\nsecret-name: "}{.status.secret}{"\n"}'`
+   ```shell
+   kubectl get kafkauser <name> --namespace <namespace> -o jsonpath='{"username: "}{.status.username}{"\nsecret-name: "}{.status.secret}{"\n"}'
+   ```
 
    The command provides the following output:
    - The principal username
@@ -40,22 +42,32 @@ Consider providing your applications the same access to both the origin and dest
 
 3. Use the `secret-name` from the previous step to run the following command. The command retrieves the credentials from the Kubernetes `Secret` and and saves them to the `kafkauser-secret.yaml` file:
 
-   `kubectl get secret <secret-name> --namespace <namespace> -o yaml > kafkauser-secret.yaml`
+   ```shell
+   kubectl get secret <secret-name> --namespace <namespace> -o yaml > kafkauser-secret.yaml
+   ```
+
 4. Run the following command to retrieve the `KafkaUser` custom resource YAML and save it to the `kafkauser.yaml` file:
 
-   `kubectl get kafkauser <name> --namespace <namespace> -o yaml > kafkauser.yaml`
+   ```shell
+   kubectl get kafkauser <name> --namespace <namespace> -o yaml > kafkauser.yaml
+   ```
+
 5. Log in to your destination cluster.  {{site.data.reuse.cncf_cli_login}}
 6. Edit both the `kafkauser-secret.yaml` and `kafkauser.yaml` files to set the correct namespace and {{site.data.reuse.es_name}} cluster name for the following properties:
    - `metadata.namespace`: provide the namespace of your destination cluster.
    - `metadata.labels["eventstreams.ibm.com/cluster"]`: provide the name of your destination cluster.
 7. Run the following command to create the Kubernetes `Secret` containing the `KafkaUser` credentials on the destination cluster:
 
-   `kubectl apply -f kafkauser-secret.yaml`
-   
+   ```shell
+   kubectl apply -f kafkauser-secret.yaml
+   ```
+
    **Note**: You must run this command before the creation of the `KafkaUser` to ensure the same credentials are available on both the origin and destination clusters.
 8. Run the following command to create the `KafkaUser` on the destination cluster:
 
-   `kubectl apply -f kafkauser.yaml`
+   ```shell
+   kubectl apply -f kafkauser.yaml
+   ```
 
 **Note**: To duplicate `KafkaUser` credentials that use Mutual TLS authentication, the origin and destination cluster must be [configured with the same certificates for the client CA at installation](../../installing/configuring/#using-your-own-certificates).
 
@@ -105,13 +117,15 @@ Geo-replication uses the Kafka Mirror Maker 2.0 `MirrorCheckpointConnector` to a
 
 **Note**: Consumer offset checkpoint topics are internal topics that are not displayed in the UI and CLI. Run the following CLI command to include internal topics in the topic listing:
 
-   `kubectl es topics --internal`.
+```shell
+kubectl es topics --internal
+```
 
 When processing messages from the destination cluster, you can use the checkpoints to start consuming from an offset that is equivalent to the last committed offset on the origin cluster. If your application is written in Java, Kafka's [`RemoteClusterUtils`](https://kafka.apache.org/25/javadoc/index.html?org/apache/kafka/connect/mirror/RemoteClusterUtils.html){:target="_blank"} class provides the `translateOffsets()` utility method to retrieve the destination cluster offsets for a consumer group from the checkpoints topic. You can then use the `KafkaConsumer.seek()` method to override the offsets that the consumer will use on the next `poll`.
 
 For example, the following Java code snippet will update the `example-group` consumer group offset from the `origin-cluster` cluster to the destination cluster equivalent:
 
-```
+```shell
 // Retrieve the mapped offsets for the destination cluster topic-partitions
 Map<TopicPartition, OffsetAndMetadata> destinationOffsetsMap = RemoteClusterUtils.translateOffsets(properties, "origin-cluster",
         "example-group", Duration.ofMillis(10000));
@@ -136,21 +150,28 @@ If you want your client application to continue processing messages on the desti
   1. {{site.data.reuse.es_cli_init_111}}
   2. Run the `kubectl es group-reset` command as follows:
 
-     `kubectl es group-reset --group <your-consumer-group-id> --topic <topic-name> --mode datetime --value <timestamp>`
+     ```shell
+     kubectl es group-reset --group <your-consumer-group-id> --topic <topic-name> --mode datetime --value <timestamp>
+     ```
 
      For example, the following command instructs the applications in consumer group `consumer-group-1` to start consuming messages with timestamps from after midday on 28th September 2018:
 
-     `kubectl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode datetime --value 2018-09-28T12:00:00+00:00 --execute`
+     ```shell
+     kubectl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode datetime --value 2018-09-28T12:00:00+00:00 --execute
+     ```
 
 * To start processing messages from the beginning of the topic, you can use the `--mode earliest` option, for example:
 
-  `kubectl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode earliest --execute`
+  ```shell
+  kubectl es group-reset --group consumer-group-1 --topic GEOREPLICATED.TOPIC --mode earliest --execute
+  ```
 
 These methods also avoid the need to make code changes to your client application.
 
 ## Reverting message production and consumption back to the origin cluster
 
 When the origin {{site.data.reuse.es_name}} cluster becomes available again, you can switch your client applications   back to use the topics on your origin cluster. If messages have been produced directly to the destination cluster, use the following steps to replicate those messages to the origin cluster before switching back to using it.
+
  - [Create an `EventStreamsGeoReplicator` custom resource](../planning) configured to connect to the origin {{site.data.reuse.es_name}} cluster, and set up geo-replication in the reverse direction to the original geo-replication flow. This means there will be a geo-replicator running on the origin cluster which copies messages from non-geo-replicated topics on the destination cluster back to geo-replicated topics on the origin cluster.
  - The geo-replicated topic named `<origin-cluster>.<topic>` on the destination cluster will not have new geo-replicated messages arriving, as the producing applications have been switched to produce messages directly to the topic without a prefix on the destination cluster. Ensure that the geo-replicated topic on the destination cluster is not geo-replicated back to the origin cluster as this will result in duplicate data on the origin cluster.
  - Switch the producing and consuming applications back to the origin cluster again by following the [previous instructions](#preparing-clusters-and-applications-for-switching). Producing applications will continue to produce messages to the original topic name on the origin cluster, and consuming applications will read from both the geo-replicated topics and the original topics on the origin cluster. Consuming applications will need their [consumer group offsets to be correctly updated](#updating-consumer-group-offsets) for the offset positions on the origin cluster.
@@ -158,6 +179,7 @@ When the origin {{site.data.reuse.es_name}} cluster becomes available again, you
 **Note**: Due to the asynchronous nature of geo-replication, there might be messages in the original topics on the origin cluster that had not been geo-replicated over to the destination cluster when the origin cluster became unavailable. You will need to decide how to handle these messages. Consider setting consumer group offsets so that the messages are processed, or ignore the messages by setting consumer group offsets to the latest offset positions in the topic.
 
 For example, if the origin cluster is named `my_origin`, the destination cluster is named `my_destination`, and the topic on the `my_origin` cluster is named `my_topic`, then the geo-replicated topic on the `my_destination` cluster will be named `my_origin.my_topic`.
+
  - When the `my_origin` cluster becomes unavailable, producing applications are switched to the `my_destination` cluster. The `my_destination` cluster now has topics named `my_topic` and `my_origin.my_topic`. Consuming applications are also switched to the `my_destination` cluster and use the regular expression `.*my_topic` to consume from both topics.
  - When the `my_origin` cluster becomes available again, reverse geo-replication is set up between the clusters. The `my_origin` cluster now has the topic named `my_topic` and a new geo-replicated topic named `my_destination.my_topic`. The topic named `my_destination.my_topic` contains the messages that were produced directly to the `my_destination` cluster.
  - Producing applications are producing to the topic named `my_topic` on the `my_destination` cluster, so the geo-replicated topic named `my_origin.my_topic` on the `my_destination` cluster does not have any new messages arriving. Existing messages in the topic named `my_origin.my_topic` are consumed from the `my_destination` cluster until there is no more processing of the messages required.

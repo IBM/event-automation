@@ -17,6 +17,7 @@ After [configuring access](../managing-access) to your {{site.data.reuse.ep_name
 Along with [configuring the user credentials](../managing-access), you must define user mappings through the secret `<custom-resource-name>-ibm-ep-user-roles` to define the roles for each local user.
 
 The following example shows a sample user mappings file:
+
 ```json
 {
   "mappings": [
@@ -29,6 +30,7 @@ The following example shows a sample user mappings file:
   ]
 }
 ```
+
 Where the `id` is the username that is specified for the user.
 
 ## Setting up roles for OIDC-based authorization
@@ -36,6 +38,7 @@ Where the `id` is the username that is specified for the user.
 You must provide user mappings through the secret `<custom-resource-name>-ibm-ep-user-roles` to match the user subjects of the OIDC identification provider.
 
 The following example shows a sample user mappings file:
+
 ```json
 {
   "mappings": [

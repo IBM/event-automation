@@ -134,7 +134,6 @@ If you are installing {{site.data.reuse.eem_name}} on a cluster where {{site.dat
         - name: ibm-cert-manager-operator
         registry: common-service
         registryNamespace: ibm-common-services
-
    ```
 
    Where `<namespace>` is the namespace from where you are creating the `OperandRequest` and planning to install the {{site.data.reuse.eem_name}} operator.

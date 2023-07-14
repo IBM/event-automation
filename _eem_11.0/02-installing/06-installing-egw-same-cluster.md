@@ -130,7 +130,12 @@ To deploy an {{site.data.reuse.egw}} instance, run the following commands:
    oc apply -f <custom-resource-file-path>
    ```
 
-   For example: `oc apply -f production.yaml`
+   For example:
+
+   ```shell
+   oc apply -f production.yaml
+   ```
+
 3. Wait for the installation to complete.
 4. You can now verify your installation and consider other [post-installation tasks](../post-installation/).
 

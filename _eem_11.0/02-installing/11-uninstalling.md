@@ -81,31 +81,50 @@ You can delete an {{site.data.reuse.eem_name}} instance using the `oc` command-l
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure you are using the project where your {{site.data.reuse.eem_name}} instance is located:
 
-    `oc project <project_name>`
-2. Run the following command to display the {{site.data.reuse.eem_name}} instances:
+   ```shell
+   oc project <project_name>
+   ```
 
-    `oc get eventendpointmanagement`
+3. Run the following command to display the {{site.data.reuse.eem_name}} instances:
+
+   ```shell
+   oc get eventendpointmanagement
+   ```
+
 4. Run the following command to delete your instance:
 
-    `oc delete eventendpointmanagement --selector app.kubernetes.io/instance=<instance_name>`
+   ```shell
+   oc delete eventendpointmanagement --selector app.kubernetes.io/instance=<instance_name>
+   ```
 
 To delete an {{site.data.reuse.egw}} instance using the `oc` command-line tool:
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure you are using the project where your {{site.data.reuse.egw}} instance is located:
 
-    `oc project <project_name>`
-2. Run the following command to display the {{site.data.reuse.egw}} instances:
+   ```shell
+   oc project <project_name>
+   ```
 
-    `oc get eventgateway`
+3. Run the following command to display the {{site.data.reuse.egw}} instances:
+
+   ```shell
+   oc get eventgateway
+   ```
+
 4. Run the following command to delete your instance:
 
-    `oc delete eventgateway --selector app.kubernetes.io/instance=<instance_name>`
+   ```shell
+   oc delete eventgateway --selector app.kubernetes.io/instance=<instance_name>
+   ```
 
 #### Check uninstallation progress
 
 Run the following command to check the progress:
-`oc get pods --selector app.kubernetes.io/instance=<instance_name>`
+
+```shell
+oc get pods --selector app.kubernetes.io/instance=<instance_name>
+```
 
 Pods will initially display a **STATUS** `Terminating` and then be removed from the output as they are deleted.
 
@@ -135,21 +154,29 @@ Delete the PVCs:
 
 1. Run the following command to list the remaining PVCs associated with the deleted instance:
 
-    `oc get pvc --selector app.kubernetes.io/instance=<instance_name>`
+   ```shell
+   oc get pvc --selector app.kubernetes.io/instance=<instance_name>
+   ```
 
 2. Run the following to delete a PVC:
 
-    `oc delete pvc <pvc_name>`
+   ```shell
+   oc delete pvc <pvc_name>
+   ```
 
 Delete remaining PVs:
 
-1. Run the following command to list the remaining PVs: 
+1. Run the following command to list the remaining PVs:
 
-    `oc get pv`
+   ```shell
+   oc get pv
+   ```
 
 2. Run the following command to delete any PVs that were listed in the **Volume** column of the deleted PVCs: 
 
-    `oc delete pv <pv_name>`
+   ```shell
+   oc delete pv <pv_name>
+   ```
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
@@ -217,14 +244,22 @@ To remove a stand-alone Event Gateway:
 
 1. Run the following command to list the running containers:
 
-    `docker ps`
+   ```
+   docker ps
+   ```
 
 2. Locate the stand-alone gateway in the list and stop the gateway container:
 
-    `docker stop <container_id>`
+   ```shell
+   docker stop <container_id>
+   ```
 
 3. After the container is stopped, delete the stand-alone gateway container and image:
 
-    `docker rm <stand-alone-gateway_container>`
+   ```shell
+   docker rm <stand-alone-gateway_container>
+   ```
 
-    `docker rmi <stand-alone-gateway_image_name>`
+   ```shell
+   docker rmi <stand-alone-gateway_image_name>
+   ```

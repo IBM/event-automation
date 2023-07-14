@@ -26,7 +26,7 @@ If you are running on other Kubernetes platforms, you can upgrade {{site.data.re
 
 ### Upgrade paths for OpenShift EUS releases
 
-No direct upgrade from an OpenShift EUS version to the latest version is supported. Upgrade to [CD version 11.1.x]({{ '11.1' | relative_url }}/installing/upgrading/) and then proceed to upgrade your {{site.data.reuse.es_name}} version to the latest by following the instructions on this page starting with the [prerequisites](#prerequisites).
+No direct upgrade from an OpenShift EUS version to the latest version is supported. Upgrade to [CD version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) and then proceed to upgrade your {{site.data.reuse.es_name}} version to the latest by following the instructions on this page starting with the [prerequisites](#prerequisites).
 
 ## Prerequisites
 
@@ -67,57 +67,64 @@ If your operator manages more than one instance of {{site.data.reuse.es_name}}, 
   1. {{site.data.reuse.cncf_cli_login}}
   2. To apply the annotation first to the `EventStreams` and then to the `Kafka` custom resource, run the following command, where `<type>` is either `EventStreams` or `Kafka`:
 
-     `kubectl annotate <type> <instance-name> -n <instance-namespace> eventstreams.ibm.com/pause-reconciliation='true'`
+     ```shell
+     kubectl annotate <type> <instance-name> -n <instance-namespace> eventstreams.ibm.com/pause-reconciliation='true'
+     ```
 
   3. Follow the steps to upgrade by using [the Kuberenetes CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
 
 #### Unpausing reconciliation by using the CLI
-  To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.es_name}} instance, run the following command to first remove the annotations from the `Kafka` custom resource, and then from the `EventStreams` custom resource, where `<type>` is either `Kafka` or `EventStreams`:
 
-   `kubectl annotate <type> <instance-name> -n <instance-namespace> eventstreams.ibm.com/pause-reconciliation-`
+To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.es_name}} instance, run the following command to first remove the annotations from the `Kafka` custom resource, and then from the `EventStreams` custom resource, where `<type>` is either `Kafka` or `EventStreams`:
 
-   When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.es_name}} completes.
+```shell
+kubectl annotate <type> <instance-name> -n <instance-namespace> eventstreams.ibm.com/pause-reconciliation-
+```
+
+When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.es_name}} completes.
 
 #### Pausing reconciliation by using the OpenShift web console
 
-   1. {{site.data.reuse.openshift_ui_login}}
-   2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
+1. {{site.data.reuse.openshift_ui_login}}
+2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
 
-      ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
+   ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
 
-   3. From the **Project** list, select the namespace (project) the instance is installed in.
-   4. Locate the operator that manages your {{site.data.reuse.es_name}} instance in the namespace. It is called **{{site.data.reuse.es_name}}** in the **Name** column. Click the **{{site.data.reuse.es_name}}** link in the row.
-   5. Select the instance you want to pause and click the `YAML` tab.
-   6. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
+3. From the **Project** list, select the namespace (project) the instance is installed in.
+4. Locate the operator that manages your {{site.data.reuse.es_name}} instance in the namespace. It is called **{{site.data.reuse.es_name}}** in the **Name** column. Click the **{{site.data.reuse.es_name}}** link in the row.
+5. Select the instance you want to pause and click the `YAML` tab.
+6. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
 
-       ```yaml
-       apiVersion: eventstreams.ibm.com/v1beta2
-       kind: EventStreams
-       metadata:
-         name: <instance-name>
-         namespace: <instance-namespace>
-         annotations:
-           eventstreams.ibm.com/pause-reconciliation: 'true'
-       ```
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta2
+   kind: EventStreams
+   metadata:
+   name: <instance-name>
+   namespace: <instance-namespace>
+   annotations:
+      eventstreams.ibm.com/pause-reconciliation: 'true'
+   ```
 
-   7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left,  click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
-   8. From the **Project** list, select the namespace (project) the instance is installed in and click the **Instances** tab.
-   9. Select the instance with the name `<instance-name>` (the same as the {{site.data.reuse.es_name}} instance).
-   10. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
+7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left,  click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
+8. From the **Project** list, select the namespace (project) the instance is installed in and click the **Instances** tab.
+9. Select the instance with the name `<instance-name>` (the same as the {{site.data.reuse.es_name}} instance).
+10. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
 
-       ```yaml
-       apiVersion: eventstreams.ibm.com/v1beta2
-       kind: Kafka
-       metadata:
-         name: <instance-name>
-         namespace: <instance-namespace>
-         annotations:
-           eventstreams.ibm.com/pause-reconciliation: 'true'
-       ```
-   11. Follow the steps to upgrade by using [the Kuberenetes CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
+    ```yaml
+    apiVersion: eventstreams.ibm.com/v1beta2
+    kind: Kafka
+    metadata:
+    name: <instance-name>
+    namespace: <instance-namespace>
+    annotations:
+       eventstreams.ibm.com/pause-reconciliation: 'true'
+    ```
+
+11. Follow the steps to upgrade by using [the Kubernetes CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
 
 #### Unpausing reconciliation by using the OpenShift web console
-   To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.es_name}} instance, first remove the annotations from the `Kafka` custom resource, and then from the `EventStreams` custom resource. When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.es_name}} completes.
+
+To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.es_name}} instance, first remove the annotations from the `Kafka` custom resource, and then from the `EventStreams` custom resource. When the annotations are removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.es_name}} completes.
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
 
@@ -130,11 +137,15 @@ If you are using the OpenShift command-line interface (CLI), the `oc` command, c
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure the required {{site.data.reuse.es_name}} Operator Upgrade Channel is available:
 
-   `oc get packagemanifest ibm-eventstreams -o=jsonpath='{.status.channels[*].name}'`
+   ```shell
+   oc get packagemanifest ibm-eventstreams -o=jsonpath='{.status.channels[*].name}'
+   ```
 
 2. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v3.2`):
 
-   `oc patch subscription -n <namespace> ibm-eventstreams --patch '{"spec":{"channel":"vX.Y"}}' --type=merge`
+   ```shell
+   oc patch subscription -n <namespace> ibm-eventstreams --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
+   ```
 
 
 All {{site.data.reuse.es_name}} pods that need to be updated as part of the upgrade will be gracefully rolled. Where required, ZooKeeper pods will roll one at a time, followed by Kafka brokers rolling one at a time.
@@ -218,16 +229,18 @@ Migrate your schema registry to use the latest Apicurio Registry as follows:
 1. Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later before migrating.
 2. {{site.data.reuse.openshift_cli_login}}
 3. Add the `eventstreams.ibm.com/apicurio-registry-version='>=2.4'` annotation to your {{site.data.reuse.es_name}} custom resource with the following command:
+
    ```shell
    oc annotate --namespace <namespace> EventStreams <instance-name> eventstreams.ibm.com/apicurio-registry-version='>=2.4'
-      ```
+   ```
 
 The {{site.data.reuse.es_name}} operator will update your schema registry to use the latest version of Apicurio Registry included with {{site.data.reuse.es_name}}.
 
 ### Remove JMXTrans
 
 JMXTrans is removed in {{site.data.reuse.es_name}} `11.2.0` and later. If your {{site.data.reuse.es_name}} custom resource uses `jmxTrans`, the following error is displayed:
-```
+
+```shell
 Jmx Trans is now removed, remove the 'spec.strimziOverrides.jmxTrans' field.
 ```
 
@@ -239,12 +252,18 @@ To resolve this error, remove the `spec.strimziOverrides.jmxTrans` field and any
 2. {{site.data.reuse.cncf_cli_login}}
 3. To retrieve a list of {{site.data.reuse.es_name}} instances, run the following command:
 
-   `kubectl get eventstreams -n <namespace>`
+   ```shell
+   kubectl get eventstreams -n <namespace>
+   ```
 
 4. For the instance of {{site.data.reuse.es_name}} that you upgraded, check that the status returned by the following command is `Ready`.
 
-   `kubectl get eventstreams -n <namespace> <name-of-the-es-instance> -o jsonpath="{.status.phase}"`
+   ```shell
+   kubectl get eventstreams -n <namespace> <name-of-the-es-instance> -o jsonpath="{.status.phase}"
+   ```
 
 5. To check the version of your {{site.data.reuse.es_name}} instance, run the following command:
 
-   `kubectl get eventstreams -n <namespace> <name-of-the-es-instance> -o jsonpath="{.status.versions.reconciled}"`
+   ```shell
+   kubectl get eventstreams -n <namespace> <name-of-the-es-instance> -o jsonpath="{.status.versions.reconciled}"
+   ```

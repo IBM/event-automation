@@ -94,7 +94,7 @@ These code snippets are at a very high level to illustrate the concepts involved
 
 To connect to {{site.data.reuse.es_name}}, you first need to build the set of configuration properties. All connections to {{site.data.reuse.es_name}} are secured using TLS and user/password authentication, so you need these properties at a minimum. Replace KAFKA\_BROKERS\_SASL, USER, and PASSWORD with your own credentials:
 
-```
+```shell
 Properties props = new Properties();
 props.put("bootstrap.servers", KAFKA_BROKERS_SASL);
 props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"USER\" password=\"PASSWORD\";");
@@ -107,21 +107,21 @@ props.put("ssl.endpoint.identification.algorithm", "HTTPS");
 
 To send messages, you will also need to specify serializers for the keys and values, for example:
 
-```
+```shell
 props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 ```
 
 Then use a KafkaProducer to send messages, where each message is represented by a ProducerRecord. Do not forget to close the KafkaProducer when you are finished. This code just sends the message but it does not wait to see whether the send succeeded.
 
-```
+```shell
 Producer producer = new KafkaProducer<>(props);
 producer.send(new ProducerRecord("T1", "key", "value"));  producer.close();
 ```
 
 The `send()` method is asynchronous and returns a Future that you can use to check its completion:
 
-```
+```shell
 Future f = producer.send(new ProducerRecord("T1", "key", "value"));
 
 // Do some other stuff
@@ -133,7 +133,7 @@ long offset = rm.offset;
 
 Alternatively, you can supply a callback when sending the message:
 
-```
+```shell
 producer.send(new ProducerRecord("T1","key","value", new Callback() {
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         // This is called when the send completes, either successfully or with an exception
@@ -145,6 +145,6 @@ For more information, see the [Javadoc for the Kafka client](https://kafka.apach
 
 To learn more, see the following information:
 
--   [Consuming messages](../consuming-messages)
--   [Partition leadership](../partition-leadership/)
--   [Apache Kafka documentation](https://kafka.apache.org/documentation.html){:target="_blank"}
+- [Consuming messages](../consuming-messages)
+- [Partition leadership](../partition-leadership/)
+- [Apache Kafka documentation](https://kafka.apache.org/documentation.html){:target="_blank"}

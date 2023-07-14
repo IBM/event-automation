@@ -46,7 +46,7 @@ To set up your Java applications to use the Apicurio Registry and the Apicurio R
 10. Click **Download certificate** to download the cluster PKCS12 certificate. This is the Java truststore file which contains the server certificate. Take a copy of the **Certificate password** for use with the certificate in your application.
 11. If your project uses Maven, add the following dependency to your project `pom.xml` file to use the Apicurio Registry `serdes` library:
 
-    ```
+    ```xml
     <dependency>
       <groupId>io.apicurio</groupId>
       <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
@@ -68,7 +68,7 @@ To set up your Java applications to use the Apicurio Registry and the Apicurio R
 
 The code snippet from the **Imports** section includes Java imports to paste into your class, and sets up the application to use the Apicurio Registry `serdes` library, for example:
 
-```
+```java
 import java.util.Properties;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
@@ -87,7 +87,7 @@ import io.apicurio.rest.client.config.ApicurioClientConfig;
 
 The code snippet from the **Connection properties** section specifies connection and access permission details for your {{site.data.reuse.es_name}} cluster and the Apicurio Registry, for example:
 
-```
+```java
 Properties props = new Properties();
 // TLS Properties
 props.put(SslConfigs.SSL_PROTOCOL_CONFIG, "TLSv1.2");
@@ -132,7 +132,7 @@ For more information about the configuration keys and values to use with the {{s
 
 The code snippet from the **Producer code** section defines properties for the producer application that set it to use the schema registry and the correct schema, for example:
 
-```
+```java
 // Set the value serializer for produced messages to use the Apicurio Avro serializer
 props.put("key.serializer", StringSerializer.class);
 props.put("value.serializer", AvroKafkaSerializer.class);
@@ -162,7 +162,6 @@ producer.send(producerRecord);
 
 // Close the producer
 producer.close();
-
 ```
 
 The Kafka configuration property `value.serializer` is set to `AvroKafkaSerializer.class`, telling Kafka to use the Apicurio Registry Avro Kafka serializer for message values when producing messages. You can also use the Apicurio Registry Avro Kafka serializer for message keys.
@@ -181,7 +180,7 @@ For more information about the configuration keys and values to use with the Api
 
 The code snippet from the **Imports** section includes Java imports to paste into your class, and sets up the application to use the Apicurio Registry `serdes` library, for example:
 
-```
+```java
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
@@ -202,7 +201,7 @@ import io.apicurio.rest.client.config.ApicurioClientConfig;
 
 The code snippet from the **Connection properties** section specifies connection and access permission details for your {{site.data.reuse.es_name}} cluster, for example:
 
-```
+```shell
 Properties props = new Properties();
 // TLS Properties
 props.put(SslConfigs.SSL_PROTOCOL_CONFIG, "TLSv1.2");
@@ -247,7 +246,7 @@ For more information about the configuration keys and values to use with the Api
 
 The code snippet from the **Consumer code** section defines properties for the consumer application that set it to use the schema registry and the correct schema, for example:
 
-```
+```shell
 
 // Set the value deserializer for consumed messages to use the Apicurio Avro deserializer
 props.put("key.deserializer", StringDeserializer.class);

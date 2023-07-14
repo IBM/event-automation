@@ -14,7 +14,10 @@ When you install an instance of {{site.data.reuse.eem_name}}, the required netwo
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Run the following command to display the installed network policies for a specific namespace:\\
-   `oc get netpol -n <namespace>`
+
+   ```shell
+   oc get netpol -n <namespace>
+   ```
 
 The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.eem_name}} instance. For information about how to stop deployment of the network policies, see the note after each table.
 

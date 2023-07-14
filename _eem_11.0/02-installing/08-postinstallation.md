@@ -30,15 +30,18 @@ custom resource will have a `Running` phase in the status.
 To verify the status:
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Run the `oc get` command as follows: 
-```
-oc get eventendpointmanagement <instance-name> -n <namespace> -o jsonpath='{.status.phase}'
-```
-An example output for a successful deployment:
-```
-$ oc get eventendpointmanagement development -n eem -o jsonpath='{.status.phase}'
-Running
-```
+2. Run the `oc get` command as follows:
+
+   ```shell
+   oc get eventendpointmanagement <instance-name> -n <namespace> -o jsonpath='{.status.phase}'
+   ```
+
+   An example output for a successful deployment:
+
+   ```shell
+   $ oc get eventendpointmanagement development -n eem -o jsonpath='{.status.phase}'
+   Running
+   ```
 
 **Note:** It might take several minutes for all the resources to be created and the instance to become ready.
 
@@ -73,15 +76,18 @@ To save the key to a file, complete the following steps.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Run the following command to retrieve the encryption secret.
-```
-oc get secret <instance-name>-ibm-eem-mek -n <namespace>
-```
+
+   ```shell
+   oc get secret <instance-name>-ibm-eem-mek -n <namespace>
+   ```
 
 3. Create a backup of the encryption secret with the command:
-``` 
-oc get secret <instance-name>-ibm-eem-mek -n <namespace> -o yaml > encryption-secret.yaml
-``` 
-This command retrieves the encryption secret in YAML format and redirects the output to a file named `encryption-secret.yaml`.
+
+   ``` shell
+   oc get secret <instance-name>-ibm-eem-mek -n <namespace> -o yaml > encryption-secret.yaml
+   ```
+
+   This command retrieves the encryption secret in YAML format and redirects the output to a file named `encryption-secret.yaml`.
 
 4. Ensure that the backup file (`encryption-secret.yaml`) is stored in a secure location outside the OpenShift cluster.
 
@@ -91,7 +97,7 @@ You can confirm if a usage-based deployment is operating as expected by checking
 
 When starting, verify the {{site.data.reuse.eem_name}} manager logs if it is operating in usage-based mode. If it is, the manager will perform an initial test of the provided configuration settings. The following is an example of a successful check:
 
-```
+```shell
 ...
 <DATETIME> INFO  com.ibm.ei.eim.ubp.UBPCollector (UBP Collector) - [configReceived:181] Usage Based Pricing enabled : License Service reporting usage to: <ENDPOINT>
 ...
@@ -101,7 +107,7 @@ When starting, verify the {{site.data.reuse.eem_name}} manager logs if it is ope
 
 If at any time an issue occurs when reporting metrics, including the initial test, a message is written to the logs, detailing the cause of the error, and the payload which was being sent. The following is an example of an error message:
 
-```
+```shell
 ...
 <DATETIME> WARN  com.ibm.ei.eim.ubp.UBPCollector (UBP Collector) - [lambda$sendMetrics$18:295] Failed to send data to the license service : <ENDPOINT> : <ERROR> : <PAYLOAD>
 ```
@@ -110,13 +116,13 @@ If at any time an issue occurs when reporting metrics, including the initial tes
 
 This message and status is also available in the {{site.data.reuse.eem_name}} manager component `/ready` endpoint on port 8081, under the `UBP.Reporting.Status` ID. This endpoint can be queried at any time. The following is an example query:
 
-```
+```shell
 oc exec $(oc get pod -l app.kubernetes.io/instance=<INSTANCE_NAME> -n <NAMESPACE> -o name) -n <NAMESPACE> curl http://localhost:8081/ready
 ```
 
 The result will return the current status of the gateway. The following is an example result of a healthy system with usage-based licensing configured:
 
-```
+```json
 {
   "code" : 200,
   "body" : {
@@ -156,7 +162,7 @@ The result will return the current status of the gateway. The following is an ex
 
 The following is an example result of a system that has usage-based licensing configured, but is running with errors:
 
-```
+```json
 {
   "code" : 503,
   "body" : {

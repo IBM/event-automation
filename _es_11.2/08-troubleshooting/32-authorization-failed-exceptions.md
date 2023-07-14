@@ -10,7 +10,7 @@ toc: true
 
 When executing operations with a Java client connected to {{site.data.reuse.es_name}}, the client fails with an error similar to the following message:
 
-```
+```shell
 [err] [kafka-producer-network-thread | my-client-id] ERROR org.apache.kafka.clients.producer.internals.Sender - [Producer clientId=my-client-id] Aborting producer batches due to fatal error
 [err] org.apache.kafka.common.errors.ClusterAuthorizationException: Cluster authorization failed.
 ```

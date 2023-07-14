@@ -15,22 +15,32 @@ You can delete an {{site.data.reuse.es_name}} installation using the Kubernetes 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are using the namespace where your {{site.data.reuse.es_name}} instance is located: 
 
-   `kubectl config set-context --current --namespace=<insert-namespace-name-here>`
+   ```shell
+   kubectl config set-context --current --namespace=<insert-namespace-name-here>
+   ```
+
 3. Run the following command to display the {{site.data.reuse.es_name}} instances: 
 
-   `kubectl get eventstreams -n <namespace>`
+   ```shell
+   kubectl get eventstreams -n <namespace>
+   ```
+
 4. Run the following command to delete your instance:
   
-   `kubectl delete eventstreams <instance-name> -n <namespace>`
+   ```shell
+   kubectl delete eventstreams <instance-name> -n <namespace>
+   ```
 
 ### Check uninstallation progress
 Run the following command to check the progress:
   
-  `kubectl get pods --selector app.kubernetes.io/instance=<instance_name>`
+```shell
+kubectl get pods --selector app.kubernetes.io/instance=<instance_name>
+```
 
 Pods will initially display a **STATUS** `Terminating` and then be removed from the output as they are deleted.
 
-```
+```shell
 $ kubectl get pods --selector app.kubernetes.io/instance=minimal-prod
 >
 NAME                                            READY     STATUS        RESTARTS   AGE
@@ -81,19 +91,29 @@ Delete the Persistent Volume Claims (PVCs):
 
 1. Run the following command to list the remaining PVCs associated with the deleted instance:
   
-   `kubectl get pvc --selector app.kubernetes.io/instance=<instance_name>`
+   ```shell
+   kubectl get pvc --selector app.kubernetes.io/instance=<instance_name>
+   ```
+
 2. Run the following to delete a PVC:
   
-   `kubectl delete pvc <pvc_name>`
+   ```shell
+   kubectl delete pvc <pvc_name>
+   ```
 
 Delete remaining Persistent Volumes (PVs):
 
 1. Run the following command to list the remaining PVs:
 
-   `kubectl get pv`
+   ```shell
+   kubectl get pv
+   ```
+
 2. Run the following command to delete any PVs that were listed in the **Volume** column of the deleted PVCs.
   
-   `kubectl delete pv <pv_name>`
+   ```shell
+   kubectl delete pv <pv_name>
+   ```
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
@@ -198,15 +218,24 @@ To delete an {{site.data.reuse.es_name}} operator:
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to select the namespace the operator is installed on:
 
-   `kubectl config set-context --current --namespace=<operator-namespace-name-here>`
+   ```shell
+   kubectl config set-context --current --namespace=<operator-namespace-name-here>
+   ```
+
 3. Run the following command to list the helm releases installed on that namespace: 
   
-   `helm list`
+   ```shell
+   helm list
+   ```
+
 4. Find the {{site.data.reuse.es_name}} operator release, it should have the chart as `ibm-eventstreams-operator-<version-number>`
-5. Run the following command to uninstall the {{site.data.reuse.es_name}} operator and the {{site.data.reuse.es_name}} Custom Resoure Definitions (CRDs):
+5. Run the following command to uninstall the {{site.data.reuse.es_name}} operator and the {{site.data.reuse.es_name}} Custom Resource Definitions (CRDs):
   
-   `helm uninstall <release-name>`
+   ```shell
+   helm uninstall <release-name>
+   ```
 
 
 ## Uninstalling {{site.data.reuse.icpfs}} on OpenShift
+
 If you have {{site.data.reuse.icpfs}}, see the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/support/knowledgecenter/en/SSHKN6/installer/3.x.x/uninstallation.html){:target="_blank"} for information about uninstalling it.

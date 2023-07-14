@@ -40,9 +40,9 @@ This might result in symptoms such as:
 
   - Navigating to the **Conditions** section for the specific instance deployment under **Workloads > Deployment** displays a message similar to the following example:
 
-  ```shell
-  is forbidden: unable to validate against any pod security policy: [spec.initContainers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true spec.containers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true]
-  ```
+    ```shell
+    is forbidden: unable to validate against any pod security policy: [spec.initContainers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true spec.containers[0].securityContext.readOnlyRootFilesystem: Invalid value: false: ReadOnlyRootFilesystem must be set to true]
+    ```
 
 ## Causes
 

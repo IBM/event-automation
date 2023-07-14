@@ -36,17 +36,25 @@ This side panel will display a table containing [consumer group information](#co
 To access information about a consumer group in the {{site.data.reuse.es_name}} CLI, do the following:
 
 1. {{site.data.reuse.es_cli_init_111}}
-2. To list all consumer groups on a cluster, run:\\
-   `kubectl es groups`
-3. To list information about a consumer group, run:\\
-   `kubectl es group --group <consumer-group-id>`\\
+2. To list all consumer groups on a cluster, run:
+
+   ```shell
+   kubectl es groups
+   ```
+
+3. To list information about a consumer group, run:
+
+   ```shell
+   kubectl es group --group <consumer-group-id>
+   ```
+
    where `<consumer-group-id>` is the name of the consumer group of interest.
 
 The CLI will print a table containing [consumer group information](#consumer-lag) for each partition of the topic.
 
 The following example shows the information the command returns for a consumer group called `my-consumer`:
 
-```
+```shell
 $ kubectl es group --group my-consumer
 >
 Details for consumer group my-consumer

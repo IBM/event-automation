@@ -86,19 +86,25 @@ To view this information on the origin cluster by using the CLI:
 2. {{site.data.reuse.es_cli_init_111}}
 3. Retrieve destination cluster IDs by using the following command:
 
-   `kubectl es geo-clusters`
+   ```shell
+   kubectl es geo-clusters
+   ```
 
 4. Retrieve information about a destination cluster by running the following command and copying the required destination cluster ID from the previous step:
 
-   `kubectl es geo-cluster --destination <destination-cluster-id>`
+   ```shell
+   kubectl es geo-cluster --destination <destination-cluster-id>
+   ```
 
    For example:
 
-   `kubectl es geo-cluster --destination destination_byl6x`
+   ```shell
+   kubectl es geo-cluster --destination destination_byl6x
+   ```
 
    The command returns the following information:
 
-   ```
+   ```shell
    Details of destination cluster destination_byl6x
       Cluster ID          Cluster name   REST API URL                                                                     Skip SSL validation?
       destination_byl6x   destination    https://destination-ibm-es-admapi-external-myproject.apps.geodest.ibm.com:443    false
@@ -121,51 +127,75 @@ To manage geo-replication on the origin cluster by using the CLI:
 2. {{site.data.reuse.es_cli_init_111}}
 3. Run the following commands as required:
 
-   - `kubectl es geo-replicator-pause --destination <destination-cluster-id> --name "<replicator-name>"`
+   - ```shell
+     kubectl es geo-replicator-pause --destination <destination-cluster-id> --name "<replicator-name>"
+     ```
 
      For example:
 
-     `kubectl es geo-replicator-pause --destination destination_byl6x  --name "origin_es->destination-mm2connector"`
+     ```shell
+     kubectl es geo-replicator-pause --destination destination_byl6x  --name "origin_es->destination-mm2connector"
+     ```
 
      This will pause both the MirrorSource connector and the MirrorCheckpoint connector for this geo-replicator.  Geo-replication for all topics that are part of this geo-replicator will be paused.
 
-   - `kubectl es geo-replicator-resume --destination <destination-cluster-id> --name "<replicator-name>"`
+   - ```shell
+     kubectl es geo-replicator-resume --destination <destination-cluster-id> --name "<replicator-name>"
+     ```
 
      For example:
 
-     `kubectl es geo-replicator-resume --destination destination_byl6x  --name "origin_es->destination-mm2connector"`
+     ```shell
+     kubectl es geo-replicator-resume --destination destination_byl6x  --name "origin_es->destination-mm2connector"
+     ```
 
      This will resume both the MirrorSource connector and the MirrorCheckpoint connector for this geo-replicator after they have been paused. Geo-replication for all topics that are part of this geo-replicator will be resumed.
 
-   - `kubectl es geo-replicator-restart --destination <destination-cluster-id> --name "<replicator-name>" --connector <connector-name>`
+   - ```shell
+     kubectl es geo-replicator-restart --destination <destination-cluster-id> --name "<replicator-name>" --connector <connector-name>
+     ```
 
      For example:
 
-     `kubectl es geo-replicator-restart --destination destination_byl6x  --name "origin_es->destination-mm2connector" --connector MirrorSourceConnector`
+     ```shell
+     kubectl es geo-replicator-restart --destination destination_byl6x  --name "origin_es->destination-mm2connector" --connector MirrorSourceConnector
+     ```
 
      This will restart a failed geo-replicator MirrorSource connector.
 
-   - `kubectl es geo-replicator-topics-remove --destination <destination-cluster-id> --name "<replicator-name>" --topics <comma-separated-topic-list>`
+   - ```shell
+     kubectl es geo-replicator-topics-remove --destination <destination-cluster-id> --name "<replicator-name>" --topics <comma-separated-topic-list>
+     ```
 
      For example:
 
-     `kubectl es geo-replicator-topics-remove --destination destination_byl6x  --name "origin_es->destination-mm2connector " --topics topic1,topic2`
+     ```shell
+     kubectl es geo-replicator-topics-remove --destination destination_byl6x  --name "origin_es->destination-mm2connector " --topics topic1,topic2
+     ```
 
      This will remove the listed topics from this geo-replicator.
 
-   - `kubectl es geo-replicator-delete --destination <destination-cluster-id> --name "<replicator-name>"`
+   - ```shell
+     kubectl es geo-replicator-delete --destination <destination-cluster-id> --name "<replicator-name>"
+     ```
 
      For example:
 
-     `kubectl es geo-replicator-delete --destination destination_byl6x  --name "origin_es->destination-mm2connector"`
+     ```shell
+     kubectl es geo-replicator-delete --destination destination_byl6x  --name "origin_es->destination-mm2connector"
+     ```
 
      This will remove all MirrorSource and MirrorCheckpoint connectors for this geo-replicator.
 
-   - `kubectl es geo-cluster-remove --destination <destination-cluster-id>`
+   - ```shell
+     kubectl es geo-cluster-remove --destination <destination-cluster-id>
+     ```
 
      For example:
 
-     `kubectl es geo-cluster-remove --destination destination_byl6x`
+     ```shell
+     kubectl es geo-cluster-remove --destination destination_byl6x
+     ```
 
      This will permanently remove a destination cluster.
 
@@ -208,12 +238,13 @@ Enable export of metrics in {{site.data.reuse.es_name}} geo-replication by editi
 7. Click the **YAML** tab.
 8. Add the `spec.metrics` property. For example:
 
-    ```yaml
-    # ...
-    spec:
-      metrics: {}
-    # ...
-    ```
+   ```yaml
+   # ...
+   spec:
+   metrics: {}
+   # ...
+   ```
+
 9. Click **Save**.
 
 
@@ -223,15 +254,21 @@ To modify the number of geo-replicator workers run the following using the CLI:
 1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to select the namespace that contains the existing destination cluster:
 
-   `kubectl namespace <namespace-name>`
+   ```shell
+   kubectl namespace <namespace-name>
+   ```
 
 3. Run the following command to list your `KafkaMirrorMaker2` instances:
 
-   `kubectl get kafkamirrormaker2s`
+   ```shell
+   kubectl get kafkamirrormaker2s
+   ```
 
 4. Run the following command to edit the custom resource for your `KafkaMirrorMaker2` instance:
 
-   `kubectl edit kafkamirrormaker2 <instance-name>`
+   ```shell
+   kubectl edit kafkamirrormaker2 <instance-name>
+   ```
 
 5. Add the `spec.metrics` property. For example:
 
@@ -239,6 +276,7 @@ To modify the number of geo-replicator workers run the following using the CLI:
    spec:
      metrics: {}
    ```
+
 6. Save your changes and close the editor.
 
 
@@ -252,7 +290,9 @@ To install {{site.data.reuse.es_name}} Grafana dashboards that will persist, use
 2. {{site.data.reuse.openshift_ui_login}}
 3. Apply the `MonitoringDashboard` custom resource as follows:
 
-   `oc apply -f <dashboard-path> -n <namespace>`
+   ```shell
+   oc apply -f <dashboard-path> -n <namespace>
+   ```
 
 ### Viewing installed Grafana dashboards
 

@@ -129,7 +129,7 @@ To copy the secrets:
 
    To copy `ibm-license-service-cert`:
 
-   ```
+   ```shell
    oc get secret --namespace=ibm-common-services ibm-license-service-cert -o=jsonpath='{.data.tls\.crt}' | base64 --decode > <path>/tls.crt
 
    oc get secret --namespace=ibm-common-services ibm-license-service-cert -o=jsonpath='{.data.tls\.key}' | base64 --decode > <path>/tls.key
@@ -139,7 +139,7 @@ To copy the secrets:
 
    To copy `ibm-licensing-upload-token`:
    
-   ```
+   ```shell
    oc get secret --namespace=ibm-common-services ibm-licensing-upload-token -o yaml | sed 's/namespace: .*/namespace: <your-namespace>/' | oc apply -f -
    ```
 
@@ -157,12 +157,12 @@ The license usage information can be viewed by [obtaining an API token](https://
 There are 3 APIs that can be viewed:
 1. **Snapshot (last 30 days)** This provides audit level information in a .zip file and is a superset of the other reports.
 2. **Products report (last 30 days)** This shows the VPC usage for all products that are deployed in {{site.data.reuse.cp4i}}, for example:
-```
+```shell
 [{"name":"{{site.data.reuse.cp4i}}","id":"c8b82d189e7545f0892db9ef2731b90d","metricPeakDate":"2020-06-10","metricQuantity":3,"metricName":"VIRTUAL_PROCESSOR_CORE"}]
 ```
 In this example, the `metricQuantity` is 3 indicating that the peak VPC usage is 3.
 3. **Bundled products report (last 30 days)** This shows the breakdown of bundled products that are included in IBM Cloud Paks that are deployed on a cluster with the highest VPC usage within the requested period. The following example shows for {{site.data.reuse.es_name}} the peak number of VPCs in use, the conversion ratio and the number of licenses used:
-```
+```shell
 [{"productName":"Event Streams for Non Production","productId":"<product_id>","cloudpakId":"<cloudpak_id>","metricName":"VIRTUAL_PROCESSOR_CORE","metricPeakDate":"2020-06-10","metricMeasuredQuantity":6,"metricConversion":"2:1","metricConvertedQuantity":3}]
 ```
 In this example, the `productName` shows the license metrics for a `Event Streams for Non Production` deployment. The `metricMeasuredQuantity` is 6 VPCs, the `metricConversion` is 2:1 and `metricConvertedQuantity` is 3 VPCs so the license usage is 3.
@@ -175,11 +175,12 @@ In this example, the `productName` shows the license metrics for a `Event Stream
 If there are multiple production or non-production installations in a cluster, then the API will show the total peak VPC usage for all production or non-production instances in that cluster. For example, if you have 2 production instances of {{site.data.reuse.es_name}} where each instance has 3 Kafka brokers that each use 2 VPCs, then the total peak usage is 12 VPCs which converts to 12 licenses.
 
 If there are production and non-production {{site.data.reuse.es_name}} instances installed in the cluster, then the `metricConvertedQuantity` under `Event Streams` and `Event Streams for Non Production` will need to be added to determine the total license usage. For example:
-```
+
+```shell
 [{"productName":"Event Streams for Non Production","productId":"<product_id>","cloudpakId":"<cloudpak_id>","metricName":"VIRTUAL_PROCESSOR_CORE","metricPeakDate":"2020-06-10","metricMeasuredQuantity":6,"metricConversion":"2:1","metricConvertedQuantity":3},{"productName":"Event Streams","productId":"<product_id>","cloudpakId":"<cloudpak_id>","metricName":"VIRTUAL_PROCESSOR_CORE","metricPeakDate":"2020-06-11","metricMeasuredQuantity":8,"metricConversion":"1:1","metricConvertedQuantity":8}]
 ```
-In this example there are {{site.data.reuse.es_name}} installations for non-production and for production. The non-production usage is 6 VPCs which converts to 3 licenses. The production usage is 8 VPCs which converts to 8 licenses. Therefore the total license usage is 11.
 
+In this example there are {{site.data.reuse.es_name}} installations for non-production and for production. The non-production usage is 6 VPCs which converts to 3 licenses. The production usage is 8 VPCs which converts to 8 licenses. Therefore the total license usage is 11.
 
 ### License usage examples
 

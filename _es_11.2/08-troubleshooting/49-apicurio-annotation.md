@@ -10,7 +10,7 @@ toc: true
 
 After upgrading to {{site.data.reuse.es_name}} 11.1.6 and migrating to use the latest version of Apicurio that is included in {{site.data.reuse.es_name}}, client applications that use the schema registry fail with errors similar to the following example:
 
-```yaml
+```shell
 java.io.UncheckedIOException: com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String "2022-12-13T20:10:29Z": expected format "yyyy-MM-dd'T'HH:mm:ssZ"
  at [Source: (jdk.internal.net.http.ResponseSubscribers$HttpResponseInputStream); line: 1, column: 54] (through reference chain: io.apicurio.registry.rest.v2.beans.ArtifactMetaData["createdOn"])
         at io.apicurio.rest.client.handler.BodyHandler.lambda$toSupplierOfType$1(BodyHandler.java:60)
@@ -44,6 +44,7 @@ Ensure you are using the latest Apicurio version as follows:
 2. Ensure that the [migration to using the latest Apicurio image](../../installing/upgrading/#migrate-to-latest-apicurio-registry) has completed by verifying that the image for the `apicurio-registry` container in the schema registry pod is `cp.icr.io/cp/ibm-eventstreams-apicurio-registry-v24@<sha reference>`. 
 
    To get the images used in the schema registry pod use the following command:
+
    ```shell
    oc get pods -n es -l eventstreams.ibm.com/component-type=apicurio-registry-v2  -o jsonpath="{.items[*].spec.containers[*].image}"
    ```

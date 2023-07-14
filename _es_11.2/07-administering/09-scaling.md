@@ -93,6 +93,7 @@ spec:
         limits:
           memory: 8096Mi
 ```
+
 The syntax for these values can be found in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory){:target="_blank"}.
 
 

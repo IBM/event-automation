@@ -55,7 +55,7 @@ Many of these tools perform administrative tasks and will need to be authorized 
 
 Create a properties file based on the following example:
 
-```
+```shell
 security.protocol=SASL_SSL
 ssl.protocol=TLSv1.2
 ssl.truststore.location=<certs.jks_file_location>
@@ -76,7 +76,7 @@ You can use the Kafka console producer tool with {{site.data.reuse.es_name}}.
 
 After you've created the properties file as described previously, you can run the console producer in a terminal as follows:
 
-```
+```shell
 ./kafka-console-producer.sh --broker-list <broker_url> --topic <topic_name> --producer.config <properties_file>
 ```
 
@@ -92,7 +92,7 @@ You can use the Kafka console consumer tool with {{site.data.reuse.es_name}}.
 
 After you've created the properties file as described previously, you can run the console consumer in a terminal as follows:
 
-```
+```shell
 ./kafka-console-consumer.sh --bootstrap-server <broker_url> --topic <topic_name> --from-beginning --consumer.config <properties_file>
 ```
 

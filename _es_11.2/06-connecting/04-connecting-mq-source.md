@@ -28,7 +28,8 @@ These sample instructions set up an IBM MQ queue manager that uses its local ope
 1. Log in as a user authorized to administer IBM MQ, and ensure the MQ commands are on the path.
 2. Create a queue manager with a TCP/IP listener on port 1414:
    ```crtmqm -p 1414 <queue_manager_name>```
-   for example to create a queue manager called `QM1` use `crtmqm -p 1414 QM1`
+
+   For example, to create a queue manager called `QM1`, use: `crtmqm -p 1414 QM1`
 3. Start the queue manager:
    ```strmqm <queue_manager_name>```
 4. Start the `runmqsc` tool to configure the queue manager:
@@ -97,7 +98,9 @@ If you are using the IBM MQ Operator to set up a queue manager, you can use the 
 
 1. Create the ConfigMap by using the following command:
 
-   `oc apply -f custom-source-mqsc-configmap.yaml`
+   ```shell
+   oc apply -f custom-source-mqsc-configmap.yaml
+   ```
 
 1. To create a queue manager with the required configuration, update the `spec.queueManager` section of the `QueueManager` custom resource YAML file:
 
@@ -137,9 +140,9 @@ Use the {{site.data.reuse.es_name}} UI to generate and download the `KafkaConnec
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 4. Ensure the **MQ Source** tab is selected and click **Generate**.
-6. In the dialog, enter the configuration of the `MQ Source` connector.
-7. Click **Download** to generate and download the configuration file with the supplied fields.
-8. Open the downloaded configuration file and change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
+5. In the dialog, enter the configuration of the `MQ Source` connector.
+6. Click **Download** to generate and download the configuration file with the supplied fields.
+7. Open the downloaded configuration file and change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 
 ### Using the CLI
 
@@ -148,15 +151,18 @@ Use the {{site.data.reuse.es_name}} CLI to generate and download the `KafkaConne
 1. {{site.data.reuse.es_cli_init_111}}
 2. Run the `connector-config-mq-source` command to generate the configuration file for the `MQ Source` connector.\\
    For example, to generate a configuration file for an instance of `MQ` with the following information: a queue manager called `QM1`, with a connection point of `localhost(1414)`, a channel name of `MYSVRCONN`, a queue of `MYQSOURCE` and connecting to the topic `TSOURCE`, run the following command:
-   ```
+
+   ```shell
    kubectl es connector-config-mq-source --mq-queue-manager="QM1" --mq-connection-name-list="localhost(1414)" --mq-channel="MYSVRCONN" --mq-queue="MYQSOURCE" --topic="TSOURCE" --file="mq-source" --format yaml
    ```
+
    **Note**: Omitting the `--format yaml` flag will generate a `mq-source.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-source.json` file which can be used for distributed mode outside the Kubernetes platform.
 
 3. Change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 
 The final configuration file will resemble the following:
-```
+
+```yaml
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaConnector
 metadata:
@@ -210,8 +216,12 @@ INFO Connection to MQ established
 
 1. To add messages to the IBM MQ queue, run the `amqsput` sample and type in some messages:
 
-   `/opt/mqm/samp/bin/amqsput <queue_name> <queue_manager_name>`
+   ```shell
+   /opt/mqm/samp/bin/amqsput <queue_name> <queue_manager_name>
+   ```
+
 2. {{site.data.reuse.es_ui_login_nonadmin}}
+
 3. Click **Topics** in the primary navigation and select the connected topic. Messages will appear in the message browser of that topic.
 
 ## Advanced configuration

@@ -13,8 +13,11 @@ toc: true
 When you install an instance of {{site.data.reuse.ep_name}}, the required network policies for {{site.data.reuse.ep_name}} pods are automatically created unless they are disabled through a configuration option. To review the network policies that have been applied:
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Run the following command to display the installed network policies for a specific namespace:\\
-   `oc get netpol -n <namespace>`
+2. Run the following command to display the installed network policies for a specific namespace:
+
+   ```shell
+   oc get netpol -n <namespace>
+   ```
 
 For the operator and operand pods of {{site.data.reuse.flink_long}}, network policies are not deployed automatically, but can be deployed as described in [Flink network policies](#flink-network-policies).
 
@@ -114,152 +117,154 @@ network policies for Flink pods need to be deployed following these steps:
 1. {{site.data.reuse.openshift_cli_login}}
 2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
 installing the Flink instance, ensure the namespace is already created.  
-```shell
-export FLINK_NAMESPACE=<your-namespace>
-```
+
+   ```shell
+   export FLINK_NAMESPACE=<your-namespace>
+   ```
+
 3. Run the following command to deploy the network policies for Flink:
 
-```yaml
-oc apply -n ${FLINK_NAMESPACE} -f - << EOF
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-operator
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink-operator
-      app.kubernetes.io/managed-by: olm
-      app.kubernetes.io/name: flink-kubernetes-operator
-      name: ibm-eventautomation-flink-operator
-  ingress:
-    - ports:
-        - protocol: TCP
-          port: 9443
-        - protocol: TCP
-          port: 443
-  policyTypes:
-    - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-jobmanager
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink
-      app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-      app.kubernetes.io/name: ibm-eventautomation-flink
-      component: jobmanager
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink
-              app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-              app.kubernetes.io/name: ibm-eventautomation-flink
-              component: jobmanager
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink
-              app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-              app.kubernetes.io/name: ibm-eventautomation-flink
-              component: taskmanager
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink-operator
-              app.kubernetes.io/managed-by: olm
-              app.kubernetes.io/name: flink-kubernetes-operator
-              name: ibm-eventautomation-flink-operator
-    - ports:
-        - protocol: TCP
-          port: 8081
-  policyTypes:
-    - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-jobmanager-rpc-blob
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink
-      app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-      app.kubernetes.io/name: ibm-eventautomation-flink
-      component: jobmanager
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink
-              app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-              app.kubernetes.io/name: ibm-eventautomation-flink
-              component: taskmanager
-    - ports:
-        - protocol: TCP
-          port: 6123
-        - protocol: TCP
-          port: 6124
-  policyTypes:
-    - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-jobmanager-stream-authoring
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink
-      app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-      app.kubernetes.io/name: ibm-eventautomation-flink
-      component: jobmanager
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/component: ibm-sp
-              app.kubernetes.io/managed-by: ibm-sp-operator
-    - ports:
-        - protocol: TCP
-          port: 8081
-  policyTypes:
-    - Ingress
----
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-taskmanager
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink
-      app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-      app.kubernetes.io/name: ibm-eventautomation-flink
-      component: jobmanager
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink
-              app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-              app.kubernetes.io/name: ibm-eventautomation-flink
-              component: jobmanager
-        - podSelector:
-            matchLabels:
-              app.kubernetes.io/instance: ibm-eventautomation-flink
-              app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-              app.kubernetes.io/name: ibm-eventautomation-flink
-              component: taskmanager
-    - ports:
-        - protocol: TCP
-          port: 8081
-  policyTypes:
-    - Ingress
-EOF
-```
+   ```yaml
+   oc apply -n ${FLINK_NAMESPACE} -f - << EOF
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-operator
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink-operator
+         app.kubernetes.io/managed-by: olm
+         app.kubernetes.io/name: flink-kubernetes-operator
+         name: ibm-eventautomation-flink-operator
+     ingress:
+       - ports:
+           - protocol: TCP
+             port: 9443
+           - protocol: TCP
+             port: 443
+     policyTypes:
+       - Ingress
+   ---
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-jobmanager
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink
+         app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+         app.kubernetes.io/name: ibm-eventautomation-flink
+         component: jobmanager
+     ingress:
+       - from:
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink
+                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/name: ibm-eventautomation-flink
+                 component: jobmanager
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink
+                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/name: ibm-eventautomation-flink
+                 component: taskmanager
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/managed-by: olm
+                 app.kubernetes.io/name: flink-kubernetes-operator
+                 name: ibm-eventautomation-flink-operator
+       - ports:
+           - protocol: TCP
+             port: 8081
+     policyTypes:
+       - Ingress
+   ---
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-jobmanager-rpc-blob
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink
+         app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+         app.kubernetes.io/name: ibm-eventautomation-flink
+         component: jobmanager
+     ingress:
+       - from:
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink
+                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/name: ibm-eventautomation-flink
+                 component: taskmanager
+       - ports:
+           - protocol: TCP
+             port: 6123
+           - protocol: TCP
+             port: 6124
+     policyTypes:
+       - Ingress
+   ---
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-jobmanager-stream-authoring
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink
+         app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+         app.kubernetes.io/name: ibm-eventautomation-flink
+         component: jobmanager
+     ingress:
+       - from:
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/component: ibm-sp
+                 app.kubernetes.io/managed-by: ibm-sp-operator
+       - ports:
+           - protocol: TCP
+             port: 8081
+     policyTypes:
+       - Ingress
+   ---
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-taskmanager
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink
+         app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+         app.kubernetes.io/name: ibm-eventautomation-flink
+         component: jobmanager
+     ingress:
+       - from:
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink
+                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/name: ibm-eventautomation-flink
+                 component: jobmanager
+           - podSelector:
+               matchLabels:
+                 app.kubernetes.io/instance: ibm-eventautomation-flink
+                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+                 app.kubernetes.io/name: ibm-eventautomation-flink
+                 component: taskmanager
+       - ports:
+           - protocol: TCP
+             port: 8081
+     policyTypes:
+       - Ingress
+   EOF
+   ```
 
 **Note**: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
 ensure the ports used in the network policies match the custom ports.
@@ -271,33 +276,37 @@ configured for emitting metrics needs to be opened by following these steps:
 1. {{site.data.reuse.openshift_cli_login}}
 2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
 installing the Flink instance, ensure the namespace is already created.  
-```shell
-export FLINK_NAMESPACE=<your-namespace>
-```
+
+    ```shell
+    export FLINK_NAMESPACE=<your-namespace>
+    ```
+
 3. Set the following environment variable to hold the port you configured for emitting metrics.  
-```shell
-export METRICS_PORT_NUMBER=<your-port>
-```
+
+   ```shell
+   export METRICS_PORT_NUMBER=<your-port>
+   ```
+
 4. Run the following command to deploy the network policy for metrics exporter:
 
-```yaml
-oc apply -n ${FLINK_NAMESPACE} -f - << EOF
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ibm-eventautomation-flink-jobmanager-monitoring
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: ibm-eventautomation-flink
-      app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-      app.kubernetes.io/name: ibm-eventautomation-flink
-      component: jobmanager
-  ingress:
-    - ports:
-        - protocol: TCP
-          port: ${METRICS_PORT_NUMBER}
-  policyTypes:
-    - Ingress
-EOF
-```
+   ```yaml
+   oc apply -n ${FLINK_NAMESPACE} -f - << EOF
+   kind: NetworkPolicy
+   apiVersion: networking.k8s.io/v1
+   metadata:
+     name: ibm-eventautomation-flink-jobmanager-monitoring
+   spec:
+     podSelector:
+       matchLabels:
+         app.kubernetes.io/instance: ibm-eventautomation-flink
+         app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
+         app.kubernetes.io/name: ibm-eventautomation-flink
+         component: jobmanager
+     ingress:
+       - ports:
+           - protocol: TCP
+             port: ${METRICS_PORT_NUMBER}
+     policyTypes:
+       - Ingress
+   EOF
+   ```

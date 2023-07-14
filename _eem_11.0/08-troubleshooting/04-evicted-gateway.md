@@ -19,15 +19,15 @@ Kubernetes pods use [ephemeral storage](https://kubernetes.io/docs/concepts/conf
 This issue can be resolved by giving the {{site.data.reuse.egw}} more ephemeral storage so that it is given a bit more leeway to clean up logs. This can be done by editing the {{site.data.reuse.egw}} custom resource:
 
 ```yaml
- # excerpt from a {{site.data.reuse.egw}} CRD 
- template:
-    pod:
-      spec:
-        containers:
-            name: egw
-            resources:
-              limits:
-                ephemeral-storage: 500Mi
+# excerpt from a {{site.data.reuse.egw}} CRD 
+template:
+  pod:
+    spec:
+      containers:
+          name: egw
+          resources:
+            limits:
+              ephemeral-storage: 500Mi
 ```
 
 This updates the pod ephemeral storage limits for the {{site.data.reuse.egw}}, which prevents the {{site.data.reuse.egw}} instance from overloading the storage and being `Evicted`.

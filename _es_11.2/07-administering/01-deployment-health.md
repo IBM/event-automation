@@ -24,7 +24,9 @@ You can check the health of your {{site.data.reuse.es_name}} environment using t
 1. {{site.data.reuse.cncf_cli_login}}
 2. To check the status and readiness of the pods, run the following command, where `<namespace>` is where your {{site.data.reuse.es_name}} instance is installed:
 
-   `kubectl -n <namespace> get pods`
+   ```shell
+   kubectl -n <namespace> get pods
+   ```
 
    The command lists the pods together with simple status information for each pod.
 
@@ -51,11 +53,15 @@ If any of the components are not ready for an extended period of time, check the
 
 1. To retrieve further details about the pods, including events affecting them, use the following command:
 
-   `kubectl -n <namespace> describe pod <pod-name>`
+   ```shell
+   kubectl -n <namespace> describe pod <pod-name>
+   ```
 
 2. To retrieve detailed log data for a pod to help analyze problems, use the following command:
 
-   `kubectl -n <namespace> logs <pod-name> -c <container_name>`
+   ```shell
+   kubectl -n <namespace> logs <pod-name> -c <container_name>
+   ```
 
 For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pod){:target="\_blank"}.
 

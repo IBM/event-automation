@@ -29,20 +29,22 @@ Running the operator in this mode ensures that your {{site.data.reuse.es_name}} 
    **Note:** This command requires the [`yq` YAML](https://github.com/mikefarah/yq){:target="_blank"} parsing and editing tool.
    - If you are running on the {{site.data.reuse.openshift_short}}, run the following command to update the `ClusterServiceVersion` of the `EventStreams` operator:
 
-      ```shell
-      kubectl get csv -n <namespace> ibm-eventstreams.v<operator_version> -oyaml | yq e "(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_POD_SET_RECONCILIATION_ONLY\")) .value=\"true\"" | kubectl apply -f -
-      ```
+     ```shell
+     kubectl get csv -n <namespace> ibm-eventstreams.v<operator_version> -oyaml | yq e "(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_POD_SET_RECONCILIATION_ONLY\")) .value=\"true\"" | kubectl apply -f -
+     ```
 
    - If you are running on other Kubernetes platforms, run the following command to update the deployment resource of the `EventStreams` operator:
 
-      ```shell
-      kubectl get deploy -n <namespace> eventstreams-cluster-operator -oyaml | yq e "(.spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_POD_SET_RECONCILIATION_ONLY\")) .value=\"true\"" | kubectl apply -f -
-      ```
+     ```shell
+     kubectl get deploy -n <namespace> eventstreams-cluster-operator -oyaml | yq e "(.spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_POD_SET_RECONCILIATION_ONLY\")) .value=\"true\"" | kubectl apply -f -
+     ```
 
    Where `<namespace>` is the namespace your `EventStreams` operator is installed in and `<operator_version>` is the version of the operator that is installed.
 2. Wait for the operator pod to reconcile. This is indicated by the `Running` state. You can watch the progress by running the following command:
 
-   `kubectl get pods -n <namespace> --watch`
+   ```shell
+   kubectl get pods -n <namespace> --watch
+   ```
 
    Where `<namespace>` is the namespace your `EventStreams` operator is installed in.
 
@@ -53,14 +55,17 @@ Running the operator in this mode ensures that your {{site.data.reuse.es_name}} 
 3. {{site.data.reuse.task_openshift_select_operator}}
 4. Navigate to the `ClusterServiceVersion` yaml of the `EventStreams` operator.
 5. Set the following environment variable under `spec.install.spec.deployments[0].spec.template.spec.containers[0].env[]` to `true`:
-   
+
    ```yaml
-            -  name: STRIMZI_POD_SET_RECONCILIATION_ONLY
-               value: 'true'
+   -  name: STRIMZI_POD_SET_RECONCILIATION_ONLY
+      value: 'true'
    ```
+
 6. Wait for all {{site.data.reuse.es_name}} pods to reconcile. This is indicated by the `Running` state. You can watch the progress by running the following command:
 
-   `kubectl get pods -n <namespace> --watch`
+   ```shell
+   kubectl get pods -n <namespace> --watch
+   ```
 
    Where `<namespace>` is the namespace your `EventStreams` operator is installed in.
 
@@ -99,4 +104,7 @@ To scale the {{site.data.reuse.es_name}} instance back up to the original state,
 
 1. Install the operator, ensuring it is configured with the same [installation mode]({{ 'installpagedivert' | relative_url }}) as used for the previous installation to manage the instances of {{site.data.reuse.es_name}} in **any namespace** or a **single namespace**.
 2. Wait for the operator to scale all resources back up to their original state. You can watch the progress by running:
-   `kubectl get pods --watch`
+
+   ```shell
+   kubectl get pods --watch
+   ```

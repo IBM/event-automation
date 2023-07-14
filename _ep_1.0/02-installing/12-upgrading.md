@@ -36,24 +36,32 @@ For {{site.data.reuse.ep_name}}:
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure the required {{site.data.reuse.ep_name}} Operator Upgrade Channel is available:
 
-   `oc get packagemanifest ibm-eventprocessing -o=jsonpath='{.status.channels[*].name}'`
+   ```shell
+   oc get packagemanifest ibm-eventprocessing -o=jsonpath='{.status.channels[*].name}'
+   ```
 
-2. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v1.1`):
+3. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v1.1`):
 
-   `oc patch subscription -n <namespace> ibm-eventprocessing --patch '{"spec":{"channel":"vX.Y"}}' --type=merge`
-
+   ```shell
+   oc patch subscription -n <namespace> ibm-eventprocessing --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
+   ```
 
 For Flink:
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure the required {{site.data.reuse.flink_long}} Operator Upgrade Channel is available:
 
-   `oc get packagemanifest ibm-eventautomation-flink -o=jsonpath='{.status.channels[*].name}'`
+   ```shell
+   oc get packagemanifest ibm-eventautomation-flink -o=jsonpath='{.status.channels[*].name}'
+   ```
 
 3. If your Flink instance uses persistent storage, [backup the Flink instance](../backup-restore/#backing-up).
 4. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v1.1`):
 
-   `oc patch subscription -n <namespace> ibm-eventautomation-flink --patch '{"spec":{"channel":"vX.Y"}}' --type=merge`
+   ```shell
+   oc patch subscription -n <namespace> ibm-eventautomation-flink --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
+   ```
+
 5. If your Flink instance uses persistent storage, [restore the backed up Flink instance](../backup-restore/#restoring).
 
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
@@ -70,9 +78,9 @@ For {{site.data.reuse.ep_name}}:
    ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.ep_name}} instance in the namespace. It is called **{{site.data.reuse.ep_name}}** in the **Name** column. Click the **{{site.data.reuse.ep_name}}** in the row.
-4. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
-5. Click the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-6. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
+5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
+6. Click the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+7. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
 
 All {{site.data.reuse.ep_name}} pods that need to be updated as part of the upgrade will be rolled.
 

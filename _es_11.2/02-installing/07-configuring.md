@@ -25,13 +25,17 @@ On OpenShift, you can configure and apply them by using the [command line](../in
 
 This page gives information about many configuration options. To see further information about specific configuration options, or to see what options are available, you can use the `kubectl explain` command. To see information about a specific field, run the following:
 
-`kubectl explain eventstreams.<path-of-field>`
+```shell
+kubectl explain eventstreams.<path-of-field>
+```
 
 Where `path-of-field` is the JSON path of the field of interest.
 
 For example, if you want to see more information about configuring external listeners for Kafka you can run the following command:
 
-`kubectl explain eventstreams.spec.strimziOverrides.kafka.listeners.external`
+```shell
+kubectl explain eventstreams.spec.strimziOverrides.kafka.listeners.external
+```
 
 ## Enabling persistent storage
 
@@ -1152,15 +1156,20 @@ All CAs in the chain should be configured as a CA with the X509v3 Basic Constrai
 
 As {{site.data.reuse.es_name}} also serves the `truststore` in PKCS12 format, generate a `.p12` file containing the relevant CA Certificates. When generating your PKCS12 truststore, ensure that the truststore does not contain the CA private key. This is important because the `.p12` file will be available to download from the {{site.data.reuse.es_name}} UI and distributed to clients.
 
-The following is an example showing how to use the Java `keytool` utility to generate a PKCS12 truststore that does not contain a private key: \\
-\\
-`keytool -import -file <ca.pem> -keystore ca.jks` \\
-`keytool -importkeystore -srckeystore ca.jks -srcstoretype JKS -deststoretype PKCS12 -destkeystore ca.p12`
+The following is an example showing how to use the Java `keytool` utility to generate a PKCS12 truststore that does not contain a private key:
 
-**Note:** Using OpenSSL PKCS12 commands to generate a truststore without private keys can break the cluster, because the resulting truststore is not compatible with Java runtimes.\\
-One way to test that the truststore is compatible and contains the correct certificates is to use the following java `keytool` utility command: \\
-\\
-`keytool -list -keystore ca.p12 -storepass <keystore password>`
+```shell
+keytool -import -file <ca.pem> -keystore ca.jks
+keytool -importkeystore -srckeystore ca.jks -srcstoretype JKS -deststoretype PKCS12 -destkeystore ca.p12
+```
+
+**Note:** Using OpenSSL PKCS12 commands to generate a truststore without private keys can break the cluster, because the resulting truststore is not compatible with Java runtimes.
+
+One way to test that the truststore is compatible and contains the correct certificates is to use the following java `keytool` utility command:
+
+```shell
+keytool -list -keystore ca.p12 -storepass <keystore password>
+```
 
 The cluster and/or clients certificates, and keys must be added to secrets in the namespace that the {{site.data.reuse.es_name}} instance is intended to be created in. The naming of the secrets and required labels must follow the conventions detailed in the following command templates.
 
@@ -1168,17 +1177,29 @@ The following commands can be used to create and label the secrets for custom ce
 
 For each command, provide the intended name and namespace for the {{site.data.reuse.es_name}} instance.
 
-`kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key`
+```shell
+kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key
+```
 
-`kubectl label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+```shell
+kubectl label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+```
 
-`kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=0`
+```shell
+kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=0
+```
 
-`kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'`
+```shell
+kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
+```
 
-`kubectl label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+```shell
+kubectl label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+```
 
-`kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=0`
+```shell
+kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=0
+```
 
 **Note:** The `ca-cert-generation` and `ca-key-generation` values identify whether certificates are being renewed or not. Only set 0 for these values if you have not installed an instance of {{site.data.reuse.es_name}} yet. For more information about when to amend these annotations, see [renewing certificates](../../security/renewing-certificates/).
 
@@ -1214,7 +1235,9 @@ For internal listeners, the hostnames will be service names. For external listen
 
 Create a secret containing the private key and server certificate:
 
-`kubectl create secret generic my-secret --from-file=my-listener-key.key --from-file=my-listener-certificate.crt`
+```shell
+kubectl create secret generic my-secret --from-file=my-listener-key.key --from-file=my-listener-certificate.crt
+```
 
 To make use of the secret, {{site.data.reuse.es_name}} will require the following overrides to be added to the custom resource.
 

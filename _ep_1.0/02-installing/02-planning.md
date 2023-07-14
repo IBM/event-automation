@@ -111,27 +111,36 @@ All Flink samples except the Quick start sample configure Flink to use persisten
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. If the namespace where the Flink instance will be deployed does not exist yet, create it:
+
    ```shell
    oc new-project <your-namespace>
    ```
+
 3. Set the following environment variable to hold the namespace of the Flink instance:
+
    ```shell
    export FLINK_NAMESPACE=<your-namespace>
    ```
-2. Set the following environment variables to hold the name of the storage class and the storage capacity:
+
+4. Set the following environment variables to hold the name of the storage class and the storage capacity:
+
    ```shell
    export STORAGE_CLASS=<your-storage-class>
    export STORAGE_CAPACITY=<your-storage-capacity>
    ```
+
    For example:
+
    ```shell
    export STORAGE_CLASS=rook-cephfs
    export STORAGE_CAPACITY=20GiB
    ```
+
    **Important:** The storage class must comply with the [Storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).
 
    **Important:** The storage capacity needs to be large enough for Flink to store data, which includes the Flink [checkpoints](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/checkpoints/#checkpoint-storage){:target="_blank"} and [savepoints](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/savepoints/){:target="_blank"}, and the stateful event processing data.
-3. Run the following command to deploy the `PersistentVolumeClame`:
+
+5. Run the following command to deploy the `PersistentVolumeClame`:
 
    ```yaml
    oc apply -n ${FLINK_NAMESPACE} -f - << EOF

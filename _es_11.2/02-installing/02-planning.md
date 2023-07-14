@@ -98,12 +98,12 @@ This example provides the smallest possible production deployment that can be co
 - External connections use TLS encryption and SCRAM SHA 512 authentication.
 - Kafka tuning settings consistent with 3 brokers are applied as follows:
 
-```
-num.replica.fetchers: 3
-num.io.threads: 24
-num.network.threads: 9
-log.cleaner.threads: 6
-```
+   ```shell
+   num.replica.fetchers: 3
+   num.io.threads: 24
+   num.network.threads: 9
+   log.cleaner.threads: 6
+   ```
 
 If a storage solution has been configured, the following characteristics make this a production-ready deployment:
 

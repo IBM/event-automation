@@ -40,7 +40,9 @@ Before you can install the {{site.data.reuse.es_name}} operator and use it to cr
 
 To add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"} to the local repository list, run the following command:
 
-`helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm`
+```shell
+helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
+```
 
 ## Install the {{site.data.reuse.es_name}} operator
 
@@ -62,7 +64,7 @@ Before installing the {{site.data.reuse.es_name}} operator, decide if you want t
 
 To install the operator, run the following command:
 
-```
+```shell
 helm install \
    <release-name> ibm-helm/ibm-eventstreams-operator \
    -n <namespace> \
@@ -78,11 +80,15 @@ Where:
 
 For example, to install the operator on a cluster where it will manage all instances of {{site.data.reuse.es_name}}, run the command as follows:
 
-`helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-namespace" --set watchAnyNamespace=true`
+```shell
+helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-namespace" --set watchAnyNamespace=true
+```
 
 For example, to install the operator that will manage {{site.data.reuse.es_name}} instances in only the `eventstreams` namespace, run the command as follows:
 
-`helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-eventstreams"`
+```shell
+helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-eventstreams"
+```
 
 **Note:** If you are installing any subsequent operators in the same cluster, ensure you run the `helm install` command with the `--set createGlobalResources=false` option (as these resources have already been installed).
 
@@ -90,11 +96,13 @@ For example, to install the operator that will manage {{site.data.reuse.es_name}
 
 To check the status of the installed operator, run the following command:
 
-`kubectl get deploy eventstreams-cluster-operator`
+```shell
+kubectl get deploy eventstreams-cluster-operator
+```
 
 A successful installation will return a result similar to the following with `1/1` in the `READY` column:
 
-```
+```shell
 NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
 eventstreams-cluster-operator   1/1     1            1           7d4h
 ```
@@ -123,6 +131,7 @@ The KRaft mode in {{site.data.reuse.es_name}} has the following limitations:
 #### Enabling KRaft
 
 To enable KRaft on non-OpenShift Kubernetes platforms using a Helm Chart, you can change the configuration values supplied in the values.yaml by adding extra arguments to helm install:
+
 ```shell
 helm install .... --set featureGates.useKRaft=true ...
 ```
@@ -143,7 +152,9 @@ Before installing an {{site.data.reuse.es_name}} instance, create an image pull 
 
    Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
 
-   `kubectl create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n "<target-namespace>"`
+   ```shell
+   kubectl create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n "<target-namespace>"
+   ```
 
 
 **Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
@@ -166,9 +177,15 @@ To deploy an {{site.data.reuse.es_name}} instance, run the following commands:
 
 1. Apply the configured `EventStreams` custom resource in the selected namespace:
 
-   `kubectl apply -f <custom-resource-file-path> -n "<target-namespace>"`
+   ```shell
+   kubectl apply -f <custom-resource-file-path> -n "<target-namespace>"
+   ```
 
-   For example: `kubectl apply -f development.yaml -n "my-eventstreams"`
+   For example:
 
-3. Wait for the installation to complete.
-4. Verify your installation and consider other [post-installation tasks](../post-installation/).
+   ```shell
+   kubectl apply -f development.yaml -n "my-eventstreams"
+   ```
+
+2. Wait for the installation to complete.
+3. Verify your installation and consider other [post-installation tasks](../post-installation/).

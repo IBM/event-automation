@@ -37,17 +37,17 @@ spec:
 To add trace logging when you are deploying with an overridden image, update `env` in your `EventEndpointManagement` custom resource as follows:
 
 ```yaml
-  # excerpt from {{site.data.reuse.eem_name}} CRD
-  template:
-    pod:
-      spec:
-        containers:
-          - env:
-              - name: TRACE_SPEC
-                value: "<VALUE>"
-            image: >-
-              <image-address>
-            name: manager
+# excerpt from {{site.data.reuse.eem_name}} CRD
+template:
+  pod:
+    spec:
+      containers:
+        - env:
+            - name: TRACE_SPEC
+              value: "<VALUE>"
+          image: >-
+            <image-address>
+          name: manager
 ```
 
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
@@ -77,7 +77,7 @@ Additionally, it is possible to configure trace logging specifically for actions
 
 IBM support might ask you to add trace logging for the UI, by updating the URL of your {{site.data.reuse.eem_name}} UI:
 
-```
+```shell
 https://some.eem.instance.com/catalog?logging=<VALUE>
 ```
 

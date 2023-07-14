@@ -108,7 +108,9 @@ To configure a `KafkaRebalance` custom resource, use the {{site.data.reuse.opens
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to select the namespace that contains the existing {{site.data.reuse.es_name}} cluster:
 
-   `kubectl config set-context --current --namespace=<namespace>`
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
 
 3. Define a `KafkaRebalance` custom resource in a file. For example, the following YAML defines a `KafkaRebalance` custom resource that will rebalance the Kafka cluster associated with the {{site.data.reuse.es_name}} instance named `my-cluster` and will create a proposal to satisfy the `NetworkInboundCapacityGoal` goal.
 
@@ -131,17 +133,23 @@ To configure a `KafkaRebalance` custom resource, use the {{site.data.reuse.opens
 
 4. Run the following command to create the `KafkaRebalance` custom resource:
 
-   `kubectl create -f <path-to-your-KafkaRebalance-file>`
+   ```shell
+   kubectl create -f <path-to-your-KafkaRebalance-file>
+   ```
 
 5. Verify the `KafkaRebalance` custom resource has been created by running:
 
 
-   `kubectl get kafkarebalances`
+   ```shell
+   kubectl get kafkarebalances
+   ```
 
    Ensure the `KafkaRebalance` custom resource you are trying to create is listed.
 6. To view the `KafkaRebalance` proposal by running:
 
-   `kubectl get KafkaRebalance <KafkaRebalance-instance-name> -o yaml`
+   ```shell
+   kubectl get KafkaRebalance <KafkaRebalance-instance-name> -o yaml
+   ```
 
 ### Receiving an optimization proposal
 
@@ -149,7 +157,7 @@ After you have created the `KafkaRebalance` custom resource, Cruise Control crea
 
 The following is an example of a successful proposal:
 
-```
+```yaml
 # ...
 status:
   # ...
@@ -174,7 +182,7 @@ status:
   sessionId: 03974f67-b208-4133-9f54-305d268a1a22
 ```
 
-For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/latest/configuring.html#con-optimization-proposals-str){:target="_blank"}.
+For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/latest/deploying.html#con-optimization-proposals-str){:target="_blank"}.
 
 ### Refreshing an optimization proposal
 
@@ -213,13 +221,15 @@ To add annotations to the `KafkaRebalance` custom resource, use the {{site.data.
 3. Click the name of the `KafkaRebalance` custom resource you want to edit.
 4. Click the **YAML** tab.
 5. Add the `eventstreams.ibm.com/rebalance` annotation to the `metadata.annotations` field.
-```
-# ...
-metadata:
-  # ...
-  annotations:
-    eventstreams.ibm.com/rebalance: <annotation-value>
-```
+
+   ```yaml
+   # ...
+   metadata:
+   # ...
+   annotations:
+      eventstreams.ibm.com/rebalance: <annotation-value>
+   ```
+
 6. Click **Save**.
 
 #### Using the CLI
@@ -227,16 +237,22 @@ metadata:
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to select the namespace that contains the existing `KafkaRebalance` custom resource:
 
-   `kubectl config set-context --current --namespace=<namespace-name>`
+   ```shell
+   kubectl config set-context --current --namespace=<namespace-name>
+   ```
 
 3. Run the following command to see a list of all the `KafkaRebalance` custom resources:
 
-   `kubectl get kafkarebalances`
+   ```shell
+   kubectl get kafkarebalances
+   ```
 
 4. Find the name of the `KafkaRebalance` custom resource you want to annotate.
 5. Run the following command to view the YAML for your `KafkaRebalance` instance:
 
-   `kubectl annotate kafkarebalances <rebalance-cr-name> <annotation-key>=<annotation-value>`
+   ```shell
+   kubectl annotate kafkarebalances <rebalance-cr-name> <annotation-key>=<annotation-value>
+   ```
 
 ## Optimization goals
 

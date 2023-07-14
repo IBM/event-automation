@@ -52,25 +52,25 @@ SET 'key' = 'value';
 
   For example:
 
-   ```sql   
-   SET 'parallelism.default' = '2';
-   ```
+  ```sql
+  SET 'parallelism.default' = '2';
+  ```
 
 - Give a meaningful name to the Flink job.
 
   For example:
 
-   ```sql
-   SET 'pipeline.name' = 'meaningful-name';
-   ```
+  ```sql
+  SET 'pipeline.name' = 'meaningful-name';
+  ```
 
 - Specify a minimum time interval for how long idle Flink job states will be retained. No cleanup is enabled by default.
 
   For example:
 
-   ```sql
-   SET 'table.exec.state.ttl' = '20';
-   ```
+  ```sql
+  SET 'table.exec.state.ttl' = '20';
+  ```
 
   For more information about `table.exec.state.ttl`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/config/#table-exec-state-ttl){:target="_blank"}.
 
@@ -78,9 +78,9 @@ SET 'key' = 'value';
 
   For example:
 
-   ```sql
-   SET 'table.exec.source.idle-timeout' = '15 s';
-   ```
+  ```sql
+  SET 'table.exec.source.idle-timeout' = '15 s';
+  ```
 
   For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
 
@@ -88,9 +88,9 @@ SET 'key' = 'value';
 
   For example:
 
-   ```sql
-   SET 'execution.savepoint.path' = '/opt/flink/volume/flink-sp/savepoint-cca7bc-bb1e257f0dab';
-   ```
+  ```sql
+  SET 'execution.savepoint.path' = '/opt/flink/volume/flink-sp/savepoint-cca7bc-bb1e257f0dab';
+  ```
 
 - Allow to skip a savepoint state that cannot be restored. Set this option to `true` if the SQL statements have changed since the savepoint was triggered and are no longer compatible with it. The default is false.
 
@@ -118,9 +118,10 @@ SET 'key' = 'value';
    ```shell
    oc get flinkdeployment
    ```
+
    For example:
 
-   ```
+   ```shell
    oc get flinkdeployment
    
    NAME                   JOB STATUS   LIFECYCLE STATE
@@ -171,7 +172,8 @@ SET 'key' = 'value';
    ```
 
    **Output example**
-   ```
+
+   ```shell
    +----------------------------------+-----------------+---------+-------------------------+
    |                           job id |        job name |  status |              start time |
    +----------------------------------+-----------------+---------+-------------------------+
@@ -202,7 +204,7 @@ SET 'key' = 'value';
 
    For example:
 
-   ```
+   ```sql
    oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical 89112b3a999e37740e2c73b6521d0778
    
    Triggering savepoint for job 89112b3a999e37740e2c73b6521d0778.
@@ -211,7 +213,7 @@ SET 'key' = 'value';
    ```
 
    Take note of the savepoint path, you will need it to restart the Flink job from this savepoint.
-   
+
    For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).
 
    For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).
@@ -236,12 +238,13 @@ SET 'key' = 'value';
 
    For example:
 
-   ```
+   ```sql
    oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical 89112b3a999e37740e2c73b6521d0778
    
    Suspending job 89112b3a999e37740e2c73b6521d0778.
    Savepoint completed. Path: file:/flink-data/savepoints/savepoint-89112b-8dbd328bf7c9
    ```
+
    Take note of the savepoint path, you will need it to restart the Flink job from this savepoint.
 
    For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).

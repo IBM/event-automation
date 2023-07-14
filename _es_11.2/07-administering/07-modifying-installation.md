@@ -32,7 +32,10 @@ To modify configuration settings by using the Kubernetes command-line tool (`kub
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to edit your `EventStreams` custom resource in your default editor:
 
-   `kubectl edit eventstreams <instance_name>`
+   ```shell
+   kubectl edit eventstreams <instance_name>
+   ```
+
 3. Make the required changes in your editor.
 4. Save and quit the editor to apply your changes.
 

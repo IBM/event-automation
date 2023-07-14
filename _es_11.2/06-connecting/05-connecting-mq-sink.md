@@ -28,7 +28,8 @@ These sample instructions set up an IBM MQ queue manager that uses its local ope
 1. Log in as a user authorized to administer IBM MQ, and ensure the MQ commands are on the path.
 2. Create a queue manager with a TCP/IP listener on port 1414:
    ```crtmqm -p 1414 <queue_manager_name>```
-   for example to create a queue manager called `QM1` use `crtmqm -p 1414 QM1`
+
+   For example, to create a queue manager called `QM1`, use: `crtmqm -p 1414 QM1`
 3. Start the queue manager:
    ```strmqm <queue_manager_name>```
 4. Start the `runmqsc` tool to configure the queue manager:
@@ -97,7 +98,9 @@ If you are using IBM MQ Operator to set up a queue manager, you can use the foll
 
 1. Create the ConfigMap by using the following command:
 
-   `oc apply -f custom-sink-mqsc-configmap.yaml`
+   ```shell
+   oc apply -f custom-sink-mqsc-configmap.yaml
+   ```
 
 1. To create a queue manager with the required configuration, update the `spec.queueManager` section of the `QueueManager` custom resource YAML file:
 
@@ -136,28 +139,36 @@ Use the {{site.data.reuse.es_name}} UI to generate and download the `KafkaConnec
 1. {{site.data.reuse.es_ui_login_nonadmin}}
 2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
 3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
-5. Ensure the **MQ Sink** tab is selected and click **Generate**.
-6. In the dialog, enter the configuration of the `MQ Sink` connector.
-7. Click **Download** to generate and download the configuration file with the supplied fields.
-8. Open the downloaded configuration file and change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
+4. Ensure the **MQ Sink** tab is selected and click **Generate**.
+5. In the dialog, enter the configuration of the `MQ Sink` connector.
+6. Click **Download** to generate and download the configuration file with the supplied fields.
+7. Open the downloaded configuration file and change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 
 ### Using the CLI
 
 Use the {{site.data.reuse.es_name}} CLI to generate and download the `KafkaConnector` custom resource YAML file for your IBM MQ sink connector. You can also use the CLI to generate a JSON file for distributed mode.
 
 1. {{site.data.reuse.es_cli_init_111}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:\\
-   `kubectl es init`
-3. Run the `connector-config-mq-sink` command to generate the configuration file for the `MQ Sink` connector.\\
-   For example, to generate a configuration file for an instance of `MQ` with the following information: a queue manager called `QM1`, with a connection point of `localhost(1414)`, a channel name of `MYSVRCONN`, a queue of `MYQSINK` and connecting to the topics `TSINK`, run the following command:
+2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
+
+   ```shell
+   kubectl es init
    ```
+
+3. Run the `connector-config-mq-sink` command to generate the configuration file for the `MQ Sink` connector.
+
+   For example, to generate a configuration file for an instance of `MQ` with the following information: a queue manager called `QM1`, with a connection point of `localhost(1414)`, a channel name of `MYSVRCONN`, a queue of `MYQSINK` and connecting to the topics `TSINK`, run the following command:
+
+   ```shell
    kubectl es connector-config-mq-sink --mq-queue-manager="QM1" --mq-connection-name-list="localhost(1414)" --mq-channel="MYSVRCONN" --mq-queue="MYQSINK" --topics="TSINK" --file="mq-sink" --format yaml
    ```
+
    **Note**: Omitting the `--format yaml` flag will generate a `mq-sink.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-sink.json` file which can be used for distributed mode outside {{site.data.reuse.openshift_short}}.
 4. Change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 
 The final configuration file will resemble the following:
-```
+
+```yaml
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaConnector
 metadata:
@@ -198,6 +209,7 @@ A list of all the possible flags can be found by running the command `kubectl es
 Follow the steps in [Set up a Kafka Connect environment](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, and when starting the connector, use the YAML file you created earlier.
 
 Verify the log output of Kafka Connect includes the following messages that indicate the connector task has started and successfully connected to IBM MQ:
+
 ``` shell
 $ kubectl logs <kafka_connect_pod_name>
 ...
@@ -212,20 +224,24 @@ INFO Connection to MQ established
 To test the connector you will need an application to produce events to your topic.
 
 1. {{site.data.reuse.es_ui_login_nonadmin}}
-1. Click **Toolbox** in the primary navigation.
-1. Go to the **Starter application** tile under **Applications**, and click **Get started**.
-2. Click **Download JAR from GitHUb**. Download the JAR file from the list of assets for the latest release.
-2. Click **Generate properties**.
-1. Enter a name for the application.
-1. Go to the **Existing topic** tab and select the topic you provided in the MQ connector configuration.
-1. Click **Generate and download .zip**.
-1. Follow the instructions in the UI to get the application running.
+2. Click **Toolbox** in the primary navigation.
+3. Go to the **Starter application** tile under **Applications**, and click **Get started**.
+4. Click **Download JAR from GitHUb**. Download the JAR file from the list of assets for the latest release.
+5. Click **Generate properties**.
+6. Enter a name for the application.
+7. Go to the **Existing topic** tab and select the topic you provided in the MQ connector configuration.
+8. Click **Generate and download .zip**.
+9. Follow the instructions in the UI to get the application running.
 
 Verify the message is on the queue:
 
 1. Navigate to the UI of the [sample application](../../../getting-started/generating-starter-app/) you generated earlier and start producing messages to {{site.data.reuse.es_name}}.
-2. Use the `amqsget` sample to get messages from the MQ Queue:\\
-   `/opt/mqm/samp/bin/amqsget <queue_name> <queue_manager_name>`\\
+2. Use the `amqsget` sample to get messages from the MQ Queue:
+
+   ```shell
+   /opt/mqm/samp/bin/amqsget <queue_name> <queue_manager_name>
+   ```
+
    After a short delay, the messages are printed.
 
 ## Advanced configuration

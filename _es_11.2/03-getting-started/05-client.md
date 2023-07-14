@@ -26,8 +26,9 @@ Download the JAR file from {{site.data.reuse.es_name}}, and include it in your J
 
 If you are using Maven or Gradle to manage your project, you can use the following snippets to include the Kafka client JAR and dependent JARs on your classpath.
 
-- For Maven, use the following snippet in the `<dependencies>` section of your `pom.xml` file:\\
-  ```
+- For Maven, use the following snippet in the `<dependencies>` section of your `pom.xml` file:
+
+  ```xml
   <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
@@ -44,10 +45,13 @@ If you are using Maven or Gradle to manage your project, you can use the followi
       <version>1.7.26</version>
   </dependency>
   ```
-- For Gradle, use the following snippet in the `dependencies{}` section of your `build.gradle` file:\\
-  ```
+
+- For Gradle, use the following snippet in the `dependencies{}` section of your `build.gradle` file:
+
+  ```gradle
   implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.8.1'
   implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
   implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
   ```
+
 - Ensure you [set up security](../connecting/#securing-the-connection).

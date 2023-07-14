@@ -27,7 +27,9 @@ channels:
 
 If you use the invalid AsyncAPI document in API Connect, the following error will occur in the API Connect Developer Portal:
 
-`Error: Cannot read properties of null (reading 'type')`
+```shell
+Error: Cannot read properties of null (reading 'type')
+```
 
 ## Causes
 

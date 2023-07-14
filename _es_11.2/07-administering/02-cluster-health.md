@@ -57,20 +57,20 @@ To install the {{site.data.reuse.es_name}} Kibana dashboards, follow these steps
 1. Ensure you have [cluster logging](https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-deploying.html){:target="_blank"} installed.
 2. Download the JSON file that includes the example Kibana dashboards for {{site.data.reuse.es_name}} from [GitHub](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"}.
 
-2. Navigate to the Kibana homepage on your cluster.
+3. Navigate to the Kibana homepage on your cluster.
 
    **For {{site.data.reuse.icpfs}}**: {{site.reuse.data.icpcs_ui_login}} Click the hamburger icon in the top left and then expand **Monitor Health**. Then click **Logging** to open the Kibana homepage.
 
    **For {{site.data.reuse.openshift_short}} cluster logging stack**: {{site.data.reuse.openshift_ui_login}} Then follow the instructions to navigate to [cluster logging's Kibana homepage](https://docs.openshift.com/container-platform/4.12/logging/cluster-logging-visualizer.html#cluster-logging-visualizer-kibana_cluster-logging-visualizer){:target="_blank"}.
-3. Click **Management** in the navigation on the left.
-4. Click **Index patterns**.
-5. Click **Create index pattern**.
-6. Enter `app*` in the **Index pattern** field, and click **Next step**.
-7. Select `@timestamp` from the **Time Filter field name** list, and click **Create index pattern**.
-8. Click **Saved Objects**.
-9. Click the **Import** icon and navigate to the JSON file you downloaded earlier that includes the example Kibana dashboards for {{site.data.reuse.es_name}}.
-10. If an `Index Pattern Conflicts` warning is displayed, select the `app*` index pattern from the **New index pattern** list for each conflict, then click **Confirm all changes**.
-11. Click **Dashboard** in the navigation on the left to view the downloaded dashboards.
+4. Click **Management** in the navigation on the left.
+5. Click **Index patterns**.
+6. Click **Create index pattern**.
+7. Enter `app*` in the **Index pattern** field, and click **Next step**.
+8. Select `@timestamp` from the **Time Filter field name** list, and click **Create index pattern**.
+9. Click **Saved Objects**.
+10. Click the **Import** icon and navigate to the JSON file you downloaded earlier that includes the example Kibana dashboards for {{site.data.reuse.es_name}}.
+11. If an `Index Pattern Conflicts` warning is displayed, select the `app*` index pattern from the **New index pattern** list for each conflict, then click **Confirm all changes**.
+12. Click **Dashboard** in the navigation on the left to view the downloaded dashboards.
 
 ## IBM Instana
 
@@ -84,7 +84,7 @@ After installing, Instana can monitor all aspects of an {{site.data.reuse.es_nam
 
 **Note**: You might receive the following error message in the Instana dashboards when you check monitoring metrics for the {{site.data.reuse.es_name}} UI container:
 
-```
+```shell
 Monitoring issue: nodejs_collector_not_installed
 
 The @instana/collector package is not installed in this Node.js application, or the @instana/collector package cannot announce itself to the host agent, for example due to networking issues.
@@ -93,18 +93,19 @@ The @instana/collector package is not installed in this Node.js application, or 
 If you require monitoring of the {{site.data.reuse.es_name}} UI, you can enable Instana to monitor the UI by setting the following in the `EventStreams` custom resource:
 
 ```yaml
-  apiVersion: eventstreams.ibm.com/v1beta2
-  kind: EventStreams
-  # ...
-  spec:
-  # ...
-  adminUI:
-      env:
-      -  name: INSTANA_AGENT_HOST
-         valueFrom:
-               fieldRef:
-                  fieldPath: status.hostIP
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: EventStreams
+# ...
+spec:
+# ...
+adminUI:
+   env:
+   -  name: INSTANA_AGENT_HOST
+      valueFrom:
+            fieldRef:
+               fieldPath: status.hostIP
 ```
+
 ## Other Monitoring Tools
 
 You can also use [external monitoring tools](../external-monitoring/) to monitor the deployed {{site.data.reuse.es_name}} Kafka cluster.

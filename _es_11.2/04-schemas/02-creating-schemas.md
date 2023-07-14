@@ -21,7 +21,7 @@ Define your Avro schema files and save them by using the `.avsc` or `.json` file
 
 For example, the following Avro schema defines a `Book` record in the `org.example` namespace, and contains the `Title`, `Author`, and `Format` fields with different data types:
 
-```
+```json
 {
     "type": "record",
     "name": "Book",
@@ -60,7 +60,10 @@ To use schemas in Kafka applications, import your schema definitions into the sc
 1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Run the following command to add a schema to the schema registry:\\
-   `kubectl es schema-add --name <schema-name> --version <schema-version> --file <path-to-schema-file>`
+
+   ```shell
+   kubectl es schema-add --name <schema-name> --version <schema-version> --file <path-to-schema-file>
+   ```
 
 ## Adding new schema versions
 
@@ -70,7 +73,7 @@ Apicurio Registry can store multiple versions of the same schema. As your applic
 
 For example, the following Avro schema defines a new version of the `Book` record, adding a `PageCount` field. By including a default value for this field, messages that were serialized with the previous version of this schema (which would not have a `PageCount` value) can still be deserialized using this version.
 
-```
+```json
 {
     "type": "record",
     "name": "Book",
@@ -106,6 +109,13 @@ For example, the following Avro schema defines a new version of the `Book` recor
 1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Run the following command to list all schemas in the schema registry, and find the schema name you want to add a new version to:\\
-   `kubectl es schemas`
+
+   ```shell
+   kubectl es schemas
+   ```
+
 4. Run the following command to add a new version of the schema to the registry:\\
-   `kubectl es schema-add --name <schema-name-from-previous-step> --version <new-schema-version> --file <path-to-new-schema-file>`
+
+   ```shell
+   kubectl es schema-add --name <schema-name-from-previous-step> --version <new-schema-version> --file <path-to-new-schema-file>
+   ```

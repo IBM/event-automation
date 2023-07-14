@@ -23,7 +23,9 @@ To configure the external access:
 
 1. Extract the Service Name of the service to be exposed. For example, run the following command to list the services:
 
-   `kubectl get service`
+   ```shell
+   kubectl get service
+   ```
 
    This will provide a list of service names, for example, `Service Name=MyKafkaBridge`
 
@@ -31,7 +33,7 @@ To configure the external access:
 
    - For example, if you have an {{site.data.reuse.openshift_short}} cluster, create a `Route` custom resource for the service to expose:
 
-   ```
+   ```yaml
    kind: Route
    apiVersion: route.openshift.io/v1
    metadata:
@@ -54,7 +56,7 @@ To configure the external access:
 
    - To expose a service by using ingress and NGINX as the [ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/){:target="_blank"}, create an `Ingress` custom resource for the service to expose:
 
-   ```
+   ```yaml
    apiVersion: networking.k8s.io/v1
    kind: Ingress
    metadata:
@@ -73,9 +75,12 @@ To configure the external access:
                    port:
                      number: <port-number>
    ```
+
    For information about the schema for REST endpoints, see the table in [configuring access](../../installing/configuring/#rest-services-access).
 
 
 3. Apply the custom resource by running the following command:
 
-   `kubectl apply -f <filename>.yaml`
+   ```shell
+   kubectl apply -f <filename>.yaml
+   ```

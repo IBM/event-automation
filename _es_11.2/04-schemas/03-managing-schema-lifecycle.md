@@ -42,18 +42,27 @@ You can re-activate a schema or its version by setting **Mark schema as deprecat
 ### Using the CLI
 
 1. {{site.data.reuse.es_cli_init_111}}
-2. Run the following command to deprecate a schema version:\\
-   `kubectl es schema-modify --deprecate --name <schema-name> --version <schema-version-id>`
+2. Run the following command to deprecate a schema version:
+
+   ```shell
+   kubectl es schema-modify --deprecate --name <schema-name> --version <schema-version-id>
+   ```
 
    To deprecate an entire schema, do not specify the `--version <schema-version-id>` option.
 
-   To re-activate a schema version:\\
-   `kubectl es schema-modify --activate --name <schema-name> --version <schema-version-id>`
+   To re-activate a schema version:
+
+   ```shell
+   kubectl es schema-modify --activate --name <schema-name> --version <schema-version-id>
+   ```
 
    To re-activate an entire schema, do not specify the `--version <schema-version-id>` option.
 
 **Note:** `<schema-version-id>` is the integer ID that is displayed when listing schema versions using the following command:
-`kubectl es schema <schema-name>`.
+
+```shell
+kubectl es schema <schema-name>
+```
 
 ## Disabling
 
@@ -68,26 +77,37 @@ When a schema is disabled, applications that want to use the schema receive an e
 1. {{site.data.reuse.es_ui_login}}
 2. Click **Schema registry** in the primary navigation.
 3. Select the schema you want to disable from the list.
-4. Set the entire schema or a selected version of the schema to be disabled:\\
+4. Set the entire schema or a selected version of the schema to be disabled:
+
    - If you want to disable the entire schema and all its versions, click the **Manage schema** tab, and click **Disable schema**, then click **Disable**.
-   - To disable a specific version, select it from the list, and click the **Manage version** tab for that version. Then click **Disable version**, then click **Disable**.\\
+   - To disable a specific version, select it from the list, and click the **Manage version** tab for that version. Then click **Disable version**, then click **Disable**.
+
    You can re-enable a schema by clicking **Enable schema**, and re-enable a schema version by clicking  **Re-enable version**.
 
 ### Using the CLI
 
-1.  {{site.data.reuse.es_cli_init_111}}
-2. Run the following command to disable a schema version:\\
-   `kubectl es schema-modify --disable --name <schema-name> --version <schema-version-id>`
+1. {{site.data.reuse.es_cli_init_111}}
+2. Run the following command to disable a schema version:
+
+   ```shell
+   kubectl es schema-modify --disable --name <schema-name> --version <schema-version-id>
+   ```
 
    To disable an entire schema, do not specify the `--version <schema-version-id>` option.
 
-   To re-enable a schema version:\\
-   `kubectl es schema-modify --enable --name <schema-name> --version <schema-version-id>`
+   To re-enable a schema version:
+
+   ```shell
+   kubectl es schema-modify --enable --name <schema-name> --version <schema-version-id>
+   ```
 
    To re-enable an entire schema, do not specify the `--version <schema-version-id>` option.
 
 **Note:** `<schema-version-id>` is the integer ID that is displayed when listing schema versions using the following command:
-`kubectl es schema <schema-name>`.
+
+```shell
+kubectl es schema <schema-name>
+```
 
 
 ## Removing
@@ -114,11 +134,17 @@ If a schema version has not been used for a period of time, you can remove it fr
 
 1. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to remove a schema version:\\
-   `kubectl es schema-remove --name <schema-name> --version <schema-version-id>`
+
+   ```shell
+   kubectl es schema-remove --name <schema-name> --version <schema-version-id>
+   ```
 
    To remove an entire schema, do not specify the `--version <schema-version-id>` option.
 
    **Important:** This action is permanent and cannot be reversed.
 
 **Note:** `<schema-version-id>` is the integer ID that is displayed when listing schema versions using the following command:
-`kubectl es schema <schema-name>`.
+
+```shell
+kubectl es schema <schema-name>
+```

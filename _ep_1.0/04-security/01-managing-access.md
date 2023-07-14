@@ -24,19 +24,19 @@ You can define users explicitly with usernames and passwords, which is typically
 2. Click the plus(**+**) button in the top banner to open the **Import YAML** page and then click the editor.
 3. Paste the following YAML into the editor to create a custom resource that defines an instance of {{site.data.reuse.ep_name}} called `local-auth`:
 
-    ```yaml
-    apiVersion: events.ibm.com/v1beta1
-    kind: EventProcessing
-    metadata:
-      name: local-auth
-      namespace: ep
-    spec:
-      license:
-        accept: true
-      authoring:
-        authConfig:
-          authType: LOCAL
-    ```
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   metadata:
+     name: local-auth
+     namespace: ep
+   spec:
+     license:
+       accept: true
+     authoring:
+       authConfig:
+         authType: LOCAL
+   ```
 
     This YAML creates two secrets `<custom-resource-name>-ibm-ep-user-credentials` and `<custom-resource-name>-ibm-ep-user-roles`. These secrets can be used to define the local user credentials and roles (permissions).
 
@@ -44,20 +44,20 @@ You can define users explicitly with usernames and passwords, which is typically
 5. To edit the secret `<custom-resource-name>-ibm-ep-user-credentials` with your local user credentials, go to **Actions** and click **Editing Secret**.
 6. Configure your user credentials. For example:
 
-    ```json
-    {
-        "users": [
-            {
-              "username": "user1",
-              "password": "Password1$"
-            },
-            {
-              "username": "user2",
-              "password": "Password2$"
-            }
-        ]
-    }
-    ```
+   ```json
+   {
+       "users": [
+           {
+             "username": "user1",
+             "password": "Password1$"
+           },
+           {
+             "username": "user2",
+             "password": "Password2$"
+           }
+       ]
+   }
+   ```
 
 7. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance, and you can then log in with these users. For more information, see [logging in](../../getting-started/logging-in) to an {{site.data.reuse.ep_name}} instance.
@@ -67,45 +67,45 @@ You can define users explicitly with usernames and passwords, which is typically
 1. {{site.data.reuse.openshift_cli_login}}
 2. Run the following command to create an instance of {{site.data.reuse.ep_name}}:
 
-    ```bash
-    cat <<EOF | oc apply -f -
-    apiVersion: events.ibm.com/v1beta1
-    kind: EventProcessing
-    metadata:
-      name: local-auth
-      namespace: ep
-    spec:
-      license:
-        accept: true
-      authoring:
-        authConfig:
-          authType: LOCAL
-    EOF
-    ```
+   ```bash
+   cat <<EOF | oc apply -f -
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   metadata:
+     name: local-auth
+     namespace: ep
+   spec:
+     license:
+       accept: true
+     authoring:
+       authConfig:
+         authType: LOCAL
+   EOF
+   ```
 
     This creates two secrets `<custom-resource-name>-ibm-ep-user-credentials` and `<custom-resource-name>-ibm-ep-user-roles`. These secrets are used to define the local user credentials and roles (permissions).
 3. To edit the secret `<custom-resource-name>-ibm-ep-user-credentials` with the local user credentials, run the following command:
 
-    ```bash
-    oc edit secret/<custom-resource-name>-ibm-ep-user-credentials -o json
-    ```
+   ```bash
+   oc edit secret/<custom-resource-name>-ibm-ep-user-credentials -o json
+   ```
 
 4. Configure your user credentials. For example:
 
-    ```json
-    {
-        "users": [
-            {
-              "username": "user1",
-              "password": "Password1$"
-            },
-            {
-              "username": "user2",
-              "password": "Password2$"
-            }
-        ]
-    }
-    ```
+   ```json
+   {
+       "users": [
+           {
+             "username": "user1",
+             "password": "Password1$"
+           },
+           {
+             "username": "user2",
+             "password": "Password2$"
+           }
+       ]
+   }
+   ```
 
 5. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance, and you can then log in with these users. For more information, see [logging in](../../getting-started/logging-in) to an {{site.data.reuse.ep_name}} instance.
@@ -130,55 +130,55 @@ You can authenticate users from the OIDC identity provider as follows:
 4. Click the plus(**+**) button in the banner on the top to open the **Import YAML** page and then click the editor.
 5. Create a secret that contains the OIDC credentials called `oidc-secret`. To create a secret, paste the following YAML content into the editor and then click **Create**.
 
-    ```yaml
-    kind: Secret
-    apiVersion: v1
-    metadata:
-      name: oidc-secret
-      namespace: ep
-    data:
-      client-id: <base_64_encoded_client_id>
-      client-secret: <base_64_encoded_client_secret>
-    type: Opaque
-    ```
+   ```yaml
+   kind: Secret
+   apiVersion: v1
+   metadata:
+     name: oidc-secret
+     namespace: ep
+   data:
+     client-id: <base_64_encoded_client_id>
+     client-secret: <base_64_encoded_client_secret>
+   type: Opaque
+   ```
 
 6. Create a custom resource that defines an instance of {{site.data.reuse.ep_name}} called `oidc-auth`. To create an instance, paste the following YAML content into the editor and then click **Create**.
 
-    ```yaml
-    apiVersion: events.ibm.com/v1beta1
-    kind: EventProcessing
-    metadata:
-      name: oidc-auth
-      namespace: ep
-    spec:
-      license:
-        accept: true
-      authoring:
-        authConfig:
-          authType: OIDC
-          oidcConfig:
-            clientIDKey: client-id
-            clientSecretKey: client-secret
-            discovery: true
-            secretName: oidc-secret
-            site: <oidc_provider_site>
-    ```
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   metadata:
+     name: oidc-auth
+     namespace: ep
+   spec:
+     license:
+       accept: true
+     authoring:
+       authConfig:
+         authType: OIDC
+         oidcConfig:
+           clientIDKey: client-id
+           clientSecretKey: client-secret
+           discovery: true
+           secretName: oidc-secret
+           site: <oidc_provider_site>
+   ```
 
-    **Note:** If your OIDC provider does not support [**OIDC Discovery**](https://openid.net/specs/openid-connect-discovery-1_0.html#IssuerDiscovery){:target="_blank"}, ensure you add the following parameters in the `oidcConfig` block:
+   **Note:** If your OIDC provider does not support [**OIDC Discovery**](https://openid.net/specs/openid-connect-discovery-1_0.html#IssuerDiscovery){:target="_blank"}, ensure you add the following parameters in the `oidcConfig` block:
 
-    ```yaml
-    tokenPath: (required) <path to the token endpoint of this provider>
-    authorizationPath: (required) <path to the authorization endpoint of this provider>
-    endSessionPath: (optional) <path to the end session endpoint of this provider>
-    ```
+   ```yaml
+   tokenPath: (required) <path to the token endpoint of this provider>
+   authorizationPath: (required) <path to the authorization endpoint of this provider>
+   endSessionPath: (optional) <path to the end session endpoint of this provider>
+   ```
 
 7. You can now log in with these users. For more information, see [logging in](../../getting-started/logging-in) to an {{site.data.reuse.ep_name}} instance.
 8. Retrieve the login URL, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
-    ```bash
-    https://<login_url_domain>/ep/callback
-    https://<login_url_domain>/logout/callback
-    ```
+   ```bash
+   https://<login_url_domain>/ep/callback
+   https://<login_url_domain>/logout/callback
+   ```
 
 9. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
 10. Open the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users with the `subject` value. For more information, see [managing roles](../user-roles).
@@ -248,17 +248,17 @@ You can authenticate users from the OIDC identity provider as follows:
 6. You can now log in with these users. For more information, see [logging](../../getting-started/logging-in) into {{site.data.reuse.ep_name}} instance.
 7. Retrieve the login URL, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
-    ```bash
-    https://<login_url_domain>/ep/callback
-    https://<login_url_domain>/logout/callback
-    ```
+   ```bash
+   https://<login_url_domain>/ep/callback
+   https://<login_url_domain>/logout/callback
+   ```
 
 8. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
 9. Run the following command to edit the secret `<custom-resource-name>-ibm-ep-user-roles` to [manage the user roles](../user-roles).
 
-    ```bash
-    oc edit secret/<custom-resource-name>-ibm-ep-user-roles -o json
-    ```
+   ```bash
+   oc edit secret/<custom-resource-name>-ibm-ep-user-roles -o json
+   ```
 
 ## Setting up OIDC based authentication with a custom role identifier
 
@@ -274,6 +274,7 @@ additionalScopes: <additional scopes to be request during OIDC connection to ret
 ```
 
 The following example shows the default OIDC token:
+
 ```json
 {
   "sub": "user-xyz-123",
@@ -282,7 +283,9 @@ The following example shows the default OIDC token:
   "exp": 123456
 }
 ```
+
 The following example shows requesting the OIDC with `additionalScopes: roles`:
+
 ```json
 {
   "sub": "user-xyz-123",
@@ -298,6 +301,7 @@ The following example shows requesting the OIDC with `additionalScopes: roles`:
   }
 }
 ```
+
 Now {{site.data.reuse.ep_name}} can use the `roles` values to define permissions for all users who have these roles in their OIDC token.
 
 To do this, the {{site.data.reuse.ep_name}} Custom Resource should set `authorizationClaimPointer: /resource_access/demonstration-id/roles`, which allows the {{site.data.reuse.ep_name}} instance to read the properties from this path in the token.

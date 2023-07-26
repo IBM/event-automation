@@ -21,7 +21,7 @@ Decide the purpose of your deployment, for example, whether you want a starter d
 A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following {{site.data.reuse.ep_name}} sample configurations are available to deploy:
-- Quick start: A development instance with reduced resources, using ephemeral storage and Local authentication.
+- Quick Start: A development instance with reduced resources, using ephemeral storage and Local authentication.
 - Production: A production instance with placeholders for persistence and OpenID Connect (OIDC) authentication.
 
 By default, both samples require the following resources:
@@ -36,19 +36,19 @@ If you are [installing](../installing/#installing-an-event-processing-instance-b
 
 ## Flink sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following table provides an overview of the Flink sample configurations and their resource requirements:
 
-| Sample | CPU limit per Task Manager | Memory per Task Manager | Slots per Task Manager | Parallelism | Max. number of flows per Task Manager | Job Manager High Availability | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }}))
-|--------|---------------------------|-------------------------|------------------------|-------------|---------------------------------------|-------------------------------|-----| 
-| Quick Start | 0.5 | 2GB | 4 | 1 | 2 | No | 1
-| Minimal Production | 1 | 2GB | 10 | 1 | 5 | No | 2
-| Production | 2 | 4GB | 10 | 1 | 5 | Yes | 3
-| Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1, set to 1 in the sample | 1 | No, but can be configured | 3
+| Sample | CPU limit per Task Manager | Memory per Task Manager | Slots per Task Manager | Parallelism | Max. number of flows per Task Manager | Job Manager High Availability | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
+|--------|---------------------------|-------------------------|------------------------|-------------|---------------------------------------|-------------------------------|-----|
+| Quick Start | 0.5 | 2GB | 4 | 1 | 2 | No | 1 |
+| Minimal Production | 1 | 2GB | 10 | 1 | 5 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes in {{site.data.reuse.flink_long}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.flink_long}} version 1.0.0 | 2 |
+| Production | 2 | 4GB | 10 | 1 | 5 | Yes | 3 |
+| Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1, set to 1 in the sample | 1 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes in {{site.data.reuse.flink_long}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.flink_long}} version 1.0.0 (but can be configured) | 3 |
 
 **Important:**
-- Quick start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
+- Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
 - The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
 
 Points to consider for resource requirements:
@@ -87,27 +87,36 @@ High-level criteria for choosing between Minimal Production and Production sampl
 
 To create a configuration optimized for jobs that have high throughput, low latency requirements, or both, estimate your resource requirements, including network capacity.
 
-### Flink quick start sample
+### Flink Quick Start sample
 
-The Quick start sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable only for very small workloads that have no persistence or reliability requirements. It is capable of running in a single Flink Task Manager a maximum of 2 parallel flows submitted from the {{site.data.reuse.ep_name}} flow authoring tool. If you need to run more than 2 flows, a new Task Manager will be automatically created.
+The Quick Start sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable only for very small workloads that have no persistence or reliability requirements. It is capable of running in a single Flink Task Manager a maximum of 2 parallel flows submitted from the {{site.data.reuse.ep_name}} flow authoring tool. If you need to run more than 2 flows, a new Task Manager will be automatically created.
 
-### Flink minimal production sample
+This sample does not configure Flink with High Availability for the Flink Job Manager, thus Flink jobs are not automatically restarted if the Flink cluster restarts.
 
-The Minimal Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for small production workloads. This sample does not configure Flink with High Availability for the Flink Job Manager.
+### Flink Minimal Production sample
 
-### Flink production sample
+The Minimal Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for small production workloads.
 
-The Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for large production workloads. This sample configures Flink with High Availability for the Flink Job Manager.
 
-### Flink production application cluster sample
+![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later") In {{site.data.reuse.flink_long}} 1.0.1 and later, this sample configures Flink with minimal High Availability for the Flink Job Manager. This means that Flink jobs are restarted automatically if the Flink cluster restarts. However, some downtime is expected as there is only a single Job Manager replica. 
+
+In {{site.data.reuse.flink_long}} 1.0.0, this sample does not configure Flink with High Availability for the Flink Job Manager, thus Flink jobs are not automatically restarted if the Flink cluster restarts.
+
+### Flink Production sample
+
+The Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for large production workloads. This sample configures Flink with High Availability for the Flink Job Manager, thus Flink jobs are automatically restarted if the Flink cluster restarts.
+
+### Flink Production Application Cluster sample
 
 The Production – Flink Application Cluster sample is suitable for running a single large Flink job in [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} mode. You can configure the job parallelism (`spec.job.parallelism`) and the number of slots (`spec.flinkConfiguration["taskmanager.numberOfTaskSlots"]`) to suit the characteristics of your flow and your workload. As this sample configures 2 slots, assuming your job is consuming events from a Kafka topic with 10 partitions, to run a large job you can select a parallelism of 10, which requires 5 Task Managers.
+
+This sample configures Flink with High Availability for the Flink Job Manager. Being a Flink application cluster, the Flink jobs are automatically restarted if the Flink cluster restarts.
 
 For information about using this sample, see [Deploying jobs in production environments](../../advanced/deploying-production).
 
 ### Deploying the Flink PVC
 
-All Flink samples except the Quick start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://docs.openshift.com/container-platform/4.12/rest_api/storage_apis/persistentvolumeclaim-v1.html){:target="_blank"} must be deployed as follows.
+All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://docs.openshift.com/container-platform/4.12/rest_api/storage_apis/persistentvolumeclaim-v1.html){:target="_blank"} must be deployed as follows.
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. If the namespace where the Flink instance will be deployed does not exist yet, create it:

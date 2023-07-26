@@ -41,13 +41,13 @@ This tutorial was written using the following versions of {{ site.data.reuse.ea_
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
 
-    If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](./tutorial-access#event-processing).
+   If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](./tutorial-access#event-processing).
 
 1. Create a flow, and give it a name and description that explains you will use it to track how many products are sold of each type.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow")
 
 ### Step 2 : Provide a source of events
 
@@ -55,21 +55,21 @@ The next step is to bring the stream of events to process into the flow. We will
 
 1. Create an **Event source** node.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node")
 
-    Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+   Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
 
 1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node")
 
-    **Tip**: If you haven't followed that tutorial, you can click **Add new event source** instead, and follow the [Provide a source of events](./tutorial-1#event-source) steps in the previous tutorial to define a new Event source from scratch.
+   **Tip**: If you haven't followed that tutorial, you can click **Add new event source** instead, and follow the [Provide a source of events](./tutorial-1#event-source) steps in the previous tutorial to define a new Event source from scratch.
 
 1. Click **Next**.
 
 1. The schema for events on this topic defined before is displayed. Click **Configure**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node")
 
 1. To rename the event source, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options" and choose "Edit".
 
@@ -82,75 +82,82 @@ In the next step, we extract product type into a separate property so that we ca
 
 1. Add a **Transform** node and link it to your event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation")
 
-    Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
 
-    Click and drag from the small gray dot on the event source to the matching dot on the transform node.
+   Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
 1. Give the transform node a name that describes what it will do: `get product type`.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation")
 
-    Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
 
 1. Add a new property for the product type that you will generate with a regular expression.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation")
 
-    Click "Create new property".
+   Click "Create new property".
 
-    Name the property `product type`.
+   Name the property `product type`.
 
-    Use the assistant to choose the `REGEXP_EXTRACT` function from the list.
+   Use the assistant to choose the `REGEXP_EXTRACT` function from the list.
 
-    **Did you know?** The `REGEXP_EXTRACT` function allows you to extract data from a text property using regular expressions.
+   **Did you know?** The `REGEXP_EXTRACT` function allows you to extract data from a text property using regular expressions.
 
 1. Define the regular expression that extracts the product type from the description.
 
-    > Product descriptions are all made up of four words.
-    >
-    > Some examples:
-    > - `XXS Navy Cargo Jeans`
-    > - `M Stonewashed Capri Jeans`
-    > - `XL White Bootcut Jeans`
-    > - `S Acid-washed Jogger Jeans`
-    >
-    > Each word contains similar information in each description:
-    >
-    > word 1 : Size. This is made up of one-or-more uppercase letters.
-    >
-    > word 2 : Material or color, made up of a mixed-case word, optionally with a hyphen.
-    >
-    > word 3 : The type of jeans, made up of a mixed-case word, optionally with a hyphen.
-    >
-    > word 4 : The text "Jeans".
+   > Product descriptions are all made up of four words.
+   >
+   > Some examples:
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation")
+   > - `XXS Navy Cargo Jeans`
+   > - `M Stonewashed Capri Jeans`
+   > - `XL White Bootcut Jeans`
+   > - `S Acid-washed Jogger Jeans`
+   >
+   > Each word contains similar information in each description:
+   >
+   > word 1 : Size. This is made up of one-or-more uppercase letters.
+   >
+   > word 2 : Material or color, made up of a mixed-case word, optionally with a hyphen.
+   >
+   > word 3 : The type of jeans, made up of a mixed-case word, optionally with a hyphen.
+   >
+   > word 4 : The text "Jeans".
 
-    Create a regular expression that extracts the third word from the description text, by filling in the assistant form with the following values:
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation")
 
-    **text** :
-    ```
-    description
-    ```
-    This identifies which property in the order events that contains the text that you want to apply the regular expression to.
+   Create a regular expression that extracts the third word from the description text, by filling in the assistant form with the following values:
 
-    **regex** :
-    ```
-    ([A-Z]+) ([A-Za-z\-]+) ([A-Za-z\-]+) Jeans
-    ```
-    This can be used to match the description as shown above - describing the four words that every description contains.
+   **text** :
 
-    **index** :
-    ```
-    3
-    ```
-    This specifies that you want the new product type property to contain the third word in the description.
+   ```shell
+   description
+   ```
+
+   This identifies which property in the order events that contains the text that you want to apply the regular expression to.
+
+   **regex** :
+
+   ```shell
+   ([A-Z]+) ([A-Za-z\-]+) ([A-Za-z\-]+) Jeans
+   ```
+
+   This can be used to match the description as shown above - describing the four words that every description contains.
+
+   **index** :
+
+   ```shell
+   3
+   ```
+
+   This specifies that you want the new product type property to contain the third word in the description.
 
 1. Click **Insert into expression** to complete the assistant.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-ii.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-ii.png "defining the transformation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-ii.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-ii.png "defining the transformation")
 
 1. As you aren't modifying existing properties, click **Next**.
 
@@ -163,11 +170,11 @@ The next step is to test your event processing flow and view the results.
 
 1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow")
 
-    **Tip**: It is good to regularly test as you develop your event processing flow to confirm that the last node you have added is doing what you expected.
+   **Tip**: It is good to regularly test as you develop your event processing flow to confirm that the last node you have added is doing what you expected.
 
-    Note the new property for product type is populated with the data extracted from the description property.
+   Note the new property for product type is populated with the data extracted from the description property.
 
 1. When you have finished reviewing the results, you can stop this flow.
 
@@ -178,37 +185,37 @@ Now that you have transformed the stream of events to include the type attribute
 
 1. Add an **Aggregate** node and link it to your event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation")
 
-    Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
 
-    Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
+   Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
 
 1. Name the aggregate node to show that it will count the number of units sold of each type: `hourly sales by type`.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation")
 
-    Configure the aggregate node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Configure the aggregate node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
 
 1. Specify a 1-hour window.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-10.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-10.png "defining the aggregation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-10.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-10.png "defining the aggregation")
 
 1. Sum the number of items sold in each hour, grouped by product type.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-11.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-11.png "defining the aggregation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-11.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-11.png "defining the aggregation")
 
-    Select `SUM` as the aggregate function.
+   Select `SUM` as the aggregate function.
 
-    The property we are adding up is `quantity` - the number of items that are sold in each order. This will add up the number of items sold in each order that happens within the time window.
+   The property we are adding up is `quantity` - the number of items that are sold in each order. This will add up the number of items sold in each order that happens within the time window.
 
-    Finally, select the new property `product type` as the property to group by. This will add up the number of items sold of each type.
+   Finally, select the new property `product type` as the property to group by. This will add up the number of items sold of each type.
 
 1. Rename the new aggregate properties.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-12.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-12.png "defining the aggregation")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-12.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-12.png "defining the aggregation")
 
-    **Tip**: It can be helpful to adjust the name of properties to something that will make sense to you, such as describing the SUM property as `total sales`.
+   **Tip**: It can be helpful to adjust the name of properties to something that will make sense to you, such as describing the SUM property as `total sales`.
 
 1. Click **Configure** to finalize the aggregate.
 
@@ -218,12 +225,11 @@ The final step is to run your event processing flow and view the results.
 
 1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow")
 
-    The output window shows that your aggregate is returning the total number of items for each type of product within each window of time.
+   The output window shows that your aggregate is returning the total number of items for each type of product within each window of time.
 
 1. When you have finished reviewing the results, you can stop this flow.
-
 
 ## Recap
 

@@ -34,11 +34,19 @@ This tutorial environment is not intended to demonstrate a production deployment
 
 1. Clone the [event-automation-demo](https://github.com/IBM/event-automation-demo){:target="_blank"} Github repository.
 
-1. Install Ansible on the computer that you will use to run the tutorial playbook.
+1. Install **Python** and pip on the computer that you will use to run the tutorial playbook.
+
+1. Install **Ansible** on the computer that you will use to run the tutorial playbook.
 
     If you are using MacOS, you can use [homebrew](https://formulae.brew.sh/formula/ansible){:target="_blank"}.
-
     Alternatively, you can use a [Python installer](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible){:target="_blank"}.
+
+    Include the `kubernetes.core` and `community.general` collections:
+
+    ```sh
+    ansible-galaxy collection install kubernetes.core
+    ansible-galaxy collection install community.general
+    ```
 
 ### Red Hat OpenShift
 

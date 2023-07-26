@@ -366,10 +366,10 @@ When modifying the sample configuration, the updated document can be exported fr
 by clicking the **Download** button and re-imported by dragging the resulting file back into the window.
 
 **Note:** If you experiment with {{site.data.reuse.flink_long}} and want a minimal CPU and memory footprint,
-the **Quick start** sample is the smallest and simplest example. For the smallest production setup, use the
+the **Quick Start** sample is the smallest and simplest example. For the smallest production setup, use the
 **Minimal Production** sample configuration.
 
-**Important:** All Flink samples except **Quick start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
+**Important:** All Flink samples except **Quick Start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 
 **Important:** In all Flink samples, just as in any `FlinkDeployment` custom resource, accept the
 license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
@@ -425,7 +425,7 @@ To install an instance of Flink from the command-line, you must first prepare a 
 
 A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
 
-**Important:** All Flink samples except **Quick start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
+**Important:** All Flink samples except **Quick Start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 
 To deploy a Flink instance, run the following commands:
 
@@ -507,7 +507,7 @@ To view the samples, complete the following steps:
 
 More information about these samples is available in the [planning](../planning/#event-processing-sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
 
-**Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
+**Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 When modifying the sample configuration, the updated document can be exported from the **Create EventProcessing** panel by clicking the **Download** button and re-imported by dragging the resulting file back into the window. You can also directly edit the custom resource YAML by clicking on the editor.
 
@@ -538,7 +538,7 @@ To view a sample in the form view, complete the following steps:
 4. Select **Form view** in the **Configure via** section to switch back to the form view with the data from the sample populated.
 5. Edit as required.
 
-**Note:** If experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
+**Note:** If experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 
 To configure an `EventProcessing` custom resource,  complete the following steps:
@@ -560,7 +560,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 More information about these samples is available in the [planning](../planning/#event-processing-sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
 
-**Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
+**Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 When modifying the sample configuration, ensure that the following fields are updated:
 

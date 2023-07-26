@@ -21,7 +21,7 @@ An asyncAPI document that describes the topic is downloaded as a YAML file.
 
 ## Configure a Catalog in API Connect
 
-See the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps on how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured ](../configure-EEM-for-APIC) {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service.
+See the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps on how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured ](../configure-eem-for-apic) {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service.
 
 ## Import the AsyncAPI document
 

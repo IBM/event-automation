@@ -117,6 +117,8 @@ latest_eemdocs:
         url: /consume-subscribe/discovering-topics/
       - title: "Subscribing to topics"
         url: /consume-subscribe/subscribing-to-topics/
+      - title: "Managing subscriptions"
+        url: /consume-subscribe/managing-subscriptions/
       - title: "Setting your application to consume from a topic"
         url: /consume-subscribe/setting-your-application-to-consume/
   - title: "Integrating with IBM API Connect"
@@ -145,6 +147,8 @@ latest_eemdocs:
         url: /troubleshooting/evicted-gateway/
       - title: "Invalid exported Async API for API Connect"
         url: /troubleshooting/invalid-async-api/
+      - title: "Error when logging in to UI after changing CA certificate"
+        url: /troubleshooting/changing-ca-certificate/
 
 
 
@@ -390,6 +394,12 @@ latestdocs:
         url: /administering/managing-multizone/
       - title: "Stopping and starting Event Streams"
         url: /administering/stopping-starting/
+  - title: Reference
+    children:
+      - title: "API reference for the Event Streams CRDs"
+        url: /reference/api-reference-es/
+      - title: "API reference for the geo-replicator CRDs"
+        url: /reference/api-reference-esgr/
   - title: Troubleshooting
     children:
       - title: "Troubleshooting overview"

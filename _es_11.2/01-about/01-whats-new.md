@@ -8,6 +8,16 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.2.x.
 
+## Release 11.2.2
+
+### Add your connectors with kaniko builder
+
+When setting up connections for Kafka Connect, you can specify connectors in the Kafka Connect custom resource, and then build images that contain the connectors by using the kaniko builder. For more information, see [setting up connectors](../../connecting/setting-up-connectors/). 
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.2.2 contains security and bug fixes.
+
 ## Release 11.2.1
 
 ### Apicurio version updated to 2.4.3

@@ -19,9 +19,9 @@ To edit the details of a cluster, complete the following steps.
 
 1. Locate the cluster to be edited in the **Clusters** page table and click the edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"}
 
-   The **Cluster information** screen is displayed with your existing cluster name.
+   The **Cluster information** screen is displayed with your existing cluster name. You can edit this and provide a new name, or leave it as it is.
 
-   **Note**: You cannot edit the cluster name for an existing cluster.
+   **Note**: The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
 
 2. Click **Next**. The existing bootstrap servers for your cluster are displayed. Amend the bootstrap server URLs for the Kafka cluster. Optionally, you can click **Add URL** to add one or more additional bootstrap servers, then click **Next**.
 

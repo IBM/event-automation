@@ -52,7 +52,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 1. Set the environment variables for the {{site.data.reuse.flink_long}} and its version by running the following command:
 
    ```shell
-   export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION=1.0.0 && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup
+   export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION={{site.data.reuse.flink_operator_current_version}} && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup
    ```
 
 2. Run the following command to download, validate, and extract the CASE.
@@ -64,7 +64,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 3. Set the environment variables for the {{site.data.reuse.ep_name}} and its version by running the following command:
 
    ```shell
-   export CASE_NAME=ibm-eventprocessing && export CASE_VERSION=1.0.1 && export CASE_INVENTORY_SETUP=epOperatorSetup
+   export CASE_NAME=ibm-eventprocessing && export CASE_VERSION={{site.data.reuse.ep_current_version}} && export CASE_INVENTORY_SETUP=epOperatorSetup
    ```
 
 4. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
@@ -90,7 +90,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: 1.0.1 is complete
+   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
    ```
 
    **Note:**  To download the latest version of CASE, do not specify the CASE version. For example:
@@ -111,13 +111,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── 1.0.1
+   │   │       └── {{site.data.reuse.ep_current_version}}
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-1.0.1-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-1.0.1-charts.csv
-   │   │           ├── ibm-eventprocessing-1.0.1-images.csv
-   │   │           ├── ibm-eventprocessing-1.0.1.tgz
+   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
+   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
+   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -206,7 +206,7 @@ Complete the following steps to mirror the images from your host to your offline
      For example:
 
      ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
      ```
 
    - To copy the images of {{site.data.reuse.ep_name}}:
@@ -220,7 +220,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 
      ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.1/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
      ```
      
     Where:
@@ -277,7 +277,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.0/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources.yaml
   ```
 
 - For {{site.data.reuse.ep_name}}:
@@ -289,7 +289,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.1/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources.yaml
   ```
 
 ## Install the operator

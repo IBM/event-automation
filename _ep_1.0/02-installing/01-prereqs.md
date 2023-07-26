@@ -28,19 +28,17 @@ Ensure that your hardware can accommodate the [resource requirements](#resource-
 Minimum resource requirements are based on the total of requests set for the deployment. You will require more resources to accommodate the limit settings (see more about "requests" and "limits" later in this section).
 Always ensure that you have sufficient resources in your environment to deploy the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} operator together with a Quick start or a Production instance of Flink and {{site.data.reuse.ep_name}}.
 
-Flink:
+Flink resource requirements:
 
+| Deployment                                                                                         | CPU (cores)                       | Memory (Gi)                    | Chargeable cores (see [Flink samples](../planning/#flink-sample-deployments)) |
+|----------------------------------------------------------------------------------------------------|-----------------------------------|--------------------------------|-------------------------------------------------------------------------------|
+| [Operator](#operator-requirements)                                                                 | 0.2                               | 1.0                            | N/A                                                                           |
+| [Quick Start](../planning/#flink-quick-start-sample)                                               | 1.0                               | 4.0                            | 1                                                                             |
+| [Minimal Production](../planning/#flink-minimal-production-sample)                                 | 1.25                              | 4.0                            | 2                                                                             |
+| [Production](../planning/##flink-production-sample)                                                | 3.0                               | 12.0                           | 3                                                                             |
+| [Production - Flink Application cluster](../planning/#flink-production-application-cluster-sample) | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later") 3.0<br/> 2.5 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later") 12.0<br/> 8.0  | 3      |
 
-| Deployment                                                                                         | CPU (cores) | Memory (Gi) | Chargeable cores (see [Flink samples](../planning/#flink-sample-deployments)) |
-| -------------------------------------------------------------------------------------------------- | ----------- | ----------- | ---- |
-| [Operator](#operator-requirements)                                                                 | 0.2         | 1.0         | N/A  |
-| [Quick start](../planning/#flink-quick-start-sample)                                               | 1.0         | 4.0         | 1    |
-| [Minimal production](../planning/#flink-minimal-production-sample)                                 | 1.25        | 4.0         | 2    |
-| [Production](../planning/#flink-production-sample)                                                 | 3.0         | 12.0        | 3    |
-| [Production - Flink Application cluster](../planning/#flink-production-application-cluster-sample) | 2.5         | 8.0         | 3    |
-
-
-{{site.data.reuse.ep_name}}:
+{{site.data.reuse.ep_name}} resource requirements:
 
 | Deployment                                                      | CPU (cores) | Memory (Gi) | Chargeable cores |
 | --------------------------------------------------------------- | ----------- | ----------- | ---- |

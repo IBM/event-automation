@@ -34,3 +34,5 @@ You can request access to a topic as follows:
 
 After creating a subscription, you can access the event data you subscribed to through the Event Gateway. [The Catalog](../discovering-topics#the-catalog) contains sample code and connection information to help you [configure your application to consume](../setting-your-application-to-consume) from the event source.
 
+You can also [view the topics](../managing-subscriptions) you have access to, and remove any subscriptions you no longer require.
+

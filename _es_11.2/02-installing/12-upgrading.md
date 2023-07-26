@@ -17,9 +17,9 @@ Understand the upgrade paths available for Continuous Delivery (CD) releases and
 
 ### Upgrade paths for CD releases
 
-If you are on OpenShift, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.1 version directly from 11.2.0 or any 11.1.x version by using the operator version 3.2.1. If you are on OpenShift and have an earlier {{site.data.reuse.es_name}} version than 11.1.x, you must first upgrade it to [version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) before upgrading to 11.2.x.
+If you are on OpenShift, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.2 version directly from any 11.2.x or 11.1.x version by using the operator version 3.2.2. If you are on OpenShift and have an earlier {{site.data.reuse.es_name}} version than 11.1.x, you must first upgrade it to [version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) before upgrading to 11.2.x.
 
-If you are running on other Kubernetes platforms, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.1 version directly from 11.2.0 by using the operator version 3.2.1.  .
+If you are running on other Kubernetes platforms, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.2 version directly from any 11.2.x by using the operator version 3.2.2.
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.es_name}} operator is upgraded to 3.2.x when it is available in the catalog, and your {{site.data.reuse.es_name}} instance is then also automatically upgraded, unless you [set a schedule for the upgrade](#scheduling-the-upgrade-of-an-instance) by pausing the reconciliation.
 
@@ -71,7 +71,7 @@ If your operator manages more than one instance of {{site.data.reuse.es_name}}, 
      kubectl annotate <type> <instance-name> -n <instance-namespace> eventstreams.ibm.com/pause-reconciliation='true'
      ```
 
-  3. Follow the steps to upgrade by using [the Kuberenetes CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
+  3. Follow the steps to upgrade by using [the Kubernetes CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
 
 #### Unpausing reconciliation by using the CLI
 

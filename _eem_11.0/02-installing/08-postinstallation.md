@@ -343,4 +343,6 @@ Register an externally generated certificate with {{site.data.reuse.eem_name}} a
 
 7. Locate and update the `spec.tls.caSecretName` field to `ibm-ca-secret`, then save and exit.
 
-   **Note:** This will update the certificate used in your {{site.data.reuse.eem_name}} instance. Your pods will reload with the latest certificates in use.
+This will update the certificate used in your {{site.data.reuse.eem_name}} instance. Your pods will reload with the latest certificates in use.
+
+**Note:** If you cannot log in to the {{site.data.reuse.eem_name}} UI after changing your CA certificates, see [troubleshooting](../../troubleshooting/changing-ca-certificate/) to resolve the error.

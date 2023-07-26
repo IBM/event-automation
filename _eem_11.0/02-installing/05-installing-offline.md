@@ -47,7 +47,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 1. To set the environment variables for the product name and version, run the following command:
 
    ```shell
-   export CASE_NAME=ibm-eventendpointmanagement && export CASE_VERSION=11.0.0 && export CASE_INVENTORY_SETUP=eemOperatorSetup
+   export CASE_NAME=ibm-eventendpointmanagement && export CASE_VERSION={{site.data.reuse.eem_current_version}} && export CASE_INVENTORY_SETUP=eemOperatorSetup
    ```
 
 2. Run the following command to download, validate, and extract the CASE.
@@ -73,7 +73,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.0.0 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
    ```
 
    **Note**: To download a specific version of CASE, run the following command:
@@ -99,14 +99,14 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.0.0
+   │   │       └── {{site.data.reuse.eem_current_version}}
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.0.tgz
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
 

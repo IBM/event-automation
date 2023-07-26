@@ -197,7 +197,7 @@ task_openshift_select_instance: "Select the **Event Streams** tab and search the
 # Event Endpoint Management Tasks #
 #########
 
-eem_ui_login: "Log in to your Event Endpoint Management UI from a supported web browser (see how to determine the [login URL](https://ibm.github.io/event-automation/eem/getting-started/logging-in/#retrieving-the-urls) for your Event Endpoint Management instance)."
+eem_ui_login: "Log in to your Event Endpoint Management UI from a supported web browser (see how to determine the [login URL](../../getting-started/logging-in/#retrieving-the-urls) for your Event Endpoint Management instance)."
 
 #########
 # Event Processing Tasks #

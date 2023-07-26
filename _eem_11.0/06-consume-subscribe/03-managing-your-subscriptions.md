@@ -12,7 +12,7 @@ The **Subscriptions** page displays all of your subscriptions, listing the name 
 
 ## Accessing the Subscription page
 
-1. {{site.data.reuse.es_ui_login_nonadmin}}
+1. {{site.data.reuse.eem_ui_login}}
 2. In the navigation pane, click **Subscriptions**.
     A list of all of your subscriptions is displayed, showing all the topics you are subscribed to, together with associated tags and usernames.
 
@@ -24,7 +24,7 @@ Credentials are revoked when the associated subscription is deleted. You can del
 
 ### To remove a subscription
 
-1. {{site.data.reuse.es_ui_login_nonadmin}}
+1. {{site.data.reuse.eem_ui_login}}
 2. In the navigation pane, click **Subscriptions**.
 3. Locate the subscription that you would like to revoke.
 4. Click **Delete** ![Delete icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove subscription icon."){:height="30px" width="15px"} in the row of the subscription you want to remove.

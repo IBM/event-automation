@@ -573,7 +573,7 @@ The snippet provided shows a configuration containing the most commonly used pro
 To configure an OAuth listener to use introspection endpoint token validation, add the following snippet to your `EventStreams` custom resource, and edit the  settings as follows:
 - Add the respective URIs of the OAuth authentication server to the `validIssuerUri` and `introspectionEndpointUri` properties.
 - Create a secret that contains the public CA certificate of the OAuth authentication Server, and reference this secret in the `tlsTrustedCertificates` property of the listener configuration. The `certificate` element in the `tlsTrustedCertificates` references the secret key that contains the CA certificate.
-- Create another secret that contains the secret value of the `userid` as defined in the `clientId` property of the configuration, and reference this secret in the `clientSecret` property of the configuration. In the `key` property, add the key from the Kuberenetes secret that contains the secret value for the `userid`.
+- Create another secret that contains the secret value of the `userid` as defined in the `clientId` property of the configuration, and reference this secret in the `clientSecret` property of the configuration. In the `key` property, add the key from the Kubernetes secret that contains the secret value for the `userid`.
 
 ```yaml
 # ...

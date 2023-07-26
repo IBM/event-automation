@@ -41,9 +41,9 @@ Find the CRDs supported by `spec`.
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| clientSubjectDN | string | Common name used for mTLS with APIC. |
+| clientSubjectDN | string | Common name used for mTLS with API Connect. |
 | jwks | [jwks](#resource-jwks) | Objects containing jwks configuration. |
-| tls | boolean | Enable/Disable mTLS with APIC. |
+| tls | boolean | Enable/Disable mTLS with API Connect. |
 
 ### Resource: `authConfig`
 
@@ -73,7 +73,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| apic | [apic](#resource-apic) | Object containing APIC connection configuration. |
+| apic | [apic](#resource-apic) | Object containing API Connect connection configuration. |
 | authConfig | [authConfig](#resource-authconfig) | Object containing authentication configuration. |
 | extensionServices | object | Configure extension service endpoints. |
 | storage | [storage](#resource-storage) | Object containing persistence configuration. |

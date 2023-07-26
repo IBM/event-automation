@@ -159,7 +159,7 @@ You can configure a Java application as follows:
 ```
 Properties properties = new Properties();
 properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<bootstrap-address>");
-properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
+properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SSL");
 properties.put(SslConfigs.SSL_PROTOCOL_CONFIG, "TLSv1.2");
 properties.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "<certs.p12-file-location>");
 properties.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "<truststore-password>");

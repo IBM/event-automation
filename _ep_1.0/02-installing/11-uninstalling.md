@@ -191,8 +191,8 @@ oc delete clusterserviceversion ibm-eventautomation-flink.v<version>
 Where `<version>` is the version of your operator. For example:
 
 ```shell
-oc delete clusterserviceversion ibm-eventprocessing.v1.0.1
-oc delete clusterserviceversion ibm-eventautomation-flink.v1.0.0
+oc delete clusterserviceversion ibm-eventprocessing.v{{site.data.reuse.ep_current_version}}
+oc delete clusterserviceversion ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
 ```
 
 To see the version of your operators, run the following commands:

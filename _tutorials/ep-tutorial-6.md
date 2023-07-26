@@ -39,27 +39,27 @@ The next step is to identify the highest number of unit sales in each hour windo
 
 1. Add an **Aggregate** node to the flow.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node")
 
-    Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
 
-    Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
+   Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
 
 1. Call the aggregate node `identify highest unit sales`.
 
-    Configure the aggregate node by clicking the three dot menu, and choosing "Edit".
+   Configure the aggregate node by clicking the three dot menu, and choosing "Edit".
 
 1. Define a **one hour** window in which to calculate the max unit sales.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node")
 
 1. Compute the `MAX` total sales value for each hour window.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node")
 
 1. Rename the output fields.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node")
 
 1. Click **Configure** to finalize the aggregate.
 
@@ -69,28 +69,29 @@ The next step is to use the max units sold results to identify the best selling 
 
 1. Add an **Interval join** node.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node")
 
-    Link the join node to the two aggregate nodes.
+   Link the join node to the two aggregate nodes.
 
 1. Call the join node `hourly trending styles`.
 
 1. Define the join to match hourly sales with the highest hourly sales, based on **both** the number of sales and the time window.
 
-    Suggested value for the join condition:
-    ```sql
-    `identify highest unit sales`.`max total sales` = `hourly sales by type`.`total sales`  AND  `identify highest unit sales`.`max start time` = `hourly sales by type`.`start time`
-    ```
+   Suggested value for the join condition:
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node")
+   ```sql
+   `identify highest unit sales`.`max total sales` = `hourly sales by type`.`total sales`  AND  `identify highest unit sales`.`max start time` = `hourly sales by type`.`start time`
+   ```
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node")
 
 1. Specify a time window that matches the two streams. As the times on each stream match, the time window can be very small.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node")
 
 1. Make a record of the results that describe the start/end time, the number of sales, and the product type.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node")
 
 1. Click **Configure** to finalize the join.
 

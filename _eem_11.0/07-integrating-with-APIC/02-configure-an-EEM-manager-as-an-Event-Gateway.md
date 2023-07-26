@@ -139,12 +139,14 @@ After configuring the {{site.data.reuse.eem_name}} to trust API Connect, registe
 ### Obtain certificates for a TLS client profile 
 
 1. Expand the **Workloads** drop-down menu and select **Secrets**.
-2. Expand the **Project** drop-down menu and select the project the API Connect instance is installed in.
-3. Use the search bar to locate the secret named `<API Connect instance name>-ingress-ca` and click the secret.
+2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
+3. Use the search bar to locate the secret named `<Event Endpoint Management Manager instance name>-ibm-eem-manager` and click the secret.
 4. Scroll down to the `Data` section.
 5. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
-6. Copy the **tls.crt** and save it in a file called `apim-client.pem`
-7. Copy the **tls.key** and save it in a file called `apim-client-key.pem`
+6. Copy the **tls.crt** and save it in a file called `manager-client.pem`
+7. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
+
+N.b if you provided your own certificate via a secret for the eem manager use the data stored in that
 
 For more information on these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
@@ -159,8 +161,8 @@ For more information on these certificates, see the [API Connect documentation](
 Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}} Service through the management endpoint.
 
 1. Create a client TLS keystore. Go to **Home > Resources > TLS > Keystore** and click **Create**.
-2. Upload the `apim-client-key.pem` into Step 1.
-3. Upload the `apim-client.pem` into Step 2.
+2. Upload the `manager-client-key.pem` into Step 1.
+3. Upload the `manager-client.pem` into Step 2.
 4. Click **Save**.
 5. Create a client TLS truststore. Go to **Truststore** and click **Create**.
 6. Upload the `cluster-ca.pem`.
@@ -169,20 +171,6 @@ Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}}
 9. Choose the keystore and truststore you created.
 10. Tick **Allow insecure server connections**.
 11. Click **Save**.
-
-### Create a Gateway TLS Server Profile
-
-Create the TLS server profile that the {{site.data.reuse.egw}} Service uses for the endpoints that Kafka clients connect to.
-
-1. In the Cloud Manager, click **Manage Resources** in the navigation, then click **TLS** in the menu.
-2. Scroll down to the **Keystore** section, then click **Create**.
-3. Enter a title and optional summary for the keystore.
-4. Upload the CA certificate from the `caSecretName` of the [{{site.data.reuse.egw}}](../../installing/deploy-gateways).
-5. Save the keystore.
-6. In the **TLS server profile** section, click **Create**.
-7. Enter a title and optional summary for the profile.
-8. In the **Keystore** section, select the store that is created earlier.
-9. Click **Save**.
 
 ### Retrieving the {{site.data.reuse.egw}} management endpoint
 
@@ -218,7 +206,7 @@ To socialize the {{site.data.reuse.egw}} client endpoint, register the {{site.da
 3. In the **Service endpoint** field, enter the management endpoint that you [obtained earlier](#retrieving-the-event-gateway-management-endpoint).
 4. Select the TLS client profile that you created earlier from the **TLS client profile** drop-down menu. 
 5. In the **API invocation endpoint** field, enter the [{{site.data.reuse.egw}} API endpoint that you obtained earlier](#retrieving-the-event-gateway-client-endpoint).
-6. Select the TLS server profile that you created earlier from the drop-down menu.
+6. Use the default TLS server profile that API Connect provides from the drop-down menu.
 7. Click **Save**.
 
 The Cloud Manager UI displays a notification to indicate the {{site.data.reuse.egw}} Service is successfully registered. You can now [export an AsyncAPI](../export-asyncapi) to use in API Connect.

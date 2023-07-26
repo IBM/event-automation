@@ -65,7 +65,6 @@ A good starting point is to adjust the way RocksDB keeps states in memory and tr
 
 For more information about tuning RocksDB, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/large_state_tuning/#tuning-rocksdb){:target="_blank"}.
 
-
 ### Configuring parallelism
 
 A Flink program consists of multiple tasks. A task can be split into several parallel instances for execution and each parallel instance processes a subset of the task’s input data. The number of parallel instances of a task is called its parallelism.
@@ -75,6 +74,86 @@ In order to increase the throughput of your Flink job, you can perform the follo
 - Set the Flink job parallelism to a value equal to this number of partitions.
 
 For more information, see [Deploying jobs for development purposes](../../advanced/deploying-development) and [Deploying jobs in a production environment](../../advanced/deploying-production).
+
+### Configuring persistent storage
+
+Persistent storage is required for Flink to be able to recover from transient failures, and for configuring High Availability for Flink Job Managers.
+To configure persistent storage:
+
+1. [Deploy the Flink PersistentVolumeClaim (PVC)](../planning/#deploying-the-flink-pvc).
+
+2. Deploy the Flink instance by using a `FlinkDeployment` custom resource with persistent storage configured. See the following example for the relevant persistent storage settings in the custom resource:
+
+   ```yaml
+   spec:
+     [...]
+     flinkConfiguration:
+       [...]
+       state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
+       state.checkpoints.num-retained: '3'
+       state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
+     podTemplate:
+       apiVersion: v1
+       kind: Pod
+       metadata:
+         name: pod-template
+       spec:
+         containers:
+           - name: flink-main-container
+             volumeMounts:
+           - name: flink-volume
+             mountPath: /opt/flink/volume
+         volumes:
+           - name: flink-volume
+             persistentVolumeClaim:
+               claimName: ibm-flink-pvc
+   ```
+
+**Note:** All the [Flink sample deployments](../planning/#flink-sample-deployments) are configured with persistent storage, except the Quick Start sample.
+
+### Configuring High Availability for Job Manager
+
+1. [Configure persistent storage](#configuring-persistent-storage). Persistent storage is required to configure High Availability for the Flink Job Manager.
+
+2. Deploy the Flink instance by using a `FlinkDeployment` custom resource with High Availability configured. See the following example for the relevant High Availability settings in the custom resource:
+
+   ```yaml
+   spec:
+     [...]
+     flinkConfiguration:
+       [...]
+       high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
+       high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
+       kubernetes.operator.leader-election.enabled: 'true'
+       kubernetes.operator.leader-election.lease-name: flink-operator-lease
+     podTemplate:
+       apiVersion: v1
+       kind: Pod
+       metadata:
+         name: pod-template
+       spec:
+         affinity:
+           podAntiAffinity:
+             preferredDuringSchedulingIgnoredDuringExecution:
+             - weight: 80
+               podAffinityTerm:
+                 labelSelector:
+                   matchExpressions:
+                   - key: type
+                     operator: In
+                     values:
+                     - flink-native-kubernetes
+                 topologyKey: kubernetes.io/hostname
+     jobManager:
+       replicas: 2
+   ```
+
+
+**Note:** The value of `kubernetes.operator.leader-election.lease-name` must be unique for the namespace. See [Leader Election and High Availability](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/operations/configuration/#leader-election-and-high-availability){:target="_blank"}.
+
+**Note:** The Flink samples [Production](../planning/#flink-production-sample) and [Production - Flink Application cluster](../planning/#flink-production-application-cluster-sample) are configured with High Availability for the Flink Job Manager.
+
+**Important:** To ensure the automatic restart of Flink jobs if the cluster restarts, the Flink instances in [session cluster mode](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} must be configured with High Availability for the Flink Job Manager.
 
 
 ## Configuring {{site.data.reuse.ep_name}}

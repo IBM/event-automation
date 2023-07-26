@@ -91,7 +91,7 @@ Complete the following steps to download the CASE archive:
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
 
    ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version 11.0.0
+   oc ibm-pak get ibm-eventendpointmanagement --version {{site.data.reuse.eem_current_version}}
    ```
 
    By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
@@ -111,7 +111,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.0.0 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated for {{site.data.reuse.eem_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.eem_name}} CASE.
@@ -124,14 +124,14 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.0.0
+   │   │       └── {{site.data.reuse.eem_current_version}}
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.0-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.0.tgz
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror
@@ -156,7 +156,7 @@ Obtain the required files as follows:
 2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.0.0/ibm-eventendpointmanagement-11.0.0-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/{{site.data.reuse.eem_current_version}}/ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv \
    | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
    if [[ "$mtype" == "IMAGE" ]]; then
        echo "$registry/$image_name:$tag"
@@ -210,7 +210,7 @@ To verify the image signatures, complete the following steps:
 
    ```shell
    mkdir images
-   skopeo copy docker://icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v11.0.0 dir:./images
+   skopeo copy docker://icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v{{site.data.reuse.eem_current_version}} dir:./images
    ```
 
    This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
@@ -224,7 +224,7 @@ To verify the image signatures, complete the following steps:
    For example:
 
    ```shell
-   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v11.0.0 ${fingerprint} ./images/signature-1
+   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v{{site.data.reuse.eem_current_version}} ${fingerprint} ./images/signature-1
    ```
 
    You will receive a confirmation similar to the following:

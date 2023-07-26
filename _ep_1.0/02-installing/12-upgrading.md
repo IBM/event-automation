@@ -12,9 +12,11 @@ Upgrade your {{site.data.reuse.ep_name}} installation as follows. The {{site.dat
 
 ## Upgrade path
 
-You can upgrade {{site.data.reuse.ep_name}} to the latest 1.0.x version by using the operator channel v1.0. 
+You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} to the latest 1.0.x version by using the operator channel v1.0. 
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators will be upgraded to 1.0.x when it is available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
+
+**Note:** If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1a, 1b, 1e, and 2c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 
 ## Prerequisites
@@ -63,8 +65,10 @@ For Flink:
    ```
 
 5. If your Flink instance uses persistent storage, [restore the backed up Flink instance](../backup-restore/#restoring).
+6. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
+
 
 ### Upgrading by using the OpenShift web console
 
@@ -95,8 +99,10 @@ For Flink:
 7. Click the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 8. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
 9. If your Flink instance uses persistent storage, [restore the backed up Flink instance](../backup-restore/#restoring).
+10. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All Flink pods that need to be updated as part of the upgrade will be rolled.
+
 
 ## Verifying the upgrade
 

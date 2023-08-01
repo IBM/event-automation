@@ -654,7 +654,7 @@ spec:
         # ...
 ```
 
-where `<component>` is one of the following values: `adminApi`, `adminUI`, `restProducer`, or `apicurioRegistry`.
+Where `<component>` is one of the following values: `adminApi`, `adminUI`, `restProducer`, or `apicurioRegistry`.
 
 For Kafka and ZooKeeper, you can configure affinity as follows:
 
@@ -671,7 +671,8 @@ spec:
           affinity:
           # ...
 ```
-where `<component>` is either `kafka` or `zookeeper`.
+
+Where `<component>` is either `kafka` or `zookeeper`.
 
 The format of the `affinity` property matches the [Kubernetes specification](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity){:target="_blank"}. For example, if a node is labeled with `mykey=myvalue`, the `affinity` would contain the following settings:
 

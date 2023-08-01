@@ -149,7 +149,8 @@ latest_eemdocs:
         url: /troubleshooting/invalid-async-api/
       - title: "Error when logging in to UI after changing CA certificate"
         url: /troubleshooting/changing-ca-certificate/
-
+      - title: "Kafka application fails with SSLHandshakeException"
+        url: /troubleshooting/ssl-protocol-failure/
 
 
 # Event Processing 

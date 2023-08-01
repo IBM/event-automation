@@ -19,7 +19,7 @@ Consider the following when planning for geo-replication:
 
 ## Preparing a destination cluster
 
-Before you can set up geo-replication and start replicating topics, you must create an EventStreamsGeoReplicator custom resource at the destination. The {{site.data.reuse.es_name}} Operator uses the EventStreamsGeoReplicator custom resource to create a configured KafkaMirrorMaker2 custom resource. The KafkaMirrorMaker2 custom resource is used by the {{site.data.reuse.es_name}} Operator to create geo-replication workers, which are instances of Kafka Connect running Kafka MirrorMaker 2.0 connectors. The number of geo-replication workers running at the destination cluster is configured in the EventStreamsGeoReplicator custom resource.
+Before you can set up geo-replication and start replicating topics, you must create an EventStreamsGeoReplicator custom resource at the destination. The {{site.data.reuse.es_name}} operator uses the EventStreamsGeoReplicator custom resource to create a configured KafkaMirrorMaker2 custom resource. The KafkaMirrorMaker2 custom resource is used by the {{site.data.reuse.es_name}} operator to create geo-replication workers, which are instances of Kafka Connect running Kafka MirrorMaker 2.0 connectors. The number of geo-replication workers running at the destination cluster is configured in the EventStreamsGeoReplicator custom resource.
 
 The number of workers depend on the number of topics you want to replicate, and the throughput of the produced messages.
 
@@ -41,7 +41,7 @@ If you are using {{site.data.reuse.openshift_short}}, to create a new EventStrea
 1. Go to where your destination cluster is installed. {{site.data.reuse.openshift_ui_login}}
 2. From the navigation menu, click **Operators > Installed Operators**.
 3. In the **Projects** drop-down list, select the project that contains the existing destination {{site.data.reuse.es_name}} instance.
-4. Select the {{site.data.reuse.es_name}} Operator in the list of Installed Operators.
+4. Select the {{site.data.reuse.es_name}} operator in the list of installed operators.
 5. In the **Operator Details > Overview** page, find the **Geo-Replicator** tile in the list of **Provided APIs** and click **Create Instance**.
 6. In the **Create EventStreamsGeoReplicator** page, edit the provided YAML to set values for the following properties.
    - In the **metadata.labels** section, set the **eventstreams.ibm.com/cluster** property value to the name of your destination {{site.data.reuse.es_name}} instance.
@@ -122,7 +122,7 @@ If you are using {{site.data.reuse.openshift_short}}, to modify the number of wo
 1. Go to where your destination cluster is installed. {{site.data.reuse.openshift_ui_login}}
 2. From the navigation menu, click **Operators > Installed Operators**.
 3. In the **Projects** drop-down list, select the project that contains the destination {{site.data.reuse.es_name}} instance.
-4. Select the {{site.data.reuse.es_name}} Operator in the list of Installed Operators.
+4. Select the {{site.data.reuse.es_name}} operator in the list of installed operators.
 5. Click the **Geo-Replicator** tab to see the list of EventStreamsGeoReplicator instances.
 6. Click the EventStreamsGeoReplicator instance that you want to modify.
 7. Click the **YAML** tab.

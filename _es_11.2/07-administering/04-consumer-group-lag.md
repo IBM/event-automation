@@ -48,7 +48,7 @@ To access information about a consumer group in the {{site.data.reuse.es_name}} 
    kubectl es group --group <consumer-group-id>
    ```
 
-   where `<consumer-group-id>` is the name of the consumer group of interest.
+   Where `<consumer-group-id>` is the name of the consumer group of interest.
 
 The CLI will print a table containing [consumer group information](#consumer-lag) for each partition of the topic.
 

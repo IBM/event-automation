@@ -239,7 +239,7 @@ Using the Kubernetes command-line tool (`kubectl`):
    kubectl get secret <KafkaUser-name> -o jsonpath='{.data.ca\.crt}' | base64 -d > ca.crt
    ```
 
-   where `<KafkaUser-name>` is the name of your KafkaUser.
+   Where `<KafkaUser-name>` is the name of your KafkaUser.
 
   Using the OpenShift web console:
   1. {{site.data.reuse.openshift_ui_login}}

@@ -22,7 +22,7 @@ When you install an instance of {{site.data.reuse.eem_name}}, the required netwo
 The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.eem_name}} instance. For information about how to stop deployment of the network policies, see the note after each table.
 
 
-### {{site.data.reuse.eem_name}} Operator pod
+### {{site.data.reuse.eem_name}} operator pod
 
 | **Type** | **Origin**                                                                                   | **Port** | **Reason**                  | **Enabled in policy**                                                                                  |
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------------------------------------------------------------------------------|
@@ -76,7 +76,7 @@ The following tables provide information about the outbound network connections 
 **Note:** Egress policies are not added by default. You must configure the egress policies based on your requirements.
 
 
-### {{site.data.reuse.eem_name}} Operator pod
+### {{site.data.reuse.eem_name}} operator pod
 
 | **Type** | **Destination**                    | **Pod Label**                            | **Port** | **Reason**      |
 |----------|------------------------------------|------------------------------------------|----------|-----------------|

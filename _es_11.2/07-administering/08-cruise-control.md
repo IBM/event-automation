@@ -91,7 +91,7 @@ To configure a `KafkaRebalance` custom resource, use the {{site.data.reuse.opens
 1. {{site.data.reuse.openshift_ui_login}}
 2. From the navigation menu, click **Operators > Installed Operators**.
 3. In the **Projects** dropdown list, select the project that contains the {{site.data.reuse.es_name}} instance.
-4. Select the **{{site.data.reuse.es_name}} Operator** in the list of Installed Operators.
+4. Select the {{site.data.reuse.es_name}} operator in the list of installed operators.
 5. In the **Operator Details > Overview** page, find the **KafkaRebalance** tile in the list of **Provided APIs** and click **Create Instance**.
 6. In the **Create KafkaRebalance** page, edit the provided YAML to set values for the following properties.
    - In the **metadata.labels** section, set the **eventstreams.ibm.com/cluster** property value to the name of your {{site.data.reuse.es_name}} instance that you want to rebalance.

@@ -152,7 +152,7 @@ To create a secret, use the following command:
 
 `kubectl create secret docker-registry regcred --docker-server=<OpenShift_Docker_registry_address> --docker-username=<any_value> --docker-password=$(oc whoami -t) --docker-email=<any_value> -n <namespace>`
 
-where:
+Where:
 - `--docker-server` is the internal OpenShift Docker registry address you [looked up](#look-up-the-registry-address) earlier.
 - `--docker-username` can be any value. Docker uses a session token (`oc whoami -t`) in the password field to perform authentication. This means the `--docker-username` user name field is required, but not used by Docker.
 - `--docker-email` can be any value. It is required, but not used by Docker.

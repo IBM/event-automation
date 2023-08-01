@@ -57,15 +57,15 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
    oc new-project <project_name> --description="<description>" --display-name="<display_name>"
    ```
 
-   where `description` and `display-name` are optional flags to set a description and custom descriptive name for your project.
+   Where `description` and `display-name` are optional flags to set a description and custom descriptive name for your project.
 3. Ensure you are using the project you created by selecting it as follows:
 
    ```shell
    oc project <new-project-name>
    ```
 
-
    The following message is displayed if successful:
+
    ```shell
    Now using project "<new-project-name>" on server "https://<OpenShift-host>:6443".
    ```

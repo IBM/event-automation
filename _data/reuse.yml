@@ -254,7 +254,7 @@ task_openshift_select_instance_egw: "Click the **Event Gateway** tab and search 
 #########
 
 # {{site.data.reuse.sample_select_note}}
-sample_select_note: "You can select this sample to use when [installing](../es/installing) your instance. You can also use it to start out with your configuration, and change settings as required for your purposes. For ways to customize your setup, see [configuring](../es/configuring)."
+sample_select_note: "You can select this sample to use when [installing](../installing/) your instance. You can also use it to start out with your configuration, and change settings as required for your purposes. For ways to customize your setup, see [configuring](../configuring)."
 
 # {{site.data.reuse.prod_persistence_note}}
 prod_persistence_note: "**Important:** For production deployments, ensure you configure a storage solution by editing the sample as described in [enabling persistent storage](../es/configuring/#enabling-persistent-storage)."

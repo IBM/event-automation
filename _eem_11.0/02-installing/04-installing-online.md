@@ -377,11 +377,6 @@ To install an instance of {{site.data.reuse.eem_name}} from the command-line, yo
 
 A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
 
-To view the samples, do the following:
-
-1. Select the **Samples** tab to show the available sample configurations.
-2. Click the **Try it** link under any of the samples.
-
 **Note:** If experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.

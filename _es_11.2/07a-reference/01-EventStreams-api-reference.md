@@ -32,7 +32,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.adminApi.logging.loggers | object | A Map from logger name to logger level. |
 | spec.adminApi.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.adminApi.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.adminApi.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
+| spec.adminApi.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
 | spec.adminApi.readinessProbe | object | Modify the Kubernetes readiness probe applied to this component. |
 | spec.adminApi.readinessProbe.failureThreshold | integer | Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. |
 | spec.adminApi.readinessProbe.initialDelaySeconds | integer | The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0. |
@@ -40,7 +40,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.adminApi.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.adminApi.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
 | spec.adminApi.replicas | integer | The number of instances to deploy. |
-| spec.adminApi.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.adminApi.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.adminApi.template | object | Template to specify how resources are generated. |
 | spec.adminApi.template.pod | object | Template to override attributes for pods created for this component. |
 | spec.adminApi.template.pod.affinity | object | The pod's affinity rules. |
@@ -52,7 +52,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.adminApi.template.pod.metadata.labels | object | Labels added to the Kubernetes resource. |
 | spec.adminApi.template.pod.priorityClassName | string | The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}. |
 | spec.adminApi.template.pod.schedulerName | string | The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used. |
-| spec.adminApi.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| spec.adminApi.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/){:target="_blank"}. |
 | spec.adminApi.template.pod.terminationGracePeriodSeconds | integer | The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds. |
 | spec.adminApi.template.pod.tmpDirSizeLimit | string | Defines the total amount (for example `1Gi`) of local storage required for temporary EmptyDir volume (`/tmp`). Default value is `5Mi`. |
 | spec.adminApi.template.pod.tolerations | array | The pod's tolerations. |
@@ -78,7 +78,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.adminUI.logging.loggers | object | A Map from logger name to logger level. |
 | spec.adminUI.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.adminUI.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.adminUI.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
+| spec.adminUI.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
 | spec.adminUI.readinessProbe | object | Modify the Kubernetes readiness probe applied to this component. |
 | spec.adminUI.readinessProbe.failureThreshold | integer | Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. |
 | spec.adminUI.readinessProbe.initialDelaySeconds | integer | The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0. |
@@ -100,9 +100,9 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.adminUI.redis.readinessProbe.periodSeconds | integer | How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. |
 | spec.adminUI.redis.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.adminUI.redis.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
-| spec.adminUI.redis.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.adminUI.redis.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.adminUI.replicas | integer | The number of instances to deploy. |
-| spec.adminUI.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.adminUI.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 
 ### apicurioRegistry
 
@@ -123,7 +123,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.apicurioRegistry.logging.loggers | object | A Map from logger name to logger level. |
 | spec.apicurioRegistry.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.apicurioRegistry.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.apicurioRegistry.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
+| spec.apicurioRegistry.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
 | spec.apicurioRegistry.proxyContainer | object | Specify overrides for the proxy container. |
 | spec.apicurioRegistry.proxyContainer.env | array | Apply additional custom environment variables to this component. |
 | spec.apicurioRegistry.proxyContainer.image | string | Identify a custom image to use for this component. |
@@ -131,8 +131,8 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.apicurioRegistry.proxyContainer.logging.loggers | object | A Map from logger name to logger level. |
 | spec.apicurioRegistry.proxyContainer.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.apicurioRegistry.proxyContainer.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.apicurioRegistry.proxyContainer.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
-| spec.apicurioRegistry.proxyContainer.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.apicurioRegistry.proxyContainer.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
+| spec.apicurioRegistry.proxyContainer.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.apicurioRegistry.readinessProbe | object | Modify the Kubernetes readiness probe applied to this component. |
 | spec.apicurioRegistry.readinessProbe.failureThreshold | integer | Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. |
 | spec.apicurioRegistry.readinessProbe.initialDelaySeconds | integer | The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0. |
@@ -140,7 +140,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.apicurioRegistry.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.apicurioRegistry.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
 | spec.apicurioRegistry.replicas | integer | The number of instances to deploy. |
-| spec.apicurioRegistry.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.apicurioRegistry.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 
 ### collector
 
@@ -159,7 +159,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.collector.logging.loggers | object | A Map from logger name to logger level. |
 | spec.collector.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.collector.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.collector.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
+| spec.collector.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
 | spec.collector.readinessProbe | object | Modify the Kubernetes readiness probe applied to this component. |
 | spec.collector.readinessProbe.failureThreshold | integer | Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. |
 | spec.collector.readinessProbe.initialDelaySeconds | integer | The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0. |
@@ -167,7 +167,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.collector.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.collector.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
 | spec.collector.replicas | integer | The number of instances to deploy. |
-| spec.collector.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.collector.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.collector.template | object | Template to specify how resources are generated. |
 | spec.collector.template.pod | object | Template to override attributes for pods created for this component. |
 | spec.collector.template.pod.affinity | object | The pod's affinity rules. |
@@ -179,7 +179,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.collector.template.pod.metadata.labels | object | Labels added to the Kubernetes resource. |
 | spec.collector.template.pod.priorityClassName | string | The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}. |
 | spec.collector.template.pod.schedulerName | string | The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used. |
-| spec.collector.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| spec.collector.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/){:target="_blank"}. |
 | spec.collector.template.pod.terminationGracePeriodSeconds | integer | The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds. |
 | spec.collector.template.pod.tmpDirSizeLimit | string | Defines the total amount (for example `1Gi`) of local storage required for temporary EmptyDir volume (`/tmp`). Default value is `5Mi`. |
 | spec.collector.template.pod.tolerations | array | The pod's tolerations. |
@@ -212,7 +212,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.kafkaProxy.readinessProbe.periodSeconds | integer | How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. |
 | spec.kafkaProxy.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.kafkaProxy.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
-| spec.kafkaProxy.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.kafkaProxy.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.kafkaProxy.template | object | Template to specify how resources are generated. |
 | spec.kafkaProxy.template.pod | object | Template to override attributes for pods created for this component. |
 | spec.kafkaProxy.template.pod.affinity | object | The pod's affinity rules. |
@@ -224,7 +224,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.kafkaProxy.template.pod.metadata.labels | object | Labels added to the Kubernetes resource. |
 | spec.kafkaProxy.template.pod.priorityClassName | string | The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}. |
 | spec.kafkaProxy.template.pod.schedulerName | string | The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used. |
-| spec.kafkaProxy.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| spec.kafkaProxy.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/){:target="_blank"}. |
 | spec.kafkaProxy.template.pod.terminationGracePeriodSeconds | integer | The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds. |
 | spec.kafkaProxy.template.pod.tmpDirSizeLimit | string | Defines the total amount (for example `1Gi`) of local storage required for temporary EmptyDir volume (`/tmp`). Default value is `5Mi`. |
 | spec.kafkaProxy.template.pod.tolerations | array | The pod's tolerations. |
@@ -235,9 +235,9 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | Property | Type | Description |
 | --- | --- | --- |
 | spec.license | object | Specify the license information for the instance of {{site.data.reuse.es_name}}. |
-| spec.license.accept | boolean | Accept the selected product license after reading it at https://ibm.biz/ea-license. |
-| spec.license.license | string | License ID that the user is selecting and accepting. Licenses can be read at https://ibm.biz/ea-license. |
-| spec.license.use | string | Specify if you intend for this installation to be used in a production environment, supported uses can be read at https://ibm.biz/ea-license. |
+| spec.license.accept | boolean | Accept the selected product license by following the guidance in [licensing]({{ 'support/licensing' | relative_url }}){:target="_blank"}. |
+| spec.license.license | string | License ID that the user is selecting and accepting. For more information, see [licensing]({{ 'support/licensing' | relative_url }}){:target="_blank"}. |
+| spec.license.use | string | Specify if you intend for this installation to be used in a production environment. For more information, see [licensing]({{ 'support/licensing' | relative_url }}).|
 
 ### requestIbmServices
 
@@ -266,7 +266,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.restProducer.logging.loggers | object | A Map from logger name to logger level. |
 | spec.restProducer.logging.type | string | Logging type, must be either 'inline' or 'external'. |
 | spec.restProducer.logging.valueFrom | object | `ConfigMap` entry where the logging configuration is stored.  |
-| spec.restProducer.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data |
+| spec.restProducer.logging.valueFrom.configMapKeyRef | object | Reference to the key in the ConfigMap containing the configuration. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data){:target="_blank"}. |
 | spec.restProducer.readinessProbe | object | Modify the Kubernetes readiness probe applied to this component. |
 | spec.restProducer.readinessProbe.failureThreshold | integer | Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. |
 | spec.restProducer.readinessProbe.initialDelaySeconds | integer | The initial delay before first the health is first checked. Default to 15 seconds. Minimum value is 0. |
@@ -274,7 +274,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.restProducer.readinessProbe.successThreshold | integer | Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. |
 | spec.restProducer.readinessProbe.timeoutSeconds | integer | The timeout for each attempted health check. Default to 5 seconds. Minimum value is 1. |
 | spec.restProducer.replicas | integer | The number of instances to deploy. |
-| spec.restProducer.resources | object | Modifies the resource limits and requests to apply to this component. https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits |
+| spec.restProducer.resources | object | Modifies the resource limits and requests to apply to this component. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits){:target="_blank"}. |
 | spec.restProducer.template | object | Template to specify how resources are generated. |
 | spec.restProducer.template.pod | object | Template to override attributes for pods created for this component. |
 | spec.restProducer.template.pod.affinity | object | The pod's affinity rules. |
@@ -286,7 +286,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | spec.restProducer.template.pod.metadata.labels | object | Labels added to the Kubernetes resource. |
 | spec.restProducer.template.pod.priorityClassName | string | The name of the priority class used to assign priority to the pods. For more information about priority classes, see {K8sPriorityClass}. |
 | spec.restProducer.template.pod.schedulerName | string | The name of the scheduler used to dispatch this `Pod`. If not specified, the default scheduler will be used. |
-| spec.restProducer.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| spec.restProducer.template.pod.securityContext | object | Configures pod-level security attributes and common container settings. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/){:target="_blank"}. |
 | spec.restProducer.template.pod.terminationGracePeriodSeconds | integer | The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds. |
 | spec.restProducer.template.pod.tmpDirSizeLimit | string | Defines the total amount (for example `1Gi`) of local storage required for temporary EmptyDir volume (`/tmp`). Default value is `5Mi`. |
 | spec.restProducer.template.pod.tolerations | array | The pod's tolerations. |
@@ -303,7 +303,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 
 | Property | Type | Description |
 | --- | --- | --- |
-| spec.strimziOverrides | object | Configuration of the Kafka and ZooKeeper clusters. Spec can be viewed at [Strimzi Documentation](https://strimzi.io/docs/operators/0.35.1/configuring.html) |
+| spec.strimziOverrides | object | Configuration of the Kafka and ZooKeeper clusters. Spec can be viewed at [Strimzi documentation](https://strimzi.io/docs/operators/0.35.1/configuring.html){:target="_blank"}. |
 
 ### version
 

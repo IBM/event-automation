@@ -232,7 +232,7 @@ Enable export of metrics in {{site.data.reuse.es_name}} geo-replication by editi
 1. Go to where your destination cluster is installed. {{site.data.reuse.openshift_ui_login}}
 2. From the navigation menu, click **Operators > Installed Operators**.
 3. In the **Projects** dropdown list, select the project that contains the destination {{site.data.reuse.es_name}} instance.
-4. Select the **{{site.data.reuse.es_name}}** Operator in the list of Installed Operators.
+4. Select the {{site.data.reuse.es_name}} operator in the list of installed operators.
 5. Click the **Kafka Mirror Maker 2** tab to see the list of KafkaMirrorMaker2 instances.
 6. Click the KafkaMirrorMaker2 instance with the name of the instance that you are adding metrics to.
 7. Click the **YAML** tab.

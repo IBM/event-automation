@@ -88,7 +88,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5.png "add an event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5.png "add an event source")
 
-    Configure the event source node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
 
@@ -172,7 +172,7 @@ The next step is to start processing this stream of events, by creating the filt
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-15.png "naming the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-15.png "naming the filter node")
 
-    Configure the filter node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Use the assistant to define a filter that matches events with a `region` value of `EMEA`.
 

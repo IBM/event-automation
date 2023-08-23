@@ -114,7 +114,7 @@ To configure throughput and storage limits on Kafka brokers in your {{site.data.
 spec:
   strimziOverrides:
     kafka:
-      ...
+     # ...
       config:
         client.quota.callback.class: io.strimzi.kafka.quotas.StaticQuotaCallback
         client.quota.callback.static.produce: 1048576

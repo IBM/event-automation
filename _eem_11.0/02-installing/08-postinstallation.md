@@ -250,7 +250,7 @@ You can also renew a certificate by deleting the existing secret. You can do thi
 3. {{site.data.reuse.task_openshift_select_operator_eem}}
 4. {{site.data.reuse.task_openshift_select_instance_eem}}
 5. In the **EventEndpointManagement details** dashboard, scroll down and locate the **Ca Secret Name** field, and then click the linked secret.
-6. Click the **Actions** menu, and select **Delete secret**
+6. Click the **Actions** menu, and select **Delete secret**.
 
   **Note:** Following deleting the secret, you will be navigated back to the **Secrets** page. Your deleted secret will have been regenerated with a new value, which will be used for your certificate in the IBM Cert Manager. 
 

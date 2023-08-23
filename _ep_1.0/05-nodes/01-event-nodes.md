@@ -38,9 +38,8 @@ A source node consumes messages from a Kafka topic to produce a stream of events
 To add a source node, follow these steps:
 
 1. In the **Palette**, under **Events**, drag the **Event source** node into the canvas.
-2. Hover over the node, click the **Options** icon 
-![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, 
-and then click **Edit** to configure the node.
+2. Hover over the node and click the **Edit** icon
+![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
 The **Configure event source** page appears.
 
@@ -197,7 +196,7 @@ To add an event destination node, follow these steps:
 
 1. In the **Palette**, under **Events**, drag the **Event destination** node into the canvas.
 2. Hover over the node, click the **Options** icon 
-![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, 
+![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}, 
 and then click **Edit** to configure the node.
 
 The **Configure event destination** page appears.

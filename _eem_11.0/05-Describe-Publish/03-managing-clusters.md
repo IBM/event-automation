@@ -19,7 +19,9 @@ To edit the details of a cluster, complete the following steps.
 
 1. Locate the cluster to be edited in the **Clusters** page table and click the edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"}
 
-   The **Cluster information** screen is displayed with your existing cluster name. You can edit this and provide a new name, or leave it as it is.
+   The **Cluster information** screen is displayed with your existing cluster name. 
+
+   ![Event Endpoint Management 11.0.2 icon]({{ 'images' | relative_url }}/11.0.2.svg "In Event Endpoint Management 11.0.2.") You can edit the cluster name and provide a new name, or leave it as it is.
 
    **Note**: The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
 

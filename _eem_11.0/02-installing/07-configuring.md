@@ -150,7 +150,7 @@ TLS can be configured for the `EventEndpointManagement` instance in one of the f
 - [Operator configured CA certificate](#operator-configured-ca-certificate)
 - [User provided CA certificate](#user-provided-ca-certificate)
 - [User provided certificates](#user-provided-certificates)
-- [User provided UI certificates](uUser-provided-UI-certificates)
+- [User provided UI certificates](#user-provided-ui-certificates)
 
 After the TLS is configured for the `EventEndpointManagement` instance, the TLS for the `EventGateway` instance must be configured. TLS can be configured for the `EventGateway` instance in one of the following ways:
 
@@ -195,7 +195,7 @@ The operator uses the Cert Manager installed on the system to create the certifi
 
 The CA secret that is created and referenced in the Cert Manager must contain the keys `ca.crt`, `tls.crt`, `tls.key`. The `ca.crt` key and the `tls.crt` key can have the same value.
 
-See the following example to use the user provided certificate files (ca.crt, tls.crt and tls.key):
+See the following example to use the user provided certificate files (`ca.crt`, `tls.crt`, and `tls.key`):
 
 1. Set a variable for the `NAMESPACE` by running the following command:
 
@@ -228,7 +228,7 @@ spec:
 
 ### User-provided certificates
 
-You can use the OpenSSL tool to generate a CA and Certificate required for an {{site.data.reuse.eem_name}} instance.
+You can use a custom certificate for secure communication by the {{site.data.reuse.eem_name}} instance. You can use the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.eem_name}} instance.
 
 **Note:** The `envsubst` utility is available on Linux and can be installed by default as part of the `gettext` package.
 
@@ -372,7 +372,7 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    spec:
      license:
        # ...
-     manager
+     manager:
        tls:
          secretName: my-eem-manager-cert
    # ...
@@ -517,5 +517,6 @@ kind: EventGateway
 spec:
   license:
     # ...
-  deployNetworkPolicies: false
+  deployNetworkPolicies: false  
 ```
+

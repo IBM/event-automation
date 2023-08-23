@@ -14,13 +14,13 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.0.2"
+eem_current_version: "11.0.3"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.0.2"
+ep_current_version: "1.0.3"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.0.1"
+flink_operator_current_version: "1.0.2"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -296,7 +296,7 @@ iam_note: '**Note:** Identity and Access Management (IAM) authentication is only
 es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands can be run only when the Event Streams CLI has access to Kubernetes resources, which can be provided by IAM authentication. If your Event Streams instance uses SCRAM-SHA-512 authentication, you can create a Kafka User by using the OpenShift web console or the Kubernetes CLI."
 
 # {{site.data.reuse.jmx_deprecated}}
-jmx_deprecated: "**Note:** Support for JMXTrans in Event Streams version 11.1.5 and later is deprecated, as the JMXTrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating JMXTrans."
+jmx_deprecated: "**Note:** Support for jmxtrans in Event Streams version 11.1.5 and later is deprecated, as the jmxtrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating jmxtrans."
 #####################################################
 # DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #
 #####################################################

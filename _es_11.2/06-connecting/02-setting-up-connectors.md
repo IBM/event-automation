@@ -81,18 +81,18 @@ Edit the downloaded `kafka-connect.yaml` file to enable Kafka Connect to connect
 
 For example, when connecting to a listener with `tls` authentication and  Mutual TLS encryption (`tls: true`), the Kafka Connect credentials will resemble the following:
 
-  ```yaml
-  tls:
-    trustedCertificates:
-        - secretName: <instance_name>-cluster-ca-cert
-          certificate: ca.crt
-  authentication:
-    type: tls
-    certificateAndKey:
-      certificate: user.crt
-      key: user.key
-      secretName: kafka-connect-user
-  ```
+```yaml
+tls:
+  trustedCertificates:
+      - secretName: <instance_name>-cluster-ca-cert
+        certificate: ca.crt
+authentication:
+  type: tls
+  certificateAndKey:
+    certificate: user.crt
+    key: user.key
+    secretName: kafka-connect-user
+```
 
 ## Adding connectors to your Kafka Connect environment
 
@@ -115,9 +115,9 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
 
    ```yaml
    spec:
-     ...
+     # ...
      build:
-       ...
+       # ...
        output:
          image: my-image-registry.my-kafka-connect-image:latest
          type: docker
@@ -134,9 +134,9 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
   
    ```yaml
    spec:
-     ...
+     # ...
      build:
-       ...
+       # ...
        plugins:
          - artifacts:
              - type: jar
@@ -157,7 +157,7 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
 
    ```yaml
    spec:
-     ...
+     # ...
      template:
        buildConfig:
          pullSecret: ibm-entitlement-key
@@ -368,6 +368,12 @@ spec:
   config:
   # The connector configuration goes here
 ```
+
+Where:
+
+- `<connector_name>` is the name of your connector. For example, in the sample YAML provided for the [IBM MQ source connector](../mq/source/#using-the-cli), `<connector_name>` is `mq-source`.
+- `<kafka_connect_name>` is the name of the Kafka Connect instance that you [configured](#configure-kafka-connect) earlier.
+- `<connector_class_name>` is the class of the connector. For example, in the sample YAML provided for the [MQ source connector](../mq/source/#using-the-cli), `<connector_class_name>` is `com.ibm.eventstreams.connect.mqsource.MQSourceConnector`.
 
 Start the connector by applying the YAML file:
 

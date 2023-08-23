@@ -88,7 +88,7 @@ The next step is to define the transformation that will remove the customer pers
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-5.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-5.png "defining the transformation")
 
-    Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. As you aren't creating any new properties, click **Next**.
 

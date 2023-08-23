@@ -19,7 +19,7 @@ To add an interval join, complete the following steps.
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Joins**, drag the **Interval join** node into the canvas.
 3. Connect the node to two event sources by separately dragging the **Output Port** from each source node into the **Input Port** of this node.
-4. Hover over the node, click the **Options** icon ![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, and then click **Edit** to configure the node.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure Interval join** page is displayed.
 
@@ -61,7 +61,7 @@ You can manage the properties that come from this node to suit your requirements
 
 To rename a property, complete the following steps.
 
-1. Hover over the property name and click the **Edit** icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing rename icon."){:height="30px" width="15px"}.
+1. Hover over the property name and click the **Edit** icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 2. In the text-box, enter a new name for your property.
 3. Click outside the text-box or press **Enter** on your keyboard to rename the property.
 

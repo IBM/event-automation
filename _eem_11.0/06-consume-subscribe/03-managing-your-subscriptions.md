@@ -6,7 +6,7 @@ slug: managing-subscriptions
 toc: true
 ---
 
-After [subscribing](../subscribing-to-topics/) to a topic, a subscription is created for you. You can locate those topics that you are currently subscribed to by opening and reviewing the {{site.data.reuse.eem_name}} **Subscriptions** page.
+![Event Endpoint Management 11.0.2 icon]({{ 'images' | relative_url }}/11.0.2.svg "In Event Endpoint Management 11.0.2.") After [subscribing](../subscribing-to-topics/) to a topic, a subscription is created for you. You can locate those topics that you are currently subscribed to by opening and reviewing the {{site.data.reuse.eem_name}} **Subscriptions** page.
 
 The **Subscriptions** page displays all of your subscriptions, listing the name of each topic you are subscribed to, together with the related tags and associated usernames for each. You can create more than one subscription to a single topic.
 

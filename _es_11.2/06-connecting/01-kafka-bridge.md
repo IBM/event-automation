@@ -10,7 +10,7 @@ Connect client applications to your {{site.data.reuse.es_name}} Kafka cluster ov
 
 ## Overview
 
-With [Kafka Bridge](https://strimzi.io/blog/2019/07/19/http-bridge-intro/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
+With [Kafka Bridge](https://strimzi.io/docs/bridge/latest/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
 
 Apache Kafka uses a custom protocol on top of TCP/IP for communication between applications and the Kafka cluster. With Kafka Bridge, clients can communicate with your {{site.data.reuse.es_name}} Kafka cluster over the HTTP/1.1 protocol. You can manage consumers and send and receive records over HTTP.
 
@@ -222,7 +222,7 @@ curl -X POST \
 If the request to produce to the topic is successful, the Kafka Bridge returns an HTTP status code `200 OK` and a JSON payload describing for each message the partition that the message was sent to and the offset the messages are written to.
 
 ```json
-#...
+# ...
 {
   "offsets":[
     {

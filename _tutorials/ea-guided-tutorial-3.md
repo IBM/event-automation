@@ -92,7 +92,7 @@ In the next step, we extract product type into a separate property so that we ca
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-5.png "defining the transformation")
 
-   Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Hover over the transform node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Add a new property for the product type that you will generate with a regular expression.
 
@@ -195,7 +195,7 @@ Now that you have transformed the stream of events to include the type attribute
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-9.png "defining the aggregation")
 
-   Configure the aggregate node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Specify a 1-hour window.
 

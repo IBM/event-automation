@@ -95,7 +95,7 @@ The next step is to identify the large orders.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-5.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-5.png "defining the filter")
 
-   Configure the filter node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Create a filter that selects orders for more than `5` items.
 
@@ -166,7 +166,7 @@ The next step is to bring this additional stream of events that you discovered i
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-11.png "add an event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-11.png "add an event source")
 
-   Configure the event source node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Hover over the event source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
 
@@ -246,7 +246,7 @@ The next step is to specify how to correlate the large orders with the cancellat
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-20.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-20.png "joining the streams")
 
-   Configure the join node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choosing "Edit".
+   Hover over the join node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Define the join by matching the `orderid` from cancellation events with the `id` from order events.
 

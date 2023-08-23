@@ -68,7 +68,14 @@ By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restrict
 
 ## Data storage requirements
 
-{{site.data.reuse.eem_name}} supports any [Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/){:target="_blank"} compatible storage classes. You can use the storage classes to set up persistent storage or to [back up](../backup-restore/#backing-up) and [restore](../backup-restore#restoring) your data.
+{{site.data.reuse.eem_name}} supports any [Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/){:target="_blank"} compatible storage classes. 
+
+Specifically for RedHat OpenShift Kubernetes Service (ROKS), you can use either:
+
+- IBM Cloud Block storage, `ibmc-block-<tier>`, where `<tier>` can be `gold`, `silver` or `bronze`
+- (Only on Single-Zone clusters) IBM Cloud File storage with support for supplemental group IDs, `ibmc-file-<tier>-gid`
+
+You can use the storage classes to set up persistent storage or to [back up](../backup-restore/#backing-up) and [restore](../backup-restore#restoring) your data.
 
 If you want to set up [persistent storage](../planning/#planning-for-persistent-storage), ensure the cluster administrator has created one or more storage classes that support `ReadWriteOnce` and allows read and write access to non-root users.
 

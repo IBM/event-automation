@@ -92,7 +92,7 @@ In addition to the previous permissions, the {{site.data.reuse.es_name}} operato
 
 ### Adding {{site.data.reuse.es_name}} geo-replication to a deployment
 
-The {{site.data.reuse.es_name}} [geo-replicator](../../georeplication/about/) allows messages sent to a topic on one {{site.data.reuse.es_name}} cluster to be automatically replicated to another {{site.data.reuse.es_name}} cluster. This capability ensures messages are available on a separate system to form part of a disaster recovery plan.
+The {{site.data.reuse.es_name}} [geo-replicator](../../georeplication/about/) allows messages sent to a topic on one {{site.data.reuse.es_name}} cluster to be automatically replicated to another {{site.data.reuse.es_name}} cluster. This capability ensures messages are available on a separate system to form part of a [disaster recovery](../../georeplication/disaster-recovery) plan.
 
 To use this feature, ensure you have the following additional resources available. The following table shows the prerequisites for each geo-replicator node.
 

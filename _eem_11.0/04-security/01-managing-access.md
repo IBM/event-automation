@@ -15,7 +15,7 @@ You can manage access to your {{site.data.reuse.eem_name}} instance through acce
 ## Setting up Local authentication
 You can define users explicitly with usernames and passwords, which is typically helpful for testing or prototype instances.
 
-**Important:** Despite being a valid OIDC provider with secure network traffic, the local authentication provider stores user credentials in a single JSON file as unencrypted strings. Therefore, passwords are at a higher risk of being exposed. 
+**Important:** Despite being a valid OIDC provider with secure network traffic, the local authentication provider stores user credentials in a single JSON file as unencrypted strings. Therefore, passwords are at a higher risk of being exposed.
 
 ### Using {{site.data.reuse.openshift_short}} UI
 
@@ -334,7 +334,7 @@ spec:
         discovery: true
         secretName: oidc-secret
         site: <oidc_provider_site>
-    tlsConfigSpec:
+    tls:
       trustedCertificates:
         - certificate: ca.crt
           secretName: oidc-ca

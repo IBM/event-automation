@@ -27,7 +27,7 @@ jmxtrans is a connector that reads JMX metrics and outputs a number of formats s
 The tasks in this tutorial help achieve the following goals:
 
 1. Set up Splunk so that it can access TCP ports for data.
-2. Utilize the `Kafka.spec.JmxTrans` parameter to configure a jmxtrans deployment.
+2. Utilize the `Kafka.spec.JMXTrans` parameter to configure a jmxtrans deployment.
 
 ### Configure Splunk
 

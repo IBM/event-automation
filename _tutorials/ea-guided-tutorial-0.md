@@ -151,7 +151,7 @@ ansible-playbook \
     install/supporting-demo-resources/mq/install.yaml
 ```
 
-**Note**: The previous command installs {{site.data.reuse.icpcs}}, which requires a default storage class to be available on your OpenShift cluster.
+**Note**: The previous command installs {{site.data.reuse.icpfs}}, which requires a default storage class to be available on your OpenShift cluster.
 
 ### IBM App Connect
 

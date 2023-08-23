@@ -37,7 +37,7 @@ toc: true
 
 Kubernetes [Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} are designed to simplify the deployment and maintenance of complex applications. They do this by packaging up and abstracting away domain-specific knowledge of how to deploy, configure and operate the application and its component parts. An Operator can then extend Kubernetes by providing new Kubernetes constructs to support these abstractions, simplifying the initial deployment and subsequent lifecycle management of the application.
 
-Strimzi uses Operators in this manner to facilitate the deployment of Kafka clusters. {{site.data.reuse.es_name}} builds on top of Strimzi to deploy not only the Kafka components but also the additional features outlined earlier. A new Kubernetes resource `EventStreams` is provided (in Kubernetes referred to as a "kind"), to allow the definition of a complete deployment that brings together the components provided by Strimzi and {{site.data.reuse.es_name}}. This information is defined in a standard YAML document and deployed in a single operation.
+Strimzi uses Operators in this manner to facilitate the deployment of Kafka clusters. {{site.data.reuse.es_name}} builds on top of Strimzi to deploy not only the Kafka components but also the additional features outlined earlier. A new Kubernetes resource `EventStreams` is provided (in Kubernetes referred to as a `kind`), to allow the definition of a complete deployment that brings together the components provided by Strimzi and {{site.data.reuse.es_name}}. This information is defined in a standard YAML document and deployed in a single operation.
 
 
 ## Operators provided by {{site.data.reuse.es_name}}
@@ -50,7 +50,7 @@ The following diagram shows the operators involved in an {{site.data.reuse.es_na
 
 The Strimzi Cluster Operator manages the deployment of core components within the Kafka cluster such as Kafka and ZooKeeper nodes.
 
-The EventStreams Cluster Operator extends the Strimzi Cluster Operator to provision the additional components provided by  {{site.data.reuse.es_name}} alongside these core components. A new custom resource Type called `EventStreams` is provided to manage this overall deployment.
+The EventStreams Cluster Operator extends the Strimzi Cluster Operator to provision the additional components provided by {{site.data.reuse.es_name}} alongside these core components. A new custom resource Type called `EventStreams` is provided to manage this overall deployment.
 
 ### The Entity Operator
 
@@ -60,6 +60,6 @@ The User operator provides a new custom resource type called `KafkaUser` to mana
 
 Kafka topics are a resource within the cluster to which a series of records can be produced.
 
-The _optional_ Topic operator provides a new custom resource type called `KafkaTopic` to manage these Kafka topics. By default, the Topic operator is not part of the {{site.data.reuse.es_name}} cluster. Instead, to create and manage Kafka topics, use the {{site.data.reuse.es_name}} UI, CLI and REST API provided mechanisms.
+The _optional_ Topic operator provides a new custom resource type called `KafkaTopic` to manage these Kafka topics. By default, the Topic operator is not part of the {{site.data.reuse.es_name}} cluster. Instead, to create and manage Kafka topics, use the {{site.data.reuse.es_name}} UI, CLI, and REST API provided mechanisms.
 
 If there is a need to have Kafka topics represented as Kubernetes resources, the _optional_ Topic operator can be included in the EventStreams definition, and will then be deployed as a container alongside the User operator within the Entity operator Pod.

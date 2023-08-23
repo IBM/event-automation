@@ -24,7 +24,7 @@ To add a filter node, complete the following steps.
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processors**, drag the **Filter** node into the canvas.
 3. {{site.data.reuse.node_connect}}
-4. Hover over the node, click the **Options** icon ![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, and then click **Edit** to configure the node.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure a Filter** page appears.
 
@@ -70,7 +70,7 @@ To add a transform node, complete the following steps.
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processor**, drag-and-drop the **Transform** node into the canvas.
 3. {{site.data.reuse.node_connect}}
-4. Hover over the node, click the options icon ![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, and then click **Edit** to configure the node.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure Transform** page appears.
 
@@ -89,7 +89,7 @@ Create a new property to add to your output. The property is created with a valu
 To create a new property, complete the following steps.
 
 1. Click the **Create property** button to add a new property to the table.
-2. Hover over the property name and click the **Edit** icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"} and enter a name for your property.
+2. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} and enter a name for your property.
 3. Enter your expression in the **Expression** text box to define your property.
 
 Follow the instructions to enter an expression by using the assistant:
@@ -111,7 +111,7 @@ You can manage the properties that come from this node to suit your requirements
 
 To rename a property, complete the following steps.
 
-1. Hover over the property name and click the **Edit** icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing rename icon."){:height="30px" width="15px"}.
+1. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 2. In the text-box, enter a new name for your property.
 3. Click outside the text-box or press **Enter** in your keyboard to rename the property.
 
@@ -140,12 +140,9 @@ Use an aggregate node to divide the stream of events into time-based chunks and 
 To add an aggregate node, complete the following steps.
 
 1. {{site.data.reuse.node_step1}}
-
 2. In the **Palette**, under **Processor**, drag the **Aggregate** node into the canvas.
-
 3. {{site.data.reuse.node_connect}}
-
-4. Hover over the node, click the options icon ![options icon]({{ 'images' | relative_url }}/options.png "Diagram showing more options."){:height="30px" width="15px"}, and then click **Edit** to configure the node.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure aggregate** page appears.
 
@@ -243,7 +240,7 @@ The following properties are present by default:
 
 To rename a property, complete the following steps.
 
-1. Hover over the property name and click the Edit icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing rename icon."){:height="30px" width="15px"}.
+1. Hover over the property name and click the Edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 
 2. In the text-box, enter a new name for your property.
 

@@ -3,7 +3,7 @@ title: JDBC
 sortTitle: Jdbc
 connectorID: kc-sink-jdbc
 direction: sink
-support: community
+support: IBM
 type: KafkaConnect
 iconInitial: J
 iconGradient: 1

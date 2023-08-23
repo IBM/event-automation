@@ -14,6 +14,16 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
   For more information, see [Installing a Flink deployment instance](../../installing/installing#install-a-flink-instance) and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
 
+  **Note:** When deploying Flink for non-production environments (such as development or testing purposes), set `license.use` to `EventAutomationNonProduction` in the `FlinkDeployment` custom resource:
+
+  ```yaml
+  spec:
+    flinkConfiguration:
+      license.use: EventAutomationNonProduction
+      license.license: L-HRZF-DWHH7A
+      license.accept: 'true'
+  ```
+
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
   For more information, see [Exporting flows](../exporting-flows).

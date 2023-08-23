@@ -10,6 +10,8 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
 **Important:** This deployment cannot be used with {{site.data.reuse.ep_name}} UI.
 
+**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up to date, and might include fixes that are absent in the `release-1.5` and `release-1.6` branches.
+
 ## Prerequisites
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
@@ -51,15 +53,15 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
 You can use a Kubernetes `FlinkDeployment` custom resource in application mode to deploy a Flink job for processing and deploying the statements in the file `statements.sql`.
 
-A sample application [flink-sql-runner-example](https://github.com/apache/flink-kubernetes-operator/tree/release-1.5/examples/flink-sql-runner-example){:target="_blank"} is provided in the Apache Flink GitHub repository for that purpose.
+A sample application [flink-sql-runner-example](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} is provided in the Apache Flink GitHub repository for that purpose.
 
-Follow the [instructions](https://github.com/apache/flink-kubernetes-operator/tree/release-1.5/examples/flink-sql-runner-example#usage){:target="_blank"} to build:
+Follow the [instructions](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example#usage){:target="_blank"} to build:
 - the flink-sql-runner-example JAR file (Flink job)
 - the Docker image
 
 Some adaptations to this procedure are required to build the Docker image and use the file `statements.sql`:
 
-1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the IBM Flink image:
+1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the IBM Flink image:
 
    a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV).
 
@@ -67,17 +69,17 @@ Some adaptations to this procedure are required to build the Docker image and us
    oc get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE_V1_0_1")].value}' ibm-eventautomation-flink.v1.0.1
    ```
 
-   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
+   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
 
    ```shell
    FROM <IBM Flink image with digest>
    ```
 
-   c. Remove the sample SQL statement files from the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/release-1.5/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   c. Remove the sample SQL statement files from the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
-   d. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/release-1.5/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   d. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
-   e. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/release-1.5/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   e. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.flink_long}} `FlinkDeployment` custom resource.
 

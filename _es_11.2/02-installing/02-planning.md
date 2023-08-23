@@ -14,7 +14,7 @@ Decide the purpose of your deployment, for example, whether you want to try a st
 - Size your planned deployment by considering potential throughput, the number of producers and consumers, Kafka performance tuning, and other aspects. For more details, see the [performance considerations](../capacity-planning) section.
 - For production use, and whenever you want your data to be saved in the event of a restart, set up [persistent storage](#planning-for-persistent-storage).
 - Consider the options for [securing](#planning-for-security) your deployment.
-- Plan for [resilience](#planning-for-resilience) by understanding Kafka high availability and how to support it, set up multiple availability zones for added resilience, and consider geo-replication to help with your disaster recovery planning.
+- Plan for [resilience](#planning-for-resilience) by understanding Kafka high availability and how to support it, set up multiple availability zones for added resilience, and consider geo-replication to help with your [disaster recovery](../../georeplication/disaster-recovery) planning.
 - Consider setting up [logging](#planning-for-log-management) for your deployment to help troubleshoot any potential issues.
 
 ## Sample deployments
@@ -260,7 +260,7 @@ By default, Pod-to-Pod encryption is enabled. You can [configure encryption betw
 
 ## Planning for resilience
 
-If you are looking for a more resilient setup, or want plan for disaster recovery, consider setting up multiple availability zones and creating geo-replication clusters. Also, set up your environment to support Kafka's inherent high availability design.
+If you are looking for a more resilient setup, or want plan for [disaster recovery](../../georeplication/disaster-recovery), consider setting up multiple availability zones and creating geo-replication clusters. Also, set up your environment to support Kafka's inherent high availability design.
 
 ### Kafka high availability
 
@@ -296,7 +296,7 @@ For information about how to prepare multiple zones, see [preparing for multizon
 
 ### Geo-replication
 
-Consider configuring [geo-replication](../../georeplication/about/) to aid your disaster recovery and resilience planning.
+Consider configuring [geo-replication](../../georeplication/about/) to aid your [disaster recovery](../../georeplication/disaster-recovery) and resilience planning.
 
 You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters. Geo-replication helps maintain service availability.
 

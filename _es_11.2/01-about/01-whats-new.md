@@ -8,11 +8,29 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.2.x.
 
+## Release 11.2.3
+
+### Kafka version upgraded to 3.5.1
+
+{{site.data.reuse.es_name}} version 11.2.3 includes Kafka release 3.5.1, and supports the use of all Kafka interfaces.
+
+### IBM support for JDBC sink connector
+
+IBM support is now available for the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc/installation' | relative_url }}).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.2.3 compared to 11.2.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.2.3 icon]({{ 'images' | relative_url }}/11.2.3.svg "In Event Streams 11.2.3.")
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.2.3 contains security and bug fixes.
+
 ## Release 11.2.2
 
 ### Add your connectors with kaniko builder
 
-When setting up connections for Kafka Connect, you can specify connectors in the Kafka Connect custom resource, and then build images that contain the connectors by using the kaniko builder. For more information, see [setting up connectors](../../connecting/setting-up-connectors/). 
+When setting up connections for Kafka Connect, you can specify connectors in the Kafka Connect custom resource, and then build images that contain the connectors by using the kaniko builder. For more information, see [setting up connectors](../../connecting/setting-up-connectors/).
 
 ### Security and bug fixes
 
@@ -54,9 +72,9 @@ In addition to the existing support for the {{site.data.reuse.openshift}}, {{sit
 
 In {{site.data.reuse.es_name}} 11.2.0 and later, `StatefulSets` are replaced by `StrimziPodSets` to manage Kafka and Zookeeper related pods.
 
-### Support for JMXTrans removed
+### Support for jmxtrans removed
 
-{{site.data.reuse.es_name}} release 11.2.0 and later do not support JMXTrans, as the JMXTrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target="_blank"} about deprecating JMXTrans.
+{{site.data.reuse.es_name}} release 11.2.0 and later do not support jmxtrans, as the jmxtrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target="_blank"} about deprecating jmxtrans.
 
 ### Security and bug fixes
 

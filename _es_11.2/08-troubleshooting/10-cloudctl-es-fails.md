@@ -10,7 +10,7 @@ toc: true
 
 When running the `cloudctl es` or `kubectl es` command, the following error message is displayed:
 
-```
+```shell
 FAILED
 ...
 ```

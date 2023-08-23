@@ -12,22 +12,22 @@ You can configure {{site.data.reuse.es_name}} to allow JMX scrapers to export Ka
 ## Prerequisites
 
 - Ensure you have an {{site.data.reuse.es_name}} installation available. This tutorial is based on {{site.data.reuse.es_name}} version 11.0.0.
-- When installing {{site.data.reuse.es_name}}, ensure you configure your JMXTrans deployment as described in  [Configuring secure JMX connections]({{ 'es/es_11.0/security/secure-jmx-connections/' | relative_url}}).
-- Ensure you have a [Splunk](https://www.splunk.com/){:target="_blank"} Enterprise server installed or a Splunk Universal Forwarder that has network access to your {{site.data.resuse.icp}} cluster.
+- When installing {{site.data.reuse.es_name}}, ensure you configure your jmxtrans deployment as described in  [Configuring secure JMX connections]({{ 'es/es_11.0/security/secure-jmx-connections/' | relative_url}}).
+- Ensure you have a [Splunk](https://www.splunk.com/){:target="_blank"} Enterprise server installed or a Splunk Universal Forwarder that has network access to your {{site.data.reuse.icp}} cluster.
 - Ensure that you have an index to receive the data and a TCP Data input configured on Splunk. Details can be found in the [Splunk documentation](https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Monitornetworkports){:target="_blank"}.
 
-## JMXTrans
+## jmxtrans
 
-JMXTrans is a connector that reads JMX metrics and outputs a number of formats supporting a wide variety of logging, monitoring, and graphing applications. To deploy to your {{site.data.resuse.icp}} cluster, you must configure JMXTrans in your {{site.data.reuse.es_name}} custom resource.
+jmxtrans is a connector that reads JMX metrics and outputs a number of formats supporting a wide variety of logging, monitoring, and graphing applications. To deploy to your {{site.data.reuse.icp}} cluster, you must configure jmxtrans in your {{site.data.reuse.es_name}} custom resource.
 
-**Note:** JMXTrans is not supported in {{site.data.reuse.es_name}} versions 11.2.0 and later. 
+**Note:** jmxtrans is not supported in {{site.data.reuse.es_name}} versions 11.2.0 and later. To deploy jmxtrans in {{site.data.reuse.es_name}} versions 11.2.0 and later, follow the instructions in the [GitHub README](https://github.com/IBM/ibm-event-automation/blob/main/event-streams/jmxtrans/README.md){:target="_blank"}.
 
 ## Solution overview
 
 The tasks in this tutorial help achieve the following goals:
 
 1. Set up Splunk so that it can access TCP ports for data.
-2. Utilize the `Kafka.spec.JMXTrans` parameter to configure a JMXTrans deployment.
+2. Utilize the `Kafka.spec.JMXTrans` parameter to configure a jmxtrans deployment.
 
 ### Configure Splunk
 
@@ -75,12 +75,11 @@ spec:
     app.kubernetes.io/instance: splunk-s1-standalone
     app.kubernetes.io/managed-by: splunk-operator
     app.kubernetes.io/name: standalone
-
 ```
 
 ### Configure JMX for {{site.data.reuse.es_name}}
 
-To expose the JMX port within the cluster, set the `spec.strimziOverrides.kafka.jmxOptions` value to `{}` and enable JMXTrans.
+To expose the JMX port within the cluster, set the `spec.strimziOverrides.kafka.jmxOptions` value to `{}` and enable jmxtrans.
 
 For example:
 
@@ -98,7 +97,8 @@ spec:
 
 **Tip:** The JMX port can be password-protected to prevent unauthorized pods from accessing it. For more information, see [Configuring secure JMX connections]({{ 'es/es_11.0/security/secure-jmx-connections/' | relative_url}}).
 
-The following example shows how to configure a JMXTrans deployment in the EventStreams custom resource.
+The following example shows how to configure a jmxtrans deployment for {{site.data.reuse.es_name}} versions earlier than 11.2.0. If you are running {{site.data.reuse.es_name}} versions 11.2.0 and later, follow the instructions in the [GitHub README](https://github.com/IBM/ibm-event-automation/blob/main/event-streams/jmxtrans/README.md){:target="_blank"} to configure a jmxtrans deployment.
+
 
 ```yaml
 # ...
@@ -122,35 +122,39 @@ spec:
           name: "splunk"
 ```
 
-Events start appearing in Splunk after we apply the `jmxTrans` option in the custom resource. The time it takes for events to appear in the Splunk index is determined by the scrape interval on JMXTrans and the size of the receive queue on Splunk.
+Events start appearing in Splunk after we apply the `jmxTrans` option in the custom resource. The time it takes for events to appear in the Splunk index is determined by the scrape interval on jmxtrans and the size of the receive queue on Splunk.
 
-You can increase or decrease the frequency of samples in JMXTrans and the size of the receive queue. To modify the receive queue on Splunk, create an inputs.conf file, and specify the queueSize and persistentQueueSize settings of the [`tcp://<remote server>:<port>`] stanza.
+You can increase or decrease the frequency of samples in jmxtrans and the size of the receive queue. To modify the receive queue on Splunk, create an inputs.conf file, and specify the queueSize and persistentQueueSize settings of the [`tcp://<remote server>:<port>`] stanza.
 
-Splunk search will begin to show metrics. The following is an example of how JMXTrans metrics are displayed when metrics are successfully received.
+Splunk search will begin to show metrics. The following is an example of how jmxtrans metrics are displayed when metrics are successfully received.
 
-![Splunk Search]({{ 'images' | relative_url }}/Splunk_tcp_data_inputs_search.png "Screen capture showing JMXTrans metrics being displayed in Splunk.")
+![Splunk Search]({{ 'images' | relative_url }}/Splunk_tcp_data_inputs_search.png "Screen capture showing jmxtrans metrics being displayed in Splunk.")
 
 ### Troubleshooting
 
-- If metrics are not appearing in your external Splunk, run the following command to examine the logs for JMXTrans:
+- If metrics are not appearing in your external Splunk, run the following command to examine the logs for jmxtrans:
 
-   `kubectl -n <target-namespace> get logs <jmxtrans-pod-name>`
+  ```shell
+  kubectl -n <target-namespace> get logs <jmxtrans-pod-name>
+  ```
 
-- You can change the log level for JMXTrans by setting the required granularity value in `spec.strimziOverrides.jmxTrans.logLevel`. For example:
+- You can change the log level for jmxtrans by setting the required granularity value in `spec.strimziOverrides.jmxTrans.logLevel`. For example:
 
-   ```yaml
-   # ...
-   spec:
-     # ...
-     strimziOverrides:
-       # ...
-       jmxTrans:
-         #...
-         logLevel: debug
-   ```
+  ```yaml
+  # ...
+  spec:
+    # ...
+    strimziOverrides:
+      # ...
+      jmxTrans:
+        #...
+        logLevel: debug
+  ```
 
 - To check the logs from the Splunk pod, you can view the `splunkd.log` file as follows:
 
-   `tail -f $SPLUNK_HOME/var/log/splunk/splunkd.log`
+  ```shell
+  tail -f $SPLUNK_HOME/var/log/splunk/splunkd.log
+  ```
 
 - If the Splunk Operator installation fails due to error **Bundle extract size limit**, install the Splunk Operator on {{site.data.reuse.openshift}} 4.9 or later.

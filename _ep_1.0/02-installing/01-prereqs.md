@@ -10,7 +10,7 @@ toc: true
 
 Ensure your environment meets the following prerequisites before installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
 
-## Container environment 
+## Container environment
 
 {{site.data.reuse.ep_name}} 1.0.x is supported on the {{site.data.reuse.openshift}}.
 
@@ -50,7 +50,7 @@ Flink resource requirements:
 **Note:** {{site.data.reuse.ep_name}} provides sample configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.ep_name}} installation on your system yet, always ensure that you include the resource requirements for the operator together with the intended {{site.data.reuse.ep_name}} instance requirements (quick start or production).
 
 **Note:** {{site.data.reuse.flink_long}} When deploying a `FlinkDeployment` custom resource, the initial number of Flink Job Manager (JM) and Task Manager (TM) pods is equal to the number of replicas indicated for each in the custom resource. All the provided samples configure 1 replica for both JM and TM, except the “Production” sample which has 2 replicas for JM.
-Additional Task Manager pods are created if the number of deployed Flink jobs exceeds the TM “slot capacity”, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the FlinkDeployment. When running {{site.data.reuse.ep_name}} flows, each flow generates 2 Flink jobs; each job is allocated its own Task Manager slot. 
+Additional Task Manager pods are created if the number of deployed Flink jobs exceeds the TM “slot capacity”, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the FlinkDeployment. When running {{site.data.reuse.ep_name}} flows, each flow generates 2 Flink jobs; each job is allocated its own Task Manager slot.
 
 {{site.data.reuse.ep_name}} is a [Kubernetes operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.ep_name}} configurations.
 The {{site.data.reuse.ep_name}} operator uses the declared required state of your {{site.data.reuse.ep_name}} in the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventProcessing` custom resource type.
@@ -121,6 +121,12 @@ For example, you can use one of the following systems:
 - Portworx Storage version 2.5.5 or later
 - Rook Ceph
 
+If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you can use either:
+
+- IBM Cloud Block storage, `ibmc-block-<tier>`, where `<tier>` can be `gold`, `silver` or `bronze`
+- IBM Cloud File storage with support for supplemental group IDs, `ibmc-file-<tier>-gid` (only on single-zone OpenShift clusters)
+
+
 ### Storage requirements for Flink
 
 The Flink instances deployed by {{site.data.reuse.flink_long}} store the following data if persistent storage is configured:
@@ -133,6 +139,12 @@ Apache Flink requires the use of a [Persistent Volume](https://kubernetes.io/doc
 - `accessMode`: `ReadWriteMany (RWX)`. See [Access modes](https://docs.openshift.com/container-platform/4.12/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage){:target="_blank"}.
 
 For example, you can use Rook Ceph for your storage.
+
+If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you can use either:
+
+- IBM Cloud Block storage, `ibmc-block-<tier>`, where `<tier>` can be `gold`, `silver` or `bronze`
+- IBM Cloud File storage with support for supplemental group IDs, `ibmc-file-<tier>-gid` (only on single-zone OpenShift clusters)
+
 
 **Important:**
 - For security reasons, the use of `hostPath` volumes is not supported.
@@ -160,7 +172,7 @@ To check whether Cert Manager is installed in your cluster by using the OpenShif
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. In the list of installed operators, check whether **IBM Cert Manager** is available and status is showing as `Succeeded`. 
+3. In the list of installed operators, check whether **IBM Cert Manager** is available and status is showing as `Succeeded`.
 
 Alternatively, to check whether Cert Manager is installed in your cluster by using the CLI, run the following command and check whether `ibm-cert-manager-operator` is available:
 

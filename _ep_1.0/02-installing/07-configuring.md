@@ -50,7 +50,7 @@ For more information about checkpointing options, see the [Flink documentation](
 
 RocksDB is an embeddable persistent key-value store for fast storage provided by Flink.
 
-Most of the time, Flink operations such as aggregate, rolling aggregate, and interval join involve a large number of interactions with RocksDB for maintining states.
+Most of the time, Flink operations such as aggregate, rolling aggregate, and interval join involve a large number of interactions with RocksDB for maintaining states.
 
 If the Flink job experiences a fall in throughput due to backpressure, consider enabling the incremental checkpointing Flink capability by setting the deployment option `state.backend.incremental` to `true`. 
 For more information about RocksDB state backend, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/state_backends/#rocksdb-state-backend-details){:target="_blank"}.
@@ -70,6 +70,7 @@ For more information about tuning RocksDB, see the [Flink documentation](https:/
 A Flink program consists of multiple tasks. A task can be split into several parallel instances for execution and each parallel instance processes a subset of the task’s input data. The number of parallel instances of a task is called its parallelism.
 
 In order to increase the throughput of your Flink job, you can perform the following actions:
+
 - Increase the number of partitions in the Kafka ingress topics used by your Flink event sources.
 - Set the Flink job parallelism to a value equal to this number of partitions.
 
@@ -124,8 +125,6 @@ To configure persistent storage:
        [...]
        high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
        high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
-       kubernetes.operator.leader-election.enabled: 'true'
-       kubernetes.operator.leader-election.lease-name: flink-operator-lease
      podTemplate:
        apiVersion: v1
        kind: Pod
@@ -148,8 +147,6 @@ To configure persistent storage:
        replicas: 2
    ```
 
-
-**Note:** The value of `kubernetes.operator.leader-election.lease-name` must be unique for the namespace. See [Leader Election and High Availability](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/operations/configuration/#leader-election-and-high-availability){:target="_blank"}.
 
 **Note:** The Flink samples [Production](../planning/#flink-production-sample) and [Production - Flink Application cluster](../planning/#flink-production-application-cluster-sample) are configured with High Availability for the Flink Job Manager.
 
@@ -185,13 +182,14 @@ kind: EventProcessing
 spec:
   license:
     # ...
-  authoring
+  authoring:
     storage:
       type: persistent-claim
       storageClassName: csi-cephfs
 # ...
 
 ```
+
 - Optionally, specify the storage size in `storage.size` (for example, `"100GiB"`).
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
@@ -211,7 +209,7 @@ kind: EventProcessing
 spec:
   license:
     # ...
-  authoring
+  authoring:
     storage:
       type: persistent-claim
       selectors:
@@ -236,7 +234,7 @@ kind: EventProcessing
 spec:
   license:
     # ...
-  authoring
+  authoring:
     storage:
       type: persistent-claim
       existingClaimName: 
@@ -255,17 +253,18 @@ TLS can be configured for the `EventProcessing` instance in one of the following
 
 #### Operator configured CA certificate
 
-By default the operator configures its own TLS.
-The operator uses the IBM Certificate Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
-IBM Certificate manager puts the CA certificate into a secret named `<my-instance>-ibm-ep-root-ca`.
+By default, the operator configures its own TLS.
+The operator uses the IBM Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
+Cert manager puts the CA certificate into a secret named `<my-instance>-ibm-ep-root-ca`.
 
-#### User-provided CA certificate
+Cert Manager and {{site.data.reuse.ep_name}} will create the following objects:
 
-A custom CA certificate can be provided to the {{site.data.reuse.ep_name}} instance.
-The operator uses the IBM Certificate Manager installed on the system to use this provided CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
-To provide a custom CA certificate set `spec.authoring.tls.caSecretName` to be the name of the secret that contains the CA certificate.
 
-The following snippet is an example of a configuration that uses a user provided CA certificate:
+- IBM Cert Manager Issuers:
+  - `<my-instance>-ibm-eventprocessing`
+  - `<my-instance>-ibm-eventprocessing-selfsigned`
+
+  The following snippet is an example of a configuration that uses a user provided CA certificate:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -274,39 +273,197 @@ kind: EventProcessing
 spec:
   license:
     # ...
-  authoring
+  authoring:
     tls:
       caSecretName: myCASecret
 # ...
+```
 
+#### User-provided CA certificate
+
+You can provide a custom CA certificate to the {{site.data.reuse.ep_name}} instance.
+The operator uses the Cert Manager installed on the system to create the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance. The certificates are signed by using the provided CA certificate.
+
+The CA secret that is created and referenced in the Cert Manager must contain the keys `ca.crt`, `tls.crt`, `tls.key`. The `ca.crt` key and the `tls.crt` key can have the same value.
+
+See the following example to use the user provided certificate files (`ca.crt`, `tls.crt`, and `tls.key`):
+
+1. Set a variable for the `NAMESPACE` by running the following command:
+
+   ```shell
+   export NAMESPACE=<instance namespace>
+   ```
+
+2. Create the CA secret by running the following command:
+
+   ```shell
+   oc create secret generic ibm-ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
+   ```
+
+3. To provide a custom CA certificate secret, set `spec.authoring.tls.caSecretName` field to be the name of the Openshift CA certificate secret that contains the CA certificate.
+
+The following code snippet is an example of a configuration that uses the Openshift CA certificate secret that is created in the previous steps:
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+# ...
+spec:
+  license:
+    # ...
+  authoring:
+    tls:
+      caSecretName: ibm-ca-secret-cert
+# ...
 ```
 
 **Note:** The secret that is referenced here must contain the keys `ca.crt`, `tls.crt`, `tls.key`. The `ca.crt` key and the `tls.crt` key can have the same value.
 
 #### User-provided certificates
 
-A custom certificate can be used for secure communication by the {{site.data.reuse.ep_name}} instance.
-This method does not use the IBM Certificate Manager so the certificates that are provided must be managed by the user.
-To use a custom certificate set `spec.authoring.tls.secretName` to be the name of the secret containing a CA certificate, server certificate, and a key. The certificate must have the required DNS names.
+You can use a custom certificate for secure communication by the {{site.data.reuse.ep_name}} instance. You can use the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.ep_name}} instance.
 
-The following snippet is an example of a configuration that uses a user provided certificate:
+**Note:** The `envsubst` utility is available on Linux and can be installed by default as part of the `gettext` package.
 
-```yaml
-apiVersion: events.ibm.com/v1beta1
-kind: EventProcessing
-# ...
-spec:
-  license:
-    # ...
-  authoring
-    tls:
-      secretName: mySecret
-# ...
-```
+See the following example for setting up OpenSSL tool to generate a CA and Certificate required for an {{site.data.reuse.ep_name}} instance:
 
-- Optionally, specify the key in the secret that is pointing to the CA certificate `tls.caCertificate` (default, `ca.crt`).
-- Optionally, specify the key in the secret that is pointing to the server certificate `tls.serverCertificate` (default, `tls.crt`).
-- Optionally, specify the key in the secret that is pointing to the private key `tls.key` (default, `tls.key`).
+1. If you are using a MAC, the following packages are required and can be installed by using `HomeBrew`:
+
+   - gettext
+   - openssl@3
+
+   ```shell
+   brew install gettext openssl@3
+   ```
+
+   Then run `alias openssl=$(brew --prefix)/opt/openssl@3/bin/openssl` to use Openssl3.
+
+2. Set the following variables on your workstation:
+
+   ```shell
+   EMAIL = <email address>
+   INSTANCE_NAME = <my_instance>
+   CLUSTER_API = <cluster api>
+   NAMESPACE = <eventprocessing installation namespace>
+   ```
+
+   Where:
+
+   - INSTANCE_NAME is the name of the {{site.data.reuse.ep_name}} instance
+   - CLUSTER_API is the cluster URL that can be obtained from the cluster. If the URL is `https://console-openshift-console.apps.clusterapi.com/` then the CLUSTER_API must be set to `apps.clusterapi.com`.
+
+3. Create a file called `csr_ca.txt` with the following data:
+
+   ```shell
+   [req]
+   prompt = no
+   default_bits = 4096
+   default_md = sha256
+   distinguished_name = dn
+   x509_extensions = usr_cert
+   [dn]
+   C = US
+   ST = New York
+   L = New York
+   O = MyOrg
+   OU = MyOU
+   emailAddress = me@working.me
+   CN = server.example.com
+   [usr_cert]
+   basicConstraints = CA:TRUE
+   subjectKeyIdentifier = hash
+   authorityKeyIdentifier = keyid,issuer
+   ```
+
+4. Create a file called `my-eventprocessing_answer.txt` with the following data:
+
+   ```shell
+   [req]
+   default_bits = 4096
+   prompt = no
+   default_md = sha256
+   x509_extensions = req_ext
+   req_extensions = req_ext
+   distinguished_name = dn
+   [dn]
+   C = US
+   ST = New York
+   L = New York
+   O = MyOrg
+   OU = MyOrgUnit
+   emailAddress = ${EMAIL}
+   CN = ${INSTANCE_NAME}-ibm-eventprocessing-svc
+   [req_ext]
+   subjectAltName = @alt_names
+   [alt_names]
+   DNS.1 = ${INSTANCE_NAME}-ibm-eventprocessing-svc
+   DNS.2 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event
+   DNS.3 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event.svc
+   DNS.4 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event.svc.cluster.local
+   DNS.5 = ${INSTANCE_NAME}-ibm-eventprocessing-rt-event.${CLUSTER_API}
+   DNS.7 = ${INSTANCE_NAME}-ibm-eventprocessing-event.${CLUSTER_API}
+   ```
+
+5. Generate the required certificates by running the following commands:
+
+   - `ca.key`:
+
+     ```shell
+     openssl genrsa -out ca.key 4096
+     ```
+
+   - `ca.crt`:
+
+     ```shell
+     openssl req -new -x509 -key ca.key -days 730 -out ca.crt -config <( envsubst <csr_ca.txt )
+     ```
+
+   - `eventprocessing` key:
+
+     ```shell
+     openssl genrsa -out my-eventprocessing.key 4096
+     ```
+
+   - `eventprocessing csr`:
+
+     ```shell
+     openssl req -new -key ${INSTANCE_NAME}.key -out ${INSTANCE_NAME}.csr -config <(envsubst < ${INSTANCE_NAME}_answer.txt )
+     ```
+
+6. Sign the `csr` to create the `eventprocessing crt` by running the following command:
+
+   ```shell
+   openssl x509 -req -in ${INSTANCE_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${INSTANCE_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < ${INSTANCE_NAME}_answer.txt)
+   ```
+
+7. Verify the certificate by running the following command:
+
+   ```shell
+   openssl verify -CAfile ca.crt ${INSTANCE_NAME}.crt
+   ```
+
+8. Create Secret on the cluster by running the following command:
+
+   **Note:** The Secret must be added to the namespace that the {{site.data.reuse.ep_name}} instance is intended to be created in.
+
+   ```shell
+   oc create secret generic ${INSTANCE_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${INSTANCE_NAME}.crt --from-file=tls.key=${INSTANCE_NAME}.key -n ${NAMESPACE}
+   ```
+
+9. Create an {{site.data.reuse.ep_name}} instance and set the `spec.authoring.tls.secretName` to the name of the created certificate.
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   # ...
+   spec:
+     license:
+       # ...
+     authoring:
+       tls:
+         secretName: my-eventprocessing-cert
+   # ...
+   ```
 
 
 #### User-provided UI certificates
@@ -323,7 +480,7 @@ kind: EventProcessing
 spec:
   license:
     # ...
-  authoring
+  authoring:
     tls:
       ui:
         secretName: myUiSecret

@@ -66,6 +66,6 @@ A cluster administrator can manage access and role rights by following the instr
 
 To log out of {{site.data.reuse.ep_name}}:
 
-1. In your UI, click the user icon ![user icon]({{ 'images' | relative_url }}/usericon.svg "Diagram showing more options."){:height="30px" width="15px"} in the upper right of the window.
+1. In your UI, click the user icon ![user icon]({{ 'images' | relative_url }}/usericon.svg "The user icon."){:height="30px" width="15px"} in the upper right of the window.
 2. Click **Log out**.
 3. Click **Log out** again in the dialog to confirm.

@@ -10,7 +10,7 @@ toc: true
 
 When executing operations with a Java client connected to {{site.data.reuse.es_name}}, the client fails with an error similar to the following:
 
-```shell
+```java
 org.apache.kafka.common.KafkaException: Failed to load SSL keystore /path/to/es-cert.p12 of type PKCS12
   at org.apache.kafka.common.security.ssl.DefaultSslEngineFactory$FileBasedStore.load(DefaultSslEngineFactory.java:377)
   at org.apache.kafka.common.security.ssl.DefaultSslEngineFactory$FileBasedStore.<init>(DefaultSslEngineFactory.java:349)

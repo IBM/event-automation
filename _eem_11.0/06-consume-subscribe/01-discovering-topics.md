@@ -27,6 +27,21 @@ All the information provided for an event source combine to support the ability 
 
 Access to the event data from event sources (topics) is granted by generating credentials for each selected topic, and connecting to the topic through the Event Gateway. For more information, see how you can [subscribe to topics](../subscribing-to-topics).
 
+### Searching the Catalog
+
+![Event Endpoint Management 11.0.3 icon]({{ 'images' | relative_url }}/11.0.3.svg "In Event Endpoint Management 11.0.3.") You can search for a specific topic within the catalog by clicking the **Search** icon ![Search icon]({{ 'images' | relative_url }}/search.svg "Image showing the search icon."){:height="30px" width="15px"} and typing a query. Your searched query is used to find a match from many fields in each topic. If your query is matched with a word or consecutive words from the following fields, the matched content is returned in the catalog:
+
+- Topic alias
+- Topic name
+- Description
+- Tags
+- Contact information
+- Schema content
+- Schema description
+- Sample messages
+
+If your searched query is a partial match and starts with the same consecutive characters as a topic alias or topic name, that result is also returned in the table.
+
 ## Exporting topic details
 
 You can also export a catalog entry as an AsyncAPI document by clicking **Export as AsyncAPI**. The topic details are downloaded and saved to your computer. The AsyncAPI document contains the same information about the topic as presented in the Catalog, and can be used in downstream tooling to generate code snippets or socialize the event source further.

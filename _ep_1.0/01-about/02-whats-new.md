@@ -10,6 +10,12 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.0.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.0.3 and {{site.data.reuse.flink_long}} version 1.0.2 contain security and bug fixes.
+
+## Release 1.0.2
+
 ### Flink version updated to 1.17.1
 
 The {{site.data.reuse.flink_long}} version 1.0.1 update includes Apache Flink version 1.17.1.

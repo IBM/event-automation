@@ -29,7 +29,7 @@ The steps in this getting started tutorial should take you about 10 minutes to c
 
 ### Before you begin
 
-1. This getting started scenario assumes that all of the capabilities in Event Automation are installed.
+1. This getting started scenario assumes that all the capabilities in Event Automation are installed.
 1. Connect with your cluster administrator and get the server address for the topic you have to access.
 1. Keep your instance open on the topic page because you need to use information from it when you create your flow.
 1. Open {{site.data.reuse.ep_name}} in a separate window or tab.
@@ -41,7 +41,7 @@ This getting started scenario assumes that there is an order details available t
 
 1. On the {{site.data.reuse.ep_name}} home page, click **Create**.
 1. Provide a name and optionally a description for your flow.
-1. Click **Next**. An empty canvas for your flow is displayed.
+1. Click **Create**. An empty canvas for your flow is displayed.
 
 The clothing company created a flow called `Filter` and provided a description to explain that this flow will be used to identify orders made in a specific region.
 
@@ -50,8 +50,8 @@ The clothing company created a flow called `Filter` and provided a description t
 ### Step 2: Add an event source node
 {: #add-event}
 
-1. In the side bar, expand **Events** and drag the **Event source** node onto the canvas.
-1. Hover over the source node and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**. The **Configure event source** window is displayed.
+1. In the sidebar, in the **Events** section, drag the **Event source** node onto the canvas.
+1. Hover over the source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed.
 
 ### Step 3: Configure an event source
 {: #configure-event}
@@ -69,11 +69,12 @@ The clothing company created a flow called `Filter` and provided a description t
 1. Click **Next**. The **Topic selection** page is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
 1. Click **Next**. The **Define event structure** page is displayed.
-1. On the **Define event structure** page, you need to provide {{site.data.reuse.ep_name}} with a description of the events available from the topic. This enables the Assistant to give you guidance to create your processing nodes. To do this, you can paste some example schema into the **Topic schema** tab.
-**Note:**  If a topic uses a schema, a schema must be provided. If not, then a sample message is useful. For more information see [Event information]({{ '/eem/describe/managing-topics/#event-information' | relative_url }}).
-1. Click **Done**. The {{site.data.reuse.ep_name}} canvas is displayed.
+1. On the **Define event structure** page, provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
+
+   Enter an Avro schema in the **Topic schema** tab, or click the **Sample message** tab and enter the sample message in JSON format. For more information, see [Event information]({{ '/eem/describe/managing-topics/#event-information' | relative_url }}).
+
 1. Set an event time and leave the event source to be saved for later reuse. Saving the connection details makes creating similar event sources a lot quicker because there is no need to enter the same details again.
-1. Click **Configure**. The canvas is displayed and your Event source node has a green checkmark, which indicates that the node has been configured successfully.
+1. Click **Configure**. The canvas is displayed and your event source node has a green checkmark, which indicates that the node has been configured successfully.
 
 The clothing company called their event source `Orders` and used the schema for their `Order events` topic in {{site.data.reuse.eem_name}} to update the topic schema tab in {{site.data.reuse.ep_name}}.
 
@@ -82,9 +83,11 @@ The clothing company called their event source `Orders` and used the schema for 
 ### Step 4: Add a filter
 {: #add-filter}
 
-1. On the **Palette**, in the side bar, expand **Processors** and drag a **Filter** node onto the canvas.
-1. Drag the hand icon from the output port on the event node to the input port on the filter to join the two nodes together.
-1. Hover over the source node and click the ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**. The **Configure filter** window is displayed.
+1. On the **Palette**, in the **Processors** section, drag a **Filter** node onto the canvas.
+1. Drag the output port on the event node to the input port on the filter to join the two nodes together.
+1. Hover over the source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. 
+
+The **Configure filter** window is displayed.
 
 ### Step 5: Configure the filter
 {: #configure-filter}
@@ -106,7 +109,7 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 1. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
 
    **Tip**: **Include historical** is useful while you are developing your flows because you don't need to wait for new events to be produced to the topic. You can use all of the events already on the Kafka topic to check that your flow is working the way that you want.
-1. Click your **Event source** node to see a live view of results from your filter. This is updated as new events are emitted onto your chosen {{site.data.reuse.eem_name}} topic.
+1. Click the filter node to see a live view of results from your filter. This is updated as new events are emitted onto your chosen {{site.data.reuse.eem_name}} topic.
 1. (Optional) In the navigation banner, click **Stop** to stop the flow when you finish reviewing the results.
 
 The clothing company selected **Include historical** to run the filter on the history of order events available on their `Order events` topic. All the orders from the EMEA region are displayed. This provides the company real-time information about orders placed in the region, and helps them review orders as they occur.

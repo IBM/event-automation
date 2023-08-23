@@ -79,7 +79,7 @@ There is no one definitive answer to this question because use cases vary throug
 
 ### Where is data stored?
 
-As messages flow through the system, message data is stored on physical storage media configured by the deployment. This information may include data governed by GDPR.
+See the [Data Storage](#data-storage) section for details about how information is stored by {{site.data.reuse.eem_name}}. This information can include data that is governed by GDPR.
 
 ### Personal data used for online contact with IBM
 

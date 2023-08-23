@@ -192,19 +192,21 @@ As you are using the bindings connection mode for the connector to connect to th
    ```shell
    export STEPLIB=thlqual.SCSQAUTH:thlqual.SCSQANLE:$STEPLIB
    ```
+
 2. The connector needs to load a native library. Set `LIBPATH` to include the following directory of your MQ installation:
 
    ```shell
    <path_to_MQ_installation>/mqm/<MQ_version>/java/lib
    ```
 
-The bindings connection mode is a configuration option for the connector as described in the [source connector GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/README.md#configuration#readme){:target="_blank"} and in the [sink connector GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-sink/blob/master/README.md#configuration#readme){:target="_blank"}.
+The bindings connection mode is a configuration option for the connector as described in the [source connector GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/README.md#configuration){:target="_blank"} and in the [sink connector GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-sink/blob/master/README.md#configuration){:target="_blank"}.
 
 ## Starting Kafka Connect on z/OS
 
 Kafka Connect is started using a bash script. If you do not already have bash installed on your z/OS system install it now.
 
 To install bash version 4.2.53 or later:
+
 1. Download the bash archive file from [Bash Version 4.2.53](https://www.rocketsoftware.com/product-categories/mainframe/bash-zos){:target="_blank"}.
 
    **Note:** You must [register](https://my.rocketsoftware.com/RocketCommunity/s/login/?ec=302&startURL=%2FRocketCommunity%2Fs%2F){:target="_blank"} before downloading the bash archive.

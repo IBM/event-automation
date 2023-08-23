@@ -194,9 +194,9 @@ You can choose to change the authentication type of the UI access from IAM to SC
 - If no authentication type is provided, IAM is the default authentication type. You can also specifically configure IAM by setting the `adminUI` authentication type to `iam` in the `EventStreams` custom resource as follows:
 
    ```yaml
-   ...
+   # ...
    spec:
-     ...
+     # ...
      adminUI:
        authentication:
          - type: iam
@@ -205,9 +205,9 @@ You can choose to change the authentication type of the UI access from IAM to SC
 - You can change the authentication type from the default IAM to SCRAM by setting the `adminUI` authentication type to `scram-sha-512` in the `EventStreams` custom resource as follows:
 
    ```yaml
-   ...
+   # ...
    spec:
-     ...
+     # ...
      adminUI:
        authentication:
          - type: scram-sha-512
@@ -676,7 +676,7 @@ Where `<component>` is either `kafka` or `zookeeper`.
 
 The format of the `affinity` property matches the [Kubernetes specification](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity){:target="_blank"}. For example, if a node is labeled with `mykey=myvalue`, the `affinity` would contain the following settings:
 
-```
+```yaml
 # ...
 template:
   pod:
@@ -693,7 +693,7 @@ template:
 
 You can also configure architecture-based node affinity. For example, to configure a component to only deploy on `amd64` architecture, you can use the following settings:
 
-```
+```yaml
 # ...
 template:
   pod:
@@ -774,7 +774,7 @@ spec:
 
 The following is the default `metrics-config` ConfigMap in YAML format:
 
-```
+```yaml
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -930,7 +930,7 @@ For more information about configuration options, see the following documentatio
 
 ## Enabling and configuring Kafka Bridge
 
-With [Kafka Bridge](https://strimzi.io/blog/2019/07/19/http-bridge-intro/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
+With [Kafka Bridge](https://strimzi.io/docs/bridge/latest/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
 
 To enable Kafka Bridge for {{site.data.reuse.es_name}}, create a `KafkaBridge` custom resource alongside the `EventStreams` custom resource. This can be defined in a YAML configuration document under the **Event Streams** operator in the {{site.data.reuse.openshift_short}} web console.
 

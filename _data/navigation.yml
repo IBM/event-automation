@@ -44,7 +44,7 @@ connectorQuickLinks:
 
 # Sidebar navigation for versions.
 
-# Event Endpoint Management 
+# Event Endpoint Management
 latest_eemdocs:
   - title: About
     children:
@@ -54,7 +54,7 @@ latest_eemdocs:
         url: /about/whats-new/
       - title: "Key concepts"
         url: /about/key-concepts/
-        
+
   - title: Installing
     children:
       - title: "Prerequisites"
@@ -151,9 +151,11 @@ latest_eemdocs:
         url: /troubleshooting/changing-ca-certificate/
       - title: "Kafka application fails with SSLHandshakeException"
         url: /troubleshooting/ssl-protocol-failure/
+      - title: "Configuring usage-based reporting"
+        url: /troubleshooting/usage-based-reporting/
 
 
-# Event Processing 
+# Event Processing
 latest_epdocs:
   - title: About
     children:
@@ -241,6 +243,10 @@ latest_epdocs:
         url: /troubleshooting/intro/
       - title: "Gathering logs"
         url: /troubleshooting/gathering-logs/
+      - title: "Error when logging in to UI after changing CA certificate"
+        url: /troubleshooting/changing-ca-certificate/
+      - title: 'Results stuck in "Waiting for receiving the events"'
+        url: /troubleshooting/waiting-for-events/
 
 # Event Streams 11.2
 latestdocs:
@@ -267,7 +273,7 @@ latestdocs:
         url: /installing/prerequisites/
       - title: "Planning your installation"
         url: /installing/planning/
-      - title: "Considerations for multizone deployments"  
+      - title: "Considerations for multizone deployments"
         url: /installing/multizone-considerations/
       - title: "Performance and capacity planning"
         url: /installing/capacity-planning/
@@ -349,6 +355,8 @@ latestdocs:
         url: /georeplication/health/
       - title: "Switching clusters"
         url: /georeplication/failover/
+      - title: "Geo-replication disaster recovery topologies"
+        url: /georeplication/disaster-recovery/
   - title: Connecting external systems
     children:
       - title: "Event Streams producer API"
@@ -410,7 +418,7 @@ latestdocs:
       - title: "Resources not available"
         url: /troubleshooting/resources-not-available/
       - title: "Event Streams installation reports Blocked status"
-        url: /troubleshooting/es-install-fails/ 
+        url: /troubleshooting/es-install-fails/
       - title: "Error when creating multiple geo-replicators"
         url: /troubleshooting/georeplication-error/
       - title: "TimeoutException when using standard Kafka producer"
@@ -447,7 +455,7 @@ latestdocs:
 
 # Sidebar navigation for 11.1.
 
-111docs: 
+111docs:
   - title: About
     children:
       - title: "Introduction"
@@ -471,7 +479,7 @@ latestdocs:
         url: /installing/prerequisites/
       - title: "Planning your installation"
         url: /installing/planning/
-      - title: "Considerations for multizone deployments"  
+      - title: "Considerations for multizone deployments"
         url: /installing/multizone-considerations/
       - title: "Performance and capacity planning"
         url: /installing/capacity-planning/
@@ -604,7 +612,7 @@ latestdocs:
       - title: "Resources not available"
         url: /troubleshooting/resources-not-available/
       - title: "Event Streams installation reports Blocked status"
-        url: /troubleshooting/es-install-fails/ 
+        url: /troubleshooting/es-install-fails/
       - title: "Error when creating multiple geo-replicators"
         url: /troubleshooting/georeplication-error/
       - title: "TimeoutException when using standard Kafka producer"
@@ -1052,7 +1060,7 @@ latestdocs:
         url: /troubleshooting/foundational-services-320-upgrade-block/
       - title: "Apicurio authentication errors due to User Operator watchedNamespace"
         url: /troubleshooting/watched-namespace/
-        
+
 # Sidebar navigation for 10.4.
 
 104docs:

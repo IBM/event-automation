@@ -6,10 +6,11 @@ slug: about
 toc: true
 ---
 
-You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters that are typically located in different geographical locations. The geo-replication feature creates copies of your selected topics to help with disaster recovery.
+You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters that are typically located in different geographical locations. The geo-replication feature creates copies of your selected topics to help with [disaster recovery](../disaster-recovery).
 
 Geo-replication can help with various service availability scenarios, for example:
-* Supporting your disaster recovery plans: you can set up geo-replication to support your disaster recovery architecture, enabling the switching to other clusters if your primary ones experience a problem.
+
+* Supporting your disaster recovery plans: you can set up geo-replication to support your [disaster recovery](../disaster-recovery) architecture, enabling the switching to other clusters if your primary ones experience a problem.
 * Making mission-critical data safe: you might have mission-critical data that your applications depend on to provide services. Using the geo-replication feature, you can back up your topics to several destinations to ensure their safety and availability.
 * Migrating data: you can ensure your topic data can be moved to another deployment, for example, when switching from a test to a production environment.
 

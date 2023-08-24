@@ -324,11 +324,9 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Add a new event source.
+1. Hover over the node, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**, and add a new event source.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-7.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-7.png "adding an event source node")
-
-   Configure the event source node by clicking the three dot menu, and choosing "Edit".
 
 1. Put the Kafka listener address from {{site.data.reuse.es_name}} into the server address for the event source node.
 
@@ -386,13 +384,14 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    Click and drag from the small gray dot on the event source to the matching dot on the aggregate node.
 
-   **Did you know?** You can add a node onto the canvas and automatically connect it to the last node added by double-clicking it in the palette.
+   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
 
-1. Name the aggregate node `Order quantities`
+1. Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   Name the aggregate node `Order quantities`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-41.png "adding an aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-41.png "adding an aggregate node")
 
-   Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choose "Edit".
 
 1. Aggregate the order events in **1-minute** windows.
 

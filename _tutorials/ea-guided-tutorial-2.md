@@ -17,7 +17,7 @@ When processing events we can modify events to remove some properties from the e
 ## Scenario: Redact personal information from order events
 {: #scenario}
 
-The operations team wants to enable another team to analyse order events, however this other team is not permitted access to personally-identifiable information (PII) about customers. They need to be able to process order events without customer PII.
+The operations team wants to enable another team to analyze order events, however this other team is not permitted access to personally-identifiable information (PII) about customers. They need to be able to process order events without customer PII.
 
 ## Before you begin
 
@@ -53,7 +53,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2.png "adding an event source node")
 
-    Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
@@ -67,8 +67,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node")
 
-1. To rename the event source, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options", and choose "Edit".
-
+1. To rename the event source, click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}, and enter a name for your event source node in the **Details > Node name** section.
 
 ### Step 3 : Define the transformation
 
@@ -78,11 +77,11 @@ The next step is to define the transformation that will remove the customer pers
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-4.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-4.png "defining the transformation")
 
-    Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+    Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
     Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
-    **Did you know?** You can add a node onto the canvas and automatically connect it to the last node added by double-clicking it in the palette.
+    **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
 
 1. Give the transform node a name that describes what it will do: `redact personal info`.
 
@@ -104,7 +103,7 @@ The next step is to define the transformation that will remove the customer pers
 
 The final step is to run your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-7.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-7.png "running the flow")
 

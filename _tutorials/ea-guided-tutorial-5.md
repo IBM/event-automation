@@ -33,7 +33,7 @@ If you haven't completed that tutorial yet, you should do it now.
 
    Click the flow title in the header bar to open the flow details.
 
-   Enter a new title and description and click "Save".
+   Enter a new title and description and click **Save**.
 
 **Tip**: Keep this page open - you will need it again in a moment. Do the following step in a separate browser window or tab.
 
@@ -47,7 +47,7 @@ The next step is to create a topic that you will use for the results from this f
 
    If you need a reminder of how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](./tutorial-access#event-streams).
 
-1. Click the "Create a topic" tile.
+1. Click the **Create a topic** tile.
 
 1. Create a topic called `ORDERS.EMEA`.
 
@@ -73,11 +73,12 @@ The next step is to define the event destination for your flow.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-6.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-6.png "adding an event destination node")
 
-   Create an event destination node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+   Create an event destination node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Name the destination `output`.
+1. Hover over the event destination node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
-   Configure the event destination node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options**, and choosing "Edit".
+   In **Details > Node name**, name the destination as `output`.
+
 
 1. Put the Kafka listener address from {{site.data.reuse.es_name}} into the server address for the event destination node.
 
@@ -101,7 +102,7 @@ The next step is to define the event destination for your flow.
 
 The final step is to run the flow and confirm that the EMEA orders are produced to the new topic.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-10.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-10.png "running the flow")
 

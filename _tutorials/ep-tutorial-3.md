@@ -64,16 +64,17 @@ The next step is to calculate the total value of each order, that you will use t
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-2.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-2.png "add a transform node")
 
-   Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
-1. Call the transform node `Calculate order total`.
+1. Hover over the transform node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   Call the transform node `Calculate order total`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node")
 
-   Configure the transform node by clicking the three dot menu and choosing "Edit".
-
+   
 1. Create a new property called `order total`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node")
@@ -98,15 +99,17 @@ The next step is to filter the stream of events based on this new total order va
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-4.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-4.png "add a filter node")
 
-   Create a filter node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a filter node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
-   **Did you know?** You can add a node onto the canvas and automatically connect it to the last node added by double-clicking it in the palette.
+   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
 
-1. Name the filter node to show that it is going to select high value EMEA orders.
+1. Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   Configure the filter node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
+   Name the filter node to show that it is going to select high value EMEA orders.
+
+   
 
 1. Use the assistant to start a filter based on orders with an `order total` greater than `800`.
 
@@ -130,7 +133,7 @@ The next step is to filter the stream of events based on this new total order va
 
 The final step is to run your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
 1. Click the Filter node to see a live view of results from your filter. It is updated as new events are emitted onto the orders topic.
 

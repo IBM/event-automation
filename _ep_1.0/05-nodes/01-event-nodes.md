@@ -195,11 +195,10 @@ The event destination node delivers the processed stream of events to a Kafka to
 To add an event destination node, follow these steps:
 
 1. In the **Palette**, under **Events**, drag the **Event destination** node into the canvas.
-2. Hover over the node, click the **Options** icon 
-![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}, 
-and then click **Edit** to configure the node.
+2. Hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
 The **Configure event destination** page appears.
+
 ### Configuring an event destination node 
 
 To configure an event destination, complete the following steps.

@@ -118,7 +118,7 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-13.png "processing the door events"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-13.png "processing the door events")
 
-   Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
 1. Create a **Transform** node to extract the building name from the door ID.
 
@@ -152,7 +152,7 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-15.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-15.png "creating the processing flow")
 
-   Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
 1. Define the time window to group badge events by as **1 hour**.
 
@@ -170,7 +170,7 @@ For this scenario, you need to find information about the source of door badge e
 
 The final step is to run your completed flow.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of sensor events available on this topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of sensor events available on this topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-19.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-19.png "creating the processing flow")
 

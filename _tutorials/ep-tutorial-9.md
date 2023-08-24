@@ -77,13 +77,13 @@ The first event processing flow will read the events from the sensor readings to
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-3.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-3.png "creating a pre-processing flow")
 
-   Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+   Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Add an event source.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-4.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-4.png "creating a pre-processing flow")
 
-   Configure the event source node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
+   Hover over the event source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Use the server address from the {{site.data.reuse.eem_name}} catalog.
 
@@ -109,13 +109,14 @@ The first event processing flow will read the events from the sensor readings to
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-8.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-8.png "creating a pre-processing flow")
 
-   Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
-1. Name the transform node `rewrite timestamp`.
+1. Hover over the transform node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   Configure the transform node by clicking ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** > **Edit**.
+   Name the transform node `rewrite timestamp`.
+
 
 1. Create a new property called `timestamp`.
 
@@ -168,7 +169,7 @@ The next step is to send the modified events to a new topic that can be used as 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-12.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-12.png "creating a pre-processing flow")
 
-   Create an event destination node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+   Create an event destination node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Configure the event destination node using the {{site.data.reuse.es_name}} server address and credentials.
 
@@ -182,7 +183,7 @@ The next step is to send the modified events to a new topic that can be used as 
 
 1. Click **Configure** to finalize the event destination.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-16.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-16.png "running the pre-processing flow")
 
@@ -315,7 +316,7 @@ The final step is to process the transformed sensor readings to identify the min
 
 The final step is to run your completed flow, tracking the min and max sensor readings for each building from your transformed stream of events.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of sensor events available on this topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of sensor events available on this topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-33.png "running the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-33.png "running the processing flow")
 

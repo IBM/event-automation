@@ -82,7 +82,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-4.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-4.png "adding an event source node")
 
-    Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Add a new event source.
 
@@ -162,11 +162,11 @@ The next step is to start processing this stream of events, by creating the filt
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-14.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-14.png "add a filter node")
 
-    Create a filter node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+    Create a filter node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
     Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
-    **Did you know?** You can add a node onto the canvas and automatically connect it to the last node added by double-clicking it in the palette.
+    **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
 
 1. Give the filter node a name that describes the events it should identify: `EMEA orders`.
 
@@ -189,7 +189,7 @@ The next step is to start processing this stream of events, by creating the filt
 
 The final step is to run your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-17.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-17.png "running the flow")
 

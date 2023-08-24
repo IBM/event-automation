@@ -41,13 +41,13 @@ The next step is to identify the highest number of unit sales in each hour windo
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node")
 
-   Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
 
-1. Call the aggregate node `identify highest unit sales`.
+1. Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   Configure the aggregate node by clicking the three dot menu, and choosing "Edit".
+   Call the aggregate node `identify highest unit sales`.
 
 1. Define a **one hour** window in which to calculate the max unit sales.
 

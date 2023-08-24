@@ -57,7 +57,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-2.png "adding an event source node")
 
-   Create an event source node by dragging one onto the canvas. You can find this in the "Events" section of the left panel.
+   Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
@@ -71,8 +71,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node")
 
-1. To rename the event source, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} "More options" and choose "Edit".
-
+1. To rename the event source, click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}, and enter a name for your event source node in the **Details > Node name** section.
 
 ### Step 3 : Extract product type from events
 
@@ -84,7 +83,7 @@ In the next step, we extract product type into a separate property so that we ca
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-4.png "defining the transformation")
 
-   Create a transform node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
@@ -98,7 +97,7 @@ In the next step, we extract product type into a separate property so that we ca
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6.png "defining the transformation")
 
-   Click "Create new property".
+   Click **Create new property**.
 
    Name the property `product type`.
 
@@ -168,7 +167,7 @@ In the next step, we extract product type into a separate property so that we ca
 
 The next step is to test your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-7.png "testing the flow")
 
@@ -187,7 +186,7 @@ Now that you have transformed the stream of events to include the type attribute
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation")
 
-   Create an aggregate node by dragging one onto the canvas. You can find this in the "Processors" section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
 
    Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
 
@@ -223,7 +222,7 @@ Now that you have transformed the stream of events to include the type attribute
 
 The final step is to run your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-13.png "running the flow")
 

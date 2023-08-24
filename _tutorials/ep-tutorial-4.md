@@ -113,7 +113,7 @@ The next step is find large cancelled orders, by joining our "large orders" stre
 
 The next step is to test your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-9.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-9.png "testing the flow")
 
@@ -159,7 +159,7 @@ The next step is to filter out cancelled large orders for a product where they o
 
 The next step is to test your event processing flow and view the results.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-16.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-16.png "testing the flow")
 
@@ -207,7 +207,7 @@ The next step is to identify small orders of the same product as the repeated ca
 
 Test the flow again to confirm that it is identifying orders that could be investigated.
 
-1. Use the "Run" menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
+1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-23.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-23.png "testing the flow")
 

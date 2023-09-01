@@ -20,11 +20,15 @@ You can run Kafka Connect workers on [IBM z/OS Unix System Services](https://www
 Download Apache Kafka to a non-z/OS system to retrieve the `.tar` file that includes the Kafka Connect shell scripts and JAR files.
 
 To download Kafka Connect and make it available to your z/OS system:
+
 1. Log in to a system that is not running IBM z/OS, for example, a Linux system.
-2. [Download](https://kafka.apache.org/downloads){:target="_blank"} Apache Kafka 2.0.0 or later to the system. {{site.data.reuse.es_name}} provides support for Kafka Connect if you are using a Kafka version listed in the **Kafka version shipped** column of the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+2. [Download](https://kafka.apache.org/downloads){:target="_blank"} Apache Kafka 3.4.0 or later to the system. {{site.data.reuse.es_name}} provides support for Kafka Connect if you are using a Kafka version listed in the **Kafka version shipped** column of the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
 3. Extract the downloaded `.tgz` file, for example:
 
-   `gunzip -k kafka_2.13-2.8.1.tgz`
+   ```shell
+   gunzip -k kafka_2.13-3.4.0.tgz
+   ```
+
 4. Copy the resulting `.tar` file to a directory on the z/OS Unix System Services.
 
 ### Download IBM MQ connectors and configuration

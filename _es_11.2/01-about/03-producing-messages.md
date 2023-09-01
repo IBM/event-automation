@@ -45,8 +45,8 @@ The producer can explicitly specify a partition number when it publishes a messa
 
 If the producer does not specify a partition number, the selection of partition is made by a partitioner. The default partitioner that is built into the Kafka producer works as follows:
 
--   If the record does not have a key, select the partition in a round-robin fashion.
--   If the record does have a key, select the partition by calculating a hash value for the key. This has the effect of selecting the same partition for all messages with the same key.
+- If the record does not have a key, select the partition in a round-robin fashion.
+- If the record does have a key, select the partition by calculating a hash value for the key. This has the effect of selecting the same partition for all messages with the same key.
 
 You can also write your own custom partitioner. A custom partitioner can choose any scheme to assign records to partitions. For example, use just a subset of the information in the key or an application-specific identifier.
 

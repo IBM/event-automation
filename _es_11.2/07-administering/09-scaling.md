@@ -14,7 +14,7 @@ If this testing shows that your system does not have the capacity needed for the
 
 A [performance report]({{ 'pdfs' | relative_url }}/11.0.4 Performance Report_v3.pdf){:target="_blank"} based on example case studies is also available to provide guidance for setting these values.
 
-**Note:** Although the testing for the report was based on Apache Kafka version 2.3.0, the performance numbers are broadly applicable to current versions of Kafka as well.
+**Note:** Although the testing for the report was based on Apache Kafka version 2.3.0, the performance numbers are broadly applicable to current versions of Kafka as well. 
 
 ## Modifying the settings
 
@@ -129,7 +129,7 @@ If you have specific requirements, you can modify the JVM settings for the Kafka
 
 **Note:** Only a [selected subset](https://strimzi.io/docs/operators/0.31.1/configuring.html#con-common-configuration-jvm-reference){:target="_blank"} of the available JVM options can be configured.
 
-JVM settings for the Kafka brokers are defined in the `EventStreams` custom resource in the `spec.strimziOverrides.kafka.jvmOptions` propety. For example:
+JVM settings for the Kafka brokers are defined in the `EventStreams` custom resource in the `spec.strimziOverrides.kafka.jvmOptions` property. For example:
 
 ```yaml
 apiVersion: eventstreams.ibm.com/v1beta2

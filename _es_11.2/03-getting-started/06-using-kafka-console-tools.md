@@ -6,11 +6,11 @@ slug: using-kafka-console-tools
 toc: true
 ---
 
-Apache Kafka comes with a variety of console tools for simple administration and messaging operations. You can find these console tools in the `bin` directory of your [Apache Kafka download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.2.3/kafka_2.13-3.2.3.tgz){:target="_blank"}.
+Apache Kafka comes with a variety of console tools for simple administration and messaging operations. You can find these console tools in the `bin` directory of your [Apache Kafka download](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.4.0/kafka_2.13-3.4.0.tgz){:target="_blank"}.
 
 You can use many of them with {{site.data.reuse.es_name}}, although {{site.data.reuse.es_name}} does not permit connection to its ZooKeeper cluster. As Kafka has developed, many of the tools that previously required connection to ZooKeeper no longer have that requirement. {{site.data.reuse.es_name}} has its own [command-line interface (CLI)](../../installing/post-installation/#installing-the-event-streams-command-line-interface) and this offers many of the same capabilities as the Kafka tools in a simpler form.
 
-The following table shows which Apache Kafka (release 2.0 or later) console tools work with {{site.data.reuse.es_name}} and whether there are CLI equivalents.
+The following table shows which Apache Kafka (release 3.x or later) console tools work with {{site.data.reuse.es_name}} and whether there are CLI equivalents.
 
 | Console tool     | Works with {{site.data.reuse.es_name}}      | CLI equivalent  |
 |:-----------------|:-----------------|:-----------------|

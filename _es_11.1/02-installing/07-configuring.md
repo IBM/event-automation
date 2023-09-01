@@ -1106,15 +1106,15 @@ For each command, provide the intended name and namespace for the {{site.data.re
 
 `oc label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
 
-`oc annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=0`
+`oc annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=0`
 
 `oc create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'`
 
 `oc label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
 
-`oc annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=0`
+`oc annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=0`
 
-**Note:** The `ca-cert-generation` and `ca-key-generation` values identify whether certificates are being renewed or not. Only set 0 for these values if you have not installed an instance of {{site.data.reuse.es_name}} yet. For more information about when to amend these annotations, see [renewing certificates](../../security/renewing-certificates/).
+**Note:** The `eventstreams.ibm.com/ca-cert-generation` and `eventstreams.ibm.com/ca-key-generation` values identify whether certificates are being renewed or not. Only set 0 for these values if you have not installed an instance of {{site.data.reuse.es_name}} yet. For more information about when to amend these annotations, see [renewing certificates](../../security/renewing-certificates/).
 
 To make use of the provided secrets, {{site.data.reuse.es_name}} will require the following overrides to be added to the custom resource.
 

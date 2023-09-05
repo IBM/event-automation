@@ -311,7 +311,7 @@ kubectl apply -f kafka-connect.yaml
 If you are using the kaniko builder supported by the {{site.data.reuse.es_name}} operator to build your Kafka Connect image:
 1. A Kafka Connect build pod is started.
 2. The Kafka Connect build pod creates the Kafka Connect image that contains all the connectors that are specified in the `spec.build.plugins` property. 
-3.  The previously created image is pushed into the registry that is specified in the `spec.build.output` property. 
+3. The previously created image is pushed into the registry that is specified in the `spec.build.output` property. 
 4. When the build is completed, a Kafka Connect pod is started, which uses the previously created image. 
 
 

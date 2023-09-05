@@ -33,10 +33,10 @@ If you provided your own CA certificates and keys, and need to renew only the CA
 
 1. Generate a new CA certificate by using the existing CA private key. The new certificate must have an identical CN name to the certificate it is replacing. Optionally, create a PKCS12 truststore with the new certificate if required.
 2. Replace the value of the `ca.crt` in the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings if required.
-3. Increment the `ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
+3. Increment the `eventstreams.ibm.com/ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
 
    ```shell
-   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=1
    ```
 
    When the operator reconciles the next time, the pods roll to process the certificate renewal.
@@ -53,10 +53,10 @@ If you provided your own CA Certificates and keys, and need to renew both the CA
 
 2. Generate a new certificate and key pair. Optionally, create a PKCS12 truststore with the new certificate, if required.
 3. Replace the value of the `ca.key` in the `<instance-name>-cluster-ca` secret with a base64-encoded string of the new key.
-4. Increment the `ca-key-generation` annotation value in the `<instance-name>-cluster-ca` secret. If no annotation exists, add the annotation, setting the value to `1` with the following command:
+4. Increment the `eventstreams.ibm.com/ca-key-generation` annotation value in the `<instance-name>-cluster-ca` secret. If no annotation exists, add the annotation, setting the value to `1` with the following command:
 
    ```shell
-   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca ca-key-generation=1
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=1
    ```
 
 5. Find the expiration date and time of the previous CA certificate by using OpenSSL or other certificate tooling.
@@ -65,10 +65,10 @@ If you provided your own CA Certificates and keys, and need to renew both the CA
    This will take the format of `ca-YYYY-MM-DDTHH-MM-SSZ.crt` (for example, `ca-2022-05-24T10-20-30Z.crt`). Ensure the value of this element contains the base64-encoded string of the original CA certificate that you are renewing.
 
 7. Add element `ca.crt` to the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings, if required.
-8. Increment the `ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
+8. Increment the `eventstreams.ibm.com/ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
 
    ```shell
-   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert ca-cert-generation=1
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=1
    ```
 
 9. Resume the operator's reconcile loop by running the following command:

@@ -172,7 +172,7 @@ All Flink samples except the Quick Start sample configure Flink to use persisten
 
 ## Planning for persistent storage
 
-If you plan to have persistent volumes, consider the disk space required for storage. TODO - what do we want to say here
+If you plan to have persistent volumes, consider the disk space required for storage.
 
 You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}. Each component can use a different storage class to control how physical volumes are allocated.
 

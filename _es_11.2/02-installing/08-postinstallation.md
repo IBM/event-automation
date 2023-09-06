@@ -65,7 +65,7 @@ Examples of management activities include:
 
 For {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, install the {{site.data.reuse.es_name}} CLI with the IBM Cloud Pak CLI (`cloudctl`) as follows:
 
-1. Ensure you have the IBM Cloud Pak CLI (`cloudctl`) installed either by [retrieving the binary from your cluster](https://www.ibm.com/support/knowledgecenter/en/SSHKN6/cloudctl/3.x.x/install_cli.html){:target="_blank"} or [downloading the binary from a release on the GitHub project](https://github.com/IBM/cloud-pak-cli/releases){:target="_blank"}.
+1. Ensure you have the IBM Cloud Pak CLI (`cloudctl`) installed either by [retrieving the binary from your cluster](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=323-installing-foundational-services-by-using-cli){:target="_blank"} or [downloading the binary from a release on the GitHub project](https://github.com/IBM/cloud-pak-cli/releases){:target="_blank"}.
 
    **Note:** Ensure you download the correct binary for your architecture and operating system.
 2. [Log in](../../getting-started/logging-in/) to your {{site.data.reuse.es_name}} instance as an administrator.

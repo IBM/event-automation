@@ -8,7 +8,7 @@ toc: true
 
 Geo-replication is designed to make it easier for you to mirror topics from one {{site.data.reuse.es_name}} cluster to another.
 
-You can configure {site.data.reuse.es_name}} for high availability disaster recovery (HADR) by using multiple {{site.data.reuse.es_name}} instances in different locations. Two key geo-replication topologies to consider as starting points for planning an HADR solution suitable for your business are:
+You can configure {{site.data.reuse.es_name}} for high availability disaster recovery (HADR) by using multiple {{site.data.reuse.es_name}} instances in different locations. Two key geo-replication topologies to consider as starting points for planning an HADR solution suitable for your business are:
 
 - Active-Passive
 - Active-Active

@@ -20,7 +20,7 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 You will also need to [run the optional instructions for deploying an MQ queue manager](../guided/tutorial-0#ibm-mq). In addition to setting up the MQ queue manager, it will also start the Kafka Connect connector to flow messages from MQ into Kafka.
 
-**Tip**: The MQ Connector is just [one of many connectors available](/event-streams/connectors/) for bringing data into Kafka. Connectors are an effective way to enable processing events from a wide variety of systems and technologies.
+**Tip**: The MQ Connector is just [one of many connectors available]({{ 'connectors' | relative_url}}) for bringing data into Kafka. Connectors are an effective way to enable processing events from a wide variety of systems and technologies.
 
 ### Operator versions
 

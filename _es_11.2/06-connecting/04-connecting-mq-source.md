@@ -7,7 +7,7 @@ slug: source
 toc: true
 ---
 
-You can use the {{site.data.reuse.kafka-connect-mq-source-short}} to copy data from IBM MQ into {{site.data.reuse.es_name}} or Apache Kafka. The connector copies messages from a source MQ queue to a target Kafka topic.
+You can use the {{site.data.reuse.kafka-connect-mq-source-short}} to copy data from IBM MQ into Apache Kafka. The connector copies messages from a source MQ queue to a target Kafka topic.
 
 Kafka Connect can be run in standalone or distributed mode. This document contains steps for running the connector in distributed mode on a Kubernetes platform. In this mode, work balancing is automatic, scaling is dynamic, and tasks and data are fault-tolerant. For more details on the difference between standalone and distributed mode see the [explanation of Kafka Connect workers](../../connectors/#workers).
 
@@ -82,18 +82,18 @@ If you are using the IBM MQ Operator to set up a queue manager, you can use the 
    apiVersion: v1
    kind: ConfigMap
    metadata:
-   name: custom-source-mqsc
+      name: custom-source-mqsc
    data:
-   source.mqsc: |
-      DEFINE CHANNEL(MYSVRCONN) CHLTYPE(SVRCONN)
-      SET CHLAUTH(MYSVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
-      SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)
-      SET CHLAUTH(MYSVRCONN) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)
-      ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)
-      REFRESH SECURITY TYPE(CONNAUTH)
-      DEFINE QLOCAL(MYQSOURCE)
-      SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('alice') AUTHADD(CONNECT,INQ)
-      SET AUTHREC PROFILE(MYQSOURCE) OBJTYPE(QUEUE) PRINCIPAL('alice') AUTHADD(ALLMQI)
+      source.mqsc: |
+         DEFINE CHANNEL(MYSVRCONN) CHLTYPE(SVRCONN)
+         SET CHLAUTH(MYSVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
+         SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)
+         SET CHLAUTH(MYSVRCONN) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)
+         ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)
+         REFRESH SECURITY TYPE(CONNAUTH)
+         DEFINE QLOCAL(MYQSOURCE)
+         SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('alice') AUTHADD(CONNECT,INQ)
+         SET AUTHREC PROFILE(MYQSOURCE) OBJTYPE(QUEUE) PRINCIPAL('alice') AUTHADD(ALLMQI)
    ```
 
 1. Create the ConfigMap by using the following command:
@@ -189,20 +189,53 @@ spec:
     mq.record.builder: com.ibm.eventstreams.connect.mqsource.builders.DefaultRecordBuilder
 ```
 
-A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-source --help`. Alternatively, See the [sample properties file](https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/config/mq-source.properties){:target="_blank"} for a full list of properties you can configure, and also see the [GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-source#readme){:target="_blank"} for all available configuration options.
+A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-source --help`. For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).
 
-## Downloading the MQ Source connector
+## Downloading the MQ source connector
 
-1. {{site.data.reuse.es_ui_login_nonadmin}}
-2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
-3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
-4. Ensure the `MQ Source` tab is selected and click **Go to GitHub**. Download the JAR file from the list of assets for the latest release.
+Find out how to download the MQ source connector based on the connector version.
+
+### Downloading the MQ source connector v2
+
+Follow the instructions to download the MQ source connector v2 from IBM Fix Central.
+
+1. Go to [IBM Fix Central](https://ibm.biz/ea-fix-central){:target="_blank"}.
+2. In the **Find Product > Product selector**, enter **IBM Event Automation**.
+3. In the **Installed version**, select a specific version of {{site.data.reuse.ea_long}} or select **All** to list products in all the versions.
+4. In the **Platform**, select **All**, and then click **Continue**.
+5. In the **Identify Fixes** page, select **Browse for fixes**, and then click **Continue**. The available connectors are listed in the **Select fixes** page.
+6. Select the MQ source connector version you want to download and click **Continue**. For example, `kafka-connect-mq-source-2.0.0`. The download page opens with the default download option.
+7. In your preferred download option, click the connector (for example, `kafka-connect-mq-source-2.0.0.jar`) to download the connector.
+
+The connector JAR file is downloaded.
+
+**Important:** To use the Kafka Connect Build capability for setting this connector, you must upload the JAR to a location that is accessible from the cluster, and provide the URL in the Kafka Connect custom resource.
 
 ## Configuring Kafka Connect
 
-Follow the steps in [Set up a Kafka Connect environment](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, and when starting the connector, use the YAML file you created earlier.
+Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, [add connector dependencies](#adding-connector-dependencies), and when starting the connector, use the Kafka Connect YAML file you created earlier.
+
+### Adding connector dependencies
+
+By default, IBM MQ source connector v2 does not package any external dependencies. Follow the instructions in [setting up connectors](../setting-up-connectors/#specifying-connectors-in-your-kafka-connect-custom-resource) to add your dependencies.
+
+Add the following dependencies to the IBM MQ source connector v2:
+
+
+  artifactId | groupId  | version
+--|---|---
+  connect-api   | org.apache.kafka | >= 3.4.1
+  connect-json  | org.apache.kafka | >= 3.4.1
+  javax.jms-api | javax.jms | >= 2.0.1
+  com.ibm.mq.allclient | com.ibm.mq | >= 9.3.3.1
+  slf4j-api | org.slf4j | >= 2.0.7
+  jackson-databind | com.fasterxml.jackson.core | >= 2.14.3
+  json | org.json | >= 20230618
+
+### Verifying the log output
 
 Verify the log output of Kafka Connect includes the following messages that indicate the connector task has started and successfully connected to IBM MQ:
+
 ``` shell
 $ kubectl logs <kafka_connect_pod_name>
 ...
@@ -224,6 +257,74 @@ INFO Connection to MQ established
 
 3. Click **Topics** in the primary navigation and select the connected topic. Messages will appear in the message browser of that topic.
 
-## Advanced configuration
+## Exactly-once message delivery semantics in IBM MQ source connector v2
 
-For more details about the connector and to see all configuration options, see the [GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-source#readme){:target="_blank"}.
+The IBM MQ source connector v1 provides at-least-once message delivery by default. This means that each IBM MQ message is delivered to Kafka, but in failure scenarios, it is possible to have duplicated messages delivered to Kafka.
+
+IBM MQ source connector v2 offers exactly-once message delivery semantics. An additional IBM MQ queue is used to store the state of message deliveries. When exactly-once delivery is enabled, all IBM MQ messages are delivered to Kafka with no duplicated messages.
+
+**Note**:
+
+- Exactly-once support for source connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
+- Enabling exactly-once delivery in the IBM MQ source connector v2, results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
+
+
+### Prerequisites
+
+Ensure the following values are set in your environment before you enable the exactly-once behavior:
+
+* When the MQ source connector v2 has been configured to deliver messages to Kafka with exactly-once semantics, ensure that the downstream consumers are only consuming transactionally committed messages. You can do this by setting the [`isolation.level`](https://kafka.apache.org/documentation/#consumerconfigs_isolation.level){:target="_blank"} configuration property to `read_committed`.
+* The IBM MQ source connector must run on Kafka Connect version 3.3.0 or later and the `exactly.once.source.support` property must be set to `enabled` in the Kafka Connect worker configuration. For more information about the `exactly.once.source.support` setting, and the Access Control List (ACL) requirements for the worker nodes, see the [Apache Kafka documentation](https://kafka.apache.org/documentation/#connect_exactlyoncesource){:target="_blank"}.
+* On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
+* On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
+* Ensure that the messages that are sent through the MQ source connector v2 do not expire, and that all the messages on the state queue are persistent.
+
+### Enabling exactly-once delivery
+
+Ensure you configure the following properties to enable exactly-once delivery:
+
+* The IBM MQ source connector must have the state queue name configured in the `mq.exactly.once.state.queue` property. The value of the `mq.exactly.once.state.queue` property is the name of a pre-configured IBM MQ queue on the same queue manager as the source IBM MQ queue.
+
+* If you are configuring the [`transaction.boundary`](https://kafka.apache.org/documentation/#sourceconnectorconfigs_transaction.boundary){:target="_blank"} property, the only permitted property value for the IBM MQ source connector is `poll` (the default value). The `poll` value in the `transaction.boundary` property ensures that the Kafka producer transactions are started and committed for each batch of records that are provided to Kafka by the IBM MQ source connector v2.
+
+* Only a single connector task can run in the Kafka Connect instance. As a consequence, the `tasks.max` property must be set to `1` to ensure that failure scenarios do not cause duplicated messages to be delivered.
+
+* Ensure that the IBM MQ source connector principal has a specific set of ACLs to be able to write transactionally to Kafka. See the [Kafka documentation](https://kafka.apache.org/documentation/#connect_exactlyoncesource){:target="_blank"} for the ACL requirements.
+
+* Ensure that the state queue is empty each time exactly-once delivery is enabled (especially when re-enabling the exactly-once feature). Otherwise, the connector behaves in the same way as when recovering from a failure state, and attempts to get undelivered messages recorded in the out-of-date state message.
+
+#### Creating a state queue in IBM MQ by using the `runmqsc` tool
+
+A state message is the message stored in the state queue, and contains the last offset information.
+A state queue is a queue in IBM MQ that stores the last offset of the message transferred from Kafka to MQ. The last offset information is used to resume the transfer in case of a failure. When a failure occurs, the connector collects the information and continues to transfer messages from the point where the connector is interrupted.
+
+Create a state queue as follows.
+
+**Important:** Each connector instance must have its own state queue.
+
+1. Start the `runmqsc` tool by running the following command:
+
+   ```shell
+   runmqsc <queue_manager_name>
+   ```
+
+2. Enter the following command to create a queue:
+
+   ```shell
+   DEFINE QLOCAL (<STATE_QUEUE_NAME>) DEFSOPT (EXCL)
+   ```
+
+   Wait for the queue to be created.
+
+3. Stop the `runmqsc` tool by entering the command`END`.
+
+**Note:** If the source connector is consuming messages from an IBM MQ for z/OS shared queue, then for performance reasons, the state queue should be placed on the same coupling facility structure.
+
+### Exactly-once failure scenarios
+
+The IBM MQ source connector is designed to fail on start-up in certain cases to ensure that exactly-once delivery is not compromised.
+In some of these failure scenarios, it will be necessary for an IBM MQ administrator to remove messages from the exactly-once state queue before the IBM MQ source connector can start up and deliver messages from the source queue again. In these cases, the IBM MQ source connector will have the `FAILED` status and the Kafka Connect logs will describe any required administrative action.
+
+## Advanced configuration.
+
+For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).

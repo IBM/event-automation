@@ -82,18 +82,18 @@ If you are using IBM MQ Operator to set up a queue manager, you can use the foll
    apiVersion: v1
    kind: ConfigMap
    metadata:
-   name: custom-sink-mqsc
+      name: custom-sink-mqsc
    data:
-   sink.mqsc: |
-         DEFINE CHANNEL(MYSVRCONN) CHLTYPE(SVRCONN)
-         SET CHLAUTH(MYSVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
-         SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)
-         SET CHLAUTH(MYSVRCONN) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)
-         ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)
-         REFRESH SECURITY TYPE(CONNAUTH)
-         DEFINE QLOCAL(MYQSINK)
-         SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('alice') AUTHADD(CONNECT,INQ)
-         SET AUTHREC PROFILE(MYQSINK) OBJTYPE(QUEUE) PRINCIPAL('alice') AUTHADD(ALLMQI)
+      sink.mqsc: |
+            DEFINE CHANNEL(MYSVRCONN) CHLTYPE(SVRCONN)
+            SET CHLAUTH(MYSVRCONN) TYPE(BLOCKUSER) USERLIST('nobody')
+            SET CHLAUTH('*') TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(NOACCESS)
+            SET CHLAUTH(MYSVRCONN) TYPE(ADDRESSMAP) ADDRESS('*') USERSRC(CHANNEL) CHCKCLNT(REQUIRED)
+            ALTER AUTHINFO(SYSTEM.DEFAULT.AUTHINFO.IDPWOS) AUTHTYPE(IDPWOS) ADOPTCTX(YES)
+            REFRESH SECURITY TYPE(CONNAUTH)
+            DEFINE QLOCAL(MYQSINK)
+            SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('alice') AUTHADD(CONNECT,INQ)
+            SET AUTHREC PROFILE(MYQSINK) OBJTYPE(QUEUE) PRINCIPAL('alice') AUTHADD(ALLMQI)
    ```
 
 1. Create the ConfigMap by using the following command:
@@ -195,18 +195,47 @@ spec:
     mq.message.builder: com.ibm.eventstreams.connect.mqsink.builders.DefaultMessageBuilder
 ```
 
-A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-sink --help`. Alternatively, See the [sample properties file](https://github.com/ibm-messaging/kafka-connect-mq-sink/blob/master/config/mq-sink.properties){:target="_blank"} for a full list of properties you can configure, and also see the [GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-sink#readme){:target="_blank"} for all available configuration options.
+A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-sink --help`. For all available configuration options for IBM MQ sink connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).
 
-## Downloading the MQ Sink connector
 
-1. {{site.data.reuse.es_ui_login_nonadmin}}
-2. Click **Toolbox** in the primary navigation and scroll to the **Connectors** section.
-3. Go to the **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
-4. Ensure the `MQ Sink` tab is selected and click **Go to GitHub**. Download the JAR file from the list of assets for the latest release.
+## Downloading the MQ sink connector v2
+
+Follow the instructions to download the MQ sink connector v2 from [IBM Fix Central](https://ibm.biz/ea-fix-central){:target="_blank"}.
+
+1. Go to [IBM Fix Central](https://ibm.biz/ea-fix-central){:target="_blank"}. If you are on the **Select fixes** page, you can skip to step 6.
+2. In the **Find Product > Product selector**, enter **IBM Event Automation**.
+3. In the **Installed version**, select a specific version of {{site.data.reuse.ea_long}} or select **All** to list products in all the versions.
+4. In the **Platform**, select **All**, and then click **Continue**.
+5. In the **Identify Fixes** page, select **Browse for fixes**, and then click **Continue**. The available connectors are listed in the **Select fixes** page.
+6. Select the MQ sink connector version you want to download and click **Continue**. For example, `kafka-connect-mq-sink-2.0.0`. The download page opens with the default download option.
+7. In your preferred download option, click the connector (for example, `kafka-connect-mq-sink-2.0.0.jar`) to download the connector.
+
+The connector JAR file is downloaded.
+
+**Important:** To use the Kafka Connect Build capability for setting this connector, you must upload the JAR to a location that is accessible from the cluster, and provide the URL in the Kafka Connect custom resource.
 
 ## Configuring Kafka Connect
 
-Follow the steps in [Set up a Kafka Connect environment](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, and when starting the connector, use the YAML file you created earlier.
+Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, [add connector dependencies](#adding-connector-dependencies), and when starting the connector, use the Kafka Connect YAML file you created earlier.
+
+### Adding connector dependencies
+
+By default, IBM MQ sink connector v2 does not package any external dependencies. Follow the instructions in [setting up connectors](../setting-up-connectors/#specifying-connectors-in-your-kafka-connect-custom-resource) to add your dependencies.
+
+Add the following dependencies to IBM MQ sink connector v2:
+
+  artifactId | groupId  | version
+--|---|---
+  connect-api   | org.apache.kafka | >= 3.4.1
+  connect-json  | org.apache.kafka | >= 3.4.1
+  jackson-databind | com.fasterxml.jackson.core | >= 2.14.3
+  javax.jms-api | javax.jms | >= 2.0.1
+  com.ibm.mq.allclient | com.ibm.mq | >= 9.3.3.1
+  slf4j-api | org.slf4j | >= 2.0.7
+  jackson-databind | com.fasterxml.jackson.core | >= 2.14.3
+  json | org.json | >= 20230618
+
+### Verifying the log output
 
 Verify the log output of Kafka Connect includes the following messages that indicate the connector task has started and successfully connected to IBM MQ:
 
@@ -236,7 +265,7 @@ To test the connector you will need an application to produce events to your top
 Verify the message is on the queue:
 
 1. Navigate to the UI of the [sample application](../../../getting-started/generating-starter-app/) you generated earlier and start producing messages to {{site.data.reuse.es_name}}.
-2. Use the `amqsget` sample to get messages from the MQ Queue:
+2. Use the `amqsget` sample to get messages from the MQ queue:
 
    ```shell
    /opt/mqm/samp/bin/amqsget <queue_name> <queue_manager_name>
@@ -244,6 +273,75 @@ Verify the message is on the queue:
 
    After a short delay, the messages are printed.
 
-## Advanced configuration
+## Exactly-once message delivery semantics in IBM MQ sink connector v2
 
-For more details about the connector and to see all configuration options, see the [GitHub README](https://github.com/ibm-messaging/kafka-connect-mq-sink#readme){:target="_blank"}.
+The IBM MQ sink connector v1 provides at-least-once message delivery by default. This means that each Kafka message is delivered to IBM MQ, but in failure scenarios it is possible to have duplicated messages delivered to IBM MQ.
+
+IBM MQ sink connector v2 offers exactly-once message delivery semantics. An additional IBM MQ queue is used to store the state of message deliveries. When exactly-once delivery is enabled, Kafka messages are delivered to IBM MQ with no duplicated messages.
+
+Follow the instructions to enable exactly-once delivery in the IBM MQ sink connector v2.
+
+**Important**: Exactly-once support for sink connectors is only available in distributed mode.
+
+
+### Prerequisites
+
+Ensure the following values are set in your environment before you enable the exactly-once behavior:
+
+* Configure the consumer group of the sink connector to ignore records in aborted transactions. You can find detailed instructions in the [Kafka documentation](https://kafka.apache.org/documentation/#connect_exactlyoncesink){:target="_blank"}. Notably, this configuration does not have any additional Access Control List (ACL) requirements.
+* The IBM MQ sink connector v2 is only supported on Kafka Connect version 2.6.0 or later.
+* On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
+* On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the state messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
+* Ensure that the messages that are sent through the MQ sink connector v2 do not expire, and that all the messages on the state queue are persistent.
+
+
+### Enabling exactly-once delivery
+
+Configure the following properties to enable exactly-once delivery:
+
+* The IBM MQ sink connector v2 must be configured with the `mq.exactly.once.state.queue` property set to the name of a pre-configured IBM MQ queue on the same queue manager as the sink IBM MQ queue.
+
+* Only a single connector task can be run. As a consequence, the `tasks.max` property must be left unset, or set to `1`.
+
+* Ensure that the state queue is empty each time exactly-once delivery is enabled (especially when re-enabling the exactly-once feature). Otherwise, the connector behaves in the same way as when recovering from a failure state, and attempts to get undelivered messages recorded in the out-of-date state message.
+
+After enabling exactly-once delivery, Kafka messages are delivered to IBM MQ with no duplicated messages.
+
+#### Creating a state queue in IBM MQ by using the `runmqsc` tool
+
+A state message is the message stored in the state queue, and contains the last offset information.
+A state queue is a queue in IBM MQ that stores the last offset of the message transferred from Kafka to MQ. The last offset information is used to resume the transfer in case of a failure. When a failure occurs, the connector collects the information and continues to transfer messages from the point where the connector is interrupted.
+
+Create a state queue as follows.
+
+**Important:** Each connector instance must have its own state queue.
+
+1. Start the `runmqsc` tool by running the following command:
+
+   ```shell
+   runmqsc <QMGR_NAME>
+   ```
+
+   Replace `<QMGR_NAME>` with the name of the queue manager you want to work with.
+
+1. Enter the following command to create a queue:
+
+   ```shell
+   DEFINE QLOCAL (<STATE_QUEUE_NAME>) DEFSOPT (EXCL)
+   ```
+
+   Where:
+
+   * `<STATE_QUEUE_NAME>` is the name of the state queue.
+   * Set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
+
+   Wait for the queue to be created.
+
+1. Stop the `runmqsc` tool by entering the command`END`.
+
+**Note:** If the sink connector is delivering messages to an IBM MQ for z/OS shared queue, then for performance reasons, the state queue should be placed on the same coupling facility structure.
+
+### Exactly-once failure scenarios
+
+The IBM MQ sink connector is designed to fail on start-up in certain cases to ensure that exactly-once delivery is not compromised.
+In some of these failure scenarios, it is necessary for an IBM MQ administrator to remove messages from the exactly-once state queue before the IBM MQ sink connector can start up and deliver messages from the sink queue again. In these cases, the IBM MQ sink connector has the `FAILED` status and the Kafka Connect logs describe any required administrative action.

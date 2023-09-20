@@ -105,7 +105,7 @@ You can use one of the following methods that are provided by {{site.data.reuse.
 
 ### Specifying connectors in your Kafka Connect custom resource
 
-You can use the [kaniko builder](https://github.com/GoogleContainerTools/kaniko){:target="_blank"} that is supported by the {{site.data.reuse.es_name}} operator to build container images within your Kubernetes cluster. You can configure the Kafka Connect custom resource with the details of the required connectors. The {{site.data.reuse.es_name}} operator provides this configuration to the kaniko builder, which builds an image and pushes the image to a specified registry. The {{site.data.reuse.es_name}} operator then creates a Kafka Connect deployment that uses the previously created image, as specified in the `KafkaConnect` custom resource.
+You can use the [kaniko builder](https://github.com/GoogleContainerTools/kaniko){:target="_blank"} that is supported by the {{site.data.reuse.es_name}} operator to build container images within your Kubernetes cluster. You can configure the Kafka Connect custom resource with the details of the required connectors and any dependencies the connectors might have. The {{site.data.reuse.es_name}} operator provides this configuration to the kaniko builder, which builds an image and pushes the image to a specified registry. The {{site.data.reuse.es_name}} operator then creates a Kafka Connect deployment that uses the previously created image, as specified in the `KafkaConnect` custom resource.
 
 To set up and configure the `KafkaConnect` custom resource to use the kaniko builder, complete the following steps:
 
@@ -130,8 +130,8 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
 
 3. In the `spec.build.plugins` field, enter the list of required Kafka Connector JAR, ZIP, or TGZ files.
 
-   Each entry in the `plugins` field has an `artifacts` and a `name` section for providing details about the connector you want to retrieve. For example:
-  
+   Each entry in the `plugins` field has an `artifacts` and a `name` section for providing details about the connector and the dependencies you want to retrieve. For example:
+
    ```yaml
    spec:
      # ...
@@ -140,18 +140,37 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
        plugins:
          - artifacts:
              - type: jar
-               url: >-
-                 https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v1.3.2/kafka-connect-mq-source-1.3.2-jar-with-dependencies.jar
-               sha512sum: fdfde75c42698be06f96c780b5fd42759e1f79dc7a099b32466a32bdd795d3e00a754e6844dd40207174e787d680d5356dc3710d53d55d80d3cdf1d0c8382514
+               url: <url>
+               sha512sum: <sha512sum>
            name: mq-source
    ```
 
-   Where:
-   - `type` is the file format for the connector image that you will download (`jar`, `tgz`, or `zip`).
-   - `url` defines the location to download the connector from. For example, the `url` for the IBM MQ source connector is `https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v1.3.2/kafka-connect-mq-source-1.3.2-jar-with-dependencies.jar`
+   The following example shows a configuration that adds dependencies for a connector that uses `maven` as the artifact type, which retrieves the `slf4j-api` dependency:
 
-     **Important:** The download URL must point to the correct file format type. You can view the file format by checking the file extension at the end of the URL. For example, `https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v1.3.2/kafka-connect-mq-source-1.3.2-jar-with-dependencies.jar` downloads a JAR file, which means the `type` must be set to `jar` in this case.
-   - (Optional) You can provide the `sha512sum: <value>` to allow the {{site.data.reuse.es_name}} operator to verify that the downloaded artifact is correct before it adds it to your Kafka Connect environment.
+   ```yaml
+    plugins:
+      - artifacts:
+        - artifact: slf4j-api
+          group: org.slf4j
+          type: maven
+          version: <version>
+          sha512sum: <sha512sum of the jar>
+        name: mq-sink
+   ```
+
+   Where:
+    - `type` is the file format for the connector image that you will download (`jar`, `tgz`, `maven`, or `zip`).
+    - `<url>` defines the location to download the connector from. For example, the `url` for the IBM MQ source connector v2 is the location of the connector JAR that is accessible from your cluster.
+    - `<sha512sum>` is the checksum that you use to verify that the downloaded artifact is correct before it adds it to your Kafka Connect environment.
+
+   **Note:** If you encounter issues while retrieving the maven artifacts, consider encoding your artifacts. For example, to retrieve the `com.ibm.mq.allclient` artifact, configure your YAML as follows:
+
+   ```yaml
+   - type: maven
+     artifact: com%2Eibm%2Emq%2Eallclient
+     group: com.ibm.mq
+     version: 9.3.3.1
+   ```
 
 4. Provide your `ibm-entitlement-key` secret in the `spec.template.buildConfig.pullSecret` field within the `KafkaConnect` custom resource to retrieve the {{site.data.reuse.es_name}} Kafka Connect image, which is used as the base image for the build.
 
@@ -229,7 +248,7 @@ To run a particular connector, Kafka Connect must have access to a JAR file or s
 
 If your connector consists of just a single JAR file, you can copy it directly into the `my-plugins` directory.
 
-If your connector consists of multiple JAR files, create a directory for the connector inside the `my-plugins` directory and copy all of the connector's JAR files into that directory.
+If your connector consists of multiple JAR files or requires additional dependencies, create a directory for the connector inside the `my-plugins` directory and copy all the connector's JAR files into that directory.
 
 An example of how the directory structure might look with 3 connectors:
 
@@ -281,13 +300,13 @@ Rebuild the Kafka Connect image regularly to ensure that your Kafka Connect envi
 The rebuild process is different depending on how you initially built and deployed the image:
 
 - If the Kafka Connect image was built by using the kaniko builder and by configuring the `spec.build` field in the Kafka Connect custom resource:
-  
+
   Trigger the build again to update to the latest version of Kafka Connect by applying the following annotation to the deployment named `<kafka connect instance name>-connect` in the same namespace as the Kafka Connect instance.
 
   ```shell
   eventstreams.ibm.com/force-rebuild: true
   ```
-  
+
   This forces a rebuild of the image and the redeployment of the pod for this Kafka Connect instance.
 
   You can upgrade a connector to a new version by updating the corresponding artifact entry in the Kafka Connect custom resource. Provide the new connector download URL that links to the new version of the connector in the `spec.build.plugins.artifacts.url` field. If a checksum is required, update the `spec.build.plugins.artifacts.sha512sum` field with the new checksum value. Updating the Kafka Connect custom resource `spec.build` section forces a rebuild of the connector image.

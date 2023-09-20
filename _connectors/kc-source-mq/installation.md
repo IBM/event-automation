@@ -4,9 +4,9 @@ forID: kc-source-mq
 categories: [source]
 ---
 
-{{site.data.reuse.es_name}} provides additional help for setting up a Kafka Connect environment and starting the MQ source connector. Log in to the {{site.data.reuse.es_name}} UI, click the **Toolbox** tab and scroll to the **Connectors** section.
+{{site.data.reuse.es_name}} provides additional help for setting up a Kafka Connect environment and starting the MQ source connector v1. Log in to the {{site.data.reuse.es_name}} UI, click the **Toolbox** tab and scroll to the **Connectors** section.
 
-Alternatively, you can download the MQ source connector from GitHub:
+Alternatively, you can download the MQ source connector v1 from GitHub:
 
 1. Download the connector plugin JAR file:
 
@@ -18,3 +18,5 @@ Alternatively, you can download the MQ source connector from GitHub:
     {{site.data.reuse.kafkaConnectStep2_content1_example}}
 
 3. {{site.data.reuse.kafkaConnectStep3_title}}
+
+**Note:** The [IBM MQ source connector v2]({{ 'connectors/kc-source-ibm-mq2/installation' | relative_url}}), which is built on IBM MQ source connector v1, offers additional features such as [exactly-once delivery](../../es/connecting/mq/source/#exactly-once-message-delivery-semantics-in-ibm-mq-source-connector-v2) of data from IBM MQ into Apache Kafka.

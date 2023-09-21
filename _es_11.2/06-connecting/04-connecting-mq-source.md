@@ -191,10 +191,6 @@ spec:
 
 A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-source --help`. For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).
 
-## Downloading the MQ source connector
-
-Find out how to download the MQ source connector based on the connector version.
-
 ### Downloading the MQ source connector v2
 
 Follow the instructions to download the MQ source connector v2 from IBM Fix Central.

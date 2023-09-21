@@ -233,6 +233,8 @@ Add the following dependencies to IBM MQ sink connector v2:
   com.ibm.mq.allclient | com.ibm.mq | >= 9.3.3.1
   slf4j-api | org.slf4j | >= 2.0.7
   jackson-databind | com.fasterxml.jackson.core | >= 2.14.3
+  jackson-core | com.fasterxml.jackson.core | >= 2.14.3
+  jackson-annotations | com.fasterxml.jackson.core | >= 2.14.3
   json | org.json | >= 20230618
 
 ### Verifying the log output

@@ -195,12 +195,12 @@ spec:
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
 
-### Providing persistent volume
+### Providing persistent volumes
 
-A persistent volume can be precreated for {{site.data.reuse.ep_name}} to use as storage.
-To use a precreated persistent volume set the `spec.authoring.storage.selectors` to match the labels on the precreated persistent volume.
-The following example creates a persistent volume claim to bind to a persistent volume with the label `precreated-persistence: my-pv`.
-Multiple labels can be added as selectors, the persistent volume must have all labels present to match.
+Before installing {{site.data.reuse.ep_name}}, you can create a persistent volume for it to use as storage.
+To use a persistent volume that you created earlier, set the `spec.authoring.storage.selectors` to match the labels on the persistent volume and set the `spec.authoring.storage.storageClassName` to match the `storageClassName` on the persistent volume.
+The following example creates a persistent volume claim to bind to a persistent volume with the label `precreated-persistence: my-pv` and `storageClassName: manual`.
+Multiple labels can be added as selectors, and the persistent volume must have all labels present to match.
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -214,6 +214,7 @@ spec:
       type: persistent-claim
       selectors:
         precreated-persistence: my-pv
+      storageClassName: manual
 # ...
 
 ```

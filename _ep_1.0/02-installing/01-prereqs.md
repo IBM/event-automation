@@ -85,7 +85,7 @@ The {{site.data.reuse.ep_name}} operator requires the following cluster-scoped p
 
 #### Operator requirements for the {{site.data.reuse.flink_long}}
 
-The {{site.data.reuse.flink_long}} operator has the following minimum resource requirements.
+The {{site.data.reuse.flink_long}} has the following minimum resource requirements.
 
 | CPU request (cores) | CPU limit (cores) | Memory request (Gi) | Memory limit (Gi) |
 | ------------------- | ----------------- | ------------------- | ----------------- |

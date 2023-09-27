@@ -16,6 +16,12 @@ This is an extension to the [Track how many products of each type are sold per h
 
 To refine the previous tutorial flow, this tutorial shows you how to identify the style with the highest number of units sold per hour.
 
+### Operator versions
+
+This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+
+- Event Processing 1.0.4
+
 ## Instructions
 
 ### Step 1 : Create a flow
@@ -33,75 +39,43 @@ Run the flow to remind yourself of the output.
 When you have finished reviewing the results, you can stop this flow.
 
 
-### Step 2 : Identify highest sales per hour
+### Step 2 : Identify the best selling style
 
-The next step is to identify the highest number of unit sales in each hour window.
+The next step is to identify the best selling product type in each hour.
 
-1. Add an **Aggregate** node to the flow.
+1. Add a **Window top-n** node.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-3.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-12.png "top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-12.png "top-n node")
 
-   Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
+   Link the top-n node to the aggregate node.
 
-   Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
+1. Call the Window top-n node `top selling style`.
 
-1. Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+1. Specify a time window that matches the previous aggregate: **1 hour**.
 
-   Call the aggregate node `identify highest unit sales`.
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-13.png "time window"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-13.png "time window")
 
-1. Define a **one hour** window in which to calculate the max unit sales.
+1. Specify which property to sort results by (**total sales**) and how many results to keep (**1**).
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-4.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-14.png "top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-14.png "top-n node")
 
-1. Compute the `MAX` total sales value for each hour window.
+   If you wanted to keep the top three selling styles for each hour, for example, you would set this to 3.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-5.png "aggregate node")
+1. Choose the output properties that will be useful to return.
 
-1. Rename the output fields.
+   These can be renamed to make them easier to understand.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-6.png "aggregate node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-15.png "top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-15.png "top-n node")
 
-1. Click **Configure** to finalize the aggregate.
-
-### Step 3 : Identify best selling style
-
-The next step is to use the max units sold results to identify the best selling product type in each hour.
-
-1. Add an **Interval join** node.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-7.png "join node")
-
-   Link the join node to the two aggregate nodes.
-
-1. Call the join node `hourly trending styles`.
-
-1. Define the join to match hourly sales with the highest hourly sales, based on **both** the number of sales and the time window.
-
-   Suggested value for the join condition:
-
-   ```sql
-   `identify highest unit sales`.`max total sales` = `hourly sales by type`.`total sales`  AND  `identify highest unit sales`.`max start time` = `hourly sales by type`.`start time`
-   ```
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-8.png "join node")
-
-1. Specify a time window that matches the two streams. As the times on each stream match, the time window can be very small.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-9.png "join node")
-
-1. Make a record of the results that describe the start/end time, the number of sales, and the product type.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-10.png "join node")
-
-1. Click **Configure** to finalize the join.
+1. Click **Configure** to finalize the top-n.
 
 
-### Step 4 : Test the flow
+### Step 3 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 
-[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-11.png "results"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-11.png "results")
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-16.png "results"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-16.png "results")
 
-Notice that the flow returns a single result only for each hour window - so in the (unlikely) event that two different product styles both had the highest number of sales for the hour, then only one of these will be returned.
+Every hour an event will be emitted with the name of the best selling style in the previous hour, and the total number of units sold.
 
-For the purposes of this scenario (where the web team have a single space on the web page to promote something that is currently selling a lot) this isn't a concern. It doesn't matter if there is another product style that is also selling the same amount.
+The web team can use this to drive a trending products section on their web page to promote something that is currently selling a lot of items.

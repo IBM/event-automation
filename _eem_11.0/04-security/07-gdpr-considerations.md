@@ -108,7 +108,7 @@ In production deployments, persistent storage is used. For encrypting the persis
 
 For information about controlling access to data stored in {{site.data.reuse.eem_name}}, see [managing access](../managing-access).
 
-Cluster-level configuration and resources are accessible through the {{site.data.reuse.openshift_short}} [web console](https://docs.openshift.com/container-platform/4.12/web_console/web-console.html) and by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands).
+Cluster-level configuration and resources are accessible through the {{site.data.reuse.openshift_short}} [web console](https://docs.openshift.com/container-platform/4.12/web_console/web-console.html) and by using the [`kubectl` CLI](https://kubernetes.io/docs/tasks/tools/).
 
 [Access and authorization controls](https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/){:target="_blank"} can be used to control which users are able to access this cluster-level information.
 

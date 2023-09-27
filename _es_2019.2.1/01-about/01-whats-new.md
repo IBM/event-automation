@@ -22,7 +22,7 @@ Find out what is new in {{site.data.reuse.es_name}} version 2019.2.1.
 
 ### Connector catalog
 
-{{site.data.reuse.es_name}} includes a [connector catalog](../../../connectors/){:target="_blank"} listing all connectors that have been verified with {{site.data.reuse.es_name}}, including  community-provided connectors and connectors supported by IBM.
+{{site.data.reuse.es_name}} includes a [connector catalog](../{{ 'connectors' | relative_url }}){:target="_blank"} listing all connectors that have been verified with {{site.data.reuse.es_name}}, including  community-provided connectors and connectors supported by IBM.
 
 ### Enhanced support for Kafka Connect
 

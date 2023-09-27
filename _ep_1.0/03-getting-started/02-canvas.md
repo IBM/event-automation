@@ -106,11 +106,15 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 {: #run-flow}
 
 1. The last step is to run your {{site.data.reuse.ep_name}} flow and view the results.
-1. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
+1. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow. 
 
-   **Tip**: **Include historical** is useful while you are developing your flows because you don't need to wait for new events to be produced to the topic. You can use all of the events already on the Kafka topic to check that your flow is working the way that you want.
-1. Click the filter node to see a live view of results from your filter. This is updated as new events are emitted onto your chosen {{site.data.reuse.eem_name}} topic.
-1. (Optional) In the navigation banner, click **Stop** to stop the flow when you finish reviewing the results.
+![Event Processing 1.0.4 icon]({{ 'images' | relative_url }}/1.0.4.svg "In Event Processing 1.0.4 and later")A live view of results from your running flow automatically opens. The results view is showing the output from your flow - the result of processing any events that have been produced to your chosen {{site.data.reuse.eem_name}} topic.
+
+If you are running versions earlier than 1.0.4, click the filter node to see a live view of results from your filter. This is updated as new events are emitted onto your chosen {{site.data.reuse.eem_name}} topic.
+
+**Tip**: **Include historical** is useful while you are developing your flows because you don't need to wait for new events to be produced to the topic. You can use all the events already on the Kafka topic to check that your flow is working the way that you want.
+
+In the navigation banner, click **Stop** to stop the flow when you finish reviewing the results.
 
 The clothing company selected **Include historical** to run the filter on the history of order events available on their `Order events` topic. All the orders from the EMEA region are displayed. This provides the company real-time information about orders placed in the region, and helps them review orders as they occur.
 

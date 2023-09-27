@@ -12,7 +12,6 @@ When deploying in an air-gapped (also referred to as offline or disconnected) en
 
 {{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.4?topic=capabilities-event-streams-deployment){:target="_blank"}.
 
-
 ## Overview
 
 {{site.data.reuse.es_name}} is an [operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
@@ -222,7 +221,6 @@ The KRaft mode in {{site.data.reuse.es_name}} has the following limitations:
 - Moving existing Kafka clusters deployed with ZooKeeper to use KRaft, or the other way around, is not supported.
 - Upgrading your Apache Kafka or {{site.data.reuse.es_name}} operator version, or reverting either one to an earlier version is not supported. To do so, you delete the cluster, upgrade the operator, and deploy a new Kafka cluster.
 - The Topic Operator is not supported. The `spec.entityOperator.topicOperator` property must be removed from the Kafka custom resource.
-- SCRAM-SHA-512 authentication is not supported. If required, use TLS authentication for secure communication.
 - JBOD storage is not supported. You can use `type: jbod` for storage, but the JBOD array can contain only one disk.
 - ![Event Streams 11.2.3 icon]({{ 'images' | relative_url }}/11.2.3.svg "In Event Streams 11.2.3.")Geo-replication is not supported.
 
@@ -235,12 +233,16 @@ To enable KRaft, ensure you enable the `UseKRaft` and `KafkaNodePools` feature g
 ```shell
 kubectl get csv -n <namespace> ibm-eventstreams.v<operator_version> -oyaml | yq e "(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_FEATURE_GATES\")) .value=\"+UseKRaft,+KafkaNodePools\"" | oc apply -f -
 ```
+
 Alternatively, you can edit the `ClusterServiceVersion` in the {{site.data.reuse.openshift_short}} web console by locating the `STRIMZI_FEATURE_GATES` environmental variable and editing it to have the `value` of `+UseKRaft,+KafkaNodePools` as follows:
+
 ```yaml
                       - name: STRIMZI_FEATURE_GATES
                         value: '+UseKRaft,+KafkaNodePools'
 ```
+
 **Important:** An {{site.data.reuse.es_name}} instance in KRaft mode must use the `RunAsKRaftAuthorizer` custom authorizer class. When configuring your `EventStreams` custom resource, set `authorizerClass` as follows:
+
 ```yaml
          kafka:
             replicas: 3

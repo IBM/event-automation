@@ -10,6 +10,21 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.0.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Support for other Kubernetes platforms
+
+In addition to the existing support for the {{site.data.reuse.openshift}}, {{site.data.reuse.eem_name}} version 11.0.4 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for [installing](../../installing/installing-on-kubernetes/) on other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.0.4 compared to 11.0.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4.")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.0.4 contains security and bug fixes.
+
+
+## Release 11.0.3
+
 ### Catalog search
 
 {{site.data.reuse.eem_name}} 11.0.3 adds a way to [search the catalog](../../consume-subscribe/discovering-topics#searching-the-catalog) where users can more easily discover and locate a specific topic, or range of topics.

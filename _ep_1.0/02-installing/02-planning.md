@@ -187,10 +187,10 @@ You must have the Cluster Administrator role for creating persistent volumes or 
 - If these persistent volumes are to be created manually, this must be done by the system administrator before installing {{site.data.reuse.ep_name}}. These will then be claimed from a central pool when the {{site.data.reuse.ep_name}} instance is deployed. The installation will then claim a volume from this pool.
 - If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.12/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.ep_name}}.
 
-**Important:** When creating persistent volumes for {{site.data.reuse.ep_name}} pods, ensure the **Access mode** is set to `ReadWriteOnce`. To use persistent storage, [configure the storage properties](../configuring/#enabling-persistent-storage) in your `EventProcessing` custom resource.
+**Important:**
 
-**Important:** For Flink, see [Storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).
-
+- **For Flink**, when creating persistent volumes, ensure the **Access mode** is set to `ReadWriteMany`. For more information, see [storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).
+- **For {{site.data.reuse.ep_name}}**, when creating persistent volumes, ensure the **Access mode** is set to `ReadWriteOnce`. To use persistent storage, [configure the storage properties](../configuring/#enabling-persistent-storage) in your `EventProcessing` custom resource.
 
 ## Planning for security
 

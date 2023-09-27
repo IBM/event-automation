@@ -59,13 +59,13 @@ You can define users explicitly with usernames and passwords, which is typically
 6. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
    The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance, and you can then log in with these users. For more information, see [logging into {{site.data.reuse.eem_name}} instance](../../getting-started/logging-in).
 
-### Using the {{site.data.reuse.openshift_short}} CLI
+### Using the CLI
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to create an instance of {{site.data.reuse.eem_name}}:
 
    ```bash
-   cat <<EOF | oc apply -f -
+   cat <<EOF | kubectl apply -f -
    apiVersion: events.ibm.com/v1beta1
    kind: EventEndpointManagement
    metadata:
@@ -181,7 +181,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
 10. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.eem_name}} UI by adding `/auth/protected/userinfo` to the URL.
 11. Open the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your user with the `subject` value. For more information, see [managing roles](../user-roles).
 
-### Using the {{site.data.reuse.openshift_short}} CLI
+### Using the CLI
 
 1. Access your OIDC provider and create a client.
 
@@ -193,11 +193,11 @@ You can authenticate users from an OIDC Identification Provider as follows:
    - Client Secret
    - OIDC Provider Site
 
-3. {{site.data.reuse.openshift_cli_login}}
+3. {{site.data.reuse.cncf_cli_login}}
 4. Run the following command to create a secret containing the OIDC credentials:
 
    ```bash
-   cat <<EOF | oc apply -f -
+   cat <<EOF | kubectl apply -f -
    kind: Secret
    apiVersion: v1
    metadata:
@@ -213,7 +213,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
 5. Run the following command to create an instance of {{site.data.reuse.eem_name}}:
 
    ```bash
-   cat <<EOF | oc apply -f -
+   cat <<EOF | kubectl apply -f -
    apiVersion: events.ibm.com/v1beta1
    kind: EventEndpointManagement
    metadata:
@@ -256,7 +256,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
 9. Run the following command to edit the secret `<custom-resource-name>-ibm-eem-user-roles` to [manage the user roles](../user-roles).
 
    ```bash
-   oc edit secret/<custom-resource-name>-ibm-eem-user-roles -o json
+   kubectl edit secret/<custom-resource-name>-ibm-eem-user-roles -o json
    ```
 
 ### Setting up OIDC based authorization with a custom role identifier

@@ -11,7 +11,7 @@ toc: true
 ## Verifying an installation
 
 To verify that your {{site.data.reuse.eem_name}} installation deployed successfully, you can check the status of your
-instance either in the {{site.data.reuse.openshift_short}} web user interface (UI) or command line tool (CLI).
+instance either by using the command line (CLI), or if running on {{site.data.reuse.openshift_short}}, by using the web console (UI).
 
 ### Using the {{site.data.reuse.openshift_short}} UI
 
@@ -22,24 +22,23 @@ instance either in the {{site.data.reuse.openshift_short}} web user interface (U
 5. The **Status** column will display the current state of the `EventEndpointManagement` custom resource. When the 
 {{site.data.reuse.eem_name}} instance is ready, the status will display `Phase: Running`.
 
-### Using the {{site.data.reuse.openshift_short}} CLI
+### Using the CLI
 
 After all the components of an {{site.data.reuse.eem_name}} instance are active and ready, the `EventEndPointManagement`
 custom resource will have a `Running` phase in the status.
 
 To verify the status:
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Run the `oc get` command as follows:
+1. Run the `kubectl get` command as follows:
 
    ```shell
-   oc get eventendpointmanagement <instance-name> -n <namespace> -o jsonpath='{.status.phase}'
+   kubectl get eventendpointmanagement <instance-name> -n <namespace> -o jsonpath='{.status.phase}'
    ```
 
    An example output for a successful deployment:
 
    ```shell
-   $ oc get eventendpointmanagement development -n eem -o jsonpath='{.status.phase}'
+   $ kubectl get eventendpointmanagement development -n eem -o jsonpath='{.status.phase}'
    Running
    ```
 
@@ -70,26 +69,25 @@ configuration status. Verify that the Event Gateway you have configured is prese
 ## Backup the data encryption key
 
 The secret `<instance-name>-ibm-eem-mek` contains an important key for decrypting the data stored by {{site.data.reuse.eem_name}}.
-This key should be backed up and stored safely outside your OpenShift cluster.
+This key should be backed up and stored safely outside your cluster.
 
 To save the key to a file, complete the following steps.
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. Run the following command to retrieve the encryption secret.
+1. Run the following command to retrieve the encryption secret.
 
    ```shell
-   oc get secret <instance-name>-ibm-eem-mek -n <namespace>
+   kubectl get secret <instance-name>-ibm-eem-mek -n <namespace>
    ```
 
-3. Create a backup of the encryption secret with the command:
+2. Create a backup of the encryption secret with the command:
 
-   ``` shell
-   oc get secret <instance-name>-ibm-eem-mek -n <namespace> -o yaml > encryption-secret.yaml
+   ```shell
+   kubectl get secret <instance-name>-ibm-eem-mek -n <namespace> -o yaml > encryption-secret.yaml
    ```
 
    This command retrieves the encryption secret in YAML format and redirects the output to a file named `encryption-secret.yaml`.
 
-4. Ensure that the backup file (`encryption-secret.yaml`) is stored in a secure location outside the OpenShift cluster.
+3. Ensure that the backup file (`encryption-secret.yaml`) is stored in a secure location outside the cluster.
 
 ## Validating a usage-based deployment
 
@@ -117,7 +115,7 @@ If at any time an issue occurs when reporting metrics, including the initial tes
 This message and status is also available in the {{site.data.reuse.eem_name}} manager component `/ready` endpoint on port 8081, under the `UBP.Reporting.Status` ID. This endpoint can be queried at any time. The following is an example query:
 
 ```shell
-oc exec $(oc get pod -l app.kubernetes.io/instance=<INSTANCE_NAME> -n <NAMESPACE> -o name) -n <NAMESPACE> curl http://localhost:8081/ready
+kubectl exec $(kubectl get pod -l app.kubernetes.io/instance=<INSTANCE_NAME> -n <NAMESPACE> -o name) -n <NAMESPACE> curl http://localhost:8081/ready
 ```
 
 The result will return the current status of the gateway. The following is an example result of a healthy system with usage-based licensing configured:
@@ -202,30 +200,30 @@ The following is an example result of a system that has usage-based licensing co
 
 ## Updating and renewing certificates
 
-After installing {{site.data.reuse.eem_name}}, you can manage your certificates with the IBM Cert Manager operator.
+After installing {{site.data.reuse.eem_name}}, you can manage your certificates with the Cert Manager operator.
 
-**Important:** When updating or renewing certificates, it is important to also update the `spec.tls.caSecretName` configuration (or `ca.pem` if deployed as a stand-alone gateway) of any {{site.data.reuse.egw}} in step with updates made to the {{site.data.reuse.eem_manager}} Manager instance they are registered with. Communication between the {{site.data.reuse.egw}} and Manager will fail until the certificate configuration is updated.
+**Important:** When updating or renewing certificates, it is important to also update the `spec.tls.caSecretName` configuration (or `ca.pem` if deployed as a stand-alone gateway) of any {{site.data.reuse.egw}} in step with updates made to the {{site.data.reuse.eem_manager}} instance they are registered with. Communication between the {{site.data.reuse.egw}} and Manager will fail until the certificate configuration is updated.
 
 ### Renew an existing certificate
 
-You can use IBM Cert Manager to renew and regenerate a certificate if the secret for the certificate is deleted. You can also use the Cert Manager to renew your expired certificates.
+You can use Cert Manager to renew and regenerate a certificate if the secret for the certificate is deleted. You can also use the Cert Manager to renew your expired certificates.
 
 #### By using `cmctl`
 
 Cert Manager provides the cert-manager Command Line Tool (`cmctl`) for managing and renewing certificates.
 
 1. Install the [cert-manager Command Line Tool (`cmctl`)](https://cert-manager.io/docs/reference/cmctl/#installation){:target="_blank"}.
-2. {{site.data.reuse.openshift_cli_login}}
-3. Ensure you are in the project where your {{site.data.reuse.eem_name}} instance is installed:
+2. {{site.data.reuse.cncf_cli_login}}
+3. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 4. View the certificates of your {{site.data.reuse.eem_name}} instance by running the following command:
 
    ```shell
-   oc get certificate
+   kubectl get certificate
    ```
 
 5. View the status of an existing certificate by running the following command:
@@ -241,9 +239,9 @@ Cert Manager provides the cert-manager Command Line Tool (`cmctl`) for managing 
    ```
 
 
-#### By using the web console
+#### By using the {{site.data.reuse.openshift_short}} web console
 
-You can also renew a certificate by deleting the existing secret. You can do this in the OpenShift web console as follows:
+If running on the {{site.data.reuse.openshift_short}}, you can also renew a certificate by deleting the existing secret in the OpenShift web console as follows:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -256,36 +254,36 @@ You can also renew a certificate by deleting the existing secret. You can do thi
 
 #### By using the CLI
 
-You can also renew a certificate by deleting the existing secret. You can do this by using the `oc` CLI as follows:
+You can also renew a certificate by deleting the existing secret. You can do this by using the `kubectl` command as follows:
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure you are in the project where your {{site.data.reuse.eem_name}} instance is installed:
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Run the following command to display the {{site.data.reuse.eem_name}} instances:
 
    ```shell
-   oc get eventendpointmanagement
+   kubectl get eventendpointmanagement
    ```
 
 4. Run the following command to display the name of the secret representing the certificate for {{site.data.reuse.eem_name}}:
 
    ```shell
-   oc get eventendpointmanagement <instance_name> --template '{ {.spec.manager.tls.caSecretName} }'
+   kubectl get eventendpointmanagement <instance_name> --template '{ {.spec.manager.tls.caSecretName} }'
    ```
 
 5. Run the following command to delete and regenerate the value of the certificate:
 
    ```shell
-   oc delete secret <secret_name>
+   kubectl delete secret <secret_name>
    ```
 
 ### Update a certificate to use an external secret
 
-You can provide an externally generated certificate to the IBM Cert Manager. To use an externally generated certificate, update the {{site.data.reuse.eem_name}} instance to use the external certificate as follows.
+You can provide an externally generated certificate to Cert Manager. To use an externally generated certificate, update the {{site.data.reuse.eem_name}} instance to use the external certificate as follows.
 
 #### Generate a certificate externally
 
@@ -301,11 +299,11 @@ You can generate a certificate externally to register with {{site.data.reuse.eem
 
 Register an externally generated certificate with {{site.data.reuse.eem_name}} as follows.
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure you are in the project where your {{site.data.reuse.eem_name}} instance is installed:
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Encode your externally generated certificates to Base 64 format, and make a note of the values:
@@ -332,13 +330,13 @@ Register an externally generated certificate with {{site.data.reuse.eem_name}} a
 5. Apply the secret by running the following command:
 
    ```shell
-   oc apply -f secret.yaml
+   kubectl apply -f secret.yaml
    ```
 
 6. Edit the custom resource of the {{site.data.reuse.eem_name}} instance by running the following command:  
 
    ```shell
-   oc edit eventendpointmanagement <instance-name>
+   kubectl edit eventendpointmanagement <instance-name>
    ```
 
 7. Locate and update the `spec.tls.caSecretName` field to `ibm-ca-secret`, then save and exit.

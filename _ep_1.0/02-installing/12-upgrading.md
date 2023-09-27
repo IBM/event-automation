@@ -12,7 +12,7 @@ Upgrade your {{site.data.reuse.ep_name}} installation as follows. The {{site.dat
 
 ## Upgrade path
 
-You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} to the latest 1.0.x version by using the operator channel v1.0. 
+You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} to the latest 1.0.x version by using the operator channel v1.0.
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators will be upgraded to 1.0.x when it is available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
 
@@ -21,9 +21,66 @@ You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long
 
 ## Prerequisites
 
-- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.ep_name}}.
 
 - To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
+
+- If you [installed the {{site.data.reuse.ep_name}} operator](../installing) to manage instances of {{site.data.reuse.ep_name}} in any namespace (one per namespace), then you might need to control when each of these instances is upgraded to the latest version. You can control the updates by pausing the reconciliation of the instance configuration as described in the following sections. 
+  
+  **Note:** Pausing the reconciliation of the instance configuration is not available for {{site.data.reuse.flink_long}} instances.
+
+### Scheduling the upgrade of an instance
+
+If your operator manages more than one instance of {{site.data.reuse.ep_name}}, you can control when each instance is upgraded by pausing the reconciliation of the configuration settings for each instance, running the upgrade, and then unpausing the reconciliation when ready to proceed with the upgrade for a selected instance.
+
+#### Pausing reconciliation by using the CLI
+
+1. {{site.data.reuse.openshift_cli_login}}
+2. To apply the annotation to an `EventProcessing` instance, run the following command:
+
+   ```shell
+   oc annotate EventProcessing <instance-name> -n <instance-namespace> events.ibm.com/pause='true'
+   ```
+
+3. Follow the steps to upgrade by using [the `oc` CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
+
+#### Unpausing reconciliation by using the CLI
+
+To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.ep_name}} instance, run the following command:
+
+```shell
+oc annotate EventProcessing <instance-name> -n <instance-namespace> events.ibm.com/pause-
+```
+
+When the annotation is removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.ep_name}} completes.
+
+#### Pausing reconciliation by using the OpenShift web console
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
+
+   ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
+
+3. From the **Project** list, select the namespace (project) the instance is installed in.
+4. Locate the operator that manages your {{site.data.reuse.ep_name}} instance in the namespace. It is called **{{site.data.reuse.ep_name}}** in the **Name** column. Click the **{{site.data.reuse.ep_name}}** link in the row.
+5. Select the instance you want to pause and click the `YAML` tab.
+6. In the `YAML` for the custom resource, add `events.ibm.com/pause: 'true'` to the `metadata.annotations` field as follows:
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   metadata:
+   name: <instance-name>
+   namespace: <instance-namespace>
+   annotations:
+      events.ibm.com/pause: 'true'
+   ```
+
+7. Follow the steps to upgrade by using [the `oc` CLI](#upgrading-by-using-the-cli) or [the OpenShift web console](#upgrading-by-using-the-openshift-web-console).
+
+#### Unpausing reconciliation by using the OpenShift web console
+
+To unpause the reconciliation and continue with the upgrade of an {{site.data.reuse.ep_name}} instance, remove the annotation from the `EventProcessing` instance. When the annotation is removed, the configuration of your instance is updated, and the upgrade to the latest version of {{site.data.reuse.ep_name}} completes.
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
 
@@ -83,8 +140,8 @@ For {{site.data.reuse.ep_name}}:
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.ep_name}} instance in the namespace. It is called **{{site.data.reuse.ep_name}}** in the **Name** column. Click the **{{site.data.reuse.ep_name}}** in the row.
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
-6. Click the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-7. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
+6. Select the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+7. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription update channel** dialog.
 
 All {{site.data.reuse.ep_name}} pods that need to be updated as part of the upgrade will be rolled.
 
@@ -96,8 +153,8 @@ For Flink:
 4. From the **Project** list, select the namespace (project) the instance is installed in.
 5. Locate the operator that manages your Flink instance in the namespace. It is called **{{site.data.reuse.flink_long}}** in the **Name** column. Click the **{{site.data.reuse.flink_long}}** in the row.
 6. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
-7. Click the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-8. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription Update Channel** dialog.
+7. Select the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+8. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription update channel** dialog.
 9. If your Flink instance uses persistent storage, [restore the backed up Flink instance](../backup-restore/#restoring).
 10. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 

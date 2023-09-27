@@ -10,6 +10,20 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.0.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Additional processor node: Window top-n
+
+{{site.data.reuse.ep_name}} 1.0.4 introduces a new processor node called **Window top-n**, which filters out the highest or lowest values of a particular property within a specified time window. For more information, see [Window top-n](../../nodes/processornodes/#window-top-n).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.0.4 compared to 1.0.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.0.4 icon]({{ 'images' | relative_url }}/1.0.4.svg "In Event Processing 1.0.4 and later")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.0.4 and {{site.data.reuse.flink_long}} version 1.0.3 contain security and bug fixes.
+
+## Release 1.0.3
+
 ### Security and bug fixes
 
 {{site.data.reuse.ep_name}} release 1.0.3 and {{site.data.reuse.flink_long}} version 1.0.2 contain security and bug fixes.

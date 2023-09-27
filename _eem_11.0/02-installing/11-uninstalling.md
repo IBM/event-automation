@@ -11,7 +11,7 @@ You can also remove the {{site.data.reuse.eem_name}} operator itself.
 
 ## Uninstalling instances
 
-### By using the {{site.data.reuse.openshift_short}} web console
+### Using the {{site.data.reuse.openshift_short}} web console
 
 To delete an {{site.data.reuse.eem_name}} instance:
 
@@ -74,48 +74,48 @@ Delete remaining Persistent Volumes (PVs):
 6. Check the PV name and click **Delete** to remove the PV.
 
 
-### By using the CLI
+### Using the CLI
 
-You can delete an {{site.data.reuse.eem_name}} instance using the `oc` command-line tool:
+You can delete an {{site.data.reuse.eem_name}} instance using the `kubectl` command-line tool:
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure you are using the project where your {{site.data.reuse.eem_name}} instance is located:
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Run the following command to display the {{site.data.reuse.eem_name}} instances:
 
    ```shell
-   oc get eventendpointmanagement
+   kubectl get eventendpointmanagement
    ```
 
 4. Run the following command to delete your instance:
 
    ```shell
-   oc delete eventendpointmanagement --selector app.kubernetes.io/instance=<instance_name>
+   kubectl delete eventendpointmanagement --selector app.kubernetes.io/instance=<instance_name>
    ```
 
-To delete an {{site.data.reuse.egw}} instance using the `oc` command-line tool:
+To delete an {{site.data.reuse.egw}} instance using the `kubectl` command-line tool:
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure you are using the project where your {{site.data.reuse.egw}} instance is located:
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.egw}} instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Run the following command to display the {{site.data.reuse.egw}} instances:
 
    ```shell
-   oc get eventgateway
+   kubectl get eventgateway
    ```
 
 4. Run the following command to delete your instance:
 
    ```shell
-   oc delete eventgateway --selector app.kubernetes.io/instance=<instance_name>
+   kubectl delete eventgateway --selector app.kubernetes.io/instance=<instance_name>
    ```
 
 #### Check uninstallation progress
@@ -123,13 +123,13 @@ To delete an {{site.data.reuse.egw}} instance using the `oc` command-line tool:
 Run the following command to check the progress:
 
 ```shell
-oc get pods --selector app.kubernetes.io/instance=<instance_name>
+kubectl get pods --selector app.kubernetes.io/instance=<instance_name>
 ```
 
 Pods will initially display a **STATUS** `Terminating` and then be removed from the output as they are deleted.
 
 ```shell
-$ oc get pods --selector app.kubernetes.io/instance=minimal-prod
+$ kubectl get pods --selector app.kubernetes.io/instance=minimal-prod
 >
 NAME                                                 READY     STATUS        RESTARTS    AGE
 minimal-prod-ibm-eem-manager-0                       0/1       Terminating   0           10s
@@ -155,13 +155,13 @@ Delete the PVCs:
 1. Run the following command to list the remaining PVCs associated with the deleted instance:
 
    ```shell
-   oc get pvc --selector app.kubernetes.io/instance=<instance_name>
+   kubectl get pvc --selector app.kubernetes.io/instance=<instance_name>
    ```
 
 2. Run the following to delete a PVC:
 
    ```shell
-   oc delete pvc <pvc_name>
+   kubectl delete pvc <pvc_name>
    ```
 
 Delete remaining PVs:
@@ -169,19 +169,20 @@ Delete remaining PVs:
 1. Run the following command to list the remaining PVs:
 
    ```shell
-   oc get pv
+   kubectl get pv
    ```
 
 2. Run the following command to delete any PVs that were listed in the **Volume** column of the deleted PVCs: 
 
    ```shell
-   oc delete pv <pv_name>
+   kubectl delete pv <pv_name>
    ```
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
-
 ## Uninstalling the {{site.data.reuse.eem_name}} operator
+
+### On the {{site.data.reuse.openshift_short}}
 
 To delete the {{site.data.reuse.eem_name}} operator:
 
@@ -192,18 +193,32 @@ To delete the {{site.data.reuse.eem_name}} operator:
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
-## Uninstalling the IBM Cert Manager
+### On other Kubernetes platforms
 
-To delete the IBM Cert Manager operator:
+To delete the {{site.data.reuse.eem_name}} operator:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the IBM Cert Manager operator to be deleted to open the actions menu.
-5. Click the **Uninstall Operator** menu option to open the confirmation panel.
-6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} operator is installed:
 
-## Removing {{site.data.reuse.eem_name}} Custom Resource Definitions
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+
+3. List your Helm releases and select the release that matches the operator:
+
+   ```shell
+   helm list
+   ```
+
+4. Uninstall the operator by using the following command:
+
+   ```shell
+   helm uninstall <release-name>
+   ```
+
+## Removing {{site.data.reuse.eem_name}} Custom Resource Definitions 
+
+### On the {{site.data.reuse.openshift_short}}
 
 The {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want:
 
@@ -225,9 +240,67 @@ To delete {{site.data.reuse.egw}} CRDs:
 5. Click the **Delete CustomResourceDefinition** menu option to open the confirmation panel.
 6. Check the name of the CRD and click **Delete** to remove the CRD.
 
-## Removing the secrets
+### On other Kubernetes platforms
 
-Secrets that are created by the IBM Cert Manager are not are not deleted automatically. You must manually delete any secrets that you do not want.
+The {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you no longer require.
+Take caution when deleting CRDs and check there are no instances of the CRDs, or other operator installations that use the CRDs.
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Identify the namespace and Helm release managing the CRDs by looking at the annotations on the CRDs:
+
+   ```shell
+   kubectl get crd eventendpointmanagements.events.ibm.com -o jsonpath='{.metadata.annotations}'
+   ```
+   
+   Example output showing CRDs managed by Helm release "eem-crds" in namespace "my-eem"
+
+   ```shell
+   {"meta.helm.sh/release-name": "eem-crds", "meta.helm.sh/release-namespace": "eem"}
+   ```
+
+4. Ensure you are using the namespace where your {{site.data.reuse.eem_name}} CRD Helm release is located (see previous step).
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+   
+5. To check for other {{site.data.reuse.eem_name}} instances, use the following two commands:
+
+   ```shell
+   kubectl get eventendpointmanagement --all-namespaces
+   ```
+   ```shell
+   kubectl get eventgateway --all-namespaces
+   ```
+
+6. To check for other {{site.data.reuse.eem_name}} operator installations:
+
+   ```shell
+   kubectl get pods -l app.kubernetes.io/instance=ibm-eem-operator --all-namespaces
+   ```
+
+7. When ready, you can delete the CRDs:
+
+   ```shell
+   helm uninstall <release name>
+   ```
+
+## Uninstalling the IBM Cert Manager on {{site.data.reuse.openshift_short}}
+
+To delete the IBM Cert Manager operator:
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
+4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the IBM Cert Manager operator that is to be deleted to open the actions menu.
+5. Click the **Uninstall Operator** menu option to open the confirmation panel.
+6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
+
+## Removing certificate secrets
+
+Secrets that are created by the Cert Manager are not deleted automatically. You must manually delete any secrets that you do not want.
+
+### Using the {{site.data.reuse.openshift_short}} web console
 
 To delete {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} secrets by using the web console:
 
@@ -237,6 +310,29 @@ To delete {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} secrets by us
 4. Search the instance by name and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the secret to be deleted to open the actions menu.
 5. Click the **Delete Secret** menu option to open the confirmation panel.
 6. Check the name of the secret and click **Delete** to remove the secret.
+
+### Using the CLI
+
+To delete {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} secrets by using the CLI:
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are using the namespace where your {{site.data.reuse.eem_name}} operator was located:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+
+3. List the secrets and identify any that match the instance you deleted. The secrets created for {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} begin with the name of your {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instances.
+
+   ```shell
+   kubectl get secrets
+   ```
+
+4. Delete the relevant secrets:
+
+   ```shell
+   kubectl delete secret <secretName>
+   ```
 
 ## Uninstalling a stand-alone Event Gateway
 

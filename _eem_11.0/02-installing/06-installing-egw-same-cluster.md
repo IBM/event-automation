@@ -14,7 +14,9 @@ Instances of the {{site.data.reuse.egw}} can be created after the {{site.data.re
 
 When installing an instance of the {{site.data.reuse.egw}}, ensure you are using a namespace that an operator is managing.
 
-## Installing an {{site.data.reuse.egw}} instance by using the web console
+**Note:** When running on Kubernetes platforms other than {{site.data.reuse.openshift_short}}, "all namespaces" refers to an installation where `watchAnyNamespace=true` was set during the [Helm installation](../installing-on-kubernetes).
+
+## Installing an {{site.data.reuse.egw}} instance by using the {{site.data.reuse.openshift_short}} web console
 
 To install an {{site.data.reuse.egw}} instance through the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -86,7 +88,7 @@ To configure an `EventGateway` custom resource,  complete the following steps:
 2. In **License > License Acceptance**, select the **accept** checkbox and ensure that the [correct values]({{ 'support/licensing' | relative_url }}) for **License**, **Metric**, and **Use** are entered.
 3. In **gatewayGroupName**, enter the name of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
 4. In **gatewayID**, enter the ID of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
-5. In **eemManager > endpoint**, enter the endpoint URI of {{site.data.reuse.eem_manager}} instance. See [configuring](../configuring) on how to retrieve the endpoint URI of manager instance.
+5. In **eemManager > endpoint**, enter the `gateway` API endpoint URI of {{site.data.reuse.eem_manager}} instance. See [configuring](../configuring) on how to retrieve the `gateway` API endpoint URI of manager instance.
 6. In **tls > caSecretName**, enter the name of the secret that contains the root CA certificate. You can also optionally [configure](../configuring#configuring-tls) other TLS specifications such as details of the secrets, keys, and certificates.
 
    **Important:** The `caSecretName` of an {{site.data.reuse.egw}} instance must be the same as the `caSecretName` of the {{site.data.reuse.eem_name}} instance you referred to when setting the endpoint URI in **eemManager > endpoint**. If you are using the [operator-provided certificate](../configuring/#operator-configured-ca-certificate), enter the value as `<my-instance>-ibm-eem-manager-ca`.
@@ -96,11 +98,11 @@ To configure an `EventGateway` custom resource,  complete the following steps:
 9. Wait for the installation to complete.
 10. You can now verify your installation and consider other [post-installation tasks](../post-installation/).
 
-## Installing an {{site.data.reuse.egw}} instance by using the CLI
+## Installing an {{site.data.reuse.egw}} instance by using the CLI (`kubectl`)
 
-To install an instance of {{site.data.reuse.egw}} from the command-line, you must first prepare an `EventGateway` custom resource configuration in a YAML file.
+To install an instance of {{site.data.reuse.egw}} from the command-line (`kubectl`), you must first prepare an `EventGateway` custom resource configuration in a YAML file.
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway` to access the samples. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway` to access the samples relevant for your Kubernetes platform. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload.
 
 More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
 
@@ -109,31 +111,32 @@ More information about these samples is available in the [planning](../planning/
 When modifying the sample configuration, ensure the following fields are updated based on your requirements:
 
 - `spec.license.accept` field in the custom resource YAML is set to `true` and that the [correct values](../planning/#licensing) are selected for `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields.
-- `spec.ManagerEndpoint` is set to the endpoint URI of {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance.
+- `spec.ManagerEndpoint` is set to the `gateway` API endpoint URI of {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance.
 - `spec.tls.caSecretName` field is updated with the name of a secret that contains the root CA certificate.
 
    **Important:** The `caSecretName` of an {{site.data.reuse.egw}} instance must be the same as the `caSecretName` of the {{site.data.reuse.eem_name}} instance you referred to when setting the endpoint URI in `spec.ManagerEndpoint`. If you are using the [operator-provided certificate](../configuring/#operator-configured-ca-certificate), enter the value as `<my-instance>-ibm-eem-manager-ca`.
 - `spec.gatewayGroupName` field is updated with the name of a Gateway group to which this Gateway should be added.
 - `spec.gatewayID` field is updated with the ID of a Gateway group to which this Gateway should be added.
 
+On Kubernetes platforms other than the {{site.data.reuse.openshift_short}}, ensure you set the following additional fields:
+
+- `spec.endpoints[]` must contain an endpoint with:
+  - `name` set to `gateway`
+  - `host` field set to a DNS resolvable hostname for accessing the service
+
+
 To deploy an {{site.data.reuse.egw}} instance, run the following commands:
 
-1. Set the project where your `EventGateway` custom resource will be deployed in:
+1. Apply the configured `EventGateway` custom resource to your target namespace:
 
    ```shell
-   oc project <project-name>
-   ```
-
-2. Apply the configured `EventGateway` custom resource:
-
-   ```shell
-   oc apply -f <custom-resource-file-path>
+   kubectl apply -f <custom-resource-file-path> -n <target-namespace>
    ```
 
    For example:
 
    ```shell
-   oc apply -f production.yaml
+   kubectl apply -f production.yaml -n my-namespace
    ```
 
 3. Wait for the installation to complete.

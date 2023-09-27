@@ -8,7 +8,7 @@ toc: true
 
 You can describe your Kafka topics as event sources, making their event data available to others in your organization. The event data can then be used in projects through self-service access without the need for the topic owners to be involved in every request for reuse.
 
-As a Kafka administrator you can add new topics, describing the event source by adding cluster connection details from an existing or new cluster. This connection is tested, and if valid, basic topic details are retrieved from the Kaka cluster, such as name, partition, and replica information.
+As a Kafka administrator you can add new topics, describing the event source by adding cluster connection details from an existing or new cluster. This connection is tested, and if valid, basic topic details are retrieved from the Kafka cluster, such as name, partition, and replica information.
 
 You can also provide other information such as a description about the event data available through a topic, tags that help describe the content of the event source through keywords, and schema details if the topic uses schemas to structure the event content.
 

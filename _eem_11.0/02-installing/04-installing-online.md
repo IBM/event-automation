@@ -1,6 +1,6 @@
 ---
-title: "Installing the Manager in an online environment"
-excerpt: "Find out how to install Event Endpoint Management in an online environment."
+title: "Installing the Manager in an online OpenShift environment"
+excerpt: "Find out how to install Event Endpoint Management in an online OpenShift environment."
 categories: installing
 slug: installing
 toc: true

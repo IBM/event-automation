@@ -84,7 +84,7 @@ For example, to install the operator on a cluster where it will manage all insta
 helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-namespace" --set watchAnyNamespace=true
 ```
 
-For example, to install the operator that will manage {{site.data.reuse.es_name}} instances in only the `eventstreams` namespace, run the command as follows:
+For example, to install the operator that will manage {{site.data.reuse.es_name}} instances in only the `my-eventstreams` namespace, run the command as follows:
 
 ```shell
 helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-eventstreams"
@@ -125,7 +125,6 @@ The KRaft mode in {{site.data.reuse.es_name}} has the following limitations:
 - Moving existing Kafka clusters deployed with ZooKeeper to use KRaft, or the other way around, is not supported.
 - Upgrading your Apache Kafka or {{site.data.reuse.es_name}} operator version, or reverting either one to an earlier version is not supported. To do so, you delete the cluster, upgrade the operator, and deploy a new Kafka cluster.
 - The Topic Operator is not supported. The `spec.entityOperator.topicOperator` property must be removed from the Kafka custom resource.
-- SCRAM-SHA-512 authentication is not supported. If required, use TLS authentication for secure communication.
 - JBOD storage is not supported. You can use `type: jbod` for storage, but the JBOD array can contain only one disk.
 - ![Event Streams 11.2.3 icon]({{ 'images' | relative_url }}/11.2.3.svg "In Event Streams 11.2.3.")Geo-replication is not supported.
 

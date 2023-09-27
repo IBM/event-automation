@@ -11,7 +11,7 @@ If you have IBM MQ or another service running on {{site.data.reuse.icp}}, you ca
 
 ## Downloading connectors
 
-The connector catalog contains a list of connectors that have been verified with {{site.data.reuse.es_name}}. Go to the [connector catalog](../../connectors/){:target="_blank"} and download the JAR file(s) for any connectors you want to use.
+The connector catalog contains a list of connectors that have been verified with {{site.data.reuse.es_name}}. Go to the [connector catalog]({{ 'connectors' | relative_url }}){:target="_blank"} and download the JAR file(s) for any connectors you want to use.
 
 The JAR files for the IBM MQ source and sink connectors can be downloaded from the {{site.data.reuse.es_name}} UI. [Log in](../../getting-started/logging-in/) to your {{site.data.reuse.es_name}} UI, click **Toolbox** in the primary navigation, and go to **Add connectors to your Kafka Connect environment** tile and click **{{site.data.reuse.kafka-connect-connecting-to-mq}}**
 

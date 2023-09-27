@@ -42,75 +42,113 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
    ```
 
    Where `<platformApi value>` is the API Connect `platformApi` endpoint that you retrieved earlier.
-2. In the {{site.data.reuse.openshift_short}}, [create a secret](#creating-a-secret) that contains the downloaded certificate.
-3. {{site.data.reuse.openshift_ui_login}}
-4. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-5. {{site.data.reuse.task_openshift_select_operator_eem}}
-6. {{site.data.reuse.task_openshift_select_instance_eem}}
-7. Click the **YAML** tab to edit the custom resource.
-8. In the `spec.manager` field, add the following snippet: 
+2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the downloaded certificate. Create a secret to store the API Connect certificate as follows.
 
-   ```yaml
-   apic:
-         jwks:
+   - Using the {{site.data.reuse.openshift_short}} UI:
+     
+     1. {{site.data.reuse.openshift_ui_login}}
+     2. Expand the **Workloads** drop-down menu and select **Secrets**.
+     3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
+     4. Expand the **Create** drop-down menu and select **Key/value secret**.
+     5. Enter `apim-cpd` as the **Secret name**.
+     6. Enter `ca.crt` as the **Key**.
+     7. Under **Value**, select **Browse...**, and then select the certificate that you downloaded.
+     8. Click **Create**.
+   
+   - Using the CLI:
+     
+     1. Run the following command to get a Base64 encoded string of the certificate that you downloaded:
+     
+        ```bash
+        cat <path to the certificate> | base64
+        ```
+     
+     2. {{site.data.reuse.cncf_cli_login}}
+     3. Run the following command to create a secret called `apim-cpd`:
+        
+        ```bash
+        cat <<EOF | kubectl apply -f -
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: apim-cpd
+          namespace: <namespace the {{site.data.reuse.eem_name}} instance is installed in>
+        data:
+          ca.crt: >-
+            <base64-certificate>
+        type: Opaque
+        EOF
+        ```
+        
+        Where:
+        
+        - `<namespace>` is the namespace the {{site.data.reuse.eem_name}} instance is installed in.
+        - `<base64-certificate>` is the Base64 encoded certificate that you obtained in step 1.
+
+
+3. Update the `EventEndpointManagement` instance with the API Connect configuration details:
+
+   - On {{site.data.reuse.openshift_short}}:
+
+      Use the web console to edit the configuration of the `EventEndpointManagement` instance:
+
+      1. {{site.data.reuse.openshift_ui_login}}
+      2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+      3. {{site.data.reuse.task_openshift_select_operator_eem}}
+      4. {{site.data.reuse.task_openshift_select_instance_eem}}
+      5. Click the **YAML** tab to edit the custom resource.
+      6. In the `spec.manager` field, add the following snippet: 
+
+         ```yaml
+         apic:
+           jwks:
              endpoint: >-
-                 <platformApi endpoint>/cloud/oauth2/certs   
-   ```
+               <platformApi endpoint>/cloud/oauth2/certs   
+         ```
 
-9. In the `spec.manager.tls` field, add the following snippet: 
+      7. In the `spec.manager.tls` field, add the following snippet: 
 
-   ```yaml
-   trustedCertificates:
-         - certificate: ca.crt
-           secretName: apim-cpd
-   ```
+         ```yaml
+         trustedCertificates:
+           - certificate: ca.crt
+             secretName: apim-cpd
+         ```
 
-10. Click the **Save** button to apply your changes.
+      8. Click **Save** to apply your changes.
 
-### Creating a Secret
+   - On other Kubernetes platforms:
 
-Create a secret to store the API Connect certificate as follows:
+      On other Kubernetes platforms, you can either edit the configuration of your `EventEndpointManagement` instance by using the `kubectl edit` command, or modify your original configuration file as follows.
 
-#### Using {{site.data.reuse.openshift_short}} UI
+      1. {{site.data.reuse.cncf_cli_login}}
+      2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Workloads** drop-down menu and select **Secrets**.
-3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
-4. Expand the **Create** drop-down menu and select **Key/value secret**.
-5. Enter `apim-cpd` as the **Secret name**.
-6. Enter `ca.crt` as the **Key**.
-7. Under **Value**, select **Browse...**, and then select the certificate that you downloaded.
-8. Click **Create**.
+         ```shell
+         kubectl config set-context --current --namespace=<namespace>
+         ```
 
-#### Using the {{site.data.reuse.openshift_short}} CLI
+      3. Update your `EventEndpointManagement` instance's YAML file on your local system. In the `spec.manager` field, add the following snippet:
 
-1. Run the following command to get a Base64 encoded string of the certificate that you downloaded:
+         ```yaml
+         apic:
+           jwks:
+             endpoint: >-
+               <platformApi endpoint>/cloud/oauth2/certs   
+         ```
 
-   ```bash
-   cat <path to the certificate> | base64
-   ```
+      4. Also in the YAML, in the `spec.manager.tls` field, add the following snippet:
 
-2. {{site.data.reuse.openshift_cli_login}}
-3. Run the following command to create a secret called `apim-cpd`:
+         ```yaml
+         trustedCertificates:
+           - certificate: ca.crt
+             secretName: apim-cpd
+         ```
+   
+      5. Apply the YAML to the Kubernetes cluster:
 
-   ```bash
-   cat <<EOF | oc apply -f -
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: apim-cpd
-     namespace: <namespace the {{site.data.reuse.eem_name}} instance is installed in>
-   data:
-     ca.crt: >-
-       <base64-certificate>
-   type: Opaque
-   EOF
-   ```
-
-   Where:
-
-   - `<namespace>` is the namespace the {{site.data.reuse.eem_name}} instance is installed in.
-   - `<base64-certificate>` is the Base64 encoded certificate that you obtained in step 1.
+         ```shell
+         kubectl apply -f <file_name>
+         ```
 
 ## Enabling mutual TLS
 
@@ -118,25 +156,54 @@ JSON Web Token (JWT) authentication is used by default to verify messages that a
 
 Based on your security requirements, you can optionally choose to also enable mutual TLS (MTLS), which uses certificates for authentication:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. {{site.data.reuse.task_openshift_select_operator_eem}}
-4. {{site.data.reuse.task_openshift_select_instance_eem}}
-5. Click the **YAML** tab to edit the custom resource.
-6. In the `spec.manager.apic` field, add the following snippet:
+### On Other Kubernetes Platforms
 
-   ```yaml
-   clientSubjectDN: CN=<commonname>
-   ```
+   Use the web console to modify the `EventEndpointManagement` instance's configuration:
 
-    Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#obtain-certificates-for-a-tls-client-profile).
-7. Click the **Save** button to apply your changes.
+   1. {{site.data.reuse.openshift_ui_login}}
+   2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+   3. {{site.data.reuse.task_openshift_select_operator_eem}}
+   4. {{site.data.reuse.task_openshift_select_instance_eem}}
+   5. Click the **YAML** tab to edit the custom resource.
+   6. In the `spec.manager.apic` field, add the following snippet:
+
+      ```yaml
+      clientSubjectDN: CN=<commonname>
+      ```
+
+       Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#obtain-certificates-for-a-tls-client-profile).
+   7. Click **Save** to apply your changes.
+
+### On other Kubernetes platforms
+
+  On other Kubernetes platforms you can either edit the configuration of your `EventEndpointManagement` instance by using the `kubectl edit` command, or modify your original configuration file as follows.
+
+   1. {{site.data.reuse.cncf_cli_login}}
+   2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
+
+      ```shell
+      kubectl config set-context --current --namespace=<namespace>
+      ```
+
+   3. Update your `EventEndpointManagement` instance's YAML file on your local system. In the `spec.manager.apic` field, add the following snippet:
+
+      ```yaml
+      clientSubjectDN: CN=<commonname>
+      ```
+
+      Where <commonname> is the Common Name on the certificates that are used when making the TLS client profile.
+
+   4. Apply the YAML to the Kubernetes cluster:
+
+      ```shell
+      kubectl apply -f <file_name>
+      ```
 
 ## Registering {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service in API Connect
 
 After configuring the {{site.data.reuse.eem_name}} to trust API Connect, register the {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service as follows:
 
-### Obtain certificates for a TLS client profile 
+### Obtain certificates for a TLS client profile on OpenShift
 
 1. Expand the **Workloads** drop-down menu and select **Secrets**.
 2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
@@ -149,6 +216,29 @@ After configuring the {{site.data.reuse.eem_name}} to trust API Connect, registe
 N.b if you provided your own certificate via a secret for the eem manager use the data stored in that
 
 For more information on these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
+
+### Obtain certificates for a TLS client profile on OpenShift
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+
+3. Display the secret for your `EventEndpointManagement` instance, it will have the name `<instance_name>-ibm-eem-manager`.
+
+    ```shell
+    kubectl get secret <instance_name>-ibm-eem-manager -o yaml
+    ```
+
+4. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
+5. Copy the **tls.crt** and save it in a file called `manager-client.pem`
+6. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
+
+**Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
+
+For more information about these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
 ### Navigate to Cloud Manager
 
@@ -176,22 +266,54 @@ Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}}
 
 To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where configuration updates from API Connect are sent. This is referred to as the **Service Endpoint** when registering an {{site.data.reuse.egw}} Service in the Cloud Manager. This endpoint can be retrieved from {{site.data.reuse.eem_name}} as follows:
 
+#### Using the OpenShift web console
+
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_select_routes}}
 3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_name}} instance is installed in.
 4. Use the search bar to find the route with the **Name** ending in `apic`. The URL in the **Location** column is the management endpoint.
 
+#### Using the CLI
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+3. List the ingress resources and locate the API Connect ingress for your instance, unless overridden the name  ends in `-apic`.
+
+    ```shell
+    kubectl get ingress
+    ```
+4. Obtain the URL for the ingress resource from the **Host** column.
+
 ## Retrieving the {{site.data.reuse.egw}} client endpoint
 
 To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where clients should connect to in order to consume events. Depending where you have [deployed your {{site.data.reuse.egw}}](../../installing/deploy-gateways), the steps to retrieve the client endpoint will differ:
 
-### Openshift cluster deployment
+### OpenShift cluster deployment
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_select_routes}}
 3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.egw}} instance is installed in.
 4. Use the search bar to find the route with the **Name** ending in `ibm-egw-rt`. The URL in the **Location** column is the client endpoint.
 5. Having retrieved the **Location** value, remove the `https://` protocol prefixing the endpoint.
+
+### Other Kubernetes platforms
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.egw}} instance is installed:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+3. List the ingress resources and locate the API Connect ingress for your instance, unless overridden the name ends in `-ibm-egw-rt`.
+
+    ```shell
+    kubectl get ingress
+    ```
+4. Obtain the URL for the ingress resource from the **Host** column.
 
 ### Stand-alone deployment
 

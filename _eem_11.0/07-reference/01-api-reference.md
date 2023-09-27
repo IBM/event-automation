@@ -22,20 +22,19 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 
 ### Resource: `spec`
 
-| Field | Type | Description |
-| ----------- | ----------- | ----------- |
-| config | string | N/A. Usage not advised. |
-| deployNetworkPolicies | boolean | Control deployment of NetworkPolicies used by the instance. (default: true) |
-| gatewayGroupName | string | The name of a gateway group to which this gateway should be added. |
-| gatewayID | string | The name of a gateway group to which this gateway should be added. |
-| license | [license](#resource-license) | Object containing product licensing details. |
-| managerEndpoint | string | The endpoint address for an {{site.data.reuse.eem_manager}} instance. |
-| template | [template](#resource-template) | Object containing Kubernetes resource overrides. |
-| tls | [tls](#resource-tls) | Object containing TLS configuration. |
+| Field                 | Type                             | Description                                                                 |
+|-----------------------|----------------------------------|-----------------------------------------------------------------------------|
+| config                | string                           | N/A. Usage not advised.                                                     |
+| deployNetworkPolicies | boolean                          | Control the deployment of NetworkPolicies that are used by the instance. (default: true) |
+| endpoints             | [][endpoint](#resource-endpoint) | List of endpoint configurations.                                            |
+| gatewayGroupName      | string                           | The name of the gateway group to which this gateway is to be added.          |
+| gatewayID             | string                           | The identifier of the gateway group to which this gateway is to be added.          |
+| license               | [license](#resource-license)     | Object containing product licensing details.                                |
+| managerEndpoint       | string                           | The endpoint address for an {{site.data.reuse.eem_manager}} instance.       |
+| template              | [template](#resource-template)   | Object containing Kubernetes resource overrides.                            |
+| tls                   | [tls](#resource-tls)             | Object containing TLS configuration.                                        |
 
-## `spec`
-
-Find the CRDs supported by `spec`.
+## API Reference of Objects Used in the CRDs
 
 ### Resource: `apic`
 
@@ -51,6 +50,22 @@ Find the CRDs supported by `spec`.
 | ----------- | ----------- | ----------- |
 | authType | string | The authentication method you are going to use. One of `LOCAL` or `OIDC`. |
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
+
+### Resource: `endpoint`
+
+| Field       | Type              | Description                                                                                                                |
+|-------------|-------------------|----------------------------------------------------------------------------------------------------------------------------|
+| annotations | map[string]string | The annotations to use in place of the [default ingress annotations](../installing/configuring/#ingress-default-settings). |
+| class       | string            | The ingress class name to use on the ingress resource, defaults to `nginx`.                                                  |
+| host        | string            | The DNS resolvable hostname to set on the ingress endpoint.                                                                |
+| name        | string            | The name of the endpoint being configured. For valid values, see the following important notes.                                              |
+
+**Important:**
+- On the {{site.data.reuse.openshift_short}}, `annotations` and `class` are not valid configuration options because OpenShift routes are created.
+- On other Kubernetes platforms you must specify host values for exposed endpoints.
+- Valid values for `host` are:
+  - For `EventEndpointManagement` resources: `ui`, `gateway` and `apic`.
+  - For `EventGateway` resources: `gateway`. 
 
 ### Resource: `jwks`
 
@@ -71,14 +86,15 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 ### Resource: `manager`
 
-| Field | Type | Description |
-| ----------- | ----------- | ----------- |
-| apic | [apic](#resource-apic) | Object containing API Connect connection configuration. |
-| authConfig | [authConfig](#resource-authconfig) | Object containing authentication configuration. |
-| extensionServices | object | Configure extension service endpoints. |
-| storage | [storage](#resource-storage) | Object containing persistence configuration. |
-| template | [template](#resource-template) | Object containing Kubernetes resource overrides. |
-| tls | [tls](#resource-tls) | Object containing TLS configuration. |
+| Field             | Type                               | Description                                             |
+|-------------------|------------------------------------|---------------------------------------------------------|
+| apic              | [apic](#resource-apic)             | Object containing API Connect connection configuration. |
+| authConfig        | [authConfig](#resource-authconfig) | Object containing authentication configuration.         |
+| endpoints         | [][endpoint](#resource-endpoint)   | List of endpoint configuration.                         |
+| extensionServices | object                             | Configure extension service endpoints.                  |
+| storage           | [storage](#resource-storage)       | Object containing persistence configuration.            |
+| template          | [template](#resource-template)     | Object containing Kubernetes resource overrides.        |
+| tls               | [tls](#resource-tls)               | Object containing TLS configuration.                    |
 
 ### Resource: `oidcConfig`
 

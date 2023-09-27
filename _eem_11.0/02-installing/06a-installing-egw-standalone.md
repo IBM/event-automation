@@ -6,11 +6,14 @@ slug: standalone-gateways
 toc: true
 ---
 
-A stand-alone gateway is useful when you need to position the gateway closer to your Kafka installation. If you need to install the {{site.data.reuse.egw}} on a different cluster to your {{site.data.reuse.eem_name}} instance, you can install a stand-alone {{site.data.reuse.egw}} instance. The following sections describe how to install a stand-alone {{site.data.reuse.egw}} instance. 
+A stand-alone gateway is useful when you need to position the gateway closer to your Kafka installation. If you need to install the {{site.data.reuse.egw}} on a different cluster to your {{site.data.reuse.eem_name}} instance, you can install a stand-alone {{site.data.reuse.egw}} instance. The following sections describe how to install a stand-alone {{site.data.reuse.egw}} instance in an online environment.
+
+**Note:** [Stand-alone {{site.data.reuse.egw}}](../standalone-gateways) instances can only be installed in an online environment.
+
 
 
 ## Limitations
-Endpoints that need to be shared between a mixture of stand-alone gateways and those in an {{site.data.reuse.openshift}} must use a host address that is resolvable by all gateways. For example, if the cluster that is associated with a topic uses an internal service address for a Kafka cluster, then a stand-alone gateway will not be able to resolve that address outside of the cluster. In such cases, separate topic aliases must be created and deployed to different gateways.
+Endpoints that need to be shared between a mixture of stand-alone gateways and those in a Kubernetes cluster must use a host address that is resolvable by all gateways. For example, if the cluster that is associated with a topic uses an internal service address for a Kafka cluster, then a stand-alone gateway will not be able to resolve that address outside of the cluster. In such cases, separate topic aliases must be created and deployed to different gateways.
 
 ## Prerequisites
 The stand-alone {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Metric Tool](#installing-the-ibm-license-metric-tool) for any other deployments.
@@ -61,6 +64,7 @@ X509v3 extensions:
 ```
 
 ## Installing
+
 To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as follows:
 
 ```

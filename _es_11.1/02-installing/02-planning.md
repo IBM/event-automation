@@ -379,7 +379,7 @@ When [creating an instance](../installing/#install-an-event-streams-instance) of
 - **CloudPakForIntegrationNonProduction** for non-production deployments suitable for basic development and test activities.
 - **CloudPakForIntegrationProduction** for production deployments.
 
-The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/token.html){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/APIs.html){:target="_blank"} for retrieving the license usage data.
+The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=aa-license-service-api-token#obtaining){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=data-apis){:target="_blank"} for retrieving the license usage data.
 
 There are 3 APIs that can be viewed:
 1. **Snapshot (last 30 days)** This provides audit level information in a .zip file and is a superset of the other reports.

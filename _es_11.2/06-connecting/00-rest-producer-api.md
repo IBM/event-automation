@@ -137,7 +137,7 @@ Using the CLI:
    cloudctl es kafka-user-create --topic <topic_name> --name <user_name> --producer --auth-type scram-sha-512
    ```
 
-   {{site.data.reuse.es_cli_kafkauser_note}}
+   {{site.data.reuse.es_cli_kafkauser_note}} ![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 4. Follow the steps in [managing access](../../security/managing-access/#retrieving-credentials-later) to retrieve the SCRAM SHA 512 username and password.
 
 Using the UI:
@@ -197,7 +197,7 @@ Using the CLI:
    cloudctl es kafka-user-create --topic <topic_name> --name <user_name> --producer --auth-type tls
    ```
 
-   {{site.data.reuse.es_cli_kafkauser_note}}
+   {{site.data.reuse.es_cli_kafkauser_note}} ![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 4. Follow the steps in [managing access](../../security/managing-access/#retrieving-credentials-later) to TLS certificates and keys.
 
 Using the UI:

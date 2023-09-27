@@ -1,5 +1,5 @@
 ---
-title: "Results stuck in `Waiting for receiving the events`"
+title: "Results stuck in `Waiting for output events`"
 excerpt: "A running Event Processing flow is permanently waiting for results."
 categories: troubleshooting
 slug: waiting-for-events
@@ -9,6 +9,15 @@ toc: true
 ## Symptoms
 
 When trying to view the results of your running flow by clicking the last node in the flow, the following message is displayed:
+
+![Event Processing 1.0.4 icon]({{ 'images' | relative_url }}/1.0.4.svg "In Event Processing 1.0.4 and later") In {{site.data.reuse.ep_name}} 1.0.4 and later:
+
+```transparent
+Waiting for output events...
+Waiting for events to arrive at this node, which depends on the quantity of events arriving, and the processing that you have configured.
+```
+
+In {{site.data.reuse.ep_name}} 1.0.3 and earlier:
 
 ```transparent
 Waiting for receiving the events
@@ -39,7 +48,7 @@ Alternatively, if you have existing records on your Kafka topics, select the **R
 
 ### Refreshing browser or opening a running flow
 
-After refreshing your browser or opening a running flow, when you open the results view, the `Waiting for receiving the events` message is displayed.
+After refreshing your browser or opening a running flow, when you open the results view, the `Waiting for output events` message is displayed.
 
 This is because the results view shows events that are output by the processing flow while the view is open in the browser.
 

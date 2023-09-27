@@ -17,6 +17,8 @@ To export an AsyncAPI for your topic, complete the following steps.
 1. In the {{site.data.reuse.eem_name}} UI, go to the **Topics** page, and select the topic you want to export.
 2. Click **Export AsyncAPI for IBM API Connect**.
 
+   ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event Endpoint Management 11.0.4.") Click the **Information** tab and select **Export AsyncAPI for IBM API Connect**.
+
 An asyncAPI document that describes the topic is downloaded as a YAML file.
 
 ## Configure a Catalog in API Connect

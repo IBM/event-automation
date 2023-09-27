@@ -9,7 +9,12 @@ toc: true
 
 To back up and restore your {{site.data.reuse.eem_name}} instance, use a storage class that supports the [Container Storage Interface (CSI) snapshotting](../prerequisites#data-storage-requirements){:target="_blank"} (for example, the [Ceph File System](https://docs.ceph.com/en/latest/cephfs/){:target="_blank"}).
 
-You can use a backup tool such as [Velero](https://velero.io/){:target="_blank"} to perform backups. The [OADP operator](https://docs.openshift.com/container-platform/4.12/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} on the {{site.data.reuse.openshift}} uses Velero. The OADP operator simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.
+You can use a backup tool such as [Velero](https://velero.io/){:target="_blank"} to perform backups.
+
+If you are running on the {{site.data.reuse.openshift}}, the [OADP operator](https://docs.openshift.com/container-platform/4.12/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} uses Velero 
+and simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.  
+
+On other Kubernetes platforms, Valero provides a Helm chart which you can use to install the software or a command line tool.
 
 Follow these instructions to back up and restore your {{site.data.reuse.eem_name}} instance.
 
@@ -22,15 +27,15 @@ Follow these instructions to back up and restore your {{site.data.reuse.eem_name
   - The main encryption key that is stored on a Kubernetes secret.
   - The data that is added to the instance. This is stored on Kubernetes Persistent Volumes (PVs) and within Kubernetes Persistent Volume Claims (PVCs).
 
-  This means that your backup location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions you can use to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"}. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
+  This means that your backup location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions you can use to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"} or [Valero](https://velero.io/plugins/) documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
 
-- If you are using the OADP operator to back up your instance, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing and configuring the `DataProtectionApplication` custom resource, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and select the storage type you want to configure.
+- If you are on the {{site.data.reuse.openshift_short}} and using the OADP operator to back up your instance, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing and configuring the `DataProtectionApplication` custom resource, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and select the storage type you want to configure.
 
 - In your CSI supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured for the `CSI` storage provider in your cluster.
 
 ## Backing up
 
-After your `DataProtectionApplication` is configured and other dependencies are prepared, you can create a backup of your {{site.data.reuse.eem_name}} instance. Create a `Backup` custom resource for the main encryption key and the PVCs containing the data of your instance.
+If applicable, after your `DataProtectionApplication` is configured and other dependencies are prepared, you can create a backup of your {{site.data.reuse.eem_name}} instance. Create a `Backup` custom resource for the main encryption key and the PVCs containing the data of your instance.
 
 1. To ensure that only the main encryption key and the PVCs that contain the data are being backed up, and to easily separate them from the other resources that are related to the {{site.data.reuse.eem_name}} instance, add the `events.ibm.com/backup: required` label to the following resources:
 
@@ -117,7 +122,7 @@ To restore your instance, follow these steps.
 
     See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Restore` custom resource. For example, you can configure your custom resource to restore to an alternative namespace.
 
-2. When you are applying this custom resource, the OADP operator loads the backup from the backup location and re-creates the `<eem_instance_name>-ibm-eem-mek-bak` secret and `manager-storage-<eem_instance_name>-ibm-eem-manager-0` PVC. Before proceeding to the next step, check that both these resources are created and ensure that the resources are in `Ready` state.
+2. When you are applying this custom resource, the backup is loaded from the backup location and the `<eem_instance_name>-ibm-eem-mek-bak` secret and `manager-storage-<eem_instance_name>-ibm-eem-manager-0` PVC are re-created. Before proceeding to the next step, check that both these resources are created and ensure that the resources are in `Ready` state.
 
     **Note:** Velero removes some labels and annotations such as the `volume.beta.kubernetes.io/storage-provisioner` annotation when restoring PVCs. For some providers, this might leave the PVC in a `Pending` state. To fix this manually, add the `volume.beta.kubernetes.io/storage-provisioner` annotation back into the PVC with the same value as the `volume.kubernetes.io/storage-provisioner` annotation.
 

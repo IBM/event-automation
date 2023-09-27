@@ -12,11 +12,11 @@ toc: true
 
 When you install an instance of {{site.data.reuse.eem_name}}, the required network policies will be automatically created unless they are disabled through configuration options. To review the network policies that have been applied:
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to display the installed network policies for a specific namespace:\\
 
    ```shell
-   oc get netpol -n <namespace>
+   kubectl get netpol -n <namespace>
    ```
 
 The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.eem_name}} instance. For information about how to stop deployment of the network policies, see the note after each table.
@@ -28,8 +28,9 @@ The following tables provide information about the network policies that are app
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------------------------------------------------------------------------------|
 | TCP      | Anywhere                                                                                     | 8443     | Operator validating webhook | Always                                                                                                 |
 
-**Note:** To delete the network policy of the {{site.data.reuse.eem_name}} operator, modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`.  This is best done after the initial installation of the operator, not in advance.
-
+**Note:** To delete the network policy of the {{site.data.reuse.eem_name}} operator:
+- On the {{site.data.reuse.openshift_short}}: modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`.  Do this after the initial installation of the operator.
+- On other Kubernetes platforms: install the Helm chart by specifying `--set deployOperatorNetworkPolicy=false`.
 
 ### {{site.data.reuse.eem_name}} pod
 

@@ -8,6 +8,31 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.2.x.
 
+## Release 11.2.4
+
+### Additional IBM supported connectors: IBM MQ connectors v2
+
+The [connector catalog]({{ 'connectors' | relative_url }}) now includes additional connectors that are commercially supported for customers with a support entitlement for {{site.data.reuse.ea_long}} and {{site.data.reuse.cp4i}}:
+
+- An [IBM MQ source connector v2]({{ 'connectors/kc-source-ibm-mq2/installation' | relative_url }}), which offers both exactly-once and at-least-once delivery of data from IBM MQ to Apache Kafka.
+- An [IBM MQ sink connector v2]({{ 'connectors/kc-sink-ibm-mq2/installation' | relative_url }}), which offers both exactly-once and at-least-once delivery of data from Apache Kafka to IBM MQ.
+
+### Apicurio version updated to 2.4.7
+
+{{site.data.reuse.es_name}} 11.2.4 includes support for Apicurio Registry 2.4.7. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../installing/upgrading/#migrate-to-latest-apicurio-registry).
+
+### Support for Kubernetes 1.28
+
+{{site.data.reuse.es_name}} version 11.2.4 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for Kubernetes platforms version 1.28 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.2.4 compared to 11.2.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4.")
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.2.4 contains security and bug fixes.
+
 ## Release 11.2.3
 
 ### Kafka version upgraded to 3.5.1
@@ -40,7 +65,7 @@ When setting up connections for Kafka Connect, you can specify connectors in the
 
 ### Apicurio version updated to 2.4.3
 
-{{site.data.reuse.es_name}}  11.2.1 includes support for Apicurio Registry 2.4.3. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio]({{ 'es/es_11.1' | relative_url }}/troubleshooting/upgrade-apicurio/).
+{{site.data.reuse.es_name}}  11.2.1 includes support for Apicurio Registry 2.4.3. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../installing/upgrading/#migrate-to-latest-apicurio-registry).
 
 ### Updated resource requirements in production samples
 

@@ -23,8 +23,11 @@ You can also [delete](#removing-a-topic) your topic from this page, or [export t
 
 ## Editing a topic
 
-To edit the event source details that represent a topic: 
-1. Click the **Edit Information** button found in the header of the **Topic Detail** page. 
+To edit the event source details that represent a topic:
+
+1. Click the **Edit Information** button found in the header of the **Topic Detail** page.
+
+   ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event Endpoint Management 11.0.4.") Click the **Information** tab on the **Topic Detail** page, and then select **Edit Information**.
 2. Edit the fields you want to change in the [**Overview information**](#overview-information) section.
 3. In the side bar, click **Event Information** to navigate to this section.
 4. Edit the fields and values in the [**Event Information**](#event-information) section that you want to change.
@@ -34,24 +37,29 @@ To edit the event source details that represent a topic:
 Refer to the following sections for more information about the fields that can be edited in **Overview information** and **Event Information**.
 
 ### Overview information
+
 You can edit the following information on this page. Restrictions and validation checks ensure each field meets requirements for Kafka event sources.
+
 - **Topic alias** is editable only when the topic is in an [**unpublished** state](#topic-lifecycle-state). The topic alias must meet the following conditions:
+
    - Be less than 200 characters in length, 
    - Have no white space included,
    - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
+
 - **Topic name** is set when the event source is created and cannot be edited. 
 - **Description** can be edited to describe your topic.
 - **Tags** can be added in a comma separated list. For example: `Product,Returns,Damage Returns`. You can use tags to make discovering the topic easier to identify in the catalog.
 - **Contact** must follow an email address format. 
 
 ### Event information
+
 The event information provides details to help consume the events from the topic. 
 - **Upload Schema:** you can provide an Avro Schema in JavaScript Object Notation (JSON) document format. Checks  are made to ensure valid JSON and valid Avro schemas have been uploaded. If a valid file has been uploaded, a code snippet preview of the schema is displayed. If the formatting is incorrect, the schema is not saved with a validation failure.
     **Note:** The schema must also be saved as a `.avsc` or `.avro` file. Invalid file formats will not be saved when uploaded, and the topic will not have a schema. 
 - **Schema description:** you can add detailed information about the schema. 
-- **Sample messages:** you can provide examples of the messages that are emitted by the event source. In addition, if the event source does not follow an Avro schema, you can use the sample messages field. The sample messages will then be used to infer the schema of messages sent on the topic. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured. 
+- **Sample messages:** you can provide examples of the messages that are emitted by the event source. In addition, if the event source does not follow an Avro schema, you can use the sample messages field. The sample messages will then be used to infer the schema of messages sent on the topic. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
 
-### Saving changes 
+### Saving changes
 
 The save button is disabled if the edits made do not meet the requirements for a Kafka topic. When you are finished with editing the event source, you can either:
 
@@ -64,7 +72,10 @@ The save button is disabled if the edits made do not meet the requirements for a
 **Unpublished** topics can be deleted from {{site.data.reuse.eem_name}}. Deleting a topic removes all details about your topic. To get your topic into a state where it can be deleted, see how you can manage its [lifecycle state](#topic-lifecycle-state).
 
 To delete a topic from {{site.data.reuse.eem_name}}, complete the following steps. 
-1. In the header of the **Topic Detail** page for your **Unpublished** topic, click **Delete topic**. 
+
+1. In the header of the **Topic Detail** page for your **Unpublished** topic, click **Delete topic**.
+
+   ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event Endpoint Management 11.0.4.") Open the **Manage** tab within the **Topic Detail** page for your **Unpublished** topic, and select **Delete topic**.
 2. Confirm the topic that you want to delete by entering the topic name.
 3. Click the red **Delete** button, this will be visible in the footer if you have entered the topic name that you want to delete correctly.
 

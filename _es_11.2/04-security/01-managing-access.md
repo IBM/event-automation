@@ -72,6 +72,7 @@ The following table describes the UI panels and the permissions required to acce
 | **Metrics**         |                  | This panel is disabled for SCRAM authentication. |
 | **Consumer groups** | `group.read`     |                    |
 | **Geo-replication**  | `cluster.alter` | Geo-replication is enabled for SCRAM authentication. |
+| **Generate credentials**  | `cluster.alter` | ![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") **Generate credentials** buttons are enabled in the **Cluster connection** panel. |
 | **Starter application** | `topic.read` and `topic.write` | When generating the starter application, the current user ID and password will be configured in the properties. `topic.create` permission is required to create new topics within the Starter App wizard. |
 
 The following tables describe the CLI commands and the permissions required to run them.
@@ -110,6 +111,7 @@ The following tables describe the CLI commands and the permissions required to r
 | `kubectl es certificates`| No permissions required |
 
 {{site.data.reuse.es_cli_kafkauser_note}}
+![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
 The following table describes the mapping of these permissions to the Kafka user ACL definitions.
 
@@ -152,7 +154,7 @@ To assist in generating compatible `KafkaUser` credentials, the {{site.data.reus
 
 ### Creating a `KafkaUser` in the {{site.data.reuse.es_name}} UI
 
-**Note:** You must have authenticated with an IAM user to be able to generate Kafka users within the {{site.data.reuse.es_name}} UI.
+**Note:** In {{site.data.reuse.es_name}} 11.2.3 and earlier versions you must have authenticated with an IAM user to be able to generate Kafka users within the {{site.data.reuse.es_name}} UI.
 
 1. {{site.data.reuse.es_ui_login}}
 2. Click the **Connect to this cluster** tile to view the **Cluster connection** panel.
@@ -187,6 +189,7 @@ Additionally, to retrieve endpoint details, view the `EventStreams` custom resou
 ### Creating a `KafkaUser` in the {{site.data.reuse.es_name}} CLI
 
 {{site.data.reuse.es_cli_kafkauser_note}}
+![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
 1. {{site.data.reuse.cp_cli_login}}
 2. {{site.data.reuse.es_cli_init_111}}

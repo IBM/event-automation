@@ -152,7 +152,7 @@ It is recommended to generate reports on a monthly basis and adhere to the requi
 For more information about container licensing, see the [container licensing FAQs](https://www.ibm.com/software/passportadvantage/containerfaqov.html){:target="_blank"}.
 
 
-The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/token.html){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/APIs.html){:target="_blank"} for retrieving the license usage data.
+The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=aa-license-service-api-token#obtaining){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=data-apis){:target="_blank"} for retrieving the license usage data.
 
 There are 3 APIs that can be viewed:
 1. **Snapshot (last 30 days)** This provides audit level information in a .zip file and is a superset of the other reports.

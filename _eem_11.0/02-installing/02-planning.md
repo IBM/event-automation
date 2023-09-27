@@ -30,7 +30,13 @@ If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the fol
 - [Production](#example-deployment-production)
 - [Usage-based pricing](#example-deployment-usage-based-pricing)
 
-The sample configurations are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement` to access the samples.
+If you are installing on other Kubernetes platforms, the following samples are available in the Helm chart package:
+
+- [Quick start](#example-deployment-quick-start)
+- [Production](#example-deployment-production)
+- [Production with API Connect integration](#example-deployment-production-with-api-connect-integration)
+
+The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
 
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
@@ -91,12 +97,12 @@ Ensure you have sufficient CPU capacity and physical memory in your environment 
 
 A number of sample configurations are available when installing {{site.data.reuse.egw}} on which you can base your deployment. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
-In the {{site.data.reuse.openshift_short}} web console:
+In the {{site.data.reuse.openshift_short}} web console and in the Helm chart package on other Kubernetes platforms:
 
 - [Quick start](#example-deployment-event-gateway-quick-start)
 - [Production](#example-deployment-event-gateway-production)
 
-The sample configurations are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway` to access the samples.
+The sample configurations for both {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventgateway/openshift` or `/cr-examples/eventgateway/kubernetes` to access the samples.
 
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
@@ -129,7 +135,10 @@ monitor and extend as needed. By default, a value of `500MiB` is used.
 
 You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
 
-For information about creating persistent volumes and creating a storage class that supports dynamic provisioning, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/storage/understanding-persistent-storage.html){:target="_blank"}.
+For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
+
+- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/storage/understanding-persistent-storage.html){:target="_blank"}.
+- For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 

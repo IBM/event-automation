@@ -374,7 +374,7 @@ When [creating an instance](../installing/#install-an-event-streams-instance) of
 
 The [sample deployments](#sample-deployments) provided by {{site.data.reuse.es_name}} have the correct value set by default based on the sample deployment purposes.
 
-The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/token.html) that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/support/knowledgecenter/SSHKN6/license-service/1.x.x/APIs.html) for retrieving the license usage data.
+The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.19?topic=aa-license-service-api-token#obtaining) that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.19?topic=data-apis) for retrieving the license usage data.
 
 There are 3 APIs that can be viewed:
 1. **Snapshot (last 30 days)** This provides audit level information in a .zip file and is a superset of the other reports.

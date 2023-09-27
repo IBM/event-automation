@@ -1,6 +1,6 @@
 ---
-title: "Installing the Manager in an offline environment"
-excerpt: "Find out how to install in an offline (also referred to as air-gapped or disconnected) environment."
+title: "Installing the Manager in an offline OpenShift environment"
+excerpt: "Find out how to install in an offline (also referred to as air-gapped or disconnected) OpenShift environment."
 categories: installing
 slug: offline
 toc: true

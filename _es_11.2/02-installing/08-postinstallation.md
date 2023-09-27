@@ -59,7 +59,8 @@ Examples of management activities include:
 - Managing geo-replication.
 - Displaying the cluster configuration and credentials.
 
-{{site.data.reuse.es_cli_kafkauser_note}}
+{{site.data.reuse.es_cli_kafkauser_note}} 
+![Event Streams 11.2.4 icon]({{ 'images' | relative_url }}/11.2.4.svg "In Event Streams 11.2.4 and later.") You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
 ### IBM Cloud Pak CLI plugin (`cloudctl es`)
 

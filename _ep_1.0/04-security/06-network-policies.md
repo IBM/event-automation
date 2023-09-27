@@ -225,8 +225,8 @@ installing the Flink instance, ensure the namespace is already created.
        - from:
            - podSelector:
                matchLabels:
-                 app.kubernetes.io/component: ibm-sp
-                 app.kubernetes.io/managed-by: ibm-sp-operator
+                 app.kubernetes.io/component: ibm-ep
+                 app.kubernetes.io/managed-by: ibm-ep-operator
        - ports:
            - protocol: TCP
              port: 8081
@@ -243,7 +243,7 @@ installing the Flink instance, ensure the namespace is already created.
          app.kubernetes.io/instance: ibm-eventautomation-flink
          app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
          app.kubernetes.io/name: ibm-eventautomation-flink
-         component: jobmanager
+         component: taskmanager
      ingress:
        - from:
            - podSelector:

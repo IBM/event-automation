@@ -41,11 +41,11 @@ If a user or any other operator applies a custom SCC that removes permissions re
 
 ## Resolving the problem
 
-Apply the custom Security Context Constraint (SCC) provided by [{{site.data.reuse.es_name}}](https://github.com/ibm-messaging/event-streams-operator-resources/){:target="_blank"} to enable permissions required by the product.
+Apply the custom [Security Context Constraint](https://github.com/IBM/ibm-event-automation/blob/main/support/event-automation-scc.yaml){:target="_blank"} (SCC) provided by {{site.data.reuse.ea_long}} to enable permissions required by the product.
 
-To do this, edit the `eventstreams-scc.yaml` file to add your namespace and apply it using `oc` tool as follows:
+To do this, edit the `event-automation-scc.yaml` file to add your namespace and apply it using `oc` tool as follows:
 
-1. Edit the `eventstreams-scc.yaml` and add the namespace where your {{site.data.reuse.es_name}} instance is installed.
+1. Edit the `event-automation-scc.yaml` and add the namespace where your {{site.data.reuse.es_name}} instance is installed.
 
 2. {{site.data.reuse.openshift_cli_login}}
 
@@ -53,4 +53,4 @@ To do this, edit the `eventstreams-scc.yaml` file to add your namespace and appl
 
     `oc apply -f <custom_scc_file_path>`
 
-    For example: `oc apply -f eventstreams-scc.yaml`
+    For example: `oc apply -f event-automation-scc.yaml`

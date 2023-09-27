@@ -154,12 +154,12 @@ Delete remaining PVs:
 
 ### By using the {{site.data.reuse.openshift_short}} web console
 
-To delete the {{site.data.reuse.flink_long}} operator:
+To delete the {{site.data.reuse.flink_long}}:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.flink_long}} operator to be deleted to open the actions menu.
+4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.flink_long}} to be deleted to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 

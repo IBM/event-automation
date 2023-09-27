@@ -63,10 +63,12 @@ latest_eemdocs:
         url: /installing/planning/
       - title: "Installation overview"
         url: "/installing/overview/"
-      - title: "Installing the Manager in an online environment"
+      - title: "Installing the Manager in an online OpenShift environment"
         url: /installing/installing/
-      - title: "Installing the Manager in an offline environment"
+      - title: "Installing the Manager in an offline OpenShift environment"
         url: /installing/offline/
+      - title: "Installing the Manager on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
       - title: "Installing Event Gateways on the same cluster"
         url: /installing/deploy-gateways/
       - title: "Installing stand-alone Event Gateways"
@@ -247,6 +249,8 @@ latest_epdocs:
         url: /troubleshooting/changing-ca-certificate/
       - title: 'Results stuck in "Waiting for receiving the events"'
         url: /troubleshooting/waiting-for-events/
+      - title: "The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues"
+        url: /troubleshooting/default-scc-issues/
 
 # Event Streams 11.2
 latestdocs:

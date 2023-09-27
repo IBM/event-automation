@@ -36,28 +36,27 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.eem
 
    A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
-## Using the {{site.data.reuse.openshift_short}} CLI
+## Using the CLI
 
 To retrieve the URL for your {{site.data.reuse.eem_name}} UI, use the following commands:
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command:
 
    ```shell
-   oc get routes -n <namespace> -l app.kubernetes.io/instance=eem-manager-instance
+   kubectl get eem <instance_name> -n <namespace> -o jsonpath='{'.status.endpoints'}' 
    ```
 
-   The following is an example output, and you use the value from the **HOST/PORT** column to log in to your UI in a web browser:
+   The following is an example output, and you use the value associated with the **ui** named endpoint to log in to your UI in a web browser:
 
    ```shell
-   NAME                        HOST/PORT                                                           PATH   SERVICES                    PORT   TERMINATION   WILDCARD
-   my-eem-ibm-eem-manager   my-eem-ibm-eem-manager-myproject.apps.my-cluster.my-domain.com          my-eem-ibm-eem-manager   3000   reencrypt     None
+   [{"name":"ui","type":"UI","uri":"https://qs-eem-ui.apps.my-cluster.company.com"},{"name":"gateway","type":"API","uri":"https://qs-eem-gateway.apps.my-cluster.company.com"}]%
    ```
 
-3. Enter the address in a web browser. Add `https://` in front of the **HOST/PORT** value. For example:
+3. Enter the address in a web browser. For example:
 
    ```shell
-   https://my-eem-ibm-eem-manager-myproject.apps.my-cluster.my-domain.com
+   https://qs-eem-ui.apps.my-cluster.company.com
    ```
 
 4. Log in to your {{site.data.reuse.eem_name}} UI from a supported [web browser](../../installing/prerequisites/#event-processing-ui) and enter the credentials to go to the {{site.data.reuse.eem_name}} homepage.

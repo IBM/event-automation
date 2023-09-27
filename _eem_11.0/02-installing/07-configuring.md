@@ -62,7 +62,7 @@ spec:
 
 ## Enabling persistent storage
 
-To persist the data input into a {{site.data.reuse.eem_name}} instance, configure persistent storage in your `EventEndpointManagement` configuration.
+To persist the data input into an {{site.data.reuse.eem_name}} instance, configure persistent storage in your `EventEndpointManagement` configuration.
 
 To enable persistent storage for `EventEndpointManagement` , set `spec.manager.storage.type` to `persistent-claim`, and then configure the storage in one of the following ways:
 
@@ -97,12 +97,12 @@ spec:
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
-### Providing persistent volume
+### Providing persistent volumes
 
-Before installing  {{site.data.reuse.eem_name}}, you can create a persistent volume for it to use as storage.
-To use a persistent volume, set the `spec.manager.storage.selectors` to match the labels on the persistent volume created before installing  {{site.data.reuse.eem_name}}.
-The following example creates a persistent volume claim to bind to a persistent volume with the label `precreated-persistence: my-pv`.
-Multiple labels can be added as selectors and the persistent volume must have all labels present to match.
+Before installing {{site.data.reuse.eem_name}}, you can create a persistent volume for it to use as storage.
+To use a persistent volume that you created earlier, set the `spec.manager.storage.selectors` to match the labels on the persistent volume and set the `spec.manager.storage.storageClassName` to match the `storageClassName` on the persistent volume.
+The following example creates a persistent volume claim to bind to a persistent volume with the label `precreated-persistence: my-pv` and `storageClassName: manual`.
+Multiple labels can be added as selectors, and the persistent volume must have all labels present to match.
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -116,6 +116,7 @@ spec:
       type: persistent-claim
       selectors:
         precreated-persistence: my-pv
+      storageClassName: manual
 # ...
 
 ```
@@ -159,22 +160,22 @@ After the TLS is configured for the `EventEndpointManagement` instance, the TLS 
 
 ### Operator configured CA certificate
 
-By default, the operator configures TLS if no value is provided for CA certificate when creating the instance. The operator uses the IBM Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self-signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.eem_name}} instance. IBM Cert Manager puts the CA certificate into a secret named `<my-instance>-ibm-eem-manager-ca`. This secret can be used for configuring the `EventGateway` TLS communications.
+By default, the operator configures TLS if no value is provided for CA certificate when creating the instance. The operator uses the Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self-signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.eem_name}} instance. Cert Manager puts the CA certificate into a secret named `<my-instance>-ibm-eem-manager-ca`. This secret can be used for configuring the `EventGateway` TLS communications.
 
 Cert Manager and {{site.data.reuse.eem_name}} will create the following objects:
 
 
-- IBM Cert Manager Issuers:
+- Cert Manager Issuers:
 
   - `<my-instance>-ibm-eem-manager`
   - `<my-instance>-ibm-eem-manager-selfsigned`
 
-- IBM Cert Manager Certificates:
+- Cert Manager Certificates:
 
   - `<my-instance>-ibm-eem-manager-ca`
   - `<my-instance>-ibm-eem-manager`
 
-The following code snippet is an example of a configuration where all certificates are created by IBM Cert Manager and {{site.data.reuse.eem_name}}:
+The following code snippet is an example of a configuration where all certificates are created by Cert Manager and {{site.data.reuse.eem_name}}:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -206,12 +207,12 @@ See the following example to use the user provided certificate files (`ca.crt`, 
 2. Create the CA secret by running the following command:
 
    ```shell
-   oc create secret generic ibm-ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
+   kubectl create secret generic ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
    ```
 
-3. To provide a custom CA certificate secret, set `spec.manager.tls.caSecretName` key to be the name of the Openshift CA certificate secret that contains the CA certificate.
+3. To provide a custom CA certificate secret, set `spec.manager.tls.caSecretName` key to be the name of the CA certificate secret that contains the CA certificate.
 
-The following code snippet is an example of a configuration that uses the Openshift CA certificate secret that is created in the previous steps:
+The following code snippet is an example of a configuration that uses the CA certificate secret that is created in the previous steps:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -222,7 +223,7 @@ spec:
     # ...
   manager:
     tls:
-      caSecretName: ibm-ca-secret-cert
+      caSecretName: ca-secret-cert
 # ...
 ```
 
@@ -309,13 +310,19 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
 
    [alt_names]
    DNS.1 = ${MANAGER_NAME}-ibm-eem-svc
-   DNS.2 = ${MANAGER_NAME}-ibm-eem-svc.event
-   DNS.3 = ${MANAGER_NAME}-ibm-eem-svc.event.svc
-   DNS.4 = ${MANAGER_NAME}-ibm-eem-svc.event.svc.cluster.local
-   DNS.5 = ${MANAGER_NAME}-ibm-eem-rt-event.${CLUSTER_API}
-   DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-event.${CLUSTER_API}
-   DNS.7 = ${MANAGER_NAME}-ibm-eem-manager-event.${CLUSTER_API}
+   DNS.2 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}
+   DNS.3 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}.svc
+   DNS.4 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}.svc.cluster.local
+   DNS.5 = ${MANAGER_NAME}-ibm-eem-apic-{NAMESPACE}.${CLUSTER_API}
+   DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-{NAMESPACE}.${CLUSTER_API}
+   DNS.7 = ${MANAGER_NAME}-ibm-eem-manager-{NAMESPACE}.${CLUSTER_API}
    ```
+
+    **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.eem_manager}} `ui`, `gateway`, and, if required, the `apic` endpoint hostnames:
+    - You are planning to specify hostnames in the `eventendpointmanager` custom resource under `spec.manager.endpoints`.
+    - You are planning to create additional routes or ingress.
+    - You are not running on {{site.data.reuse.openshift_short}}
+
 
 5. Generate the required certificates by running the following commands:
 
@@ -349,7 +356,7 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    openssl x509 -req -in ${MANAGER_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${MANAGER_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < ${MANAGER_NAME}_answer.txt)
    ```
 
-7. Verify the certicate by running the following command:
+7. Verify the certificate by running the following command:
 
    ```shell
    openssl verify -CAfile ca.crt ${MANAGER_NAME}.crt
@@ -360,7 +367,7 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    **Note:** The Secret must be added to the namespace that the {{site.data.reuse.eem_name}} instance is intended to be created in.
 
    ```shell
-   oc create secret generic ${MANAGER_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${MANAGER_NAME}.crt --from-file=tls.key=${MANAGER_NAME}.key -n ${NAMESPACE}
+   kubectl create secret generic ${MANAGER_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${MANAGER_NAME}.crt --from-file=tls.key=${MANAGER_NAME}.key -n ${NAMESPACE}
    ```
 
 9. Create an {{site.data.reuse.eem_name}} instance and set the `spec.manager.tls.secretName` to the name of the created certificate.
@@ -399,15 +406,17 @@ spec:
 # ...
 ```
 
+If running on the {{site.data.reuse.openshift}}:
+
 - Optionally, specify the key in the secret that is pointing to the CA certificate `ui.caCertificate` (default, `ca.crt`).
 - Optionally, specify the key in the secret that is pointing to the server certificate `ui.serverCertificate` (default, `tls.crt`).
 - Optionally, specify the key in the secret that is pointing to the private key `ui.key` (default, `tls.key`).
 
 ### Using CA certificate for `EventGateway`
 
-A CA certificate can be used to securely connect a `EventGateway` instance to an `EventEndpointManagement` instance.
+A CA certificate can be used to securely connect an `EventGateway` instance to an `EventEndpointManagement` instance.
 To use a CA certificate in the `EventGateway` configuration, set `spec.tls.caSecretName` to be the name of the secret that contains the CA certificate.
-The CA certificate that is provided is used to sign the leaf certificates that are used by the `EventGateway instance` for secure communication.
+The CA certificate that is provided is used to sign the leaf certificates that are used by the `EventGateway` instance for secure communication.
 The CA certificate that is provided for the `EventGateway` instance should be the same CA certificate that is provided when configuring the TLS for the `EventEndpointManagement` instance.
 
 The following code snippet is an example of an `EventGateway` configuration that uses a user-provided CA certificate:
@@ -427,7 +436,7 @@ spec:
 ### User-provided certificate for `EventGateway`
 
 A custom certificate can be used for secure communication by the {{site.data.reuse.eem_name}} instance.
-This method does not use IBM Cert Manager so the certificates that are provided must be managed by the user.
+This method does not use Cert Manager so the certificates that are provided must be managed by the user.
 To use a custom certificate set `spec.tls.secretName` to be the name of the secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the manager.
 
 The following code snippet is an example of an `EventGateway` configuration that uses a user-provided certificate:
@@ -443,6 +452,8 @@ spec:
     secretName: mySecret
 # ...
 ```
+
+If running on the {{site.data.reuse.openshift}}:
 
 - Optionally, specify the key in the secret that is pointing to the CA certificate `tls.caCertificate` (default, `ca.crt`).
 - Optionally, specify the key in the secret that is pointing to the server certificate `tls.serverCertificate` (default, `tls.crt`).
@@ -520,3 +531,88 @@ spec:
   deployNetworkPolicies: false  
 ```
 
+## Configuring ingress
+
+If running on the {{site.data.reuse.openshift}}, Routes will be automatically configured to provide external access.
+You can optionally set a host for each exposed route on `EventEndpointManagement` and `EventGateway` instances by setting
+values under `spec.manager.endpoints[]` and `spec.endpoints[]` respectively.
+
+If you are **not** running on the {{site.data.reuse.openshift}} the {{site.data.reuse.eem_name}} operator will create Ingress resources to provide external access.
+No default hostnames will be assigned to the Ingress resource, and you **must** set hostnames for each exposed endpoint on the `EventEndpointManagement` and `EventGateway` instance.
+
+The following code snippet shows configuring the host for the `EventEndpointManagement` ui and gateway endpoints:
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventEndpointManagement
+# ...
+spec:
+  license:
+    # ...
+  manager:
+    endpoints:
+      - name: ui
+        host: my-eem-ui.mycompany.com
+      - name: gateway
+        host: my-eem-gw-registration.mycompany.com
+#...
+```
+
+For the `EventGateway` you can set the gateway endpoint host as shown in the following code snippet:
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+# ...
+spec:
+  license:
+    # ...
+  endpoints:
+    - name: gateway
+      host: my-gateway.mycompany.com
+# ... 
+```
+
+### Ingress default settings
+
+If you are **not** running on the {{site.data.reuse.openshift}} the following Ingress defaults are set unless overriden:
+
+**class:** The ingress class name is set by default to nginx.  Set the `class` field on endpoints to use a different ingress class.
+
+**annotations:** The following annotations are set by default on generated ingress endpoints:
+
+```yaml
+  ingress.kubernetes.io/ssl-passthrough: 'true'
+  nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+```
+
+- If specifying a `spec.manager.tls.ui.secretName`, on an `EventEndpointManagement` the following re-encrypt annotations will
+be set on the `ui` ingress.  Other ingresses will be configured for passthrough.
+
+```yaml
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/configuration-snippet: proxy_ssl_name "<HOSTNAME>";
+    nginx.ingress.kubernetes.io/proxy-ssl-protocols: TLSv1.3
+    nginx.ingress.kubernetes.io/proxy-ssl-secret: <NAMESPACE>/<SECRETNAME>
+    nginx.ingress.kubernetes.io/proxy-ssl-verify: 'on'
+```
+
+Ingress annotations can be overriden by specifying an alternative set of annotations on an endpoint.  The following code snippet 
+is an example of overriding the annotations set on an `EventGateway` gateway endpoint ingress.
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+# ...
+spec:
+  license:
+  # ...
+  endpoints:
+    - name: gateway
+      host: my-gateway.mycompany.com
+      annotations:
+        some.annotation.foo: "true"
+        some.other.annotation: value
+# ... 
+```

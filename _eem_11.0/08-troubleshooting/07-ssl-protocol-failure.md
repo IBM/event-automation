@@ -1,6 +1,6 @@
 ---
 title: "Kafka application fails with SSLHandshakeException"
-excerpt: "Applications cannot connect to the {{site.data.reuse.egw_short}}, fails to establish an SSL connection."
+excerpt: "Applications cannot connect to the Event Gateway, fails to establish an SSL connection."
 categories: troubleshooting
 slug: ssl-protocol-failure
 toc: true

@@ -213,6 +213,7 @@ The {{site.data.reuse.es_name}} Custom Resource Definitions (CRDs) are not delet
 
 
 ## Uninstalling an {{site.data.reuse.es_name}} operator on other Kubernetes platforms
+
 To delete an {{site.data.reuse.es_name}} operator:
 
 1. {{site.data.reuse.cncf_cli_login}}
@@ -229,12 +230,14 @@ To delete an {{site.data.reuse.es_name}} operator:
    ```
 
 4. Find the {{site.data.reuse.es_name}} operator release, it should have the chart as `ibm-eventstreams-operator-<version-number>`
+
+   **Important:** When multiple {{site.data.reuse.es_name}} operators are installed on the same cluster, all the operators share the same custom resource definitions (CRDs). Do not delete these global resources that other operators on the cluster depend upon. The {{site.data.reuse.es_name}} operator that was installed first on the cluster must not be uninstalled if you have other {{site.data.reuse.es_name}} operators deployed on the same cluster.
+
 5. Run the following command to uninstall the {{site.data.reuse.es_name}} operator and the {{site.data.reuse.es_name}} Custom Resource Definitions (CRDs):
   
    ```shell
    helm uninstall <release-name>
    ```
-
 
 ## Uninstalling {{site.data.reuse.icpfs}} on OpenShift
 

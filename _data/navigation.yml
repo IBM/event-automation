@@ -155,7 +155,7 @@ latest_eemdocs:
         url: /troubleshooting/ssl-protocol-failure/
       - title: "Configuring usage-based reporting"
         url: /troubleshooting/usage-based-reporting/
-      - title: "CASE bundle download fails"
+      - title: "Problems downloading the CASE bundle"
         url: /troubleshooting/download-case-fails/
 
 

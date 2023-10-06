@@ -171,9 +171,9 @@ hide autoscaler -->
 
     b. In the `spec.flinkConfiguration`, add the Flink autoscaler parameters to match your workload expectations.
 
-      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/custom-resource/autoscaler/)
+      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/autoscaler/)
 
-      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/operations/configuration/#autoscaler-configuration)
+      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/operations/configuration/#autoscaler-configuration)
 
       **Important:** If you have already defined the `pipeline.max-parallelism` option in `spec.flinkConfiguration` then do not alter the value.
      This would result in an incompatible change when the Job is restarted from an existing savepoint.

@@ -10,6 +10,12 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.0.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.0.5 contains a bug fix [which allows credentials generated in IBM API Connect to be accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
+
+## Release 11.0.4
+
 ### Support for other Kubernetes platforms
 
 In addition to the existing support for the {{site.data.reuse.openshift}}, {{site.data.reuse.eem_name}} version 11.0.4 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for [installing](../../installing/installing-on-kubernetes/) on other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
@@ -22,6 +28,9 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 
 {{site.data.reuse.eem_name}} release 11.0.4 contains security and bug fixes.
 
+### Known issues
+
+[Credentials generated in IBM API Connect are not accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
 
 ## Release 11.0.3
 

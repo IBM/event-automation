@@ -6,6 +6,10 @@ slug: overview
 toc: true
 ---
 
+You can setup an integration between {{site.data.reuse.eem_name}} and IBM API Connect.
+
+**Note:** To set up this integration, IBM API Connect 10.0.6 is required, and both your {{site.data.reuse.eem_name}} and API Connect instances must be deployed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster.
+
 {{site.data.reuse.eem_name}} provides the capability to describe and catalog the APIs of Kafka event sources, and to socialize those APIs with application developers.
 
 Consuming event-driven APIs can be described as asynchronous because your application does not need to poll or know when to request data. Instead, your application subscribes to a stream of events, and will receive events as they become available. This is different from the immediate request-response mechanism of synchronous APIs, such as REST.

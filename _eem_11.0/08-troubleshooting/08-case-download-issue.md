@@ -40,4 +40,4 @@ A known issue in the code means the URL for the IBM Cloud repository is incorrec
 
 ## Resolving the problem
 
-To resolve the problem, ensure you download and use {{site.data.reuse.eem_name}} CASE version 11.0.5.
+To resolve the problem, ensure you download and use {{site.data.reuse.eem_name}} CASE version 11.0.5 or later.

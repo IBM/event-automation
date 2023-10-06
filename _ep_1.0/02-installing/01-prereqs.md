@@ -93,7 +93,7 @@ The {{site.data.reuse.flink_long}} has the following minimum resource requiremen
 
 You can only install one version of the {{site.data.reuse.flink_long}} on a cluster. Installing multiple versions on a single cluster is not supported.
 
-You cannot install the {{site.data.reuse.flink_long}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.flink_long}}.
+You cannot install the {{site.data.reuse.flink_long}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.flink_long}}.
 
 ## Red Hat OpenShift Security context constraints
 

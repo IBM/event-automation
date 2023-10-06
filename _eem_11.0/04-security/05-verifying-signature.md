@@ -91,7 +91,7 @@ Complete the following steps to download the CASE archive:
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
 
    ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version 11.0.5
+   oc ibm-pak get ibm-eventendpointmanagement --version 11.0.6
    ```
 
    By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
@@ -111,7 +111,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.0.5 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: 11.0.6 is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated for {{site.data.reuse.eem_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.eem_name}} CASE.
@@ -124,14 +124,14 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.0.5
+   │   │       └── 11.0.6
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.5-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.0.5-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.5-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.0.5.tgz
+   │   │           ├── ibm-eventendpointmanagement-11.0.6-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-11.0.6-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-11.0.6-images.csv
+   │   │           ├── ibm-eventendpointmanagement-11.0.6.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror
@@ -156,7 +156,7 @@ Obtain the required files as follows:
 2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.0.5/ibm-eventendpointmanagement-11.0.5-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.0.6/ibm-eventendpointmanagement-11.0.6-images.csv \
    | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
    if [[ "$mtype" == "IMAGE" ]]; then
        echo "$registry/$image_name:$tag"

@@ -157,6 +157,8 @@ latest_eemdocs:
         url: /troubleshooting/usage-based-reporting/
       - title: "Problems downloading the CASE bundle"
         url: /troubleshooting/download-case-fails/
+      - title: "Problems using credentials generated in IBM API Connect"
+        url: /troubleshooting/eem-apic-clients-do-not-connect/
 
 
 # Event Processing

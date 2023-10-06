@@ -14,7 +14,7 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.0.4"
+eem_current_version: "11.0.5"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.0.4"

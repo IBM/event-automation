@@ -12,7 +12,7 @@ toc: true
 
 Consider the following resources before configuring your `FlinkDeployment` custom resource:
 
-- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
 - [Flink configuration options](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/config/#common-setup-options){:target="_blank"}
 - [Flink Event Time and Watermark](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/time/){:target="_blank"}
 - [Kafka SQL connector](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/connectors/table/kafka/){:target="_blank"}

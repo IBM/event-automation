@@ -210,7 +210,7 @@ To verify the image signatures, complete the following steps:
 
    ```shell
    mkdir images
-   skopeo copy docker://icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v{{site.data.reuse.eem_current_version}} dir:./images
+   skopeo copy docker://icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:{{site.data.reuse.eem_current_version}} dir:./images
    ```
 
    This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
@@ -224,7 +224,7 @@ To verify the image signatures, complete the following steps:
    For example:
 
    ```shell
-   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:v{{site.data.reuse.eem_current_version}} ${fingerprint} ./images/signature-1
+   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:{{site.data.reuse.eem_current_version}} ${fingerprint} ./images/signature-1
    ```
 
    You will receive a confirmation similar to the following:

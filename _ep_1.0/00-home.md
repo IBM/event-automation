@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "Event Processing"
 layout: splash
 permalink: /ep/
 quickLinks:

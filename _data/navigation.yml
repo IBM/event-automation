@@ -159,6 +159,10 @@ latest_eemdocs:
         url: /troubleshooting/download-case-fails/
       - title: "Problems using credentials generated in IBM API Connect"
         url: /troubleshooting/eem-apic-clients-do-not-connect/
+      - title: "Event Gateway fails with SSL errors"
+        url: /troubleshooting/ssl-error/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
 
 
 # Event Processing
@@ -255,6 +259,11 @@ latest_epdocs:
         url: /troubleshooting/waiting-for-events/
       - title: "The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues"
         url: /troubleshooting/default-scc-issues/
+      - title: "Running flows stop working"
+        url: /troubleshooting/flows-stop-working/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
+
 
 # Event Streams 11.2
 latestdocs:

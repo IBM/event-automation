@@ -122,7 +122,9 @@ On Kubernetes platforms other than the {{site.data.reuse.openshift_short}}, ensu
 
 - `spec.endpoints[]` must contain an endpoint with:
   - `name` set to `gateway`
-  - `host` field set to a DNS resolvable hostname for accessing the service
+  - `host` set to a DNS resolvable hostname for accessing the service.
+     
+     ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 only")**Note:** The hostname is limited to 64 characters.
 
 
 To deploy an {{site.data.reuse.egw}} instance, run the following commands:

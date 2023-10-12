@@ -6,7 +6,7 @@ slug: installing-on-kubernetes
 toc: true
 ---
 
-The following sections provide instructions about installing {{site.data.reuse.eem_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
+![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 and later.")The following sections provide instructions about installing {{site.data.reuse.eem_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 ## Before you begin
 
@@ -170,11 +170,13 @@ When modifying the sample configuration, ensure that the following fields are up
 
 - The `spec.license.accept` field in the custom resource YAML is set to `true`.
 - The correct values are selected for the `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields before deploying an {{site.data.reuse.eem_name}} instance. For information about the right values for your deployment, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
-- `manager.storageSpec.type` field is updated as `ephemeral` or `persistent-claim` based on your requirements. See [configuring](../configuring#enabling-persistent-storage) to select the correct storage type and other optional specifications such as storage size, root storage path, and secrets.
-- `manager.tls.caSecretName` or `manager.tls.secretName` field is updated based on your requirements. If neither is specified, self-signed certificates are used. See the [configuring](../configuring#configuring-tls) section for more information.
-- `spec.manager.endpoints[]` must contain entries for both `ui` and `gateway` named endpoints:
-    - `name` set to `gateway` and `ui` as applicable
-    - `host` field is updated with a DNS resolvable hostname for accessing the named service, for example:
+- The `manager.storageSpec.type` field is updated as `ephemeral` or `persistent-claim` based on your requirements. See [configuring](../configuring#enabling-persistent-storage) to select the correct storage type and other optional specifications such as storage size, root storage path, and secrets.
+- The `manager.tls.caSecretName` or `manager.tls.secretName` field is updated based on your requirements. If neither is specified, self-signed certificates are used. See the [configuring](../configuring#configuring-tls) section for more information.
+- The `spec.manager.endpoints[]` must contain entries for both `ui` and `gateway` named endpoints:
+    - `name` is set to `gateway` or `ui` as applicable.
+    - `host` is updated with a DNS resolvable hostname for accessing the named service, for example:
+       
+       ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 only")**Note:** The hostname is limited to 64 characters.
   
        ```shell
        spec:

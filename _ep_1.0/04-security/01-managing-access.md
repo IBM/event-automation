@@ -41,7 +41,7 @@ You can define users explicitly with usernames and passwords, which is typically
     This YAML creates two secrets `<custom-resource-name>-ibm-ep-user-credentials` and `<custom-resource-name>-ibm-ep-user-roles`. These secrets can be used to define the local user credentials and roles (permissions).
 
 4. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
-5. To edit the secret `<custom-resource-name>-ibm-ep-user-credentials` with your local user credentials, go to **Actions** and click **Editing Secret**.
+5. To edit the secret `<custom-resource-name>-ibm-ep-user-credentials` with your local user credentials, go to **Actions** and click **Edit Secret**.
 6. Configure your user credentials. For example:
 
    ```json
@@ -59,16 +59,18 @@ You can define users explicitly with usernames and passwords, which is typically
    }
    ```
 
-7. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
+7. Click **Save**.
+8. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
+   
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance, and you can then log in with these users. For more information, see [logging in](../../getting-started/logging-in) to an {{site.data.reuse.ep_name}} instance.
 
-### Using the {{site.data.reuse.openshift_short}} CLI
+### Using the CLI
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to create an instance of {{site.data.reuse.ep_name}}:
 
    ```bash
-   cat <<EOF | oc apply -f -
+   cat <<EOF | kubectl apply -f -
    apiVersion: events.ibm.com/v1beta1
    kind: EventProcessing
    metadata:
@@ -84,13 +86,7 @@ You can define users explicitly with usernames and passwords, which is typically
    ```
 
     This creates two secrets `<custom-resource-name>-ibm-ep-user-credentials` and `<custom-resource-name>-ibm-ep-user-roles`. These secrets are used to define the local user credentials and roles (permissions).
-3. To edit the secret `<custom-resource-name>-ibm-ep-user-credentials` with the local user credentials, run the following command:
-
-   ```bash
-   oc edit secret/<custom-resource-name>-ibm-ep-user-credentials -o json
-   ```
-
-4. Configure your user credentials. For example:
+3. Create a JSON file called `myusers.json` that contains the user credentials for your {{site.data.reuse.ep_name}} instance, for example:
 
    ```json
    {
@@ -107,7 +103,40 @@ You can define users explicitly with usernames and passwords, which is typically
    }
    ```
 
-5. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
+4. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
+
+   ```shell
+   cat myusers.json | base64
+   ```
+
+5. Patch the `<custom-resource-name>-ibm-ep-user-credentials` secret with the local user credentials by running the following command:
+
+   ```shell
+   kubectl patch secret <custom-resource-name>-ibm-ep-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "<your-base64-value>"}]'
+   ```
+
+   where:
+   - \<custom-resource-name\> is the name of your {{site.data.reuse.ep_name}} instance.
+   - \<your-base64-value\> is the Base64-encoded string returned from the previous command.
+
+   for example:
+   
+   ```shell
+   kubectl patch secret quick-start-ep-ibm-ep-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "ICAgewogICAgICAgInVzZXJzIjogWwogICAgICAgICAgIHsKICAgICAgICAgICAgICJ1c2VybmFtZSI6ICJ1c2VyMSIsCiAgICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQxJCIKICAgICAgICAgICB9LAogICAgICAgICAgIHsKICAgICAgICAgICAgICJ1c2VybmFtZSI6ICJ1c2VyMiIsCiAgICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQyJCIKICAgICAgICAgICB9CiAgICAgICBdCiAgIH0K"}]'
+   ```
+   
+   **Note:** Alternatively, edit the secret directly and replace the Base64 value associated with `data.user-credentials.json`. To edit the secret directly, run the following command:
+   
+   ```bash
+   oc edit secret/<custom-resource-name>-ibm-ep-user-credentials -o json
+   ```
+
+6. **Important:** For security reasons, delete the local file you created.
+
+7. Similarly, edit the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
+   
+   **Note:** The patch replaces a `path` of `"/data/user-mapping.json"` not `"/data/user-credentials.json"` for this secret.
+
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance, and you can then log in with these users. For more information, see [logging in](../../getting-started/logging-in) to an {{site.data.reuse.ep_name}} instance.
 
 ## Setting up OpenID Connect (OIDC) based authentication
@@ -180,7 +209,7 @@ You can authenticate users from the OIDC identity provider as follows:
    https://<login_url_domain>/logout/callback
    ```
 
-9. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
+9. Retrieve the `subject` value of your user either from your OIDC provider, or by logging in to the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
 10. Open the secret `<custom-resource-name>-ibm-ep-user-roles` to configure the roles and permissions of your users with the `subject` value. For more information, see [managing roles](../user-roles).
 
 ### Using the {{site.data.reuse.openshift_short}} CLI
@@ -245,7 +274,7 @@ You can authenticate users from the OIDC identity provider as follows:
     endSessionPath: (optional) <path to the end session endpoint of this provider>
     ```
 
-6. You can now log in with these users. For more information, see [logging](../../getting-started/logging-in) into {{site.data.reuse.ep_name}} instance.
+6. You can now log in with these users. For more information, see [logging](../../getting-started/logging-in) in to {{site.data.reuse.ep_name}} instance.
 7. Retrieve the login URL, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
    ```bash
@@ -253,7 +282,7 @@ You can authenticate users from the OIDC identity provider as follows:
    https://<login_url_domain>/logout/callback
    ```
 
-8. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
+8. Retrieve the `subject` value of your user either from your OIDC provider, or by logging in to the {{site.data.reuse.ep_name}} UI by adding `/auth/protected/userinfo` to the URL.
 9. Run the following command to edit the secret `<custom-resource-name>-ibm-ep-user-roles` to [manage the user roles](../user-roles).
 
    ```bash

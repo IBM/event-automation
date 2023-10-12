@@ -39,7 +39,8 @@ You can define users explicitly with usernames and passwords, which is typically
 
    This will create two secrets: `<custom-resource-name>-ibm-eem-user-credentials` and `<custom-resource-name>-ibm-eem-user-roles`. You can use these secrets to define the credentials and roles (permissions) of your users.
 4. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
-5. To edit the secret `<custom-resource-name>-ibm-eem-user-credentials` with your local user credentials, go to **Actions** and click **Editing Secret**. For example:
+5. To edit the secret `<custom-resource-name>-ibm-eem-user-credentials` with your local user credentials, go to **Actions** and click **Edit Secret**.
+6. Edit the mappings, for example:
 
    ```json
    {
@@ -55,9 +56,12 @@ You can define users explicitly with usernames and passwords, which is typically
        ]
    }
    ```
+   
+7. Click **Save**.
+8. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
 
-6. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
-   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance, and you can then log in with these users. For more information, see [logging into {{site.data.reuse.eem_name}} instance](../../getting-started/logging-in).
+   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+
 
 ### Using the CLI
 
@@ -81,13 +85,7 @@ You can define users explicitly with usernames and passwords, which is typically
    ```
 
     This will create two secrets: `<custom-resource-name>-ibm-eem-user-credentials` and `<custom-resource-name>-ibm-eem-user-roles`. You can use these secrets to define the credentials and roles (permissions) of your users.
-3. To edit the secret `<custom-resource-name>-ibm-eem-user-credentials` with the local user credentials, run the following command:
-
-   ```bash
-   oc edit secret/<custom-resource-name>-ibm-eem-user-credentials -o json
-   ```
-
-   The following is an example configuration:
+3. Create a JSON file called `myusers.json` that contains the user credentials for your {{site.data.reuse.eem_name}} instance, for example:
 
    ```json
    {
@@ -104,8 +102,41 @@ You can define users explicitly with usernames and passwords, which is typically
    }
    ```
 
-4. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
-   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance, and you can then log in with these users. For more information, see [logging into {{site.data.reuse.eem_name}} instance](../../getting-started/logging-in).
+4. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
+
+   ```shell
+   cat myusers.json | base64
+   ```
+
+5. Patch the `<custom-resource-name>-ibm-eem-user-credentials` secret with the local user credentials by running the following command:
+
+   ```shell
+   kubectl patch secret <custom-resource-name>-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "<your-base64-value>"}]'
+   ```
+   
+   where:
+     - \<custom-resource-name\> is the name of your {{site.data.reuse.eem_name}} instance.
+     - \<your-base64-value\> is the Base64-encoded string returned from the previous command.
+   
+   for example:
+
+   ```shell
+   kubectl patch secret quick-start-manager-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "ewogICAgInVzZXJzIjogWwogICAgICAgIHsKICAgICAgICAgICAgInVzZXJuYW1lIjogImF1dGhvcjEiLAogICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQxJCIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgInVzZXJuYW1lIjogInZpZXdlcjEiLAogICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQyJCIKICAgICAgICB9CiAgICBdCn0KCg=="}]'
+   ```
+
+   **Note:** Alternatively, edit the secret directly and replace the Base64 value associated with `data.user-credentials.json`. To edit the secret directly, run the following command:
+
+   ```bash
+   oc edit secret/<custom-resource-name>-ibm-eem-user-credentials -o json
+   ```
+
+6. **Important:** For security reasons, delete the local file you created.
+
+7. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
+   
+   **Note:** The patch replaces a `path` of `"/data/user-mapping.json"` not `"/data/user-credentials.json"` for this secret.
+   
+   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 
 ## Setting up OpenID Connect (OIDC) based authentication
 
@@ -170,7 +201,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
     endSessionPath: (optional) <path to the end session endpoint of this provider>
     ```
 
-8. You can now log in with these users. For more information, see [logging into {{site.data.reuse.eem_name}} instance](../../getting-started/logging-in).
+8. You can now log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 9. Retrieve the login URL, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
     ```bash
@@ -178,7 +209,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
     https://<login_url_domain>/logout/callback
     ```
 
-10. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.eem_name}} UI by adding `/auth/protected/userinfo` to the URL.
+10. Retrieve the `subject` value of your user either from your OIDC provider, or by logging in to the {{site.data.reuse.eem_name}} UI by adding `/auth/protected/userinfo` to the URL.
 11. Open the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your user with the `subject` value. For more information, see [managing roles](../user-roles).
 
 ### Using the CLI
@@ -244,7 +275,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
    endSessionPath: (optional) <path to the end session endpoint of this provider>
    ```
 
-6. You can now log in with these users. For more information, see [logging into {{site.data.reuse.eem_name}} instance](../../getting-started/logging-in).
+6. You can now log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 7. Retrieve the login URL, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
    ```bash
@@ -252,7 +283,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
    https://<login_url_domain>/logout/callback
    ```
 
-8. Retrieve the `subject` value of your user either from your OIDC provider, or by logging into the {{site.data.reuse.eem_name}} UI by adding `/auth/protected/userinfo` to the URL.
+8. Retrieve the `subject` value of your user either from your OIDC provider, or by logging in to the {{site.data.reuse.eem_name}} UI by adding `/auth/protected/userinfo` to the URL.
 9. Run the following command to edit the secret `<custom-resource-name>-ibm-eem-user-roles` to [manage the user roles](../user-roles).
 
    ```bash

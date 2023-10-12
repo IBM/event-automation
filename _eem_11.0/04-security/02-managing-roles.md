@@ -41,6 +41,87 @@ The following example shows a user mappings file:
 
 Where the `id` is the username specified for the user. 
 
+### Using {{site.data.reuse.openshift_short}} web console
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
+3. To edit the secret `<custom-resource-name>-ibm-eem-user-roles` with your role mappings, go to **Actions** and click **Edit Secret**.
+4. Edit the mappings, for example:
+
+   ```json
+   {
+     "mappings": [
+       {
+         "id": "author1",
+         "roles": [
+           "author"
+         ]
+       },
+       {
+         "id": "viewer1",
+         "roles": [
+           "viewer"
+         ]
+       }
+     ]
+   }
+   ```
+5. Click **Save**.
+
+### Using the CLI
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Create a JSON file called `myroles.json` that contains the user role mappings for your {{site.data.reuse.eem_name}} instance, for example:
+
+   ```json
+   {
+     "mappings": [
+       {
+         "id": "author1",
+         "roles": [
+           "author"
+         ]
+       },
+       {
+         "id": "viewer1",
+         "roles": [
+           "viewer"
+         ]
+       }
+     ]
+   }
+   ```
+
+3. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
+
+   ```shell
+   cat myroles.json | base64
+   ```
+
+4. Patch the `<custom-resource-name>-ibm-eem-user-roles` secret with the local user credentials by running the following command:
+
+   ```shell
+   kubectl patch secret <custom-resource-name>-ibm-eem-user-roles --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-mapping.json" ,"value" : "<your-base64-value>"}]'
+   ```
+
+   where:
+    - \<custom-resource-name\> is the name of your {{site.data.reuse.eem_name}} instance.
+    - \<your-base64-value\> is the Base64-encoded string returned from the previous command.
+
+   for example:
+
+   ```shell
+   kubectl patch secret quick-start-manager-ibm-eem-user-roles --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-mapping.json" ,"value" : "ewogICJtYXBwaW5ncyI6IFsKICAgIHsKICAgICAgImlkIjogImF1dGhvcjEiLAogICAgICAicm9sZXMiOiBbCiAgICAgICAgImF1dGhvciIKICAgICAgXQogICAgfSwKICAgIHsKICAgICAgImlkIjogInZpZXdlcjEiLAogICAgICAicm9sZXMiOiBbCiAgICAgICAgInZpZXdlciIKICAgICAgXQogICAgfQogIF0KfQo="}]'
+   ```
+
+   **Note:** Alternatively, edit the secret directly and replace the Base64 value associated with `data.user-mapping.json`. To edit the secret directly, run the following command:
+
+   ```bash
+   oc edit secret/<custom-resource-name>-ibm-eem-user-roles -o json
+   ```
+
+5. **Important:** For security reasons, delete the local file you created.
+
 ## Setting up roles for OIDC based authorization
 
 You must provide user mappings through the secret `<custom-resource-name>-ibm-eem-user-roles` to match the OIDC Identification Provider's user subjects. 

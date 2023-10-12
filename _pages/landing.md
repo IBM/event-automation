@@ -1,6 +1,6 @@
 ---
 layout: landing
-title: "Event Automation"
+title: "Home"
 collection: landing
 permalink: /
 author_profile: false

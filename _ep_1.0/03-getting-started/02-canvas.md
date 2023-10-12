@@ -64,7 +64,7 @@ The clothing company created a flow called `Filter` and provided a description t
 
    <!-- **Draft comment** _TBC. Is **Add URL** and providing a comma-separated list the same thing?_ -->
 1. Click **Next**. The **Access credentials** page is displayed.
-1. On the **Access credentials** page, you need to provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [Subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }})
+1. On the **Access credentials** page, you need to provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
 <!-- **Draft comment** Possible enhancement - more info about each of the security protocols_ -->
 1. Click **Next**. The **Topic selection** page is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
@@ -106,7 +106,7 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 {: #run-flow}
 
 1. The last step is to run your {{site.data.reuse.ep_name}} flow and view the results.
-1. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow. 
+1. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
 
 ![Event Processing 1.0.4 icon]({{ 'images' | relative_url }}/1.0.4.svg "In Event Processing 1.0.4 and later")A live view of results from your running flow automatically opens. The results view is showing the output from your flow - the result of processing any events that have been produced to your chosen {{site.data.reuse.eem_name}} topic.
 

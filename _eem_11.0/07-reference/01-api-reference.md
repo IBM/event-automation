@@ -51,14 +51,14 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | authType | string | The authentication method you are going to use. One of `LOCAL` or `OIDC`. |
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
 
-### Resource: `endpoint`
+### Resource: `endpoint` ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 and later.")
 
 | Field       | Type              | Description                                                                                                                |
 |-------------|-------------------|----------------------------------------------------------------------------------------------------------------------------|
 | annotations | map[string]string | The annotations to use in place of the [default ingress annotations](../installing/configuring/#ingress-default-settings). |
-| class       | string            | The ingress class name to use on the ingress resource, defaults to `nginx`.                                                  |
-| host        | string            | The DNS resolvable hostname to set on the ingress endpoint.                                                                |
-| name        | string            | The name of the endpoint being configured. For valid values, see the following important notes.                                              |
+| class       | string            | The ingress class name to use on the ingress resource, defaults to `nginx`.                                                |
+| host        | string            | The DNS resolvable hostname to set on the ingress endpoint. <br> ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 only")**Note:** The hostname is limited to 64 characters.
+| name        | string            | The name of the endpoint being configured. For valid values, see the following important notes.                            |
 
 **Important:**
 - On the {{site.data.reuse.openshift_short}}, `annotations` and `class` are not valid configuration options because OpenShift routes are created.

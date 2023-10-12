@@ -90,7 +90,7 @@ Before you start the {{site.data.reuse.egw}}, define the following options:
 To run the {{site.data.reuse.egw}}, use the following command and the configuration options that are described in the previous section:
 
 ```
-docker run -e backendURL="<EEM_BACKEND_URL>" -e swid="EA/CP4I" [-e ubp=true] -e KAFKA_ADVERTISED_LISTENER="<KAFKA_ADVERTISED_LISTENER>" -v <PATH_TO_CERTIFICATES>:/certs/eem -d -p <GATEWAY_PORT>:8080 <IMAGE_NAME_FROM_CONTAINER_REGISTRY>
+docker run -e backendURL="<EEM_BACKEND_URL>" -e swid="EA/CP4I" [-e ubp=true] -e KAFKA_ADVERTISED_LISTENER="<KAFKA_ADVERTISED_LISTENER>" -e GATEWAY_PORT="<GATEWAY_PORT> -e certPaths="/certs/eem/client.pem,/certs/eem/client.key,/certs/eem/ca.pem,/certs/eem/egwclient.pem,/certs/eem/egwclient-key.pem" -v <PATH_TO_CERTIFICATES>:/certs/eem -d -p <GATEWAY_PORT>:8080 <IMAGE_NAME_FROM_CONTAINER_REGISTRY>
 ```
 
 When the {{site.data.reuse.egw}} starts, it connects to the specified {{site.data.reuse.eem_manager}} at which point it is registered. 

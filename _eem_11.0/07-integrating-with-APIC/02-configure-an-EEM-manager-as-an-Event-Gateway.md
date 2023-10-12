@@ -156,7 +156,7 @@ JSON Web Token (JWT) authentication is used by default to verify messages that a
 
 Based on your security requirements, you can optionally choose to also enable mutual TLS (MTLS), which uses certificates for authentication:
 
-### On Other Kubernetes Platforms
+### On {{site.data.reuse.openshift_short}}
 
    Use the web console to modify the `EventEndpointManagement` instance's configuration:
 
@@ -217,7 +217,7 @@ N.b if you provided your own certificate via a secret for the eem manager use th
 
 For more information on these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
-### Obtain certificates for a TLS client profile on OpenShift
+### Obtain certificates for a TLS client profile on other Kubernetes platforms
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
@@ -298,7 +298,7 @@ To register an {{site.data.reuse.eem_name}} instance with API Connect, you must 
 2. {{site.data.reuse.task_openshift_select_routes}}
 3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.egw}} instance is installed in.
 4. Use the search bar to find the route with the **Name** ending in `ibm-egw-rt`. The URL in the **Location** column is the client endpoint.
-5. Having retrieved the **Location** value, remove the `https://` protocol prefixing the endpoint.
+5. Having retrieved the **Location** value, remove the `https://` protocol prefixing the endpoint, and append the port `:443` as a suffix.
 
 ### Other Kubernetes platforms
 

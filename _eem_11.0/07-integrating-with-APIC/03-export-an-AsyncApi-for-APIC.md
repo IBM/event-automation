@@ -33,8 +33,11 @@ To import the AsyncAPI document, complete the following steps in the API Manager
 2. From the toggle menu at the top of the screen, select **AsyncAPI**.
 3. Select **AsyncAPI from Event Endpoint Management** and click **Next**.
 4. Upload the AsyncAPI you downloaded from {{site.data.reuse.eem_name}}. Leave the **Username** and **Password** fields empty, and then click **Next**.
-5. Select the **Gateway** tab. Enter the bootstrap server address for your cluster under **Bootstrap Servers**, and then click **Next**.
-6. Click **Next** again to create the API.
+5. Select the **Gateway** tab. Enter the bootstrap server address for your cluster under **Bootstrap Servers**, and then click **Next**. 
+
+   **Note:** When adding the API for the first time, if the **Bootstrap Servers** field contains `${bootstrapServerAddress}`, connections to your Kafka cluster are automatically configured.
+6. Select the **Activate API** checkbox, and choose your catalog to publish the API to in the **Target catalog** drop-down menu.
+7. Click **Next** again to create the API.
 
 ## Publish the API and Product
 

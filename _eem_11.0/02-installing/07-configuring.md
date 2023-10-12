@@ -531,16 +531,18 @@ spec:
   deployNetworkPolicies: false  
 ```
 
-## Configuring ingress
+## ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 and later.")Configuring ingress
 
-If running on the {{site.data.reuse.openshift}}, Routes will be automatically configured to provide external access.
-You can optionally set a host for each exposed route on `EventEndpointManagement` and `EventGateway` instances by setting
-values under `spec.manager.endpoints[]` and `spec.endpoints[]` respectively.
+If running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
+You can optionally set a host for each exposed route on the `EventEndpointManagement` and `EventGateway` instances by setting
+values under `spec.manager.endpoints[]` and `spec.endpoints[]`, respectively.
 
-If you are **not** running on the {{site.data.reuse.openshift}} the {{site.data.reuse.eem_name}} operator will create Ingress resources to provide external access.
-No default hostnames will be assigned to the Ingress resource, and you **must** set hostnames for each exposed endpoint on the `EventEndpointManagement` and `EventGateway` instance.
+If you are not running on the {{site.data.reuse.openshift}}, the {{site.data.reuse.eem_name}} operator will create ingress resources to provide external access.
+No default hostnames will be assigned to the ingress resource, and you **must** set hostnames for each exposed endpoint on the `EventEndpointManagement` and `EventGateway` instance.
 
-The following code snippet shows configuring the host for the `EventEndpointManagement` ui and gateway endpoints:
+![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 only")**Note:** The hostname is limited to 64 characters.
+
+The following code snippet shows an example of configuring the host for the `EventEndpointManagement` `ui` and `gateway` endpoints:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -558,7 +560,7 @@ spec:
 #...
 ```
 
-For the `EventGateway` you can set the gateway endpoint host as shown in the following code snippet:
+For the `EventGateway`, you can set the gateway endpoint host as shown in the following code snippet:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -573,13 +575,13 @@ spec:
 # ... 
 ```
 
-### Ingress default settings
+### ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 and later.")Ingress default settings
 
-If you are **not** running on the {{site.data.reuse.openshift}} the following Ingress defaults are set unless overriden:
+If you are not running on the {{site.data.reuse.openshift}}, the following ingress defaults are set unless overridden:
 
-**class:** The ingress class name is set by default to nginx.  Set the `class` field on endpoints to use a different ingress class.
+- `class`: The ingress class name is set by default to `nginx`. Set the `class` field on endpoints to use a different ingress class.
 
-**annotations:** The following annotations are set by default on generated ingress endpoints:
+- `annotations`: The following annotations are set by default on generated ingress endpoints:
 
 ```yaml
   ingress.kubernetes.io/ssl-passthrough: 'true'
@@ -587,8 +589,7 @@ If you are **not** running on the {{site.data.reuse.openshift}} the following In
   nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
 ```
 
-- If specifying a `spec.manager.tls.ui.secretName`, on an `EventEndpointManagement` the following re-encrypt annotations will
-be set on the `ui` ingress.  Other ingresses will be configured for passthrough.
+If you specify a `spec.manager.tls.ui.secretName` on an `EventEndpointManagement` instance, the following re-encrypt annotations will be set on the `ui` ingress.  Other ingresses will be configured for passthrough.
 
 ```yaml
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
@@ -598,8 +599,7 @@ be set on the `ui` ingress.  Other ingresses will be configured for passthrough.
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'on'
 ```
 
-Ingress annotations can be overriden by specifying an alternative set of annotations on an endpoint.  The following code snippet 
-is an example of overriding the annotations set on an `EventGateway` gateway endpoint ingress.
+Ingress annotations can be overridden by specifying an alternative set of annotations on an endpoint. The following code snippet is an example of overriding the annotations set on an `EventGateway` gateway endpoint ingress.
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1

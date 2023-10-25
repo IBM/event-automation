@@ -125,7 +125,7 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, <kafka_bootstrap_address
 
 **Note:** Follow the instructions in the code snippet to uncomment lines. Replace `<ca_p12_file_location>` with the path to the Java truststore file you downloaded earlier, `<ca_p12_password>` with the truststore password which has the permissions needed for your application, `<kafka_bootstrap_address>` with the bootstrap address (find out how to [obtain the address](../../getting-started/connecting/#obtaining-the-bootstrap-address)), and `<schema_registry_endpoint>` with the endpoint address for Apicurio Registry in {{site.data.reuse.es_name}}. For SCRAM, replace the `<username>` and `<password>` with the SCRAM username and password. For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.
 
-For more information about the configuration keys and values to use with the {{site.data.reuse.es_name}} `serdes` library, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the configuration keys and values to use with the {{site.data.reuse.es_name}} `serdes` library, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 The code snippet from the **Producer code** section defines properties for the producer application that set it to use the schema registry and the correct schema, for example:
 

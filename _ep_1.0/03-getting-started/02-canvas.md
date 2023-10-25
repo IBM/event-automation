@@ -76,6 +76,14 @@ The clothing company created a flow called `Filter` and provided a description t
 1. Set an event time and leave the event source to be saved for later reuse. Saving the connection details makes creating similar event sources a lot quicker because there is no need to enter the same details again.
 1. Click **Configure**. The canvas is displayed and your event source node has a green checkmark, which indicates that the node has been configured successfully.
 
+![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") User actions are saved automatically. Check the navigation banner for save status updates.  
+
+- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
+- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
+- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
+
+If you are running versions earlier than 1.0.5, click **Save** in the navigation banner to save the flow.
+
 The clothing company called their event source `Orders` and used the schema for their `Order events` topic in {{site.data.reuse.eem_name}} to update the topic schema tab in {{site.data.reuse.ep_name}}.
 
 ![Define event structure]({{ 'images' | relative_url }}/ep-lab1-eventsource-4.png "Image to show the clothing company defining the event structure.")

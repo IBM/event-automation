@@ -40,13 +40,13 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
 ## Setup a connection to the Flink cluster
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 
 
 2. Switch to the namespace where the {{site.data.reuse.flink_long}} is installed:
 
    ```shell
-   oc project <namespace>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 ## Build and deploy a Flink SQL runner
@@ -66,7 +66,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
 
    ```sql
-   oc get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
    ```
 
    b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
@@ -83,7 +83,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
 2. Create the {{site.data.reuse.flink_long}} `FlinkDeployment` custom resource.
 
-   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a production sample with persistent storage in the {{site.data.reuse.openshift_short}} OperatorHub. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
+   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a production sample with persistent storage. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
 
    ```yaml
    spec:
@@ -128,9 +128,6 @@ hide autoscaler -->
    Task slots = spec.taskmanager.replicas × spec.flinkConfiguration["taskmanager.numberOfTaskSlots"] 
    ```
 
-   **Note:** In case there are not enough free task slots when the Flink job is redeployed with the targeted job parallelism value,
-   no additional `TaskManager` will be created even with `spec.job.mode` set to `native`.
-
    b. Change the `spec.job.parallelism` value, then set `spec.job.state` to `running` and `spec.job.upgradeMode` to `savepoint`.
 
    ```yaml
@@ -141,6 +138,7 @@ hide autoscaler -->
        parallelism: 2
        state: running
        upgradeMode: savepoint
+       allowNonRestoredState: true
    ```
 
 2. Apply the modified `FlinkDeployment` custom resource.

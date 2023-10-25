@@ -18,7 +18,8 @@ Decide the purpose of your deployment, for example, whether you want a starter d
 
 ## {{site.data.reuse.ep_name}} sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing/openshift` or `/cr-examples/eventprocessing/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+
 
 The following {{site.data.reuse.ep_name}} sample configurations are available to deploy:
 - Quick Start: A development instance with reduced resources, using ephemeral storage and Local authentication.
@@ -32,11 +33,19 @@ By default, both samples require the following resources:
 
 If you are [installing](../installing/#installing-an-event-processing-instance-by-using-the-web-console) on the {{site.data.reuse.openshift_short}}, you can view and apply the sample configurations in the web console.
 
+If you are installing on other Kubernetes platforms, the following samples are available in the Helm chart package:
+
+- [Quick start](#example-deployment-quick-start)
+- [Production](#example-deployment-production)
+- [Production with API Connect integration](#example-deployment-production-with-api-connect-integration)
+
+The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing/openshift` or `/cr-examples/eventprocessing/kubernetes` to access the samples.
+
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
 ## Flink sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following table provides an overview of the Flink sample configurations and their resource requirements:
 
@@ -50,6 +59,8 @@ The following table provides an overview of the Flink sample configurations and 
 **Important:**
 - Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
 - The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
+
+The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
 
 Points to consider for resource requirements:
 
@@ -116,13 +127,13 @@ For information about using this sample, see [Deploying jobs in production envir
 
 ### Deploying the Flink PVC
 
-All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://docs.openshift.com/container-platform/4.12/rest_api/storage_apis/persistentvolumeclaim-v1.html){:target="_blank"} must be deployed as follows.
+All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims){:target="_blank"} must be deployed as follows.
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. If the namespace where the Flink instance will be deployed does not exist yet, create it:
 
    ```shell
-   oc new-project <your-namespace>
+   kubectl create namespace <your-namespace>
    ```
 
 3. Set the following environment variable to hold the namespace of the Flink instance:
@@ -152,7 +163,7 @@ All Flink samples except the Quick Start sample configure Flink to use persisten
 5. Run the following command to deploy the `PersistentVolumeClame`:
 
    ```yaml
-   oc apply -n ${FLINK_NAMESPACE} -f - << EOF
+   kubectl apply -n ${FLINK_NAMESPACE} -f - << EOF
    kind: PersistentVolumeClaim
    apiVersion: v1
    metadata:
@@ -180,7 +191,7 @@ For information about creating persistent volumes and creating a storage class t
 
 - For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/storage/understanding-persistent-storage.html){:target="_blank"}.
 
-[//]: # (- For other Kubernetes platforms, see the [Kubernetes documentation]&#40;https://kubernetes.io/docs/concepts/storage/persistent-volumes/&#41;{:target="_blank"}.)
+- For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the Cluster Administrator role for creating persistent volumes or a storage class.
 

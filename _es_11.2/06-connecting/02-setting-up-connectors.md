@@ -126,7 +126,7 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
    Where:
    - `type` must be set to `docker`
    - `image` is the registry address and image name for the new image. For example: `my-registry.io/my-connect-cluster-image:latest`
-   - (Optional) `pushSecret` is the name of the secret containing credentials with push permissions for the specified registry.
+   - (Optional) `pushSecret` is the name of the secret that contains credentials with permission to push into a secured image registry.
 
 3. In the `spec.build.plugins` field, enter the list of required Kafka Connector JAR, ZIP, or TGZ files.
 
@@ -182,6 +182,16 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
          pullSecret: ibm-entitlement-key
    ```
 
+5. If you want to push the image into a secured image registry, enter the name of the `imagePullSecret` in the `spec.template.pod.imagePullSecrets` field:
+
+  ```yaml
+  spec:
+    #...
+    template:
+      pod:
+        imagePullSecrets:
+          - name: default-dockercfg-abcde
+  ```
 
 **Important:** The secrets that are referenced in the `KafkaConnect` custom resource must be present in the same namespace as the `KafkaConnect` instance.
 
@@ -221,9 +231,11 @@ spec:
             sha5125sum: a85f16caba085244a39444dcb98dea4c528951cbe6cfd800467faaad0adbae36b8e2f05d5bd755091b16368afceb7c66a530ce062ff3c5b3775a01dfef41b342
         name: mq-sink
   template:
+    buildConfig:
+      pullSecret: ibm-entitlement-key
     pod:
       imagePullSecrets:
-        - name: ibm-entitlement-key
+        - name: default-dockercfg-abcde
     connectContainer:
       securityContext:
         allowPrivilegeEscalation: false

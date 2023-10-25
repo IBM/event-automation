@@ -12,11 +12,11 @@ toc: true
 
 When you install an instance of {{site.data.reuse.ep_name}}, the required network policies for {{site.data.reuse.ep_name}} pods are automatically created unless they are disabled through a configuration option. To review the network policies that have been applied:
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to display the installed network policies for a specific namespace:
 
    ```shell
-   oc get netpol -n <namespace>
+   kubectl get netpol -n <namespace>
    ```
 
 For the operator and operand pods of {{site.data.reuse.flink_long}}, network policies are not deployed automatically, but can be deployed as described in [Flink network policies](#flink-network-policies).
@@ -30,7 +30,10 @@ The following tables provide information about the network connections of {{site
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------|
 | TCP      | Anywhere                                                                                     | 8443     | Operator validating webhook | Always                         |
 
-**Note:** To delete the network policy of the {{site.data.reuse.ep_name}} operator, modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`.  This is best done after the initial installation of the operator, not in advance.
+**Note:** To delete the network policy of the {{site.data.reuse.ep_name}} operator:
+
+- On the {{site.data.reuse.openshift_short}}: Modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`. Do this after the initial installation of the operator.
+- On other Kubernetes platforms: Install the Helm chart by specifying `--set deployOperatorNetworkPolicy=false`.
 
 ### Flink operator pod
 
@@ -114,7 +117,7 @@ Network policies are not deployed automatically when installing {{site.data.reus
 deploy the deny-all-ingress policy as shown in [Considerations for ingress](#considerations-for-ingress). In this case,
 network policies for Flink pods need to be deployed following these steps:
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
 installing the Flink instance, ensure the namespace is already created.  
 
@@ -125,7 +128,7 @@ installing the Flink instance, ensure the namespace is already created.
 3. Run the following command to deploy the network policies for Flink:
 
    ```yaml
-   oc apply -n ${FLINK_NAMESPACE} -f - << EOF
+   kubectl apply -n ${FLINK_NAMESPACE} -f - << EOF
    kind: NetworkPolicy
    apiVersion: networking.k8s.io/v1
    metadata:
@@ -134,7 +137,6 @@ installing the Flink instance, ensure the namespace is already created.
      podSelector:
        matchLabels:
          app.kubernetes.io/instance: ibm-eventautomation-flink-operator
-         app.kubernetes.io/managed-by: olm
          app.kubernetes.io/name: flink-kubernetes-operator
          name: ibm-eventautomation-flink-operator
      ingress:
@@ -174,7 +176,6 @@ installing the Flink instance, ensure the namespace is already created.
            - podSelector:
                matchLabels:
                  app.kubernetes.io/instance: ibm-eventautomation-flink-operator
-                 app.kubernetes.io/managed-by: olm
                  app.kubernetes.io/name: flink-kubernetes-operator
                  name: ibm-eventautomation-flink-operator
        - ports:
@@ -273,7 +274,7 @@ If you configure Flink to [export](https://nightlies.apache.org/flink/flink-docs
 the [Flink Metrics](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/metrics){:target="_blank"}, the port
 configured for emitting metrics needs to be opened by following these steps:
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
 installing the Flink instance, ensure the namespace is already created.  
 
@@ -290,7 +291,7 @@ installing the Flink instance, ensure the namespace is already created.
 4. Run the following command to deploy the network policy for metrics exporter:
 
    ```yaml
-   oc apply -n ${FLINK_NAMESPACE} -f - << EOF
+   kubectl apply -n ${FLINK_NAMESPACE} -f - << EOF
    kind: NetworkPolicy
    apiVersion: networking.k8s.io/v1
    metadata:

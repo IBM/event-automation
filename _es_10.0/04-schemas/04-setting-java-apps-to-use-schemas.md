@@ -121,7 +121,7 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<Kafka listener>");
 
 **Note:** Follow the instructions in the code snippet to uncomment lines. Replace `<ca_p12_file_location>` with the path to the Java truststore file you downloaded earlier, `<ca_p12_password>` with the truststore password which has the permissions needed for your application, and `<Kafka listener>` with the bootstrap address (find out how to [obtain the address](../../getting-started/connecting/#obtaining-the-bootstrap-address)). For SCRAM, replace the `<username>` and `<password>` with the SCRAM username and password. For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.
 
-For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 The code snippet from the **Producer code** section defines properties for the producer application that set it to use the schema registry and the correct schema, for example:
 
@@ -167,7 +167,7 @@ producer.close();
 
 The Kafka configuration property `value.serializer` is set to `com.ibm.eventstreams.serdes.EventStreamsSerializer`, telling Kafka to use the {{site.data.reuse.es_name}} serializer for message values when producing messages. You can also use the {{site.data.reuse.es_name}} serializer for message keys.
 
-For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 **Note:** Use the generic or generated schema-specific Java classes to set the field values in your message.
 
@@ -242,7 +242,7 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "<Kafka listener>");
 
 **Note:** Follow the instructions in the code snippet to uncomment lines. Replace `<ca_p12_file_location>` with the path to the Java truststore file you downloaded earlier, `<ca_p12_password>` with the truststore password which has the permissions needed for your application, and `<Kafka listener>` with the bootstrap address (find out how to [obtain the address](../../getting-started/connecting/#obtaining-the-bootstrap-address)). For SCRAM, replace the `<username>` and `<password>` with the SCRAM username and password. For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.
 
-For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 The code snippet from the **Consumer code** section defines properties for the consumer application that set it to use the schema registry and the correct schema, for example:
 
@@ -278,7 +278,7 @@ while(true) {
 
 The Kafka configuration property `value.serializer` is set to `com.ibm.eventstreams.serdes.EventStreamsDeserializer`, telling Kafka to use the {{site.data.reuse.es_name}} deserializer for message values when consuming messages. You can also use the {{site.data.reuse.es_name}} deserializer for message keys.
 
-For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 **Note:** Use the generic or generated schema-specific Java classes to read the field values from your message.
 
@@ -371,6 +371,6 @@ In this example, the Kafka `StreamsBuilder` is configured to use the `com.ibm.ev
 
 **Note:** The Kafka Streams `org.apache.kafka.streams.kstream` API does not provide access to message headers, so to produce messages with the {{site.data.reuse.es_name}} schema registry headers, use the `SchemaRegistryConfig.PROPERTY_SCHEMA_ID_OVERRIDE` and `SchemaRegistryConfig.PROPERTY_SCHEMA_VERSION_OVERRIDE` configuration properties. Setting these configuration properties will mean produced messages are serialized using the provided schema version and the {{site.data.reuse.es_name}} schema registry message headers will be set.
 
-For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference](../../schema-api/){:target="_blank"}.
+For more information about the {{site.data.reuse.es_name}} schema registry configuration keys and values, see the `SchemaRegistryConfig` class in the [schema API reference]({{'schema-api' | relative_url }}){:target="_blank"}.
 
 **Note:** To re-use this example, replace `<ca_p12_file_location>` with the path to the Java truststore file you downloaded earlier, `<ca_p12_password>` with the truststore password which has the permissions needed for your application, and `<Kafka listener>` with the bootstrap address (find out how to [obtain the address](../../getting-started/connecting/#obtaining-the-bootstrap-address)). For SCRAM, replace the `<username>` and `<password>` with the SCRAM username and password. For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier, and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.

@@ -43,13 +43,13 @@ When you have finished reviewing the results, you can stop this flow.
 
 The next step is to identify the best selling product type in each hour.
 
-1. Add a **Window top-n** node.
+1. Add a **Top-n** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-12.png "top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-12.png "top-n node")
 
    Link the top-n node to the aggregate node.
 
-1. Call the Window top-n node `top selling style`.
+1. Call the Top-n node `top selling style`.
 
 1. Specify a time window that matches the previous aggregate: **1 hour**.
 

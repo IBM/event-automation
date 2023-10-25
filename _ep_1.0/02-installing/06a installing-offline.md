@@ -1,6 +1,6 @@
 ---
-title: "Installing in an offline environment"
-excerpt: "Find out how to install in an offline (also referred to as air-gapped or disconnected) environment."
+title: "Installing in an offline OpenShift environment"
+excerpt: "Find out how to install in an offline (also referred to as air-gapped or disconnected) OpenShift environment."
 categories: installing
 slug: offline
 toc: true
@@ -23,7 +23,7 @@ Ensure you have the following set up for your environment:
 
 - A computer with access to both the public internet and the network-restricted environment on which you can run the required commands. This computer must also have access to a local registry and to the {{site.data.reuse.openshift_short}} clusters, and is referred to as a *bastion host*.
 - [Docker](https://docs.docker.com/engine/install/){:target="_blank"} or [Podman CLI](https://podman.io/getting-started/installation.html){:target="_blank"} installed.
-- A private Docker registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.
+- A private container registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.
 - A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/installing/index.html#installation-overview_ocp-installation-overview){:target="_blank"}. See the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}) for supported versions.
 - A supported version of the IBM Cert Manager [installed](../prerequisites#ibm-cert-manager).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
@@ -43,35 +43,36 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 - The target (internal) image registry where all the images will be mirrored to.
 - The OpenShift cluster to install the operator on.
 
-Note: In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
 
 ## Download the CASE bundle
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
-1. Set the environment variables for the {{site.data.reuse.flink_long}} and its version by running the following command:
+1. Run the following command to download, validate, and extract the {{site.data.reuse.flink_long}} CASE.
 
    ```shell
-   export CASE_NAME=ibm-eventautomation-flink && export CASE_VERSION={{site.data.reuse.flink_operator_current_version}} && export CASE_INVENTORY_SETUP=flinkKubernetesOperatorSetup
+   oc ibm-pak get ibm-eventautomation-flink --version <case-version>
    ```
-
-2. Run the following command to download, validate, and extract the CASE.
+  
+   Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   oc ibm-pak get $CASE_NAME --version $CASE_VERSION
+   oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
    ```
 
-3. Set the environment variables for the {{site.data.reuse.ep_name}} and its version by running the following command:
+2. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
 
    ```shell
-   export CASE_NAME=ibm-eventprocessing && export CASE_VERSION={{site.data.reuse.ep_current_version}} && export CASE_INVENTORY_SETUP=epOperatorSetup
+   oc ibm-pak get ibm-eventprocessing --version <case-version>
    ```
 
-4. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
+   Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   oc ibm-pak get $CASE_NAME --version $CASE_VERSION
+   oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
    ```
+
 
    The latest CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
 
@@ -99,7 +100,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    oc ibm-pak get $CASE_NAME
    ```
 
-5. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
 
    For example, ensure that the following files have been generated for {{site.data.reuse.ep_name}}.
 
@@ -132,9 +133,11 @@ Before mirroring your images, set the environment variables for the CASE images 
 
 <!--Only offline environment -->
 
-To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. You need a Docker CLI login (`docker login`) or Podman CLI login (`podman login`) for configuring the registry.
+To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
 For {{site.data.reuse.ep_name}}, all images are either present in the IBM Entitled Registry (`cp.icr.io`), which requires authentication, or in the IBM Container Registry (`icr.io/cpopen`), which does not.
+
+### Creating an authentication secret for the source registry
 
 Run the following command to create an authentication secret for the source registry:
 
@@ -147,6 +150,8 @@ Where:
 - `<source-registry>` is the Entitled Registry (`cp.icr.io`).
 - `<source-registry-user>` is your username.
 - `<source-registry-pass>` is your entitlement key.
+
+### Creating an authentication secret for the target registry
 
 Run the following command to create an authentication secret for the target registry:
 
@@ -186,9 +191,9 @@ Complete the following steps to mirror the images from your host to your offline
 
      Where`target-registry` is the internal docker registry.
 
-    **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
+    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
-    This generates the following files based on the target internal registry provided:
+    The previous command generates the following files based on the target internal registry provided:
 
     - catalog-sources.yaml
     - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
@@ -222,7 +227,7 @@ Complete the following steps to mirror the images from your host to your offline
      ```shell
      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
      ```
-     
+
     Where:
 
     - `<case-version>` is the version of the CASE file to be copied.
@@ -271,25 +276,25 @@ Apply the catalog sources for the operator to the cluster by running the followi
 - For {{site.data.reuse.flink_long}}:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
   ```
 
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
   ```
 
 - For {{site.data.reuse.ep_name}}:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
   ```
 
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
   ```
 
 ## Install the operator

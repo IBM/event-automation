@@ -112,13 +112,13 @@ SET 'key' = 'value';
 
 ### Setup a connection to the Flink cluster
 
-1. {{site.data.reuse.openshift_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}}
 
 
 2. Switch to the namespace where the {{site.data.reuse.flink_long}} is installed.
 
    ```shell
-   oc project <namespace>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Get the name of the Flink JobManager pod to connect to.
@@ -126,13 +126,13 @@ SET 'key' = 'value';
    a. List the available `FlinkDeployment` custom resources.
 
    ```shell
-   oc get flinkdeployment
+   kubectl get flinkdeployment
    ```
 
    For example:
 
    ```shell
-   oc get flinkdeployment
+   kubectl get flinkdeployment
    
    NAME                   JOB STATUS   LIFECYCLE STATE
    my-flink-deployment    RUNNING      STABLE
@@ -141,13 +141,13 @@ SET 'key' = 'value';
    b. Retrieve the name of the first online Flink `JobManager` pod.
 
    ```shell
-   export FLINK_JOB_MANAGER=$(oc get pods --selector component=jobmanager,app=<flink-deployment-name> --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
+   export FLINK_JOB_MANAGER=$(kubectl get pods --selector component=jobmanager,app=<flink-deployment-name> --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
    ```
 
    For example:
 
    ```
-   export FLINK_JOB_MANAGER=$(oc get pods --selector component=jobmanager,app=my-flink-deployment --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
+   export FLINK_JOB_MANAGER=$(kubectl get pods --selector component=jobmanager,app=my-flink-deployment --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
    echo ${FLINK_JOB_MANAGER}
    my-flink-deployment-b5d95dc77-nmgnj
    ```
@@ -160,14 +160,14 @@ SET 'key' = 'value';
 2. Copy the file `statements.sql` to the target container `flink-main-container` of the Flink `JobManager` pod
 
    ```shell
-   oc cp -c flink-main-container statements.sql ${FLINK_JOB_MANAGER}:/tmp
+   kubectl cp -c flink-main-container statements.sql ${FLINK_JOB_MANAGER}:/tmp
    ```
 
 
 3. Submit the Flink SQL job to the Flink cluster.
 
    ```shell
-   oc exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null -f /tmp/statements.sql
+   kubectl exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null -f /tmp/statements.sql
    ```
 
 
@@ -178,7 +178,7 @@ SET 'key' = 'value';
 2. List the Flink jobs.
 
    ```sql
-   oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null <<< 'SHOW JOBS;'
+   kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null <<< 'SHOW JOBS;'
    ```
 
    **Output example**
@@ -209,13 +209,13 @@ SET 'key' = 'value';
 4. Execute the following command that triggers the generation of a savepoint without stopping the job.
 
    ```sql
-   oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical <job id>
+   kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical <job id>
    ```
 
    For example:
 
    ```sql
-   oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical 89112b3a999e37740e2c73b6521d0778
+   kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical 89112b3a999e37740e2c73b6521d0778
    
    Triggering savepoint for job 89112b3a999e37740e2c73b6521d0778.
    Waiting for response...
@@ -243,13 +243,13 @@ SET 'key' = 'value';
 4. Execute the following command that triggers the generation of a savepoint and stops the Flink job.
 
    ```sql
-   oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical <job id>
+   kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical <job id>
    ```
 
    For example:
 
    ```sql
-   oc exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical 89112b3a999e37740e2c73b6521d0778
+   kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical 89112b3a999e37740e2c73b6521d0778
    
    Suspending job 89112b3a999e37740e2c73b6521d0778.
    Savepoint completed. Path: file:/flink-data/savepoints/savepoint-89112b-8dbd328bf7c9

@@ -59,7 +59,7 @@ Where the `id` is the username that is specified for the user.
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Create a JSON file called `myroles.json` that contains the user role mappings for your {{site.data.reuse.ep_name}} instance, for example:
-   
+
    ```json
    {
      "mappings": [
@@ -72,7 +72,7 @@ Where the `id` is the username that is specified for the user.
      ]
    }
    ```
-   
+
 3. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
 
    ```shell

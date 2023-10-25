@@ -1,6 +1,6 @@
 ---
-title: "Installing in an online environment"
-excerpt: "Installing Event Processing."
+title: "Installing in an online OpenShift environment"
+excerpt: "Installing Event Processing in an online OpenShift environment."
 categories: installing
 slug: installing
 toc: true
@@ -143,7 +143,7 @@ To add the IBM Operator Catalog:
           interval: 45m
    ```
 
-   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and install the operators by using the [CLI](#install-the-operators-by-using-the-cli-oc-ibm-pak).
+   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and then install the [{{site.data.reuse.flink_long}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
@@ -179,6 +179,33 @@ This procedure must be performed by using the CLI. Before you begin, ensure that
 
 Download the CASE bundle of {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} as described in the [offline installation](../offline#download-the-case-bundle).
 
+#### Generate mirror manifests
+
+Run the following command to generate mirror manifests:
+
+- For {{site.data.reuse.flink_long}}:
+
+   ```shell
+   oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
+   ```
+
+- For {{site.data.reuse.ep_name}}:
+
+   ```shell
+   oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
+   ```
+
+   Where`target-registry` is the internal docker registry.
+
+**Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+
+The previous command generates the following files based on the target internal registry provided:
+
+- catalog-sources.yaml
+- catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
+- image-content-source-policy.yaml
+- images-mapping.txt
+
 #### Applying catalog sources to your cluster
 
 Apply the catalog sources for the operator to the cluster by running the following command:
@@ -186,31 +213,35 @@ Apply the catalog sources for the operator to the cluster by running the followi
 - For {{site.data.reuse.flink_long}}:
 
   ```shell
-  oc ibm-pak launch ibm-eventautomation-flink --version <case-version> --inventory flinkKubernetesOperatorSetup --action installCatalog -n <namespace>
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
+  ```
+
+  Where `<case-version>` is the version of the CASE you want to install. For example:
+
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
   ```
 
 - For {{site.data.reuse.ep_name}}:
 
   ```shell
-  oc ibm-pak launch ibm-eventprocessing --version <case-version> --inventory epOperatorSetup --action installCatalog -n <namespace>
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
   ```
 
-Where:
+  Where `<case-version>` is the version of the CASE you want to install. For example:
 
-- `<case-version>` is the version of the CASE you want to install.
-- `<namespace>` is the namespace you created previously or `openshift-marketplace` if you are installing in all namespaces.
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
+  ```
 
-## Install the operators by using the web console
+## Install the operators
 
 {{site.data.reuse.ep_name}} consists of two operators that must be installed in the {{site.data.reuse.openshift}}:
 
 - {{site.data.reuse.flink_long}}
 - {{site.data.reuse.ep_name}}
 
-Follow the instructions to install the operators by using the OpenShift web console.
-
-**Important:** To install the operators by using the OpenShift web console, you must add the operators to the OperatorHub catalog. OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, install the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} operator by using the [CLI](#install-the-operators-by-using-the-cli-oc-ibm-pak).
-
+**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.flink_long}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 ### Installing the {{site.data.reuse.flink_long}}
 
@@ -218,10 +249,11 @@ Ensure you have considered the {{site.data.reuse.flink_long}} [requirements](../
 including resource requirements and, if installing in **any namespace**, the required cluster-scoped permissions.
 
 **Important:**
+
 * {{site.data.reuse.flink_long}} must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
   {{site.data.reuse.flink_long}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources
   cannot be managed by more than one operator
-  (for details, [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
+  (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
 * Before installing {{site.data.reuse.flink_long}} on a cluster where Apache Flink operator is already installed, to avoid
   possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
   the Apache Flink CRDs as described in the
@@ -229,7 +261,8 @@ including resource requirements and, if installing in **any namespace**, the req
 * Only one version of {{site.data.reuse.flink_long}} should be installed in a cluster. Installing multiple versions
   is not supported, due to the possible conflicts between versions of the `CustomResourceDefinition` resources.
 
-#### Installing {{site.data.reuse.flink_long}} by using the web console
+
+#### Installing the {{site.data.reuse.flink_long}} by using the web console
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -245,25 +278,106 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 
 The installation can take a few minutes to complete.
 
+#### Installing the {{site.data.reuse.flink_long}} by using the command line
+
+To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
+
+1. Change to the namespace (project) where you want to install the operator. For command line installations, this sets the chosen [installation mode](#choose-the-operator-installation-mode) for the operator: 
+
+   - Change to the system namespace `openshift-operators` if you are installing the operator to be able to manage instances in all namespaces.
+   - Change to the custom namespace if you are installing the operator for use in a specific namespace only.
+
+   ```shell
+   oc project <target-namespace>
+   ```
+
+2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+
+   a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
+
+   ```yaml
+   apiVersion: operators.coreos.com/v1
+   kind: OperatorGroup
+   metadata:
+     name: ibm-eventautomation-flink-operatorgroup
+     namespace: <target-namespace>
+   spec:
+     targetNamespaces:
+       - <target-namespace>
+   ```
+
+   b. Save the file as `operator-group.yaml`.
+
+   c. Run the following command:
+   
+   ```shell
+   oc apply -f operator-group.yaml
+   ```
+
+3. Create a `Subscription` for the {{site.data.reuse.flink_long}} as follows:
+   
+   a. Create a YAML file similar to the following example:
+   
+   ```yaml
+   apiVersion: operators.coreos.com/v1alpha1
+   kind: Subscription
+   metadata:
+     name: ibm-eventautomation-flink
+     namespace: <target-namespace>
+   spec:
+     channel: <current_channel>
+     name: ibm-eventautomation-flink
+     source: <catalog-source-name>
+     sourceNamespace: openshift-marketplace
+   ```
+
+   Where:
+
+   - `<target-namespace>` is the namespace where you want to install the {{site.data.reuse.flink_long}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
+   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }})).
+   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventautomation-flink` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
+
+   b. Save the file as `subscription.yaml`.
+
+   c. Run the following command:
+ 
+   ```shell
+   oc apply -f subscription.yaml
+   ```
+
 #### Checking the operator status
 
-You can see the installed operator and check its status as follows:
+- To see the installed operator and check its status by using the web console, complete the following steps:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. {{site.data.reuse.task_openshift_select_operator_flink}}
-4. Scroll down to the **ClusterServiceVersion details** section of the page.
-5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
+  1. {{site.data.reuse.openshift_ui_login}}
+  2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+  3. {{site.data.reuse.task_openshift_select_operator_flink}}
+  4. Scroll down to the **ClusterServiceVersion details** section of the page.
+  5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
 
-In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
+   In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
+
+- To check the status of the installed operator by using the command line:
+
+  ```shell
+  oc get csv
+  ```
+
+  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.flink_long}} is `Succeeded`.
 
 **Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select **all projects** from the **Project** dropdown, the operator will be shown multiple times in the resulting list, once for each project.
+
+When the {{site.data.reuse.flink_long}} is installed, the following additional operators will appear in the installed operator list:
+
+- Operand Deployment Lifecycle Manager.
+- IBM Common Service Operator.
+
 
 ### Installing the {{site.data.reuse.ep_name}} operator
 
 Ensure you have considered the {{site.data.reuse.ep_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
-#### Installing by using the web console
+#### Installing the {{site.data.reuse.ep_name}} operator by using the web console
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -279,45 +393,100 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 
 The installation can take a few minutes to complete.
 
+#### Installing the {{site.data.reuse.ep_name}} operator by using the command line
+
+To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
+
+1. Change to the namespace (project) where you want to install the operator. For command line installations, this sets the chosen [installation mode](#choose-the-operator-installation-mode) for the operator: 
+
+   - Change to the system namespace `openshift-operators` if you are installing the operator to be able to manage instances in all namespaces.
+   - Change to the custom namespace if you are installing the operator for use in a specific namespace only.
+
+   ```shell
+   oc project <target-namespace>
+   ```
+
+2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+
+   a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
+
+   ```yaml
+   apiVersion: operators.coreos.com/v1
+   kind: OperatorGroup
+   metadata:
+     name: ibm-eventprocessing-operatorgroup
+     namespace: <target-namespace>
+   spec:
+     targetNamespaces:
+       - <target-namespace>
+   ```
+
+   b. Save the file as `operator-group.yaml`.
+
+   c. Run the following command:
+   
+   ```shell
+   oc apply -f operator-group.yaml
+   ```
+
+3. Create a `Subscription` for the {{site.data.reuse.ep_name}} operator as follows:
+   
+   a. Create a YAML file similar to the following example:
+   
+   ```yaml
+   apiVersion: operators.coreos.com/v1alpha1
+   kind: Subscription
+   metadata:
+     name: ibm-eventprocessing
+     namespace: <target-namespace>
+   spec:
+     channel: <current_channel>
+     name: ibm-eventprocessing
+     source: <catalog-source-name>
+     sourceNamespace: openshift-marketplace
+   ```
+
+   Where:
+
+   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
+   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }})).
+   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventprocessing` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
+
+   b. Save the file as `subscription.yaml`.
+
+   c. Run the following command:
+
+   ```shell
+   oc apply -f subscription.yaml
+   ```
+
 #### Checking the operator status
 
-You can see the installed operator and check its status as follows:
+- To see the installed operator and check its status by using the web console, complete the following steps:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. {{site.data.reuse.task_openshift_select_operator_flink}}
-4. Scroll down to the **ClusterServiceVersion details** section of the page.
-5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
+  1. {{site.data.reuse.openshift_ui_login}}
+  2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+  3. {{site.data.reuse.task_openshift_select_operator_ep}}
+  4. Scroll down to the **ClusterServiceVersion details** section of the page.
+  5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
 
-In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
+  In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
 
-**Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select **all projects** from the **Project** dropdown, the operator will be shown multiple times in the resulting list, once for each project.
+- To check the status of the installed operator by using the command line:
 
-<!--When the {{site.data.reuse.ep_name}} operator is installed, the following additional operators will appear in the installed operator list:
+  ```shell
+  oc get csv
+  ```
+
+  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.ep_short}} is `Succeeded`.
+
+**Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces, and you select **all projects** from the **Project** dropdown, the operator will be shown multiple times in the resulting list, once for each project.
+
+
+When the {{site.data.reuse.ep_short}} is installed, the following additional operators will appear in the installed operator list:
+
 - Operand Deployment Lifecycle Manager.
 - IBM Common Service Operator.
---->
-
-## Install the operators by using the CLI (`oc ibm-pak`)
-
-To install the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} operator by using the IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`), run the following command:
-
-- For {{site.data.reuse.flink_long}}:
-
-  ```shell
-  oc ibm-pak launch ibm-eventautomation-flink --version <case-version> --inventory flinkKubernetesOperatorSetup --action installOperator -n <namespace>
-  ```
-
-- For {{site.data.reuse.ep_name}}:
-
-  ```shell
-  oc ibm-pak launch ibm-eventprocessing --version <case-version> --inventory epOperatorSetup --action installOperator -n <namespace>
-  ```
-
-Where:
-
-- `<case-version>` is the version of the CASE you want to install.
-- `<namespace>` is the namespace you created previously or `openshift-operators` if you are installing in all namespaces.
 
 ## Install a Flink instance
 
@@ -538,7 +707,7 @@ To view a sample in the form view, complete the following steps:
 4. Select **Form view** in the **Configure via** section to switch back to the form view with the data from the sample populated.
 5. Edit as required.
 
-**Note:** If experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
+**Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 
 To configure an `EventProcessing` custom resource,  complete the following steps:

@@ -303,7 +303,7 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 
 | Property | Type | Description |
 | --- | --- | --- |
-| spec.strimziOverrides | object | Configuration of the Kafka and ZooKeeper clusters. Spec can be viewed at [Strimzi documentation](https://strimzi.io/docs/operators/0.35.1/configuring.html){:target="_blank"}. |
+| spec.strimziOverrides | object | Configuration of the Kafka and ZooKeeper clusters. Spec can be viewed at [Strimzi documentation](https://strimzi.io/docs/operators/latest/configuring.html){:target="_blank"}. |
 
 ### version
 

@@ -11,6 +11,8 @@ As part of your event-driven architecture solution, {{site.data.reuse.eem_name}}
 
 Access to the event sources are managed by the Event Gateway. The Event Gateway handles the incoming requests from applications to consume from a topic’s stream of events. The Event Gateway is independent of your Kafka clusters, making access control to topics possible without requiring any changes to your Kafka cluster configuration.
 
+![Event Endpoint Management architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-endpoint-management.svg "Diagram showing the Event Endpoint Management architecture as part of IBM Event Automation.")
+
 {{site.data.reuse.eem_name}} can be deployed as a standalone installation, or it can be deployed as part of Cloud Pak For Integration. You can also integrate {{site.data.reuse.eem_name}} with API Connect by importing the AsyncAPI document that defines the Kafka event source. This integration provides the option to use events as part of your overall API management solution.
 
 The following diagram provides an overview of {{site.data.reuse.eem_name}}.

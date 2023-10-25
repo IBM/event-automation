@@ -26,5 +26,5 @@ To resolve the problem, configure the {{site.data.reuse.egw}} deployment to supp
 # {{site.data.reuse.egw}} CRD 
     env:
     - name: TLS_VERSIONS
-        value: 'TLSv1.2,TLSv1.3'
+      value: 'TLSv1.2,TLSv1.3'
 ```

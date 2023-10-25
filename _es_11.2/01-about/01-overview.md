@@ -12,6 +12,8 @@ toc: true
 
 {{site.data.reuse.es_name}} uses Strimzi to deploy Apache Kafka in a resilient and manageable way, and provides a range of additional capabilities to extend the core functionality.
 
+![Event Streams architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-streams.svg "Diagram showing the Event Streams architecture as part of IBM Event Automation.")
+
 {{site.data.reuse.es_name}} features include:
 
 - Apache Kafka deployed by Strimzi that distributes Kafka brokers across the nodes of a Kubernetes cluster, creating a highly-available and resilient deployment.

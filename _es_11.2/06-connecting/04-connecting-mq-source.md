@@ -273,7 +273,7 @@ Ensure the following values are set in your environment before you enable the ex
 * The IBM MQ source connector must run on Kafka Connect version 3.3.0 or later and the `exactly.once.source.support` property must be set to `enabled` in the Kafka Connect worker configuration. For more information about the `exactly.once.source.support` setting, and the Access Control List (ACL) requirements for the worker nodes, see the [Apache Kafka documentation](https://kafka.apache.org/documentation/#connect_exactlyoncesource){:target="_blank"}.
 * On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
 * On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
-* Ensure that the messages that are sent through the MQ source connector v2 do not expire, and that all the messages on the state queue are persistent.
+* Ensure that the messages that are sent through the MQ source connector v2 do not expire and are persistent.
 
 ### Enabling exactly-once delivery
 

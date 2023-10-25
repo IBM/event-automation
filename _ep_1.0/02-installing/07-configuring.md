@@ -255,13 +255,13 @@ TLS can be configured for the `EventProcessing` instance in one of the following
 #### Operator configured CA certificate
 
 By default, the operator configures its own TLS.
-The operator uses the IBM Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
+The operator uses the Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
 Cert manager puts the CA certificate into a secret named `<my-instance>-ibm-ep-root-ca`.
 
-Cert Manager and {{site.data.reuse.ep_name}} will create the following objects:
+The Cert Manager and the {{site.data.reuse.ep_name}} will create the following objects:
 
 
-- IBM Cert Manager Issuers:
+- Cert Manager Issuers:
   - `<my-instance>-ibm-eventprocessing`
   - `<my-instance>-ibm-eventprocessing-selfsigned`
 
@@ -298,12 +298,12 @@ See the following example to use the user provided certificate files (`ca.crt`, 
 2. Create the CA secret by running the following command:
 
    ```shell
-   oc create secret generic ibm-ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
+   kubectl create secret generic ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
    ```
 
-3. To provide a custom CA certificate secret, set `spec.authoring.tls.caSecretName` field to be the name of the Openshift CA certificate secret that contains the CA certificate.
+3. To provide a custom CA certificate secret, set `spec.authoring.tls.caSecretName` field to be the name of the CA certificate secret that contains the CA certificate.
 
-The following code snippet is an example of a configuration that uses the Openshift CA certificate secret that is created in the previous steps:
+The following code snippet is an example of a configuration that uses the CA certificate secret that is created in the previous steps:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -314,7 +314,7 @@ spec:
     # ...
   authoring:
     tls:
-      caSecretName: ibm-ca-secret-cert
+      caSecretName: ca-secret-cert
 # ...
 ```
 
@@ -398,12 +398,17 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    subjectAltName = @alt_names
    [alt_names]
    DNS.1 = ${INSTANCE_NAME}-ibm-eventprocessing-svc
-   DNS.2 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event
-   DNS.3 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event.svc
-   DNS.4 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.event.svc.cluster.local
-   DNS.5 = ${INSTANCE_NAME}-ibm-eventprocessing-rt-event.${CLUSTER_API}
-   DNS.7 = ${INSTANCE_NAME}-ibm-eventprocessing-event.${CLUSTER_API}
+   DNS.2 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.{NAMESPACE}
+   DNS.3 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.{NAMESPACE}.svc
+   DNS.4 = ${INSTANCE_NAME}-ibm-eventprocessing-svc.{NAMESPACE}.svc.cluster.local
+   DNS.5 = ${INSTANCE_NAME}-ibm-eventprocessing-rt-{NAMESPACE}.${CLUSTER_API}
+   DNS.7 = ${INSTANCE_NAME}-ibm-eventprocessing-{NAMESPACE}.${CLUSTER_API}
    ```
+
+   **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.ep_name}} `ui` endpoint hostname:
+    - You are planning to specify hostnames in the `eventprocessing` custom resource under `spec.authoring.endpoints`.
+    - You are planning to create additional routes or ingress.
+    - You are not running on {{site.data.reuse.openshift_short}}
 
 5. Generate the required certificates by running the following commands:
 
@@ -448,7 +453,7 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    **Note:** The Secret must be added to the namespace that the {{site.data.reuse.ep_name}} instance is intended to be created in.
 
    ```shell
-   oc create secret generic ${INSTANCE_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${INSTANCE_NAME}.crt --from-file=tls.key=${INSTANCE_NAME}.key -n ${NAMESPACE}
+   kubectl create secret generic ${INSTANCE_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${INSTANCE_NAME}.crt --from-file=tls.key=${INSTANCE_NAME}.key -n ${NAMESPACE}
    ```
 
 9. Create an {{site.data.reuse.ep_name}} instance and set the `spec.authoring.tls.secretName` to the name of the created certificate.
@@ -488,6 +493,8 @@ spec:
 # ...
 ```
 
+If running on the {{site.data.reuse.openshift}}:
+
 - Optionally, specify the key in the secret that is pointing to the CA certificate `ui.caCertificate` (default, `ca.crt`).
 - Optionally, specify the key in the secret that is pointing to the server certificate `ui.serverCertificate` (default, `tls.crt`).
 - Optionally, specify the key in the secret that is pointing to the private key `ui.key` (default, `tls.key`).
@@ -512,3 +519,71 @@ spec:
 ```
 
 For information, see [Network Policies](../../security/network-policies).
+
+
+## Configuring ingress
+
+If running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
+You can optionally set a host for each exposed route on `EventProcessing` instance by setting values under `spec.authoring.endpoints[]`.
+
+If you are not running on the {{site.data.reuse.openshift}}, the {{site.data.reuse.ep_name}} operator will create ingress resources to provide external access.
+
+No default hostnames will be assigned to the ingress resource, and you must set hostnames for each exposed endpoint on the `EventProcessing` instance.
+
+The following code snippet shows how to configure the host for the `EventProcessing` UI endpoint:
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+# ...
+spec:
+  license:
+    # ...
+  authoring:
+    endpoints:
+      - name: ui
+        host: my-ep-ui.mycompany.com
+#...
+```
+
+### Ingress default settings
+
+If you are not running on the {{site.data.reuse.openshift}}, the following ingress defaults are set unless overriden:
+
+- `class`: The ingress class name is set by default to `nginx`.  Set the `class` field on endpoints to use a different ingress class.
+
+- `annotations`: The following annotations are set by default on generated ingress endpoints:
+
+```yaml
+ingress.kubernetes.io/ssl-passthrough: 'true'
+nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+```
+
+If you specify a `spec.authoring.tls.ui.secretName`, on an `EventProcessing` the following re-encrypt annotations will be set on the `ui` ingress.  Other ingresses will be configured for passthrough.
+
+```yaml
+nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+nginx.ingress.kubernetes.io/configuration-snippet: proxy_ssl_name "<HOSTNAME>";
+nginx.ingress.kubernetes.io/proxy-ssl-protocols: TLSv1.3
+nginx.ingress.kubernetes.io/proxy-ssl-secret: <NAMESPACE>/<SECRETNAME>
+nginx.ingress.kubernetes.io/proxy-ssl-verify: 'on'
+```
+
+Ingress annotations can be overridden by specifying an alternative set of annotations on an endpoint. The following code snippet is an example of overriding the annotations set on a `ui` endpoint ingress.
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+# ...
+spec:
+  license:
+  # ...
+  endpoints:
+    - name: ui
+      host: my-ui.mycompany.com
+      annotations:
+        some.annotation.foo: "true"
+        some.other.annotation: value
+# ... 
+```

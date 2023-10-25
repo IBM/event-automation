@@ -34,7 +34,7 @@ The admin user has the `Cluster Administrator` role granting full access to all 
 
 ### Managing access to the UI and CLI with IAM
 
-Access for groups and users is managed through IAM teams. If you have not previously created any teams, the admin user credentials can be used to [set up a team](https://www.ibm.com/support/knowledgecenter/SSHKN6/iam/3.x.x/teams.html){:target="_blank"}.
+Access for groups and users is managed through IAM teams. If you have not previously created any teams, the admin user credentials can be used to [set up a team](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=users-managing-teams){:target="_blank"}.
 
 Access to the {{site.data.reuse.es_name}} UI and CLI requires an IAM user with a role of `Cluster Administrator` or `Administrator`. The role can be set for the user or for the group the user is part of.
 

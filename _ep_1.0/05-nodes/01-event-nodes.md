@@ -15,7 +15,7 @@ The following event nodes are available in {{site.data.reuse.ep_name}}:
 
 [Event time](../../about/key-concepts#event-time) is essential to measure the progress of time and perform time-based calculations. 
 The temporal order of events processed by a flow must be guaranteed.
-**Aggregate** and **Interval Join** work with time windows, whose boundaries are defined by event times.
+**Aggregate**, **Window top-n**, and **Interval Join** work with time windows, whose boundaries are defined by event times.
 
 The event time is usually a business property available in the payload of input messages, such as the timestamp
 of an order, a financial transaction or the last reading of a temperature sensor.
@@ -210,3 +210,11 @@ To configure an event destination, complete the following steps.
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} 
 appears on the event destination node if the event destination node is configured correctly. 
 If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+
+![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") User actions are saved automatically. Check the navigation banner for save status updates.
+
+- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
+- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
+- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
+
+If you are running versions earlier than 1.0.5, click **Save** in the navigation banner to save the flow.

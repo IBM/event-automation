@@ -12,6 +12,8 @@ The REST producer API is a scalable REST interface for producing messages to {{s
 
 Use the API to connect existing systems to {{site.data.reuse.es_name}}, such as IBM Z mainframe systems with IBM z/OS Connect, systems using IBM DataPower Gateway, and so on.
 
+![Event Streams Producer API architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-restproducer.svg "Diagram showing the architecture of the Event Streams producer API as part of IBM Event Automation.")
+
 ## About authorization
 
 By default {{site.data.reuse.es_name}} requires clients to be authorized to write to topics. The available authentication mechanisms for use with the REST Producer are MutualTLS (`tls`) and SCRAM SHA 512 (`scram-sha-512`). For more information about these authentication mechanisms, see the information about [managing access](../../security/managing-access/).

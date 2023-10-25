@@ -165,6 +165,17 @@ ansible-playbook \
     install/supporting-demo-resources/appconnect/install.yaml
 ```
 
+### PostgreSQL database
+
+To create a PostgreSQL database:
+
+```sh
+ansible-playbook \
+    -e license_accept=true \
+    -e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
+    -e eventautomation_namespace=event-automation \
+    install/supporting-demo-resources/pgsql/install.yaml
+```
 
 ## Next step
 

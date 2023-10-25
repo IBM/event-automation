@@ -154,3 +154,23 @@ oc get secret \
     -o jsonpath='{.data.password}' | base64 -d
 ```
 
+## Accessing PostgreSQL database tables
+
+Some of the tutorials involve enriching Kafka events by using reference data from a PostgreSQL database. An [optional tutorial playbook](../guided/tutorial-0#postgresql-database) automatically creates this database, and credentials that you can use to access it.
+
+1. The database is called **`pgsqldemo`**.
+
+1. The username is **`demouser`**.
+
+1. To find the JDBC connection string, copy the contents of the `jdbc-uri` value of the **pgsqldemo-pguser-demouser** Secret in the `event-automation` project.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-8.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-8.png "OpenShift Console")
+
+Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+
+```sh
+oc get secret \
+    pgsqldemo-pguser-demouser \
+    -n event-automation \
+    -o jsonpath='{.data.jdbc\-uri}' | base64 -d
+```

@@ -17,9 +17,9 @@ Understand the upgrade paths available for Continuous Delivery (CD) releases and
 
 ### Upgrade paths for CD releases
 
-If you are on OpenShift, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.3 version directly from any 11.2.x or 11.1.x version by using the operator version 3.2.3. If you are on OpenShift and have an earlier {{site.data.reuse.es_name}} version than 11.1.x, you must first upgrade it to [version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) before upgrading to 11.2.x.
+If you are on OpenShift, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.5 version directly from any 11.2.x or 11.1.x version by using the operator version 3.2.5. If you are on OpenShift and have an earlier {{site.data.reuse.es_name}} version than 11.1.x, you must first upgrade it to [version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) before upgrading to 11.2.x.
 
-If you are running on other Kubernetes platforms, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.3 version directly from any 11.2.x by using the operator version 3.2.3.
+If you are running on other Kubernetes platforms, you can upgrade {{site.data.reuse.es_name}} to the latest 11.2.5 version directly from any 11.2.x by using the operator version 3.2.5.
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.es_name}} operator is upgraded to 3.2.x when it is available in the catalog, and your {{site.data.reuse.es_name}} instance is then also automatically upgraded, unless you [set a schedule for the upgrade](#scheduling-the-upgrade-of-an-instance) by pausing the reconciliation.
 
@@ -189,7 +189,7 @@ Where:
 - `<release-name>` is the name you provide to identify your operator.
 - `<namespace>` is the name of the namespace where you want to install the operator.
 - `watchAnyNamespace=<true/false>` determines whether the operator manages instances of {{site.data.reuse.es_name}} in any namespace or only a single namespace (default is `false` if not specified). For more information, see [choosing operator installation mode](../installing-on-kubernetes/#choosing-operator-installation-mode).
-- `<previous-version>` is the version of the helm chart being upgraded from. For example, if your helm chart version is 3.2.0, set the field as: `--set previousVersion=3.2.0`. The version of your helm chart can be retrieved by running:
+- `<previous-version>` is the version of the helm chart being upgraded from. For example, if your helm chart version is 3.2.5, set the field as: `--set previousVersion=3.2.5`. The version of your helm chart can be retrieved by running:
 
   ```shell
   helm list --filter <release-name> -n <namespace> -o json | jq '.[0].app_version'

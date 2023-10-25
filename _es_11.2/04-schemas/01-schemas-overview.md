@@ -20,6 +20,8 @@ It is common for all of the messages on a topic to use the same schema. The key 
 
 Schemas are stored in internal Kafka topics by the [Apicurio Registry](https://www.apicur.io/registry/docs/apicurio-registry/2.3.x/index.html){:target="_blank"}, an open-source schema registry. In addition to storing a versioned history of schemas, Apicurio Registry provides an interface for retrieving them. Each {{site.data.reuse.es_name}} cluster has its own instance of Apicurio Registry providing schema registry functionality.
 
+![Event Streams Schemas architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-schemaregistry.svg "Diagram showing the architecture of the Event Streams schemas as part of IBM Event Automation.")
+
 Your producers and consumers validate the data against the specified schema stored in the schema registry. This is in addition to going through Kafka brokers. The schemas do not need to be transferred in the messages this way, meaning the messages are smaller than without using a schema registry.
 
 ![Schema architecture diagram.]({{ 'images' | relative_url }}/Schema_registry_arch.png "Diagram showing a schema registry architecture. A producer is sending messages and a consumer is reading messages, while both are retrieving the schema from the schema registry.")

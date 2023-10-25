@@ -64,6 +64,8 @@ Alternatively, you can also use the following steps:
    kubectl es geo-cluster-add  --cluster-connect <base64-encoded-string-from-step-3>
    ```
 
+   Wait for all KafkaMirrorMaker2 pods to reconcile.
+
 ## Specifying what and where to replicate
 
 To select the topics you want to replicate and set the destination cluster to replicate to, use the following steps.

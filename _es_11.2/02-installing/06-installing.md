@@ -158,7 +158,7 @@ Before installing the {{site.data.reuse.es_name}} operator, decide if you want t
 
 ### Installing by using the web console
 
-To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
+To install the operator by using the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Operators** dropdown and select **OperatorHub** to open the **OperatorHub** dashboard.
@@ -174,9 +174,78 @@ The installation can take a few minutes to complete.
 
 **Important:** Only install one {{site.data.reuse.es_name}} operator on a cluster.
 
-#### Checking the operator status
+### Installing by using the command line
 
-You can see the installed operator and check its status as follows:
+To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
+
+1. Change to the namespace (project) where you want to install the operator. For command line installations, this sets the chosen [installation mode](#choosing-operator-installation-mode) for the operator: 
+   
+   - Change to the system namespace `openshift-operators` if you are installing the operator to be able to manage instances in all namespaces.
+   - Change to to the custom namespace if you are installing the operator for use in a specific namespace only.
+   
+   ```shell
+   oc project <target-namespace>
+   ```
+
+2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+
+   a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
+
+   ```yaml
+   apiVersion: operators.coreos.com/v1
+   kind: OperatorGroup
+   metadata:
+     name: ibm-eventstreams-operatorgroup
+     namespace: <target-namespace>
+   spec:
+     targetNamespaces:
+       - <target-namespace>
+   ```
+
+   b. Save the file as `operator-group.yaml`.
+
+   c. Run the following command:
+   
+   ```shell
+   oc apply -f operator-group.yaml
+   ```
+
+3. Create a `Subscription` for the {{site.data.reuse.es_name}} operator as follows:
+   
+   a. Create a YAML file similar to the following example:
+   
+   ```yaml
+   apiVersion: operators.coreos.com/v1alpha1
+   kind: Subscription
+   metadata:
+     name: ibm-eventstreams
+     namespace: <target-namespace>
+   spec:
+     channel: <current_channel>
+     name: ibm-eventstreams
+     source: <catalog-source-name>
+     sourceNamespace: openshift-marketplace
+   ```
+
+   Where:
+
+   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.es_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
+   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventstreams` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
+      
+   b. Save the file as `subscription.yaml`.
+
+   c. Run the following command:
+      
+      ```shell
+      oc apply -f subscription.yaml
+      ```
+
+### Checking the operator status
+
+You can view the status of the installed operator as follows.
+
+#### By using the web console
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -191,6 +260,16 @@ In addition to the status, information about key events that occur can be viewed
 When the {{site.data.reuse.es_name}} operator is installed, the following additional operators will appear in the installed operator list:
 - Operand Deployment Lifecycle Manager.
 - IBM Common Service Operator.
+
+#### By using the CLI
+
+To check the status of the installed operator by using the command line:
+
+```shell
+oc get csv
+```
+
+The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.es_name}} operator is `Succeeded`.
 
 ### Scaling the operator for high availability
 

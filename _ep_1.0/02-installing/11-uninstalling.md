@@ -10,7 +10,7 @@ Find out how to remove your {{site.data.reuse.ep_name}} and related Flink deploy
 
 ## Uninstalling instances
 
-### By using the {{site.data.reuse.openshift_short}} web console
+### By using the OpenShift web console
 
 To delete a Flink instance:
 
@@ -73,20 +73,20 @@ Delete remaining Persistent Volumes (PVs) related to {{site.data.reuse.ep_name}}
 
 ### By using the CLI
 
-You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the `oc` command-line tool:
+You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the `kubectl` command-line tool:
 
-1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure you are using the project where your {{site.data.reuse.ep_name}} and Flink instance is located:
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.ep_name}} and Flink instance is installed:
 
    ```shell
-   oc project <project_name>
+   kubectl config set-context --current --namespace=<namespace>
    ```
 
 3. Run the following commands to delete your {{site.data.reuse.ep_name}} and Flink instances from the project:
 
    ```shell
-   oc delete eventprocessing --all
-   oc delete flinkdeployment --all
+   kubectl delete eventprocessing --all
+   kubectl delete flinkdeployment --all
    ```
 
 #### Check uninstallation progress
@@ -94,13 +94,13 @@ You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the
 Run the following command to check the progress:
 
 ```shell
-oc get pods --selector app.kubernetes.io/instance=<instance_name>
+kubectl get pods --selector app.kubernetes.io/instance=<instance_name>
 ```
 
 Pods will initially display a **STATUS** `Terminating` and then be removed from the output as they are deleted.
 
 ```shell
-$ oc get pods --selector app.kubernetes.io/instance=quick-start
+$ kubectl get pods --selector app.kubernetes.io/instance=quick-start
 >
 NAME                                              READY     STATUS        RESTARTS   AGE
 quick-start-flink-kubernetes-65f555b884-fvtks     0/2       Terminating   0          7d17h
@@ -125,13 +125,13 @@ Delete the PVCs:
 1. Run the following command to list the remaining PVCs associated with the deleted instances:
 
    ```shell
-   oc get pvc --selector app.kubernetes.io/instance=<instance_name>
+   kubectl get pvc --selector app.kubernetes.io/instance=<instance_name>
    ```
 
 2. Run the following to delete a PVC:
 
    ```shell
-   oc delete pvc <pvc_name>
+   kubectl delete pvc <pvc_name>
    ```
 
 Delete remaining PVs:
@@ -139,20 +139,20 @@ Delete remaining PVs:
 1. Run the following command to list the remaining PVs:
 
    ```shell
-   oc get pv
+   kubectl get pv
    ```
 
 2. Run the following command to delete any PVs that were listed in the **Volume** column of the deleted PVCs.
 
    ```shell
-   oc delete pv <pv_name>
+   kubectl delete pv <pv_name>
    ```
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
 ## Uninstalling operators
 
-### By using the {{site.data.reuse.openshift_short}} web console
+### By using the OpenShift web console
 
 To delete the {{site.data.reuse.flink_long}}:
 
@@ -172,13 +172,9 @@ To delete the {{site.data.reuse.ep_name}} operator:
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
-To delete the IBM Cert Manager operator:
+### By using the OpenShift CLI (`oc`)
 
-Follow the instructions in the [{{site.data.reuse.icpfs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-manual-steps-uninstalling-singleton-services-cert){:target="_blank"} to delete the IBM Cert Manager operator.
-
-### By using the CLI
-
-Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} from the project:
+Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} from the namespace:
 
 ```shell
 oc delete subscription ibm-eventprocessing
@@ -202,20 +198,49 @@ oc get subscription ibm-eventprocessing -o yaml | grep currentCSV
 oc get subscription ibm-eventautomation-flink -o yaml | grep currentCSV
 ```
 
-## Uninstalling the IBM Cert Manager
+### By using the Helm CLI (`helm`)
 
-To delete the IBM Cert Manager operator:
+Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} from the namespace:
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are in the namespace where your {{site.data.reuse.ep_name}} and flink operators are installed:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+
+3. List your Helm releases and identify the releases that matches the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}}:
+
+   ```shell
+   helm list
+   ```
+
+4. Uninstall the operators by using the following commands:
+
+   ```shell
+   helm uninstall <eventprocessing-operator-release-name>
+   helm uninstall <eventautomation-flink-operator-release-name>
+   ```
+
+## Uninstalling IBM Cert Manager
+
+Follow the instructions in the [{{site.data.reuse.icpfs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-manual-steps-uninstalling-singleton-services-cert){:target="_blank"} to uninstall the singleton services.
+
+To delete the IBM Cert Manager operator by using the OpenShift web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the IBM Cert Manager operator to be deleted to open the actions menu.
+4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the Cert Manager operator to be deleted to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
+
 ## Removing the secrets
 
-Secrets that are created by the IBM Cert Manager are not are not deleted automatically. You must manually delete any secrets that you do not want.
+Secrets that are created by the Cert Manager are not deleted automatically. You must manually delete any secrets that you do not want.
+
+### By using the OpenShift web console
 
 To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets by using the web console:
 
@@ -226,10 +251,34 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets
 5. Click the **Delete Secret** menu option to open the confirmation panel.
 6. Check the name of the secret and click **Delete** to remove the secret.
 
+### By using the CLI
+
+To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets by using the CLI:
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Ensure you are using the namespace where your {{site.data.reuse.ep_name}} operator was located:
+
+   ```shell
+   kubectl config set-context --current --namespace=<namespace>
+   ```
+
+3. List the secrets and identify any that match the instance you deleted. The secrets created for {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} begin with the name of your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} instances.
+
+   ```shell
+   kubectl get secrets
+   ```
+
+4. Delete the relevant secrets:
+
+   ```shell
+   kubectl delete secret <secretName>
+   ```
 
 ## Removing {{site.data.reuse.ep_name}} Custom Resource Definitions
 
 The {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want.
+
+### By using the OpenShift web console
 
 To delete Flink CRDs:
 
@@ -248,3 +297,12 @@ To delete {{site.data.reuse.ep_name}} CRDs:
 4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the CRD to be deleted to open the actions menu.
 5. Click the **Delete Custom Resource Definition** menu option to open the confirmation panel.
 6. Check the name of the CRD and click **Delete** to remove the CRD.
+
+### By using the Helm CLI
+
+If you are running on other Kubernetes platforms, you can simply uninstall the Helm releases that are managing the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} CRDs. Run the following commands to delete the CRDs:
+
+```shell
+helm uninstall <eventprocessing-operator-crd-release-name>
+helm uninstall <eventautomation-flink-operator-crd-release-name>
+```

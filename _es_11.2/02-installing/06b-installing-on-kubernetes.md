@@ -12,7 +12,8 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 {{site.data.reuse.es_name}} is an [operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
 
-When deploying in an air-gapped (also referred to as offline or disconnected) environment, follow the instructions in the [README](https://github.com/IBM/cloud-pak/tree/master/repo/case/ibm-eventstreams){:target="_blank"} file downloaded with the CASE package.
+When deploying in an air-gapped (also referred to as offline or disconnected) environment, follow the instructions in the [offline installation](../offline) to install {{site.data.reuse.es_name}} on OpenShift and other Kubernetes platforms by using the CASE package.
+
 
 Installing {{site.data.reuse.es_name}} has two phases:
 

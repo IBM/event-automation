@@ -18,7 +18,7 @@ Ensure you have the following set up for your environment:
 
 - A computer with access to both the public internet and the network-restricted environment on which you can run the required commands. This computer must also have access to a local registry and to the {{site.data.reuse.openshift_short}} clusters, and is referred to as a *bastion host*.
 - [Docker](https://docs.docker.com/engine/install/){:target="_blank"} or [Podman CLI](https://podman.io/getting-started/installation.html){:target="_blank"} installed.
-- A private Docker registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.
+- A private container registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.
 - A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/installing/index.html#installation-overview_ocp-installation-overview){:target="_blank"}. See the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for supported versions.
 - A supported version of the IBM Cert Manager [installed](../prerequisites#ibm-cert-manager).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
@@ -38,19 +38,13 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 - The target (internal) image registry where all the images will be mirrored to.
 - The OpenShift cluster to install the operator on.
 
-Note: In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
 
 ## Download the CASE bundle
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
-1. To set the environment variables for the product name and version, run the following command:
-
-   ```shell
-   export CASE_NAME=ibm-eventendpointmanagement && export CASE_VERSION=11.0.6 && export CASE_INVENTORY_SETUP=eemOperatorSetup
-   ```
-
-2. Run the following command to download, validate, and extract the CASE.
+1. Run the following command to download, validate, and extract the CASE.
 
    ```shell
    oc ibm-pak get ibm-eventendpointmanagement
@@ -87,7 +81,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 
    **Note**: If you do not specify the CASE version, it downloads the latest version.
 
-3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
+2. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
 
    For example, ensure the following files have been generated for {{site.data.reuse.eem_name}}.
 
@@ -119,9 +113,11 @@ Before mirroring your images, set the environment variables for the CASE images 
 <!--Only offline environment -->
 
 
-To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. You need a Docker CLI login (`docker login`) or Podman CLI login (`podman login`) for configuring the registry.
+To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
 For {{site.data.reuse.eem_name}}, all images are either present in the IBM Entitled Registry (`cp.icr.io`), which requires authentication, or in the IBM Container Registry (`icr.io/cpopen`), which does not.
+
+### Creating an authentication secret for the source registry
 
 Run the following command to create an authentication secret for the source registry:
 
@@ -135,6 +131,8 @@ Where:
 - `<source-registry-user>` is your username.
 - `<source-registry-pass>` is your entitlement key.
 
+### Creating an authentication secret for the target registry
+
 Run the following command to create an authentication secret for the target registry:
 
 ```shell
@@ -142,6 +140,7 @@ docker login <target-registry> --username <target-registry-user> --password <tar
 ```
 
 Where:
+
 - `target-registry` is the internal docker registry.
 - `target-registry-user` is the username for the internal docker registry.
 - `target-registry-pass` is the password for the internal docker registry.
@@ -164,9 +163,9 @@ Complete the following steps to mirror the images from your host to your offline
 
    Where`target-registry` is the internal docker registry.
 
-   **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
+   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
-   This generates the following files based on the target internal registry provided:
+   The previous command generates the following files based on the target internal registry provided:
 
    - catalog-sources.yaml
    - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
@@ -216,15 +215,15 @@ oc get MachineConfigPool -w
 Apply the catalog sources for the operator to the cluster by running the following command:
 
 ```shell
-oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
+oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources-linux-amd64.yaml
 ```
 
 ## Install the operator
 
-After considering the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operator by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} operator](../../installing/installing/#install-the-operator-by-using-the-web-console).
+After considering the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operator by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} operator](../../installing/installing/#install-the-event-endpoint-management-operator-by-using-the-web-console).
 
 ## Install an instance
 
-{{site.data.reuse.eem_name}} and Event Gateway instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} (`manager`) instance](../../installing/installing/#install-an-event-endpoint-management-instance) and the [Event Gateway instance](../../installing/installing/#install-an-event-gateway-instance).
+{{site.data.reuse.eem_name}} and Event Gateway instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} (`manager`) instance](../../installing/installing/#install-an-event-endpoint-management-manager-instance) and the [Event Gateway instance](../../installing/deploy-gateways/).
 
 **Note:** [Stand-alone](../standalone-gateways/) {{site.data.reuse.egw}} instances can only be installed in an online environment.

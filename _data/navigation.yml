@@ -182,10 +182,12 @@ latest_epdocs:
         url: /installing/prerequisites/
       - title: "Planning your installation"
         url: /installing/planning/
-      - title: "Installing in an online environment"
+      - title: "Installing in an online OpenShift environment"
         url: /installing/installing/
-      - title: "Installing in an offline environment"
+      - title: "Installing in an offline OpenShift environment"
         url: /installing/offline/
+      - title: "Installing on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
       - title: "Configuring"
         url: /installing/configuring/
       - title: "Post-installation tasks"
@@ -230,8 +232,12 @@ latest_epdocs:
           url: /nodes/eventnodes/
         - title: "Processors"
           url: /nodes/processornodes/
+        - title: "Windowed"
+          url: /nodes/windowednodes/
         - title: "Joins"
           url: /nodes/joins/
+        - title: "Enrichment"
+          url: /nodes/enrichmentnode/
 
   - title: Deploying advanced flows
     children:
@@ -263,6 +269,11 @@ latest_epdocs:
         url: /troubleshooting/flows-stop-working/
       - title: "Error when logging in to UI after certificate rotation"
         url: /troubleshooting/certificate-rotation/
+      - title: "Flink instances cannot access jobResultStore"
+        url: /troubleshooting/fsgroup-not-set/
+      - title: "Operator watching single namespace has escalated permissions"
+        url: /troubleshooting/rbac/
+        
 
 
 # Event Streams 11.2
@@ -298,12 +309,16 @@ latestdocs:
         url: /installing/preparing-multizone/
       - title: "Installing on OpenShift Container Platform"
         url: /installing/installing/
+      - title: "Installing in an offline environment"
+        url: /installing/offline/
       - title: "Installing on other Kubernetes platforms"
         url: /installing/installing-on-kubernetes/
       - title: "Configuring"
         url: /installing/configuring/
       - title: "Post-installation tasks"
         url: /installing/post-installation/
+      - title: "Backing up and restoring on OpenShift"
+        url: /installing/backup-restore/
       - title: "Migrating from open-source Kafka"
         url: /installing/moving-from-oss-kafka/
       - title: "Uninstalling"
@@ -468,7 +483,8 @@ latestdocs:
         url: /troubleshooting/kafkarebalance-pendingproposal/
       - title: "Event Streams not installing due to Pod Security Policies (PSP) issues"
         url: /troubleshooting/default-psp-issues/
-
+      - title: "Geo-replicator fails when replicating a topic"
+        url: /troubleshooting/georep-fails/
 
 # Sidebar navigation for 11.1.
 

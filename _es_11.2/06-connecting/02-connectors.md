@@ -8,6 +8,8 @@ toc: true
 
 You can integrate external systems with {{site.data.reuse.es_name}} by using the Kafka Connect framework and connectors.
 
+![Event Streams connectors architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-kafkaconnect.svg "Diagram showing the architecture of the Event Streams connectors as part of IBM Event Automation.")
+
 
 ## What is Kafka Connect?
 

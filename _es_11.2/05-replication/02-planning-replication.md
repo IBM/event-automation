@@ -47,7 +47,7 @@ If you are using {{site.data.reuse.openshift_short}}, to create a new EventStrea
    - In the **metadata.labels** section, set the **eventstreams.ibm.com/cluster** property value to the name of your destination {{site.data.reuse.es_name}} instance.
    - Set the **metadata.name** property value to the name of your destination {{site.data.reuse.es_name}} instance.
    - Set the **spec.replicas** property value to the number of geo-replication workers you want to run.
-  ![Create EventStreamsGeoReplicator]({{ 'images' | relative_url }}/georeplication_create_eventstreamsgeoreplicator_10.3.png "Screen capture showing the Create EventStreamsGeoReplicator page with completed YAML.")
+  ![Create EventStreamsGeoReplicator]({{ 'images' | relative_url }}/georeplication_create_eventstreamsgeoreplicator_11.2.png "Screen capture showing the Create EventStreamsGeoReplicator page with completed YAML."){:height="80%" width="80%"}
 7. Click **Create**.
 8. The new EventStreamsGeoReplicator instance is listed in the **Operator Details > EventStreamsGeoReplicator** page.
 
@@ -74,7 +74,7 @@ To create a new EventStreamsGeoReplicator instance for geo-replication by using 
    name: my-dest-cluster
    namespace: my-project
    spec:
-   version: 11.2.1
+   version: 11.2.5
    replicas: 3
    ```
 

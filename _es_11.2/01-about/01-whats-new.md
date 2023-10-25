@@ -8,6 +8,20 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.2.x.
 
+## Release 11.2.5
+
+### Back up and restore your {{site.data.reuse.es_name}} static configurations
+
+You can back up and restore your {{site.data.reuse.es_name}} static configurations by using the OpenShift APIs for Data Protection (OADP). For more information, follow the instructions in [backing up and restoring](../../installing/backup-restore/).
+
+### Apicurio version updated to 2.4.12.Final
+
+{{site.data.reuse.es_name}} 11.2.5 includes support for Apicurio Registry 2.4.12.Final. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../installing/upgrading/#migrate-to-latest-apicurio-registry).
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.2.5 contains security and bug fixes.
+
 ## Release 11.2.4
 
 ### Additional IBM supported connectors: IBM MQ connectors v2

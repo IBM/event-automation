@@ -33,7 +33,7 @@ The default cluster administrator (admin) IAM user credentials are stored in a s
 The admin user has the `Cluster Administrator` role granting full access to all resources within the cluster, including {{site.data.reuse.es_name}}.
 
 ### Adding additional groups and users
-Access for groups and users is managed through IAM teams. If you have not previously created any teams, the admin user credentials can be used to [set up a team](https://www.ibm.com/support/knowledgecenter/SSHKN6/iam/3.x.x/teams.html){:target="_blank"}.
+Access for groups and users is managed through IAM teams. If you have not previously created any teams, the admin user credentials can be used to [set up a team](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=users-managing-teams){:target="_blank"}.
 
 #### Managing access to the UI and CLI
 

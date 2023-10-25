@@ -14,9 +14,17 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 {{site.data.reuse.ep_name}} 1.0.x is supported on the {{site.data.reuse.openshift}}.
 
-Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}, and that you have [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} the {{site.data.reuse.openshift_short}} CLI. For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later.") In version 1.0.5 and later, {{site.data.reuse.ep_name}} is also supported on other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
+If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+
+If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
+
+- A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+- The Kubernetes command-line tool (kubectl) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 ## Hardware requirements
 
 Ensure that your hardware can accommodate the [resource requirements](#resource-requirements) for your planned deployment.
@@ -80,7 +88,10 @@ The {{site.data.reuse.ep_name}} operator requires the following cluster-scoped p
 
 - **Permission to manage admission webhooks**: The {{site.data.reuse.ep_name}} operator uses admission webhooks to provide immediate validation and feedback about the creation and modification of {{site.data.reuse.ep_name}} instances. The permission to manage webhooks is required for the operator to register these actions.
 - **Permission to manage ConsoleYAMLSamples**: ConsoleYAMLSamples are used to provide samples for {{site.data.reuse.ep_name}} resources in the {{site.data.reuse.openshift_short}} web console. The permission to manage ConsoleYAMLSamples is required for the operator to register the setting up of samples.
-- **Permission to list specific CustomResourceDefinitions**: This allows {{site.data.reuse.ep_name}} to identify whether other optional dependencies have been installed into the cluster.
+- **Permission to list specific CustomResourceDefinitions**: This allows {{site.data.reuse.ep_name}} to identify whether other optional dependencies have been installed into the cluster. 
+
+In addition to the previous permissions, the {{site.data.reuse.ep_name}} operator requires the following cluster-scoped permissions on {{site.data.reuse.openshift}}:
+
 - **Permission to list ClusterRoles and ClusterRoleBindings**: The {{site.data.reuse.ep_name}} operator uses ClusterRoles created by the Operator Lifecycle Manager (OLM) as parents for supporting resources that the {{site.data.reuse.ep_name}} operator creates. This is needed so that the supporting resources are correctly cleaned up when {{site.data.reuse.ep_name}} is uninstalled. The permission to list ClusterRoles is required to allow the operator to identify the appropriate cluster role to use for this purpose.
 
 #### Operator requirements for the {{site.data.reuse.flink_long}}
@@ -99,11 +110,21 @@ You cannot install the {{site.data.reuse.flink_long}} on a cluster that already 
 
 {{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.openshift.com/container-platform/4.12/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
 
-By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
+By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
 ## Network requirements
 
 {{site.data.reuse.ep_name}} is supported for use with IPv4 networks only.
+
+### Ingress controllers
+
+To expose {{site.data.reuse.ep_name}} services externally outside your cluster, the {{site.data.reuse.ep_name}} operator will create:
+- OpenShift routes when installing on {{site.data.reuse.openshift}}.
+
+- Kubernetes ingress resources when installing on other Kubernetes platforms.
+
+
+To use ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.ep_name}} services to work. Refer to your ingress controller documentation for more information.
 
 ## Data storage requirements
 
@@ -162,13 +183,19 @@ The {{site.data.reuse.ep_name}} user interface (UI) is supported on the followin
 - Mozilla Firefox version 113 or later
 - Safari version 16.5 or later
 
-## IBM Cert Manager
+## Certificate management
 
-All certificates that are required by {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} are managed by IBM Cert Manager (`ibm-cert-manager-operator`). Cert Manager simplifies the process of creating, renewing, and using those certificates. Before you can install the {{site.data.reuse.ep_name}} operator, you must install Cert Manager operator to manage your certificates.
+By default, all certificates that are required by {{site.data.reuse.ep_name}} are managed by a certificate manager. The certificate manager simplifies the process of creating, renewing, and using those certificates.
+
+- On {{site.data.reuse.openshift}}, install IBM Cert Manager.
+- On other Kubernetes platforms, use a Cert Manager that supports `GroupVersionKind` (GVK) such as `Issuer.cert-manager.io/v1` and `Certificate.cert-manager.io/v1`, or create certificates manually and provide them to {{site.data.reuse.ep_name}} by using Kubernetes secrets.
+
+
+## IBM Cert Manager on {{site.data.reuse.openshift}}
 
 If you already have a Cert Manager installed in your cluster, you can skip this installation.
 
-To check whether Cert Manager is installed in your cluster by using the OpenShift web console, follow the steps:
+To check whether a Cert Manager is installed in your cluster by using the OpenShift web console, follow the steps:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -180,12 +207,11 @@ Alternatively, to check whether Cert Manager is installed in your cluster by usi
 oc get subs --all-namespaces
 ```
 
-
 **Important:** You can only have one Cert Manager operator installed in your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} in your environment, check whether you have the {{site.data.reuse.fs}} operator running already and note the version.
 
-Follow the instructions to install Cert Manager based on the {{site.data.reuse.fs}} version.
+Follow the instructions to install the Cert Manager based on the {{site.data.reuse.fs}} version.
 
-### With {{site.data.reuse.fs}} version 3.x
+#### With {{site.data.reuse.fs}} version 3.x
 
 If you are installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} on a cluster where {{site.data.reuse.fs}} version 3.x is already installed, follow the instructions to install the Cert Manager operator.
 
@@ -212,17 +238,17 @@ If you are installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_na
 
 Verify that the `cert-manager` operator shows as `Succeeded` in the namespaces where you want to use {{site.data.reuse.ep_name}}.
 
-### With {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}}
+#### With {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}}
 
-Follow the instructions to install Cert Manager 4.0.0 as part of {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}} in an online or offline environment.
+Follow the instructions to install the Cert Manager 4.0.0 as part of {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}} in an online or offline environment.
 
-#### For online environments
+**For online environments**
 
 Follow the [{{site.data.reuse.fs}} instructions](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=management-installing-cert-manager){:target="_blank"} to install the Cert Manager version 4.0.0 in online environments that are running with or without foundational services.
 
 Verify that the `cert-manager` operator shows as `Succeeded` in the namespaces where you want to use {{site.data.reuse.ep_name}}.
 
-#### For offline environments
+**For offline environments**
 
 If you are installing {{site.data.reuse.ep_name}} in an offline environment, follow the instructions in the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-installing-cert-offline){:target="_blank"} to mirror the necessary images, and install the Cert Manager from its CASE bundle.
 

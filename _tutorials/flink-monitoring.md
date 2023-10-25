@@ -61,7 +61,7 @@ Before you can configure Grafana dashboards to view the metrics, integrate your 
     spec:
       namespaceSelector:
         matchNames:
-          - flink
+          - <your-namepace>
       podMetricsEndpoints:
         - path: /
           relabelings:
@@ -74,6 +74,8 @@ Before you can configure Grafana dashboards to view the metrics, integrate your 
         matchLabels:
           type: flink-native-kubernetes
     ```
+
+    **Important:** Replace `<your-namespace>` with the name of the namespace where your `FlinkDeployment` instance is deployed.
 
 The metrics sent by Flink to Prometheus are now visible in OpenShift Container Platform. To verify that the data is being made available, ensure that the data is visible by clicking **Observe > Metrics**.
 

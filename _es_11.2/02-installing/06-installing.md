@@ -191,7 +191,7 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
    ```
 
-   Where `target-registry` is the internal docker registry.
+   Where `target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -211,7 +211,7 @@ Before you can install the required operator versions and use them to create ins
     Where:
 
     - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal docker registry.
+    - `target-registry` is the internal container image registry.
 
    Ensure that all the images have been mirrored to the target registry by checking the registry.
 

@@ -170,7 +170,7 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement <target-registry> 
    ```
 
-   Where`target-registry` is the internal docker registry.
+   Where`target-registry` is the internal container registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 

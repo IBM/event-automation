@@ -241,4 +241,4 @@ To delete an {{site.data.reuse.es_name}} operator:
 
 ## Uninstalling {{site.data.reuse.icpfs}} on OpenShift
 
-If you have {{site.data.reuse.icpfs}}, see the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/support/knowledgecenter/en/SSHKN6/installer/3.x.x/uninstallation.html){:target="_blank"} for information about uninstalling it.
+If you have {{site.data.reuse.icpfs}}, see the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=online-uninstalling-foundational-services){:target="_blank"} for information about uninstalling it.

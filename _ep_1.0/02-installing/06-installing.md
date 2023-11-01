@@ -166,73 +166,102 @@ This adds the catalog source for both the {{site.data.reuse.flink_long}} and {{s
 
 Before you can install the required operator versions and use them to create instances of Flink and {{site.data.reuse.ep_name}}, make their catalog source available in your cluster as described in the following sections.
 
-This procedure must be performed by using the CLI. Before you begin, ensure that you have the following set up for your environment:
+**Note:** This procedure must be performed by using the CLI.
 
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
-- The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
+1. Before you begin, ensure that you have the following set up for your environment:
 
-  ```shell
-  oc ibm-pak --help
-  ```
-
-#### Downloading the CASE bundle
-
-Download the CASE bundle of {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} as described in the [offline installation](../offline#download-the-case-bundle).
-
-#### Generate mirror manifests
-
-Run the following command to generate mirror manifests:
-
-- For {{site.data.reuse.flink_long}}:
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+   - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
-   oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
+   oc ibm-pak --help
    ```
 
-- For {{site.data.reuse.ep_name}}:
+2. Download the CASE bundle of {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} as described in the [offline installation](../offline#download-the-case-bundle).
 
-   ```shell
-   oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
-   ```
+3. Generate mirror manifests by running the following command:
 
-   Where`target-registry` is the internal docker registry.
+   - For {{site.data.reuse.flink_long}}:
 
-**Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
+     ```
 
-The previous command generates the following files based on the target internal registry provided:
+   - For {{site.data.reuse.ep_name}}:
 
-- catalog-sources.yaml
-- catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
-- image-content-source-policy.yaml
-- images-mapping.txt
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
+     ```
 
-#### Applying catalog sources to your cluster
+   Where`target-registry` is the internal container registry.
 
-Apply the catalog sources for the operator to the cluster by running the following command:
+   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
-- For {{site.data.reuse.flink_long}}:
+   The previous command generates the following files based on the target internal registry provided:
 
-  ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
-  ```
+   - catalog-sources.yaml
+   - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
+   - image-content-source-policy.yaml
+   - images-mapping.txt
 
-  Where `<case-version>` is the version of the CASE you want to install. For example:
+4. Copy the images to the local registry by running the following command. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
 
-  ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
-  ```
+   - To copy the images of {{site.data.reuse.flink_long}}:
 
-- For {{site.data.reuse.ep_name}}:
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     ```
 
-  ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
-  ```
+     For example:
 
-  Where `<case-version>` is the version of the CASE you want to install. For example:
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     ```
 
-  ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
-  ```
+   - To copy the images of {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     ```
+
+     For example:
+
+     ```shell
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     ```
+
+    Where:
+
+    - `<case-version>` is the version of the CASE file to be copied.
+    - `target-registry` is the internal docker registry.
+
+5. Apply the catalog sources for the operator to the cluster by running the following command:
+
+   - For {{site.data.reuse.flink_long}}:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
+     ```
+
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
+     ```
+
+   - For {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
+     ```
+
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
+     ```
+
+This adds the catalog source for the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} making the operators available to install.
 
 ## Install the operators
 
@@ -478,12 +507,12 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
   oc get csv
   ```
 
-  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.ep_short}} is `Succeeded`.
+  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.ep_name}} is `Succeeded`.
 
 **Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces, and you select **all projects** from the **Project** dropdown, the operator will be shown multiple times in the resulting list, once for each project.
 
 
-When the {{site.data.reuse.ep_short}} is installed, the following additional operators will appear in the installed operator list:
+When the {{site.data.reuse.ep_name}} is installed, the following additional operators will appear in the installed operator list:
 
 - Operand Deployment Lifecycle Manager.
 - IBM Common Service Operator.

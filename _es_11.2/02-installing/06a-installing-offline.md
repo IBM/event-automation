@@ -175,9 +175,9 @@ skopeo login <target-registry> -u <target-registry-user> -p <target-registry-pas
 
 Where:
 
-- `target-registry` is the internal docker registry.
-- `target-registry-user` is the username for the internal docker registry.
-- `target-registry-pass` is the password for the internal docker registry.
+- `target-registry` is the internal container image registry.
+- `target-registry-user` is the username for the internal container image registry.
+- `target-registry-pass` is the password for the internal container image registry.
 
 
 ## Mirror the images
@@ -194,7 +194,7 @@ Complete the following steps to mirror the images from your host to your offline
      kubectl ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
      ```
 
-     Where `target-registry` is the internal docker registry.
+     Where `target-registry` is the internal container image registry.
 
     **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
 
@@ -222,7 +222,7 @@ Complete the following steps to mirror the images from your host to your offline
     Where:
 
     - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal docker registry.
+    - `target-registry` is the internal container image registry.
 
 Ensure that all the images have been mirrored to the target registry by checking the registry.
 
@@ -309,9 +309,9 @@ Complete the following steps to install the operator:
    - `<release-name>` is the name you provide to identify your operator.
    - `<target-namespace>` is the namespace where we want to install IBM Event Streams.
    - `<case-version>` is the CASE version. 
-   - `<TARGET_REGISTRY>` is the internal docker registry. 
-   - `<target-registry-user>` is the username for the internal docker registry.
-   - `<TARGET_REGISTRY_PASS>` is the password for the internal docker registry.
+   - `<TARGET_REGISTRY>` is the internal container image registry. 
+   - `<target-registry-user>` is the username for the internal container image registry.
+   - `<TARGET_REGISTRY_PASS>` is the password for the internal container image registry.
 
 4. Wait for the installation to complete.
 5. You can now verify your installation and consider other [post-installation tasks](../post-installation/).

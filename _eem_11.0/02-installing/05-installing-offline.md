@@ -141,9 +141,9 @@ docker login <target-registry> --username <target-registry-user> --password <tar
 
 Where:
 
-- `target-registry` is the internal docker registry.
-- `target-registry-user` is the username for the internal docker registry.
-- `target-registry-pass` is the password for the internal docker registry.
+- `target-registry` is the internal container image registry.
+- `target-registry-user` is the username for the internal container image registry.
+- `target-registry-pass` is the password for the internal container image registry.
 
 **Note:** You can configure with separate target registry for {{site.data.reuse.flink_long}} and {{site.data.reuse.eem_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.flink_long}} and {{site.data.reuse.eem_name}}.
 
@@ -161,7 +161,7 @@ Complete the following steps to mirror the images from your host to your offline
    oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement <target-registry>
    ```
 
-   Where`target-registry` is the internal docker registry.
+   Where`target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -180,7 +180,7 @@ Complete the following steps to mirror the images from your host to your offline
 
    Where:
    - `<case-version>` is the version of the CASE file to be downloaded.
-   - `target-registry` is the internal docker registry.
+   - `target-registry` is the internal container image registry.
 
 ## Create `ImageContentSourcePolicy`
 

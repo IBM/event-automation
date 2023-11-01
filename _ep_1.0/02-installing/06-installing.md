@@ -193,7 +193,7 @@ Before you can install the required operator versions and use them to create ins
      oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
      ```
 
-   Where`target-registry` is the internal container registry.
+   Where`target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -233,7 +233,7 @@ Before you can install the required operator versions and use them to create ins
     Where:
 
     - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal docker registry.
+    - `target-registry` is the internal container image registry.
 
 5. Apply the catalog sources for the operator to the cluster by running the following command:
 

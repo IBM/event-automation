@@ -8,7 +8,7 @@ toc: true
 
 The following sections provide instructions about installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
-When deploying in an air-gapped (also referred to as offline or disconnected) environment, ensure you have access to this documentation set, and see the [instructions in the {{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.4?topic=installing-adding-catalog-sources-mirroring-images){:target="_blank"}.
+When deploying in an offline (also referred to as air-gapped or disconnected) environment, ensure you have access to this documentation set, and see the [instructions in the {{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.4?topic=installing-adding-catalog-sources-mirroring-images){:target="_blank"}.
 
 {{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2022.4?topic=capabilities-event-streams-deployment){:target="_blank"}.
 
@@ -69,20 +69,60 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
    Now using project "<new-project-name>" on server "https://<OpenShift-host>:6443".
    ```
 
+## Choose the operator installation mode
 
-## Add the {{site.data.reuse.es_name}} operator to the catalog
+Before installing the {{site.data.reuse.es_name}} operator, decide if you want the operator to:
+
+- Manage instances of {{site.data.reuse.es_name}} in **any namespace**.
+
+  To use this option, select `All namespaces on the cluster (default)` later. The operator will be deployed into the system namespace `openshift-operators`, and will be able to manage instances of {{site.data.reuse.es_name}} in any namespace.
+
+- Only manage instances of {{site.data.reuse.es_name}} in a **single namespace**.
+
+  To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances of {{site.data.reuse.es_name}} in any other namespace.
+
+## Creating an image pull secret
+
+Before installing an {{site.data.reuse.es_name}} instance, create an image pull secret called `ibm-entitlement-key` in the namespace where you want to create an instance of {{site.data.reuse.es_name}}. The secret enables container images to be pulled from the registry.
+
+1. Obtain an entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.
+2. Create the secret in the namespace that will be used to deploy an instance of {{site.data.reuse.es_name}} as follows.
+
+   Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
+
+   ```shell
+   oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <target-namespace>
+   ```
+
+
+**Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
+
+
+## Decide version control and catalog source
+
+Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Selecting how the catalog source is added will determine the versions you receive.
+
+Consider how you want to control your deployments, whether you want to install specific versions, and how you want to receive updates.
+
+- Latest versions: You can install the latest versions of all operators from the IBM Operator Catalog as described in [adding latest versions](#adding-latest-versions). This means that every deployment will always have the latest versions made available, and you cannot specify which version is installed. In addition, upgrades to the latest versions are automatic and provided when they become available. This path is more suitable for development or proof of concept deployments.
+
+- Specific versions: You can control the version of the operator and instances that are installed by downloading specific Container Application Software for Enterprises (CASE) files as described in [adding specific versions](#adding-specific-versions). This means you can specify the version you deploy, and only receive updates when you take action manually to do so. This is often required in production environments where the deployment of any version might require it to go through a process of validation and verification before it can be pushed to production use.
+
+### Adding latest versions
+
+**Important:** Use this method of installation only if you want your deployments to always have the latest version and if you want upgrades to always be automatic.
 
 Before you can install the {{site.data.reuse.es_name}} operator and use it to create instances of {{site.data.reuse.es_name}}, you must have the IBM Operator Catalog available in your cluster.
 
-If you have other IBM products installed in your cluster, then you already have the IBM Operator Catalog available, and you can continue to [installing](#install-the-event-streams-operator) the {{site.data.reuse.es_name}} operator.
+If you already have the IBM Operator Catalog available, you can continue to [installing](#installing-by-using-the-web-console) the {{site.data.reuse.es_name}} operator.
 
 If you are installing {{site.data.reuse.es_name}} as the first IBM product in your cluster, complete the following steps.
 
-To make the {{site.data.reuse.es_name}} operator and optional {{site.data.reuse.fs}} dependencies available in the OpenShift OperatorHub catalog, create the following YAML files and apply them as  follows.
+To make the {{site.data.reuse.es_name}} operator and optional {{site.data.reuse.fs}} dependencies available in the OpenShift OperatorHub catalog, create the following YAML files and apply them as follows.
 
 To add the IBM Operator Catalog:
 
-1. Create a file for the IBM Operator Catalog source with the following content, and save as `IBMCatalogSource.yaml`:
+1. Create a file for the IBM Operator Catalog source with the following content, and save as `ibm_catalogsource.yaml`:
 
    ```yaml
    apiVersion: operators.coreos.com/v1alpha1
@@ -99,64 +139,100 @@ To add the IBM Operator Catalog:
         registryPoll:
           interval: 45m
    ```
-2. {{site.data.reuse.openshift_cli_login}}
-3. Apply the source by using the following command:
 
-   ```shell
-   oc apply -f IBMCatalogSource.yaml
-   ```
-
-The IBM Operator Catalog source is added to the OperatorHub catalog, making the {{site.data.reuse.es_name}} operator available to install.
-
-<!---
-To add the {{site.data.reuse.icpfs}} Catalog:
-
-1. Create a file for the {{site.data.reuse.icpfs}} Catalog source with the following content, and save as `IBMCSCatalogSource.yaml`:
+   Automatic updates of your IBM Operator Catalog can be disabled by removing the polling attribute, `spec.updateStrategy.registryPoll`.
+   To disable automatic updates, remove the following parameters in the IBM Operator Catalog source YAML under the `spec` field:
 
    ```yaml
-   apiVersion: operators.coreos.com/v1alpha1
-   kind: CatalogSource
-   metadata:
-      name: opencloud-operators
-      namespace: openshift-marketplace
-   spec:
-      displayName: "IBMCS Operators"
-      publisher: IBM
-      sourceType: grpc
-      image: icr.io/cpopen/ibm-common-service-catalog:latest
       updateStrategy:
         registryPoll:
           interval: 45m
    ```
 
-2. {{site.data.reuse.openshift_cli_login}}
-3. Apply the source by using the following command:
+   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and install the operators by using the [CLI](#installing-by-using-the-command-line).
+
+2. In the OpenShift web console, select the Import YAML option (+) on the upper right.
+3. Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag the YAML files into the editor.
+4. Select **Create**.
+
+Alternatively, you can add the catalog source through the CLI by running the following commands:
+
+1. {{site.data.reuse.openshift_cli_login}}
+2. Apply the source by using the following command:
 
    ```shell
-   oc apply -f IBMCSCatalogSource.yaml
+   oc apply -f ibm_catalogsource.yaml
    ```
 
-The {{site.data.reuse.icpfs}} Catalog source is added to the OperatorHub catalog, making the {{site.data.reuse.icpfs}} items available to install for {{site.data.reuse.es_name}}.
---->
+The IBM Operator Catalog source is added to the OperatorHub catalog, making the {{site.data.reuse.es_name}} operator available to install.
 
+### Adding specific versions
+
+**Important:** Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.
+
+Before you can install the required operator versions and use them to create instances of {{site.data.reuse.es_name}}, make their catalog source available in your cluster as described in the following sections.
+
+**Note:** This procedure must be performed by using the CLI. 
+
+1. Before you begin, ensure that you have the following set up for your environment:
+
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+   - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
+
+   ```shell
+   oc ibm-pak --help
+   ```
+
+2. Download the CASE bundle of the {{site.data.reuse.es_name}} as described in the [offline installation](../offline#download-the-case-bundle).
+
+3. Generate mirror manifests by running the following command:
+
+   ```shell
+   oc ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
+   ```
+
+   Where `target-registry` is the internal docker registry.
+
+   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+
+   The previous command generates the following files based on the target (internal) registry provided:
+
+   - catalog-sources.yaml
+   - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
+   - image-content-source-policy.yaml
+   - images-mapping.txt
+
+4. Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
+
+   ```shell
+   oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/images-mapping.txt --filter-by-os '.*' --insecure --skip-multiple-scopes --max-per-registry=1
+   ```
+
+    Where:
+
+    - `<case-version>` is the version of the CASE file to be copied.
+    - `target-registry` is the internal docker registry.
+
+   Ensure that all the images have been mirrored to the target registry by checking the registry.
+
+5. Apply the catalog sources for the operator to the cluster by running the following command:
+
+   ```shell
+   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/catalog-sources.yaml
+   ```
+
+   Where `<case-version>` is the case version.
+
+This adds the catalog source for the {{site.data.reuse.es_name}} making the operator available to install.
+You can install the operator by using the [OpenShift web console](#installing-by-using-the-web-console) or the [CLI](#installing-by-using-the-command-line).
 
 ## Install the {{site.data.reuse.es_name}} operator
 
 Ensure you have considered the {{site.data.reuse.es_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
-### Choosing operator installation mode
-
-Before installing the {{site.data.reuse.es_name}} operator, decide if you want the operator to:
-
-- Manage instances of {{site.data.reuse.es_name}} in **any namespace**.
-
-  To use this option, select `All namespaces on the cluster (default)` later. The operator will be deployed into the system namespace `openshift-operators`, and will be able to manage instances of {{site.data.reuse.es_name}} in any namespace.
-
-- Only manage instances of {{site.data.reuse.es_name}} in a **single namespace**.
-
-  To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances of {{site.data.reuse.es_name}} in any other namespace.
-
 ### Installing by using the web console
+
+**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific version](#adding-specific-versions), and then install the {{site.data.reuse.es_name}} operator by using the [CLI](#installing-by-using-the-command-line).
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
@@ -166,7 +242,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 4. In the **All Items** search box enter `Event Streams` to locate the operator title.
 5. Click the **Event Streams** tile to open the install side panel.
 6. Click the **Install** button to open the **Create Operator Subscription** dashboard.
-7. Select the chosen [installation mode](#choosing-operator-installation-mode) that suits your requirements.
+7. Select the chosen [installation mode](#choose-the-operator-installation-mode) that suits your requirements.
    If the installation mode is **A specific namespace on the cluster**, select the target namespace you created previously.
 8. Click **Install** to begin the installation.
 
@@ -178,11 +254,11 @@ The installation can take a few minutes to complete.
 
 To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
 
-1. Change to the namespace (project) where you want to install the operator. For command line installations, this sets the chosen [installation mode](#choosing-operator-installation-mode) for the operator: 
-   
+1. Change to the namespace (project) where you want to install the operator. For command line installations, this sets the chosen [installation mode](#choose-the-operator-installation-mode) for the operator: 
+
    - Change to the system namespace `openshift-operators` if you are installing the operator to be able to manage instances in all namespaces.
-   - Change to to the custom namespace if you are installing the operator for use in a specific namespace only.
-   
+   - Change to the custom namespace if you are installing the operator for use in a specific namespace only.
+
    ```shell
    oc project <target-namespace>
    ```
@@ -205,15 +281,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    b. Save the file as `operator-group.yaml`.
 
    c. Run the following command:
-   
+
    ```shell
    oc apply -f operator-group.yaml
    ```
 
 3. Create a `Subscription` for the {{site.data.reuse.es_name}} operator as follows:
-   
+
    a. Create a YAML file similar to the following example:
-   
+
    ```yaml
    apiVersion: operators.coreos.com/v1alpha1
    kind: Subscription
@@ -230,46 +306,46 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    Where:
 
    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.es_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
-   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }})).
    - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventstreams` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
-      
+
    b. Save the file as `subscription.yaml`.
 
    c. Run the following command:
-      
-      ```shell
-      oc apply -f subscription.yaml
-      ```
+
+   ```shell
+   oc apply -f subscription.yaml
+   ```
 
 ### Checking the operator status
 
 You can view the status of the installed operator as follows.
 
-#### By using the web console
+- To see the installed operator and check its status by using the web console, complete the following steps:
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. {{site.data.reuse.task_openshift_select_operator}}
-4. Scroll down to the **ClusterServiceVersion details** section of the page.
-5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
+  1. {{site.data.reuse.openshift_ui_login}}
+  2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+  3. {{site.data.reuse.task_openshift_select_operator}}
+  4. Scroll down to the **ClusterServiceVersion details** section of the page.
+  5. Check the **Status** field. After the operator is successfully installed, this will change to `Succeeded`.
 
-In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
+  In addition to the status, information about key events that occur can be viewed under the **Conditions** section of the same page. After a successful installation, a condition with the following message is displayed: `install strategy completed with no errors`.
+
+- To check the status of the installed operator by using the command line:
+
+  ```shell
+  oc get csv
+  ```
+
+  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.es_name}} operator is `Succeeded`.
+
 
 **Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select **all projects** from the **Project** drop down, the operator will be shown multiple times in the resulting list, once for each project.
 
 When the {{site.data.reuse.es_name}} operator is installed, the following additional operators will appear in the installed operator list:
+
 - Operand Deployment Lifecycle Manager.
 - IBM Common Service Operator.
-
-#### By using the CLI
-
-To check the status of the installed operator by using the command line:
-
-```shell
-oc get csv
-```
-
-The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.es_name}} operator is `Succeeded`.
 
 ### Scaling the operator for high availability
 
@@ -337,21 +413,7 @@ Instances of {{site.data.reuse.es_name}} can be created after the {{site.data.re
 
 When installing an instance of {{site.data.reuse.es_name}}, ensure you are using a namespace that an operator is managing.
 
-### Creating an image pull secret
 
-Before installing an {{site.data.reuse.es_name}} instance, create an image pull secret called `ibm-entitlement-key` in the namespace where you want to create an instance of {{site.data.reuse.es_name}}. The secret enables container images to be pulled from the registry.
-
-1. Obtain an entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.
-2. Create the secret in the namespace that will be used to deploy an instance of {{site.data.reuse.es_name}} as follows.
-
-   Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
-
-   ```shell
-   oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <target-namespace>
-   ```
-
-
-**Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
 
 ### Installing an instance by using the web console
 

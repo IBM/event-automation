@@ -267,7 +267,7 @@ Where:
 - `user.key` is the private key of the user downloaded from the UI or read from the KafkaUser secret
 - `user.crt` is the user certificate that contains the public key of the user downloaded from the UI or read from the KafkaUser secret
 
- For example, the steps to configure a CICS URIMAP as an HTTP client is described in the  [CICS Transaction Server documentation](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.4.0/applications/developing/web/dfhtl_urioutbound.html){:target="_blank"}. In this case, load the client certificate and private key, together with the {{site.data.reuse.es_name}} server certificate into your RACF key ring. When defining the URIMAP:
+ For example, the steps to configure a CICS URIMAP as an HTTP client is described in the  [CICS Transaction Server documentation](https://www.ibm.com/docs/en/cics-ts/5.4?topic=application-creating-urimap-resource-cics-as-http-client){:target="_blank"}. In this case, load the client certificate and private key, together with the {{site.data.reuse.es_name}} server certificate into your RACF key ring. When defining the URIMAP:
 
 - `Host` is the client authentication API endpoint obtained as part of the [prerequisites](#prerequisites), without the leading `https://`
 - `Path` is `/topics/<topic-name>/records`

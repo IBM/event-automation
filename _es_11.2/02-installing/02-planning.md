@@ -239,7 +239,7 @@ You can [configure secure access](../../installing/configuring/#configuring-ui-a
 {{site.data.reuse.iam_note}}
 
 By default, in IAM, the secure {{site.data.reuse.es_name}} instance will require an `Administrator` or higher [role](https://www.ibm.com/docs/en/cpfs?topic=guide-role-based-access-control-clusters#iam){:target="_blank"} (`ClusterAdministrator` and `CloudpakAdministrator`) to authorize access.
-You can connect to a Lightweight Directory Access Protocol (LDAP) directory and add users from your LDAP directory into your cluster. For example, if you are using IAM, you can configure IAM to setup LDAP, assign roles to LDAP users, and create teams, as described in [configuring LDAP connections](https://www.ibm.com/support/knowledgecenter/SSHKN6/iam/3.x.x/configure_ldap.html){:target="_blank"}.
+You can connect to a Lightweight Directory Access Protocol (LDAP) directory and add users from your LDAP directory into your cluster. For example, if you are using IAM, you can configure IAM to setup LDAP, assign roles to LDAP users, and [create teams](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=apis-team-management#create){:target="_blank"}, as described in [configuring LDAP connections](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=users-configuring-ldap-connection){:target="_blank"}.
 
 If you set SCRAM authentication access for the {{site.data.reuse.es_name}} UI and CLI, Kafka users that have been configured to use SCRAM-SHA-512 authentication can log in to the {{site.data.reuse.es_name}} UI and CLI by using the username and password of that Kafka user. They can then access parts of the UI and run CLI commands based on the ACL permissions of the Kafka user.
 

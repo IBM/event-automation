@@ -22,6 +22,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 
 The following {{site.data.reuse.ep_name}} sample configurations are available to deploy:
+
 - Quick Start: A development instance with reduced resources, using ephemeral storage and Local authentication.
 - Production: A production instance with placeholders for persistence and OpenID Connect (OIDC) authentication.
 
@@ -35,9 +36,8 @@ If you are [installing](../installing/#installing-an-event-processing-instance-b
 
 If you are installing on other Kubernetes platforms, the following samples are available in the Helm chart package:
 
-- [Quick start](#example-deployment-quick-start)
-- [Production](#example-deployment-production)
-- [Production with API Connect integration](#example-deployment-production-with-api-connect-integration)
+- Quick start
+- Production
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing/openshift` or `/cr-examples/eventprocessing/kubernetes` to access the samples.
 

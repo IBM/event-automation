@@ -13,7 +13,7 @@ Before you can run IBM MQ connectors on IBM z/OS, you must prepare your Kafka fi
 
 ## Setting up Kafka to run on IBM z/OS
 
-You can run Kafka Connect workers on [IBM z/OS Unix System Services](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.3.0/com.ibm.zos.v2r3.e0zc100/unixs.htm){:target="_blank"}. To do so, you must ensure that the Kafka Connect shell scripts and the Kafka Connect configuration files are converted to EBCDIC encoding.
+You can run Kafka Connect workers on [IBM z/OS Unix System Services](https://www.ibm.com/docs/en/zos/2.3.0?topic=descriptions-zos-unix-system-services){:target="_blank"}. To do so, you must ensure that the Kafka Connect shell scripts and the Kafka Connect configuration files are converted to EBCDIC encoding.
 
 ### Download the Kafka Connect files
 
@@ -56,7 +56,7 @@ If you want to run a distributed Kafka Connect worker, convert the following she
 - `config/connect-distributed.sh`
 
 Extract the Apache Kafka distribution:
-1. Log in to the IBM z/OS system and [access the Unix System Services](https://www.ibm.com/support/knowledgecenter/SSLTBW_2.3.0/com.ibm.zos.v2r3.aioc000/unixss.htm){:target="_blank"}.
+1. Log in to the IBM z/OS system and [access the Unix System Services](https://www.ibm.com/docs/en/zos/2.3.0?topic=zos-unix-system-services-procedures){:target="_blank"}.
 2. Change to an empty directory that you want to use for the Apache Kafka distribution, and copy the `.tar` file to the new directory.
 3. Extract the `.tar` file, for example:
 

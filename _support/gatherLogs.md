@@ -167,3 +167,7 @@ See the following table for information about the modules that are supported by 
 | `failure`         | Gathers logs relating to unhealthy Kubernetes objects on the cluster.                                             | All                            |
 | `overview`        | Gathers general information about the cluster environment.                                                        | All                            |
 | `system`          | Gathers information about the system, resource usage, and the network.                                            | All                            |
+
+## Additional information
+
+If your issues relate to running flows in {{site.data.reuse.ep_name}}, it is also helpful to provide IBM Support with a copy of the relevant flows. You can do this by [exporting the flows to SQL](../../ep/advanced/exporting-flows#exporting-flows) and including the SQL files with the logs that you return.

@@ -213,7 +213,7 @@ Set up your Kafka Connect environment as described in [setting up connectors](..
 
 ### Adding connector dependencies
 
-By default, IBM MQ source connector v2 does not package any external dependencies. Follow the instructions in [setting up connectors](../setting-up-connectors/#specifying-connectors-in-your-kafka-connect-custom-resource) to add your dependencies.
+By default, IBM MQ source connector v2 does not package any external dependencies. Follow the instructions in [setting up connectors](../../setting-up-connectors/#specifying-connectors-in-your-kafka-connect-custom-resource) to add your dependencies.
 
 Add the following dependencies to the IBM MQ source connector v2:
 

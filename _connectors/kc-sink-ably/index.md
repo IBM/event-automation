@@ -11,6 +11,8 @@ documentationURL: https://github.com/ably/kafka-connect-ably
 download:
   -  { type: 'Download', url: 'https://github.com/ably/kafka-connect-ably/releases/' }
   -  { type: 'GitHub', url: 'https://github.com/ably/kafka-connect-ably' }
+categories:
+  - Developer Tools
 ---
 Ably sink connector streams data from one or more Kafka topics to the Ably platform.
 

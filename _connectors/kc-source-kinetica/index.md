@@ -11,6 +11,8 @@ documentationURL: https://github.com/kineticadb/kinetica-connector-kafka
 download:
   -  { type: 'Download', url: 'https://github.com/kineticadb/kinetica-connector-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/kineticadb/kinetica-connector-kafka' }
+categories:
+  - Databases
 ---
 Kinetica source connector monitors Kinetica tables and publishes inserted rows to separate Kafka topics.
 

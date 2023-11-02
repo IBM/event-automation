@@ -11,6 +11,8 @@ documentationURL: https://github.com/Azure/kafka-sink-azure-kusto
 download:
   -  { type: 'Download', url: 'https://github.com/Azure/kafka-sink-azure-kusto/releases' }
   -  { type: 'GitHub', url: 'https://github.com/Azure/kafka-sink-azure-kusto' }
+categories:
+  - AI & Analytics
 ---
 Azure Data Explorer sink connector streams Kafka events to Azure Data Explorer as gzipped files.
 

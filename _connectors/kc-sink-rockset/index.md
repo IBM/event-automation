@@ -11,6 +11,8 @@ documentationURL: https://github.com/rockset/kafka-connect-rockset
 download:
   -  { type: 'Download', url: 'https://github.com/rockset/kafka-connect-rockset/releases' }
   -  { type: 'GitHub', url: 'https://github.com/rockset/kafka-connect-rockset' }
+categories:
+  - AI & Analytics
 ---
 Rockset sink connector loads valid JSON and Avro documents from Kafka Streams into Rockset collections.
 

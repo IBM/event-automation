@@ -11,6 +11,8 @@ documentationURL: https://github.com/camunda-community-hub/kafka-connect-zeebe
 download:
   -  { type: 'Download', url: 'https://github.com/camunda-community-hub/kafka-connect-zeebe/releases' }
   -  { type: 'GitHub', url: 'https://github.com/camunda-community-hub/kafka-connect-zeebe' }
+categories:
+  - Developer Tools
 ---
 Zeebe sink connector consumes Kafka records and publishes messages constructed from those records to Zeebe.
 

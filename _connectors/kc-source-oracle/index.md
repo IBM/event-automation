@@ -11,6 +11,8 @@ documentationURL: https://github.com/debezium/debezium/tree/main/debezium-connec
 download:
   -  { type: 'Download', url: 'https://repo1.maven.org/maven2/io/debezium/debezium-connector-oracle/' }
   -  { type: 'GitHub', url: 'https://github.com/debezium/debezium/tree/main/debezium-connector-oracle' }
+categories:
+  - Databases
 ---
 Oracle (Debezium) source connector monitors schemas within a database server and write all change events to Kafka topics.
 

@@ -11,6 +11,8 @@ documentationURL: https://github.com/marklogic/kafka-marklogic-connector
 download:
   -  { type: 'Download', url: 'https://github.com/marklogic/kafka-marklogic-connector/releases' }
   -  { type: 'GitHub', url: 'https://github.com/marklogic/kafka-marklogic-connector' }
+categories:
+  - Databases
 ---
 MarkLogic sink connector writes data from a topic to a MarkLogic database.
 

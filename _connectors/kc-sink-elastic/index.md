@@ -11,6 +11,8 @@ documentationURL: https://github.com/ibm-messaging/kafka-connect-elastic-sink/bl
 download:
   -  { type: 'Download', url: 'https://github.com/ibm-messaging/kafka-connect-elastic-sink/releases/' }
   -  { type: 'GitHub', url: 'https://github.com/ibm-messaging/kafka-connect-elastic-sink' }
+categories:
+  - Technology
 ---
 
 Kafka Connect sink connector for Elasticsearch subscribes to one or more Kafka topics and writes the records to Elasticsearch.

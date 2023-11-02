@@ -11,6 +11,8 @@ documentationURL: https://www.mongodb.com/docs/kafka-connector/current/
 download:
   -  { type: 'Download', url: 'https://github.com/mongodb/mongo-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/mongodb/mongo-kafka/' }
+categories:
+  - Databases
 ---
 MongoDB source connector reads data from MongoDB and writes them into Kafka topics.
 

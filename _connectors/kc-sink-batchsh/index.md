@@ -11,6 +11,8 @@ documentationURL: https://docs.batch.sh/resources/open-source/kafka-sink-connect
 download:
   -  { type: 'Download', url: 'https://github.com/batchcorp/kafka-sink-connector/releases' }
   -  { type: 'GitHub', url: 'https://github.com/batchcorp/kafka-sink-connector' }
+categories:
+  - Developer Tools
 ---
 Batch.sh sink connector streams Kafka events to a remote collector.
 

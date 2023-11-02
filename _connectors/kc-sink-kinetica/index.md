@@ -11,6 +11,8 @@ documentationURL: https://github.com/kineticadb/kinetica-connector-kafka
 download:
   -  { type: 'Download', url: 'https://github.com/kineticadb/kinetica-connector-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/kineticadb/kinetica-connector-kafka' }
+categories:
+  - Databases
 ---
 Kinetica sink connector allows Kafka topics to be accessed by Kinetica, enabling the streaming of data between a Kinetica table and Kafka Connect.
 

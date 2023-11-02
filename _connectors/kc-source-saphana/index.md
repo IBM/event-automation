@@ -11,6 +11,8 @@ documentationURL: https://github.com/SAP/kafka-connect-sap
 download:
   -  { type: 'Download', url: 'https://github.com/SAP/kafka-connect-sap/releases' }
   -  { type: 'GitHub', url: 'https://github.com/SAP/kafka-connect-sap' }
+categories:
+  - Databases
 ---
 SAP HANA source connector reads data from SAP HANA databases and pushes it to Kafka topics.
 

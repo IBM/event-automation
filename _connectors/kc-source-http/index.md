@@ -11,6 +11,8 @@ documentationURL: https://castorm.github.io/kafka-connect-http/
 download:
   -  { type: 'Download', url: 'https://github.com/castorm/kafka-connect-http/releases' }
   -  { type: 'GitHub', url: 'https://github.com/castorm/kafka-connect-http' }
+categories:
+  - Technology
 ---
 HTTP source connector enables Change Data Capture (CDC) from JSON/HTTP APIs into Apache Kafka.
 

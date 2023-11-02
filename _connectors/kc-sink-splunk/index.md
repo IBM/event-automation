@@ -11,6 +11,8 @@ documentationURL: https://github.com/splunk/kafka-connect-splunk
 download:
   -  { type: 'Download', url: 'https://github.com/splunk/kafka-connect-splunk/releases' }
   -  { type: 'GitHub', url: 'https://github.com/splunk/kafka-connect-splunk' }
+categories:
+  - AI & Analytics
 ---
 Splunk sink connector ingests data from Kafka topics into Splunk via the Splunk HTTP Event Collector (HEC) while supporting in-flight data transformation and enrichment.
 

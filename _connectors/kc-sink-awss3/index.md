@@ -11,6 +11,8 @@ documentationURL: https://github.com/aiven/s3-connector-for-apache-kafka
 download:
   -  { type: 'Download', url: 'https://github.com/aiven/s3-connector-for-apache-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/aiven/s3-connector-for-apache-kafka' }
+categories:
+  - Storage
 ---
 Amazon S3 sink connector stores Apache Kafka messages in an Amazon Simple Storage Service (Amazon S3) bucket.
 

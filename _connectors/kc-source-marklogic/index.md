@@ -11,6 +11,8 @@ documentationURL: https://github.com/marklogic/kafka-marklogic-connector
 download:
   -  { type: 'Download', url: 'https://github.com/marklogic/kafka-marklogic-connector/releases' }
   -  { type: 'GitHub', url: 'https://github.com/marklogic/kafka-marklogic-connector' }
+categories:
+  - Databases
 ---
 MarkLogic source connector reads data from a MarkLogic database through an Optic query and sends the data to a Kafka topic.
 

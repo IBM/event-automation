@@ -1,5 +1,5 @@
 ---
-title: "Event Streams"
+title: "Home"
 layout: splash
 permalink: /es/:collection/
 quickLinks:

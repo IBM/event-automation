@@ -6,7 +6,6 @@
       ***DRAFT preview – intended for internal IBM use only***
     </p>
   </div>
-{% endif %}
 
 {% if page.collection contains "es_2019" or page.collection contains "es_2018" or page.collection contains "es_10" and  page.collection != "es_10.5" %}
 <div class="eosBanner">
@@ -15,7 +14,7 @@
   </p>
   </div>
 
-  
+  {% endif %}
   {% endif %}
 <div id="masthead" class="masthead">
   <!--
@@ -37,7 +36,7 @@
           {% if page.latest %}
             {%- assign collectionURL = "" -%}
           {% else %}
-            {% if page.mastheadNavItem == "Event Streams" %}
+            {% if page.mastheadNavItem == "Event Streams" or page.mastheadNavItem == "Event Endpoint Management" or page.mastheadNavItem == "Event Processing"%}
               {%- assign collectionURL = page.collection -%}
             {% endif %}
           {% endif %}

@@ -7,8 +7,15 @@
 {% assign title_separator = site.title_separator | default: '-' | replace: '|', '&#124;' %}
 
 {%- if page.title -%}
-  {%- assign seo_title = page.title | append: " " | append: title_separator | append: " " | append: site.title -%}
+  {%- assign seo_title = page.title | append: " " | append: title_separator | append: " " -%}
+  {%- if page.mastheadNavItem != "Event Streams" and page.mastheadNavItem != "Event Endpoint Management" and page.mastheadNavItem != "Event Processing" -%}
+    {%- assign seo_title = seo_title | append: site.title | default: site.title -%}
+    {%- else -%}
+    {%- assign seo_title = seo_title | append: page.mastheadNavItem | default: page.mastheadNavItem -%}
+  {%- endif -%}
 {%- endif -%}
+
+
 
 {%- if seo_title -%}
   {%- assign seo_title = seo_title | markdownify | strip_html | strip_newlines | escape_once -%}
@@ -52,6 +59,8 @@
   {%- assign og_type = "website" -%}
 {%- endif -%}
 
+
+
 <title>{{ seo_title | default: site.title }}{% if paginator %}{% unless paginator.page == 1 %} {{ title_separator }} {{ site.data.ui-text[site.locale].page | default: "Page" }} {{ paginator.page }}{% endunless %}{% endif %}</title>
 <meta name="description" content="{{ seo_description }}">
 
@@ -59,11 +68,9 @@
   <meta name="author" content="{{ author.name | default: author }}">
 {% endif %}
 
-
 {%- capture littleSiteTitle -%}
   {{ page.mastheadNavItem }} | {{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}
 {%- endcapture -%}
-
 
 {%- capture bigSiteTitle -%}
   IBM Event Automation | {{ page.title | default: site.title | markdownify | strip_html | strip_newlines | escape_once }}

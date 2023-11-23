@@ -35,7 +35,7 @@ To edit the details of a cluster, complete the following steps.
 
 ## Deleting a cluster
 
-Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer in use. You can only delete a cluster if all previously added topics from this cluster have been [deleted](../managing-topics/#removing-a-topic).
+Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer in use. You can only delete a cluster if all previously added topics from this cluster have been [deleted](../managing-topics/#deleting-a-topic).
 
 To delete a cluster from {{site.data.reuse.eem_name}}, complete the following steps. 
 

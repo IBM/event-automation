@@ -10,22 +10,12 @@ In this getting started tutorial, we'll take you through how to use {{site.data.
 
 For demonstration purposes, we use the scenario of a clothing company who want to move away from reviewing quarterly sales reports to reviewing orders in their region as they occur. Identifying large orders in real time helps the clothing company identify changes that are needed in sales forecasts much earlier. This information can also be fed back into their manufacturing cycle so that they can better respond to demand.
 
-<!-- ## Features of {{site.data.reuse.ep_name}} canvas
-
-
-## Limitations of {{site.data.reuse.ep_name}} canvas
-
-- Source nodes are connected to the same graph,
-- Connected nodes are configured and valid,
-- Connected nodes define a graph that ends with only one leaf node.
-
--->
 
 ## Building a simple flow that uses a filter node
 
 The steps in this getting started tutorial should take you about 10 minutes to complete.
 
-<!-- **Draft comment**: _confirm time_ -->
+
 
 ### Before you begin
 
@@ -62,10 +52,8 @@ The clothing company created a flow called `Filter` and provided a description t
 
     **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
-   <!-- **Draft comment** _TBC. Is **Add URL** and providing a comma-separated list the same thing?_ -->
 1. Click **Next**. The **Access credentials** page is displayed.
 1. On the **Access credentials** page, you need to provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
-<!-- **Draft comment** Possible enhancement - more info about each of the security protocols_ -->
 1. Click **Next**. The **Topic selection** page is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
 1. Click **Next**. The **Define event structure** page is displayed.
@@ -76,7 +64,7 @@ The clothing company created a flow called `Filter` and provided a description t
 1. Set an event time and leave the event source to be saved for later reuse. Saving the connection details makes creating similar event sources a lot quicker because there is no need to enter the same details again.
 1. Click **Configure**. The canvas is displayed and your event source node has a green checkmark, which indicates that the node has been configured successfully.
 
-![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") User actions are saved automatically. Check the navigation banner for save status updates.  
+![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") User actions are saved automatically. For save status updates, see the canvas header.  
 
 - **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
 - **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.

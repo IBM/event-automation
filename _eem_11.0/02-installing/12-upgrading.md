@@ -12,7 +12,7 @@ Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.da
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
 
-You will be able to upgrade {{site.data.reuse.eem_name}} to the latest 11.0.x version directly from 11.0.0 version by using operator version v11.0.
+You can upgrade {{site.data.reuse.eem_name}} to the latest 11.0.x version directly from any earlier 11.0.x version by using operator version v11.0.
 
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.eem_name}} operator will be upgraded to 11.0.x when it is available in the catalog, and your {{site.data.reuse.eem_name}} instance is then also automatically upgraded.
 
@@ -77,13 +77,13 @@ Complete the steps in the following sections to upgrade your {{site.data.reuse.e
    ```shell
    kubectl get crd eventendpointmanagements.events.ibm.com -o jsonpath='{.metadata.annotations}'
    ```
-
-  The following is an example output showing CRDs managed by Helm release `eem-crds` in namespace `my-eem`:
-
+   
+   The following is an example output showing CRDs managed by Helm release `eem-crds` in namespace `my-eem`:
+   
    ```shell
    {"meta.helm.sh/release-name": "eem-crds", "meta.helm.sh/release-namespace": "eem"}
    ```
-
+   
 3. Ensure you are using the namespace where your {{site.data.reuse.eem_name}} CRD Helm release is located (see previous step):
 
    ```shell

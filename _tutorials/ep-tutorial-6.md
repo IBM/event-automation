@@ -20,7 +20,7 @@ To refine the previous tutorial flow, this tutorial shows you how to identify th
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Processing 1.0.4
+- Event Processing 1.1.0
 
 ## Instructions
 
@@ -51,7 +51,7 @@ The next step is to identify the best selling product type in each hour.
 
 1. Call the Top-n node `top selling style`.
 
-1. Specify a time window that matches the previous aggregate: **1 hour**.
+1. Reuse the time window already defined in the previous aggregate node: **1 hour**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-13.png "time window"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-13.png "time window")
 

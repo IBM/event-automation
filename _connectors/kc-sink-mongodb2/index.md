@@ -11,6 +11,8 @@ documentationURL: https://www.mongodb.com/docs/kafka-connector/current/
 download:
   -  { type: 'Download', url: 'https://github.com/mongodb/mongo-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/mongodb/mongo-kafka/' }
+categories:
+  - Databases
 ---
 MongoDB sink connector publishes changes from MongoDB into Kafka topics as a data source.
 

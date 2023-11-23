@@ -1,6 +1,6 @@
 ---
 title: "Backing up and restoring on OpenShift"
-excerpt: "Find out how you can back up and restore your Event Streams instances."
+excerpt: "Find out how you can back up and restore your Event Streams static configuration."
 categories: installing
 slug: backup-restore
 toc: true
@@ -13,7 +13,6 @@ OADP is used for creating a backup of {{site.data.reuse.es_name}} static configu
 - If Kafka topic custom resources are included in the {{site.data.reuse.es_name}} installation, the topic configuration can be backed up and restored by using OADP.
 - The actual messages within the Kafka topics cannot be preserved through the OADP mechanism. However, after you restore your {{site.data.reuse.es_name}} static configurations onto a new cluster, the topic data can be effectively mirrored by implementing geo-replication, which provides a robust backup system for disaster recovery.
 - When you restore the {{site.data.reuse.es_name}} static configurations within your cluster, the topic data remains intact while the persistent storage remains available, ensuring data retention during the restore process.
-
 
 Find out more about how to set up an OADP operator in an OpenShift cluster for a successful backup and restore.
 
@@ -109,6 +108,7 @@ The backup custom resource is responsible for generating backup files for {{site
          - kafkauser
          - kafkabridge
          - kafkaconnector
+         - kafkarebalance
    ```
 
 Where:
@@ -129,7 +129,7 @@ After the backup is successfully completed, the status of your backup instance w
 
 ### In-place recovery
 
-In-place recovery in {{site.data.reuse.es_name}} refers to recovering data, configurations, and metadata within the same Event Streams cluster without the need of setting up a secondary cluster for moving data and configurations.
+In-place recovery in {{site.data.reuse.es_name}} refers to recovering configurations and metadata within the same {{site.data.reuse.openshift_short}} cluster without the need of setting up a secondary cluster for moving data and configurations. Such recovery is only possible if the [persistent storage](../planning/#planning-for-persistent-storage) configured for Kafka and ZooKeeper remains intact and can be reused by the restored configuration.
 
 To restore your {{site.data.reuse.es_name}} configurations within your cluster after you have a successful backup of {{site.data.reuse.es_name}} configurations in your storage location, apply the following YAML to restore {{site.data.reuse.es_name}} configurations from the previously created backup.
 
@@ -162,7 +162,7 @@ spec:
         - kafkauser
         - kafkabridge
         - kafkaconnector
-        - Kafkarebalance
+        - kafkarebalance
 ```
 
 Where:

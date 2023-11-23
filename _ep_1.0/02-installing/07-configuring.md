@@ -587,3 +587,126 @@ spec:
         some.other.annotation: value
 # ... 
 ```
+
+
+
+## Configuring PostgreSQL SSL in Event Processing and Flink
+
+PostgreSQL offers a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
+
+If a PostgreSQL is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), it is necessary to configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
+
+To enable SSL connections to PostgreSQL from {{site.data.reuse.ep_name}} and Flink:
+
+1. Add the CA certificate used to issue the certificate presented by a PostgreSQL database to a Java truststore.
+2. Create a secret with the truststore.
+3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}}. 
+
+
+### Add the CA certificate to the truststore
+
+1. Obtain the CA certificate of the PostgreSQL database from your database administrator.
+2. Add the certificate for the CA to the truststore by running the following command:
+
+   ```shell
+   keytool -keystore ./truststore.jks -alias <cert_name> -import -file ./<path_to_ca_cert> -noprompt -storepass <choose a password> -trustcacerts
+   ```
+
+   Where:
+
+   - `<cert_name>` is the alias name you want to give to the certificate being imported into the keystore.
+   - `<path_to_ca_cert>` is the path to the CA certificate file that you want to import into the keystore.
+
+### Create a secret with the truststore
+
+1. {{site.data.reuse.openshift_cli_login}}
+2. Ensure you are in the project where your {{site.data.reuse.ep_name}} instance is installed:
+  
+   ```shell
+   oc project <project_name>
+   ```
+
+3. Create a secret with the truststore that you added with the following command:
+
+   ```shell
+   oc create secret generic ssl-truststore --from-file=truststore.jks
+   ```
+
+
+### Mount the secret
+
+Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} by using the OpenShift web console:
+
+1. {{site.data.reuse.openshift_ui_login}}
+1. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+1. {{site.data.reuse.task_openshift_select_operator_ep}}
+1. {{site.data.reuse.task_openshift_select_instance_ep}}
+1. Select the YAML tab. 
+1. Add the following snippet into the Event Processing custom resource (`spec.authoring`):
+
+   ```yaml
+   template:
+     pod:
+       spec:
+         containers:
+           - env:
+               - name: JAVA_TOOL_OPTIONS
+                 value: >-
+                   -Djavax.net.ssl.trustStore=/opt/ibm/sp-backend/certs/truststore.jks
+                   -Djavax.net.ssl.trustStorePassword=<chosen password>
+             name: backend
+             volumeMounts:
+               - mountPath: /opt/ibm/sp-backend/certs
+                 name: truststore
+                 readOnly: true
+         volumes:
+           - name: truststore
+             secret:
+               items:
+                 - key: truststore.jks
+                   path: truststore.jks
+               secretName: ssl-truststore
+   ```
+
+1. Save your changes and then click **Reload**.
+1. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+1. {{site.data.reuse.task_openshift_select_operator_flink}}
+1. {{site.data.reuse.task_openshift_select_instance_flink}}
+1. Select the YAML tab. 
+1. Add the following snippets into the Flink (`FlinkDeployment`) custom resource:
+
+   - In `spec.flinkConfiguration` section, add:
+
+     ```yaml
+     env.java.opts.taskmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     env.java.opts.jobmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     ```
+
+   - In `spec.podTemplate.spec.containers.volumeMounts` section, add:
+
+     ```yaml
+     - mountPath: /certs
+       name: truststore
+       readOnly: true
+     ```
+
+   - In `spec.podTemplate.spec.volumes` section, add:
+
+     ```yaml
+     - name: truststore
+       secret:
+         items:
+           - key: truststore.jks
+             path: truststore.jks
+         secretName: ssl-truststore
+     ```
+
+1. Save your changes and then click **Reload**.
+
+Wait for the {{site.data.reuse.ep_name}} and the Flink pods to become ready.
+
+The capability to create SSL connections between {{site.data.reuse.flink_long}}, {{site.data.reuse.ep_name}}, and a secured PostgreSQL database is enabled.

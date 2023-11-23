@@ -118,17 +118,9 @@ deploy the deny-all-ingress policy as shown in [Considerations for ingress](#con
 network policies for Flink pods need to be deployed following these steps:
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before
-installing the Flink instance, ensure the namespace is already created.  
+2. Add the following network policy to the namespace where the {{site.data.reuse.flink_long}} is installed.
 
-   ```shell
-   export FLINK_NAMESPACE=<your-namespace>
-   ```
-
-3. Run the following command to deploy the network policies for Flink:
-
-   ```yaml
-   kubectl apply -n ${FLINK_NAMESPACE} -f - << EOF
+```yaml
    kind: NetworkPolicy
    apiVersion: networking.k8s.io/v1
    metadata:
@@ -147,7 +139,18 @@ installing the Flink instance, ensure the namespace is already created.
              port: 443
      policyTypes:
        - Ingress
-   ---
+```
+
+3. Set the following environment variable to store the namespace of your Flink instance. If you are deploying the network policies before installing your Flink instance, ensure the namespace is already created.
+
+   ```shell
+   export FLINK_NAMESPACE=<your-namespace>
+   ```
+
+4. Run the following command to deploy the network policies for Flink:
+
+   ```yaml
+   kubectl apply -n ${FLINK_NAMESPACE} -f - << EOF
    kind: NetworkPolicy
    apiVersion: networking.k8s.io/v1
    metadata:
@@ -161,6 +164,10 @@ installing the Flink instance, ensure the namespace is already created.
          component: jobmanager
      ingress:
        - from:
+     # Uncomment if the IBM Operator for Apache Flink is in another namespace
+     #           - namespaceSelector:
+     #               matchLabels:
+     #                 kubernetes.io/metadata.name: {{ flink_operator_namespace }}
            - podSelector:
                matchLabels:
                  app.kubernetes.io/instance: ibm-eventautomation-flink
@@ -178,7 +185,7 @@ installing the Flink instance, ensure the namespace is already created.
                  app.kubernetes.io/instance: ibm-eventautomation-flink-operator
                  app.kubernetes.io/name: flink-kubernetes-operator
                  name: ibm-eventautomation-flink-operator
-       - ports:
+         ports:
            - protocol: TCP
              port: 8081
      policyTypes:
@@ -194,7 +201,6 @@ installing the Flink instance, ensure the namespace is already created.
          app.kubernetes.io/instance: ibm-eventautomation-flink
          app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
          app.kubernetes.io/name: ibm-eventautomation-flink
-         component: jobmanager
      ingress:
        - from:
            - podSelector:
@@ -202,8 +208,7 @@ installing the Flink instance, ensure the namespace is already created.
                  app.kubernetes.io/instance: ibm-eventautomation-flink
                  app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
                  app.kubernetes.io/name: ibm-eventautomation-flink
-                 component: taskmanager
-       - ports:
+         ports:
            - protocol: TCP
              port: 6123
            - protocol: TCP
@@ -228,7 +233,7 @@ installing the Flink instance, ensure the namespace is already created.
                matchLabels:
                  app.kubernetes.io/component: ibm-ep
                  app.kubernetes.io/managed-by: ibm-ep-operator
-       - ports:
+         ports:
            - protocol: TCP
              port: 8081
      policyTypes:
@@ -252,21 +257,13 @@ installing the Flink instance, ensure the namespace is already created.
                  app.kubernetes.io/instance: ibm-eventautomation-flink
                  app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
                  app.kubernetes.io/name: ibm-eventautomation-flink
-                 component: jobmanager
-           - podSelector:
-               matchLabels:
-                 app.kubernetes.io/instance: ibm-eventautomation-flink
-                 app.kubernetes.io/managed-by: ibm-eventautomation-flink-operator
-                 app.kubernetes.io/name: ibm-eventautomation-flink
-                 component: taskmanager
-       - ports:
+         ports:
            - protocol: TCP
              port: 8081
      policyTypes:
        - Ingress
    EOF
    ```
-
 **Note**: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
 ensure the ports used in the network policies match the custom ports.
 

@@ -118,13 +118,14 @@ The tutorials depend on being able to discover and use Kafka topics in the {{ si
 
 The `reset-all-data.sh` script in the `eem-seed` folder of the event-automation-demo repository will populate the catalog with documentation for the tutorial topics.
 
+You need an [API access token]({{ '/eem/security/api-tokens#creating-a-token' | relative_url }}) to run the script.
+
 ```sh
-./eem-seed/reset-all-data.sh event-automation
+./eem-seed/reset-all-data.sh event-automation <access-token>
 ```
 
 You need to be logged in to run `oc` commands to run the script.
 
-**Warning**: This will delete ALL data stored in {{ site.data.reuse.eem_name }} (including cluster definitions, topic documentation, subscriptions), and replace it with documentation for the topics included in the tutorial. You should not run this script if you have any data in {{ site.data.reuse.eem_name }} that you want to keep.
 
 
 ## Accessing the tutorial environment

@@ -19,7 +19,7 @@ The details of your topic appear in two sections:
 - The **Information** section: displays all the possible information presented to a user when a topic is [socialized in the catalog](../publishing-topics). These can be provided or removed by [editing your topic](#editing-a-topic).
 - The **Manage** section: displays the current [lifecycle status](#topic-lifecycle-state) of your topic in {{site.data.reuse.eem_name}}, including [the ability for users to subscribe and discover](../publishing-topics) your topic and [the current set of subscribed users of your topic](../managing-user-access-to-topics).
 
-You can also [delete](#removing-a-topic) your topic from this page, or [export this topic for use with IBM API Connect](#exporting-asyncapi-for-ibm-api-connect).
+You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with IBM API Connect](../../integrating-with-apic/export-asyncapi/).
 
 ## Editing a topic
 
@@ -106,5 +106,5 @@ You can change the lifecycle state of an event source as follows:
 
 A topic can be [edited](#editing-a-topic) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
 
-**Note:** Only **Unpublished** topics can [be deleted from {{site.data.reuse.eem_name}}](#removing-a-topic).
+**Note:** Only **Unpublished** topics can [be deleted from {{site.data.reuse.eem_name}}](#deleting-a-topic).
 

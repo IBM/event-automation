@@ -11,6 +11,8 @@ documentationURL: https://github.com/newrelic/kafka-connect-newrelic/
 download:
   -  { type: 'Download', url: 'https://github.com/newrelic/kafka-connect-newrelic/releases' }
   -  { type: 'GitHub', url: 'https://github.com/newrelic/kafka-connect-newrelic/' }
+categories:
+  - AI & Analytics
 ---
 New Relic sink connector ships records from Kafka topics to several of New Relic's Ingestion API endpoints, for events, metrics, or logs.
 

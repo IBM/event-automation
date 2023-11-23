@@ -11,6 +11,8 @@ documentationURL: https://github.com/jcustenborder/kafka-connect-solr
 download:
   -  { type: 'Download', url: 'https://github.com/jcustenborder/kafka-connect-solr/releases' }
   -  { type: 'GitHub', url: 'https://github.com/jcustenborder/kafka-connect-solr' }
+categories:
+  - Data
 ---
 Solr sink connector writes data from Kafka topics to Apache Solr.
 

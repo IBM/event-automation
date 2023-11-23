@@ -10,6 +10,8 @@ iconGradient: 3
 documentationURL: https://github.com/pushtechnology/diffusion-kafka-connect
 download:
   -  { type: 'GitHub', url: 'https://github.com/pushtechnology/diffusion-kafka-connect' }
+categories:
+  - AI & Analytics
 ---
 Diffusion sink connector publishes messages from Diffusion or Diffusion Cloud to Kafka.
 

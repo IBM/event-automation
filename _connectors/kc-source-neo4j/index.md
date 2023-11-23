@@ -11,6 +11,8 @@ documentationURL: https://github.com/neo4j-contrib/neo4j-streams/
 download:
   -  { type: 'Download', url: 'https://github.com/neo4j-contrib/neo4j-streams/releases' }
   -  { type: 'GitHub', url: 'https://github.com/neo4j-contrib/neo4j-streams/' }
+categories:
+  - Databases
 ---
 Neo4j source connector streams data from a Neo4j database to a Kafka topic.
 

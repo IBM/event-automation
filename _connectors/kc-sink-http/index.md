@@ -11,6 +11,8 @@ documentationURL: https://github.com/aiven/http-connector-for-apache-kafka
 download:
   -  { type: 'Download', url: 'https://github.com/aiven/http-connector-for-apache-kafka/releases' }
   -  { type: 'GitHub', url: 'https://github.com/aiven/http-connector-for-apache-kafka' }
+categories:
+  - Technology
 ---
 HTTP sink connector sends Kafka records over HTTP POST requests.
 

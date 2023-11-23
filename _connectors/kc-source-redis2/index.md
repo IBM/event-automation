@@ -11,6 +11,8 @@ documentationURL: https://redis-field-engineering.github.io/redis-kafka-connect/
 download:
   -  { type: 'Download', url: 'https://github.com/redis-field-engineering/redis-kafka-connect/releases' }
   -  { type: 'GitHub', url: 'https://github.com/redis-field-engineering/redis-kafka-connect' }
+categories:
+  - Databases
 ---
 Redis source connector reads messages from a Redis stream and publishes them to a Kafka topic.
 

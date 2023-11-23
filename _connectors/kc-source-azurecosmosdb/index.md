@@ -11,6 +11,8 @@ documentationURL: https://github.com/microsoft/kafka-connect-cosmosdb
 download:
   -  { type: 'Download', url: 'https://github.com/microsoft/kafka-connect-cosmosdb/releases' }
   -  { type: 'GitHub', url: 'https://github.com/microsoft/kafka-connect-cosmosdb' }
+categories:
+  - Databases
 ---
 Azure Cosmos DB source connector reads data from Azure Cosmos DB(SQL API) and sends the data to Kafka topics.
 

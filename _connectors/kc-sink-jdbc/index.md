@@ -10,6 +10,9 @@ iconGradient: 1
 documentationURL: https://github.com/ibm-messaging/kafka-connect-jdbc-sink
 download:
   -  { type: 'GitHub', url: 'https://github.com/ibm-messaging/kafka-connect-jdbc-sink' }
+categories:
+  - Technology
+  - Databases
 ---
 JDBC sink connector for copying data from Apache Kafka into a JDBC database.
 

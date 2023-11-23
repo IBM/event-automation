@@ -11,6 +11,8 @@ documentationURL: https://redis-field-engineering.github.io/redis-kafka-connect/
 download:
   -  { type: 'Download', url: 'https://github.com/redis-field-engineering/redis-kafka-connect/releases' }
   -  { type: 'GitHub', url: 'https://github.com/redis-field-engineering/redis-kafka-connect' }
+categories:
+  - Databases
 ---
 Redis sink connector consumes records from a Kafka topic and writes the data to Redis.
 

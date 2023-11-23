@@ -9,6 +9,8 @@ icon: objectCloudStorage.svg
 documentationURL: https://github.com/ibm-messaging/kafka-connect-ibmcos-sink/blob/master/README.md
 download:
   -  { type: 'GitHub', url: 'https://github.com/ibm-messaging/kafka-connect-ibmcos-sink' }
+categories:
+  - Storage
 ---
 
 IBM&nbsp;Cloud Object&nbsp;Storage sink connector for copying data from a Kafka topic into IBM&nbsp;Cloud Object&nbsp;Storage.

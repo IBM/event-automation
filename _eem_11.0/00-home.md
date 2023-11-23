@@ -1,7 +1,7 @@
 ---
-title: "Event Endpoint Management"
+title: "Home"
 layout: splash
-permalink: /eem/
+permalink: /eem/:collection/
 quickLinks:
   - mainTitle: Introduction
   - link:

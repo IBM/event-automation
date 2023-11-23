@@ -6,7 +6,7 @@ slug: installing-on-kubernetes
 toc: true
 ---
 
-The following sections provide instructions about installing {{site.data.reuse.ep_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
+![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") The following sections provide instructions about installing {{site.data.reuse.ep_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 ## Overview
 

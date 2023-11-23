@@ -11,6 +11,9 @@ documentationURL: https://github.com/jcustenborder/kafka-connect-email
 download:
   -  { type: 'Download', url: 'https://github.com/jcustenborder/kafka-connect-email/releases' }
   -  { type: 'GitHub', url: 'https://github.com/jcustenborder/kafka-connect-email' }
+categories:
+  - Technology
+  - Email
 ---
 Email source connector provides connectors and transformations to use when integrating with email systems.
 

@@ -11,6 +11,8 @@ documentationURL: https://github.com/humio/kafka-connect-hec-sink
 download:
   -  { type: 'Download', url: 'https://github.com/humio/kafka-connect-hec-sink/releases' }
   -  { type: 'GitHub', url: 'https://github.com/humio/kafka-connect-hec-sink' }
+categories:
+  - Developer Tools
 ---
 Humio HEC sink connector reads messages from a Kafka topic and sends them as events to the HTTP event collector endpoint of a running Humio system.
 

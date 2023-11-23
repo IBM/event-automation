@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.0.x.
 
-## Release {{site.data.reuse.ep_current_version}}
+## Release 1.0.5
 
 ### Enrichment node: Database
 
@@ -34,7 +34,7 @@ In {{site.data.reuse.ep_name}} release 1.0.5, **Window top-n** node is renamed t
 
 ### Autosave
 
-{{site.data.reuse.ep_name}} release 1.0.5 introduces autosave to save your flows automatically with user actions. Check the navigation banner for save status updates.
+{{site.data.reuse.ep_name}} release 1.0.5 introduces autosave to save your flows automatically with user actions. For save status updates, see the canvas header.
 
 - **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
 - **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.

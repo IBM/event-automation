@@ -10,6 +10,8 @@ documentationURL: ../../es/connecting/mq/sink
 download:
   -  { type: 'Download', url: 'https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/' }
   -  { type: 'GitHub', url: 'https://github.com/ibm-messaging/kafka-connect-mq-sink' }
+categories:
+  - Messaging
 ---
 
 

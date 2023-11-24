@@ -177,23 +177,45 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak --help
    ```
 
-2. Download the CASE bundle of {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} as described in the [offline installation](../offline#download-the-case-bundle).
+2. Run the following command to download, validate, and extract the CASE:
+
+   - For {{site.data.reuse.flink_long}}:
+
+     ```shell
+     oc ibm-pak get ibm-eventautomation-flink --version <case-version>
+     ```
+  
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+     ```
+
+   - For {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc ibm-pak get ibm-eventprocessing --version <case-version>
+     ```
+
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+     ```
 
 3. Generate mirror manifests by running the following command:
 
    - For {{site.data.reuse.flink_long}}:
 
      ```shell
-     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
+     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink icr.io
      ```
 
    - For {{site.data.reuse.ep_name}}:
 
      ```shell
-     oc ibm-pak generate mirror-manifests ibm-eventprocessing <target-registry>
+     oc ibm-pak generate mirror-manifests ibm-eventprocessing icr.io
      ```
-
-   Where`target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -204,38 +226,7 @@ Before you can install the required operator versions and use them to create ins
    - image-content-source-policy.yaml
    - images-mapping.txt
 
-4. Copy the images to the local registry by running the following command. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
-
-   - To copy the images of {{site.data.reuse.flink_long}}:
-
-     ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
-     ```
-
-     For example:
-
-     ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
-     ```
-
-   - To copy the images of {{site.data.reuse.ep_name}}:
-
-     ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
-     ```
-
-     For example:
-
-     ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
-     ```
-
-    Where:
-
-    - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal container image registry.
-
-5. Apply the catalog sources for the operator to the cluster by running the following command:
+4. Apply the catalog sources for the operator to the cluster by running the following command:
 
    - For {{site.data.reuse.flink_long}}:
 
@@ -320,7 +311,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc project <target-namespace>
    ```
 
-2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+2. Check whether there is an existing `OperatorGroup` in your target namespace:
+   
+   ```shell
+   oc get OperatorGroup
+   ```
+   
+   If there is an existing `OperatorGroup`, continue to the next step to create a `Subscription`.
+   
+   If there is no `OperatorGroup`, create one as follows:
 
    a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
 
@@ -328,15 +327,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    apiVersion: operators.coreos.com/v1
    kind: OperatorGroup
    metadata:
-     name: ibm-eventautomation-flink-operatorgroup
+     name: ibm-eventautomation-operatorgroup
      namespace: <target-namespace>
    spec:
      targetNamespaces:
        - <target-namespace>
    ```
-
+   
    b. Save the file as `operator-group.yaml`.
-
+   
    c. Run the following command:
    
    ```shell
@@ -435,7 +434,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc project <target-namespace>
    ```
 
-2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+2. Check whether there is an existing `OperatorGroup` in your target namespace:
+   
+   ```shell
+   oc get OperatorGroup
+   ```
+   
+   If there is an existing `OperatorGroup`, continue to the next step to create a `Subscription`.
+   
+   If there is no `OperatorGroup`, create one as follows:
 
    a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
 
@@ -443,15 +450,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    apiVersion: operators.coreos.com/v1
    kind: OperatorGroup
    metadata:
-     name: ibm-eventprocessing-operatorgroup
+     name: ibm-eventautomation-operatorgroup
      namespace: <target-namespace>
    spec:
      targetNamespaces:
        - <target-namespace>
    ```
-
+   
    b. Save the file as `operator-group.yaml`.
-
+   
    c. Run the following command:
    
    ```shell

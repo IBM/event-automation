@@ -20,7 +20,7 @@ toc: true
 
 ## Causes
 
-The certificates that are used to validate the identity of the PostgreSQL database server might be modified. The {{site.data.reuse.ep_name}} fails to recognize the certificate secret that was updated and causes the error.
+The certificates that are used to validate the identity of the PostgreSQL database server might be modified. {{site.data.reuse.ep_name}} fails to recognize the certificate secret that was updated and causes the error.
 
 ## Resolving the problem
 

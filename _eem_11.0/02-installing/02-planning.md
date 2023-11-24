@@ -122,7 +122,7 @@ Overview: A production-ready {{site.data.reuse.egw}} deployment.
 
 | CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
-| 1.0                 | 2.0               | 1.0                 | 2.0               | 1                                |
+| 1.0                 | 2.0               | 1.0                 | 2.0               | 2                                |
 
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.egw}} instance is able to consume.
 

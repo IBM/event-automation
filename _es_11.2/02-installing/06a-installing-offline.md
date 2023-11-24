@@ -152,7 +152,7 @@ Where:
 - `<source-registry-user>` is your username.
 - `<source-registry-pass>` is your entitlement key.
 
-Additionally, if you are running on Kubernetes platforms other than OpenShift, run the following command:
+Additionally, if you are installing on Kubernetes platforms other than OpenShift, run the following command:
 
 
 ```shell
@@ -190,46 +190,53 @@ Complete the following steps to mirror the images from your host to your offline
 
 1. Run the following command to generate mirror manifests:
 
-     ```shell
-     kubectl ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
-     ```
+   ```shell
+   kubectl ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
+   ```
 
-     Where `target-registry` is the internal container image registry.
+   Where `target-registry` is the internal container image registry.
 
-    **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
+   **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
 
-    This generates the following files based on the target (internal) registry provided:
+   This generates the following files based on the target (internal) registry provided:
 
-    - catalog-sources.yaml
-    - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
-    - image-content-source-policy.yaml
-    - images-mapping.txt
+   - catalog-sources.yaml
+   - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
+   - image-content-source-policy.yaml
+   - images-mapping.txt
 
 2. Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
 
-   If you are running on the {{site.data.reuse.openshift_short}}, run the following command:
+   If you are installing on the {{site.data.reuse.openshift_short}}, run the following command:
 
    ```shell
    oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/images-mapping.txt --filter-by-os '.*' --insecure --skip-multiple-scopes --max-per-registry=1
    ```
 
-   If you are running on Kubernetes platforms other than OpenShift, run the following command:
+   If you are installing on Kubernetes platforms other than OpenShift, run the following command:
 
    ```shell
    cat ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -I {} sh -c 'echo {}; {}'
    ```
 
-    Where:
+   **Note:** If you are using a macOS system and encounter the `xargs: command line cannot be assembled, too long` error, add `-S1024` to `xargs`, and run the command as follows:
 
-    - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal container image registry.
+   ```shell
+   cat ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
+   ```
+
+   Where:
+
+
+   - `<case-version>` is the version of the CASE file to be copied.
+   - `target-registry` is the internal container image registry.
 
 Ensure that all the images have been mirrored to the target registry by checking the registry.
 
 ## Create `ImageContentSourcePolicy` on OpenShift platform
 
 
-**Note:** Only applicable when running {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}.
+**Note:** Only applicable when installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}.
 
 <!--Only offline environment -->
 
@@ -264,7 +271,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 ## Apply catalog sources to your cluster on OpenShift platform
 
-**Note:** Only applicable when running {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}.
+**Note:** Only applicable when installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}.
 
 Apply the catalog sources for the operator to the cluster by running the following command:
 

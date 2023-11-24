@@ -1,5 +1,5 @@
 ---
-title: "Event Endpoint Management"
+title: "Home"
 layout: splash
 permalink: /eem/
 quickLinks:

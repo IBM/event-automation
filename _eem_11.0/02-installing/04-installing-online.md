@@ -162,15 +162,17 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak --help
    ```
 
-2. Download the CASE bundle of the {{site.data.reuse.eem_name}} as described in the [offline installation](../offline#download-the-case-bundle).
+2. Run the following command to download, validate, and extract the CASE.
+
+   ```shell
+   oc ibm-pak get ibm-eventendpointmanagement
+   ```
 
 3. Generate mirror manifests by running the following command:
 
    ```shell
-   oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement <target-registry> 
+   oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement icr.io
    ```
-
-   Where`target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -181,28 +183,13 @@ Before you can install the required operator versions and use them to create ins
    - image-content-source-policy.yaml
    - images-mapping.txt
 
-4. Copy the images to the local registry by running the following command. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
-
-   ```shell
-   oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
-   ```
-
-   Where:
-
-   - `<case-version>` is the version of the CASE file to be downloaded.
-   - `target-registry` is the internal container image registry.
-
-
-5. Apply the catalog sources for the operator to the cluster by running the following command:
+4. Apply the catalog sources for the operator to the cluster by running the following command:
 
    ```shell
    oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources-linux-amd64.yaml
    ```
 
-Where:
-
-- `<case-version>` is the version of the CASE you want to install.
-- `<namespace>` is the namespace you created previously or `openshift-marketplace` if you are installing in all namespaces.
+   Where `<case-version>` is the version of the CASE you want to install.
 
 This adds the catalog source for the {{site.data.reuse.eem_name}} making the operator available to install.
 You can install the operator by using the [OpenShift web console](#installing-by-using-the-web-console) or the [CLI](#installing-by-using-the-command-line).
@@ -242,7 +229,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc project <target-namespace>
    ```
 
-2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+2. Check whether there is an existing `OperatorGroup` in your target namespace:
+   
+   ```shell
+   oc get OperatorGroup
+   ```
+   
+   If there is an existing `OperatorGroup`, continue to the next step to create a `Subscription`.
+
+   If there is no `OperatorGroup`, create one as follows:
 
    a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
 
@@ -250,15 +245,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    apiVersion: operators.coreos.com/v1
    kind: OperatorGroup
    metadata:
-     name: ibm-eventendpointmanagement-operatorgroup
+     name: ibm-eventautomation-operatorgroup
      namespace: <target-namespace>
    spec:
      targetNamespaces:
        - <target-namespace>
    ```
-
+   
    b. Save the file as `operator-group.yaml`.
-
+   
    c. Run the following command:
    
    ```shell

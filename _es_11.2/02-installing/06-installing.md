@@ -183,15 +183,17 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak --help
    ```
 
-2. Download the CASE bundle of the {{site.data.reuse.es_name}} as described in the [offline installation](../offline#download-the-case-bundle).
+2. Run the following command to download, validate, and extract the {{site.data.reuse.es_name}} CASE.
+
+   ```shell
+   oc ibm-pak get ibm-eventstreams --version <case-version>
+   ```
 
 3. Generate mirror manifests by running the following command:
 
    ```shell
-   oc ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
+   oc ibm-pak generate mirror-manifests ibm-eventstreams icr.io
    ```
-
-   Where `target-registry` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -202,20 +204,7 @@ Before you can install the required operator versions and use them to create ins
    - image-content-source-policy.yaml
    - images-mapping.txt
 
-4. Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
-
-   ```shell
-   oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/images-mapping.txt --filter-by-os '.*' --insecure --skip-multiple-scopes --max-per-registry=1
-   ```
-
-    Where:
-
-    - `<case-version>` is the version of the CASE file to be copied.
-    - `target-registry` is the internal container image registry.
-
-   Ensure that all the images have been mirrored to the target registry by checking the registry.
-
-5. Apply the catalog sources for the operator to the cluster by running the following command:
+4. Apply the catalog sources for the operator to the cluster by running the following command:
 
    ```shell
    oc apply -f ~/.ibm-pak/data/mirror/ibm-eventstreams/<case-version>/catalog-sources.yaml

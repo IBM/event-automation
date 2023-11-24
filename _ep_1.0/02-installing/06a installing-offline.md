@@ -58,7 +58,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+   oc ibm-pak get ibm-eventautomation-flink --version 1.0.4
    ```
 
 2. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
@@ -70,7 +70,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+   oc ibm-pak get ibm-eventprocessing --version 1.0.5
    ```
 
 
@@ -91,7 +91,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
+   Download of CASE: ibm-eventprocessing, version: 1.0.5 is complete
    ```
 
    **Note:**  To download the latest version of CASE, do not specify the CASE version. For example:
@@ -112,13 +112,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── {{site.data.reuse.ep_current_version}}
+   │   │       └── 1.0.5
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
+   │   │           ├── ibm-eventprocessing-1.0.5-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.0.5-charts.csv
+   │   │           ├── ibm-eventprocessing-1.0.5-images.csv
+   │   │           ├── ibm-eventprocessing-1.0.5.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -211,7 +211,7 @@ Complete the following steps to mirror the images from your host to your offline
      For example:
 
      ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.4/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
      ```
 
    - To copy the images of {{site.data.reuse.ep_name}}:
@@ -225,7 +225,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 
      ```shell
-     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
+     oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.5/images-mapping.txt --filter-by-os '.*' --skip-multiple-scopes --max-per-registry=1
      ```
 
     Where:
@@ -282,7 +282,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.0.4/catalog-sources-linux-amd64.yaml
   ```
 
 - For {{site.data.reuse.ep_name}}:
@@ -294,7 +294,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
   For example:
 
   ```shell
-  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.0.5/catalog-sources-linux-amd64.yaml
   ```
 
 ## Install the operator

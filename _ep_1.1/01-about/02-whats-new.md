@@ -16,7 +16,7 @@ The {{site.data.reuse.flink_long}} version 1.1.0 update includes Apache Flink ve
 
 ### Support for MySQL database
 
-{{site.data.reuse.ep_name}} release 1.1.0 introduces support for the MySQL database to [connect](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink) to the [database](../../nodes/enrichmentnode/#database) node.
+{{site.data.reuse.ep_name}} release 1.1.0 introduces support to enrich your events from a MySQL database. You can now [connect](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink) to a MySQL database and integrate the MySQL data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
 
 ### Reuse a time window in aggregate and top-n nodes
 

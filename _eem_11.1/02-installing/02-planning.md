@@ -137,13 +137,13 @@ You either need to create a [persistent volume](https://kubernetes.io/docs/conce
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
-- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/storage/understanding-persistent-storage.html){:target="_blank"}.
+- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.14/storage/understanding-persistent-storage.html){:target="_blank"}.
 - For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 
 - If these persistent volumes are to be created manually, this must be done by the cluster administrator before installing {{site.data.reuse.eem_name}}. These will then be claimed from a central pool when the {{site.data.reuse.eem_name}} instance is deployed.
-- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.12/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
+- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.14/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
 
 **Important:** When creating persistent volumes ensure the **Access mode** is set to `ReadWriteOnce` for the volume.
 

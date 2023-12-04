@@ -53,8 +53,8 @@ Ensure you have the following set up for your environment:
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.14/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -200,9 +200,9 @@ skopeo login <target-registry> -u <target-registry-user> -p <target-registry-pas
 
 Where:
 
-- `target-registry` is the internal container image registry.
-- `target-registry-user` is the username for the internal container image registry.
-- `target-registry-pass` is the password for the internal container image registry.
+- `<target-registry>` is the internal container image registry.
+- `<target-registry-user>` is the username for the internal container image registry.
+- `<target-registry-pass>` is the password for the internal container image registry.
 
 
 ## Mirror the images
@@ -219,7 +219,7 @@ Complete the following steps to mirror the images from your host to your offline
    kubectl ibm-pak generate mirror-manifests ibm-eventendpointmanagement <target-registry>
    ```
 
-   Where `target-registry` is the internal container image registry.
+   Where `<target-registry>` is the internal container image registry.
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
@@ -254,7 +254,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 
    - `<case-version>` is the version of the CASE file to be copied.
-   - `target-registry` is the internal container image registry.
+
 
 Ensure that all the images have been mirrored to the target registry by checking the registry.
 
@@ -266,7 +266,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 <!--Only offline environment -->
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
+2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command:
 
    ```shell
@@ -328,26 +328,43 @@ Complete the following steps to install the operator:
 2. Create an image pull secret called `ibm-entitlement-key` in the namespace where you want to install the {{site.data.reuse.eem_name}} operator. The secret enables container images to be pulled from the target registry:
 
    ```shell
-   kubectl create secret docker-registry ibm-entitlement-key --docker-username="<target-registry-user>" --docker-password="<TARGET_REGISTRY_PASS>" --docker-server="<TARGET_REGISTRY>" -n <target-namespace>
+   kubectl create secret docker-registry ibm-entitlement-key --docker-username="<target-registry-user>" --docker-password="<target-registry-password>" --docker-server="<target-registry>" -n <target-namespace>
    ```
 
+   Where:
+   - `<target-registry-user>` is the username that you provide to authenticate with your internal registry.
+   - `<target-registry-password>` is the password associated with the `<target-registry-user>`.
+   - `<target-registry>` is the internal registry hosting the operator images.
+   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.eem_name}}.
+   
    **Note:** If you are installing the instance in a different namespace, create the image pull secret (`ibm-entitlement-key`) again in the namespace where you want to install the instance.
 
-3. Install the operator by using the Helm CLI:
+3. Install the operator Custom Resource Definitions (CRD) by using the Helm CLI:
 
    ```shell
-   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eventendpointmanagement-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<TARGET_REGISTRY> --set public.path="cpopen/" --set private.repo=<TARGET_REGISTRY> --set private.path="cp/ibm-eventendpointmanagement/" --set watchAnyNamespace=<true/false>
+   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eventendpointmanagement-operator-crd-<case-version>.tgz -n <target-namespace>
+   ```
+
+   Where:
+   - `<release-name>` is the name that you provide to identify the Helm release of the CRDs.
+   - `<case-version>` is the CASE version.
+   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.eem_name}}.
+   - `<target-registry>` is the internal container image registry.
+
+
+4. Install the operator by using the Helm CLI:
+
+   ```shell
+   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eventendpointmanagement-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<target-registry> --set public.path="cpopen/" --set private.repo=<target-registry> --set private.path="cp/ibm-eventendpointmanagement/" --set watchAnyNamespace=<true/false>
    ```
 
    Where:
    - `<release-name>` is the name that you provide to identify your operator.
    - `<target-namespace>` is the namespace where you want to install the {{site.data.reuse.eem_name}}.
    - `<case-version>` is the CASE version.
-   - `<TARGET_REGISTRY>` is the internal container image registry. 
-   - `<target-registry-user>` is the username for the internal container image registry.
-   - `<TARGET_REGISTRY_PASS>` is the password for the internal container image registry.
+   - `<target-registry>` is the internal container image registry.
 
-4. Wait for the installation to complete.
+Wait for the installation to complete.
 
 ## Install an instance
 

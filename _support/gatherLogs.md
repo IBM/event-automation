@@ -15,7 +15,7 @@ To help IBM Support troubleshoot any issues with your {{site.data.reuse.ea_long}
 
 To run the log gathering script, ensure you have the following installed on your system:
 
-- If using OpenShift, the [{{site.data.reuse.openshift_short}} CLI (`oc`)](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} version 4.10 or later.
+- If using OpenShift, the [{{site.data.reuse.openshift_short}} CLI (`oc`)](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} version 4.10 or later.
 - If using other Kubernetes platforms, the [Kubernetes command-line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} version 1.24 or later.
 - The latest 1.1.1 version of [`openssl` command-line tool](https://www.openssl.org/source/){:target="_blank"}.
 
@@ -30,7 +30,7 @@ To gather logs from an online environment:
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 3. Change directory to the `/support` folder of the cloned repository.
 4. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
@@ -104,7 +104,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 
 6. Change directory to the `/support` folder of the cloned repository.
 

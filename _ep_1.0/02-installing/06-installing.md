@@ -188,7 +188,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+     oc ibm-pak get ibm-eventautomation-flink --version 1.0.5
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -200,7 +200,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+     oc ibm-pak get ibm-eventprocessing --version 1.0.5
      ```
 
 3. Generate mirror manifests by running the following command:

@@ -11,7 +11,7 @@ To back up and restore your {{site.data.reuse.eem_name}} instance, use a storage
 
 You can use a backup tool such as [Velero](https://velero.io/){:target="_blank"} to perform backups.
 
-If you are running on the {{site.data.reuse.openshift}}, the [OADP operator](https://docs.openshift.com/container-platform/4.12/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} uses Velero 
+If you are running on the {{site.data.reuse.openshift}}, the [OADP operator](https://docs.openshift.com/container-platform/4.14/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} uses Velero 
 and simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.  
 
 On other Kubernetes platforms, Valero provides a Helm chart which you can use to install the software or a command line tool.
@@ -27,9 +27,9 @@ Follow these instructions to back up and restore your {{site.data.reuse.eem_name
   - The main encryption key that is stored on a Kubernetes secret.
   - The data that is added to the instance. This is stored on Kubernetes Persistent Volumes (PVs) and within Kubernetes Persistent Volume Claims (PVCs).
 
-  This means that your backup location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions you can use to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"} or [Valero](https://velero.io/plugins/) documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
+  This means that your backup location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions you can use to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"} or [Valero](https://velero.io/plugins/) documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
 
-- If you are on the {{site.data.reuse.openshift_short}} and using the OADP operator to back up your instance, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing and configuring the `DataProtectionApplication` custom resource, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and select the storage type you want to configure.
+- If you are on the {{site.data.reuse.openshift_short}} and using the OADP operator to back up your instance, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing and configuring the `DataProtectionApplication` custom resource, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and select the storage type you want to configure.
 
 - In your CSI supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured for the `CSI` storage provider in your cluster.
 
@@ -70,7 +70,7 @@ If applicable, after your `DataProtectionApplication` is configured and other de
      excludedResources: []
    ```
 
-   See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Backup` custom resource.
+   See the [OADP](https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Backup` custom resource.
 
 3. After the backup is completed, check whether the `Backup` custom resource is updated with status information similar to the following:
 
@@ -84,7 +84,7 @@ If applicable, after your `DataProtectionApplication` is configured and other de
      phase: Completed
    ```
 
-If you are facing problems in creating a backup, see the [troubleshooting information for OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/troubleshooting.html){:target="_blank"}.
+If you are facing problems in creating a backup, see the [troubleshooting information for OADP](https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/troubleshooting.html){:target="_blank"}.
 
 **Important:** The name of your `Backup` custom resource is required to [restore](#restoring) your instance from the backup.
 
@@ -120,7 +120,7 @@ To restore your instance, follow these steps.
      restorePVs: true
    ```
 
-    See the [OADP](https://docs.openshift.com/container-platform/4.12/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Restore` custom resource. For example, you can configure your custom resource to restore to an alternative namespace.
+    See the [OADP](https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Restore` custom resource. For example, you can configure your custom resource to restore to an alternative namespace.
 
 2. When you are applying this custom resource, the backup is loaded from the backup location and the `<eem_instance_name>-ibm-eem-mek-bak` secret and `manager-storage-<eem_instance_name>-ibm-eem-manager-0` PVC are re-created. Before proceeding to the next step, check that both these resources are created and ensure that the resources are in `Ready` state.
 

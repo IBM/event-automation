@@ -200,13 +200,13 @@ To check the status of the installed operator, run the following command:
 For {{site.data.reuse.ep_name}}:
 
 ```shell
-kubectl get deployments ibm-ep-operator
+kubectl get deployments ibm-ep-operator -n namespace
 ```
 
 For {{site.data.reuse.flink_long}}:
 
 ```shell
-kubectl get deployments flink-kubernetes-operator
+kubectl get deployments flink-kubernetes-operator -n namespace
 ```
 
 A successful installation will return a result similar to the following with `1/1` in the `READY` column:

@@ -76,7 +76,7 @@ Ensure that you have sufficient disk space for persistent storage.
 
 ### Dynamic provisioning
 
-If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.12/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
+If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.14/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
 To configure this, set `spec.manager.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml

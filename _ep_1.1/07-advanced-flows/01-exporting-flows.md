@@ -16,7 +16,7 @@ You can export your flow as a JSON or an SQL file. Flows that are exported as SQ
 
 **Note:** Flows that are exported as SQL cannot be imported to the {{site.data.reuse.ep_name}} UI. To import flows, the files must be in JSON format.
 
-To export a flow, follow these steps:
+To export a flow, complete the following steps:
 
 1. Go to the {{site.data.reuse.ep_name}} home page.
 2. Find the flow that you want to export.
@@ -39,7 +39,7 @@ The flow is downloaded as a `<flowname>.sql` or a `<flowname>.json` file based o
 
 Flows that are in JSON format can be imported to reuse any number of times.
 
-To import a flow, follow these steps:
+To import a flow, complete the following steps:
 
 1. Go to the {{site.data.reuse.ep_name}} home page.
 2. In the **Create a new flow** card, click **Import** to open the **Import a flow** dialog.

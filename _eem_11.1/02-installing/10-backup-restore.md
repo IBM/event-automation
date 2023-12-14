@@ -103,7 +103,7 @@ Before restoring your instance, the {{site.data.reuse.eem_name}} operator must b
 
 **Note:** In the namespace that you are restoring to, ensure that you do not have an instance with the same name as the one you are restoring. You cannot restore an {{site.data.reuse.eem_name}} instance in the namespace if another instance with the same name already exists there. If you are trying to rewind your data, you must [uninstall](../uninstalling) the instance of {{site.data.reuse.eem_name}} you are restoring.
 
-To restore your instance, follow these steps.
+To restore your instance, complete the following steps:
 
 1. Create a `Restore` custom resource similar to the following YAML:
 

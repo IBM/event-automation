@@ -113,7 +113,6 @@ To install the operator, run the following command:
 helm install \
    <release-name> ibm-helm/ibm-eventautomation-flink-operator \
    -n <namespace> \
-   --set webhook.create=<true/false> \
    --set kubernetesServiceDnsDomain=<your.k8s.svc.dns.domain>  \
    --set watchAnyNamespace=<true/false>
 ```
@@ -122,12 +121,7 @@ Where:
 
 - `<release-name>` is the name you provide to identify your operator.
 - `<namespace>` is the name of the namespace where you want to install the operator.
-- `webhook.create=<true/false>` determines whether the validating webhook is deployed (default is `true` if not specified). 
-
-  Set to `false` if you do not have a Cert Manager installed and will be creating your own certificates.
-
 - `kubernetesServiceDnsDomain=<your.k8s.svc.dns.domain>` allows certificate to be created by utilizing the correct Kubernetes service DNS domain as a suffix on hosts in the `dnsNames` section of the certificate (default is `cluster.local` if not specified).
-
 - `watchAnyNamespace=<true/false>` determines whether the operator manages `FlinkDeployments` in any namespace or only a single namespace (default is `false` if not specified).
 
   Set to `true` for the operator to manage instances in any namespace, or do not specify if you want the operator to only manage instances in a single namespace.
@@ -138,8 +132,7 @@ For example, to install the operator on a cluster where it will manage all insta
 helm install \
    flink ibm-helm/ibm-eventautomation-flink-operator\
    -n "my-namespace" \
-   --set watchAnyNamespace=true \
-   --set webhook.create=false
+   --set watchAnyNamespace=true
 ```
 
 For example, to install the operator that will manage `FlinkDeployments` in only the `my-flink` namespace with no custom configurations such as `watchAnyNamespace`,`kubernetesServiceDnsDomain`, or `webhook.create`, run the command as follows:
@@ -147,6 +140,13 @@ For example, to install the operator that will manage `FlinkDeployments` in only
 ```shell
 helm install flink ibm-helm/ibm-eventautomation-flink-operator -n "my-flink"
 ```
+
+**Note:** If you do not have a Cert Manager installed, disable the webhook component of the Flink operator.  To disable the webhooks, specify `--set webhook.create=false` on the helm install command as follows:
+
+```shell
+helm install flink ibm-helm/ibm-eventautomation-flink-operator -n "my-flink" --set webhook.create=false
+```
+
 
 ### Installing the {{site.data.reuse.ep_name}} operator
 
@@ -187,7 +187,7 @@ helm install \
    --set webhook.create=false
 ```
 
-For example, to install the operator that will manage {{site.data.reuse.ep_name}} instances in only the `my-eventprocesssing` namespace with no custom configurations such as `watchAnyNamespace`,`kubernetesServiceDnsDomain`, or `webhook.create`, run the command as follows:
+Or to install the operator to manage {{site.data.reuse.ep_name}} instances in only the `my-eventprocesssing` namespace with no custom configurations such as `watchAnyNamespace`,`kubernetesServiceDnsDomain`, or `webhook.create`, run the command as follows:
 
 ```shell
 helm install eventprocesssing ibm-helm/ibm-ep-operator -n "my-eventprocesssing"
@@ -200,14 +200,17 @@ To check the status of the installed operator, run the following command:
 For {{site.data.reuse.ep_name}}:
 
 ```shell
-kubectl get deployments ibm-ep-operator -n namespace
+kubectl get deployments ibm-ep-operator -n <namespace>
 ```
 
 For {{site.data.reuse.flink_long}}:
 
 ```shell
-kubectl get deployments flink-kubernetes-operator -n namespace
+kubectl get deployments flink-kubernetes-operator -n <namespace>
 ```
+
+Where:
+- `<namespace>` is the name of the namespace where the operator is installed.
 
 A successful installation will return a result similar to the following with `1/1` in the `READY` column:
 
@@ -251,20 +254,40 @@ To deploy a Flink instance, run the following commands:
 1. Prepare a `FlinkDeployment` custom resource in a YAML file, using the information provided in
    [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
 
-   **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included
-   by {{site.data.reuse.flink_long}}. Also, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
+   **Notes:** 
+ 
+    - If the operator webhook has not been disabled, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment. Do not set the `spec.image` and `spec.flinkVersion` fields as they are automatically included by {{site.data.reuse.flink_long}}.
 
-   ```yaml
-   spec:
-     flinkConfiguration:
-       license.use: <license-use-value>
-       license.license: L-HRZF-DWHH7A
-       license.accept: 'true'
-   ```
 
-   Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
+      ```yaml
+       spec:
+         flinkConfiguration:
+           license.use: <license-use-value>
+           license.license: L-HRZF-DWHH7A
+           license.accept: 'true'
+      ```
+      Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
 
-2. Apply the configured `FlinkDeployment` custom resource to your target namespace:
+    - If the operator webhook has been disabled (`--set webhook.create=false`), in addition to the licensing parameters you configured in the previous step, you must also include the fields `spec.image` and `spec.flinkVersion`.
+      The values for the `spec.image` and `spec.flinkVersion` fields can be obtained by looking at the values of the `IBM_FLINK_IMAGE` and `IBM_FLINK_VERSION` environment variables on the operator pod.  You can get these values by running:
+
+      ```shell
+      kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK
+      ```
+
+      Use the values from the environment variables in your `FlinkDeployment`:
+
+      ```yaml
+      spec:
+       flinkVersion: "<value-of-IBM_FLINK_VERSION-env-var>"
+       image: "<value-of-IBM_FLINK_IMAGE-env-var>"
+       flinkConfiguration:
+         license.use: <license-use-value>
+         license.license: L-HRZF-DWHH7A
+         license.accept: 'true'
+      ```
+
+3. Apply the configured `FlinkDeployment` custom resource to your target namespace:
 
    ```shell
    kubectl apply -f <custom-resource-file-path> -n <target-namespace>

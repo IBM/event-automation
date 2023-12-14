@@ -168,7 +168,7 @@ To configure the Grafana service account, do the following:
 
 ### Configuring a Grafana data source
 
-Create and configure a Grafana data source for Prometheus to integrate the Grafana with Prometheus. To create a Grafana data source, follow these steps.
+Create and configure a Grafana data source for Prometheus to integrate the Grafana with Prometheus. To create a Grafana data source, complete the following steps.
 
 1. Get the Prometheus API URL by running the following command:
 
@@ -217,7 +217,7 @@ You can use this Grafana URL to create dashboards.
 
 ## Access the Prometheus instance from an external Grafana instance
 
-If you have configured an external Grafana instance and want to access your Prometheus instance from the external Grafana instance, follow these steps.
+If you have configured an external Grafana instance and want to access your Prometheus instance from the external Grafana instance, complete the following steps.
 
 ### Prerequisites
 

@@ -45,10 +45,11 @@ Create a local folder called `certs` on the host where you want to run the servi
 
 ## {{site.data.reuse.egw}} client certificate
 
-As detailed in [Certificates](#certificates) the {{site.data.reuse.egw}} uses a client certificate to register itself with {{site.data.reuse.eem_manager}}. This certificate provides the necessary authentication and authorization to allow the gateway to pull information about topics and subscriptions from {{site.data.reuse.eem_manager}}. This means that the certificate has the following requirements
+As detailed in the [certificates](#certificates) section, the {{site.data.reuse.egw}} uses a client certificate to register itself with {{site.data.reuse.eem_manager}}. This certificate provides the necessary authentication and authorization to allow the gateway to pull information about topics and subscriptions from {{site.data.reuse.eem_manager}}. This means that the certificate has the following requirements:
 
 - It must be issued by a CA that {{site.data.reuse.eem_manager}} trusts.
-- It must have a subject alternative name (SAN) URI of the following format : `egw://<host>:<port>/<gwgroup>/<gwid>`   
+- It must have a subject alternative name (SAN) URI of the following format : `egw://<host>:<port>/<gwgroup>/<gwid>`
+
 Where:
   - **host**: Is the host name that Kafka applications use to connect to the gateway.
   - **port**: Is the port number that Kafka applications use to connect to the gateway.
@@ -57,7 +58,7 @@ Where:
 
 The following shows an example of this SAN requirement:
 
-```
+```yaml
 X509v3 extensions:
    X509v3 Subject Alternative Name: 
          URI:egw://localhost:8080/london/londongw1
@@ -67,7 +68,7 @@ X509v3 extensions:
 
 To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as follows:
 
-```
+```shell
 docker login cp.icr.io -u cp
 docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:{{site.data.reuse.eem_current_version}}
 ```
@@ -80,7 +81,7 @@ Before you start the {{site.data.reuse.egw}}, define the following options:
 
 - **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint defined in the {{site.data.reuse.eem_manager}}, and will contain `ibm-eem-gateway` in the URL.
 - **GATEWAY_PORT**: The port on the host that is exposed for external connections from Kafka applications.
-- **PATH_TO_CERTIFICATES**: A local directory in which the [Certificates](#certificates) are placed.
+- **PATH_TO_CERTIFICATES**: A local directory in which the [certificates](#certificates) are placed.
 - **KAFKA_ADVERTISED_LISTENER**: The host and port that Kafka applications should receive when making requests. If applications have direct access, then this will be the host and port of the {{site.data.reuse.egw}}, otherwise it should be the host and port of the routing or proxy service that is in front of the {{site.data.reuse.egw}}.
 - **swid**: Specifies the license under which the stand-alone {{site.data.reuse.egw}} is deployed. It must be either **EA** for Event Automation licensed or **CP4I** for CP4I licensed.
 - **ubp** (optional) : Set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
@@ -89,7 +90,7 @@ Before you start the {{site.data.reuse.egw}}, define the following options:
 
 To run the {{site.data.reuse.egw}}, use the following command and the configuration options that are described in the previous section:
 
-```
+```shell
 docker run -e backendURL="<EEM_BACKEND_URL>" -e swid="EA/CP4I" [-e ubp=true] \
    -e KAFKA_ADVERTISED_LISTENER="<KAFKA_ADVERTISED_LISTENER>" -e GATEWAY_PORT="<GATEWAY_PORT> \
    -e certPaths="/certs/eem/client.pem,/certs/eem/client.key,/certs/eem/ca.pem,/certs/eem/egwclient.pem,/certs/eem/egwclient-key.pem" \

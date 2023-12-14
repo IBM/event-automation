@@ -10,8 +10,6 @@ toc: true
 
 A deployment of {{site.data.reuse.eem_name}} consists of a single {{site.data.reuse.eem_name}} instance (also referred to as Manager or {{site.data.reuse.eem_manager}}) that is configured along with one or more instances of an {{site.data.reuse.egw}}.
 
-<!-- Custom resources are presented as YAML configuration documents. -->
-
 - {{site.data.reuse.eem_manager}} instances are defined by the `EventEndpointManagement` custom resource type.
 - {{site.data.reuse.egw}} instances are defined by the `EventGateway` custom resource type.
 

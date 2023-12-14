@@ -10,13 +10,13 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
 **Important:** This deployment cannot be used with {{site.data.reuse.ep_name}} UI.
 
-**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up to date, and might include fixes that are absent in the `release-1.5` and `release-1.6` branches.
+**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the `release-1.5` and `release-1.6` branches.
 
 ## Prerequisites
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
-  For more information, see [Exporting flows](../exporting-flows).
+  For more information, see [exporting flows](../exporting-flows).
 
 - You adequately updated the Flink SQL Kafka connectors properties and values defined in file `statements.sql` to match your target environment:
 
@@ -65,8 +65,14 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
 
-   ```sql
+   ```shell
    kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   ```
+   
+   Alternatively, you can obtain the image name from the Flink operator pod's environment variable:
+
+   ```shell
+   kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK_IMAGE
    ```
 
    b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
@@ -106,12 +112,28 @@ Some adaptations to this procedure are required to build the Docker image and us
    ```
 
    c. Set the Flink image:
+
    ```yaml
    spec:
      image: <image built at step 1.e>
    ```
 
-3. Deploy this `FlinkDeployment` custom resource.
+   d. Set the Flink version (only required if the `--set webhook.create` is set to `false` during the operator installation).  
+
+   1. Obtain the correct version by listing the `IBM_FLINK_VERSION` environment variable on the Flink operator pod:
+
+      ```shell
+      kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK_VERSION
+      ```
+
+   2. Add the version to the `FlinkDeployment`, for example:
+
+      ```yaml
+      spec:
+        flinkVersion: "v1_18"
+      ```
+
+3. Apply the modified `FlinkDeployment` custom resource.
 
 
 ## Changing the parallelism of a Flink SQL runner
@@ -254,3 +276,58 @@ hide autoscaler -->
 3. Apply the modified `FlinkDeployment` custom resource.
 
    The Flink job is automatically resumed from the latest savepoint that Flink finds in `spec.job.initialSavepointPath`.
+
+
+## Enable SSL connection for your database
+
+To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection with the database as follows:
+
+1. Ensure you [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database to the truststore and then [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) with the truststore.
+
+2. Edit the `FlinkDeployment` custom resource.
+
+3. Complete the following modifications:
+
+   - In the `spec.flinkConfiguration` section, add:
+
+     ```yaml
+     env.java.opts.taskmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     env.java.opts.jobmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     ```
+
+   - In `spec.podTemplate.spec.containers.volumeMounts` section, add:
+
+     ```yaml
+     - mountPath: /certs
+       name: truststore
+       readOnly: true
+     ```
+
+   - In `spec.podTemplate.spec.volumes` section, add:
+
+     ```yaml
+     - name: truststore
+       secret:
+         items:
+           - key: truststore.jks
+             path: truststore.jks
+         secretName: ssl-truststore
+     ```
+
+4. Apply the modified `FlinkDeployment` custom resource:
+
+   ```shell
+   kubectl apply -f <custom-resource-file-path>
+   ```
+
+   For example:
+
+   ```shell
+   kubectl apply -f flinkdeployment_demo.yaml
+   ```
+
+A secure SSL connection is enabled between Flink and the database.

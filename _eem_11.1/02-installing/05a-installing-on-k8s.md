@@ -120,8 +120,11 @@ helm install eventendpointmanagement ibm-helm/ibm-eem-operator -n "my-eventendpo
 To check the status of the installed operator, run the following command:
 
 ```shell
-kubectl get deploy ibm-eem-operator -n namespace
+kubectl get deploy ibm-eem-operator -n <namespace>
 ```
+
+Where:
+- `<namespace>` is the name of the namespace where the operator is installed.
 
 A successful installation will return a result similar to the following with `1/1` in the `READY` column:
 

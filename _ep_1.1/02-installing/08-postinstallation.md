@@ -245,7 +245,7 @@ Register an externally generated certificate with {{site.data.reuse.ep_name}} as
    kubectl config set-context --current --namespace=<namespace>
    ```
 
-3. Encode your externally generated certificates to Base 64 format, and make a note of the values:
+3. Encode your externally generated certificates to Base64 format, and make a note of the values:
 
     `base64 -i ca.crt`
 
@@ -261,9 +261,9 @@ Register an externally generated certificate with {{site.data.reuse.ep_name}} as
       namespace: <ep namespace>
     type: Opaque
     data:
-      ca.crt: <base 64 value for ca.crt>
-      tls.crt: <base 64 value for ca.crt>
-      tls.key: <base 64 value for ca.key>
+      ca.crt: <Base64 value for ca.crt>
+      tls.crt: <Base64 value for ca.crt>
+      tls.key: <Base64 value for ca.key>
     ```
 
 5. Apply the secret by running the following command:
@@ -282,4 +282,4 @@ Register an externally generated certificate with {{site.data.reuse.ep_name}} as
 
 This will update the certificate used in your {{site.data.reuse.ep_name}} instance. Your pods will reload with the latest certificates in use.
 
-<!--**Note:** If you cannot log in to the {{site.data.reuse.ep_name}} UI after changing your CA certificates, see [troubleshooting](../../troubleshooting/changing-ca-certificate/) to resolve the error. -->
+

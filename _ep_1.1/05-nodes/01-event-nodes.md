@@ -35,7 +35,7 @@ A source node consumes messages from a Kafka topic to produce a stream of events
 
 ### Adding a source node
 
-To add a source node, follow these steps:
+To add a source node, complete the following steps:
 
 1. In the **Palette**, under **Events**, drag the **Event source** node into the canvas.
 2. Hover over the node and click the **Edit** icon
@@ -109,20 +109,40 @@ The list of topics that are hosted in this Kafka cluster is displayed. Select a 
 You can use the search pane to search for a particular topic.
 
 1. As you start typing the topic name in the search pane, you get a filtered list of matching topics.
-2. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Diagram showing unchecked radio button."){:height="30px" width="15px"} of the topic you want.
+2. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic you want.
 
-After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Diagram showing checked radio button."){:height="30px" width="15px"}, click the **Next** button at the bottom right of the page.
+After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, click the **Next** button at the bottom right of the page.
 
 #### Define event structure
 
 To define the [event](../../about/key-concepts#event) structure, you must define the structure of messages consumed from the Kafka topic:
 
-1. Select **Upload a schema or sample message**
-2. Select how you want to define the structure:
-  - **Topic schema** to define the structure from an AVRO schema of type **record** whose primitive fields are of AVRO type `string`, `int`, `long`, `float`, `double` or `boolean`.
-  - **Sample message** to define the structure from JSON document whose properties are of JSON data types `string`, `number` or `boolean`.
+1. Select **Upload a schema or sample message**.
+2. Select how you want to define the event structure:
 
-After you have provided a valid schema or sample message, click **Done**.
+   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+
+      For example, the following schema sets the `optionalComments` as an optional field:
+
+      ```json
+      {
+        "name": "Order",
+        "type": "record",
+        "fields": [
+          { "name": "orderID", "type": "int" },
+          { "name": "optionalComments", "type": ["null", "string"] }
+        ]
+      }
+      ```
+
+   - **JSON:** If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+  
+   In versions earlier than 1.1.1:
+
+   - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
+   - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+
+After you provide a valid schema or sample message, click **Done**.
 
 ##### Event properties
 
@@ -134,43 +154,52 @@ Once the event source is configured you will be able to rename properties by con
 ##### Type mapping
 
 Default types are assigned depending on how you defined the structure of the message:
-- If you defined the structure from a sample JSON message, the event property type is set to `STRING`.
-- If you defined the structure from an AVRO schema, the event property type depends on the type of the AVRO property:
 
-  | Avro type         | Event property type |
-  |-------------------|---------------------|
-  | `string`          | `STRING`            |
-  | `boolean`         | `BOOLEAN`           |
-  | `int`             | `INTEGER`           |
-  | `long`            | `BIGINT`            |
-  | `float`, `double` | `DOUBLE`            |
+- If you defined the structure from a sample JSON event, the event property type is set to `String`, `Boolean`, `Integer`, `Big integer`, `Double`, or `Float` depending on the message.
 
+  ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The event property type is set to `String`, `Boolean`, `Big integer`, or `Double` depending on the message.
+- If you defined the structure using an Avro schema, the default event property type is mapped from the following Avro type:
 
-You select the type to assign to a property from the list **Type mapping**:
-- [STRING](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#varchar--string){:target="_blank"}
-- [BOOLEAN](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#boolean){:target="_blank"}
-- [INTEGER](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#int){:target="_blank"}
+  | Avro type                                  | Event property type              |
+  |--------------------------------------------|----------------------------------|
+  | `string`                                   | `STRING`                         |
+  | `boolean`                                  | `BOOLEAN`                        |
+  | `int`                                      | `INTEGER`                        |
+  | `long`                                     | `BIGINT`                         |
+  | `double`                                   | `DOUBLE`                         |
+  | `float`                                    | `DOUBLE` <br>  ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") `FLOAT`     |
+
+Select the data type to assign to a property from the **Type mapping** list:
+
 - [BIGINT](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#bigint){:target="_blank"}
+- [BOOLEAN](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#boolean){:target="_blank"}
 - [DOUBLE](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#double){:target="_blank"}
 - [DATE](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#date){:target="_blank"}
+- [FLOAT](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#float){:target="_blank"}
+- [INTEGER](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#int){:target="_blank"}
+- [STRING](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#varchar--string){:target="_blank"}
 - [TIME](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#time){:target="_blank"}
 - [TIMESTAMP](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp){:target="_blank"}
 - [TIMESTAMP_LTZ](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp_ltz){:target="_blank"}
 
+![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") Additionally, event properties that are a JSON type of `number`, or where the Avro schema defines the property as a `long` (or a logical type that maps to `long`), can be assigned the following types:
+
+- Timestamp (seconds)
+- Timestamp (milliseconds)
+- Timestamp (microseconds)
+
 You must assign an appropriate type to each event property:
+
 - Events property value must be valid against the type you assign, otherwise the event source will not be
   able to parse the value.
 - Events property values that cannot be parsed according to its assigned type will be defaulted to `null`, which could eventually lead to the failure of the processing Job.
-- Timestamp properties must conform the [SQL format standard](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard){:target="_blank"}.
+- When assigning `Timestamp` or `Timestamp (local time zone)` to a property with a type `String`, the property must conform to the [SQL format standard](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard){:target="_blank"}.
 
 #### Define the event time
 
-- You select which property to use as event time from the list **Source of event time** only when the event
-structure contains at least one property of type `TIMESTAMP` or `TIMESTAMP_LTZ`.
+- Select which property to use as event time from the **Source of event time** list when the event structure contains at least one property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`.
 
-- If you select the option **Use message timestamp provided by Kafka**, or when the event structure does not 
-contain a property of type `TIMESTAMP` or `TIMESTAMP_LTZ`, a new timestamp property whose name is defined
-by **Event Property name** will be generated and added to all events. 
+- If you select the option **Use message timestamp provided by Kafka**, or when the event structure does not contain a property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`, a new timestamp property whose name is defined by **Event Property name** will be generated and added to all events.
 
 #### Event time delay
 
@@ -181,9 +210,9 @@ This delay is used to configure the [Flink Bounded out of orderness watermark st
 
 After you have set up the event source node, click **Configure**.
 
-A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} 
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} 
 appears on the event source node if the event source node is configured correctly. 
-If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
 
 ## Event destination
@@ -192,7 +221,7 @@ The event destination node delivers the processed stream of events to a Kafka to
 
 ### Adding an event destination node
 
-To add an event destination node, follow these steps:
+To add an event destination node, complete the following steps:
 
 1. In the **Palette**, under **Events**, drag the **Event destination** node into the canvas.
 2. Hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
@@ -207,14 +236,10 @@ To configure an event destination, complete the following steps.
 2. Follow the [instructions to configure a source node](#configuring-a-source-node).
 3. After you have set up the event destination node, click **Configure**.
 
-A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} 
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} 
 appears on the event destination node if the event destination node is configured correctly. 
-If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
-User actions are saved automatically. For save status updates, see the canvas header.
-
-- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
-- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
-- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
+User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
 

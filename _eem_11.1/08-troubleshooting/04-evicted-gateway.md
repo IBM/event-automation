@@ -16,7 +16,7 @@ Kubernetes pods use [ephemeral storage](https://kubernetes.io/docs/concepts/conf
 
 ## Resolving the problem
 
-This issue can be resolved by giving the {{site.data.reuse.egw}} more ephemeral storage so that it is given a bit more leeway to clean up logs. This can be done by editing the {{site.data.reuse.egw}} custom resource:
+This issue can be resolved by adding more ephemeral storage for the {{site.data.reuse.egw}}, so that additional storage is available to clean up logs. You can add more storage by editing the {{site.data.reuse.egw}} custom resource:
 
 ```yaml
 # excerpt from a {{site.data.reuse.egw}} CRD 

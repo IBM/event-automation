@@ -122,7 +122,7 @@ The Production – Flink Application Cluster sample is suitable for running a si
 
 This sample configures Flink with High Availability for the Flink Job Manager. Being a Flink application cluster, the Flink jobs are automatically restarted if the Flink cluster restarts.
 
-For information about using this sample, see [Deploying jobs in production environments](../../advanced/deploying-production).
+For information about using this sample, see [deploying jobs in production environments](../../advanced/deploying-production).
 
 ### Deploying the Flink PVC
 
@@ -155,7 +155,7 @@ All Flink samples except the Quick Start sample configure Flink to use persisten
    export STORAGE_CAPACITY=20GiB
    ```
 
-   **Important:** The storage class must comply with the [Storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).
+   **Important:** The storage class must comply with the [storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).
 
    **Important:** The storage capacity needs to be large enough for Flink to store data, which includes the Flink [checkpoints](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/checkpoints/#checkpoint-storage){:target="_blank"} and [savepoints](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/savepoints/){:target="_blank"}, and the stateful event processing data.
 
@@ -214,9 +214,9 @@ There are two areas of security to consider when installing {{site.data.reuse.ep
     - Provide a secret that contains a CA certificate, server certificate, and key that has the required DNS names for accessing the deployment.
     - The operator creates a CA certificate, which is used to generate all the other certificates.
 
-To configure authentication, see [Managing access](../../security/managing-access).
+To configure authentication, see [managing access](../../security/managing-access).
 
-To configure the certificates, see [Configuring TLS](../configuring/#configuring-tls).
+To configure the certificates, see [configuring TLS](../configuring/#configuring-tls).
 
 
 ## Licensing

@@ -1,6 +1,6 @@
 ---
 title: "Operator watching single namespace has escalated permissions"
-excerpt: "The IBM Operator for Apache Flink is given escalated permissions when being installed in a specific namespace."
+excerpt: "The IBM Operator for Apache Flink receives escalated permissions when being installed in a specific namespace."
 categories: troubleshooting
 slug: rbac
 toc: true

@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-After upgrading to {{site.data.reuse.es_name}} 11.1.6 and migrating to use the latest version of Apicurio that is included in {{site.data.reuse.es_name}}, client applications that use the schema registry fail with errors similar to the following example:
+After upgrading to {{site.data.reuse.es_name}} 11.2.x and migrating to use the latest version of Apicurio that is included in {{site.data.reuse.es_name}}, client applications that use the schema registry fail with errors similar to the following example:
 
 ```shell
 java.io.UncheckedIOException: com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.util.Date` from String "2022-12-13T20:10:29Z": expected format "yyyy-MM-dd'T'HH:mm:ssZ"

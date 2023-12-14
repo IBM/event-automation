@@ -6,7 +6,7 @@ slug: managing-access
 toc: true
 ---
 
-You can manage access to your {{site.data.reuse.eem_name}} instance through access controls. Users can be defined through custom configuration files or by different login services and identity providers such as [Keycloak](https://www.keycloak.org/){:target="_blank"}. Users can be authorized and given permissions based on their roles. For more information, see [managing roles](../user-roles).
+You can manage access to your {{site.data.reuse.eem_name}} instance through access controls. Users can be defined through custom configuration files or by different login services and identity providers such as [Keycloak](https://www.keycloak.org/){:target="_blank"}. Users can be authorized and provided permissions based on their roles. For more information, see [managing roles](../user-roles).
 
 {{site.data.reuse.eem_name}} supports locally defined authorization for testing purposes and OpenID Connect (OIDC) authorization.
 
@@ -111,12 +111,12 @@ You can define users explicitly with usernames and passwords, which is typically
 5. Patch the `<custom-resource-name>-ibm-eem-user-credentials` secret with the local user credentials by running the following command:
 
    ```shell
-   kubectl patch secret <custom-resource-name>-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "<your-base64-value>"}]'
+   kubectl patch secret <custom-resource-name>-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "<your-Base64-value>"}]'
    ```
    
    where:
      - \<custom-resource-name\> is the name of your {{site.data.reuse.eem_name}} instance.
-     - \<your-base64-value\> is the Base64-encoded string returned from the previous command.
+     - \<your-Base64-value\> is the Base64-encoded string returned from the previous command.
    
    for example:
 

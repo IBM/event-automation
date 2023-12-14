@@ -57,7 +57,7 @@ The exact requirements will depend on the nature of the information that will be
 Areas for consideration to address these aspects of the GDPR legislation include:
 
 - Physical access to the assets where the product is installed.
-- Encryption of data both at rest (see [Data Storage](#data-storage)) and in flight (see [Data Processing](#data-processing)).
+- Encryption of data both at rest (see [data storage](#data-storage)) and in flight (see [data processing](#data-processing)).
 - [Managing access](../managing-access) to your {{site.data.reuse.eem_name}} instance.
 
 ## Data Life Cycle
@@ -79,7 +79,7 @@ There is no one definitive answer to this question because use cases vary throug
 
 ### Where is data stored?
 
-See the [Data Storage](#data-storage) section for details about how information is stored by {{site.data.reuse.eem_name}}. This information can include data that is governed by GDPR.
+See the [data Storage](#data-storage) section for details about how information is stored by {{site.data.reuse.eem_name}}. This information can include data that is governed by GDPR.
 
 ### Personal data used for online contact with IBM
 
@@ -95,8 +95,8 @@ Typically, only the client name and email address are used to enable personal re
 {{site.data.reuse.eem_name}} can be used to collect personal data. When assessing your use of {{site.data.reuse.eem_name}} and the demands of GDPR, you should consider the types of personal data which in your circumstances are passing through the system. You may wish to consider aspects such as:
 
 - What data is being passed to {{site.data.reuse.eem_name}}?
-- What type of storage has been configured within the {{site.data.reuse.eem_name}}? Has encryption been enabled? For more information, see [Data Storage](#data-storage).
-- Has the internal network traffic been encrypted? For more information, see [Data Processing](#data-processing).
+- What type of storage has been configured within the {{site.data.reuse.eem_name}}? Has encryption been enabled? For more information, see [data storage](#data-storage).
+- Has the internal network traffic been encrypted? For more information, see [data processing](#data-processing).
 
 ## Data Storage
 

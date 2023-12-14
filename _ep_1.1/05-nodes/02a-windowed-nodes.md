@@ -21,7 +21,7 @@ To add an aggregate node, complete the following steps.
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processor**, drag the **Aggregate** node into the canvas.
-3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the aggregate node indicating that the node is yet to be configured.
+3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Icon showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the aggregate node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure aggregate** page appears.
@@ -73,14 +73,9 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
    1. Click outside the text-box or press Enter on your keyboard to rename the property.
 1. To complete the aggregate node configuration, click **Configure**.
 
-A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} appears on the aggregate node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the aggregate node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
-User actions are saved automatically. For save status updates, see the canvas header.
-
-- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
-- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
-- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
-
+User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
 
 ## Top-n
@@ -93,7 +88,7 @@ To add a top-n node, complete the following steps.
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processor**, drag the **Top-n** node into the canvas.
-3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} appears on the top-n node indicating that the node is yet to be configured.
+3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Icon showing the unconfigured node icon."){: height="30px" width="15px"} appears on the top-n node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure top-n** page appears.
@@ -152,13 +147,8 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
    1. Click outside the text-box or press Enter on your keyboard to rename the property.
 1. To complete the top-n node configuration, click **Configure**.
 
-A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} appears on the top-n node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the top-n node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
-User actions are saved automatically. For save status updates, see the canvas header.
-
-- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
-- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
-- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
-
+User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
 

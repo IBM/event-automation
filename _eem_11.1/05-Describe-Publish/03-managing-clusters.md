@@ -17,7 +17,7 @@ To access the **Clusters** page:
 
 To edit the details of a cluster, complete the following steps.
 
-1. Locate the cluster to be edited in the **Clusters** page table and click the edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"}
+1. Locate the cluster to be edited in the **Clusters** page table and click the edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Edit the cluster name icon."){:height="30px" width="15px"}
 
    The **Cluster information** screen is displayed with your existing cluster name. You can edit the cluster name and provide a new name, or leave it as it is.
 
@@ -37,6 +37,6 @@ Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer 
 
 To delete a cluster from {{site.data.reuse.eem_name}}, complete the following steps. 
 
-1. Locate the cluster you want to delete in the list on the **Clusters** page, and click the delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"} to open the **Delete cluster** dialog. 
+1. Locate the cluster you want to delete in the list on the **Clusters** page, and click the delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Remove topic icon."){:height="30px" width="15px"} to open the **Delete cluster** dialog. 
 2. Confirm the cluster that you want to delete by entering the cluster name.
 3. Click **Delete**. This will be visible in the footer if you have entered the cluster name that you want to delete correctly.

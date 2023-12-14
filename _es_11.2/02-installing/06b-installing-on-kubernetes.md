@@ -98,8 +98,11 @@ helm install eventstreams ibm-helm/ibm-eventstreams-operator -n "my-eventstreams
 To check the status of the installed operator, run the following command:
 
 ```shell
-kubectl get deploy eventstreams-cluster-operator -n namespace
+kubectl get deploy eventstreams-cluster-operator -n <namespace>
 ```
+
+Where:
+- `<namespace>` is the name of the namespace where the operator is installed.
 
 A successful installation will return a result similar to the following with `1/1` in the `READY` column:
 

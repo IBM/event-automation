@@ -13,9 +13,9 @@ Find out more about the enrichment database node that is available in {{site.dat
 
 In situations where the data in the source table might not offer significant insights on its own, establishing connections with external databases and integrating their data can yield a more comprehensive result.
 
-With the database node, you can retrieve data from external databases (PostgreSQL or MySQL) and integrate the data with the events within your workflow. 
+With the database node, you can retrieve data from external databases (PostgreSQL, MySQL, or Oracle) and integrate the data with the events within your workflow. 
 
-**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL or MySQL database.
+**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
 
 ### Adding a database node
 
@@ -48,12 +48,20 @@ To configure a database node, complete the following steps.
    jdbc:mysql://<host>:<port>/<database>?<configuration>
    ```
 
+   ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") Oracle example:
+
+   ```sql
+   jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=<protocol>)(PORT=<port>)(HOST=<host>))(CONNECT_DATA=(SERVICE_NAME=<service_name>)))
+   ```
+
    Where:
 
    - `<host>` is the hostname of the database server.
    - `<port>` is the port number of the database server.
    - `<database>` is the name of the database that contains the table to be used for enrichment.
    - `<configuration>` is the list of configuration parameters for the connection.
+   - `<protocol>` is used in order to activate SSL in the JDBC thin client.
+   - `<service_name>` is used by the database to register itself with a listener. 
 1. Click **Next** to open the **Access Credentials** section. Enter your username and password (if prompted).
 1. Click **Next**. The **Table selection** page is displayed.
 1. To choose a table from the provided database, you can either search for the table name in the search box, or select the radio button corresponding to the table name that you want to process events from.
@@ -63,37 +71,36 @@ To configure a database node, complete the following steps.
 
    The following data types in the remote database table are supported by {{site.data.reuse.ep_name}}:
 
-   For PostgreSQL:
-
-   - `BIGINT`
-   - `BIGSERIAL`
-   - `BOOLEAN`
-   - `CHARACTER`
-   - `CHARACTER VARYING`
-   - `DATE`
-   - `DECIMAL`
-   - `DOUBLE PRECISION`
-   - `INTEGER`
-   - `NUMERIC`
-   - `SMALLINT`
-   - `SMALLSERIAL`
-   - `SERIAL`
-   - `TEXT`
-   - `TIMESTAMP`
-   - `VARCHAR`
-
-   For MySQL:
-
-   - `BIGINT`
-   - `BOOLEAN`
-   - `BYTES`
-   - `DATE`
-   - `DECIMAL`
-   - `FLOAT`
-   - `INTEGER`
-   - `STRING`
-   - `TIME`
-   - `TIMESTAMP`
+   | Data type           | PostgreSQL | MySQL | ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") Oracle  |
+   |---------------------|------------|-------|--------|
+   | `BIGINT`            | ✓          | ✓     |        |
+   | `BIGSERIAL`         | ✓          |       |        |
+   | `BINARY_FLOAT`      |            |       | ✓      |
+   | `BINARY_DOUBLE`     |            |       | ✓      |
+   | `BLOB`              |            |       | ✓      |
+   | `BOOLEAN`           | ✓          | ✓     |        |
+   | `BYTES`             |            | ✓     |        |
+   | `CHAR`              |            |       | ✓      |
+   | `CLOB`              |            |       | ✓      |
+   | `CHARACTER`         | ✓          |       |        |
+   | `CHARACTER VARYING` | ✓          |       |        |
+   | `DATE`              | ✓          | ✓     | ✓      |
+   | `DECIMAL`           | ✓          | ✓     |        |
+   | `DOUBLE PRECISION`  | ✓          |       | ✓      |
+   | `FLOAT`             |            | ✓     | ✓      |
+   | `INTEGER`           | ✓          | ✓     |        |
+   | `NUMBER`            |            |       | ✓      |
+   | `NUMERIC`           | ✓          |       |        |
+   | `RAW`               |            |       | ✓      |
+   | `REAL`              |            |       | ✓      |
+   | `SMALLINT`          | ✓          |       | ✓      |
+   | `SMALLSERIAL`       | ✓          |       |        |
+   | `SERIAL`            | ✓          |       |        |
+   | `STRING`            |            | ✓     |        |
+   | `TEXT`              | ✓          |       |        |
+   | `TIME`              |            | ✓     |        |
+   | `TIMESTAMP`         | ✓          | ✓     | ✓      |
+   | `VARCHAR`           | ✓          |       | ✓      |
 
 1. In the **Match Criteria** section, define your expression by using the property from the source, and the table field.
 
@@ -112,10 +119,6 @@ To configure a database node, complete the following steps.
    **Note:** To rename properties, hover over a property, and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 1. Scroll down and click **Configure** to complete the configuration.
 
-A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} appears on the database node if the database node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Diagram showing red checkbox."){:height="30px" width="15px"} appears.
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the database node if the database node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
-User actions are saved automatically. For save status updates, see the canvas header.  
-
-- **Saving** ![Saving]({{ 'images' | relative_url }}/save_inprogress.png "Diagram showing save is in progress."){:height="30px" width="15px"} indicates that saving is in progress.
-- **Saved** ![Save successful]({{ 'images' | relative_url }}/save_successful.png "Diagram showing save is successful."){:height="30px" width="15px"} confirms success.
-- **Failed** ![Save failed]({{ 'images' | relative_url }}/save_error.png "Diagram showing that the save is failed."){:height="30px" width="15px"} indicates that there are errors. If an action fails to save automatically, you receive a notification to try the save again. Click **Retry** to re-attempt the save. When a valid flow is saved, you can proceed to run the job.
+User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.

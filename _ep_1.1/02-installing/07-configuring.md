@@ -74,12 +74,13 @@ In order to increase the throughput of your Flink job, you can perform the follo
 - Increase the number of partitions in the Kafka ingress topics used by your Flink event sources.
 - Set the Flink job parallelism to a value equal to this number of partitions.
 
-For more information, see [Deploying jobs for development purposes](../../advanced/deploying-development) and [Deploying jobs in a production environment](../../advanced/deploying-production).
+For more information, see [deploying jobs for development purposes](../../advanced/deploying-development) and [deploying jobs in a production environment](../../advanced/deploying-production).
 
 ### Configuring persistent storage
 
-Persistent storage is required for Flink to be able to recover from transient failures, and for configuring High Availability for Flink Job Managers.
-To configure persistent storage:
+Persistent storage is required for Flink to be able to recover from transient failures, to create savepoints and to be restored from savepoints, and for configuring High Availability for Flink Job Managers.
+
+To configure persistent storage, complete the following steps:
 
 1. [Deploy the Flink PersistentVolumeClaim (PVC)](../planning/#deploying-the-flink-pvc).
 
@@ -163,7 +164,7 @@ To enable persistent storage for `EventProcessing`, set `spec.authoring.storage.
 Then configure storage in one of the following ways:
 
 - [Dynamic provisioning](#dynamic-provisioning)
-- [Providing persistent volume](#providing-persistent-volume)
+- [Providing persistent volume](#providing-persistent-volumes)
 - [Providing persistent volume and persistent volume claim](#providing-persistent-volume-and-persistent-volume-claim).
 
 Ensure that you have sufficient disk space for persistent storage.
@@ -518,7 +519,7 @@ spec:
 # ...
 ```
 
-For information, see [Network Policies](../../security/network-policies).
+For information, see [network policies](../../security/network-policies).
 
 
 ## Configuring ingress
@@ -592,20 +593,20 @@ spec:
 
 ## Configuring databases with SSL in {{site.data.reuse.ep_name}} and Flink
 
-PostgreSQL and MySQL both offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
+PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
 
-If a database is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), it is necessary to configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
+If a database is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
 
 To enable SSL connections to databases from {{site.data.reuse.ep_name}} and Flink:
 
-1. Add the CA certificate used to issue the certificate presented by a PostgreSQL or MySQL database to a Java truststore.
+1. Add the CA certificate used to issue the certificate presented by a PostgreSQL, MySQL, or an Oracle database to a Java truststore.
 2. Create a secret with the truststore.
 3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}}. 
 
 
 ### Add the CA certificate to the truststore
 
-1. Obtain the CA certificate of the PostgreSQL or the MySQL database from your database administrator.
+1. Obtain the CA certificate of the PostgreSQL, MySQL, or the Oracle database from your database administrator.
 2. Add the certificate for the CA to the truststore by running the following command:
 
    ```shell
@@ -718,7 +719,7 @@ If you have an existing secured SSL connection with a database and want to add a
 
 ### Configuring the existing truststore
 
-To add the certificate of the new database to your existing truststore, follow these steps:
+To add the certificate of the new database to your existing truststore, complete the following steps:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Ensure you are in the project where your {{site.data.reuse.ep_name}} instance is installed.
@@ -738,7 +739,7 @@ To add the certificate of the new database to your existing truststore, follow t
 
 ### Updating the secret with the new truststore
 
-To update the secret with the truststore that you configured earlier, follow these steps:
+To update the secret with the truststore that you configured earlier, complete the following steps:
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure you are in the project where your {{site.data.reuse.ep_name}} instance is installed:

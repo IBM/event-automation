@@ -50,7 +50,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
      3. Expand the **Project** drop-down menu and select the project the API Connect instance is installed in.
      4. Find the `<name>-ingress-ca` secret, and select it.
      5. Click the **YAML** tab.
-     6. Copy the value given under `data.ca.crt`
+     6. Copy the value under `data.ca.crt`.
 
    - Using the CLI:
 
@@ -90,7 +90,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
           namespace: <namespace the {{site.data.reuse.eem_name}} instance is installed in>
         data:
           ca.crt: >-
-            <base64-certificate>
+            <Base64-certificate>
         type: Opaque
         EOF
         ```
@@ -98,7 +98,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
         Where:
         
         - `<namespace>` is the namespace the {{site.data.reuse.eem_name}} instance is installed in.
-        - `<base64-certificate>` is the Base64-encoded certificate that you obtained in step 1.
+        - `<Base64-certificate>` is the Base64-encoded certificate that you obtained in step 1.
 
 
 3. Update the `EventEndpointManagement` instance with the API Connect configuration details as follows.

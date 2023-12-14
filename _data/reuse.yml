@@ -17,10 +17,10 @@ eem_name: "Event Endpoint Management"
 eem_current_version: "11.1.0"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.1.0"
+ep_current_version: "1.1.1"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.1.0"
+flink_operator_current_version: "1.1.1"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -29,7 +29,7 @@ egw: "Event Gateway"
 eem_manager: "Event Endpoint Management Manager"
 
 # {{site.data.reuse.eem_ubp_license_id}}
-eem_ubp_license_id: "L-NRHE-WFD7EY"
+eem_ubp_license_id: "L-GGQD-G7AYJD"
 
 # {{site.data.reuse.egw_short}}
 egw_short: "Event Gateway"
@@ -130,10 +130,10 @@ cp_cli_login: "Log in to your cluster as an administrator by using the IBM Cloud
 
 
 # {{site.data.reuse.openshift_cli_login}}
-openshift_cli_login: "Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"} (`oc login`)."
+openshift_cli_login: "Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"} (`oc login`)."
 
 # {{site.data.reuse.openshift_ui_login}}
-openshift_ui_login: "Log in to the OpenShift Container Platform [web console](https://docs.openshift.com/container-platform/4.12/web_console/web-console.html){:target=\"_blank\"} using your login credentials."
+openshift_ui_login: "Log in to the OpenShift Container Platform [web console](https://docs.openshift.com/container-platform/4.14/web_console/web-console.html){:target=\"_blank\"} using your login credentials."
 
 
 # {{site.data.reuse.maven_prereq}}
@@ -290,8 +290,12 @@ kafkaConnectStep3_title: "Restart Kafka Connect to make the new connector availa
 # {{site.data.reuse.apicurio_note}}
 apicurio_note: "**Important:**  Support for Apicurio client libraries version 2.3.x and earlier is deprecated. Ensure all applications connecting to Event Streams that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../troubleshooting/upgrade-apicurio)."
 
+# {{site.data.reuse.apicurio_note_113}}
+apicurio_note_113: "**Important:**  Support for Apicurio client libraries version 2.3.x and earlier is deprecated. Ensure all applications connecting to Event Streams that use the schema registry are using Apicurio client libraries version 2.5.0 or later, then [migrate to the latest Apicurio](../../troubleshooting/upgrade-apicurio)."
+
+
 # {{site.data.reuse.iam_note}}
-iam_note: '**Note:** Identity and Access Management (IAM) authentication is only available on the OpenShift Container Platform with IBM Cloud Pak foundational services. It is not supported on other Kubernetes platforms.'
+iam_note: '**Note:** Identity and Access Management (IAM) authentication is only available on the OpenShift Container Platform with IBM Cloud Pak foundational services 3.x releases. It is not supported on other Kubernetes platforms.'
 
 # {{site.data.reuse.es_cli_kafkauser_note}}
 es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands can be run only when the Event Streams CLI has access to Kubernetes resources, which can be provided by IAM authentication. If your Event Streams instance uses SCRAM-SHA-512 authentication, you can create a Kafka User by using the OpenShift web console or the Kubernetes CLI."

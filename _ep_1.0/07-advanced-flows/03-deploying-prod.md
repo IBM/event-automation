@@ -254,3 +254,58 @@ hide autoscaler -->
 3. Apply the modified `FlinkDeployment` custom resource.
 
    The Flink job is automatically resumed from the latest savepoint that Flink finds in `spec.job.initialSavepointPath`.
+
+
+## Enable SSL connection for your database
+
+To securely connect Flink jobs to a database such as PostgreSQL, enable an SSL connection with the database as follows:
+
+1. Ensure you [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database to the truststore and then [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) with the truststore.
+
+2. Edit the `FlinkDeployment` custom resource.
+
+3. Complete the following modifications:
+
+   - In `spec.flinkConfiguration` section, add:
+
+     ```yaml
+     env.java.opts.taskmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     env.java.opts.jobmanager: >-
+        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStorePassword=<chosen password>
+     ```
+
+   - In `spec.podTemplate.spec.containers.volumeMounts` section, add:
+
+     ```yaml
+     - mountPath: /certs
+       name: truststore
+       readOnly: true
+     ```
+
+   - In `spec.podTemplate.spec.volumes` section, add:
+
+     ```yaml
+     - name: truststore
+       secret:
+         items:
+           - key: truststore.jks
+             path: truststore.jks
+         secretName: ssl-truststore
+     ```
+
+4. Apply the modified `FlinkDeployment` custom resource:
+
+   ```shell
+   kubectl apply -f <custom-resource-file-path>
+   ```
+
+   For example:
+
+   ```shell
+   kubectl apply -f flinkdeployment_demo.yaml
+   ```
+
+An SSL connection is enabled between Flink and a secured database.

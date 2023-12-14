@@ -252,7 +252,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc project <target-namespace>
    ```
 
-2. If you are installing in a specific namespace on the cluster, create an `OperatorGroup` as follows. For all namespaces (`openshift-operators`), there is already an operator group available after successfully installing OpenShift.
+2. Check whether there is an existing `OperatorGroup` in your target namespace:
+   
+   ```shell
+   oc get OperatorGroup
+   ```
+   
+   If there is an existing `OperatorGroup`, continue to the next step to create a `Subscription`.
+
+   If there is no `OperatorGroup`, create one as follows:
 
    a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
 
@@ -260,17 +268,17 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    apiVersion: operators.coreos.com/v1
    kind: OperatorGroup
    metadata:
-     name: ibm-eventstreams-operatorgroup
+     name: ibm-eventautomation-operatorgroup
      namespace: <target-namespace>
    spec:
      targetNamespaces:
        - <target-namespace>
    ```
-
+   
    b. Save the file as `operator-group.yaml`.
-
+   
    c. Run the following command:
-
+   
    ```shell
    oc apply -f operator-group.yaml
    ```

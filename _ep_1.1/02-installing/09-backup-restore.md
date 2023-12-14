@@ -20,7 +20,7 @@ A Flink savepoint is a consistent image of a Flink job's execution state. Backin
 
 This procedure assumes that you have the following deployed: 
 - An [instance of Flink deployed](../installing/) by the {{site.data.reuse.flink_long}} and configured with persistent storage with a PersistentVolumeClaim (PVC).
-- Flink jobs as [Application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/overview/#flinkdeployment){:target="_blank"}.
+- Flink jobs as [application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/overview/#flinkdeployment){:target="_blank"}.
 
 The `FlinkDeployment` custom resource that configures your Flink instance must define the hereafter parameters, each pointing to a different directory on the persistent storage.
 - `spec.flinkConfiguration.state.checkpoints.dir`

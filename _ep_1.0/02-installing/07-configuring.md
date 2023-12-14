@@ -78,8 +78,9 @@ For more information, see [Deploying jobs for development purposes](../../advanc
 
 ### Configuring persistent storage
 
-Persistent storage is required for Flink to be able to recover from transient failures, and for configuring High Availability for Flink Job Managers.
-To configure persistent storage:
+Persistent storage is required for Flink to be able to recover from transient failures, to create savepoints and to be restored from savepoints, and for configuring High Availability for Flink Job Managers.
+
+To configure persistent storage, complete the following steps:
 
 1. [Deploy the Flink PersistentVolumeClaim (PVC)](../planning/#deploying-the-flink-pvc).
 

@@ -50,7 +50,7 @@ Resource requirements for this deployment:
 
 | CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
-| 0.25                | 0.5               | 0.25                | 0.5               | 1  <!-- Licensing for cores is always rounded up to whole number-->   |
+| 0.25                | 0.5               | 0.25                | 0.5               | 1     |
 
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
 

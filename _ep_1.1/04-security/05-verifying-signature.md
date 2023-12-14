@@ -246,7 +246,7 @@ Obtain the required files as follows:
 
 To verify the image signatures, complete the following steps:
 
-1. Import the certified container public key on the computer where you saved the public key to a file as described in the [Before you begin](#before-you-begin) section.
+1. Import the certified container public key on the computer where you saved the public key to a file as described in the [before you begin](#before-you-begin) section.
 
    Run the following command to import the public GPG key:
 

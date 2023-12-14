@@ -10,7 +10,7 @@ Follow the instructions to log in and log out of the {{site.data.reuse.ep_name}}
 
 ## Logging in
 
-To log in to the {{site.data.reuse.ep_name}} UI, follow the steps:
+To log in to the {{site.data.reuse.ep_name}} UI, complete the following steps:
 
 1. Enter the URL provided by your cluster administrator in a supported [web browser](../../installing/prerequisites/#event-processing-ui).
 2. Log in to your {{site.data.reuse.ep_name}} UI. Use your credentials provided by your cluster administrator.

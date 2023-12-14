@@ -29,7 +29,7 @@ Access to the event data from event sources (topics) is granted by generating cr
 
 ### Searching the Catalog
 
-You can search for a specific topic within the catalog by clicking the **Search** icon ![Search icon]({{ 'images' | relative_url }}/search.svg "Image showing the search icon."){:height="30px" width="15px"} and typing a query. Your searched query is used to find a match from many fields in each topic. If your query is matched with a word or consecutive words from the following fields, the matched content is returned in the catalog:
+You can search for a specific topic within the catalog by clicking the **Search** icon ![Search icon]({{ 'images' | relative_url }}/search.svg "Search icon."){:height="30px" width="15px"} and typing a query. Your searched query is used to find a match from many fields in each topic. If your query is matched with a word or consecutive words from the following fields, the matched content is returned in the catalog:
 
 - Topic alias
 - Topic name

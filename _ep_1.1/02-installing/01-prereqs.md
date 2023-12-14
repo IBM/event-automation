@@ -154,9 +154,10 @@ The Flink instances deployed by {{site.data.reuse.flink_long}} store the followi
 - Checkpoints and savepoints. For more information about checkpoints, see the Flink documentation about [checkpoint storage](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/checkpoints/#checkpoint-storage){:target="_blank"} and [checkpointing prerequisites](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/datastream/fault-tolerance/checkpointing/#prerequisites){:target="_blank"}. For more information about savepoints, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/savepoints/){:target="_blank"}.
 - When configured to persist states in RocksDB, the data of processed events is stored in a binary, compressed, and unencrypted format.
 
-Apache Flink requires the use of a [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
+Apache Flink requires the use of a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
 - `volumeMode`: `Filesystem`. See [Volume Mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode){:target="_blank"}.
-- `accessMode`: `ReadWriteMany (RWX)`. See [Access modes](https://docs.openshift.com/container-platform/4.14/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage){:target="_blank"}.
+- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.openshift.com/container-platform/4.14/storage/understanding-persistent-storage.html#pv-access-modes_understanding-persistent-storage){:target="_blank"}.
+
 
 For example, you can use Rook Ceph for your storage.
 
@@ -174,7 +175,6 @@ If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you ca
 
 ## {{site.data.reuse.ep_name}} UI
 
-<!-- done -->
 
 The {{site.data.reuse.ep_name}} user interface (UI) is supported on the following web browsers:
 
@@ -194,7 +194,7 @@ By default, all certificates that are required by {{site.data.reuse.ep_name}} ar
 
 If you already have a Cert Manager installed in your cluster, you can skip this installation.
 
-To check whether a Cert Manager is installed in your cluster by using the OpenShift web console, follow the steps:
+To check whether a Cert Manager is installed in your cluster by using the OpenShift web console, complete the following steps:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}

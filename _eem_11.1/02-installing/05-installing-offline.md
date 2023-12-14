@@ -154,9 +154,6 @@ Before mirroring your images, set the environment variables for the CASE images 
 
 ## Configure registry authentication
 
-<!--Only offline environment -->
-
-
 To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
 A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms other than OpenShift.
@@ -206,8 +203,6 @@ Where:
 
 
 ## Mirror the images
-
-<!--Only offline environment -->
 
 The process of mirroring images pulls the image from the internet and pushes it to your local registry. After mirroring your images, you can configure your cluster and complete the offline installation.
 
@@ -263,7 +258,6 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 **Note:** Only applicable when installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
 
-<!--Only offline environment -->
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.

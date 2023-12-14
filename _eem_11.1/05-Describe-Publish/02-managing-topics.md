@@ -75,7 +75,7 @@ To delete a topic from {{site.data.reuse.eem_name}}, complete the following step
 2. Confirm the topic that you want to delete by entering the topic name.
 3. Click the red **Delete** button, this will be visible in the footer if you have entered the topic name that you want to delete correctly.
 
-Topics can also be deleted from the **Topics** page. All **Unpublished** topics will contain a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"} in their row in the topic table. You can delete a topic from the **Topics** page by clicking the delete icon and following steps 2-3 above.
+Topics can also be deleted from the **Topics** page. All **Unpublished** topics will contain a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Remove topic icon."){:height="30px" width="15px"} in their row in the topic table. You can delete a topic from the **Topics** page by clicking the delete icon and following steps 2-3 above.
 
 ## Topic lifecycle state
 

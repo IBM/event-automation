@@ -24,9 +24,9 @@ If you are running on other Kubernetes platforms, you can upgrade {{site.data.re
 **Note:** If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.es_name}} operator is upgraded to 3.2.x when it is available in the catalog, and your {{site.data.reuse.es_name}} instance is then also automatically upgraded, unless you [set a schedule for the upgrade](#scheduling-the-upgrade-of-an-instance) by pausing the reconciliation.
 
 
-### Upgrade paths for OpenShift EUS releases
+### Upgrade paths for EUS releases on OpenShift
 
-No direct upgrade from an OpenShift EUS version to the latest version is supported. Upgrade to [CD version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) and then proceed to upgrade your {{site.data.reuse.es_name}} version to the latest by following the instructions on this page starting with the [prerequisites](#prerequisites).
+No direct upgrade from an EUS version to the latest {{site.data.reuse.es_name}} version is supported. Upgrade to [CD version 11.1.x]({{ 'es/es_11.1' | relative_url }}/installing/upgrading/) and then proceed to upgrade your {{site.data.reuse.es_name}} version to the latest by following the instructions on this page starting with the [prerequisites](#prerequisites).
 
 ## Prerequisites
 

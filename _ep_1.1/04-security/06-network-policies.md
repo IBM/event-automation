@@ -114,32 +114,32 @@ The following tables provide information about the outbound network connections 
 ## Flink network policies
 
 Network policies are not deployed automatically when installing {{site.data.reuse.flink_long}}. For increased security, you can
-deploy the deny-all-ingress policy as shown in [Considerations for ingress](#considerations-for-ingress). In this case,
+deploy the deny-all-ingress policy as described in [considerations for ingress](#considerations-for-ingress). In this case,
 network policies for Flink pods need to be deployed following these steps:
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Add the following network policy to the namespace where the {{site.data.reuse.flink_long}} is installed.
 
-```yaml
-   kind: NetworkPolicy
-   apiVersion: networking.k8s.io/v1
-   metadata:
-     name: ibm-eventautomation-flink-operator
-   spec:
-     podSelector:
-       matchLabels:
-         app.kubernetes.io/instance: ibm-eventautomation-flink-operator
-         app.kubernetes.io/name: flink-kubernetes-operator
-         name: ibm-eventautomation-flink-operator
-     ingress:
-       - ports:
-           - protocol: TCP
-             port: 9443
-           - protocol: TCP
-             port: 443
-     policyTypes:
-       - Ingress
-```
+   ```yaml
+      kind: NetworkPolicy
+      apiVersion: networking.k8s.io/v1
+      metadata:
+        name: ibm-eventautomation-flink-operator
+      spec:
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/instance: ibm-eventautomation-flink-operator
+            app.kubernetes.io/name: flink-kubernetes-operator
+            name: ibm-eventautomation-flink-operator
+        ingress:
+          - ports:
+              - protocol: TCP
+                port: 9443
+              - protocol: TCP
+                port: 443
+        policyTypes:
+          - Ingress
+   ```
 
 3. Set the following environment variable to store the namespace of your Flink instance. If you are deploying the network policies before installing your Flink instance, ensure the namespace is already created.
 
@@ -264,12 +264,12 @@ network policies for Flink pods need to be deployed following these steps:
        - Ingress
    EOF
    ```
+
 **Note**: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
 ensure the ports used in the network policies match the custom ports.
 
-If you configure Flink to [export](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/metric_reporters){:target="_blank"}
-the [Flink Metrics](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/metrics){:target="_blank"}, the port
-configured for emitting metrics needs to be opened by following these steps:
+If you configure Flink to [export](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/metric_reporters){:target="_blank"} the [Flink Metrics](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/metrics){:target="_blank"}, the port
+configured for emitting metrics must be opened by following these steps:
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Set the following environment variable to hold the namespace of the Flink instance. If deploying the network policies before

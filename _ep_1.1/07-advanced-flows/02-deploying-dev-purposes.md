@@ -10,9 +10,11 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
 ## Prerequisites
 
+- Ensure you have configured [persistent storage](../../installing/configuring#configuring-persistent-storage) before you trigger a savepoint.
+
 - You have [installed](../../installing/installing#install-a-flink-instance) a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource, and you successfully [verified](../../installing/post-installation/#verifying-an-installation) it.
 
-  For more information, see [Installing a Flink deployment instance](../../installing/installing#install-a-flink-instance) and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
+  For more information, see [installing](../../installing/installing#install-a-flink-instance) a `FlinkDeployment` instance and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
 
   **Note:** When deploying Flink for non-production environments (such as development or testing purposes), set `license.use` to `EventAutomationNonProduction` in the `FlinkDeployment` custom resource:
 
@@ -26,7 +28,7 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
-  For more information, see [Exporting flows](../exporting-flows).
+  For more information, see [exporting flows](../exporting-flows).
 
 - You updated the Flink SQL Kafka connectors properties and values defined in file `statements.sql` to match your target environment: 
 
@@ -146,7 +148,7 @@ SET 'key' = 'value';
 
    For example:
 
-   ```
+   ```shell
    export FLINK_JOB_MANAGER=$(kubectl get pods --selector component=jobmanager,app=my-flink-deployment --no-headers=true -o custom-columns=Name:.metadata.name | head -n 1)
    echo ${FLINK_JOB_MANAGER}
    my-flink-deployment-b5d95dc77-nmgnj
@@ -157,14 +159,14 @@ SET 'key' = 'value';
 1. Setup the connection to the Flink cluster.
 
 
-2. Copy the file `statements.sql` to the target container `flink-main-container` of the Flink `JobManager` pod
+2. Copy the file `statements.sql` to the target container `flink-main-container` of the Flink `JobManager` pod:
 
    ```shell
    kubectl cp -c flink-main-container statements.sql ${FLINK_JOB_MANAGER}:/tmp
    ```
 
 
-3. Submit the Flink SQL job to the Flink cluster.
+3. Submit the Flink SQL job to the Flink cluster:
 
    ```shell
    kubectl exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null -f /tmp/statements.sql
@@ -175,7 +177,7 @@ SET 'key' = 'value';
 
 1. Setup the connection to the Flink cluster.
 
-2. List the Flink jobs.
+2. List the Flink jobs:
 
    ```sql
    kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null <<< 'SHOW JOBS;'
@@ -197,8 +199,7 @@ SET 'key' = 'value';
 
 ## Trigger a savepoint for a running Flink SQL job
 
-1. List the deployed Flink SQL jobs.
-
+1. After meeting the required [prerequisites](#prerequisites), [list](#list-the-deployed-flink-sql-jobs) the deployed Flink SQL jobs.
 
 2. Locate the entry corresponding to the `job name`.
 
@@ -206,7 +207,7 @@ SET 'key' = 'value';
 3. Check that the status of this job is `RUNNING` and take note of the corresponding `job id`.
 
 
-4. Execute the following command that triggers the generation of a savepoint without stopping the job.
+4. Execute the following command that triggers the generation of a savepoint without stopping the job:
 
    ```sql
    kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink savepoint --type canonical <job id>
@@ -222,17 +223,14 @@ SET 'key' = 'value';
    Savepoint completed. Path: file:/flink-data/savepoints/savepoint-89112b-8dbd328bf7c9
    ```
 
-   Take note of the savepoint path, you will need it to restart the Flink job from this savepoint.
-
-   For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).
+   Take note of the savepoint path, you need it to restart the Flink job from this savepoint.
 
    For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).
 
 
 ## Stop a Flink SQL job with a savepoint
 
-1. List the deployed Flink SQL jobs.
-
+1. After meeting the required [prerequisites](#prerequisites), [list](#list-the-deployed-flink-sql-jobs) the deployed Flink SQL jobs.
 
 2. Locate the entry corresponding to the `job name`.
 
@@ -240,7 +238,7 @@ SET 'key' = 'value';
 3. Check that the status of this job is `RUNNING` and take note of the corresponding `job id`.
 
 
-4. Execute the following command that triggers the generation of a savepoint and stops the Flink job.
+4. Execute the following command that triggers the generation of a savepoint and stops the Flink job:
 
    ```sql
    kubectl exec -it ${FLINK_JOB_MANAGER} -- /opt/flink/bin/flink stop --type canonical <job id>
@@ -255,6 +253,6 @@ SET 'key' = 'value';
    Savepoint completed. Path: file:/flink-data/savepoints/savepoint-89112b-8dbd328bf7c9
    ```
 
-   Take note of the savepoint path, you will need it to restart the Flink job from this savepoint.
+   Take note of the savepoint path, you need it to restart the Flink job from this savepoint.
 
    For information about how to restart a Flink job from a savepoint, see [set deployment options](#set-deployment-options).

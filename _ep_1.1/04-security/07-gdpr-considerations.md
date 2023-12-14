@@ -57,7 +57,7 @@ The exact requirements will depend on the nature of the information that will be
 Areas for consideration to address these aspects of the GDPR legislation include:
 
 - Physical access to the assets where the product is installed.
-- Encryption of data both at rest (see [Data Storage](#data-storage)) and in flight (see [Data Processing](#data-processing)).
+- Encryption of data both at rest (see [data storage](#data-storage)) and in flight (see [data processing](#data-processing)).
 - [Managing access](../managing-access) to your {{site.data.reuse.ep_name}} instance.
 
 ## Data Life Cycle
@@ -71,7 +71,7 @@ There is no one definitive answer to this question because use cases vary throug
 
 ### Where is data stored?
 
-See the [Data Storage](#data-storage) section for details about how information is stored by {{site.data.reuse.ep_name}}. This information can include data that is governed by GDPR.
+See the [data storage](#data-storage) section for details about how information is stored by {{site.data.reuse.ep_name}}. This information can include data that is governed by GDPR.
 
 ### Personal data used for online contact with IBM
 
@@ -90,8 +90,8 @@ of GDPR, you should consider the types of personal data which in your circumstan
 may wish to consider aspects such as:
 
 - What data is being passed to {{site.data.reuse.ep_name}}?
-- What type of storage has been configured within the {{site.data.reuse.ep_name}}? Has encryption been enabled? For more information, see [Data Storage](#data-storage).
-- How does data flow between nodes in the {{site.data.reuse.ep_name}} deployment? Has the internal network traffic been encrypted? For more information, see [Data Processing](#data-processing).
+- What type of storage has been configured within the {{site.data.reuse.ep_name}}? Has encryption been enabled? For more information, see [data storage](#data-storage).
+- How does data flow between nodes in the {{site.data.reuse.ep_name}} deployment? Has the internal network traffic been encrypted? For more information, see [data processing](#data-processing).
 
 ## Data Storage
 

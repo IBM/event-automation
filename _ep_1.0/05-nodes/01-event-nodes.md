@@ -119,8 +119,10 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 
 1. Select **Upload a schema or sample message**
 2. Select how you want to define the structure:
-  - **Topic schema** to define the structure from an AVRO schema of type **record** whose primitive fields are of AVRO type `string`, `int`, `long`, `float`, `double` or `boolean`.
-  - **Sample message** to define the structure from JSON document whose properties are of JSON data types `string`, `number` or `boolean`.
+
+  - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
+  - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+
 
 After you have provided a valid schema or sample message, click **Done**.
 
@@ -134,8 +136,8 @@ Once the event source is configured you will be able to rename properties by con
 ##### Type mapping
 
 Default types are assigned depending on how you defined the structure of the message:
-- If you defined the structure from a sample JSON message, the event property type is set to `STRING`.
-- If you defined the structure from an AVRO schema, the event property type depends on the type of the AVRO property:
+- If you defined the structure from a sample JSON event, the event property type is set to `String`, `Boolean`, `Integer`, `Big integer`, `Double`, or `Float` depending on the message.
+- If you defined the structure by using an Avro schema, the default event property type is mapped from the following Avro type:
 
   | Avro type         | Event property type |
   |-------------------|---------------------|

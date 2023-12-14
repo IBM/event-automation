@@ -634,8 +634,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 To deploy a Flink instance, run the following commands:
 
-1. Prepare a `FlinkDeployment` custom resource in a YAML file, using the information provided in
-   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
+1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
 
    **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included
    by {{site.data.reuse.flink_long}}. Also, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.

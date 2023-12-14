@@ -82,12 +82,12 @@ Where the `id` is the username that is specified for the user.
 4. Patch the `<custom-resource-name>-ibm-ep-user-roles` secret with the local user credentials by running the following command:
 
    ```shell
-   kubectl patch secret <custom-resource-name>-ibm-ep-user-roles --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-mapping.json" ,"value" : "<your-base64-value>"}]'
+   kubectl patch secret <custom-resource-name>-ibm-ep-user-roles --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-mapping.json" ,"value" : "<your-Base64-value>"}]'
    ```
 
    where:
     - \<custom-resource-name\> is the name of your {{site.data.reuse.ep_name}} instance.
-    - \<your-base64-value\> is the Base64-encoded string returned from the previous command.
+    - \<your-Base64-value\> is the Base64-encoded string returned from the previous command.
 
    for example:
 

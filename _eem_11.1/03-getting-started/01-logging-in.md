@@ -12,7 +12,7 @@ Follow the instructions to log in and log out of the {{site.data.reuse.eem_name}
 
 ## Logging in
 
-To log in to the {{site.data.reuse.eem_name}} UI, follow the steps:
+To log in to the {{site.data.reuse.eem_name}} UI, complete the following steps:
 
 1. Enter the URL provided by your cluster administrator in a supported [web browser](../../installing/prerequisites/#event-endpoint-management-ui).
 2. Log in to your {{site.data.reuse.eem_name}} UI. Use your credentials provided by your cluster administrator.
@@ -67,6 +67,6 @@ A cluster administrator can manage access and role rights by following the instr
 
 To log out of {{site.data.reuse.ep_name}}:
 
-1. In your UI, click the user icon ![user icon]({{ 'images' | relative_url }}/usericon.svg "Diagram showing more options."){:height="30px" width="15px"} in the upper right of the window.
+1. In your UI, click the user icon ![user icon]({{ 'images' | relative_url }}/usericon.svg "The user icon."){:height="30px" width="15px"} in the upper right of the window.
 2. Click **Log out**.
 3. Click **Log out** again in the dialog to confirm.

@@ -191,7 +191,7 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, `"100GiB"`).
+- Optionally, specify the storage size in `storage.size` (for example, `"100Gi"`).
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
@@ -220,7 +220,7 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, `"100GiB"`).
+- Optionally, specify the storage size in `storage.size` (for example, `"100Gi"`).
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 

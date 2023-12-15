@@ -153,7 +153,7 @@ All Flink samples except the Quick Start sample configure Flink to use persisten
 
    ```shell
    export STORAGE_CLASS=rook-cephfs
-   export STORAGE_CAPACITY=20GiB
+   export STORAGE_CAPACITY=20Gi
    ```
 
    **Important:** The storage class must comply with the [Storage requirements for Flink](../prerequisites/#storage-requirements-for-flink).

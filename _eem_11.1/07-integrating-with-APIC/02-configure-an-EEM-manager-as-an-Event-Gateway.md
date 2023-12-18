@@ -17,9 +17,9 @@ To register {{site.data.reuse.eem_name}} instance as an {{site.data.reuse.egw}} 
 
 Follow the steps to configure your {{site.data.reuse.eem_name}} Manager as an {{site.data.reuse.egw}} Service.
 
-## Retrieve the API Connect API endpoint
+## Retrieve the API Connect JSON Web Key Set (JWKS) endpoint
 
-Before beginning, you must retrieve the API Connect `platformApi` endpoint.
+Before beginning, you must retrieve the API Connect `jwksUrl` endpoint.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -27,7 +27,7 @@ Before beginning, you must retrieve the API Connect `platformApi` endpoint.
 4. Select the **API Connect** operator.
 5. In the **API Connect cluster**, click the installed instance.
 6. In the **YAML**, find the `status.endpoints` section of the `APIConnectCluster` custom resource. 
-7. Retrieve the value in the `platformApi` field.
+7. Retrieve the value in the `jwksUrl` field.
 
 The value that you retrieved is required to configure trust between API Connect and {{site.data.reuse.eem_name}}.
 
@@ -62,10 +62,14 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
         ```
         
         Where `APIC namespace` is the namespace where your API Connect instance is installed.
-     
+
+    **Note:** This value is Base64-encoded. However, if you retrieve the value from the **Details** tab in the {{site.data.reuse.openshift_short}} UI instead, the value is not Base64-encoded.
+
 2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the CA certificate. Create a secret to store the API Connect certificate as follows.
 
    - Using the {{site.data.reuse.openshift_short}} UI:
+
+    **Note:** When creating secrets in the {{site.data.reuse.openshift_short}} UI, the input value must not be encoded. Therefore, if you have a Base64-encoded certificate from step 1, decode it before completing the following steps.
      
      1. {{site.data.reuse.openshift_ui_login}}
      2. Expand the **Workloads** drop-down menu and select **Secrets**.
@@ -73,7 +77,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
      4. Expand the **Create** drop-down menu and select **Key/value secret**.
      5. Enter `apim-cpd` as the **Secret name**.
      6. Enter `ca.crt` as the **Key**.
-     7. Under **Value**, select the text area, and enter the Base64-encoded certificate that you obtained in step 1.
+     7. Under **Value**, select the text area, and enter the decoded certificate.
      8. Click **Create**.
    
    - Using the CLI:
@@ -117,8 +121,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
          ```yaml
          apic:
            jwks:
-             endpoint: >-
-               <platformApi endpoint>/cloud/oauth2/certs   
+             endpoint: <jwksUrl>
          ```
 
       7. In the `spec.manager.tls` field, add the following snippet: 
@@ -147,8 +150,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
          ```yaml
          apic:
            jwks:
-             endpoint: >-
-               <platformApi endpoint>/cloud/oauth2/certs   
+             endpoint: <jwksUrl>
          ```
 
       4. Also in the YAML, in the `spec.manager.tls` field, add the following snippet:

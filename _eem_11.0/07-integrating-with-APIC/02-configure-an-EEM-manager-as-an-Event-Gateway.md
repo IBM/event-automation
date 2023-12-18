@@ -17,9 +17,9 @@ To register {{site.data.reuse.eem_name}} instance as an {{site.data.reuse.egw}} 
 
 Follow the steps to configure your {{site.data.reuse.eem_name}} Manager as an {{site.data.reuse.egw}} Service.
 
-## Retrieve the API Connect API endpoint
+## Retrieve the API Connect JSON Web Key Set (JWKS) endpoint
 
-Before beginning, you must retrieve the API Connect `platformApi` endpoint.
+Before beginning, you must retrieve the API Connect `jwksUrl` endpoint.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -27,21 +27,21 @@ Before beginning, you must retrieve the API Connect `platformApi` endpoint.
 4. Select the **API Connect** operator.
 5. In the **API Connect cluster**, click the installed instance.
 6. In the **YAML**, find the `status.endpoints` section of the `APIConnectCluster` custom resource. 
-7. Retrieve the value in the `platformApi` field.
+7. Retrieve the value in the `jwksUrl` field.
 
 The value that you retrieved is required to configure trust between API Connect and {{site.data.reuse.eem_name}}.
 
 ## Configure {{site.data.reuse.eem_name}} to trust API Connect
 
-To allow communication between API Connect and {{site.data.reuse.eem_name}}, you must add the certificate presented on the `platformApi` endpoint to {{site.data.reuse.eem_name}} as a trusted certificate. Additionally, you must provide a JWKS endpoint, which will be used to authenticate messages received from API Connect.
+To allow communication between API Connect and {{site.data.reuse.eem_name}}, you must add the certificate presented on the `jwksUrl` endpoint to {{site.data.reuse.eem_name}} as a trusted certificate. Additionally, you must provide a JWKS endpoint, which will be used to authenticate messages received from API Connect.
 
 1. Download the server certificate from an API Connect endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
 
    ```bash
-   openssl s_client -connect <platformApi value>
+   openssl s_client -connect <jwksUrl value>
    ```
 
-   Where `<platformApi value>` is the API Connect `platformApi` endpoint that you retrieved earlier.
+   Where `<jwksUrl value>` is the API Connect `jwksUrl` endpoint that you retrieved earlier.
 2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the downloaded certificate. Create a secret to store the API Connect certificate as follows.
 
    - Using the {{site.data.reuse.openshift_short}} UI:
@@ -102,8 +102,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
          ```yaml
          apic:
            jwks:
-             endpoint: >-
-               <platformApi endpoint>/cloud/oauth2/certs   
+             endpoint: <jwksUrl>
          ```
 
       7. In the `spec.manager.tls` field, add the following snippet: 
@@ -132,8 +131,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
          ```yaml
          apic:
            jwks:
-             endpoint: >-
-               <platformApi endpoint>/cloud/oauth2/certs   
+             endpoint: <jwksUrl>
          ```
 
       4. Also in the YAML, in the `spec.manager.tls` field, add the following snippet:

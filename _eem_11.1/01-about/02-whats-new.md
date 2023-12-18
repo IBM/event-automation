@@ -10,6 +10,25 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.1.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Options for topics
+
+{{site.data.reuse.eem_name}} release 11.1.1 introduces options. Kafka administrators can create [options](../../about/key-concepts#option) for a topic, which enables administrators to control how the topic's stream of events are made available within the catalog.
+
+### Approval control
+
+{{site.data.reuse.eem_name}} release 11.1.1 introduces approval control. Now you can control who can subscribe to your topics. For more information, see [approval controls for options](../../describe/approval-controls) and [subscription approvals](../../consume-subscribe/approval-requests).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.1.1 compared to 11.1.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.1.1 contains security and bug fixes.
+
+## Release 11.1.0
+
+
 ### {{site.data.reuse.eem_name}} Admin API
 
 {{site.data.reuse.eem_name}} release 11.1.0 introduces the [{{site.data.reuse.eem_name}} Admin API]({{ 'eem-api' | relative_url }}) for accessing {{site.data.reuse.eem_name}} features programmatically. Access to the Admin API is [controlled by tokens](../../security/api-tokens).

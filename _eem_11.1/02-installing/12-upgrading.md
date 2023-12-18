@@ -12,11 +12,11 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 
 ## Upgrade paths
 
-Consider the possible upgrade paths for your platform.
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.1.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from 11.1.0 or any 11.0.x version by using operator version 11.1.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
-- On OpenShift, you can upgrade {{site.data.reuse.eem_name}} to the latest 11.1.x version directly from any 11.0.x version by using operator channel v11.1. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is. See [upgrading on OpenShift](#upgrading-on-the-openshift-container-platform) for more information, after considering the general upgrade [prerequisites](#prerequisites).
+- On OpenShift, you can upgrade to the latest version by using operator channel v11.1. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
-- On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), as described in [upgrading on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm), after considering the general upgrade [prerequisites](#prerequisites).
+- On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ Find out how to upgrade your deployment on an {{site.data.reuse.openshift_short}
 
 Complete the following steps to plan your upgrade on OpenShift.
 
-- Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel you are subscribed to in the [web console](#upgrading-subscription-by-using-the-web-console) (see **Update channel** section), or by using the CLI as follows (this is the [subscription created during installation](../installing/#install-the-operators)):
+- Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel you are subscribed to in the [web console](#upgrading-subscription-by-using-the-openshift-web-console) (see **Update channel** section), or by using the CLI as follows (this is the [subscription created during installation](../installing/#install-the-event-endpoint-management-operator)):
    
    1. Run the following command to check your subscription details:
    
@@ -53,11 +53,9 @@ Complete the following steps to plan your upgrade on OpenShift.
 
 - If your existing Subscription does not use the v11.1 channel, your upgrade is a change in a minor version. Complete the following steps to upgrade:
   1. Ensure the [catalog source for new version is available](#making-new-catalog-source-available).
-  1. Change your Subscription to the `v11.1` channel, using [the CLI](#upgrading-subscription-by-using-the-openshift-cli) or [the web console](#upgrading-subscription-by-using-the-openshift-web-console).
+  1. Change your Subscription to the `v11.1` channel by using [the CLI](#upgrading-subscription-by-using-the-openshift-cli) or [the web console](#upgrading-subscription-by-using-the-openshift-web-console). The channel change will upgrade your operator, and then the operator will upgrade your {{site.data.reuse.eem_name}} instance automatically.
   
-- If your existing Subscription is already on the v11.1 channel, your upgrade is a change to the patch level (third digit) only. Complete the following steps to upgrade:
-
-  1. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed using the IBM Operator Catalog with the `latest` label, new versions are automatically available.
+- If your existing Subscription is already on the v11.1 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically.
 
 ### Making new catalog source available
 
@@ -113,7 +111,7 @@ If you are running {{site.data.reuse.eem_name}} on Kubernetes platforms that sup
 
 Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
-- Determine the chart version for your current deployment:
+- Determine the chart version for your existing deployment:
    
    1. Change to the namespace where your {{site.data.reuse.eem_name}} instance is installed:
       
@@ -157,11 +155,11 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       
       Check the `version:` value in the output, for example: `version: 11.1.0`
 
-- If the existing chart version for your current deployment is 11.0.x, your upgrade involves a change in a minor version. Complete the following steps to upgrade to the latest version:
+- If the chart version for your existing deployment is 11.0.x, your upgrade involves a change in a minor version. Complete the following steps to upgrade to the latest version:
   1. Before upgrading, [update your instance configuration](#update-your-instance-configuration) to ensure compatibility across the version change.
-  2. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to bring your CRD and operator charts to the latest version.
+  2. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_name}} instance automatically.
 
-- If the existing chart version for your current deployment is 11.1.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to bring your CRD and operator charts to the latest version.
+- If the chart version for your existing deployment is 11.1.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_name}} instance automatically.
 
 ### Update your instance configuration
 
@@ -171,7 +169,7 @@ To enable the Admin API, [configure the `admin` endpoint](../../installing/confi
 
 ### Upgrading by using Helm
 
-Complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation. 
+You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms by using Helm.
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Identify the namespace where the installation is located and the Helm release managing the CRDs by looking at the annotations on the CRDs:

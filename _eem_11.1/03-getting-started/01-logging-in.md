@@ -1,5 +1,5 @@
 ---
-title: "Logging in and Logging out"
+title: "Logging in"
 excerpt: "Log in to your Event Endpoint Management installation."
 categories: getting-started
 slug: logging-in
@@ -25,7 +25,7 @@ As a cluster administrator, you can retrieve the URLs and log in to {{site.data.
 
 You can use the {{site.data.reuse.openshift_short}} UI (web console) and CLI to retrieve the login URLs as follows:
 
-## Using {{site.data.reuse.openshift_short}} UI
+### Using {{site.data.reuse.openshift_short}} UI
 
 Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.eem_name}} UI as follows:
 
@@ -36,7 +36,7 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.eem
 
    A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
-## Using the CLI
+### Using the CLI
 
 To retrieve the URL for your {{site.data.reuse.eem_name}} UI, use the following commands:
 

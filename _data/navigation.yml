@@ -107,6 +107,7 @@ latest_eemdocs:
         url: /security/api-tokens/
       - title: "Enabling FIPS"
         url: /security/fips/
+
   - title: Describe and publish
     children:
       - title: "Describing event sources"
@@ -115,13 +116,15 @@ latest_eemdocs:
         url: /describe/managing-topics/
       - title: "Managing clusters"
         url: /describe/managing-clusters/
-      - title: "Publishing topics"
+      - title: "Publishing options"
         url: /describe/publishing-topics/
-      - title: "Managing user access to topics"
+      - title: "Managing user access to options"
         url: /describe/managing-user-access-to-topics/
       - title: "Managing gateways"
         url: /describe/managing-gateways/
-  - title: Consume and subscribe
+      - title: "Approval controls for options"
+        url: /describe/approval-controls/
+  - title: Subscribe and consume
     children:
       - title: "Discovering topics"
         url: /consume-subscribe/discovering-topics/
@@ -131,6 +134,8 @@ latest_eemdocs:
         url: /consume-subscribe/managing-subscriptions/
       - title: "Setting your application to consume from a topic"
         url: /consume-subscribe/setting-your-application-to-consume/
+      - title: "Subscription approvals"
+        url: /consume-subscribe/approval-requests/
   - title: "Integrating with IBM API Connect"
     children:
       - title: "Integration overview"
@@ -155,7 +160,7 @@ latest_eemdocs:
         url: /troubleshooting/no-such-algorithm-log/
       - title: "Event Gateway in 'Evicted' state"
         url: /troubleshooting/evicted-gateway/
-      - title: "Invalid exported Async API for API Connect"
+      - title: "Invalid exported AsyncAPI for API Connect"
         url: /troubleshooting/invalid-async-api/
       - title: "Error when logging in to UI after changing CA certificate"
         url: /troubleshooting/changing-ca-certificate/
@@ -169,6 +174,8 @@ latest_eemdocs:
         url: /troubleshooting/certificate-rotation/
       - title: "502 Bad Gateway error when logging in to UI"
         url: /troubleshooting/502-bad-gateway/
+      - title: "Error while rotating encryption key"
+        url: /troubleshooting/too-many-keys/
       - title: "Event Gateway pods fail after upgrading with MissingElementException error"
         url: /troubleshooting/gateway-pods-fail/
 
@@ -242,7 +249,7 @@ latest_eemdocs:
         url: /describe/managing-user-access-to-topics/
       - title: "Managing gateways"
         url: /describe/managing-gateways/
-  - title: Consume and subscribe
+  - title: Subscribe and consume
     children:
       - title: "Discovering topics"
         url: /consume-subscribe/discovering-topics/
@@ -276,7 +283,7 @@ latest_eemdocs:
         url: /troubleshooting/no-such-algorithm-log/
       - title: "Event Gateway in 'Evicted' state"
         url: /troubleshooting/evicted-gateway/
-      - title: "Invalid exported Async API for API Connect"
+      - title: "Invalid exported AsyncAPI for API Connect"
         url: /troubleshooting/invalid-async-api/
       - title: "Error when logging in to UI after changing CA certificate"
         url: /troubleshooting/changing-ca-certificate/

@@ -141,9 +141,21 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
    Where:
 
    - `<gather-modules>` is a comma separated list of [modules](#gather-modules), where valid values are `eventstreams`, `kafka`, `eem`, `eventprocessing`, `schema`, `failure`, `overview` and `system`.
-   - `<image-address>` is the cluster accessible location where you have pushed the must gather image (see step 3).
+   - `<image-address>` is the cluster accessible location where you have pushed the `must-gather` image (see step 3).
    - `<instance-namespace>` is the namespace where your capability instance is installed, and where the script gathers log data from.  
 
+
+   **Note:** If you are running in an offline environment and need to specify your internal registry as the image location, run the command as follows:
+
+      ```shell
+      ./ibm-events-must-gather -n samplenamespace -m eventstreams -i <image-address> --mustgather-namespace <mustgather-namespace> --image-pull-secret <image-pull-secret-name>
+      ```
+
+   Where:
+   - `<image-address>` is the address of the image to use for gathering logs. If you are running on the {{site.data.reuse.openshift_short}} and have defined a repository in `ImageContentSourcePolicies`, you do not need to provide `<image-address>`.
+   - `<mustgather-namespace>` is the namespace where you want to run the script for gathering logs.
+   - `<image-pull-secret-name>` is the name of the secret that enables the `must-gather` image to be pulled from your internal registry. If you are running on the {{site.data.reuse.openshift_short}} and have specified credentials for pulling images in the global `pull-secret` in the `openshift-config` namespace, `--image-pull-secret <image-pull-secret-name>` is not required because the credentials for pulling the image are already available in the global `pull-secret`. 
+  
       If specifying more than one of `eventstreams`, `eem`, `eventprocessing`, and `flink` modules, individual namespace flags must be used:
         - `--es-namespace` specifies the namespace containing the {{site.data.reuse.es_name}} instance to gather data from.
         - `--eem-namespace` specifies the namespace containing the {{site.data.reuse.eem_name}} instance to gather data from.

@@ -17,7 +17,7 @@ A deployment of {{site.data.reuse.eem_name}} consists of a single {{site.data.re
 
 Installing {{site.data.reuse.eem_name}} includes the following high-level steps:
 
-1. Determine if you will be installing in an:
+1. Depending on your platform and environment, select the right procedure:
 
    - [{{site.data.reuse.openshift}} online environment](../installing/) which has access to the internet.
    - [Offline environment](../offline/) (also referred to as air-gapped or disconnected).

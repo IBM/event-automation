@@ -14,6 +14,10 @@ After [configuring access](../managing-access) to your {{site.data.reuse.eem_nam
 
 **Note:** You must assign at least one of these roles to each user as the first role.
 
+You can set up authorization in one of the following ways:
+1. Create local definitions for every user to assign specific roles. You can do this for either [LOCAL](#setting-up-roles-for-local-authorization) or [OIDC](#setting-up-roles-for-oidc-based-authorization) authentication.
+2. [Define mappings to custom roles in the OIDC provider](#setting-up-oidc-based-authorization-with-a-custom-role-identifier), only if you have used an OIDC provider for authentication. After this is set up, you can manage the roles each user has through your external security manager.
+
 ## Setting up roles for Local authorization
 
 Along with [configuring the user credentials](../managing-access), you must define user mappings through the secret `<custom-resource-name>-ibm-eem-user-roles` to define the roles for each local user.
@@ -151,9 +155,11 @@ For more information about retrieving the `user subjects`, see [managing access]
 
 ### Setting up OIDC based authorization with a custom role identifier
 
-Custom role identifiers can be used as the `id` in the user mappings JSON stored in the `<custom-resource-name>-ibm-eem-user-roles` secret. 
+You can use custom role identifiers as the `id` in the user mappings JSON stored in the `<custom-resource-name>-ibm-eem-user-roles` secret. 
 
-Following on from the example in [managing access](../managing-access#setting-up-oidc-based-authorization-with-a-custom-role-identifier), the following is an example of user mappings:
+This requires setting up in your OIDC provider, so that it sends back a custom role identifier with each user. Carry out an initial setup in your `EventEndpointManagement` custom resource, as described in [managing access](../managing-access#setting-up-oidc-based-authorization-with-a-custom-role-identifier).
+
+After the initial setup, instead of specific user subjects, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to define role mappings to custom role identifiers as follows:
 
 ```json
 {
@@ -174,4 +180,4 @@ Following on from the example in [managing access](../managing-access#setting-up
 }
 ```
 
-Where `org-admin` and `org-viewer` are the custom identifiers, inferred from the OIDC provider token, used to assign user permissions in {{site.data.reuse.eem_name}}.
+Where `org-admin` and `org-viewer` are the custom identifiers, inferred from the OIDC provider token, and are used to assign user permissions in {{site.data.reuse.eem_name}}.

@@ -13,7 +13,7 @@ To make API requests to {{site.data.reuse.eem_name}}, you require an [access tok
 The following features are available by using the Admin API:
 
 - [Clusters](../../describe/managing-clusters) (Create, Read, Update, Delete)
-- [Catalog entries](../../consume-subscribe/discovering-topics/#the-catalog) (Create, Read, Update, Delete)
+- [Event sources](../../describe/adding-topics) (Create, Read, Update, Delete)
 - [Topic entries](../../describe/managing-topics/) (Publish, Unpublish, Archive)
 - [Subscriptions](../../consume-subscribe/managing-subscriptions/) (Create, Read, Update, Delete)
 - [Gateways](../../describe/managing-gateways) (Read gateway list)
@@ -34,11 +34,11 @@ By default, the type of exposure for the `admin` endpoint  is `external`, which 
 
 ## API access tokens
 
-To make API requests to {{site.data.reuse.eem_name}}, you require an access token. You can create and manage tokens in the **Profile** page. The **Profile** page displays the current {{site.data.reuse.eem_name}} organization that you are a member of, and the list of any previously created tokens.
+To make [API requests](../api-tokens) to {{site.data.reuse.eem_name}} or to [receive topic information]({{'es/installing/integrating-eem/' | relative_url}}) from {{site.data.reuse.es_name}}, you require an access token. You can create and manage tokens in the **Profile** page. The **Profile** page displays the current {{site.data.reuse.eem_name}} organization that you are a member of, and the list of any previously created tokens.
 
 Every user in {{site.data.reuse.eem_name}} is a member of the organization called **eem**. This organization value is required for making API requests.
 
-**Note:** The API access token is only displayed in the {{site.data.reuse.eem_name}} UI when it is generated, and it cannot be retrieved later in the UI or through any API. If you forget the token, you need to delete it from the list of tokens and create a new one.
+**Note:** The access token is only displayed in the {{site.data.reuse.eem_name}} UI when it is generated, and it cannot be retrieved later in the UI or through any API. If you forget the token, you need to delete it from the list of tokens and create a new one.
 
 ### Creating a token
 
@@ -74,4 +74,3 @@ To delete a token, complete the following steps:
 4. Read the **Delete token** warning, and provide confirmation by entering the token description in the field exactly as it is displayed in the message.
 5. Click **Delete**.
    **Important:** Deleting a token is permanent and cannot be reversed.
-

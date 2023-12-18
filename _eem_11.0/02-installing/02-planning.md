@@ -130,8 +130,8 @@ Ensure you have sufficient CPU capacity and physical memory in your environment 
 
 If you plan to have persistent volumes, consider the disk space required for storage. {{site.data.reuse.eem_name}} stores
 data in JSON format. The amount of data stored is proportional to the number of entries in the {{site.data.reuse.eem_name}}
-catalog and the number of subscribers. For storage classes that support resizing, it might be sufficient to begin with `100MiB`,
-monitor and extend as needed. By default, a value of `500MiB` is used.
+catalog and the number of subscribers. For storage classes that support resizing, it might be sufficient to begin with `100Mi`,
+monitor and extend as needed. By default, a value of `500Mi` is used.
 
 You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
 

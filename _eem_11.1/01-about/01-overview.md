@@ -20,9 +20,18 @@ The following diagram provides an overview of {{site.data.reuse.eem_name}}.
 ![Overview of Event Endpoint Management.]({{ 'images' | relative_url }}/EEM_Overview.jpg "Diagram that shows the overview of Event Endpoint Management."){:height=“100%” width=“100%“}
 
 1. The Kafka administrator describes the Kafka topic, which is the event source. They can select a topic from an existing Kafka cluster or specify a new cluster, after which the topics on that cluster can be made available by adding and describing them.
-2. The Kafka administrator publishes the Kafka topic. The topic is then available in the catalog for application developers to discover and use as an event source.
-3. In the catalog, the application developer can browse the available Kafka topics that represent event sources and discover information about the kind of event data available, based on which they can decide which one to use in their applications.
-4. The application developer selects the topic that provides the source of events required for their application and subscribes to the topic, generating the required credentials for their application to consume from the topic. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
-5. The application developer connects their application to the event source using the snippets and credentials provided, and this sets up their application to consume from the selected topic through the Event Gateway.
-6. The application connects to the Event Gateway for access to the topic's event stream.
-7. The Event Gateway routes traffic securely to and from the Kafka cluster that holds the relevant topic content, providing the content to the application as required.
+   * ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") The Kafka administrator creates options for a topic to define different ways of presenting the topic in the catalog. 
+1. The Kafka administrator publishes the event source in one of the following ways depending on their version:
+   * The Kafka administrator publishes the Kafka topic. The topic is then available in the catalog for application developers to discover and use as an event source.
+   * ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") The Kafka administrator publishes an option. The option is then available in the catalog for application developers to discover and use as an event source.
+1. In the catalog, the application developer can browse the available topics and options that represent event sources and discover information about the kind of event data available, based on which they can decide which one to use in their applications.
+1. The application developer selects the topic that provides the source of events required for their application and completes one of the following actions depending on their version:
+   * Subscribes to the topic, generating the required credentials for their application to consume from the topic. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
+   * ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Chooses an appropriate option for their application to consume from. They subscribe to that option to generate the required credentials for their application to consume. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
+1. The application developer connects their application to the event source using the snippets and credentials provided, and this sets up their application to consume from the selected topic or option through the Event Gateway.
+1. The application connects to the Event Gateway for access to the topic or option's event stream.
+1. The Event Gateway routes traffic securely to and from the Kafka cluster that holds the relevant topic content, providing the content to the application as defined by the topic or option.
+
+
+
+

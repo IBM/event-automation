@@ -7,18 +7,23 @@ toc: true
 ---
 
 Read about the key concepts and terms used in {{site.data.reuse.eem_name}}.
-
 ## Topic
 
-A Kafka Topic, which contains a set of related events.
+A Kafka topic, which contains a set of related events.
 
 ## Event source
 
-[Topics](#topic) are presented as event sources in the [catalog](#catalog). Kafka administrators describe topics as event sources, and this information is published to the catalog. In the catalog, application developers can discover and browse the available event sources and decide which ones they want to use in their applications. They can then configure their applications to subscribe to the selected topic's stream of events, providing self-service access to the message content from the event stream.
+[Topics](#topic) are presented as event sources in the [catalog](#catalog). Kafka administrators describe topics as event sources, and this information is published to the catalog. In the catalog, application developers can discover and browse the available event sources and decide which ones they want to use in their applications. They can then configure their applications to subscribe to the selected topic's stream of events.
+
+## ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Option
+
+A Kafka administrator can create an option for an [event source](#event-source) that enables them to control how the topic's stream of events are made available within the catalog. 
 
 ## Catalog
 
-The catalog lists all available topics that represent event sources. Kafka administrators can check what topics are published and made available to others in the organization. Application developers in your organization can use the catalog to browse the available topics, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling self-service access to the stream of events represented by the topics.
+The catalog lists all available topics that represent event sources and, if applicable, their available options. Application developers in your organization can use the catalog to browse the available topics, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling access to the stream of events represented by the topics using the published options.
+
+![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") In {{site.data.reuse.eem_name}} 11.1.1 and later, Kafka administrators can use the catalog to check what options are published and made available to others in the organization.
 
 ## Cluster
 
@@ -26,7 +31,9 @@ Kafka runs as a cluster of one or more servers (Kafka brokers). The load is bala
 
 ## Subscription
 
-Application developers configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream, and generating the required credentials for their application to consume from the topic. Kafka administrators can manage subscriptions that are created for their topics in the {{site.data.reuse.eem_name}} **Topic Detail** page.
+Application developers configure their applications to subscribe to the stream of events, providing access to the message content from the event stream, and generating the required credentials for their application to consume from the topic. 
+
+![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") In {{site.data.reuse.eem_name}} 11.1.1 and later, Kafka administrators can limit subscriptions by adding the approval control to the options of a topic and they can manage subscriptions that are created for their topics in the {{site.data.reuse.eem_name}} **Topic Detail** page.
 
 ## Event Gateway
 
@@ -48,7 +55,7 @@ When gateways start, they join their defined gateway group and pull any configur
 
 **Note:** A gateway instance can only be a member of one gateway group.
 
-**Important:** When removing a gateway deployment, work with [subscribed users](../../describe/managing-user-access-to-topics) to ensure their clients are configured to work with another member of the same gateway group, so they can continue to consume your event source.
+**Important:** When removing a gateway deployment, work with [subscribed users](../../describe/managing-user-access-to-options) to ensure their clients are configured to work with another member of the same gateway group, so they can continue to consume your event source.
 
 ## Message
 

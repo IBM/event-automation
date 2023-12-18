@@ -27,6 +27,7 @@ From the relevant table in the sections that follow, choose the value for the fo
 - The license metric (`spec.license.metric`) field is the charging metric for the license that you purchased.
   
   **Note:** `spec.license.metric` field is an available option only in {{site.data.reuse.eem_name}}. You can deploy {{site.data.reuse.eem_name}} with a usage-based license, where usage is tracked and charged by the number of API calls handled by {{site.data.reuse.eem_name}}. Usage is reported automatically to the [IBM License Service](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.4?topic=reporting-viewing-tracking-license-usage){:target="_blank"}, where usage can be tracked, monitored, and audited. Setting license metric (`spec.license.metric`) to `MONTHLY_API_CALL` and License ID (`spec.license.license`) to `{{site.data.reuse.eem_ubp_license_id}}` configures the usage-based license, and sets {{site.data.reuse.eem_name}} to automatically track API usage.
+
   
   **Note:** For {{site.data.reuse.flink_long}}, the license configuration parameters to include in the `FlinkDeployment` custom resource are the following:
 
@@ -152,6 +153,7 @@ License usage reports can be generated on a per cluster basis as described in th
 It is recommended to generate reports on a monthly basis and adhere to the requirements for container licensing as described on [passport advantage](https://www.ibm.com/software/passportadvantage/containerlicenses.html){:target="_blank"}.
 
 For more information about container licensing, see the [container licensing FAQs](https://www.ibm.com/software/passportadvantage/containerfaqov.html){:target="_blank"}.
+
 
 The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=authentication-license-service-api-token#obtaining){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=pcfls-apis){:target="_blank"} for retrieving the license usage data.
 

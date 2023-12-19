@@ -116,6 +116,35 @@ The process for initializing the {{site.data.reuse.es_name}} CLI is different de
 - Salted Challenge Response Authentication Mechanism (SCRAM)
 - {{site.data.reuse.icpfs}} Identity and Access Management (IAM)
 
+
+#### Authentication type set to SCRAM
+
+When you have the authentication type set to SCRAM, obtain the required credentials and endpoints, and then initialize and log in to the {{site.data.reuse.es_name}} CLI as follows:
+
+1. Obtain the following credentials and endpoints from your cluster administrator:
+   - Username
+   - Password
+   - Admin API URL
+   - Schema registry URL
+
+   A cluster administrator can retrieve credentials and manage access rights by following the instructions in [managing access](../../security/managing-access/#managing-access-to-kafka-resources).
+
+2. Using the credentials and information you obtained earlier, initialize the {{site.data.reuse.es_name}} plugin by running the following command:
+
+   ```shell
+   kubectl es init --auth-type scram-sha-512
+   ```
+
+   **Note:** For the {{site.data.reuse.es_name}} CLI plugin to be set up, ensure you add `auth-type` as `scram-sha-512`. If `auth-type` is not present, the cluster will set up IAM as the authentication type by default. For more information, see [configuring UI and CLI security](../../installing/configuring/#configuring-ui-and-cli-security).
+
+3. Enter the credentials and endpoints when prompted to log in to the {{site.data.reuse.es_name}} CLI.
+
+   Alternatively, instead of waiting for the prompt, you can also run the command with all the credentials and endpoints as additional arguments in one command as follows:
+
+   ```shell
+   kubectl es init --auth-type scram-sha-512 --username <USERNAME> --password <PASSWORD> --api-url <ADMIN_API_URL> --schema-reg-url <SCHEMA_REGISTRY_URL>
+   ```
+
 #### Authentication type set to IAM
 
 {{site.data.reuse.iam_note}}
@@ -148,33 +177,6 @@ When you have the authentication type set to IAM, retrieve the login URL for the
    cloudctl es init -n <namespace>
    ```
 
-#### Authentication type set to SCRAM
-
-When you have the authentication type set to SCRAM, obtain the required credentials and endpoints, and then initialize and log in to the {{site.data.reuse.es_name}} CLI as follows:
-
-1. Obtain the following credentials and endpoints from your cluster administrator:
-   - Username
-   - Password
-   - Admin API URL
-   - Schema registry URL
-
-   A cluster administrator can retrieve credentials and manage access rights by following the instructions in [managing access](../../security/managing-access/#managing-access-to-kafka-resources).
-
-2. Using the credentials and information you obtained earlier, initialize the {{site.data.reuse.es_name}} plugin by running the following command:
-
-   ```shell
-   kubectl es init --auth-type scram-sha-512
-   ```
-
-   **Note:** For the {{site.data.reuse.es_name}} CLI plugin to be set up, ensure you add `auth-type` as `scram-sha-512`. If `auth-type` is not present, the cluster will set up IAM as the authentication type by default. For more information, see [configuring UI and CLI security](../../installing/configuring/#configuring-ui-and-cli-security).
-
-3. Enter the credentials and endpoints when prompted to log in to the {{site.data.reuse.es_name}} CLI.
-
-   Alternatively, instead of waiting for the prompt, you can also run the command with all the credentials and endpoints as additional arguments in one command as follows:
-
-   ```shell
-   kubectl es init --auth-type scram-sha-512 --username <USERNAME> --password <PASSWORD> --api-url <ADMIN_API_URL> --schema-reg-url <SCHEMA_REGISTRY_URL>
-   ```
 
 ## Logging out
 

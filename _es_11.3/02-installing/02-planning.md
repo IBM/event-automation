@@ -230,14 +230,6 @@ Secure instances of {{site.data.reuse.es_name}} will make use of TLS to protect 
 
 You can [configure secure access](../../installing/configuring/#configuring-ui-and-cli-security) to the {{site.data.reuse.es_name}} UI and CLI. Depending on the authentication type set, you log in by using an {{site.data.reuse.icpfs}} Identity and Access Management (IAM) user, or by using a Kafka user configured with SCRAM-SHA-512 authentication, or by using Keycloak as part of {{site.data.reuse.cp4i}}. For more information about accessing the UI and CLI securely, see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
 
-#### IAM
-
-{{site.data.reuse.iam_note}}
-
-By default, in IAM, the secure {{site.data.reuse.es_name}} instance will require an `Administrator` or higher [role](https://www.ibm.com/docs/en/cpfs?topic=guide-role-based-access-control-clusters#iam){:target="_blank"} (`ClusterAdministrator` and `CloudpakAdministrator`) to authorize access.
-
-You can connect to a Lightweight Directory Access Protocol (LDAP) directory and add users from your LDAP directory into your cluster. For example, if you are using IAM, you can configure IAM to setup LDAP, assign roles to LDAP users, and [create teams](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=apis-team-management#create){:target="_blank"}, as described in [configuring LDAP connections](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=users-configuring-ldap-connection){:target="_blank"}.
-
 #### SCRAM
 
 If you set SCRAM authentication access for the {{site.data.reuse.es_name}} UI and CLI, Kafka users that have been configured to use SCRAM-SHA-512 authentication can log in to the {{site.data.reuse.es_name}} UI and CLI by using the username and password of that Kafka user. They can then access parts of the UI and run CLI commands based on the ACL permissions of the Kafka user.
@@ -251,6 +243,14 @@ By default, in Keycloak, the secure {{site.data.reuse.es_name}} instance will re
 You can add users and groups directly to Keycloak, connect Keycloak to an LDAP user registry to import users and groups, or connect Keycloak to an OpenID Connect (OIDC) or Security Assertion Markup Language (SAML) identity provider to manage users and groups. See how to [add users and groups](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.4?topic=management-adding-users){:target="_blank"} based on your preference.
 
 **Note:** The {{site.data.reuse.es_name}} CLI is not available when configuring {{site.data.reuse.es_name}} with Keycloak.
+
+#### IAM
+
+{{site.data.reuse.iam_note}}
+
+By default, in IAM, the secure {{site.data.reuse.es_name}} instance will require an `Administrator` or higher [role](https://www.ibm.com/docs/en/cpfs?topic=guide-role-based-access-control-clusters#iam){:target="_blank"} (`ClusterAdministrator` and `CloudpakAdministrator`) to authorize access.
+
+You can connect to a Lightweight Directory Access Protocol (LDAP) directory and add users from your LDAP directory into your cluster. For example, if you are using IAM, you can configure IAM to setup LDAP, assign roles to LDAP users, and [create teams](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=apis-team-management#create){:target="_blank"}, as described in [configuring LDAP connections](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=users-configuring-ldap-connection){:target="_blank"}.
 
 ### REST endpoint security
 

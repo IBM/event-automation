@@ -1,9 +1,9 @@
 ---
-title: JDBC
+title: JDBC - Deprecated
 sortTitle: Jdbc
 connectorID: kc-sink-jdbc
 direction: sink
-support: IBM
+support: community
 type: KafkaConnect
 iconInitial: J
 iconGradient: 1
@@ -14,5 +14,5 @@ categories:
   - Technology
   - Databases
 ---
-JDBC sink connector for copying data from Apache Kafka into a JDBC database.
 
+This connector is deprecated. Use the IBM supported [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).

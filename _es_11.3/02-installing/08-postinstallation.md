@@ -62,35 +62,6 @@ Examples of management activities include:
 {{site.data.reuse.es_cli_kafkauser_note}} 
 You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
-### IBM Cloud Pak CLI plugin (`cloudctl es`)
-
-For {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, install the {{site.data.reuse.es_name}} CLI with the IBM Cloud Pak CLI (`cloudctl`) as follows:
-
-1. Ensure you have the IBM Cloud Pak CLI (`cloudctl`) installed either by [retrieving the binary from your cluster](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=323-installing-foundational-services-by-using-cli){:target="_blank"} or [downloading the binary from a release on the GitHub project](https://github.com/IBM/cloud-pak-cli/releases){:target="_blank"}.
-
-   **Note:** Ensure you download the correct binary for your architecture and operating system.
-2. [Log in](../../getting-started/logging-in/) to your {{site.data.reuse.es_name}} instance as an administrator.
-3. Click **Toolbox** in the primary navigation.
-4. Go to the **{{site.data.reuse.es_name}} command-line interface** section and click **Find out more**.
-5. Download the {{site.data.reuse.es_name}} CLI plug-in for your system by using the appropriate link.
-6. Install the plugin using the following command:
-
-   ```shell
-   cloudctl plugin install <path-to-plugin>
-   ```
-
-To start the {{site.data.reuse.es_name}} CLI and check all available command options in the CLI, use the `cloudctl es` command.
-For an exhaustive list of commands, you can run:
-
-```shell
-cloudctl es --help
-```
-
-To get help for a specific command, run:
-```shell
-cloudctl es <command> --help
-```
-
 ### Kubernetes plugin (`kubectl es`)
 
 For OpenShift and other Kubernetes platforms running without {{site.data.reuse.fs}}, install the {{site.data.reuse.es_name}} CLI with the Kubernetes command-line tool (`kubectl`) as follows:
@@ -121,7 +92,34 @@ kubectl es <command> --help
 
 To run commands after installing, log in and initialize the CLI as described in [logging in](../../getting-started/logging-in/).
 
+### IBM Cloud Pak CLI plugin (`cloudctl es`)
 
+For {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, install the {{site.data.reuse.es_name}} CLI with the IBM Cloud Pak CLI (`cloudctl`) as follows:
+
+1. Ensure you have the IBM Cloud Pak CLI (`cloudctl`) installed either by [retrieving the binary from your cluster](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=323-installing-foundational-services-by-using-cli){:target="_blank"} or [downloading the binary from a release on the GitHub project](https://github.com/IBM/cloud-pak-cli/releases){:target="_blank"}.
+
+   **Note:** Ensure you download the correct binary for your architecture and operating system.
+2. [Log in](../../getting-started/logging-in/) to your {{site.data.reuse.es_name}} instance as an administrator.
+3. Click **Toolbox** in the primary navigation.
+4. Go to the **{{site.data.reuse.es_name}} command-line interface** section and click **Find out more**.
+5. Download the {{site.data.reuse.es_name}} CLI plug-in for your system by using the appropriate link.
+6. Install the plugin using the following command:
+
+   ```shell
+   cloudctl plugin install <path-to-plugin>
+   ```
+
+To start the {{site.data.reuse.es_name}} CLI and check all available command options in the CLI, use the `cloudctl es` command.
+For an exhaustive list of commands, you can run:
+
+```shell
+cloudctl es --help
+```
+
+To get help for a specific command, run:
+```shell
+cloudctl es <command> --help
+```
 
 ## Firewall and load balancer settings
 

@@ -59,6 +59,8 @@ Follow the [instructions](https://github.com/apache/flink-kubernetes-operator/tr
 - the flink-sql-runner-example JAR file (Flink job)
 - the Docker image
 
+**Important:** Ensure that the Flink SQL runner JAR file and the `statements.sql` file have read permissions (644) for non-root users. If the JAR file is only readable by the root user, the `FlinkDeployment` instance cannot be started by non-root users.
+
 Some adaptations to this procedure are required to build the Docker image and use the file `statements.sql`:
 
 1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the IBM Flink image:

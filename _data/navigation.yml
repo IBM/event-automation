@@ -418,7 +418,11 @@ latest_epdocs:
         url: /troubleshooting/changing-database-ca-certificate/
       - title: "Flink pods enter ImagePullBackOff state"
         url: /troubleshooting/flink-imagepullbackoff/
-        
+      - title: "Flink instances cannot access SQL runner JAR file"
+        url: /troubleshooting/flink-jar-permissions/
+      - title: "Filters are not applied after enriching events with database nodes"
+        url: /troubleshooting/enrichment-filter/        
+
 100_epdocs:
   - title: About
     children:
@@ -533,7 +537,9 @@ latest_epdocs:
       - title: "Event Processing fails with `Invalid JDBC URL` error"
         url: /troubleshooting/defaultjavasslfactory-issue/
       - title: "Error when you connect to a database after modifying a CA certificate"
-        url: /troubleshooting/changing-database-ca-certificate/ 
+        url: /troubleshooting/changing-database-ca-certificate/
+      - title: "Flink instances cannot access SQL runner JAR file"
+        url: /troubleshooting/flink-jar-permissions/
 
 # Event Streams 11.3
 
@@ -575,8 +581,8 @@ latestdocs:
         url: /installing/installing-on-kubernetes/
       - title: "Configuring"
         url: /installing/configuring/
-      - title: "Integrating with Event Endpoint Management"
-        url: /installing/integrating-eem/
+      # - title: "Integrating with Event Endpoint Management"
+        # url: /installing/integrating-eem/
       - title: "Post-installation tasks"
         url: /installing/post-installation/
       - title: "Backing up and restoring on OpenShift"
@@ -603,8 +609,8 @@ latestdocs:
         url: /getting-started/connecting/
       - title: "Using Apache Kafka console tools"
         url: /getting-started/using-kafka-console-tools/
-      - title: "Sharing topic with Event Endpoint Management"
-        url: /getting-started/sharing-topic/    
+      # - title: "Sharing topic with Event Endpoint Management"
+      #   url: /getting-started/sharing-topic/    
   - title: Schemas
     children:
       - title: "Schemas overview"

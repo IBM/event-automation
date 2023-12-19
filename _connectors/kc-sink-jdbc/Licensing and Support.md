@@ -15,7 +15,7 @@ sections:
       - { text: 'View the license', url: 'https://github.com/ibm-messaging/kafka-connect-jdbc-sink/blob/master/LICENSE' }
   - section:
     title: "Support"
-    type: "IBM Support"
+    type: "Community"
     buttons:
       - { text: 'Raise issue', url: '../../support/' }
 ---

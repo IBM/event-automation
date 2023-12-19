@@ -147,9 +147,9 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
 
    **Note:** If you are running in an offline environment and need to specify your internal registry as the image location, run the command as follows:
 
-      ```shell
-      ./ibm-events-must-gather -n samplenamespace -m eventstreams -i <image-address> --mustgather-namespace <mustgather-namespace> --image-pull-secret <image-pull-secret-name>
-      ```
+   ```shell
+   ./ibm-events-must-gather -n samplenamespace -m eventstreams -i <image-address> --mustgather-namespace <mustgather-namespace> --image-pull-secret <image-pull-secret-name>
+   ```
 
    Where:
    - `<image-address>` is the address of the image to use for gathering logs. If you are running on the {{site.data.reuse.openshift_short}} and have defined a repository in `ImageContentSourcePolicies`, you do not need to provide `<image-address>`.

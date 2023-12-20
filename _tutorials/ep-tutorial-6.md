@@ -20,7 +20,7 @@ To refine the previous tutorial flow, this tutorial shows you how to identify th
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Processing 1.1.0
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -62,8 +62,6 @@ The next step is to identify the best selling product type in each hour.
    If you wanted to keep the top three selling styles for each hour, for example, you would set this to 3.
 
 1. Choose the output properties that will be useful to return.
-
-   These can be renamed to make them easier to understand.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example6-15.png "top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example6-15.png "top-n node")
 

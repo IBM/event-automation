@@ -12,7 +12,7 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.1.x.
 
 ### Options for topics
 
-{{site.data.reuse.eem_name}} release 11.1.1 introduces options. Kafka administrators can create [options](../../about/key-concepts#option) for a topic, which enables administrators to control how the topic's stream of events are made available within the catalog.
+{{site.data.reuse.eem_name}} release 11.1.1 introduces [options](../../about/key-concepts#option). Kafka administrators can [create](../../describe/managing-topics#create_option) options for a topic, which enables administrators to [control](../../describe/adding-topics/) how the topic's stream of events are made available within the catalog.
 
 ### Approval control
 

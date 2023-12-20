@@ -80,13 +80,33 @@ The next step is to document the topic to describe the events that your processi
 
 The final step is to publish the new topic in the catalog so that it can be discovered by other teams in your enterprise.
 
-1. Click the **Publish topic** button in the **Manage** tab.
+1. Click the **Create option** button in the **Options** tab.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10.png "screenshot of topics editor")
 
-1. Choose the default gateway group.
+1. Create a name for the access option that you are creating.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-i.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-i.png "screenshot of topics editor")
+
+   Calling the option "Self service" is a good way to describe a topic being published without any approval requirements.
+
+1. Create a topic alias for the option.
+
+   As this is the only option, `ORDERS.EMEA` is a reasonable alias.
+
+1. As we are not adding any additional controls, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor")
+
+1. Click **Publish**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor")
+
+1. Choose the gateway group.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor")
+
+1. Click **Save**.
 
 1. Confirm that the topic is published by switching to the catalog.
 

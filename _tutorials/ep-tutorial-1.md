@@ -24,8 +24,8 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Endpoint Management 11.0.6
-- Event Processing 1.0.5
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -45,7 +45,7 @@ For this scenario, you need a source of door badge events.
 
 1. Click into the topic to review the information about the events that are available here.
 
-    Look at the schema to see the properties in the door events. You can see the sample message to get an idea of what to expect from events on this topic.
+    Look at the sample message to see the properties in the door events, and get an idea of what to expect from events on this topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the EEM catalog")
 
@@ -119,21 +119,21 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Get the schema for door badge events from {{site.data.reuse.eem_name}}.
+1. Get the sample message for door badge events from {{site.data.reuse.eem_name}}.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy schema from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy schema from the catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy sample message from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy sample message from the catalog")
 
-    Click **Copy** in the Schema tab to copy the schema to the clipboard.
+    Click **Copy** in the Sample message section to copy the sample message to the clipboard.
 
-    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
+    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the sample message enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
 1. In {{site.data.reuse.ep_name}}, click the **Upload a schema or sample message**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste schema into the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste sample message into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste sample message into the event source")
 
-1. Paste the schema into the event source config in the **Topic schema** tab.
+1. Paste the sample message into the event source config in the **JSON** tab.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste schema into the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source")
 
 1. Change the type of the `badgetime` property to `Timestamp`.
 

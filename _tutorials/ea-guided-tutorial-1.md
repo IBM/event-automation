@@ -29,9 +29,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -47,13 +47,13 @@ For this scenario, you need a source of order events. A good place to discover s
 
     If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](./tutorial-0#populating-the-catalog).
 
-1. Find the `ORDERS.NEW` topic.
+1. Find the `ORDERS` topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the EEM catalog")
 
 1. Click into the topic to review the information about the events that are available here.
 
-    Look at the schema to see the properties in the order events. You can see the sample message to get an idea of what to expect from events on this topic.
+    Look at the schema to see the properties in the order events, and get an idea of what to expect from events on this topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
 
@@ -84,11 +84,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
 1. Add a new event source.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5.png "add an event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5.png "add an event source")
-
-    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
 
@@ -120,8 +120,6 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     The username starts with `eem-`.
 
-    **Tip**: If the credentials are not accepted immediately, wait for thirty seconds, and then click "Next" again.
-
     **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
 1. Confirm the name of the topic that you want to process events from.
@@ -134,15 +132,15 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-11.png "copy schema from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-11.png "copy schema from the catalog")
 
-    Click the Copy button in the Schema tab to copy the schema to the clipboard.
+    Click the Copy button for the schema to copy it to the clipboard.
 
-    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema will enable {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
+    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The schema will enable {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
 1. In {{site.data.reuse.ep_name}}, click the "Upload a schema or sample message" button.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste schema into the event source")
 
-1. Paste the schema into the event source config in the **Topic schema** tab.
+1. Paste the schema into the event source config in the **Avro** tab.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source")
 
@@ -195,7 +193,7 @@ The final step is to run your event processing flow and view the results.
 
     **Did you know?** "Include historical" is useful while you are developing your flows, as it means that you don't need to wait for new events to be produced to the Kafka topic. You can use all of the events already on the topic to check that your flow is working the way that you want.
 
-1. Click the EMEA orders node to see a live view of results from your filter. It is updated as new events are emitted onto the orders topic.
+1. A live view of results from your filter is updated as new events are emitted onto the orders topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-18.png "viewing the results"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-18.png "viewing the results")
 

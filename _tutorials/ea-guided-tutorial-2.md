@@ -27,9 +27,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -55,7 +55,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
     Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
+1. Choose the `ORDERS` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-3.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-3.png "adding an event source node")
 
@@ -81,7 +81,7 @@ The next step is to define the transformation that will remove the customer pers
 
     Click and drag from the small gray dot on the event source to the matching dot on the transform node.
 
-    **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
+    **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
 
 1. Give the transform node a name that describes what it will do: `redact personal info`.
 
@@ -91,7 +91,7 @@ The next step is to define the transformation that will remove the customer pers
 
 1. As you aren't creating any new properties, click **Next**.
 
-    You can learn about creating custom properties in the [next tutorial](./tutorial-3).
+    (You can learn about creating custom properties in the [next tutorial](./tutorial-3).)
 
 1. Remove the `customer` and `customerid` properties from the events.
 

@@ -22,9 +22,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -94,15 +94,15 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node")
 
-1. Copy the schema for door badge events from the {{site.data.reuse.eem_name}} catalog.
+1. Copy the sample message for door badge events from the {{site.data.reuse.eem_name}} catalog.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-9.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-9.png "creating an event source node")
 
-1. Use the schema to configure the event source node.
+1. Use the sample message to configure the event source node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node")
 
-1. Change the type of the `badgetime` property to `TIMESTAMP`.
+1. Change the type of the `badgetime` property to `Timestamp`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node")
 

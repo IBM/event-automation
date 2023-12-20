@@ -22,9 +22,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -94,7 +94,7 @@ The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-6.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-6.png "adding an event destination node")
 
-1. Configure the event destination node by using the server address from {{site.data.reuse.es_name}}.
+1. Configure the event destination node by using the internal server address from {{site.data.reuse.es_name}}.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-7.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-7.png "adding an event destination node")
 

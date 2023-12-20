@@ -45,4 +45,4 @@ To describe an event source by adding a topic, complete the following steps:
 
 **Note**: If any of the Event Source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
 
-Your new topics appear in the **Topics** page with the **Options status** as 0 published. For more information about socializing your options, see [Option lifecycle states](../managing-topics#option-lifecycle-states).
+Your new topics appear in the **Topics** page with the **Options status** as 0 published. For more information about socializing your options, see [option lifecycle states](../managing-topics#option-lifecycle-states).

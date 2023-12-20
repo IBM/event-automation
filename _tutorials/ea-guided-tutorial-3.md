@@ -31,9 +31,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -59,7 +59,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
+1. Choose the `ORDERS` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-3.png "adding an event source node")
 
@@ -186,7 +186,7 @@ Now that you have transformed the stream of events to include the type attribute
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-8.png "defining the aggregation")
 
-   Create an aggregate node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
+   Create an aggregate node by dragging one onto the canvas. You can find this in the **Windowed** section of the left panel.
 
    Click and drag from the small gray dot on the transform to the matching dot on the aggregate node.
 

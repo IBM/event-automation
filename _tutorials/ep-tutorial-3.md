@@ -24,9 +24,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.2.5
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -42,7 +42,7 @@ For this scenario, you need a source of order events. A good place to discover s
 
    If there are no topics in the catalog, you need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `ORDERS.NEW` topic contains events about orders that are made.
+1. The `ORDERS` topic contains events about orders that are made.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
 
@@ -74,7 +74,7 @@ The next step is to calculate the total value of each order, that you will use t
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3.png "add a transform node")
 
-   
+
 1. Create a new property called `order total`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-3-i.png "add a transform node")
@@ -103,15 +103,15 @@ The next step is to filter the stream of events based on this new total order va
 
    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
-   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
+   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
 
 1. Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    Name the filter node to show that it is going to select high value EMEA orders.
 
-   
 
-1. Use the assistant to start a filter based on orders with an `order total` greater than `800`.
+
+1. Use the assistant to start a filter based on orders with an `order total` greater than `575`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node")
 
@@ -124,7 +124,7 @@ The next step is to filter the stream of events based on this new total order va
    Suggested value for the filter expression:
 
    ```sql
-   `order total` > 800 AND region = 'EMEA'
+   `order total` > 575 AND region = 'EMEA'
    ```
 
 1. Click **Configure** to finalize the filter.

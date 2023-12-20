@@ -35,9 +35,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -63,7 +63,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Choose the `ORDERS.NEW` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
+1. Choose the `ORDERS` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-3.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-3.png "adding an event source node")
 
@@ -140,13 +140,13 @@ The next step is to find a stream of order cancellation events to add to your fl
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](./tutorial-0#populating-the-catalog).
 
-1. Find the `CANCELLATIONS` topic.
+1. Find the `CANCELS` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog")
 
 1. Click into the topic to review the information about the events that are available here.
 
-   Look at the schema to see the properties in the order events. You can see the sample message to get an idea of what to expect from events on this topic.
+   Look at the schema to see the properties in the order events, and get an idea of what to expect from events on this topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the EEM catalog")
 
@@ -196,8 +196,6 @@ The next step is to bring this additional stream of events that you discovered i
 
    The username starts with `eem-`.
 
-   **Tip**: If the credentials are not accepted immediately, wait for thirty seconds, and then click "Next" again.
-
    **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
 1. Confirm the name of the topic that you want to process events from.
@@ -206,11 +204,11 @@ The next step is to bring this additional stream of events that you discovered i
 
    Click "Next".
 
-1. Get the schema for order events from {{site.data.reuse.eem_name}}.
+1. Get the schema for cancellation events from {{site.data.reuse.eem_name}}.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17.png "paste schema into the event source")
 
-   Click the Copy button in the Schema tab to copy the schema to the clipboard.
+   Click the Copy button in the Schema box to copy the schema to the clipboard.
 
    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema will enable {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
@@ -218,7 +216,7 @@ The next step is to bring this additional stream of events that you discovered i
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17-i.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17-i.png "paste schema into the event source")
 
-1. Paste the schema into the event source config in the **Topic schema** tab.
+1. Paste the schema into the event source config in the **Avro** tab.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use")
 

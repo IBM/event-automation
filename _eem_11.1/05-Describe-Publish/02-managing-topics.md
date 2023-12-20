@@ -100,7 +100,7 @@ To edit an option's details, complete the following steps.
 
 After adding an option to a topic in {{site.data.reuse.eem_name}}, the option can have different lifecycle states. The lifecycle state of your option determines whether it can be [subscribed](../../consume-subscribe/subscribing-to-topics) to by users and [socialized in the catalog](../../consume-subscribe/discovering-topics).
 
-Topics can also be deleted from the **Topics** page. All **Unpublished** topics will contain a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Remove topic icon."){:height="30px" width="15px"} in their row in the topic table. You can delete a topic from the **Topics** page by clicking the delete icon and following steps 2-3 above.
+The lifecycle of an option in {{site.data.reuse.eem_name}} progresses as follows:
 
 - **Unpublished**: This option is not socialized in the **Catalog**. It cannot be subscribed to by other users and has no current subscriptions.
 - **Published**: This option is socialized in the **Catalog**. Users can create new subscriptions to use it.
@@ -127,7 +127,7 @@ To change the lifecycle state of an option, complete the following steps.
 
 **Note:** **Archived** options automatically return to the **Unpublished** state when all subscribers have their [subscriptions revoked](../managing-user-access-to-options#revoking-subscriptions) from using this topic.
 
-A option can be [edited](#edit_option) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
+An option can be [edited](#edit_option) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
 
 **Note:** Only **Unpublished** options can [be deleted from {{site.data.reuse.eem_name}}](#deleting-an-option).
 

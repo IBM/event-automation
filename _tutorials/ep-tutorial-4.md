@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.2.5
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -46,11 +46,11 @@ A good place to discover sources of event streams to process is in the catalog, 
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `ORDERS.NEW` topic contains events about orders that are made.
+1. The `ORDERS` topic contains events about orders that are made.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
 
-1. The `CANCELLATIONS` topic contains events about orders that are cancelled.
+1. The `CANCELS` topic contains events about orders that are cancelled.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog")
 

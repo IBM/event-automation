@@ -59,7 +59,7 @@ The next step is to create a topic that you will use for the results from this f
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4.png "connection details for the destination")
 
-1. Get the address of the Kafka listener to use for the new topic.
+1. Get the internal address of the Kafka listener to use for the new topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination")
 

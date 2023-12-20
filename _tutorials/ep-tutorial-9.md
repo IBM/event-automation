@@ -35,9 +35,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Streams 3.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -99,7 +99,7 @@ The first event processing flow will read the events from the sensor readings to
 
 1. Click the "Upload a schema or sample message" button.
 
-1. Paste in the event schema from the catalog.
+1. Paste in the sample message from the catalog.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-7.png "creating a pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-7.png "creating a pre-processing flow")
 
@@ -232,11 +232,36 @@ Any other teams or colleagues who want to perform time-based analysis on the sen
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-21.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-21.png "running the pre-processing flow")
 
-1. Click the **Publish topic** button in the **Manage** tab.
+1. Click **Save**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-22.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-22.png "running the pre-processing flow")
+1. Click the **Create option** button in the **Options** tab.
 
-1. Choose the default gateway group.
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-22-i.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-22-i.png "running the pre-processing flow")
+
+1. Create a name for the access option you are creating.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-22-ii.png "running the pre-processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-22-ii.png "running the pre-processing flow")
+
+   Calling the option "Self service" is a good way to describe a topic being published without any approval requirements.
+
+1. Create a topic alias for the option.
+
+   As this is the only option, `SENSOR.READINGS.SQLTIME` is a reasonable alias.
+
+1. As we are not adding any additional controls, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor")
+
+1. Click **Publish**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor")
+
+1. Choose the gateway group.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor")
+
+1. Click **Save**.
+
 
 ### Step 5 : Process the transformed sensor readings
 
@@ -254,9 +279,7 @@ The final step is to process the transformed sensor readings to identify the min
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-24.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-24.png "creating the processing flow")
 
-   Notice that this is a different tab to providing an Avro schema.
-
-1. Modify the type of the `timestamp` property that you created to be `TIMESTAMP` (instead of the default "STRING").
+1. Modify the type of the `timestamp` property that you created to be `Timestamp` (instead of the default "STRING").
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example9-25.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example9-25.png "creating the processing flow")
 

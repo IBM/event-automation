@@ -693,6 +693,8 @@ latestdocs:
         url: /administering/consumer-lag/
       - title: "Monitoring applications with distributed tracing"
         url: /administering/tracing/
+      - title: "Auditing Kafka"
+        url: /administering/auditing-kafka/
       - title: "Monitoring with external tools"
         url: /administering/external-monitoring/
       - title: "Modifying installation settings"

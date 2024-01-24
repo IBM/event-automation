@@ -15,9 +15,12 @@ Before you begin, ensure that you [configured](../configure-eem-for-apic) {{site
 To export an AsyncAPI for your topic, complete the following steps.
 
 1. In the {{site.data.reuse.eem_name}} UI, go to the **Topics** page, and select the topic you want to export.
-2. Click the **Information** tab and select **Export AsyncAPI for IBM API Connect**.
+2. Click the **Options** tab, then click ![Export icon]({{ 'images' | relative_url }}/export.svg "The export icon."){:height="30px" width="15px"} **Export**. A dialog is displayed.
+3. Select **For IBM API Connect (contains credentials)** as the export format, then click **Export**.
 
-An asyncAPI document that describes the topic is downloaded as a YAML file.
+**Note**: You cannot export options that contain approval control to IBM API Connect. 
+
+An AsyncAPI document that describes the topic is downloaded as a YAML file.
 
 ## Configure a Catalog in API Connect
 

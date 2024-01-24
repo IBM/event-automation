@@ -610,11 +610,12 @@ To enable SSL connections to PostgreSQL from {{site.data.reuse.ep_name}} and Fli
 2. Add the certificate for the CA to the truststore by running the following command:
 
    ```shell
-   keytool -keystore ./truststore.jks -alias <cert_name> -import -file ./<path_to_ca_cert> -noprompt -storepass <choose a password> -trustcacerts
+   keytool -keystore ./truststore.<keystore-extension> -alias <cert_name> -import -file ./<path_to_ca_cert> -noprompt -storepass <choose a password> -trustcacerts
    ```
 
    Where:
 
+   - `<keystore-extension>` is the extension for your keystore format. For example, `jks` for Java Keystore and `p12` for Public-Key Cryptography Standards.
    - `<cert_name>` is the alias name you want to give to the certificate being imported into the keystore.
    - `<path_to_ca_cert>` is the path to the CA certificate file that you want to import into the keystore.
 
@@ -630,9 +631,12 @@ To enable SSL connections to PostgreSQL from {{site.data.reuse.ep_name}} and Fli
 3. Create a secret with the truststore that you added with the following command:
 
    ```shell
-   oc create secret generic ssl-truststore --from-file=truststore.jks
+   oc create secret generic ssl-truststore --from-file=truststore.<keystore-extension>
    ```
 
+   Where:
+   
+   - `<keystore-extension>` is the extension for your keystore format. For example, `jks` for Java Keystore and `p12` for Public-Key Cryptography Standards.
 
 ### Mount the secret
 
@@ -653,7 +657,7 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
            - env:
                - name: JAVA_TOOL_OPTIONS
                  value: >-
-                   -Djavax.net.ssl.trustStore=/opt/ibm/sp-backend/certs/truststore.jks
+                   -Djavax.net.ssl.trustStore=/opt/ibm/sp-backend/certs/truststore.<keystore-extension>
                    -Djavax.net.ssl.trustStorePassword=<chosen password>
              name: backend
              volumeMounts:
@@ -664,8 +668,8 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
            - name: truststore
              secret:
                items:
-                 - key: truststore.jks
-                   path: truststore.jks
+                 - key: truststore.<keystore-extension>
+                   path: truststore.<keystore-extension>
                secretName: ssl-truststore
    ```
 
@@ -680,10 +684,10 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
 
      ```yaml
      env.java.opts.taskmanager: >-
-        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStore=/certs/truststore.<keystore-extension>
         -Djavax.net.ssl.trustStorePassword=<chosen password>
      env.java.opts.jobmanager: >-
-        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStore=/certs/truststore.<keystore-extension>
         -Djavax.net.ssl.trustStorePassword=<chosen password>
      ```
 
@@ -701,8 +705,8 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
      - name: truststore
        secret:
          items:
-           - key: truststore.jks
-             path: truststore.jks
+           - key: truststore.<keystore-extension>
+             path: truststore.<keystore-extension>
          secretName: ssl-truststore
      ```
 

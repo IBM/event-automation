@@ -114,6 +114,8 @@ latest_eemdocs:
         url: /describe/adding-topics/
       - title: "Managing topics"
         url: /describe/managing-topics/
+      - title: "Adding controls to options"
+        url: /describe/option-controls/
       - title: "Managing clusters"
         url: /describe/managing-clusters/
       - title: "Publishing options"
@@ -122,8 +124,7 @@ latest_eemdocs:
         url: /describe/managing-user-access-to-topics/
       - title: "Managing gateways"
         url: /describe/managing-gateways/
-      - title: "Approval controls for options"
-        url: /describe/approval-controls/
+      
   - title: Subscribe and consume
     children:
       - title: "Discovering topics"
@@ -178,6 +179,8 @@ latest_eemdocs:
         url: /troubleshooting/too-many-keys/
       - title: "Event Gateway pods fail after upgrading with MissingElementException error"
         url: /troubleshooting/gateway-pods-fail/
+      - title: "The Kafka consumer is not picking up changes made to controls"
+        url: /troubleshooting/new-controls-not-picked-up/
 
 110_eemdocs:
   - title: About

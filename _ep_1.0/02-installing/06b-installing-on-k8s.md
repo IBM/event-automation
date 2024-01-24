@@ -69,7 +69,7 @@ For {{site.data.reuse.ep_name}}:
 
 ```shell
 helm install \
-   <release-name> ibm-helm/ibm-eventautomation-flink-operator-crd \
+   <release-name> ibm-helm/ibm-ep-operator-crd \
    -n <namespace>
 ```
 
@@ -77,7 +77,7 @@ For {{site.data.reuse.flink_long}}:
 
 ```shell
 helm install \
-   <release-name> ibm-helm/ibm-ep-operator-crd \
+   <release-name> ibm-helm/ibm-eventautomation-flink-operator-crd \
    -n <namespace>
 ```
 
@@ -86,11 +86,11 @@ Where:
 - `<release-name>` is the name you provide to identify your {{site.data.reuse.ep_name}} or Flink CRD Helm installation.
 - `<namespace>` is the name of the namespace where you want to install the Helm release that you use for CRD management.
 
-For example, to install the operator CRD Helm chart in the `ep-crds` namespace, run the command as follows:
+For example, to install the operator CRD Helm charts in the `ep` namespace, run the commands as follows:
 
 ```shell
-helm install ep-crds ibm-helm/ibm-ep-operator-crd -n ep-crds
-helm install ep-crds ibm-helm/ibm-eventautomation-flink-operator-crd -n ep-crds
+helm install ep-crds ibm-helm/ibm-ep-operator-crd -n ep
+helm install ibm-flink-crds ibm-helm/ibm-eventautomation-flink-operator-crd -n ep
 ```
 
 ## Install operators

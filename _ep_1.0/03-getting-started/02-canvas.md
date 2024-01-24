@@ -47,17 +47,17 @@ The clothing company created a flow called `Filter` and provided a description t
 {: #configure-event}
 
 1. You need to provide the source of events that you want to process. To do this, start by adding an event source, select **Add new event source** > **Next**.
-1. In the **Details** section, provide a name for the node.
+1. In the **Details** pane, provide a name for the node.
 1. In the **Connect to Kafka cluster** section, provide the server address of the Kafka cluster that you want to connect to. You can get the server address for the event source from your cluster administrator.
 
     **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
-1. Click **Next**. The **Access credentials** page is displayed.
-1. On the **Access credentials** page, you need to provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
-1. Click **Next**. The **Topic selection** page is displayed.
+1. Click **Next**. The **Access credentials** pane is displayed.
+1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
+1. Click **Next**. The **Topic selection** pane is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
-1. Click **Next**. The **Define event structure** page is displayed.
-1. On the **Define event structure** page, provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
+1. Click **Next**. The **Define event structure** pane is displayed.
+1. Provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
 
    Enter an Avro schema in the **Topic schema** tab, or click the **Sample message** tab and enter the sample message in JSON format. For more information, see [Event information]({{ '/eem/describe/managing-topics/#event-information' | relative_url }}).
 
@@ -89,7 +89,7 @@ The **Configure filter** window is displayed.
 {: #configure-filter}
 
 1. Now, you need to configure the filter that defines the events that you are interested in. To do this, in the **Details** section, provide a name for the filter node.
-1. Click **Next**. The **Define filter** page is displayed.
+1. Click **Next**. The **Define filter** pane is displayed.
 1. Use the **Assistant** to define a filter with your requirements by updating the **Property to filter on**, **Condition**, and **Value** fields.
 1. Click **Add to expression**.
 1. Click **Configure**. The canvas is displayed and your Filter node has a green checkmark, which indicates that the node has been configured successfully.

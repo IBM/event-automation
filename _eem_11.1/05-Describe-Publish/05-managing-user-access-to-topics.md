@@ -34,7 +34,7 @@ The **Requests** list details all the currently pending access requests for opti
 
 ## Revoking subscriptions
 
-After socializing your option, you can revoke subscriptions to it. The next gateway configuration update will disconnect any clients using revoked subscriptions from the event source with an appropriate error message.
+After socializing your option, you can revoke subscriptions to it. After revoking a subscription, the gateway no longer allows revoked credentials to be used in new connection attempts. Client connections that are already connected stay connected until they disconnect.
 
 To revoke subscriptions, complete the following steps:
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.

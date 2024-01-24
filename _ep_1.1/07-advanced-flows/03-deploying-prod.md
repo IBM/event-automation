@@ -294,13 +294,17 @@ To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracl
 
      ```yaml
      env.java.opts.taskmanager: >-
-        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStore=/certs/truststore.<keystore-extension>
         -Djavax.net.ssl.trustStorePassword=<chosen password>
      env.java.opts.jobmanager: >-
-        -Djavax.net.ssl.trustStore=/certs/truststore.jks
+        -Djavax.net.ssl.trustStore=/certs/truststore.<keystore-extension>
         -Djavax.net.ssl.trustStorePassword=<chosen password>
      ```
 
+   Where:
+
+   - `<keystore-extension>` is the extension for your keystore format. For example, `jks` for Java Keystore and `p12` for Public-Key Cryptography Standards.
+   
    - In `spec.podTemplate.spec.containers.volumeMounts` section, add:
 
      ```yaml
@@ -315,8 +319,8 @@ To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracl
      - name: truststore
        secret:
          items:
-           - key: truststore.jks
-             path: truststore.jks
+           - key: truststore.<keystore-extension>
+             path: truststore.<keystore-extension>
          secretName: ssl-truststore
      ```
 

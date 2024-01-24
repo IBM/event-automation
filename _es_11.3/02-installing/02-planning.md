@@ -14,7 +14,7 @@ Decide the purpose of your deployment, for example, whether you want to try a st
 - Size your planned deployment by considering potential throughput, the number of producers and consumers, Kafka performance tuning, and other aspects. For more details, see the [performance considerations](../capacity-planning) section.
 - For production use, and whenever you want your data to be saved in the event of a restart, set up [persistent storage](#planning-for-persistent-storage).
 - Consider the options for [securing](#planning-for-security) your deployment.
-- Plan for [resilience](#planning-for-resilience) by understanding Kafka high availability and how to support it, set up multiple availability zones for added resilience, and consider geo-replication to help with your [disaster recovery](../../georeplication/disaster-recovery) planning.
+- Plan for [resilience](#planning-for-resilience) by understanding Kafka high availability and how to support it, set up multiple availability zones for added resilience, and consider topic mirroring to help with your [disaster recovery](../../georeplication/disaster-recovery) planning.
 - Consider setting up [logging](#planning-for-log-management) for your deployment to help troubleshoot any potential issues.
 
 ## Sample deployments
@@ -267,7 +267,7 @@ By default, Pod-to-Pod encryption is enabled. You can [configure encryption betw
 
 ## Planning for resilience
 
-If you are looking for a more resilient setup, or want plan for [disaster recovery](../../georeplication/disaster-recovery), consider setting up multiple availability zones and creating geo-replication clusters. Also, set up your environment to support Kafka's inherent high availability design.
+If you are looking for a more resilient setup, or want to plan for [disaster recovery](../../georeplication/disaster-recovery), consider setting up multiple availability zones and creating mirrored topics in other clusters. Also, set up your environment to support Kafka's inherent high availability design.
 
 ### Kafka high availability
 
@@ -301,19 +301,15 @@ For information about how to prepare multiple zones, see [preparing for multizon
 
 <!-- **COMMENT:** _The terminology to use based on some research is: "multizone", "multiple availability zones", zone aware (n), zone-aware (adj), non-zone aware (n), and non-zone-aware (adj)._ -->
 
-### Geo-replication
+### Topic Mirroring
 
-Consider configuring [geo-replication](../../georeplication/about/) to aid your [disaster recovery](../../georeplication/disaster-recovery) and resilience planning.
+Consider configuring [geo-replication](../../georeplication/about/) or [MirrorMaker 2.0](https://strimzi.io/blog/2020/03/30/introducing-mirrormaker2/){:target="_blank"} to aid your [disaster recovery](../../georeplication/disaster-recovery) and resilience planning, by ensuring a copy of the event data is available in other regions.
 
-You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters. Geo-replication helps maintain service availability.
+You can deploy multiple instances of {{site.data.reuse.es_name}} and use topic mirroring to synchronize data between your clusters to help maintain service availability. No additional preparation is required on the origin cluster because the mirroring component runs on the destination cluster.
 
-No additional preparation is needed on the origin cluster, {{site.data.reuse.es_name}} as geo-replication runs on the destination cluster.
+[MirrorMaker 2.0](https://strimzi.io/blog/2020/03/30/introducing-mirrormaker2/){:target="_blank"} is part of Apache Kafka and is therefore included with {{site.data.reuse.es_name}}. It uses Kafka Connect to mirror topics between separate Kafka clusters. In addition, {{site.data.reuse.es_name}} provides a [geo-replication](../../georeplication/about/) feature, which is built on MirrorMaker 2.0, and offers a simplified mechanism for setting up mirrored topics across multiple {{site.data.reuse.es_name}} environments.
 
-[Prepare your destination cluster](../configuring/#setting-geo-replication-nodes) by setting the number of geo-replication nodes during installation.
-
-Geo-replication is based on [MirrorMaker 2.0](https://strimzi.io/blog/2020/03/30/introducing-mirrormaker2/){:target="_blank"}, which uses Kafka Connect, enabling interoperability with other Kafka distributions.
-
-Use geo-replication to replicate data between {{site.data.reuse.es_name}} clusters.  Use MirrorMaker 2.0 to move data between Event Streams clusters and other Kafka clusters.
+Use the [geo-replication](../../georeplication/about/) feature to easily perform basic replication of topics between {{site.data.reuse.es_name}} clusters. Use MirrorMaker 2.0 directly to move data between {{site.data.reuse.es_name}} clusters and other Kafka clusters, or when lower-level aspects also need to be replicated, such as offsets and topic configuration.
 
 ### Cruise Control
 

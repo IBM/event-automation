@@ -25,6 +25,7 @@ The details of your topic appear in three sections:
 You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with IBM API Connect](../../integrating-with-apic/export-asyncapi/).
 
 ## Editing a topic
+{: #edit-topic}
 
 To edit the event source details that represent a topic:
 
@@ -49,10 +50,11 @@ You can edit the following information on this page. Restrictions and validation
 ### Event information
 
 The event information provides details to help consume the events from the topic. 
-- **Upload Schema:** you can provide an Avro Schema in JavaScript Object Notation (JSON) document format. Checks  are made to ensure valid JSON and valid Avro schemas have been uploaded. If a valid file has been uploaded, a code snippet preview of the schema is displayed. If the formatting is incorrect, the schema is not saved with a validation failure.
+- **Upload Schema:** You can provide an Avro schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic. Checks are made to ensure a valid Avro schema has been uploaded. If a valid file has been uploaded, a preview of the schema is displayed. If the schema is invalid, a validation failure is displayed and the schema is not saved. When consuming events in Avro binary or Avro JSON format from the topic, you can use an option that contains the [schema filtering control](../option-controls#schema-filter) to filter out any events that do not match the schema. 
+
     **Note:** The schema must also be saved as a `.avsc` or `.avro` file. Invalid file formats will not be saved when uploaded, and the topic will not have a schema. 
-- **Schema description:** you can add detailed information about the schema. 
-- **Sample messages:** you can provide examples of the messages that are emitted by the event source. In addition, if the event source does not follow an Avro schema, you can use the sample messages field. The sample messages will then be used to infer the schema of messages sent on the topic. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
+- **Schema description:** You can add detailed information about the schema. 
+- **Sample messages:** You can provide examples of the messages that are emitted by the event source. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
 
 ## ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Creating an option
 {: #create_option}
@@ -72,7 +74,7 @@ To create an option, complete the following steps.
       - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
 1. In the description field, provide a description of your option.
 1. Click **Next**. The **Controls** page is displayed.
-1. (Optional) If you want to control who can subscribe to your option, click **Add control**. For more information about adding controls, see [approval controls for options](../approval-controls).
+1. (Optional) If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
 1. Click **Next**. The **Publish option** page is displayed.
 1. If you're ready to publish your option, click **Publish**. For more information about publishing options, see [publishing options](../publishing-topics).
 1. To complete the option, click **Save**.

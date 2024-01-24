@@ -41,7 +41,7 @@ To add a source node, follow these steps:
 2. Hover over the node and click the **Edit** icon
 ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
-The **Configure event source** page appears.
+The **Configure event source** window appears.
 
 ### Configuring a source node
 
@@ -199,7 +199,7 @@ To add an event destination node, follow these steps:
 1. In the **Palette**, under **Events**, drag the **Event destination** node into the canvas.
 2. Hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
-The **Configure event destination** page appears.
+The **Configure event destination** window appears.
 
 ### Configuring an event destination node 
 

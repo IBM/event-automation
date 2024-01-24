@@ -26,17 +26,16 @@ This getting started scenario assumes that there is an order details available t
 
 1. On the {{site.data.reuse.ep_name}} home page, click **Create**.
 1. Provide a name and optionally a description for your flow.
-1. Click **Create**. An empty canvas for your flow is displayed.
+1. Click **Create**. The canvas is displayed with an event source node on it.
+
+
+   **Note:** When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
+
+1. To configure an event source, hover over the source node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed. 
 
 The clothing company created a flow called `Filter` and provided a description to explain that this flow will be used to identify orders made in a specific region.
 
 ![Create a flow]({{ 'images' | relative_url }}/ep-lab1-create.png "Diagram to show creating a flow.")
-
-## Step 2: Add an event source node
-{: #add-event}
-
-1. In the sidebar, in the **Events** section, drag the **Event source** node onto the canvas.
-1. Hover over the source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed.
 
 ### Save
 {: #save}
@@ -51,7 +50,7 @@ User actions are saved automatically. For save status updates, see the canvas he
     - **Accept changes**: Select this action to apply the latest updates that are made by the other user to the flow. For the **Flow running** case, you can view the running flow.
     - **Home**: Select this action to navigate back to the home page. The specific flow will no longer be available because it was deleted by another user.
 
-## Step 3: Configure an event source
+## Step 2: Configure an event source
 {: #configure-event}
 
 1. You need to provide the source of events that you want to process. To do this, start by adding an event source, select **Add new event source** > **Next**.
@@ -61,12 +60,12 @@ User actions are saved automatically. For save status updates, see the canvas he
     **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
 
-1. Click **Next**. The **Access credentials** page is displayed.
-1. On the **Access credentials** page, you need to provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
-1. Click **Next**. The **Topic selection** page is displayed.
+1. Click **Next**. The **Access credentials** pane is displayed.
+1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
+1. Click **Next**. The **Topic selection** pane is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
-1. Click **Next**. The **Define event structure** page is displayed.
-1. On the **Define event structure** page, provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
+1. Click **Next**. The **Define event structure** pane is displayed.
+1. Provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
 
    Enter an Avro schema in the **Topic schema** tab, or click the **Sample message** tab and enter the sample message in JSON format. For more information, see [event information]({{ '/eem/describe/managing-topics/#event-information' | relative_url }}).
 
@@ -78,7 +77,7 @@ The clothing company called their event source `Orders` and used the schema for 
 
 ![Define event structure]({{ 'images' | relative_url }}/ep-lab1-eventsource-4.png "Image to show the clothing company defining the event structure.")
 
-## Step 4: Add a filter
+## Step 3: Add a filter
 {: #add-filter}
 
 1. On the **Palette**, in the **Processors** section, drag a **Filter** node onto the canvas.
@@ -87,11 +86,11 @@ The clothing company called their event source `Orders` and used the schema for 
 
 The **Configure filter** window is displayed.
 
-## Step 5: Configure the filter
+## Step 4: Configure the filter
 {: #configure-filter}
 
 1. Now, you need to configure the filter that defines the events that you are interested in. To do this, in the **Details** section, provide a name for the filter node.
-1. Click **Next**. The **Define filter** page is displayed.
+1. Click **Next**. The **Define filter** section is displayed.
 1. Use the **Assistant** to define a filter with your requirements by updating the **Property to filter on**, **Condition**, and **Value** fields.
 1. Click **Add to expression**.
 1. Click **Configure**. The canvas is displayed and your Filter node has a green checkmark, which indicates that the node has been configured successfully.
@@ -100,7 +99,7 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 
 ![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2.png "Image to show the clothing company using the assistant to define a filter")
 
-## Step 6: Run the flow
+## Step 5: Run the flow
 {: #run-flow}
 
 1. The last step is to run your {{site.data.reuse.ep_name}} flow and view the results.

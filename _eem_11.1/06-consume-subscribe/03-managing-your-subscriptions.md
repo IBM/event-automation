@@ -32,3 +32,5 @@ Credentials are revoked when the associated subscription is deleted. You can del
 6. Click **Revoke** to remove the certificate.
 
 When the credentials are revoked, a confirmation message is displayed, and the subscription is removed from your subscriptions list.
+
+By revoking a subscription, the gateway no longer allows revoked credentials to be used in new connection attempts. Client connections that are already connected stay connected until they disconnect. When the client disconnects, a new subscription with new credentials is required to re-connect.

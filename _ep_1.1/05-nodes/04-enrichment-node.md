@@ -27,7 +27,7 @@ To add a database node, complete the following steps.
 
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-The **Configure database enrichment** page appears.
+The **Configure database enrichment** window appears.
 
 ### Configuring a database node
 
@@ -62,8 +62,8 @@ To configure a database node, complete the following steps.
    - `<configuration>` is the list of configuration parameters for the connection.
    - `<protocol>` is used in order to activate SSL in the JDBC thin client.
    - `<service_name>` is used by the database to register itself with a listener. 
-1. Click **Next** to open the **Access Credentials** section. Enter your username and password (if prompted).
-1. Click **Next**. The **Table selection** page is displayed.
+1. Click **Next** to open the **Access Credentials** pane. Enter your username and password (if prompted).
+1. Click **Next**. The **Table selection** pane is displayed.
 1. To choose a table from the provided database, you can either search for the table name in the search box, or select the radio button corresponding to the table name that you want to process events from.
 1. A preview of the schema of the selected table, along with its associated constraints, is displayed in the **Data table preview**. Click **Next**.
 
@@ -102,7 +102,7 @@ To configure a database node, complete the following steps.
    | `TIMESTAMP`         | ✓          | ✓     | ✓      |
    | `VARCHAR`           | ✓          |       | ✓      |
 
-1. In the **Match Criteria** section, define your expression by using the property from the source, and the table field.
+1. In the **Match Criteria** pane, define your expression by using the property from the source, and the table field.
 
    For example, the incoming event has a field `country_code` with values such as `866, 453, 123` and you wish to lookup a human readable name from a database table.
 
@@ -113,8 +113,8 @@ To configure a database node, complete the following steps.
    ```
 
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant offers two separate drop-down lists of properties, for the source table attributes and the database table attributes with constraints, enabling you to construct the expression.
-1. After you defined an expression, click **Next** to open the **Enrich Properties** page. Include or reject the database table fields for further processing.
-1. Click **Next** to open the **Output properties** section, which contains both the input fields from the preceding node, and the previously chosen database table fields. Remove the fields that you do not want to be visible in the output.
+1. After you defined an expression, click **Next** to open the **Enrich Properties** pane. Include or reject the database table fields for further processing.
+1. Click **Next** to open the **Output properties** pane, which contains both the input fields from the preceding node, and the previously chosen database table fields. Remove the fields that you do not want to be visible in the output.
 
    **Note:** To rename properties, hover over a property, and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 1. Scroll down and click **Configure** to complete the configuration.

@@ -21,7 +21,7 @@ To add an interval join, complete the following steps.
 3. Connect the node to two event sources by separately dragging the **Output Port** from each source node into the **Input Port** of this node.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-The **Configure Interval join** page is displayed.
+The **Configure Interval join** window is displayed.
 
 
 ### Configuring an interval join node
@@ -32,7 +32,7 @@ To configure an interval join, complete the following steps.
 
 #### Join condition
 
-To define your join condition, on the **Join condition** page, in the **Define events** text box, enter your expression.
+To define your join condition, on the **Join condition** section, in the **Define events** text box, enter your expression.
 
 Alternatively, you can use the assistant to create your expression.
 

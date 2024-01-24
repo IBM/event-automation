@@ -10,6 +10,16 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.2 compared to 1.1.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.2 icon]({{ 'images' | relative_url }}/1.1.2.svg "In Event Processing 1.1.2 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.2 and {{site.data.reuse.flink_long}} version 1.1.2 contain security and bug fixes.
+
+### Release 1.1.1
+
 ### Support for Avro binary-encoded events and epoch timestamps
 
 {{site.data.reuse.ep_name}} release 1.1.1 includes support for events that are in binary-encoded Avro format. Support for epoch timestamps containing second, millisecond, and microsecond precision is also included. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node/).

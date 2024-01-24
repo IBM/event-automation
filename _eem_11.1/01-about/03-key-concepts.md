@@ -19,6 +19,14 @@ A Kafka topic, which contains a set of related events.
 
 A Kafka administrator can create an option for an [event source](#event-source) that enables them to control how the topic's stream of events are made available within the catalog. 
 
+## ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Controls
+
+You can add [controls to options](../../describe/option-controls) so that you have greater management over how topic data is presented to consumers. You can add the following controls to an option:
+
+   * [Approval](../../describe/option-controls#approval-controls): Use the approval control to force users to request access to your topic.
+   * ![Event Endpoint Management 11.1.2 icon]({{ 'images' | relative_url }}/11.1.2.svg "In Event Endpoint Management 11.1.2 and later") [Redaction](../../describe/option-controls#redaction): Use a redaction control to hide sensitive data.
+   * ![Event Endpoint Management 11.1.2 icon]({{ 'images' | relative_url }}/11.1.2.svg "In Event Endpoint Management 11.1.2 and later") [Schema filtering](../../describe/option-controls#schema-filter): Use the schema filtering control to manage how the data in your topic is presented to consumers and to ensure consistency.
+
 ## Catalog
 
 The catalog lists all available topics that represent event sources and, if applicable, their available options. Application developers in your organization can use the catalog to browse the available topics, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling access to the stream of events represented by the topics using the published options.

@@ -44,4 +44,6 @@ If your searched query is a partial match and starts with the same consecutive c
 
 ## Exporting topic details
 
-You can also export a catalog entry as an AsyncAPI document by clicking **Export as AsyncAPI**. The topic details are downloaded and saved to your computer. The AsyncAPI document contains the same information about the topic as presented in the Catalog, and can be used in downstream tooling to generate code snippets or socialize the event source further.
+To export an option as an AsyncAPI document, click **Export AsyncAPI**, and then click **Export** in the dialog.
+
+![Event Endpoint Management 11.1.2 icon]({{ 'images' | relative_url }}/11.1.2.svg "In Event Endpoint Management 11.1.2 and later") You can select the version of the AsyncAPI specification to use when exporting the document. The topic details are downloaded and saved to your computer. The AsyncAPI document contains the same information about the topic as presented in the Catalog, and can be used in downstream tooling to generate code snippets or socialize the event source further.

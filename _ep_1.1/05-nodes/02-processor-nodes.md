@@ -27,14 +27,14 @@ To add a filter node, complete the following steps.
 3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-The **Configure a Filter** page appears.
+The **Configure a Filter** window appears.
 
 ### Configuring a filter node
 
 To configure a filter node, complete the following steps.
 
 1. {{site.data.reuse.node_details}}
-2. Click **Next** to open the **Define Filter** section.  
+2. Click **Next** to open the **Define Filter** pane.  
 3. Enter an expression in the **Filter Expression** text box to filter the events. The expression consists of a property, a mathematical condition, and a value. You can create a simple expression with one condition or a complex expression with multiple conditions based on your requirement. You can create multiple conditions within an expression by using `AND` or `OR`.
 
    Examples:
@@ -76,14 +76,14 @@ To add a transform node, complete the following steps.
 3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the transform node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   The **Configure Transform** page appears.
+   The **Configure Transform** window appears.
 
 ### Configuring a transform node
 
 To configure a transform node, complete the following steps.
 
 1. {{site.data.reuse.node_details}}
-1. Click **Next** to open the **Create properties** section.
+1. Click **Next** to open the **Create properties** pane.
 1. Click **Create new property** to add a new property to the table.
 1. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} and enter a name for your property.
 1. Enter your expression in the **Expression** text box to define your property.
@@ -95,7 +95,7 @@ To configure a transform node, complete the following steps.
 
       **Note:** Ensure you choose the values with correct data type for your expression. Properties that are used as values in the comparison operations must be of the same data type. Arithmetic operations are only allowed on integer and double data types. String operations are only possible with properties of string data type. Some temporal functions require a timestamp data type.
 1. (Optional) Repeat steps 3 - 6 to create more properties.  
-1. Click **Next** to open the **Output properties** section. You can manage the properties that come from this node to suit your requirements. 
+1. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements. 
 1. (Optional) To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.  
 1. (Optional) To rename a property, hover over the property name and click the **Edit icon** ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.   
     1. In the text-box, enter a new name for your property.  

@@ -35,17 +35,17 @@ A source node consumes messages from a Kafka topic to produce a stream of events
 
 ### Adding a source node
 
-To add a source node, complete the following steps:
+When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
 
-1. In the **Palette**, under **Events**, drag the **Event source** node into the canvas.
-2. Hover over the node and click the **Edit** icon
-![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
+To add additional event source nodes, in the **Palette**, under **Events**, drag the **Event source** node into the canvas.
 
-The **Configure event source** page appears.
+
 
 ### Configuring a source node
 
-To configure an event source, complete the following steps.
+To configure an event source, hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}. The **Configure event source** window appears.
+
+Complete the following steps to configure your event source node.
 
 #### Add an event source or select a recent one
 
@@ -120,7 +120,9 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 1. Select **Upload a schema or sample message**.
 2. Select how you want to define the event structure:
 
-   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+   
+    - ![Event Processing 1.1.2 icon]({{ 'images' | relative_url }}/1.1.2.svg "In Event Processing 1.1.2 and later.") The fields also support `time-millis` logical type.
 
       For example, the following schema sets the `optionalComments` as an optional field:
 
@@ -224,16 +226,17 @@ The event destination node delivers the processed stream of events to a Kafka to
 To add an event destination node, complete the following steps:
 
 1. In the **Palette**, under **Events**, drag the **Event destination** node into the canvas.
+1. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event destination node indicating that the node is yet to be configured.
 2. Hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
 
-The **Configure event destination** page appears.
+The **Configure event destination** window appears.
 
 ### Configuring an event destination node 
 
 To configure an event destination, complete the following steps.
 
 1. Contact your cluster administrator, and retrieve the details of the Kafka cluster and the topic that you want to write your processed events to.
-2. Follow the [instructions to configure a source node](#configuring-a-source-node).
+2. Configure your event destination node by following the instructions in [source node](#configuring-a-source-node).
 3. After you have set up the event destination node, click **Configure**.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} 

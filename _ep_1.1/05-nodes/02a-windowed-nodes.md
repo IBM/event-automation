@@ -24,14 +24,14 @@ To add an aggregate node, complete the following steps.
 3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Icon showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the aggregate node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   The **Configure aggregate** page appears.
+   The **Configure aggregate** window appears.
 
 ### Configuring an aggregate node
 
 To configure an aggregate node, complete the following steps.
 
 1. {{site.data.reuse.node_details}}
-1. Click **Next** to open the **Time window** section.
+1. Click **Next** to open the **Time window** pane.
 1. If a time window is already defined in a previous node, the time window is already prefilled with this time window, and the time window edition is disabled by default.
 For example, a top-n node followed by an aggregate node to "Calculate the total of the 3 highest orders by customer per hour".
 
@@ -49,12 +49,12 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
       In a standard time window, events are assigned to time windows of a fixed-size that do not overlap. For example, "Calculate the average price of products sold every day". To assign events to one or more time windows, you need to enable a rolling time window. An example of a rolling time window is "Calculate the average price of products sold in the last twenty-four hours and repeat this calculation every hour".
    1. (Optional) To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
       1. In the **Specify the offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
-1. Click **Next** to open the **Aggregate function** section.
+1. Click **Next** to open the **Aggregate function** pane.
 1. To define how you would like to aggregate events over time windows, in the **Aggregate function** field, select an aggregate function.
 1. In the **Property to aggregate** field, select the event property that you want to use.
 1. (Optional) To compute aggregate operations on additional properties over each time window, click **Add another aggregate function** and repeat steps 7 and 8.
 1. (Optional) You can optionally group events by one or more properties over each time window. By doing so, all aggregate functions you specified are applied in each time window on group of events having the same property value. For example, "Compute the sum of product prices every hour, grouped by order identifier".
-1. Click **Next** to open the **Output properties** section. In the **Output properties** section, you can manage the properties that are displayed in the output when you view the results after running the flow.
+1. Click **Next** to open the **Output properties** pane. You can manage the properties that are displayed in the output when you view the results after running the flow.
 1. (Optional) To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.
 
    **Note**: The following properties are added by default in the output:
@@ -91,14 +91,14 @@ To add a top-n node, complete the following steps.
 3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Icon showing the unconfigured node icon."){: height="30px" width="15px"} appears on the top-n node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-   The **Configure top-n** page appears.
+   The **Configure top-n** window appears.
 
 ### Configuring a top-n node
 
 To configure a top-n node, complete the following steps.
 
 1. {{site.data.reuse.node_details}}
-1. Click **Next** to open the **Time window** section.
+1. Click **Next** to open the **Time window** pane.
 1. If a time window is already defined in a previous node, the time window is already prefilled with this time window, and the time window edition is disabled by default.
 For example, an aggregate node followed by a top-n node to "Calculate the 3 product types with the highest total sales per hour".
 
@@ -116,7 +116,7 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
       In a standard time window, events are assigned to time windows of a fixed-size that do not overlap. For example, "Get the 5 most valuable orders placed every day". To assign events to one or more time windows, you need to enable a rolling time window. An example of a rolling time window is "Get the 5 most valuable orders placed in the last 24 hours and repeat this calculation every hour".
    1. (Optional) To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
       1. In the **Specify the offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
-1. Click **Next** to open the **Condition** section.
+1. Click **Next** to open the **Condition** pane.
 1. In the **Specify the number of results to keep on each window** field, specify the number of results that you want to see for each time period.
 1. In the **Number of results to keep on each window** field, select the property to use for sorting the events.
 1. Select **Ascending** or **Descending** according to the following rule:
@@ -127,7 +127,7 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
 
    **Note**: When you do this, the top-n condition is applied in each time window on a group of events that have the same property value. For example, "Get the 5 most valuable orders placed every day, grouped by customer identifier".
 1. (Optional) To select an additional group to group by, click **Group by another property**.
-1. Click **Next** to open the **Output properties** section. In the **Output properties** section, you can manage the properties that are displayed in the output when you view the results after running the flow.
+1. Click **Next** to open the **Output properties** pane. You can manage the properties that are displayed in the output when you view the results after running the flow.
 1. (Optional) To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.
 
    **Note**: The following properties are added by default in the output:

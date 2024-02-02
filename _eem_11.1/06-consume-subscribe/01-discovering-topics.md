@@ -10,7 +10,7 @@ In the {{site.data.reuse.eem_name}} catalog, you can browse and discover informa
 
 ## The Catalog
 
-All the published and socialized Kafka topics are available in the {{site.data.reuse.eem_name}} UI home page (**Catalog**). Each topic represents a source of events, and you can use the catalog to find out more about what kind of event data is available by clicking the topic name.
+All the published and socialized Kafka topics are available in the {{site.data.reuse.eem_name}} UI homepage (**Catalog**). Each topic represents a source of events, and you can use the catalog to find out more about what kind of event data is available by clicking the topic name.
 
 The information documented for each topic can include the following detail:
 - A free form description about the event data available.

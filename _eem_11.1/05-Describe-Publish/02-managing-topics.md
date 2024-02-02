@@ -30,9 +30,9 @@ You can also [delete](#deleting-a-topic) your topic from this page, or [export t
 To edit the event source details that represent a topic:
 
 1. Click the **Information** tab on the **Topic detail** page, and then select **Edit Information**.
-1. Edit the fields you want to change in the [**Overview information**](#overview-information) section.
-1. In the side bar, click **Event Information** to navigate to this section.
-1. Edit the fields and values in the [**Event Information**](#event-information) section that you want to change.
+1. Edit the fields you want to change in the [**Overview information**](#overview-information) pane.
+1. In the side bar, click **Event Information** to navigate to this pane.
+1. Edit the fields and values in the [**Event Information**](#event-information) pane that you want to change.
 1. After you make changes, click **Save**.
 1. To cancel changes, click **Cancel**.
 
@@ -40,7 +40,7 @@ Refer to the following sections for more information about the fields that can b
 
 ### Overview information
 
-You can edit the following information on this page. Restrictions and validation checks ensure each field meets requirements for Kafka event sources.
+You can edit the following information in this pane. Restrictions and validation checks ensure each field meets requirements for Kafka event sources.
 
 - **Topic name** is set when the event source is created and cannot be edited. 
 - **Description** can be edited to describe your topic.
@@ -64,7 +64,7 @@ To create an option, complete the following steps.
 1. In the navigation pane, click **Topics**.
 1. Click the topic that you want to work with. 
 1. Click the **Options** tab on the **Topic detail** page. 
-1. Click **Create option**. The **Details** page is displayed.
+1. Click **Create option**. The **Details** pane is displayed.
 1. In the **Option** field, provide a name for your option.
 1. In the **Alias** field, provide a valid Kafka topic name.  
 
@@ -73,9 +73,9 @@ To create an option, complete the following steps.
       - Have no white space included,
       - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
 1. In the description field, provide a description of your option.
-1. Click **Next**. The **Controls** page is displayed.
+1. Click **Next**. The **Controls** pane is displayed.
 1. (Optional) If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
-1. Click **Next**. The **Publish option** page is displayed.
+1. Click **Next**. The **Publish option** pane is displayed.
 1. If you're ready to publish your option, click **Publish**. For more information about publishing options, see [publishing options](../publishing-topics).
 1. To complete the option, click **Save**.
 
@@ -88,7 +88,7 @@ To edit an option's details, complete the following steps.
 1. Click the topic that you want to work with. 
 1. Click the **Options** tab on the **Topic detail** page.
 1. For the option that you want to edit, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A pop-up window to edit your option is displayed.
-1. In the **Details** section, edit the fields that you want to change. 
+1. In the **Details** pane, edit the fields that you want to change. 
 
     **Note**: 
     - Restrictions and validation checks ensure each field meets requirements for options.
@@ -116,7 +116,7 @@ To change the lifecycle state of an option, complete the following steps.
 1. Click the topic that you want to work with. 
 1. Click the **Options** tab on the **Topic detail** page.
 1. For the option that you want to edit, click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/editPen.svg "Diagram showing edit icon."){:height="30px" width="15px"}. A pop-up window to edit your option is displayed.
-1. In the side bar, click **Publish option**. You can see the option's current state and a button to advance it to the next state on this page.
+1. In the side bar, click **Publish option**. You can see the option's current state and a button to advance it to the next state in this pane.
 
     - To change the **Unpublished** state to **Published**, click **Publish**.
     - To change the **Published** state to **Archived**, click **Archive**.

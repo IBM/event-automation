@@ -181,6 +181,8 @@ latest_eemdocs:
         url: /troubleshooting/gateway-pods-fail/
       - title: "The Kafka consumer is not picking up changes made to controls"
         url: /troubleshooting/new-controls-not-picked-up/
+      - title: "Redaction fails for nested fields"
+        url: /troubleshooting/nested-redaction-fails/
 
 110_eemdocs:
   - title: About

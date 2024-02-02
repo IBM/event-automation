@@ -44,6 +44,10 @@ For enhanced security on the REST services endpoints, {{site.data.reuse.es_name}
 
 In {{site.data.reuse.es_name}} 11.3.0 and later, if you have overridden the certificates for any of the Kafka listeners or REST endpoints by providing certificates signed by an external Certificate Authority (CA), you must now [provide the public CA certificates](../../installing/configuring#providing-external-ca-certificates) that were used to sign those certificates.
 
+### Audit trail for Kafka
+
+{{site.data.reuse.es_name}} can be configured to generate a sequential record of activities within the {{site.data.reuse.es_name}} Kafka cluster. See [auditing Kafka](../../administering/auditing-kafka) to find out how to configure {{site.data.reuse.es_name}} to provide an audit trail for Kafka cluster activities, including sample configurations for different Kafka users and Kafka topics, and examples of audit records.
+
 ### Removal of Grafana provided by {{site.data.reuse.icpfs}}
 
 The Grafana service provided by {{site.data.reuse.icpfs}} is removed in {{site.data.reuse.icpfs}} 4.x and later. If you are using Grafana provided by {{site.data.reuse.fs}} for your monitoring dashboards, see [the information about alternatives](../../administering/cluster-health/) you can switch to.

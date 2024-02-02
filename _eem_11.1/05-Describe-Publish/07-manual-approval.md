@@ -19,7 +19,7 @@ When an option is created for an event source, it appears in the **Options** tab
 1. Find the topic that you want to work with in the list, and click the name of the topic.
 1. Click the **Options** tab.
 1. For the option that you want to edit, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A pop-up window to edit your option is displayed.
-1. In the side bar, click **Controls**. The **Controls** page is displayed.
+1. In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Approval** tile.
 1. Click **Add** > **Next** > **Save**. 

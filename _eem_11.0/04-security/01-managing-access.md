@@ -193,7 +193,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
             site: <oidc_provider_site>
     ```
 
-    **Note:** If your OIDC provider does not support **OIDC Discovery**, add the following parameters in the `oidcConfig` block:
+    **Note:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` block:
 
     ```yaml
     tokenPath: (required) <path to the token endpoint of this provider>
@@ -267,7 +267,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
 
    This will create the secret `<custom-resource-name>-ibm-eem-user-roles` and can be used to define user roles (permissions).
 
-   **Note:** If your OIDC provider does not support **OIDC Discovery**, then you will need to add the following parameters in the `oidcConfig` block:
+   **Note:** If your OIDC provider does not support OIDC Discovery, then you will need to add the following parameters in the `oidcConfig` block:
 
    ```yaml
    tokenPath: (required) <path to the token endpoint of this provider>

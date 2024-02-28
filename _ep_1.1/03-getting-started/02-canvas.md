@@ -116,7 +116,14 @@ The clothing company selected **Include historical** to run the filter on the hi
 
 ![Viewing results]({{ 'images' | relative_url }}/ep-lab1-results.png "Image to show the clothing company viewing the results of their flow.")
 
+## Flow statuses
 
+A flow status indicates the current state of the flow. A flow can be in one of the following states:
 
+- **Draft:** Indicates that the flow includes one or more nodes that need to be configured. The flow cannot be run.
+- ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.")  **Valid:** Indicates that all nodes in the flow are configured and valid. The flow is ready to run.
+- ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") **Invalid:** Indicates that the nodes in the flow are configured but have a validation error, or a required node is missing. The flow cannot be run.
+- **Running:** Indicates that the flow is configured, validated, running, and generating output.
+- **Error:** Indicates that an error occurred during the runtime of a previously running flow.
 
-
+                  

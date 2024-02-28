@@ -251,7 +251,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eventstreams-operator
       ```
       
-      Check the `version:` value in the output, for example: `version: 3.3.0`
+      Check the `version:` value in the output, for example: `version: 3.3.1`
 
 - If the chart version for your existing deployment is 3.2.x, your upgrade is a change in a minor version. If your existing chart version is 3.3.x, your upgrade is a change in the patch level version only. Complete the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.es_name}} instance automatically.
 
@@ -335,7 +335,7 @@ If you are upgrading an existing installation where you have a specific authenti
 
 In previous {{site.data.reuse.es_name}} versions, all authentication mechanisms were enabled by default if you did not set any specific mechanism (`iam-bearer`,`tls`,`scram-sha-512`; with `iam-bearer` only available if you have {{site.data.reuse.icpfs}} installed on the {{site.data.reuse.openshift_short}}). In such cases, ensure you have a [Kafka listener](../configuring/#kafka-access) set up with the authentication type set to the authentication mechanism you want to use for your REST endpoints.
 
-For example, the following configuration in {{site.data.reuse.es_name}} 11.2.5 enabled all authentication mechanisms for the REST endpoint as none were specified. After upgrading to 11.3.0, this configuration means that only SCRAM can be used as the authentication mechanism.
+For example, the following configuration in {{site.data.reuse.es_name}} 11.2.5 enabled all authentication mechanisms for the REST endpoint as none were specified. After upgrading to 11.3.x, this configuration means that only SCRAM can be used as the authentication mechanism.
 
 ```yaml
 # ...

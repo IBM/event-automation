@@ -26,6 +26,7 @@ Ensure that you have at least 2 CPU cores and 2 GiB of memory available on the s
 
 - Red Hat Enterprise Linux® Server 7 (x86-64)
 - SUSE Linux® Enterprise Server (SLES) 12.0 (x86-64)
+- ![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later") Linux on IBM z13 (s390x) or later systems
 
 ## Certificates
 

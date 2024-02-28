@@ -6,7 +6,7 @@ slug: key-concepts
 toc: true
 ---
 
-Read about the key concepts and terms used in Event Processing.
+Read about the key concepts and terms used in Event Processing. 
 
 ## Event
 
@@ -14,6 +14,23 @@ An event is anything that happens at a [specific time](#event-time). For example
 An event is characterized by its properties, such as purchase item and date, temperature and date,
 stock price and last updated date. 
 Events processed by a [flow](#flow) are available through an [event source](#event-source).
+
+The properties can be of the following types:
+- String
+- Boolean
+- Number
+- Complex properties, such as objects containing other properties
+
+## Nested properties
+
+![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Nested properties of an event refer to properties within properties. An object consists of a set of properties of any type, for example, `string`, `boolean`, `number`, or complex properties. See information about [event node](../../nodes/eventnodes/#configuring-a-source-node) for more details.
+
+The following table explains the naming conventions in the nested properties:
+
+ | Name | Description | Example |
+ | Object |Object maps the keys to the values.|For more information, see the [JSON schema documentation](https://json-schema.org/understanding-json-schema/reference/object#object){:target="_blank"}.|
+ | Leaf property | The name of the last-level property.|`customer/address/number`, in this case, the `number`is the leaf property.|
+ | Top-level | The name of the first-level property. |`address/shipping` or `address/number`, in this case, the `address` is the top-level property.|
 
 ## Event time
 
@@ -39,7 +56,7 @@ The catalog lists all available topics that represent event sources, and you can
 
 ## Flow
 
-The flow specifies the processing to be done on the selected event streams to achieve a certain result. The event flow is represented as a graph of event sources, processors (actions), and event sinks (destinations).
+The flow specifies the processing to be done on the selected event streams to achieve a certain result. The event flow is represented as a graph of event sources, processors (actions), and event sinks (destinations). A flow can be in different states. For more information, see [flow statuses](../../getting-started/canvas/#flow-statuses).
 
 
 ## Cluster

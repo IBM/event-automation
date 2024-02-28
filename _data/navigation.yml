@@ -586,8 +586,8 @@ latestdocs:
         url: /installing/installing-on-kubernetes/
       - title: "Configuring"
         url: /installing/configuring/
-      # - title: "Integrating with Event Endpoint Management"
-        # url: /installing/integrating-eem/
+      - title: "Integrating with Event Endpoint Management"
+        url: /installing/integrating-eem/
       - title: "Post-installation tasks"
         url: /installing/post-installation/
       - title: "Backing up and restoring on OpenShift"
@@ -614,8 +614,8 @@ latestdocs:
         url: /getting-started/connecting/
       - title: "Using Apache Kafka console tools"
         url: /getting-started/using-kafka-console-tools/
-      # - title: "Sharing topic with Event Endpoint Management"
-      #   url: /getting-started/sharing-topic/    
+      - title: "Sharing topic with Event Endpoint Management"
+        url: /getting-started/sharing-topic/    
   - title: Schemas
     children:
       - title: "Schemas overview"

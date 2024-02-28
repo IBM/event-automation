@@ -109,7 +109,8 @@ To add a redaction control to an option, complete the following steps.
 1. Click **Add control**.
 1. Click the **Redaction** tile.
 1. Click **Next**. The **Add redaction control** window is displayed.
-1. In the **Property to redact** field, add a valid JSON path to the property in the Kafka message or select a property from the schema.  
+1. In the **Property to redact** field, add a valid JSON path to the property in the Kafka message or select a property from the schema.   
+   **Note:** If using the recursive descent operator (`..`) in the JSON path alongside an Avro schema for redaction, the {{site.data.reuse.egw}} does not redact anything that is contained within an array.
 1. (Optional) If you select a property from the schema in the right side panel, to quickly find the property that you want to use, type the first letter of the property or use the icons to expand the schema as required.
 1. Select a redaction type:
 

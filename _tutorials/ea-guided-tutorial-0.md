@@ -38,10 +38,10 @@ This tutorial environment is not intended to demonstrate a production deployment
 
 1. Install **Ansible** on the computer that you will use to run the tutorial playbook.
 
-    If you are using MacOS, you can use [homebrew](https://formulae.brew.sh/formula/ansible){:target="_blank"}.
-    Alternatively, you can use a [Python installer](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible){:target="_blank"}.
+   If you are using MacOS, you can use [homebrew](https://formulae.brew.sh/formula/ansible){:target="_blank"}.
+   Alternatively, you can use a [Python installer](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible){:target="_blank"}.
 
-    Include the `kubernetes.core` and `community.general` collections:
+   Include the `kubernetes.core` and `community.general` collections:
 
     ```sh
     ansible-galaxy collection install kubernetes.core
@@ -54,11 +54,11 @@ You need a {{ site.data.reuse.openshift }} cluster to run the tutorial.
 
 1. {{site.data.reuse.openshift_ui_login}}
 
-    Access to the OpenShift Console will make the following steps easier.
+   Access to the OpenShift Console will make the following steps easier.
 
 1. {{site.data.reuse.openshift_cli_login}}
 
-    You need to be logged in to run the `ansible-playbook` command in the following step.
+   You need to be logged in to run the `ansible-playbook` command in the following step.
 
 ## Deploy the tutorial
 
@@ -70,6 +70,8 @@ ansible-playbook \
     -e eventautomation_namespace=event-automation \
     install/event-automation.yaml
 ```
+
+**Note:** If you encounter any errors such as `environment is externally managed` when running an Ansible playbook within your Python environment, you can create a [Python virtual environment](https://www.redhat.com/sysadmin/python-venv-ansible){:target="_blank"}, and then execute the Ansible commands within the new virtual Python environment.
 
 ### `license_accept`
 

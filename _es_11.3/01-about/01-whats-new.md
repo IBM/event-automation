@@ -8,6 +8,29 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
+## Release 11.3.1
+
+### Share your topics with {{site.data.reuse.eem_name}}
+
+In {{site.data.reuse.es_name}} 11.3.1 and later, you can [connect](../../installing/integrating-eem/) to an {{site.data.reuse.eem_name}} instance, and make the stream of events from a topic available to others by [sharing topic details](../../getting-started/sharing-topic/) through {{site.data.reuse.eem_name}}.
+
+### Kafka version upgraded to 3.6.1
+
+{{site.data.reuse.es_name}} version [11.3.1]({{ 'support/matrix/#event-streams' | relative_url }}) includes Kafka release 3.6.1, and supports the use of all Kafka interfaces.
+
+### Apicurio version updated to 2.5.8.Final
+
+{{site.data.reuse.es_name}} 11.3.1 includes support for Apicurio Registry 2.5.8.Final. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../installing/upgrading/#migrate-to-latest-apicurio-registry).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.3.1 compared to 11.3.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Streams 11.3.1.")
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.3.1 contains security and bug fixes.
+
+
 ## Release 11.3.0
 
 ### IBM supported JDBC sink connector
@@ -15,12 +38,6 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 You can now use the IBM supported [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url }}) to copy data into your database.
 
 **Note:** IBM supports connections to Oracle databases only.
-
-<!-- ### Share your topics with {{site.data.reuse.eem_name}}
-
-In {{site.data.reuse.es_name}} 11.3.0 and later, you can [connect](../../installing/integrating-eem/) to an {{site.data.reuse.eem_name}} instance, and make the stream of events from a topic available to others by [sharing topic details](../../getting-started/sharing-topic/) through {{site.data.reuse.eem_name}}.
-
-**Note:** This feature requires {{site.data.reuse.eem_name}} version 11.1.1 or later. -->
 
 ### {{site.data.reuse.es_name}} UI authentication with Keycloak
 

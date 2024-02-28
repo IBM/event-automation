@@ -28,7 +28,9 @@ The Flink table optimizer that is used by {{site.data.reuse.ep_name}} incorrectl
 
 ## Resolving the problem
 
-You can resolve the problem by completing any one of the following methods.
+To resolve the problem:
+- Upgrade to {{site.data.reuse.ep_name}} version 1.1.3 or later. 
+- If you are running a version earlier than 1.1.3, complete one of the following tasks.
 
 ### Add a cast to filter expression
 

@@ -4,15 +4,10 @@ excerpt: "Event Processing provides a set of nodes to create event stream proces
 categories: nodes
 slug: processornodes
 toc: true
----
-
-The following processor nodes are available in {{site.data.reuse.ep_name}}:
-
-- [Filter](#filter)
-- [Transform](#transform)
-
-
-
+---  
+ The following processor nodes are available in {{site.data.reuse.ep_name}}: 
+ - [Filter](#filter)
+ - [Transform](#transform)
 
 ## Filter
 
@@ -20,7 +15,7 @@ A filter node takes in a stream of events and applies an expression to determine
 
 ### Adding a filter node
 
-To add a filter node, complete the following steps.
+To add a filter node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processors**, drag the **Filter** node into the canvas.
@@ -31,7 +26,7 @@ The **Configure a Filter** window appears.
 
 ### Configuring a filter node
 
-To configure a filter node, complete the following steps.
+To configure a filter node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
 2. Click **Next** to open the **Define Filter** pane.  
@@ -40,20 +35,27 @@ To configure a filter node, complete the following steps.
    Examples:
       - simple expression:
 
-        ```transparent
+        ```
         example_property > 100
         ```
 
       - complex expression:
 
-         ```transparent
+         ```
          example_property1 > 50 AND example_property2 > 30 OR example_property3 < 25 AND example_property4 < 250
          ```
+      - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Expression with complex object property:
+  
+  
+         ```
+         example_property.nested_property IS NOT NULL AND example_property.nested_property.leaf_property > 100
+         ```
+     
 
    **Note:** Expressions are prioritized based on [operator precedence](https://calcite.apache.org/docs/reference.html#operators-and-functions){:target="_blank"}.
 
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
-4. Scroll down and click the **Configure Filter** button to complete the configuration.
+4. Scroll down and click **Configure Filter** to complete the configuration.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the filter node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
@@ -69,7 +71,7 @@ Transform node supports various functions to create an expression. For more info
 
 ### Adding a transform node
 
-To add a transform node, complete the following steps.
+To add a transform node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Processor**, drag-and-drop the **Transform** node into the canvas.
@@ -80,29 +82,41 @@ To add a transform node, complete the following steps.
 
 ### Configuring a transform node
 
-To configure a transform node, complete the following steps.
+To configure a transform node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
 1. Click **Next** to open the **Create properties** pane.
 1. Click **Create new property** to add a new property to the table.
 1. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} and enter a name for your property.
 1. Enter your expression in the **Expression** text box to define your property.
-1. (Optional) To use the assistant to enter an expression, complete the following steps.
+   
+   ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") **Note:** The expression can also simply refer to existing properties. This is particularly useful when renaming complex object properties or when moving nested properties to the top-level.
+1. Optional: To use the assistant to enter an expression, complete the following steps:
    1. Click the **Assistant** drop-down menu to open the assistant.
-   1. In the **Select function** drop-down menu, select a function with which you want to create an expression.
-   1. In the function you selected previously, enter the required values.
-   1. Select **Insert into expression** to add the expression in the text-box.
+   2. From the **Select function** list, select a function with which you want to create an expression.
+   3. In the function you selected previously, enter the required values.
+   4. Select **Insert into expression** to add the expression in the text-box.
 
       **Note:** Ensure you choose the values with correct data type for your expression. Properties that are used as values in the comparison operations must be of the same data type. Arithmetic operations are only allowed on integer and double data types. String operations are only possible with properties of string data type. Some temporal functions require a timestamp data type.
-1. (Optional) Repeat steps 3 - 6 to create more properties.  
-1. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements. 
-1. (Optional) To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.  
-1. (Optional) To rename a property, hover over the property name and click the **Edit icon** ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.   
-    1. In the text-box, enter a new name for your property.  
-    1. Click outside the text-box or press Enter on your keyboard to rename the property.
-1. (Optional) To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties.  
-    1. In the property you want to add back, click the add icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.  
-1. To complete the transform node configuration, click **Configure**.
+2. Optional: Repeat steps 3 to 6 to create more properties.  
+3. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
+4. ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Only **leaf** properties are listed in the **Output properties** table. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
+
+   Click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"} to remove a property so that it is not displayed in the output.
+   
+     **Note:** Nested properties are displayed by using a forward slash (`/`) as a separator for each level of nesting. For example, `product / id` or `customer / address / city`.      
+    
+5. ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Only **leaf** properties are listed in the **Output properties** table. You can only rename the last nested property within nested properties, you cannot rename the top-level or any other properties in between. For example, in the case of `customer / address / city`, you can only rename `city`, but not `address` or `customer`.
+    
+     **Note:** To rename the top-level property `customer/address/city` (in this case, `customer`), create a new property and add details in the following fields:
+   - **Property name:** Add a new name for the property.
+   - **Expression**: Add the name of the property to rename, for example, customer. 
+
+6. Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.   
+     - In the text-box, enter a new name for your property.  
+     - Click outside the text-box or press Enter on your keyboard to rename the property.
+7. Optional: To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties. For the property you want to add back, click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.  
+8. To complete the transform node configuration, click **Configure**.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the transform node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "DiagIconram showing red checkbox."){:height="30px" width="15px"} appears.
 

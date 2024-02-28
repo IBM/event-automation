@@ -56,6 +56,92 @@ The event information provides details to help consume the events from the topic
 - **Schema description:** You can add detailed information about the schema. 
 - **Sample messages:** You can provide examples of the messages that are emitted by the event source. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
 
+### Editing nested Avro schemas
+
+When sharing a topic from {{site.data.reuse.es_name}} that contains nested Avro schemas with custom record types, ensure you replace the record type with the entire schema definition. You must do this after sharing the topic with {{site.data.reuse.eem_name}}, but before publishing the topic. You can find the required schema definitions in your schema registry.
+
+#### Before you begin
+
+Before you edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, obtain the required schema definition from your schema registry for each custom record type.
+
+For example, if you are using the {{site.data.reuse.es_name}} schema registry, complete the following steps to obtain the required schema definition:
+
+1. Log in to the {{site.data.reuse.es_name}} UI by using your login credentials.
+2. Click **Schema registry** in the primary navigation.
+3. Select the schema for the record type from the list.
+4. Copy the schema definition and paste it into a text editor. When you edit the nested Avro schema later, you can replace the custom record type with this definition.
+
+#### Editing a nested Avro schema
+
+To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow these steps:
+
+1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
+2. In the navigation pane, click **Topics**.
+3. Find the topic you shared in the list, and click the name of the topic.
+4. Click **Edit information** on the **Topic detail** page.
+5. From the left pane, click **Event information**.
+6. To modify the schema, complete the following steps:
+
+   1. Copy the schema displayed and paste it into a text editor.
+   1. Copy the schema definition from your schema registry.
+     For example, if you are using the {{site.data.reuse.es_name}} schema registry, copy the schema definition obtained [earlier](#before-you-begin).
+   1. Find the custom record type name and paste the schema definition in the `type` section.
+
+      For example, in the following Avro schema, the `customer` type is replaced with its schema definition.
+
+      ```json
+      {
+        "type": "record",  
+        "name": "order",
+        "fields": [
+        
+            {
+              "name": "region",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "type": "customer"
+            }
+        ] 
+      } 
+      ```
+
+      ```json
+      {
+        "type": "record",
+        "name": "order",
+        "fields": [
+            {
+              "name": "region",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "type": {
+              "type": "record",
+              "name": "customer",
+              "fields": [
+                  {
+                    "name": "id",
+                    "type": "string"
+                  },
+                  {
+                    "name": "name",
+                    "type": "string"
+                  }
+               ]
+            }
+          }
+        ]
+      }
+      ```
+
+   1. Save the modified schema as a `.avsc` or `.avro` file.
+
+7. Click **Delete schema** to delete the existing schema.
+8. To upload the modified schema, click **Add an Avro schema** and select the `.avsc` or `.avro` file that you modified and saved earlier.
+  
 ## ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Creating an option
 {: #create_option}
 
@@ -115,7 +201,7 @@ To change the lifecycle state of an option, complete the following steps.
 1. In the navigation pane, click **Topics**.
 1. Click the topic that you want to work with. 
 1. Click the **Options** tab on the **Topic detail** page.
-1. For the option that you want to edit, click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/editPen.svg "Diagram showing edit icon."){:height="30px" width="15px"}. A pop-up window to edit your option is displayed.
+1. For the option that you want to edit, click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"}. A pop-up window to edit your option is displayed.
 1. In the side bar, click **Publish option**. You can see the option's current state and a button to advance it to the next state in this pane.
 
     - To change the **Unpublished** state to **Published**, click **Publish**.

@@ -294,11 +294,21 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 Apply the catalog sources for the operator to the cluster by running the following command:
 
+
+
+![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later") If you are installing {{site.data.reuse.eem_name}} 11.1.3 or later:
+
+```shell
+oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
+``` 
+
+If you are installing a version earlier than 11.1.3:
+
 ```shell
 oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources-linux-amd64.yaml
 ```
 
-Where `<case-version>` is the case version.
+Where `<case-version>` is the version of the CASE you want to install.
 
 ## Install the operator
 
@@ -336,7 +346,7 @@ Complete the following steps to install the operator:
 3. Install the operator Custom Resource Definitions (CRD) by using the Helm CLI:
 
    ```shell
-   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eventendpointmanagement-operator-crd-<case-version>.tgz -n <target-namespace>
+   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eem-operator-crd-<case-version>.tgz -n <target-namespace>
    ```
 
    Where:
@@ -349,7 +359,7 @@ Complete the following steps to install the operator:
 4. Install the operator by using the Helm CLI:
 
    ```shell
-   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eventendpointmanagement-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<target-registry> --set public.path="cpopen/" --set private.repo=<target-registry> --set private.path="cp/ibm-eventendpointmanagement/" --set watchAnyNamespace=<true/false>
+   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/<case-version>/charts/ibm-eem-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<target-registry> --set public.path="cpopen/" --set private.repo=<target-registry> --set private.path="cp/ibm-eventendpointmanagement/" --set watchAnyNamespace=<true/false>
    ```
 
    Where:

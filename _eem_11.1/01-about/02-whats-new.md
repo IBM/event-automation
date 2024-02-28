@@ -10,7 +10,24 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.1.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Support for Linux on IBM Z
+
+In addition to Linux 64-bit (x86_64) systems, {{site.data.reuse.eem_name}} 11.1.3 and later is also supported on OpenShift deployments running on Linux on IBM Z systems (s390x).
+
+**Note:** You cannot install {{site.data.reuse.eem_name}} on other Kubernetes platforms except OpenShift when running on IBM Z systems.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.1.3 compared to 11.1.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.1.3 contains security and bug fixes.
+
+## Release 11.1.2
+
 ### New controls for options
+
 {{site.data.reuse.eem_name}} release 11.1.2 introduces two new [controls for options](../../describe/option-controls).
   * **Redaction**: A [redaction control](../../describe/option-controls#redaction) enables you to hide personal information (PI).
   * **Schema filtering**: The [schema filtering control](../../describe/option-controls#schema-filter) ensures consistency by replacing any messages that do not match the schema that is provided in the topic with a null message.

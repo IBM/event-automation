@@ -12,9 +12,15 @@ An interval join is available in {{site.data.reuse.ep_name}}.
 
 An interval join is used to merge two event streams based on a join condition that matches events within a time period.
 
+### Output properties
+
+![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") You can manage the properties that come from this node to suit your requirements. When the properties from the events of the two input nodes are merged, you might have to resolve naming conflicts by renaming or removing properties.
+
+The merge of properties is done both at top-level and at nested levels. If both input nodes contain a complex object property with the same name, all the properties from both inputs are merged, and you need to resolve the naming conflicts by renaming or removing properties.
+
 ### Adding an interval join node
 
-To add an interval join, complete the following steps.
+To add an interval join, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Joins**, drag the **Interval join** node into the canvas.
@@ -26,7 +32,7 @@ The **Configure Interval join** window is displayed.
 
 ### Configuring an interval join node
 
-To configure an interval join, complete the following steps.
+To configure an interval join, complete the following steps:
 
 #### Details
 
@@ -36,7 +42,7 @@ To configure an interval join, complete the following steps.
 
 To define your join condition, on the **Join condition** section, in the **Define events** text box, enter your expression.
 
-Alternatively, you can use the assistant to create your expression.
+Alternatively, to use the assistant to create your expression, complete the following steps:
 
 1. Click the **Assistant** drop-down menu to open the assistant.
 2. In the **Specify property from [name of the first event source]** drop-down menu, select the property that you want to match.
@@ -47,7 +53,7 @@ Alternatively, you can use the assistant to create your expression.
 
 #### Time window condition
 
-To define the time window condition, complete the following steps.
+To define the time window condition, complete the following steps:
 
 1. In the *Event to detect* drop-down menu, select the property of the event you are interested in.
 2. In the **Event to set the time window** drop-down menu, select the property of an event used to define the time window.
@@ -61,7 +67,7 @@ You can manage the properties that come from this node to suit your requirements
 
 **Rename a property**
 
-To rename a property, complete the following steps.
+To rename a property, complete the following steps:
 
 1. Hover over the property name and click the **Edit** icon ![rename icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 2. In the text-box, enter a new name for your property.
@@ -75,7 +81,7 @@ To remove a property from being displayed in the output, click the **Remove prop
 
 **Add a removed property**
 
-To add a property that was previously removed, complete the following steps.
+To add a property that was previously removed, complete the following steps:
 
 1. Go to the **Properties to remove** table that lists the removed properties.
 2. In the row of the property that you want to restore, click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Icon showing an add icon."){:height="30px" width="15px"}.

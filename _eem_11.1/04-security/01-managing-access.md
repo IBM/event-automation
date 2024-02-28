@@ -221,7 +221,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     ```
     **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If the there is no discovery endpoint it is the URL that precedes the required paths above.
 
-    **Important:** If your OIDC provider does not support **OIDC Discovery**, add the following parameters in the `oidcConfig` section:
+    **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
     ```yaml
     discovery: false
@@ -298,7 +298,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    
     **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If the there is no discovery endpoint it is the URL that precedes the required paths above.
 
-    **Important:** If your OIDC provider does not support **OIDC Discovery**, add the following parameters in the `oidcConfig` section:
+    **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
     ```yaml
     discovery: false

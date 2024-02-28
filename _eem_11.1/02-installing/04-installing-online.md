@@ -194,6 +194,14 @@ Before you can install the required operator versions and use them to create ins
 
 4. Apply the catalog sources for the operator to the cluster by running the following command:
 
+   ![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later") If you are installing {{site.data.reuse.eem_name}} 11.1.3 or later:
+
+   ```shell
+   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
+   ```
+
+   If you are installing a version earlier than 11.1.3:
+
    ```shell
    oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources-linux-amd64.yaml
    ```

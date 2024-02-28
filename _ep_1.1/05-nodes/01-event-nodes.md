@@ -95,7 +95,7 @@ Based on the inputs your cluster administrator provided for setting up the Kafka
 
     - **Salted Challenge Response Authentication Mechanism (SCRAM):** SCRAM-SHA-256 and SCRAM-SHA-512 are SASL mechanisms that use a challenge-response mechanism to authenticate clients securely. The client and server exchange challenges and responses based on the user credentials, and the password is not sent in plain text.
 
-  Retrieve the credentials from your cluster administrator and complete the following steps.
+  Retrieve the credentials from your cluster administrator and complete the following steps:
 
   1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
   2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/consume-subscribe/subscribing-to-topics/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
@@ -119,30 +119,77 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 
 1. Select **Upload a schema or sample message**.
 2. Select how you want to define the event structure:
-
-   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
    
-    - ![Event Processing 1.1.2 icon]({{ 'images' | relative_url }}/1.1.2.svg "In Event Processing 1.1.2 and later.") The fields also support `time-millis` logical type.
+  - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** 
+     - If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+   
+     - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
 
-      For example, the following schema sets the `optionalComments` as an optional field:
+       For example, the following schema sets the `optionalComments` as an optional field:
 
-      ```json
-      {
-        "name": "Order",
-        "type": "record",
-        "fields": [
-          { "name": "orderID", "type": "int" },
-          { "name": "optionalComments", "type": ["null", "string"] }
-        ]
-      }
-      ```
-
-   - **JSON:** If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+       ```json
+       {
+         "name": "Order",
+         "type": "record",
+         "fields": [
+           { "name": "orderID", "type": "int" },
+           { "name": "optionalComments", "type": ["null", "string"] }
+         ]
+       }
+       ```
+     - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The fields also support the `record` type to describe an object containing a set of primitive or other objects as fields, with support for multiple levels of nesting.
   
+       For example, the following schema describes an order containing a product and data related to that product, including optional fields with logicalType:  
+
+       ```json
+       {
+         "type": "record",
+         "name": "Order",
+         "fields": [
+           { "name": "orderID", "type": "long" },
+           { "name": "orderTime", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+           {
+             "name": "product",
+             "type": {
+             "type": "record",
+             "name": "product",
+             "fields": [
+               { "name": "id", "type": "long" },
+               { "name": "price", "type": "double" },
+               { "name": "quantity", "type": "long" },
+               { "name": "optionalComment", "type": ["null", "string"] },
+               { "name": "optionalTimestamp", "type": ["null", { "type": "long", "logicalType": "timestamp-millis" }] }
+             ]
+            }
+          }
+         ]
+       }
+       ```
+
+   - **JSON:** 
+     - If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+     - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The `object` JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.
+  
+       For example, the following sample message is supported:
+
+       ```json
+       {
+        "orderId": 123456789,
+        "orderTime": 1708363158092,
+        "product": {
+             "id": 789456123,
+             "price": 99.99,
+             "quantity": 99,
+             "optionalComment": "a comment"
+         }
+       }  
+       ```     
+
    In versions earlier than 1.1.1:
 
    - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
    - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+  
 
 After you provide a valid schema or sample message, click **Done**.
 
@@ -170,6 +217,8 @@ Default types are assigned depending on how you defined the structure of the mes
   | `long`                                     | `BIGINT`                         |
   | `double`                                   | `DOUBLE`                         |
   | `float`                                    | `DOUBLE` <br>  ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") `FLOAT`     |
+  
+ - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") You can only assign a type for leaf properties. If there are nested properties, the name is displayed by using a forward slash (`/`) as a separator for each level of nesting. For example, `product / id` or `customer / address / city`. 
 
 Select the data type to assign to a property from the **Type mapping** list:
 
@@ -184,6 +233,20 @@ Select the data type to assign to a property from the **Type mapping** list:
 - [TIMESTAMP](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp){:target="_blank"}
 - [TIMESTAMP_LTZ](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp_ltz){:target="_blank"}
 
+![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Use one of the following types to define timestamps for event properties that are a JSON type of `String`, or where the Avro schema defines the property as a `string`:
+
+- **Timestamp**: (Replaces [TIMESTAMP](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp){:target="_blank"}) Use this type if your message property is in date-time structure without a time zone up to nanoseconds precision.
+- **Timestamp (with time zone)**: (Replaces [TIMESTAMP_LTZ](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/types/#timestamp_ltz){:target="_blank"}) Use this type if your message property is in date-time structure with a valid time zone up to nanoseconds precision.
+
+For example:
+
+| SQL                              | ISO                              |
+|----------------------------------|----------------------------------|
+| 1971-01-01 00:00                 | 1971-01-01T00:00                 |
+| 1971-01-01 00:00+05:30           | 1971-01-01T00:00+0530            |
+| 1971-01-01 00:00Z                | 1971-01-01T00:00Z                |
+| 2024-02-20 19:11:41.123456789+05 | 2024-02-20T19:11:41.123456789-01 |
+
 ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") Additionally, event properties that are a JSON type of `number`, or where the Avro schema defines the property as a `long` (or a logical type that maps to `long`), can be assigned the following types:
 
 - Timestamp (seconds)
@@ -197,11 +260,18 @@ You must assign an appropriate type to each event property:
 - Events property values that cannot be parsed according to its assigned type will be defaulted to `null`, which could eventually lead to the failure of the processing Job.
 - When assigning `Timestamp` or `Timestamp (local time zone)` to a property with a type `String`, the property must conform to the [SQL format standard](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard){:target="_blank"}.
 
+   When assigning `Timestamp` or `Timestamp (with time zone)` to a property with a type `String`, the property must conform either to the SQL or the ISO [standard](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/formats/json/#json-timestamp-format-standard){:target="_blank"}. For JSON types these properties would be available in the type mapping list only if the provided sample message conforms to this format.
+
 #### Define the event time
 
-- Select which property to use as event time from the **Source of event time** list when the event structure contains at least one property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`.
 
-- If you select the option **Use message timestamp provided by Kafka**, or when the event structure does not contain a property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`, a new timestamp property whose name is defined by **Event Property name** will be generated and added to all events.
+- Select which property to use as event time from the **Source of event time** list when the event structure contains at least one property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`.
+  
+  ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") **Note:** You can assign any of the timestamp types to nested properties, but only timestamps at top-level can be used as event time.
+
+  
+- If you select the option **Use message timestamp provided by Kafka**, or when the event structure does not contain a property of type `Timestamp `, `Timestamp (local time zone)`, `Timestamp (seconds)`, `Timestamp (milliseconds)`, or `Timestamp (microseconds)`, a new timestamp property with a  name defined by the **Event Property name** will be generated and added to all events.
+
 
 #### Event time delay
 
@@ -233,7 +303,7 @@ The **Configure event destination** window appears.
 
 ### Configuring an event destination node 
 
-To configure an event destination, complete the following steps.
+To configure an event destination, complete the following steps:
 
 1. Contact your cluster administrator, and retrieve the details of the Kafka cluster and the topic that you want to write your processed events to.
 2. Configure your event destination node by following the instructions in [source node](#configuring-a-source-node).

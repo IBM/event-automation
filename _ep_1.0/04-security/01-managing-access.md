@@ -194,7 +194,7 @@ You can authenticate users from the OIDC identity provider as follows:
            site: <oidc_provider_site>
    ```
 
-   **Note:** If your OIDC provider does not support [**OIDC Discovery**](https://openid.net/specs/openid-connect-discovery-1_0.html#IssuerDiscovery){:target="_blank"}, ensure you add the following parameters in the `oidcConfig` block:
+   **Note:** If your OIDC provider does not support [OIDC Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#IssuerDiscovery){:target="_blank"}, ensure you add the following parameters in the `oidcConfig` block:
 
    ```yaml
    tokenPath: (required) <path to the token endpoint of this provider>

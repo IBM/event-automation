@@ -28,4 +28,4 @@ When the {{site.data.reuse.egw}} tries to encode the message after performing th
 
 ## Resolving the problem
 
-There is currently no resolution for this problem. For more information, [contact IBM support]({{ 'support' | relative_url }}).
+To resolve the problem, [upgrade](../../installing/upgrading/) your {{site.data.reuse.eem_name}} instance to version 11.1.3 or later.

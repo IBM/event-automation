@@ -10,6 +10,29 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Support for events with nested properties
+
+![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Event Processing release 1.1.3 and later includes support for events containing properties describing objects. You can now process events including more complex data.
+
+**Note:** Nested properties are supported in both JSON and AVRO formats. 
+
+### Support for ISO timestamps and timestamps with time zone
+
+{{site.data.reuse.ep_name}} release 1.1.3 introduces support for new timestamp types. You can now configure events that contain timestamps in ISO format and timestamps with different time zones. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node/).
+
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.3 compared to 1.1.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.3 and {{site.data.reuse.flink_long}} version 1.1.3 contain security and bug fixes.
+
+
+## Release 1.1.2
+
+
 ### Documentation: Highlighting differences between versions
 
 Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.2 compared to 1.1.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.2 icon]({{ 'images' | relative_url }}/1.1.2.svg "In Event Processing 1.1.2 and later.")
@@ -18,7 +41,8 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 {{site.data.reuse.ep_name}} release 1.1.2 and {{site.data.reuse.flink_long}} version 1.1.2 contain security and bug fixes.
 
-### Release 1.1.1
+
+## Release 1.1.1
 
 ### Support for Avro binary-encoded events and epoch timestamps
 

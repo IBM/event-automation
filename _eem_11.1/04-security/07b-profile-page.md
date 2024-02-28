@@ -34,7 +34,9 @@ By default, the type of exposure for the `admin` endpoint  is `external`, which 
 
 ## API access tokens
 
-To make [API requests](../api-tokens) to {{site.data.reuse.eem_name}}<!--or to [receive topic information]({{'es/installing/integrating-eem/' | relative_url}}) from {{site.data.reuse.es_name}} -->, you require an access token. You can create and manage tokens in the **Profile** page. The **Profile** page displays the current {{site.data.reuse.eem_name}} organization that you are a member of, and the list of any previously created tokens.
+To make [API requests](../api-tokens) to {{site.data.reuse.eem_name}}, you require an access token. You can create and manage tokens in the **Profile** page. The **Profile** page displays the current {{site.data.reuse.eem_name}} organization that you are a member of, and the list of any previously created tokens.
+
+![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later") You can also use access tokens to [set up integration]({{'es/installing/integrating-eem/' | relative_url}}) with {{site.data.reuse.es_name}}, so you can share your topics with {{site.data.reuse.eem_name}} from the {{site.data.reuse.es_name}} UI.
 
 Every user in {{site.data.reuse.eem_name}} is a member of the organization called **eem**. This organization value is required for making API requests.
 

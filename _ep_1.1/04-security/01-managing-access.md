@@ -213,7 +213,7 @@ If your OIDC provider does not implement the Open ID Connect Discovery standard,
       ...
     ```
 
-    **Note:** If your OIDC provider does not support **OIDC Discovery**, add the following parameters in the `oidcConfig` block:
+    **Note:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` block:
 
     ```yaml
     tokenPath: (required) <path to the token endpoint of this provider>
@@ -281,7 +281,7 @@ If your OIDC provider does not implement the Open ID Connect Discovery standard,
               site: <oidc_provider_base_url>
    ```
    
-   **Note:** If your OIDC provider does not support **OIDC Discovery**, then you will need to add the following parameters in the `oidcConfig` block:
+   **Note:** If your OIDC provider does not support OIDC Discovery, then you will need to add the following parameters in the `oidcConfig` block:
 
    ```yaml
    tokenPath: (required) <path to the token endpoint of this provider>

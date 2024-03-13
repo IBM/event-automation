@@ -12,9 +12,9 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ### Support for events with nested properties
 
-![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Event Processing release 1.1.3 and later includes support for events containing properties describing objects. You can now process events including more complex data.
+Event Processing release 1.1.3 and later includes support for events containing properties describing objects. You can now process events including more complex data.
 
-**Note:** Nested properties are supported in both JSON and AVRO formats. 
+**Note:** [Nested properties](../../about/key-concepts/#nested-properties/) are supported in both JSON and AVRO formats.
 
 ### Support for ISO timestamps and timestamps with time zone
 

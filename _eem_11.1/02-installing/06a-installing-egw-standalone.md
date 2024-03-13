@@ -85,7 +85,7 @@ Before you start the {{site.data.reuse.egw}}, define the following options:
 - **PATH_TO_CERTIFICATES**: A local directory in which the [certificates](#certificates) are placed.
 - **KAFKA_ADVERTISED_LISTENER**: The host and port that Kafka applications should receive when making requests. If applications have direct access, then this will be the host and port of the {{site.data.reuse.egw}}, otherwise it should be the host and port of the routing or proxy service that is in front of the {{site.data.reuse.egw}}.
 - **swid**: Specifies the license under which the stand-alone {{site.data.reuse.egw}} is deployed. It must be either **EA** for Event Automation licensed or **CP4I** for CP4I licensed.
-- **ubp** (optional) : Set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
+- **ubp**: Optionally, set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
 
 ## Starting the {{site.data.reuse.egw}}
 
@@ -108,3 +108,4 @@ The IBM License Metric Tool checks usage and entitlement to the stand-alone {{si
 
 Ensure that you [install](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} the IBM License Metric Tool before you install the stand-alone {{site.data.reuse.egw}}. Also review the additional Docker-specific License Metric Tool [considerations](https://www.ibm.com/docs/en/license-metric-tool?topic=configuration-discovering-software-in-docker-containers){:target="_blank"}.
 
+**Note:** ![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg) When deploying a stand-alone gateway on Linux on IBM z13 (s390x), the [IBM License Metric Tool disconnected scanner](https://www.ibm.com/docs/en/license-metric-tool?topic=installing-disconnected-scanners-ansible-lite){:target="_blank"} must be installed and configured alongside the stand-alone gateway. This is in addition to the License Metric Tool running on a supported platform. Submit the results from the disconnected scanner to the License Metric Tool [at regular intervals](https://www.ibm.com/docs/en/license-metric-tool?topic=installing-license-metric-tool-lite-end-end-checklist){:target="_blank"} to maintain licensing compliance.

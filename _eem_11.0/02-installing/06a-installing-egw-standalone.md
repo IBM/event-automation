@@ -83,7 +83,7 @@ Before you start the {{site.data.reuse.egw}}, define the following options:
 - **PATH_TO_CERTIFICATES**: A local directory in which the [Certificates](#certificates) are placed.
 - **KAFKA_ADVERTISED_LISTENER**: The host and port that Kafka applications should receive when making requests. If applications have direct access, then this will be the host and port of the {{site.data.reuse.egw}}, otherwise it should be the host and port of the routing or proxy service that is in front of the {{site.data.reuse.egw}}.
 - **swid**: Specifies the license under which the stand-alone {{site.data.reuse.egw}} is deployed. It must be either **EA** for Event Automation licensed or **CP4I** for CP4I licensed.
-- **ubp** (optional) : Set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
+- **ubp**: Optionally, set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
 
 ## Starting the {{site.data.reuse.egw}}
 

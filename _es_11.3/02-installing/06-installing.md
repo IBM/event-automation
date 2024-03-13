@@ -119,7 +119,7 @@ Before you can install the {{site.data.reuse.es_name}} operator and use it to cr
 
 If you already have the IBM Operator Catalog available, you can continue to [installing](#installing-by-using-the-web-console) the {{site.data.reuse.es_name}} operator.
 
-If you are installing {{site.data.reuse.es_name}} as the first IBM product in your cluster, complete the following steps.
+If you are installing {{site.data.reuse.es_name}} as the first IBM product in your cluster, complete the following steps:
 
 To make the {{site.data.reuse.es_name}} operator and optional {{site.data.reuse.fs}} dependencies available in the OpenShift OperatorHub catalog, create the following YAML files and apply them as follows.
 
@@ -432,7 +432,7 @@ To configure an `EventStreams` custom resource, do the following:
 2. Click the license accept toggle to set it to **True**.
    ![Accepting license toggle]({{ 'images' | relative_url }}/license_accept_form.png "Screen capture showing how to toggle the license accept field to true"){:height="100%" width="100%"}
 3. Ensure that the correct values for **Product License** and **Product Use** are selected from the drop-down lists. These values are used for metering purposes and could result in inaccurate charging and auditing if set incorrectly. For more information about the available options, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
-4. You can optionally configure other components such as **Kafka**, **ZooKeeper**, and **Security** to suit your [requirements](../configuring).
+4. Optional: You can configure other components such as **Kafka**, **ZooKeeper**, and **Security** to suit your [requirements](../configuring).
 5. Scroll down and click the **Create** button at the bottom of the page to deploy the {{site.data.reuse.es_name}} instance.
 6. Wait for the installation to complete.
 7. You can now verify your installation and consider other [post-installation tasks](../post-installation/).

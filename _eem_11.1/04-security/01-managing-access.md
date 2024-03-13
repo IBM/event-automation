@@ -174,7 +174,7 @@ Before you start, ensure you retrieve the following configuration values for you
 If your OIDC provider does not implement the Open ID Connect Discovery standard, ensure you also have the following values:
   - The `tokenPath` used by that provider (this extends the OIDC Provider base URL noted earlier).
   - The `authorizationPath` used by that provider, which also extends the base URL.
-  - Optionally, the `endSessionPath` for that provider, which also extends the base URL.
+  - Optional: The `endSessionPath` for that provider, which also extends the base URL.
 
 When creating an OIDC client in your provider, it will ask for redirect URLs for logging in to the UI, and potentially for logging out as well. Ensure you set these URLs to the appropriate {{site.data.reuse.eem_name}} UI URLs. If you have already installed {{site.data.reuse.eem_name}}, then see step 8 in [the UI steps](#using-openshift-container-platform-ui-1) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 

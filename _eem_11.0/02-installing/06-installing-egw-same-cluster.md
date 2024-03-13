@@ -89,7 +89,8 @@ To configure an `EventGateway` custom resource,  complete the following steps:
 3. In **gatewayGroupName**, enter the name of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
 4. In **gatewayID**, enter the ID of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
 5. In **eemManager > endpoint**, enter the `gateway` API endpoint URI of {{site.data.reuse.eem_manager}} instance. See [configuring](../configuring) on how to retrieve the `gateway` API endpoint URI of manager instance.
-6. In **tls > caSecretName**, enter the name of the secret that contains the root CA certificate. You can also optionally [configure](../configuring#configuring-tls) other TLS specifications such as details of the secrets, keys, and certificates.
+6. In **tls > caSecretName**, enter the name of the secret that contains the root CA certificate. 
+    Optional: You can also [configure](../configuring#configuring-tls) other TLS specifications such as details of the secrets, keys, and certificates.
 
    **Important:** The `caSecretName` of an {{site.data.reuse.egw}} instance must be the same as the `caSecretName` of the {{site.data.reuse.eem_name}} instance you referred to when setting the endpoint URI in **eemManager > endpoint**. If you are using the [operator-provided certificate](../configuring/#operator-configured-ca-certificate), enter the value as `<my-instance>-ibm-eem-manager-ca`.
 

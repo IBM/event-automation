@@ -18,10 +18,10 @@ Complete the following steps to share your topic with {{site.data.reuse.eem_name
 4. In the **Provide access token** section, enter the [access token]({{ 'eem/security/api-tokens/#creating-a-token' | relative_url }}) that you created earlier, and click **Next**.
 5. In the **Review details** section, enter a topic alias.
 
-   - (Optional) If available, a sample message of your topic is displayed in the **Sample message** text box. You can also add a sample message now, or edit the sample.
+   - Optional: If available, a sample message of your topic is displayed in the **Sample message** text box. You can also add a sample message now, or edit the sample.
 
      **Note:** Ensure that you review the sample message in case sensitive information is displayed, as the sample will be available in the {{site.data.reuse.eem_name}} catalog for other users to view.
-   - (Optional) To select a schema from the schema registry, click **Select**.
+   - Optional: To select a schema from the schema registry, click **Select**.
 
      **Important:** If you select a nested Avro schema with custom record type, you must replace the custom record type name in it with the entire schema definition before publishing the topic as an option in {{site.data.reuse.eem_name}}. You can find the schema with the required definition in your schema registry. For more information about editing nested Avro schemas, see [Event Endpoint Management documentation]({{ 'eem/describe/managing-topics/#editing-nested-avro-schemas' | relative_url }}). 
 

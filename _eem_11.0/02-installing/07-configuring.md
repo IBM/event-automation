@@ -534,7 +534,7 @@ spec:
 ## ![Event Endpoint Management 11.0.4 icon]({{ 'images' | relative_url }}/11.0.4.svg "In Event  Endpoint Management 11.0.4 and later.")Configuring ingress
 
 If running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
-You can optionally set a host for each exposed route on the `EventEndpointManagement` and `EventGateway` instances by setting
+Optional: You can set a host for each exposed route on the `EventEndpointManagement` and `EventGateway` instances by setting
 values under `spec.manager.endpoints[]` and `spec.endpoints[]`, respectively.
 
 If you are not running on the {{site.data.reuse.openshift}}, the {{site.data.reuse.eem_name}} operator will create ingress resources to provide external access.

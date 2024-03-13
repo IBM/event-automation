@@ -16,7 +16,7 @@ You can request access to a topic as follows:
 2. In the navigation pane, click **Catalog**.
 3. Select an event source from the list by clicking the topic name.
 4. Click **Generate access credentials** in the **Topic information** view.
-5. Follow the instructions to request access: provide your contact details, and click **Subscribe**.
+5. Follow the instructions to request access: provide your contact details, and click **Generate**.
 
    The modal will present your subscription credentials. This credential is a `SASL` username and password, which uniquely identifies you and your usage of this event source (topic). These credentials must be used when accessing the event source through the Event Gateway.
 
@@ -24,7 +24,7 @@ You can request access to a topic as follows:
 
 6. Copy your username and password values or download a JSON file containing your generated credentials for future use and reference.
 
-   Your application will require these credentials to [access the event source](../setting-your-application-to-consume)  through the Event Gateway.
+   Your application will require these credentials to [access the event source](../setting-your-application-to-consume) through the Event Gateway.
 
    **Important:** The credentials generated for you are shown one time. They cannot be retrieved later. Ensure you save the access credentials and store them in a secure location.
 

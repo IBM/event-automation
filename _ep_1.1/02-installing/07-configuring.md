@@ -476,9 +476,11 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
 #### User-provided UI certificates
 
 A separate custom certificate can be used for the UI. This certificate is presented to the browser when the {{site.data.reuse.ep_name}} user interface is navigated.
-To supply a custom certificate to the UI set `spec.authoring.tls.ui.secretName` to be the name of the secret containing the certificate.
+To supply a custom certificate to the UI:
+- Set `spec.authoring.tls.ui.secretName` to be the name of the secret that contains the certificate. 
+- Provide the CA certificate that is used to sign your custom certificate to the list of trusted certificates under `spec.authoring.tls.trustedCertificates`.
 
-The following snippet is an example of a configuration that uses a user provided certificate:
+The following snippet is an example of a configuration that uses a user-provided certificate in a secret, which also contains the signing CA certificate as a trusted certificate:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -491,6 +493,9 @@ spec:
     tls:
       ui:
         secretName: myUiSecret
+      trustedCertificates:
+        - secretName: myUiSecret
+          certificate: ca.crt
 # ...
 ```
 

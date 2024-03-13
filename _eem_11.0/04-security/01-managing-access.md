@@ -198,7 +198,7 @@ You can authenticate users from an OIDC Identification Provider as follows:
     ```yaml
     tokenPath: (required) <path to the token endpoint of this provider>
     authorizationPath: (required) <path to the authorization endpoint of this provider>
-    endSessionPath: (optional) <path to the end session endpoint of this provider>
+    endSessionPath: (Optional) <path to the end session endpoint of this provider>
     ```
 
 8. You can now log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).

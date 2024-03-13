@@ -6,7 +6,7 @@ slug: configuring
 toc: true
 ---
 
-{{site.data.reuse.es_name}} provides samples to help you get started with deployments, as described in the [planning](../planning/#sample-deployments) section. Choose one of the samples suited to your requirements to get started:
+{{site.data.reuse.es_name}} provides samples to help you get started with deployments, as described in the [planning](../planning/#sample-deployments) section. Select one of the samples suited to your requirements to get started:
 
 - Lightweight without security
 - Development

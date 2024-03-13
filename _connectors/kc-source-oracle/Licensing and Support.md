@@ -15,7 +15,7 @@ sections:
       - { text: 'View the license', url: 'https://github.com/debezium/debezium/blob/main/LICENSE.txt' }
   - section:
     title: "Support"
-    type: "Community"
+    type: "IBM Support"
     buttons:
-      - { text: 'Raise issue', url: 'https://issues.redhat.com/browse/DBZ' }
+      - { text: 'Raise issue', url: '../../support/' }
 ---

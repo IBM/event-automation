@@ -15,7 +15,7 @@ To register {{site.data.reuse.eem_name}} instance as an {{site.data.reuse.egw}} 
 
 **Important:** Ensure you install and configure an instance of both an {{site.data.reuse.eem_manager}} and an {{site.data.reuse.egw}} before configuring API Connect integration with that {{site.data.reuse.eem_manager}} instance.
 
-Follow the steps to configure your {{site.data.reuse.eem_name}} Manager as an {{site.data.reuse.egw}} Service.
+To configure your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service, complete the following steps:
 
 ## Retrieve the API Connect JSON Web Key Set (JWKS) endpoint
 

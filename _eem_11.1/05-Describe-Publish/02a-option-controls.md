@@ -25,9 +25,9 @@ To add the approval control to an option, complete the following steps.
 1. In the navigation pane, click **Topics**.
 1. Find the topic that you want to work with in the list, and click the name of the topic.
 1. Click the **Options** tab.
-1. (Optional) If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
-1. (Optional) If you are creating a new option, click **Create option**. The details pane is displayed. 
+1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-topics#create_option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Approval** tile.
@@ -102,16 +102,16 @@ To add a redaction control to an option, complete the following steps.
 1. In the navigation pane, click **Topics**.
 1. Find the topic that you want to work with in the list, and click the name of the topic.
 1. Click the **Options** tab.
-1. (Optional) If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
-1. (Optional) If you are creating a new option, click **Create option**. The details pane is displayed. 
+1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-topics#create_option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Redaction** tile.
 1. Click **Next**. The **Add redaction control** window is displayed.
 1. In the **Property to redact** field, add a valid JSON path to the property in the Kafka message or select a property from the schema.   
    **Note:** If using the recursive descent operator (`..`) in the JSON path alongside an Avro schema for redaction, the {{site.data.reuse.egw}} does not redact anything that is contained within an array.
-1. (Optional) If you select a property from the schema in the right side panel, to quickly find the property that you want to use, type the first letter of the property or use the icons to expand the schema as required.
+1. Optional: If you select a property from the schema in the right side panel, to quickly find the property that you want to use, type the first letter of the property or use the icons to expand the schema as required.
 1. Select a redaction type:
 
    | Type | Description | Valid types |
@@ -121,10 +121,10 @@ To add a redaction control to an option, complete the following steps.
    {: table}
    
    **Note:** The replace value options are different depending on whether the option has a schema added to the associated topic.
-1. (Optional) If a schema is NOT associated with the topic and you select **Replace value**, in the **Replace value with** field, select the type of the value you wish to replace with from **String**, **Int** or **Double**.  
+1. Optional: If a schema is NOT associated with the topic and you select **Replace value**, in the **Replace value with** field, select the type of the value you wish to replace with from **String**, **Int** or **Double**.  
 
    **Important**: If a schema is NOT associated with the topic, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the topic information window](../managing-topics#edit-topic).
-1. (Optional) If a schema is associated with the topic and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.
+1. Optional: If a schema is associated with the topic and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.
 1. If you select **Hash value**, select the hash algorithm that you want to use.
    
    **Note**: If the property that you select has a maximum length value associated with it as defined in the Avro schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
@@ -159,9 +159,9 @@ To add the schema filtering control to an option, complete the following steps.
 1. In the navigation pane, click **Topics**.
 1. Find the topic that you want to work with in the list, and click the name of the topic.
 1. Click the **Options** tab.
-1. (Optional) If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
-1. (Optional) If you are creating a new option, click **Create option**. The details pane is displayed. 
+1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-topics#create_option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Schema Filtering** tile.

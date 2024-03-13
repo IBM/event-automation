@@ -389,9 +389,11 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
 ### User-provided UI certificates
 
 A separate custom certificate can be used for the UI. This certificate is presented to the browser when the {{site.data.reuse.eem_name}} user interface is navigated.
-To supply a custom certificate to the UI set `spec.manager.tls.ui.secretName` to be the name of the secret containing the certificate.
+To supply a custom certificate to the UI:
+- Set `spec.manager.tls.ui.secretName` to be the name of the secret containing the certificate.
+- Add the CA certificate that is used to sign your custom certificate to the list of trusted certificates under `spec.manager.tls.trustedCertificates`.
 
-The following code snippet is an example of a configuration that uses a user-provided certificate:
+The following snippet is an example of a configuration that uses a user-provided certificate in a secret, which also contains the signing CA certificate as a trusted certificate:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -404,6 +406,9 @@ spec:
     tls:
       ui:
         secretName: myUiSecret
+      trustedCertificates:
+        - secretName: myUiSecret
+          certificate: ca.crt
 # ...
 ```
 
@@ -535,7 +540,7 @@ spec:
 ## Configuring ingress
 
 If running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
-You can optionally set a host for each exposed route on your {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instances by setting values under `spec.manager.endpoints[]` in your `EventEndpointManagement` custom resource, and under `spec.endpoints[]` in your `EventGateway` custom resource.
+Optional: You can set a host for each exposed route on your {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instances by setting values under `spec.manager.endpoints[]` in your `EventEndpointManagement` custom resource, and under `spec.endpoints[]` in your `EventGateway` custom resource.
 
 If you are running on other Kubernetes platforms, the {{site.data.reuse.eem_name}} operator will create ingress resources to provide external access. No default hostnames will be assigned to the ingress resource, and you must set hostnames for each exposed endpoint defined for the {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instances.
 

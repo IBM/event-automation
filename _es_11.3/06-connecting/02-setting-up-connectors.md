@@ -126,7 +126,7 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
    Where:
    - `type` must be set to `docker`
    - `image` is the registry address and image name for the new image. For example: `my-registry.io/my-connect-cluster-image:latest`
-   - (Optional) `pushSecret` is the name of the secret that contains credentials with permission to push into a secured image registry.
+   - Optional: `pushSecret` is the name of the secret that contains credentials with permission to push into a secured image registry.
 
 3. In the `spec.build.plugins` field, enter the list of required Kafka Connector JAR, ZIP, or TGZ files.
 
@@ -184,14 +184,24 @@ To set up and configure the `KafkaConnect` custom resource to use the kaniko bui
 
 5. If you want to push the image into a secured image registry, enter the name of the `imagePullSecret` in the `spec.template.pod.imagePullSecrets` field:
 
-  ```yaml
-  spec:
-    #...
-    template:
-      pod:
-        imagePullSecrets:
-          - name: default-dockercfg-abcde
-  ```
+   ```yaml
+   spec:
+     #...
+     template:
+       pod:
+         imagePullSecrets:
+           - name: default-dockercfg-abcde
+   ```
+  
+**Note:** If you encounter issues such as `The requested authentication method is not supported` while pushing an image to or pulling an image from any private registry on a non-OpenShift Kubernetes environment, consider modifying the configuration in the `KafkaConnect` custom resource by adding `imagePullSecrets` under the `buildPod` section as follows:
+
+```yaml
+spec:
+  template:
+    buildPod:
+      imagePullSecrets:
+        - name: ibm-entitlement-key 
+```
 
 **Important:** The secrets that are referenced in the `KafkaConnect` custom resource must be present in the same namespace as the `KafkaConnect` instance.
 

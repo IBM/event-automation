@@ -65,6 +65,11 @@ To configure a database node, complete the following steps.
 1. Click **Next** to open the **Access Credentials** pane. Enter your username and password (if prompted).
 1. Click **Next**. The **Table selection** pane is displayed.
 1. To choose a table from the provided database, you can either search for the table name in the search box, or select the radio button corresponding to the table name that you want to process events from.
+
+   **Important:** {{site.data.reuse.ep_name}} supports:
+   - Lowercase names for tables and columns in PostgreSQL databases
+   - Uppercase names for tables and columns in Oracle databases
+
 1. A preview of the schema of the selected table, along with its associated constraints, is displayed in the **Data table preview**. Click **Next**.
 
    **Note:** In the **Data table preview**, some data types under the **Type** column are listed as **Not supported**. These data types are not supported by {{site.data.reuse.ep_name}} and the corresponding fields cannot be used to enrich events.

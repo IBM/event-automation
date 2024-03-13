@@ -160,7 +160,7 @@ To create an option, complete the following steps.
       - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
 1. In the description field, provide a description of your option.
 1. Click **Next**. The **Controls** pane is displayed.
-1. (Optional) If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
+1. Optional: If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
 1. Click **Next**. The **Publish option** pane is displayed.
 1. If you're ready to publish your option, click **Publish**. For more information about publishing options, see [publishing options](../publishing-topics).
 1. To complete the option, click **Save**.

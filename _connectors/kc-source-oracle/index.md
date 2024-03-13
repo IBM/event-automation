@@ -1,9 +1,9 @@
 ---
-title: Oracle(Debezium)
+title: Oracle (Debezium)
 sortTitle: OracleDebezium
 connectorID: kc-source-oracle
 direction: source
-support: community
+support: IBM
 type: KafkaConnect
 iconInitial: Or
 iconGradient: 4
@@ -14,5 +14,6 @@ download:
 categories:
   - Databases
 ---
-Oracle (Debezium) source connector monitors schemas within a database server and write all change events to Kafka topics.
+Oracle (Debezium) source connector monitors Oracle database tables and writes all change events to Kafka topics.
 
+**Note:** IBM Support is only available for the connector when it is used with the LogMiner adapter.

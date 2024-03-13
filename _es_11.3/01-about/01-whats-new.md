@@ -10,6 +10,12 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
 ## Release 11.3.1
 
+### IBM support for Oracle (Debezium) source connector
+
+IBM support is now available for the [Oracle (Debezium) source connector]({{ 'connectors/kc-source-oracle/installation' | relative_url }}) to monitor Oracle database tables and write all change events to Kafka topics.
+
+**Note:** IBM Support is only available for the connector when it is used with the LogMiner adapter.
+
 ### Share your topics with {{site.data.reuse.eem_name}}
 
 In {{site.data.reuse.es_name}} 11.3.1 and later, you can [connect](../../installing/integrating-eem/) to an {{site.data.reuse.eem_name}} instance, and make the stream of events from a topic available to others by [sharing topic details](../../getting-started/sharing-topic/) through {{site.data.reuse.eem_name}}.

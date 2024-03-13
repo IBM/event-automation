@@ -22,7 +22,9 @@ To describe an event source by adding a topic, complete the following steps:
    - To select an existing cluster, locate and select the required cluster from the list of clusters, then click **Next**.
    - To create a new cluster, click **Add new cluster**, and complete the following steps:
      1. Enter a unique name for your new cluster, and click **Next**.
-     2. Enter a bootstrap server URL for the Kafka cluster. Optionally, you can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
+     2. Enter a bootstrap server URL for the Kafka cluster.
+     
+        Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
 
         **Note**: After clicking **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you will be asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 

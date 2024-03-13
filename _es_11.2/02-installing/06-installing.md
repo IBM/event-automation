@@ -435,7 +435,7 @@ To configure an `EventStreams` custom resource, do the following:
 2. Click the license accept toggle to set it to **True**.
    ![Accepting license toggle]({{ 'images' | relative_url }}/license_accept_form.png "Screen capture showing how to toggle the license accept field to true"){:height="100%" width="100%"}
 3. Ensure that the correct values for **Product License** and **Product Use** are selected from the drop-down lists. These values are used for metering purposes and could result in inaccurate charging and auditing if set incorrectly. For more information about the available options, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
-4. You can optionally configure other components such as **Kafka**, **ZooKeeper**, and **Security** to suit your [requirements](../configuring).
+4. Optional: You can configure other components such as **Kafka**, **ZooKeeper**, and **Security** to suit your [requirements](../configuring).
 5. Scroll down and click the **Create** button at the bottom of the page to deploy the {{site.data.reuse.es_name}} instance.
 6. Wait for the installation to complete.
 7. You can now verify your installation and consider other [post-installation tasks](../post-installation/).

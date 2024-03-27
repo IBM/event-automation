@@ -12,12 +12,62 @@ toc: true
 
 Consider the following resources before configuring your `FlinkDeployment` custom resource:
 
-- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
 - [Flink configuration options](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/config/#common-setup-options){:target="_blank"}
 - [Flink Event Time and Watermark](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/time/){:target="_blank"}
 - [Kafka SQL connector](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/kafka/){:target="_blank"}
 - [Flink SQL CREATE statement](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/sql/create/){:target="_blank"}
 - [Job and scheduling](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/internals/job_scheduling/){:target="_blank"}
+
+### Configuring TLS to secure communication with Flink deployments
+
+![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") You can configure TLS to secure communication with Flink deployments.
+
+Before you create a Flink instance, create a secret that contains the JKS truststore, which you will be using for your `FlinkDeployment` instances and a secret that contains the password for this JKS truststore. The truststore secret must be called `flink-operator-cert` with the key in the secret defined as `truststore.jks`. The truststore password must be defined in the secret `operator-certificate-password` with the key in the secret set as `password` and the associated value being the password.
+
+
+
+
+To create truststores and keystores, complete any one of the following methods:
+
+- See the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/security/security-ssl/#creating-and-deploying-keystores-and-truststores){:target="_blank"} to manually create keystores and truststores.
+
+- Use the cert-manager operator to create and manage these stores for you. A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/tls-setup` to access the samples. You can also use the Apache Flink samples to create the required keystores and truststores.
+
+  For example, see Flink TLS enabled [pre-install sample](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-tls-example/pre-install.yaml){:target="_blank"} and the [basic secure sample](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-tls-example/basic-secure.yaml){:target="_blank"}, which you can modify to suit your requirements.
+
+  The sample files mentioned earlier creates a self-signed issuer and creates a CA certificate using that self-signed issuer. Then, a CA issuer is created using the generated CA certificate. Additionally, 2 JKS certificates are created, one for the Flink operator, and another for a Flink instance called `basic-secure`.
+
+  For more information about CA issuers, see the [cert-manager documentation](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers){:target="_blank"}.
+
+  **Note:** 
+
+  - Ensure that the namespace you are running in and the DNS names used in the certificate match the values of your Flink instance. For example:
+
+    ```yaml
+    spec:
+      dnsNames:
+        - '*.<your-namespace>.svc'
+        - '*.svc.cluster.local'
+        - '<name-of-your-instance>-rest'
+    ```
+
+  - Change the password used for the JKS certificates by providing a Base64-encoded string of the password.
+  - Try to increase the lifetime of the CA certificate by adding a duration field to your certificate YAML:
+
+    ```yaml
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: flink-ca-cert
+    spec:
+      duration: 17520h
+      isCA: true
+    ```
+
+  **Note:** If you are installing the Flink instance in all namespaces, you should replace the certificate issuer with a cluster issuer so that the operator can communicate with Flink instances in any namespace. The self-signed issuer and the CA certificate must be created in the namespace where the cert-manager operator is installed.
+
+After you created the truststore and keystore secrets, update the `FlinkDeployment`custom resource and `EventProcessing` custom resource as described in [installing](../installing#install-a-flink-instance).
 
 ### Configuring Flink checkpointing
 
@@ -606,7 +656,7 @@ To enable SSL connections to databases from {{site.data.reuse.ep_name}} and Flin
 
 1. Add the CA certificate used to issue the certificate presented by a PostgreSQL, MySQL, or an Oracle database to a Java truststore.
 2. Create a secret with the truststore.
-3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}}. 
+3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
 
 
 ### Add the CA certificate to the truststore
@@ -644,7 +694,7 @@ To enable SSL connections to databases from {{site.data.reuse.ep_name}} and Flin
 
 ### Mount the secret
 
-Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} by using the OpenShift web console:
+Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} by using the OpenShift web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 1. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -718,7 +768,7 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
 
 Wait for the {{site.data.reuse.ep_name}} and the Flink pods to become ready.
 
-The capability to create SSL connections between {{site.data.reuse.flink_long}}, {{site.data.reuse.ep_name}}, and a secured database is enabled.
+The capability to create SSL connections between {{site.data.reuse.ibm_flink_operator}}, {{site.data.reuse.ep_name}}, and a secured database is enabled.
 
 ## Configuring multiple databases with SSL in {{site.data.reuse.ep_name}} and Flink
 

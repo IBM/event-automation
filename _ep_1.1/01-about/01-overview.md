@@ -25,5 +25,5 @@ The flows are run as [Apache Flink](https://flink.apache.org/){:target="_blank"}
 - A free-form layout canvas to create flows, with drag-and-drop functionality to add and join nodes.
 - The ability to test your event flow while constructing it.
 - The option to import and export flows in JSON format to reuse across different deployment instances.
-- The option to export the output of the flow processing to a CSV file.
+- The option to download the output of the flow processing in a CSV file.
 

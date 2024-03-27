@@ -62,7 +62,7 @@ You must secure the connection from your client applications to {{site.data.reus
 
 Before connecting an external client, ensure the necessary certificates are configured within your client environment. Use the TLS and CA certificates if you provided them during installation, or use the following instructions to retrieve a copy.
 
-![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, copy the server-side public certificate and generate an API key as follows:
+![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, copy the server-side public certificate and generate an API key as follows:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 2. Click **Connect to this cluster** on the right.
 3. On the **Connect a client** tab, copy the address from the **Bootstrap server** section. This gives the bootstrap address for Kafka clients.
@@ -115,4 +115,4 @@ properties.put(SaslConfigs.SASL_JAAS_CONFIG, "org.apache.kafka.common.security.p
 
 Replace `<broker_url>` with your cluster's broker URL, `<certs.jks_file_location>` with the path to your truststore file, `<truststore_password>` with `"password"`, and `<api_key>` with the API key copied from its file.
 
-**Note:** ![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, you can copy the connection code snippet from the {{site.data.reuse.es_name}} UI with the broker URL already filled in for you. After logging in, click **Connect to this cluster** on the right, and click the **Sample code** tab. Copy the snippet from the **Sample connection code** section into your Kafka client application.
+**Note:** ![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, you can copy the connection code snippet from the {{site.data.reuse.es_name}} UI with the broker URL already filled in for you. After logging in, click **Connect to this cluster** on the right, and click the **Sample code** tab. Copy the snippet from the **Sample connection code** section into your Kafka client application.

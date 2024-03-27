@@ -45,7 +45,7 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 
 ## Flink sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following table provides an overview of the Flink sample configurations and their resource requirements:
 
@@ -59,8 +59,9 @@ The following table provides an overview of the Flink sample configurations and 
 **Important:**
 - Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
 - The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To [secure your communication](#securing-communication-with-flink-deployments) with Flink deployments, all samples except [Quick Start](#flink-quick-start-sample) require specifying a secret containing a JKS keystore and truststore and the password for that keystore and truststore.
 
-The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
+The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
 
 Points to consider for resource requirements:
 
@@ -218,9 +219,19 @@ To configure authentication, see [managing access](../../security/managing-acces
 
 To configure the certificates, see [configuring TLS](../configuring/#configuring-tls).
 
+### Securing communication with Flink deployments
+
+![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") When you install {{site.data.reuse.ibm_flink_operator}} in a production environment, you should enable TLS in your `FlinkDeployment` instance, so that all communication between {{site.data.reuse.ep_name}} and Flink pods (such as Flink Job Manager (JM) and Task Manager (TM) pods) uses mutual TLS and the REST endpoint is encrypted. To secure the communication between {{site.data.reuse.ep_name}} and Flink pods:
+
+- Create a secret that contains a JKS keystore, and a truststore that contains the correct CA certificate.
+- Create a secret that contains the password for those keystore and truststore.
+- Provide access for {{site.data.reuse.ibm_flink_operator}} to a truststore that contains the CA certificate, so that the operator can communicate with the `FlinkDeployment` instance.
+
+For more information, see [configuring TLS for Flink](../configuring/#configuring-tls-to-secure-communication-with-flink-deployments).
 
 ## Licensing
 
 Licensing is typically based on Virtual Processing Cores (VPC).
 
 For more information about available licenses, chargeable components, and tracking license usage, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
+

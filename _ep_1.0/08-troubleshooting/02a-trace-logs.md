@@ -10,7 +10,7 @@ When requested by IBM support, trace logging can be configured in {{site.data.re
 
 **Note:** Different levels of trace logging are permitted. However, the most relevant levels to use when you configure troubleshooting are `trace` or `debug`.
 
-Configure trace logging for the {{site.data.reuse.ep_name}} or {{site.data.reuse.flink_long}} instances as follows.
+Configure trace logging for the {{site.data.reuse.ep_name}} or {{site.data.reuse.ibm_flink_operator}} instances as follows.
 
 
 ## For the {{site.data.reuse.ep_name}} instance
@@ -40,9 +40,9 @@ spec:
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
 
-## For the {{site.data.reuse.flink_long}} instance
+## For the {{site.data.reuse.ibm_flink_operator}} instance
 
-It is possible to configure trace logging for an {{site.data.reuse.flink_long}} instance by editing the `FlinkDeployment` custom resource. This enables trace logging that can be observed from the Flink pod logs.
+It is possible to configure trace logging for an {{site.data.reuse.ibm_flink_operator}} instance by editing the `FlinkDeployment` custom resource. This enables trace logging that can be observed from the Flink pod logs.
 
 To enable trace logging, update your `FlinkDeployment` custom resource to include the logging configuration:
 

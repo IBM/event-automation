@@ -71,7 +71,7 @@ You can use local authentication to define users explicitly with usernames and p
 7. Click **Save**.
 8. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
 
-   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after a few minutes. and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+   The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after a few minutes and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 
 
 ### Using the CLI
@@ -157,7 +157,7 @@ You can use local authentication to define users explicitly with usernames and p
    
    **Note:** The patch replaces a `path` of `"/data/user-mapping.json"` not `"/data/user-credentials.json"` for this secret.
       
-    The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after up to a few, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+    The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after a few minutes, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 
 
 ## Setting up OpenID Connect (OIDC)-based authentication
@@ -219,7 +219,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
             site: <oidc_provider_base_url>
       ...
     ```
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If the there is no discovery endpoint it is the URL that precedes the required paths above.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
@@ -246,7 +246,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
 
 9.  Edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure roles and permissions for your users. For more information, see [managing roles](../user-roles).
 
-    The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after up to a few, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+    The changed configuration files are automatically picked up by the {{site.data.reuse.eem_name}} instance after a few minutes, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 
 ### Using the CLI
 
@@ -277,7 +277,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    kubectl edit eventendpointmanagement/<custom-resource-name>
    ```
    
-   Edit the `spec.manager.authConfig` section and add the `spec.manager.authConfig` section to include the following settings for OIDC::
+   Edit the `spec.manager.authConfig` section and add the `spec.manager.authConfig` section to include the following settings for OIDC:
    
    ```yaml
       apiVersion: events.ibm.com/v1beta1
@@ -296,7 +296,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
               site: <oidc_provider_base_url>
    ```
    
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If the there is no discovery endpoint it is the URL that precedes the required paths above.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 

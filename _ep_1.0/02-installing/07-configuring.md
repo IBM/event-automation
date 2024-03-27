@@ -601,7 +601,7 @@ To enable SSL connections to PostgreSQL from {{site.data.reuse.ep_name}} and Fli
 
 1. Add the CA certificate used to issue the certificate presented by a PostgreSQL database to a Java truststore.
 2. Create a secret with the truststore.
-3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}}. 
+3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
 
 
 ### Add the CA certificate to the truststore
@@ -640,7 +640,7 @@ To enable SSL connections to PostgreSQL from {{site.data.reuse.ep_name}} and Fli
 
 ### Mount the secret
 
-Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} by using the OpenShift web console:
+Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} by using the OpenShift web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 1. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -714,4 +714,4 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
 
 Wait for the {{site.data.reuse.ep_name}} and the Flink pods to become ready.
 
-The capability to create SSL connections between {{site.data.reuse.flink_long}}, {{site.data.reuse.ep_name}}, and a secured PostgreSQL database is enabled.
+The capability to create SSL connections between {{site.data.reuse.ibm_flink_operator}}, {{site.data.reuse.ep_name}}, and a secured PostgreSQL database is enabled.

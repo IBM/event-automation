@@ -74,7 +74,7 @@ You can set up external client access [during installation](../configuring/#conf
 
 Before connecting a client, ensure the necessary certificates are configured within your client environment. Use the TLS and CA certificates if you provided them during installation, or export the self-signed public certificate from the browser.
 
-![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, use the following steps:
+![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, use the following steps:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 2. Click **Connect to this cluster** on the right.
 3. On the **Connect a client** tab, copy the address from the **Bootstrap server** section. This gives the bootstrap address for Kafka clients.

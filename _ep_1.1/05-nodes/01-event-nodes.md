@@ -120,7 +120,7 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 1. Select **Upload a schema or sample message**.
 2. Select how you want to define the event structure:
    
-  - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** 
+   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** 
      - If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
    
      - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
@@ -165,9 +165,73 @@ To define the [event](../../about/key-concepts#event) structure, you must define
          ]
        }
        ```
+      - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The `record` type also supports primitive arrays, including arrays of `strings`, `numbers`, and `booleans`. However, arrays of fields with `logicalType` are not supported. 
 
+         **Note:** An array itself or an element within an array can be null.
+
+        For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.
+
+        ```json
+          {
+            "name": "Order",
+            "type": "record",
+            "fields": [
+              {
+                "name": "orderId",
+                "type": "long"
+              },
+              {
+                "name": "products",
+                "type": {
+                  "type": "array",
+                  "items": [
+                    "null",
+                    "string"
+                  ]
+                }
+              },
+              {
+                "name": "address",
+                "type": {
+                  "type": "record",
+                  "namespace": "Record",
+                  "name": "address",
+                  "fields": [
+                    {
+                      "name": "shippingAddress",
+                      "type": {
+                        "type": "record",
+                        "namespace": "Record.address",
+                        "name": "shippingAddress",
+                        "fields": [
+                          {
+                            "name": "line1",
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          {
+                            "name": "contact_nos",
+                            "type": [
+                              "null",
+                              {
+                                "type": "array",
+                                "items": "long"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ``` 
    - **JSON:** 
-     - If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+     - If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.
      - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The `object` JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.
   
        For example, the following sample message is supported:
@@ -183,15 +247,29 @@ To define the [event](../../about/key-concepts#event) structure, you must define
              "optionalComment": "a comment"
          }
        }  
-       ```     
+       ``` 
+     - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The JSON data type supports arrays of primitive types such as `strings`, `numbers`, and `booleans`. However, arrays of `timestamps` are not supported. 
 
+        Arrays can be at any nested level and should only contain elements of the same type.
+        
+        For example:
+      
+        ```json
+        {
+          "orderId": 253,
+          "products": [ "ProductA", "ProductB", "ProductC" ],
+          "address": {
+              "postal_code": 91001,
+              "contact_nos": [ 99033, 92236 ]
+            }
+        }
+        ``` 
+        
    In versions earlier than 1.1.1:
+    - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
+    - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
 
-   - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
-   - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
-  
-
-After you provide a valid schema or sample message, click **Done**.
+1. After you provide a valid schema or sample message, click **Done**.
 
 ##### Event properties
 
@@ -219,6 +297,8 @@ Default types are assigned depending on how you defined the structure of the mes
   | `float`                                    | `DOUBLE` <br>  ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") `FLOAT`     |
   
  - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") You can only assign a type for leaf properties. If there are nested properties, the name is displayed by using a forward slash (`/`) as a separator for each level of nesting. For example, `product / id` or `customer / address / city`. 
+
+ - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") If a property is an array, it is displayed with square brackets (`[]`) at the end of its name. For example, `products[]` indicates an array. Nested arrays are displayed with a forward slash (`/`) between properties for each level of nesting, followed by square brackets (`[]`) at the end of the array name. For example, if `contact_nos` is an array nested within the `address` property, it is displayed as `address / contact_nos[]`.
 
 Select the data type to assign to a property from the **Type mapping** list:
 

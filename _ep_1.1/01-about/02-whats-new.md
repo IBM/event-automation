@@ -10,6 +10,36 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Secure communication with Flink deployments
+
+{{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} can now [communicate](../../installing/planning/#securing-communication-with-flink-deployments) with TLS enabled Flink deployments to enhance security.
+
+### Support for events with primitive array properties
+
+{{site.data.reuse.ep_name}} release 1.1.4 includes support for events with [primitive type array](../../nodes/eventnodes/#define-event-structure) properties. Primitive arrays are supported in both JSON and Apache Avro formats with any level of nesting.
+
+### Support for {{site.data.reuse.openshift}} 1.15
+
+{{site.data.reuse.ep_name}} version 1.1.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 1.15.
+
+### Support for Kubernetes 1.29
+
+{{site.data.reuse.ep_name}} version 1.1.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for Kubernetes platforms version 1.29 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Apache Flink updated to 1.18.1
+
+{{site.data.reuse.ibm_flink_operator}} version 1.1.4 update includes Apache Flink version 1.18.1.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.4 compared to 1.1.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.4 and {{site.data.reuse.ibm_flink_operator}} version 1.1.4 contain security and bug fixes.
+
+## Release 1.1.3
+
 ### Support for events with nested properties
 
 Event Processing release 1.1.3 and later includes support for events containing properties describing objects. You can now process events including more complex data.
@@ -27,11 +57,11 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.1.3 and {{site.data.reuse.flink_long}} version 1.1.3 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.1.3 and {{site.data.reuse.ibm_flink_operator}} version 1.1.3 contain security and bug fixes.
+
 
 
 ## Release 1.1.2
-
 
 ### Documentation: Highlighting differences between versions
 
@@ -39,7 +69,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.1.2 and {{site.data.reuse.flink_long}} version 1.1.2 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.1.2 and {{site.data.reuse.ibm_flink_operator}} version 1.1.2 contain security and bug fixes.
 
 
 ## Release 1.1.1
@@ -58,13 +88,13 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.1.1 and {{site.data.reuse.flink_long}} version 1.1.1 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.1.1 and {{site.data.reuse.ibm_flink_operator}} version 1.1.1 contain security and bug fixes.
 
 ## Release 1.1.0
 
 ### Apache Flink updated to 1.18.0
 
-The {{site.data.reuse.flink_long}} version 1.1.0 update includes Apache Flink version 1.18.0.
+The {{site.data.reuse.ibm_flink_operator}} version 1.1.0 update includes Apache Flink version 1.18.0.
 
 ### Support for MySQL database
 
@@ -89,4 +119,4 @@ This feature enables you to implement scenarios such as "Calculate the 3 product
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.1.0 and {{site.data.reuse.flink_long}} version 1.1.0 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.1.0 and {{site.data.reuse.ibm_flink_operator}} version 1.1.0 contain security and bug fixes.

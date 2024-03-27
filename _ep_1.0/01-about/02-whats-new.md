@@ -46,7 +46,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.0.5 and {{site.data.reuse.flink_long}} version 1.0.4 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.0.5 and {{site.data.reuse.ibm_flink_operator}} version 1.0.4 contain security and bug fixes.
 
 ## Release 1.0.4
 
@@ -60,23 +60,23 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.0.4 and {{site.data.reuse.flink_long}} version 1.0.3 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.0.4 and {{site.data.reuse.ibm_flink_operator}} version 1.0.3 contain security and bug fixes.
 
 ## Release 1.0.3
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.0.3 and {{site.data.reuse.flink_long}} version 1.0.2 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.0.3 and {{site.data.reuse.ibm_flink_operator}} version 1.0.2 contain security and bug fixes.
 
 ## Release 1.0.2
 
 ### Flink version updated to 1.17.1
 
-The {{site.data.reuse.flink_long}} version 1.0.1 update includes Apache Flink version 1.17.1.
+The {{site.data.reuse.ibm_flink_operator}} version 1.0.1 update includes Apache Flink version 1.17.1.
 
 ### Updates to Flink samples
 
-In version 1.0.1 and later of the {{site.data.reuse.flink_long}}, the following Flink samples include High Availability updates:
+In version 1.0.1 and later of the {{site.data.reuse.ibm_flink_operator}}, the following Flink samples include High Availability updates:
 
 - Sample **Minimal Production** is configured with minimal High Availability for the Flink Job Manager. This means that Flink jobs are restarted automatically if the Flink cluster restarts. However, some downtime is expected as there is only a single Job Manager replica. For more information, see [Minimal Production](../../installing/planning#flink-minimal-production-sample).
 

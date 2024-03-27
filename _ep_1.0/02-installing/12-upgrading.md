@@ -6,11 +6,11 @@ slug: upgrading
 toc: true
 ---
 
-You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} to the latest 1.0.x version by using the operator channel v1.0. Upgrade your {{site.data.reuse.ep_name}} installation as follows.
+You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} to the latest 1.0.x version by using the operator channel v1.0. Upgrade your {{site.data.reuse.ep_name}} installation as follows.
 
 **Note:** 
 
-- If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators will be upgraded to 1.0.x when they are available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
+- If your operator upgrades are set to automatic, minor version upgrades are completed automatically. This means that the {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} operators will be upgraded to 1.0.x when they are available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
 
 - You will experience some downtime during the {{site.data.reuse.ep_name}} upgrade while the pods for the relevant components are recycled.
 
@@ -20,11 +20,11 @@ You can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long
 
 - If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.ep_name}}.
 
-- To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
+- To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
 
 - If you [installed the {{site.data.reuse.ep_name}} operator](../installing) to manage instances of {{site.data.reuse.ep_name}} in any namespace (one per namespace), then you might need to control when each of these instances is upgraded to the latest version. You can control the updates by pausing the reconciliation of the instance configuration as described in the following sections.
   
-  **Note:** Pausing the reconciliation of the instance configuration is not available for {{site.data.reuse.flink_long}} instances.
+  **Note:** Pausing the reconciliation of the instance configuration is not available for {{site.data.reuse.ibm_flink_operator}} instances.
 
 ### Scheduling the upgrade of an instance
 
@@ -106,7 +106,7 @@ For {{site.data.reuse.ep_name}}:
 For Flink:
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure the required {{site.data.reuse.flink_long}} Operator Upgrade Channel is available:
+2. Ensure the required {{site.data.reuse.ibm_flink_operator}} Operator Upgrade Channel is available:
 
    ```shell
    oc get packagemanifest ibm-eventautomation-flink -o=jsonpath='{.status.channels[*].name}'
@@ -148,7 +148,7 @@ For Flink:
 2. If your Flink instance uses persistent storage, [backup the Flink instance](../backup-restore/#backing-up).
 3. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
 4. From the **Project** list, select the namespace (project) the instance is installed in.
-5. Locate the operator that manages your Flink instance in the namespace. It is called **{{site.data.reuse.flink_long}}** in the **Name** column. Click the **{{site.data.reuse.flink_long}}** in the row.
+5. Locate the operator that manages your Flink instance in the namespace. It is called **{{site.data.reuse.ibm_flink_operator}}** in the **Name** column. Click the **{{site.data.reuse.ibm_flink_operator}}** in the row.
 6. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
 7. Select the version number in the **Update channel** section (for example, **v1.0**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 8. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription update channel** dialog.
@@ -175,14 +175,14 @@ If you are running {{site.data.reuse.ep_name}} on Kubernetes platforms that supp
    helm repo update ibm-helm
    ```
 
-5. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.flink_long}} CRDs. 
+5. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs. 
 6. Upgrade the Helm release by running the command:
 
    ```shell
    helm upgrade <flink_crd_release_name> ibm-helm/ibm-eventautomation-flink-operator-crd
    ```
 
-7. Upgrade the Helm release of {{site.data.reuse.flink_long}}. Switch to the right namespace if your CRD Helm release is in a different namespace to your operator and then run:
+7. Upgrade the Helm release of {{site.data.reuse.ibm_flink_operator}}. Switch to the right namespace if your CRD Helm release is in a different namespace to your operator and then run:
 
    ```shell
    helm upgrade <flink_release_name> ibm-helm/ibm-eventautomation-flink-operator

@@ -20,11 +20,11 @@ Identifying large orders as they occur will help the team identify as early as p
 
 The instructions in this tutorial use the [Tutorial environment](../guided/tutorial-0), which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the [setup instructions](../guided/tutorial-0#deploy-the-tutorial) to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.
 
-### Operator versions
+### Versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots can differ from the current interface if you are using a newer version.
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.5
+- Event Streams 11.2.5
 - Event Endpoint Management 11.1.1
 - Event Processing 1.1.1
 

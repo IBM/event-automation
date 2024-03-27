@@ -6,7 +6,9 @@ slug: overview
 toc: false
 ---
 
-{{site.data.reuse.es_name}} is an event-streaming platform based on the open-source Apache Kafka® project.  {{site.data.reuse.es_name}} release 2018.3.0 uses the Kafka 2.0 release and supports the use of all Kafka interfaces. ![Event Streams 2018.3.1](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") {{site.data.reuse.es_name}} release 2018.3.1 uses the Kafka 2.0.1 release.
+{{site.data.reuse.es_name}} is an event-streaming platform based on the open-source Apache Kafka® project.  {{site.data.reuse.es_name}} release 2018.3.0 uses the Kafka 2.0 release and supports the use of all Kafka interfaces. 
+
+![Event Streams 2018.3.1]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") {{site.data.reuse.es_name}} release 2018.3.1 uses the Kafka 2.0.1 release.
 
 {{site.data.reuse.es_name}} builds upon the {{site.data.reuse.icp}} platform to deploy Apache Kafka in a resilient and manageable way. It includes a UI design aimed at application developers getting started with Apache Kafka, as well as users operating a production cluster.
 

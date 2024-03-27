@@ -12,21 +12,23 @@ The following sections provide instructions about installing {{site.data.reuse.e
 ## Overview
 
 {{site.data.reuse.ep_name}} is an operator-based release and uses custom resources to define the deployment configuration.
-{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}}
+{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}}
 operator. These operators deploy and manage the entire lifecycle of your Flink and {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `FlinkDeployment` and `EventProcessing` custom resources.
 
 Installing {{site.data.reuse.ep_name}} has the following phases:
 
-1. Install the {{site.data.reuse.flink_long}}: this deploys the operator that will install and manage your Flink instances.
+1. Install the {{site.data.reuse.ibm_flink_operator}}: this deploys the operator that will install and manage your Flink instances.
 2. Install the {{site.data.reuse.ep_name}} operator: this deploys the operator that will install and manage your {{site.data.reuse.ep_name}} instances.
-3. Install one or more instances of Flink by using the {{site.data.reuse.flink_long}}.
+3. Install one or more instances of Flink by using the {{site.data.reuse.ibm_flink_operator}}.
 4. Install one or more instances of {{site.data.reuse.ep_name}} by using the {{site.data.reuse.ep_name}} operator.
+
 
 ## Before you begin
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#ibm-cert-manager) a supported version of the IBM Cert Manager.
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
 - Obtain the connection details for your {{site.data.reuse.openshift_short}} cluster from your administrator.
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure the communication between Flink pods, [configure TLS for Flink](../configuring#configuring-tls-to-secure-communication-with-flink-deployments).
 
 ## Create a project (namespace)
 
@@ -112,7 +114,7 @@ Before you can install the latest operators and use them to create instances of 
 
 If you have other IBM products that are installed in your cluster, then you might already have the IBM Operator Catalog available. If it is configured for automatic updates as described in the following section, it already contains the required operators, and you can skip the deployment of the IBM Operator Catalog.
 
-If you are installing the {{site.data.reuse.flink_long}} or the {{site.data.reuse.ep_name}} operator as the first IBM operator in your cluster, to make the operators available in the OpenShift OperatorHub catalog, create the following YAML file and apply it as follows.
+If you are installing the {{site.data.reuse.ibm_flink_operator}} or the {{site.data.reuse.ep_name}} operator as the first IBM operator in your cluster, to make the operators available in the OpenShift OperatorHub catalog, create the following YAML file and apply it as follows.
 
 To add the IBM Operator Catalog:
 
@@ -143,7 +145,7 @@ To add the IBM Operator Catalog:
           interval: 45m
    ```
 
-   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and then install the [{{site.data.reuse.flink_long}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
+   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
@@ -158,7 +160,7 @@ Alternatively, you can add the catalog source through the OpenShift web console 
 2. Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag-and-drop the YAML files into the editor.
 3. Select **Create**.
 
-This adds the catalog source for both the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} to the OperatorHub catalog, making these operators available to install.
+This adds the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} to the OperatorHub catalog, making these operators available to install.
 
 ### Adding specific versions
 
@@ -179,7 +181,7 @@ Before you can install the required operator versions and use them to create ins
 
 2. Run the following command to download, validate, and extract the CASE:
 
-   - For {{site.data.reuse.flink_long}}:
+   - For {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc ibm-pak get ibm-eventautomation-flink --version <case-version>
@@ -188,7 +190,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+     oc ibm-pak get ibm-eventautomation-flink --version 1.1.5
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -200,12 +202,12 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.flink_operator_current_version}}
+     oc ibm-pak get ibm-eventprocessing --version 1.1.5
      ```
 
 3. Generate mirror manifests by running the following command:
 
-   - For {{site.data.reuse.flink_long}}:
+   - For {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc ibm-pak generate mirror-manifests ibm-eventautomation-flink icr.io
@@ -228,7 +230,7 @@ Before you can install the required operator versions and use them to create ins
 
 4. Apply the catalog sources for the operator to the cluster by running the following command:
 
-   - For {{site.data.reuse.flink_long}}:
+   - For {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
@@ -237,7 +239,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources-linux-amd64.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.1.5/catalog-sources-linux-amd64.yaml
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -249,48 +251,50 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources-linux-amd64.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.1.5/catalog-sources-linux-amd64.yaml
      ```
 
-This adds the catalog source for the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} making the operators available to install.
+This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.
 
 ## Install the operators
 
 {{site.data.reuse.ep_name}} consists of two operators that must be installed in the {{site.data.reuse.openshift}}:
 
-- {{site.data.reuse.flink_long}}
+- {{site.data.reuse.ibm_flink_operator}}
 - {{site.data.reuse.ep_name}}
 
-**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.flink_long}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
+**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
-### Installing the {{site.data.reuse.flink_long}}
+### Installing the {{site.data.reuse.ibm_flink_operator}}
 
-Ensure you have considered the {{site.data.reuse.flink_long}} [requirements](../prerequisites/#operator-requirements),
+Ensure you have considered the {{site.data.reuse.ibm_flink_operator}} [requirements](../prerequisites/#operator-requirements),
 including resource requirements and, if installing in **any namespace**, the required cluster-scoped permissions.
 
 **Important:**
 
-* {{site.data.reuse.flink_long}} must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
-  {{site.data.reuse.flink_long}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources
+* {{site.data.reuse.ibm_flink_operator}} must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
+  {{site.data.reuse.ibm_flink_operator}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources
   cannot be managed by more than one operator
   (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
-* Before installing {{site.data.reuse.flink_long}} on a cluster where Apache Flink operator is already installed, to avoid
+* Before installing {{site.data.reuse.ibm_flink_operator}} on a cluster where Apache Flink operator is already installed, to avoid
   possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
   the Apache Flink CRDs as described in the
-  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
-* Only one version of {{site.data.reuse.flink_long}} should be installed in a cluster. Installing multiple versions
+  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+* Only one version of {{site.data.reuse.ibm_flink_operator}} should be installed in a cluster. Installing multiple versions
   is not supported, due to the possible conflicts between versions of the `CustomResourceDefinition` resources.
+* ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
 
 
-#### Installing the {{site.data.reuse.flink_long}} by using the web console
+
+#### Installing the {{site.data.reuse.ibm_flink_operator}} by using the web console
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Operators** dropdown and select **OperatorHub** to open the **OperatorHub** dashboard.
 3. Select the project that you want to deploy the {{site.data.reuse.ep_name}} instance in.
-4. In the **All Items** search box, enter `{{site.data.reuse.flink_long}}` to locate the operator title.
-5. Click the **{{site.data.reuse.flink_long}}** tile to open the install side panel.
+4. In the **All Items** search box, enter `{{site.data.reuse.ibm_flink_operator}}` to locate the operator title.
+5. Click the **{{site.data.reuse.ibm_flink_operator}}** tile to open the install side panel.
 6. Click the **Install** button to open the **Create Operator Subscription** dashboard.
 7. Select the chosen [installation mode](#choose-the-operator-installation-mode) that suits your requirements.
    If the installation mode is **A specific namespace on the cluster**, select the target namespace that you created previously.
@@ -298,7 +302,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 
 The installation can take a few minutes to complete.
 
-#### Installing the {{site.data.reuse.flink_long}} by using the command line
+#### Installing the {{site.data.reuse.ibm_flink_operator}} by using the command line
 
 To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
 
@@ -342,7 +346,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc apply -f operator-group.yaml
    ```
 
-3. Create a `Subscription` for the {{site.data.reuse.flink_long}} as follows:
+3. Create a `Subscription` for the {{site.data.reuse.ibm_flink_operator}} as follows:
    
    a. Create a YAML file similar to the following example:
    
@@ -361,7 +365,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
 
    Where:
 
-   - `<target-namespace>` is the namespace where you want to install the {{site.data.reuse.flink_long}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
+   - `<target-namespace>` is the namespace where you want to install the {{site.data.reuse.ibm_flink_operator}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
    - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }})).
    - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventautomation-flink` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
 
@@ -391,11 +395,11 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
   oc get csv
   ```
 
-  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.flink_long}} is `Succeeded`.
+  The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.ibm_flink_operator}} is `Succeeded`.
 
 **Note:** If the operator is installed into a specific namespace, then it will only appear under the associated project. If the operator is installed for all namespaces, then it will appear under any selected project. If the operator is installed for all namespaces and you select **all projects** from the **Project** dropdown, the operator will be shown multiple times in the resulting list, once for each project.
 
-When the {{site.data.reuse.flink_long}} is installed, the following additional operators will appear in the installed operator list:
+When the {{site.data.reuse.ibm_flink_operator}} is installed, the following additional operators will appear in the installed operator list:
 
 - Operand Deployment Lifecycle Manager.
 - IBM Common Service Operator.
@@ -526,13 +530,14 @@ When the {{site.data.reuse.ep_name}} is installed, the following additional oper
 
 ## Install a Flink instance
 
-Instances of Flink can be created after the {{site.data.reuse.flink_long}} is installed. If the operator
+Instances of Flink can be created after the {{site.data.reuse.ibm_flink_operator}} is installed. If the operator
 was installed into **a specific namespace**, then it can only be used to manage instances of Flink in that namespace.
 
 If the operator was installed for **all namespaces**, then it can be used to manage instances of Flink in any namespace,
 including those created after the operator was deployed.
 
-A Flink instance is installed by deploying the `FlinkDeployment` custom resource to a namespace managed by an instance of {{site.data.reuse.flink_long}}.
+A Flink instance is installed by deploying the `FlinkDeployment` custom resource to a namespace managed by an instance of {{site.data.reuse.ibm_flink_operator}}.
+
 
 
 ### Installing a Flink instance by using the web console
@@ -542,7 +547,7 @@ To install a Flink instance through the {{site.data.reuse.openshift_short}} web 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
 3. Expand the **Project** dropdown and select the project the instance is installed in. Click the operator
-   called **{{site.data.reuse.flink_long}}** managing the project.
+   called **{{site.data.reuse.ibm_flink_operator}}** managing the project.
 
    **Note:** If the operator is not shown, it is either not installed or not available for the selected namespace.
 
@@ -570,24 +575,37 @@ on top as required. You can also directly edit the custom resource YAML by click
 When modifying the sample configuration, the updated document can be exported from the **Create FlinkDeployment** panel
 by clicking the **Download** button and re-imported by dragging the resulting file back into the window.
 
-**Note:** If you experiment with {{site.data.reuse.flink_long}} and want a minimal CPU and memory footprint,
+**Note:** If you experiment with {{site.data.reuse.ibm_flink_operator}} and want a minimal CPU and memory footprint,
 the **Quick Start** sample is the smallest and simplest example. For the smallest production setup, use the
 **Minimal Production** sample configuration.
 
 **Important:** All Flink samples except **Quick Start** use a `PersistentVolumeClaim` (PVC), which must be deployed manually as described in [planning](../planning/#deploying-the-flink-pvc).
 
-**Important:** In all Flink samples, just as in any `FlinkDeployment` custom resource, accept the
-license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
+- In all Flink samples, just as in any `FlinkDeployment` custom resource, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
 
-```yaml
-spec:
-  flinkConfiguration:
-    license.use: <license-use-value>
-    license.license: L-HRZF-DWHH7A
-    license.accept: 'true'
-```
+  ```yaml
+  spec:
+    flinkConfiguration:
+      license.use: <license-use-value>
+      license.license: L-HRZF-DWHH7A
+      license.accept: 'true'
+  ```
 
-Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your case.
+  Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your case.
+
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To [secure your communication](../planning/#securing-communication-with-flink-deployments) between Flink pods, add the following snippet to the `spec.flinkConfiguration` section:
+
+  ```yaml
+  spec:
+    flinkConfiguration:
+      security.ssl.enabled: 'true'
+      security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+      security.ssl.truststore-password: <jks-password>
+      security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+      security.ssl.keystore-password: <jks-password>
+      security.ssl.key-password: <jks-password>
+      kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+  ```
 
 To deploy a Flink instance, use the following steps:
 
@@ -604,7 +622,7 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
 1. Enter a name for the instance in the **Name** field.
 2. You can optionally configure the fields such as **Job Manager**, **Task Manager**, or **Job** to suit your [requirements](../configuring).
 
-   **Note:** Do not fill the fields **Flink Version** and **Image**, as they are automatically filled by {{site.data.reuse.flink_long}}.
+   **Note:** Do not fill the fields **Flink Version** and **Image**, as they are automatically filled by {{site.data.reuse.ibm_flink_operator}}.
 3. Switch to the YAML view, accept the license agreement (`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
 
    For example:
@@ -619,10 +637,24 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
 
    Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
 
-
    **Note:** License configuration parameters for your Flink instance can only be set by using the YAML view.
-4. Scroll down and click the **Create** button to deploy the Flink instance.
-5. Wait for the installation to complete.
+
+4. ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To [secure your communication](../planning/#securing-communication-with-flink-deployments) between Flink pods, switch to the YAML view, and add the following snippet to the `spec.flinkConfiguration` section:
+
+   ```yaml
+   spec:
+     flinkConfiguration:
+       security.ssl.enabled: 'true'
+       security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+       security.ssl.truststore-password: <jks-password>
+       security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+       security.ssl.keystore-password: <jks-password>
+       security.ssl.key-password: <jks-password>
+       kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+   ```
+
+5. Scroll down and click the **Create** button to deploy the Flink instance.
+6. Wait for the installation to complete.
 
 ### Installing a Flink instance by using the CLI
 
@@ -634,20 +666,38 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 To deploy a Flink instance, run the following commands:
 
-1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
+1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
 
-   **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included
-   by {{site.data.reuse.flink_long}}. Also, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
+   **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included by {{site.data.reuse.ibm_flink_operator}}. 
 
-   ```yaml
-   spec:
-     flinkConfiguration:
-       license.use: <license-use-value>
-       license.license: L-HRZF-DWHH7A
-       license.accept: 'true'
-   ```
+   - Accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment.
 
-   Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
+     ```yaml
+     spec:
+       flinkConfiguration:
+         license.use: <license-use-value>
+         license.license: L-HRZF-DWHH7A
+         license.accept: 'true'
+     ```
+
+     Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
+
+   - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To [secure your communication](../planning/#securing-communication-with-flink-deployments) between Flink pods, add the following snippet to the `spec.flinkConfiguration` section:
+
+     ```yaml
+     spec:
+       flinkConfiguration:
+         security.ssl.enabled: 'true'
+         security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+         security.ssl.truststore-password: <jks-password>
+         security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+         security.ssl.keystore-password: <jks-password>
+         security.ssl.key-password: <jks-password>
+         kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+     ```
+
+     Where `<jks-secret>` is the secret containing the keystores and truststores for your deployment, and `<jks-password>` is the password for those stores.
+
 
 2. Set the project where your `FlinkDeployment` custom resource will be deployed in:
 
@@ -718,6 +768,17 @@ When modifying the sample configuration, the updated document can be exported fr
 When modifying the sample configuration, ensure that the following fields are updated:
 
 - [Flink REST endpoint](#retrieving-the-flink-rest-endpoint) in the `spec.flink.endpoint` field.
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure your communication between {{site.data.reuse.ep_name}} and Flink deployments, [identify the secret](../configuring/#configuring-tls-to-secure-communication-with-flink-deployments) that contains the same truststore as your Flink deployment and the secret containing the password for this keystore. Then, add the secret to the `spec.flink.tls` section. For example:
+  
+  ```yaml
+  spec:
+    flink:
+      tls:
+        secretKeyRef:
+           key: <key-containing-password-value>
+           name: <flink-jks-password-secret>
+         secretName: <flink-jks-secret>
+  ```
 
 - `spec.license.accept` field in the custom resource YAML is set to `true`, and that the [correct values are selected]({{ 'support/licensing' | relative_url }}) for the `spec.license.license` and `spec.license.use` fields before deploying the {{site.data.reuse.ep_name}} instance. See the [licensing]({{ 'support/licensing' | relative_url }}) section for more details about selecting the correct value.
 
@@ -745,12 +806,13 @@ To view a sample in the form view, complete the following steps:
 **Note:** If experimenting with {{site.data.reuse.ep_name}} for the first time, the **Quick Start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
 
-To configure an `EventProcessing` custom resource,  complete the following steps:
+To configure an `EventProcessing` custom resource, complete the following steps:
 
 1. Enter a name for the instance in the **Name** field.
 2. Under **License Acceptance**, select the **accept** checkbox.
 3. Ensure that the [correct values]({{ 'support/licensing' | relative_url }}) for **License** and **Use** are entered.
 4. Under **Flink**, enter the [Flink REST endpoint](#retrieving-the-flink-rest-endpoint) in the **flink > endpoint** text-box.
+5. ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure your communication between {{site.data.reuse.ep_name}} and Flink deployments, enter the [TLS configuration](../configuring//#configuring-tls-to-secure-communication-with-flink-deployments) in **flink > tls**.
 5. You can optionally configure other components such as **storage**, and **TLS** to suit your [requirements](../configuring).
 6. Scroll down and click the **Create** button to deploy the {{site.data.reuse.ep_name}} instance.
 7. Wait for the installation to complete.
@@ -769,6 +831,18 @@ More information about these samples is available in the [planning](../planning/
 When modifying the sample configuration, ensure that the following fields are updated:
 
 - [Flink REST endpoint](#retrieving-the-flink-rest-endpoint) in the `spec.flink.endpoint` field.
+
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure your communication between {{site.data.reuse.ep_name}} and Flink deployments, [identify the secret](../configuring/#configuring-tls-to-secure-communication-with-flink-deployments) that contains the same truststore as your Flink deployment and the secret containing the password for this keystore. Then, add the secret to the `spec.flink.tls` section. For example:
+  
+  ```yaml
+  spec:
+    flink:
+      tls:
+        secretKeyRef:
+           key: <key-containing-password-value>
+           name: <flink-jks-password-secret>
+         secretName: <flink-jks-secret>
+  ```
 
 - `spec.license.accept` field in the custom resource YAML is set to `true`, and that the [correct values are selected]({{ 'support/licensing' | relative_url }}) for the `spec.license.license` and `spec.license.use` fields before deploying the {{site.data.reuse.ep_name}} instance.
 

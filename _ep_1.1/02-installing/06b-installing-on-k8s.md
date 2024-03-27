@@ -11,14 +11,14 @@ The following sections provide instructions about installing {{site.data.reuse.e
 ## Overview
 
 {{site.data.reuse.ep_name}} is an operator-based release and uses custom resources to define the deployment configuration.
-{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}}
+{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}}
 operator. These operators deploy and manage the entire lifecycle of your Flink and {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `FlinkDeployment` and `EventProcessing` custom resources.
 
 Installing {{site.data.reuse.ep_name}} has the following phases:
 
-1. Install the {{site.data.reuse.flink_long}}: this deploys the operator that will install and manage your Flink instances.
+1. Install the {{site.data.reuse.ibm_flink_operator}}: this deploys the operator that will install and manage your Flink instances.
 2. Install the {{site.data.reuse.ep_name}} operator: this deploys the operator that will install and manage your {{site.data.reuse.ep_name}} instances.
-3. Install one or more instances of Flink by using the {{site.data.reuse.flink_long}}.
+3. Install one or more instances of Flink by using the {{site.data.reuse.ibm_flink_operator}}.
 4. Install one or more instances of {{site.data.reuse.ep_name}} by using the {{site.data.reuse.ep_name}} operator.
 
 ## Before you begin
@@ -40,7 +40,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 
 ## Add the Helm repository
 
-Before you can install the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}}, add the IBM Helm repository to your local repository list. This will provide access to the Helm chart packages that will install the operators on your cluster.
+Before you can install the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}}, add the IBM Helm repository to your local repository list. This will provide access to the Helm chart packages that will install the operators on your cluster.
 
 To add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"} to the local repository list, run the following command:
 
@@ -73,7 +73,7 @@ helm install \
    -n <namespace>
 ```
 
-For {{site.data.reuse.flink_long}}:
+For {{site.data.reuse.ibm_flink_operator}}:
 
 ```shell
 helm install \
@@ -95,17 +95,19 @@ helm install ibm-flink-crds ibm-helm/ibm-eventautomation-flink-operator-crd -n e
 
 ## Install operators
 
-Follow the instructions to install the {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} operator.
+Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} operator.
 
-### Installing the {{site.data.reuse.flink_long}} operator
+### Installing the {{site.data.reuse.ibm_flink_operator}} operator
 
 **Important:**
 
-* The {{site.data.reuse.flink_long}} must not be installed on a cluster where you already have an Apache Flink operator installed. This is because the {{site.data.reuse.flink_long}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources cannot be managed by more than one operator at the same time (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
-* Before installing the {{site.data.reuse.flink_long}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
-* Only one version of the {{site.data.reuse.flink_long}} must be installed on a cluster. Installing multiple versions is not supported due to potential conflicts between different versions of the `CustomResourceDefinition` resources.
+* The {{site.data.reuse.ibm_flink_operator}} must not be installed on a cluster where you already have an Apache Flink operator installed. This is because the {{site.data.reuse.ibm_flink_operator}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources cannot be managed by more than one operator at the same time (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
+* Before installing the {{site.data.reuse.ibm_flink_operator}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+* Only one version of the {{site.data.reuse.ibm_flink_operator}} must be installed on a cluster. Installing multiple versions is not supported due to potential conflicts between different versions of the `CustomResourceDefinition` resources.
+* ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
 
-Ensure you have considered the {{site.data.reuse.flink_long}} [requirements](../prerequisites/#operator-requirements), including resource requirements and, if installing in **any namespace**, the required cluster-scoped permissions.
+
+Ensure you have considered the {{site.data.reuse.ibm_flink_operator}} [requirements](../prerequisites/#operator-requirements), including resource requirements and, if installing in **any namespace**, the required cluster-scoped permissions.
 
 To install the operator, run the following command:
 
@@ -203,7 +205,7 @@ For {{site.data.reuse.ep_name}}:
 kubectl get deployments ibm-ep-operator -n <namespace>
 ```
 
-For {{site.data.reuse.flink_long}}:
+For {{site.data.reuse.ibm_flink_operator}}:
 
 ```shell
 kubectl get deployments flink-kubernetes-operator -n <namespace>
@@ -222,7 +224,7 @@ NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
 ibm-ep-operator                 1/1     1            1           1d2h
 ```
 
-For {{site.data.reuse.flink_long}}:
+For {{site.data.reuse.ibm_flink_operator}}:
 
 ```shell
 NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
@@ -231,11 +233,11 @@ flink-kubernetes-operator       1/1     1            1           7d4h
 
 ## Install instances
 
-Follow the instructions to install the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} instances.
+Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} instances.
 
 ### Installing a Flink instance
 
-Instances of Flink can be created after the {{site.data.reuse.flink_long}} is installed. If the operator was installed into **a specific namespace**, then it can only be used to manage instances of Flink in that namespace.
+Instances of Flink can be created after the {{site.data.reuse.ibm_flink_operator}} is installed. If the operator was installed into **a specific namespace**, then it can only be used to manage instances of Flink in that namespace.
 
 If the operator was installed for **all namespaces**, then it can be used to manage instances of Flink in any namespace, including those created after the operator was deployed.
 
@@ -252,11 +254,11 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 To deploy a Flink instance, run the following commands:
 
 1. Prepare a `FlinkDeployment` custom resource in a YAML file, using the information provided in
-   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.5/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
+   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/custom-resource/reference/#flinkdeployment-reference){:target="_blank"}.
 
    **Notes:** 
  
-    - If the operator webhook has not been disabled, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment. Do not set the `spec.image` and `spec.flinkVersion` fields as they are automatically included by {{site.data.reuse.flink_long}}.
+    - If the operator webhook has not been disabled, accept the license agreement(`spec.flinkConfiguration.license.accept: 'true'`), and set the required [licensing configuration parameters](https://ibm.biz/ea-license){:target="_blank"} for your deployment. Do not set the `spec.image` and `spec.flinkVersion` fields as they are automatically included by {{site.data.reuse.ibm_flink_operator}}.
 
 
       ```yaml
@@ -279,12 +281,26 @@ To deploy a Flink instance, run the following commands:
 
       ```yaml
       spec:
-       flinkVersion: "<value-of-IBM_FLINK_VERSION-env-var>"
-       image: "<value-of-IBM_FLINK_IMAGE-env-var>"
-       flinkConfiguration:
-         license.use: <license-use-value>
-         license.license: L-HRZF-DWHH7A
-         license.accept: 'true'
+        flinkVersion: "<value-of-IBM_FLINK_VERSION-env-var>"
+        image: "<value-of-IBM_FLINK_IMAGE-env-var>"
+        flinkConfiguration:
+          license.use: <license-use-value>
+          license.license: L-HRZF-DWHH7A
+          license.accept: 'true'
+      ```
+
+    - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To [secure your communication](../planning/#securing-communication-with-flink-deployments) between Flink pods, add the following snippet to the `spec.flinkConfiguration` section:
+
+      ```yaml
+      spec:
+        flinkConfiguration:
+          security.ssl.enabled: 'true'
+          security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+          security.ssl.truststore-password: <jks-password>
+          security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+          security.ssl.keystore-password: <jks-password>
+          security.ssl.key-password: <jks-password>
+          kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
       ```
 
 3. Apply the configured `FlinkDeployment` custom resource to your target namespace:
@@ -340,6 +356,18 @@ More information about these samples is available in the [planning](../planning/
 
 When modifying the sample configuration, ensure that the following fields are updated based on your requirements:
 
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure your communication between {{site.data.reuse.ep_name}} and Flink pods, [identify the secret](../configuring/#configuring-tls-to-secure-communication-with-flink-deployments) that contains the same truststore as your Flink deployment and the secret containing the password for this keystore. Then, add the secret to the `spec.flink.tls` section. For example:
+  
+  ```yaml
+  spec:
+    flink:
+      tls:
+        secretKeyRef:
+           key: <key-containing-password-value>
+           name: <flink-jks-password-secret>
+         secretName: <flink-jks-secret>
+  ```
+
 - The `spec.license.accept` field in the custom resource YAML is set to `true`.
 - The correct values are selected for the `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields before deploying an {{site.data.reuse.ep_name}} instance. For information about the right values for your deployment, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 - `authoring.storage.type` field is updated as `ephemeral` or `persistent-claim` based on your requirements. See [configuring](../configuring#enabling-persistent-storage) to select the correct storage type and other optional specifications such as storage size, root storage path, and secrets.
@@ -349,9 +377,9 @@ When modifying the sample configuration, ensure that the following fields are up
    - `name` field is set to `ui`.
    - `host` field is updated with a DNS resolvable hostname for accessing the named service, for example:
 
-       ```shell
+       ```yaml
        spec:
-         manager:
+         authoring:
            endpoints:
              - name: ui
                host: qs-ep-ui.mycluster.domain

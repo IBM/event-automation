@@ -54,7 +54,7 @@ You can use the signature to verify that the images came from IBM when they are 
 
 ## Obtaining the container images
 
-Obtain the list of {{site.data.reuse.ep_name}}-certified and {{site.data.reuse.flink_long}}-certified container images to verify as described in the following sections.
+Obtain the list of {{site.data.reuse.ep_name}}-certified and {{site.data.reuse.ibm_flink_operator}}-certified container images to verify as described in the following sections.
 
 ### Prepare your bastion host
 
@@ -90,7 +90,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    oc ibm-pak list ibm-eventprocessing
    ```
 
-   For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    oc ibm-pak list ibm-eventautomation-flink
@@ -124,7 +124,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    Download of CASE: ibm-eventprocessing, version: 1.0.5 is complete
    ```
 
-   For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    oc ibm-pak get ibm-eventautomation-flink --version 1.0.4
@@ -176,7 +176,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
        └── oc-ibm_pak.log
    ```
 
-   For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    $ tree ~/.ibm-pak
@@ -214,7 +214,7 @@ Obtain the required files as follows:
 
     To verify the image signatures for a {{site.data.reuse.ep_name}}-certified container, use the file that is named in the format `ibm-eventprocessing-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.ep_name}} CASE version.
 
-    To verify the image signatures for a {{site.data.reuse.flink_long}}-certified container, use the file that is named in the format `ibm-eventautomation-flink-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.flink_long}} CASE version.
+    To verify the image signatures for a {{site.data.reuse.ibm_flink_operator}}-certified container, use the file that is named in the format `ibm-eventautomation-flink-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.ibm_flink_operator}} CASE version.
 
 2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
@@ -229,7 +229,7 @@ Obtain the required files as follows:
      done
    ```
 
-   For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.0.4/ibm-eventautomation-flink-1.0.4-images.csv \

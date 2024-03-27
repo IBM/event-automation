@@ -43,7 +43,7 @@ Before running the producer to test loads, you must specify the following detail
 
 ### Obtaining configuration details
 
-![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, obtain the required configuration details as follows:
+![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, obtain the required configuration details as follows:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 2. Click **Connect to this cluster** on the right.
 3. Go to the **Connect a client** tab.

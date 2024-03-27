@@ -12,7 +12,10 @@ order: 5
 
 When processing events we can send the results to a new Kafka topic. This lets the results from the flow be used to trigger automations, notifications, business workflows, or be processed further in other applications.
 
+**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
+
 {% include video.html videoSource="videos/tutorials/guided/05-eventdestination.mp4" %}{: class="tutorial-video" }
+
 
 ## Scenario : Distributing results of analysis and processing
 {: #scenario}

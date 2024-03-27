@@ -8,7 +8,10 @@ cardType: "large"
 order: 11
 ---
 
+**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
+
 {% include video.html videoSource="videos/tutorials/examples/11-mqmessages.mp4" %}{: class="tutorial-video" }
+   
 
 ## Scenario
 
@@ -22,11 +25,11 @@ You will also need to [run the optional instructions for deploying an MQ queue m
 
 **Tip**: The MQ Connector is just [one of many connectors available]({{ 'connectors' | relative_url}}) for bringing data into Kafka. Connectors are an effective way to enable processing events from a wide variety of systems and technologies.
 
-### Operator versions
+### Versions
 
-This tutorial was written by using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots can differ from the current interface if you are using a newer version.
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
+- Event Streams 11.2.1
 - Event Endpoint Management 11.0.1
 - Event Processing 1.0.0
 - MQ 2.4.0

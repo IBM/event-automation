@@ -114,7 +114,7 @@ In the navigation banner, click **Stop** to stop the flow when you finish review
 
 The clothing company selected **Include historical** to run the filter on the history of order events available on their `Order events` topic. All the orders from the EMEA region are displayed. This provides the company real-time information about orders placed in the region, and helps them review orders as they occur.
 
-![Viewing results]({{ 'images' | relative_url }}/ep-lab1-results.png "Image to show the clothing company viewing the results of their flow.")
+![Viewing results]({{ 'images' | relative_url }}/ep-lab1-results-updated.png "Image to show the clothing company viewing the results of their flow.")
 
 ## Flow statuses
 

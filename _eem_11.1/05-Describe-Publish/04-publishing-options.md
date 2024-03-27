@@ -12,20 +12,35 @@ All the topics with published options are displayed along with tags and status i
 
 Application developers can then [discover](../../consume-subscribe/discovering-topics/) available event data and [subscribe](../../consume-subscribe/subscribing-to-topics/) to the published options directly or request access if approval is required.
 
-To publish an option to the catalog, complete the following steps:
+**Note:** A gateway is required to publish an option. Ensure that you have at least one gateway group associated with your {{site.data.reuse.eem_name}} instance. For more information, see [managing gateways](../managing-gateways).
+
+If you are using {{site.data.reuse.eem_name}} version 11.1.3 or earlier, complete the following steps to publish an option to the catalog:
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
 1. In the navigation pane, click **Topics**. A list of topics is displayed.
 1. Select the topic that you want to publish an option from.
-1. Click the **Options** tab.
-1. For the option that you want to publish, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**.
-1. In the side bar, click **Publish option**.
+1. Click the **Options** tab. 
+1. For the option that you want to publish, click **Edit** ![edit icon]({{ 'images' | relative_url }}/rename.svg "Edit the cluster name icon."){:height="30px" width="15px"}.
+1. In the side bar, click **Publish option**.     
 1. Click **Publish**.
-
-   **Note:** To publish an option, at least one gateway group must be associated with this {{site.data.reuse.eem_name}} instance. For more information, see [managing gateways](../managing-gateways).
-1. Select a gateway group from the available options.
+1. Select a gateway group from the available options.     
 1. Click **Save**.
-1. To cancel changes, click **Cancel**.
+1. To cancel changes, click **Cancel**.     
+
+
+![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") If you are using {{site.data.reuse.eem_name}} version 11.1.4 and later, complete the following steps to publish an option to the catalog:
+
+1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
+1. In the navigation pane, click **Topics**. A list of topics is displayed.
+1. Select the topic that you want to publish an option from.
+1. Click the **Options** tab. 
+1. For the option that you want to publish, click **Publish**.      
+1. In the Publish option dialog, select a gateway group from the available options.   
+   
+   **Note:** When only one gateway is available, it is selected by default. If you have multiple gateways, you can choose a gateway group from the available options.   
+
+1. Click **Publish**.
+1. To cancel changes, click **Cancel**.      
 
 ## Viewing published options
 {: #view_published_options}

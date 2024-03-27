@@ -145,8 +145,6 @@ Where:
 - `target-registry-user` is the username for the internal container image registry.
 - `target-registry-pass` is the password for the internal container image registry.
 
-**Note:** You can configure with separate target registry for {{site.data.reuse.flink_long}} and {{site.data.reuse.eem_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.flink_long}} and {{site.data.reuse.eem_name}}.
-
 ## Mirror the images
 
 <!--Only offline environment -->

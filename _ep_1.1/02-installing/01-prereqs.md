@@ -8,7 +8,7 @@ toc: true
 
 
 
-Ensure your environment meets the following prerequisites before installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+Ensure your environment meets the following prerequisites before installing {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
 ## Container environment
 
@@ -33,7 +33,7 @@ Ensure that your hardware can accommodate the [resource requirements](#resource-
 {{site.data.reuse.ep_name}} resource requirements depend on several factors. The following sections provide guidance about minimum requirements for a starter deployment, and options for initial production configurations.
 
 Minimum resource requirements are based on the total of requests set for the deployment. You will require more resources to accommodate the limit settings (see more about "requests" and "limits" later in this section).
-Always ensure that you have sufficient resources in your environment to deploy the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} operator together with a Quick start or a Production instance of Flink and {{site.data.reuse.ep_name}}.
+Always ensure that you have sufficient resources in your environment to deploy the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} operator together with a Quick start or a Production instance of Flink and {{site.data.reuse.ep_name}}.
 
 Flink resource requirements:
 
@@ -56,7 +56,7 @@ Flink resource requirements:
 
 **Note:** {{site.data.reuse.ep_name}} provides sample configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.ep_name}} installation on your system yet, always ensure that you include the resource requirements for the operator together with the intended {{site.data.reuse.ep_name}} instance requirements (quick start or production).
 
-**Note:** {{site.data.reuse.flink_long}} When deploying a `FlinkDeployment` custom resource, the initial number of Flink Job Manager (JM) and Task Manager (TM) pods is equal to the number of replicas indicated for each in the custom resource. All the provided samples configure 1 replica for both JM and TM, except the “Production” sample which has 2 replicas for JM.
+**Note:** {{site.data.reuse.ibm_flink_operator}} When deploying a `FlinkDeployment` custom resource, the initial number of Flink Job Manager (JM) and Task Manager (TM) pods is equal to the number of replicas indicated for each in the custom resource. All the provided samples configure 1 replica for both JM and TM, except the “Production” sample which has 2 replicas for JM.
 Additional Task Manager pods are created if the number of deployed Flink jobs exceeds the TM “slot capacity”, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the FlinkDeployment. When running {{site.data.reuse.ep_name}} flows, each flow generates 2 Flink jobs; each job is allocated its own Task Manager slot.
 
 {{site.data.reuse.ep_name}} is a [Kubernetes operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.ep_name}} configurations.
@@ -71,7 +71,7 @@ Ensure that you have sufficient CPU capacity and physical memory in your environ
 
 ### Operator requirements
 
-The {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} have the following requirements.
+The {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} have the following requirements.
 
 #### Requirements for the {{site.data.reuse.ep_name}} operator
 
@@ -93,17 +93,17 @@ In addition to the previous permissions, the {{site.data.reuse.ep_name}} operato
 
 - **Permission to list ClusterRoles and ClusterRoleBindings**: The {{site.data.reuse.ep_name}} operator uses ClusterRoles created by the Operator Lifecycle Manager (OLM) as parents for supporting resources that the {{site.data.reuse.ep_name}} operator creates. This is needed so that the supporting resources are correctly cleaned up when {{site.data.reuse.ep_name}} is uninstalled. The permission to list ClusterRoles is required to allow the operator to identify the appropriate cluster role to use for this purpose.
 
-#### Operator requirements for the {{site.data.reuse.flink_long}}
+#### Operator requirements for the {{site.data.reuse.ibm_flink_operator}}
 
-The {{site.data.reuse.flink_long}} has the following minimum resource requirements.
+The {{site.data.reuse.ibm_flink_operator}} has the following minimum resource requirements.
 
 | CPU request (cores) | CPU limit (cores) | Memory request (Gi) | Memory limit (Gi) |
 | ------------------- | ----------------- | ------------------- | ----------------- |
 | 0.2                 | 1.0               | 0.25                | 0.5               |
 
-You can only install one version of the {{site.data.reuse.flink_long}} on a cluster. Installing multiple versions on a single cluster is not supported.
+You can only install one version of the {{site.data.reuse.ibm_flink_operator}} on a cluster. Installing multiple versions on a single cluster is not supported.
 
-You cannot install the {{site.data.reuse.flink_long}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.6/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.flink_long}}.
+You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.7/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
 
 ## Red Hat OpenShift Security context constraints
 
@@ -149,7 +149,7 @@ If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you ca
 
 ### Storage requirements for Flink
 
-The Flink instances deployed by {{site.data.reuse.flink_long}} store the following data if persistent storage is configured:
+The Flink instances deployed by {{site.data.reuse.ibm_flink_operator}} store the following data if persistent storage is configured:
 
 - Checkpoints and savepoints. For more information about checkpoints, see the Flink documentation about [checkpoint storage](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/checkpoints/#checkpoint-storage){:target="_blank"} and [checkpointing prerequisites](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/datastream/fault-tolerance/checkpointing/#prerequisites){:target="_blank"}. For more information about savepoints, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/savepoints/){:target="_blank"}.
 - When configured to persist states in RocksDB, the data of processed events is stored in a binary, compressed, and unencrypted format.
@@ -212,7 +212,7 @@ Follow the instructions to install the Cert Manager based on the {{site.data.reu
 
 #### With {{site.data.reuse.fs}} version 3.x
 
-If you are installing {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} on a cluster where {{site.data.reuse.fs}} version 3.x is already installed, follow the instructions to install the Cert Manager operator.
+If you are installing {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} on a cluster where {{site.data.reuse.fs}} version 3.x is already installed, follow the instructions to install the Cert Manager operator.
 
 **Note:** The following instructions apply in both online and offline clusters.
 

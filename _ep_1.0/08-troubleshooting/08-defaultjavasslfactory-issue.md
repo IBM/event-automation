@@ -32,4 +32,4 @@ Ensure that the configuration parameters in the URL for the secured PostgreSQL d
 jdbc:postgresql://<host>:<port>/<database>?sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory&<additional-configuration>
 ```
 
-**Note:** Ensure that you have correctly [mounted](../../installing/configuring/#configuring-postgresql-ssl-in-event-processing-and-flink) the truststore and password into both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} instances as the administrator.
+**Note:** Ensure that you have correctly [mounted](../../installing/configuring/#configuring-postgresql-ssl-in-event-processing-and-flink) the truststore and password into both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} instances as the administrator.

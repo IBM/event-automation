@@ -6,16 +6,17 @@ slug: about
 toc: true
 ---
 
-You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters that are typically located in different geographical locations. The geo-replication feature creates copies of your selected topics to help with [disaster recovery](../disaster-recovery).
+You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters that are typically located in different geographical locations. 
 
 ![Event Streams geo-replication architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-georep.svg "Diagram showing the architecture of the Event Streams geo-replication as part of IBM Event Automation.")
 
 Geo-replication can help with various service availability scenarios, for example:
 
-* Supporting your disaster recovery plans: you can set up geo-replication to support your [disaster recovery](../disaster-recovery) architecture, enabling the switching to other clusters if your primary ones experience a problem.
+* Making local copies of event topics available closer to applications in other locations in order to improve event consumption performance.
 * Making mission-critical data safe: you might have mission-critical data that your applications depend on to provide services. Using the geo-replication feature, you can back up your topics to several destinations to ensure their safety and availability.
 * Migrating data: you can ensure your topic data can be moved to another deployment, for example, when switching from a test to a production environment.
 
+**Note:** The geo-replication feature only provides access to a subset of the capabilities of the underlying MirrorMaker 2.0 capability. For certain use cases, such as creating copies of topics for [disaster recovery](../disaster-recovery) purposes, it is best to use the underlying MirrorMaker 2.0 directly to access a wider set of features. 
 
 ## How it works
 
@@ -24,8 +25,6 @@ The Kafka cluster where you have the topics that you want to make copies of is c
 The Kafka cluster where you want to copy the selected topics to is called the "destination cluster".
 
 So, one cluster is the origin where you want to copy the data from, while the other cluster is the destination where you want to copy the data to.
-
-**Important:** If you are using geo-replication for purposes of availability in the event of a data center outage or disaster, you must ensure that the origin cluster and destination cluster are installed on different systems that are isolated from each other. This ensures that any issues with the origin cluster do not affect the destination cluster.
 
 Any of your {{site.data.reuse.es_name}} clusters can become a destination for geo-replication. At the same time, the origin cluster can also be a destination for topics from other sources.
 
@@ -37,10 +36,8 @@ You can set up geo-replication by using the {{site.data.reuse.es_name}} UI or CL
 
 ## What to replicate
 
-What topics you choose to replicate and how depend on the topic data, whether it is critical to your operations, and how you want to use it.
+What topics you choose to replicate depend on your use case. 
 
-For example, you might have transaction data for your customers in topics. Such information is critical to your operations to run reliably, so you want to ensure they have back-up copies to switch to when needed. For such critical data, you might consider setting up several copies to ensure availability. One way to do this is to set up geo-replication of 5 topics to one destination cluster, and the next 5 to another destination cluster, assuming you have 10 topics to replicate. Alternatively, you can replicate the same topics to two different destination clusters.
+For example, you might choose to replicate all topics to destination clusters closer to the consumers of those topics, so that the consumers can read the topics at lower latency and network cost. 
 
-Another example would be storing of website analytics information, such as where users clicked and how many times they did so. Such information is likely to be less important than maintaining availability for your operations, and you might choose not to replicate such topics, or only replicate them to one destination cluster.
-
-When replication is set up and working, you can switch your applications to use another cluster when needed.
+Alternatively, you can use geo-replication to only replicate a subset of topics to another geography that contain data specific to that country, but have other topics that contain more locationally sensitive data to be only present in the origin cluster. 

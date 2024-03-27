@@ -233,7 +233,7 @@ You can use a custom certificate for secure communication by the {{site.data.reu
 
 **Note:** The `envsubst` utility is available on Linux and can be installed by default as part of the `gettext` package.
 
-See the following example for setting up OpenSSL tool to generate a CA and Certificate required for an {{site.data.reuse.eem_name}} instance:
+See the following example for setting up OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.eem_name}} instance:
 
 1. If you are using a MAC, the following packages are required and can be installed by using `HomeBrew`:
 
@@ -249,10 +249,10 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
 2. Set the following variables on your workstation:
 
    ```shell
-   EMAIL=<email address>
-   MANAGER_NAME=<my_instance>
-   CLUSTER_API=<cluster api>
-   NAMESPACE=<eem installation namespace>
+   EMAIL=<email-address>
+   MANAGER_NAME=<name-of-the-event-endpoint-management-manager-instance>
+   CLUSTER_API=<cluster-api>
+   NAMESPACE=<event-endpoint-management-installation-namespace>
    ```
 
    Where:
@@ -303,25 +303,25 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    O=MyOrg
    OU=MyOrgUnit
    emailAddress=${EMAIL}
-   CN = ${MANAGER_NAME}-ibm-eem-svc
+   CN = ${MANAGER_NAME}-ibm-eem-manager
 
    [req_ext]
    subjectAltName = @alt_names
 
    [alt_names]
-   DNS.1 = ${MANAGER_NAME}-ibm-eem-svc
-   DNS.2 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}
-   DNS.3 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}.svc
-   DNS.4 = ${MANAGER_NAME}-ibm-eem-svc.{NAMESPACE}.svc.cluster.local
-   DNS.5 = ${MANAGER_NAME}-ibm-eem-apic-{NAMESPACE}.${CLUSTER_API}
-   DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-{NAMESPACE}.${CLUSTER_API}
-   DNS.7 = ${MANAGER_NAME}-ibm-eem-manager-{NAMESPACE}.${CLUSTER_API}
+   DNS.1 = ${MANAGER_NAME}-ibm-eem-manager
+   DNS.2 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}
+   DNS.3 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc
+   DNS.4 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc.cluster.local
+   DNS.5 = ${MANAGER_NAME}-ibm-eem-apic-${NAMESPACE}.${CLUSTER_API}
+   DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-${NAMESPACE}.${CLUSTER_API}
+   DNS.7 = ${MANAGER_NAME}-ibm-eem-manager-${NAMESPACE}.${CLUSTER_API}
    ```
 
     **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.eem_manager}} `ui`, `gateway`, and, if required, the `apic` endpoint hostnames:
     - You are planning to specify hostnames in the `eventendpointmanager` custom resource under `spec.manager.endpoints`.
     - You are planning to create additional routes or ingress.
-    - You are not running on {{site.data.reuse.openshift_short}}
+    - You are not running on {{site.data.reuse.openshift_short}}.
 
 
 5. Generate the required certificates by running the following commands:
@@ -341,19 +341,19 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    - `manager` key:
 
      ```shell
-     openssl genrsa -out my-eem-manager.key 4096
+     openssl genrsa -out ${MANAGER_NAME}.key 4096
      ```
 
    - `manager csr`:
 
      ```shell
-     openssl req -new -key ${MANAGER_NAME}.key -out ${MANAGER_NAME}.csr -config <(envsubst < ${MANAGER_NAME}_answer.txt )
+     openssl req -new -key ${MANAGER_NAME}.key -out ${MANAGER_NAME}.csr -config <(envsubst < my-eem-manager_answer.txt )
      ```
 
 6. Sign the `csr` to create the `manager crt` by running the following command:
 
    ```shell
-   openssl x509 -req -in ${MANAGER_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${MANAGER_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < ${MANAGER_NAME}_answer.txt)
+   openssl x509 -req -in ${MANAGER_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${MANAGER_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < my-eem-manager_answer.txt)
    ```
 
 7. Verify the certificate by running the following command:
@@ -362,20 +362,22 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
    openssl verify -CAfile ca.crt ${MANAGER_NAME}.crt
    ```
 
-8. Create Secret on the cluster by running the following command:
+8. Create a secret on the cluster by running the following command:
 
-   **Note:** The Secret must be added to the namespace that the {{site.data.reuse.eem_name}} instance is intended to be created in.
+   **Note:** The secret must be added to the namespace where the {{site.data.reuse.eem_name}} instance is intended to be created in.
 
    ```shell
    kubectl create secret generic ${MANAGER_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${MANAGER_NAME}.crt --from-file=tls.key=${MANAGER_NAME}.key -n ${NAMESPACE}
    ```
 
-9. Create an {{site.data.reuse.eem_name}} instance and set the `spec.manager.tls.secretName` to the name of the created certificate.
+9. Create an {{site.data.reuse.eem_name}} instance called `${MANAGER_NAME}` in the same namespace where you generated the secret in step 8. Ensure the `spec.manager.tls.secretName` field is set to the name of the secret from step 8. For example:
 
    ```yaml
    apiVersion: events.ibm.com/v1beta1
    kind: EventEndpointManagement
-   # ...
+   metadata:
+     name: my-eem
+     namespace: eem
    spec:
      license:
        # ...
@@ -406,11 +408,11 @@ spec:
 # ...
 ```
 
-If running on the {{site.data.reuse.openshift}}:
+Optionally, if running on the {{site.data.reuse.openshift}}:
 
-- Optionally, specify the key in the secret that is pointing to the CA certificate `ui.caCertificate` (default, `ca.crt`).
-- Optionally, specify the key in the secret that is pointing to the server certificate `ui.serverCertificate` (default, `tls.crt`).
-- Optionally, specify the key in the secret that is pointing to the private key `ui.key` (default, `tls.key`).
+- Specify the key in the secret that is pointing to the CA certificate `ui.caCertificate` (default, `ca.crt`).
+- Specify the key in the secret that is pointing to the server certificate `ui.serverCertificate` (default, `tls.crt`).
+- Specify the key in the secret that is pointing to the private key `ui.key` (default, `tls.key`).
 
 ### Using CA certificate for `EventGateway`
 
@@ -435,34 +437,203 @@ spec:
 
 ### User-provided certificate for `EventGateway`
 
-A custom certificate can be used for secure communication by the {{site.data.reuse.eem_name}} instance.
-This method does not use Cert Manager so the certificates that are provided must be managed by the user.
-To use a custom certificate set `spec.tls.secretName` to be the name of the secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the manager.
+A custom certificate can be used for secure communication of the {{site.data.reuse.egw}} instance.  This method does not use Cert Manager, so the certificates that are provided must be managed by the user.
 
-The following code snippet is an example of an `EventGateway` configuration that uses a user-provided certificate:
+The {{site.data.reuse.egw}} uses a client certificate to register itself with {{site.data.reuse.eem_manager}}. The {{site.data.reuse.egw}} client certificate contains the necessary authentication and authorization to pull information about topics and subscriptions from {{site.data.reuse.eem_manager}}. Ensure that this client certificate meets the following requirements:
 
-```yaml
-apiVersion: events.ibm.com/v1beta1
-kind: EventGateway
-# ...
-spec:
-  license:
+- It must be issued by a CA that {{site.data.reuse.eem_manager}} trusts.
+- It must have a subject alternative name (SAN) URI of the format: `egw://<host>:<port>/<gwgroup>/<gwid>`
+
+Where:
+
+  - `host` is the host name that Kafka applications use to connect to the gateway.
+  - `port` is the port number that Kafka applications use to connect to the gateway.
+  - `gwgroup` is the name of the group that this gateway belongs to.
+  - `gwid` is the unique ID for this gateway.
+
+The following snippet is an example of this SAN requirement:
+
+  ```yaml
+  X509v3 extensions:
+    X509v3 Subject Alternative Name: 
+          URI:egw://eem-gateway-instance-ibm-egw-rt-mynamespace.apps.my.cluster.com:443/london/londongw1
+  ```
+
+You can use the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.egw}} instance.
+
+**Note:** The `envsubst` utility is available on Linux and can be installed by default as part of the `gettext` package.
+
+See the following example for setting up OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.egw}} instance:
+
+1. If you are using a MAC, the following packages are required and can be installed by using `HomeBrew`:
+
+   - gettext
+   - openssl@3
+
+   ```shell
+   brew install gettext openssl@3
+   ```
+
+   Then run `alias openssl=$(brew --prefix)/opt/openssl@3/bin/openssl` to use Openssl3.
+
+2. Set the following variables on your workstation:
+
+   ```shell
+   EMAIL=<email-address>
+   GATEWAY_NAME=<name-of-the-event-gateway-instance>
+   GATEWAY_GROUP=<event-gateway-group>
+   GATEWAY_ID=<event-gateway-id>
+   CLUSTER_API=<cluster-api>
+   NAMESPACE=<event-gateway-installation-namespace>
+   ```
+
+   Where:
+
+   - `GATEWAY_NAME` is the name of the {{site.data.reuse.egw}} instance
+   - `GATEWAY_GROUP` is the name of the gateway group associated with the {{site.data.reuse.egw}} instance
+   - `GATEWAY_ID` is the name of the gateway id associated with the {{site.data.reuse.egw}} instance
+   - `CLUSTER_API` is the cluster URL that can be obtained from the cluster. For example, if the cluster URL is `https://console-openshift-console.apps.clusterapi.com/`, then the `CLUSTER_API` must be set to `apps.clusterapi.com`.
+
+3. Create a file called `csr_ca.txt` with the following data:
+
+   ```shell
+   [req]
+   prompt = no
+   default_bits = 4096
+   default_md = sha256
+   distinguished_name = dn
+   x509_extensions = usr_cert
+   [dn]
+   C=US
+   ST=New York
+   L=New York
+   O=MyOrg
+   OU=MyOU
+   emailAddress=me@working.me
+   CN = server.example.com
+   [usr_cert]
+   basicConstraints=CA:TRUE
+   subjectKeyIdentifier=hash
+   authorityKeyIdentifier=keyid,issuer
+   ```
+
+4. Create a file called `my-eem-gateway_answer.txt` with the following data:
+
+   ```shell
+   [req]
+   default_bits = 4096
+   prompt = no
+   default_md = sha256
+   x509_extensions = req_ext
+   req_extensions = req_ext
+   distinguished_name = dn
+   [dn]
+   C=US
+   ST=New York
+   L=New York
+   O=MyOrg
+   OU=MyOrgUnit
+   emailAddress=${EMAIL}
+   CN = ${GATEWAY_NAME}-ibm-egw
+   [req_ext]
+   subjectAltName = @alt_names
+   [alt_names]
+   DNS.1 = ${GATEWAY_NAME}-ibm-egw-svc
+   DNS.2 = ${GATEWAY_NAME}-ibm-egw-svc.${NAMESPACE}
+   DNS.3 = ${GATEWAY_NAME}-ibm-egw-svc.${NAMESPACE}.svc
+   DNS.4 = ${GATEWAY_NAME}-ibm-egw-svc.${NAMESPACE}.svc.cluster.local
+   DNS.5 = ${GATEWAY_NAME}-ibm-egw-rt-${NAMESPACE}.${CLUSTER_API}
+   URI.1 = egw://${GATEWAY_NAME}:443/${GATEWAY_GROUP}/${GATEWAY_ID}
+   ```
+
+    **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the endpoint hostnames:
+    - You are planning to specify hostnames in the `EventGateway` custom resource under `spec.endpoints`.
+    - You are planning to create additional routes or ingress.
+    - You are not running on {{site.data.reuse.openshift_short}}.
+
+
+5. Generate the required certificates by running the following commands:
+
+   - `ca.key`:
+
+     ```shell
+     openssl genrsa -out ca.key 4096
+     ```
+
+   - `ca.crt`:
+
+     ```shell
+     openssl req -new -x509 -key ca.key -days 730 -out ca.crt -config <( envsubst <csr_ca.txt )
+     ```
+
+   - `gateway` key:
+
+     ```shell
+     openssl genrsa -out ${GATEWAY_NAME}.key 4096
+     ```
+
+   - `gateway csr`:
+
+     ```shell
+     openssl req -new -key ${GATEWAY_NAME}.key -out ${GATEWAY_NAME}.csr -config <(envsubst < my-eem-gateway_answer.txt )
+     ```
+
+6. Sign the `csr` to create the `gateway crt` by running the following command:
+
+   ```shell
+   openssl x509 -req -in ${GATEWAY_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${GATEWAY_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < my-eem-gateway_answer.txt)
+   ```
+
+7. Verify the certificate by running the following command:
+
+   ```shell
+   openssl verify -CAfile ca.crt ${GATEWAY_NAME}.crt
+   ```
+
+8. Create a secret on the cluster by running the following command:
+
+   **Note:** The secret must be added to the namespace where the {{site.data.reuse.egw}} instance is intended to be created in.
+
+   ```shell
+   kubectl create secret generic ${GATEWAY_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${GATEWAY_NAME}.crt --from-file=tls.key=${GATEWAY_NAME}.key -n ${NAMESPACE}
+   ```
+
+9. Create an {{site.data.reuse.egw}} instance called `${GATEWAY_NAME}` in the same namespace where you generated the secret in step 8 and set:
+
+   - The `spec.tls.secretName` property to the name of the secret from step 8.
+   - The `spec.gatewayGroupName` and `spec.gatewayID` to the value set on the URI SAN of the certificate in step 4.
+
+    For example:
+
+    ```yaml
+    apiVersion: events.ibm.com/v1beta1
+    kind: EventGateway
     # ...
-  tls:
-    secretName: mySecret
-# ...
-```
+    spec:
+      license:
+        # ...
+      gatewayGroupName: mygroup
+      gatewayID: myid
+      tls:
+        secretName: mygw-cert
+    # ...
+    ```
 
-If running on the {{site.data.reuse.openshift}}:
+   Optionally, if running on the {{site.data.reuse.openshift}}:
 
-- Optionally, specify the key in the secret that is pointing to the CA certificate `tls.caCertificate` (default, `ca.crt`).
-- Optionally, specify the key in the secret that is pointing to the server certificate `tls.serverCertificate` (default, `tls.crt`).
-- Optionally, specify the key in the secret that is pointing to the private key `tls.key` (default, `tls.key`).
+   - Specify the key in the secret that is pointing to the CA certificate `tls.caCertificate` (default, `ca.crt`).
+   - Specify the key in the secret that is pointing to the server certificate `tls.serverCertificate` (default, `tls.crt`).
+   - Specify the key in the secret that is pointing to the private key `tls.key` (default, `tls.key`).
 
-When a custom certificate is used for the `EventEndpointManagement` instance and the `EventGateway` instance in this way, it is required that each instance trusts the certificates of the other. To ensure an instance trusts another, the certificates that are provided to the configuration of one instance must be added to the list of `tls.trustedCertificates` on the other instance.
-The following code snippet is an example configuration that uses custom certificates for the `EventEndpointManagement` instance and the `EventGateway` instance.
+**Note:** When a custom certificate is used for the `EventEndpointManagement` instance and the `EventGateway` instance, each `EventEndpointManagement` instance must trust the CA certificate of the `EventGateway` instance. If the certificates were not signed by the same Certificate Authority (CA), then set the following fields to ensure the instances trust each other:
 
-**Note:** The `EventEndpointManagement` instance uses the secret `myManagementCert` and `trustedCertificates` secret is `myGatewayCert`, whereas the `EventGateway` instance uses the `myGatewayCert` secret and trusts the `myManagementCert` secret.
+- In the `EventGateway` custom resource, the `tls.secretName` secret must contain the `EventEndpointManagement` CA certificate on the `ca.crt` key.
+- In the `EventEndpointManagement` custom resource, the `tls.trustedCertificates` must include a secret that contains the CA certificate used to sign the `EventGateway`.
+
+The following code snippet is an example configuration that uses custom certificates for the `EventEndpointManagement` instance and the `EventGateway` instance. In the following code snippet:
+
+- The `EventEndpointManagement` instance uses the `myManagementCert` secret and `trustedCertificates` secret is `aSecretContainingTheGatewayCA`
+- The `EventGateway` instance uses the `myGatewayCert` secret and trusts the `myManagementCert` because the `myGatewayCert` has the `ca.crt` of the `EventEndpointManagement` instance added to it.
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -478,7 +649,8 @@ spec:
       serverCertificate: tls.crt
       key: tls.key
       trustedCertificates:
-        - secretName: myGatewayCert
+        # The ca.crt is the EventGateway's CA certificcate
+        - secretName: aSecretContainingTheGatewayCA
           certificate: ca.crt
 # ...
 ---
@@ -489,13 +661,11 @@ spec:
   license:
     # ...
   tls:
+    # The ca.crt in the myGatewayCert is the EventEndpointManagement's CA Certificate
     secretName: myGatewayCert
-    caCertificate: ca.crt
+    caCertificate: ca.crt  
     serverCertificate: tls.crt
     key: tls.key
-    trustedCertificates:
-      - secretName: myManagementCert
-        certificate: ca.crt
 # ...
 ```
 

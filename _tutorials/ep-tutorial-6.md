@@ -16,9 +16,9 @@ This is an extension to the [Track how many products of each type are sold per h
 
 To refine the previous tutorial flow, this tutorial shows you how to identify the style with the highest number of units sold per hour.
 
-### Operator versions
+### Versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capability. Screenshots may differ from the current interface if you are using a newer version.
 
 - Event Processing 1.1.1
 

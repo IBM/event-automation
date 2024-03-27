@@ -6,25 +6,21 @@ slug: backup-restore
 toc: true
 ---
 
-A complete disaster recovery mechanism for {{site.data.reuse.es_name}} can be achieved by using the OpenShift APIs for Data Protection (OADP) and [geo-replication](../../georeplication/about/).
+A complete disaster recovery mechanism for {{site.data.reuse.es_name}} can be achieved by using the OpenShift APIs for Data Protection (OADP) and MirrorMaker 2.0.
 
 OADP is used for creating a backup of {{site.data.reuse.es_name}} static configurations such as custom resources and operator-related configurations. The backup can be used to restore the configuration in the same cluster or a different cluster. High-frequency data updates such as Kafka topic data are not included in these backups.
 
 - If Kafka topic custom resources are included in the {{site.data.reuse.es_name}} installation, the topic configuration can be backed up and restored by using OADP.
-- The actual messages within the Kafka topics cannot be preserved through the OADP mechanism. However, after you restore your {{site.data.reuse.es_name}} static configurations onto a new cluster, the topic data can be effectively mirrored by implementing geo-replication, which provides a robust backup system for disaster recovery.
+- The actual messages within the Kafka topics cannot be preserved through the OADP mechanism. However, after you restore your {{site.data.reuse.es_name}} static configurations onto a new cluster, the topic data can be effectively replicated by implementing MirrorMaker 2.0, which provides a robust backup system for disaster recovery.
 - When you restore the {{site.data.reuse.es_name}} static configurations within your cluster, the topic data remains intact while the persistent storage remains available, ensuring data retention during the restore process.
 
 Find out more about how to set up an OADP operator in an OpenShift cluster for a successful backup and restore.
 
 ## Before you begin
 
-Consider the following when planning to back up and restore your {{site.data.reuse.es_name}} configurations.
-
-- Secrets are not included as part of the {{site.data.reuse.es_name}} backup process. For example, if you have created Kafka users in SCRAM, Kafka user definitions of these SCRAM users will be backed up but the secrets will be created again. Ensure you are using the most up-to-date credentials as the secrets will be generated again when restoring.
+Consider the following when planning to back up and restore your {{site.data.reuse.es_name}} configurations:
 
 - Additional ConfigMaps that you create are not included as part of the {{site.data.reuse.es_name}} backup process. For example, if you have created ConfigMaps for accessing the {{site.data.reuse.es_name}} features such as monitoring with Prometheus, the ConfigMaps will not be backed up. Ensure the ConfigMaps are created again before restoring your {{site.data.reuse.es_name}} configurations.
-
-- Ensure the custom certificates are created again before restoring your {{site.data.reuse.es_name}} configurations.
 
 - When performing a restoration on a new cluster, ensure that the bootstrap address is updated to reflect the address of the new cluster if the bootstrap address is specified in any of the restored custom resources, such as Kafka Connect or Kafka Bridge.
 
@@ -37,6 +33,14 @@ Ensure that the following prerequisites are met before you back up and restore {
 ## Backing up configurations of {{site.data.reuse.es_name}}
 
 Follow the instructions to back up your {{site.data.reuse.es_name}} configurations.
+
+### Pause reconciliation of the Kafka users
+
+Before backing up {{site.data.reuse.es_name}} resources from the cluster, pause the reconciliation of the Kafka users.  This is to avoid scenarios where the Kafka user custom resources are restored first, causing new secrets to be generated before the ones from the backup are restored. To disable the reconciliation of all Kafka users before backing up, run the following command: 
+
+```shell
+oc annotate KafkaUser -n <namespace> --all strimzi.io/pause-reconciliation="true"
+```
 
 ### Applying backup labels
 
@@ -80,6 +84,8 @@ Follow the instructions to back up your {{site.data.reuse.es_name}} configuratio
 
 The backup custom resource is responsible for generating backup files for {{site.data.reuse.es_name}} resources and storing them in the designated storage location. Apply the following backup custom resource YAML to create the backup of all application resources that have been labeled for backup.
 
+The following `Backup` custom resource backs up all the {{site.data.reuse.es_name}} custom resource configurations, cluster certificates, and Kafka user secrets from the installed namespace:
+
    ```yaml
    apiVersion: velero.io/v1
    kind: Backup
@@ -109,6 +115,10 @@ The backup custom resource is responsible for generating backup files for {{site
          - kafkabridge
          - kafkaconnector
          - kafkarebalance
+    - matchLabels:
+        eventstreams.ibm.com/component-type: certificate-authority
+    - matchLabels:
+        eventstreams.ibm.com/kind: KafkaUser
    ```
 
 Where:
@@ -131,39 +141,43 @@ After the backup is successfully completed, the status of your backup instance w
 
 In-place recovery in {{site.data.reuse.es_name}} refers to recovering configurations and metadata within the same {{site.data.reuse.openshift_short}} cluster without the need of setting up a secondary cluster for moving data and configurations. Such recovery is only possible if the [persistent storage](../planning/#planning-for-persistent-storage) configured for Kafka and ZooKeeper remains intact and can be reused by the restored configuration.
 
-To restore your {{site.data.reuse.es_name}} configurations within your cluster after you have a successful backup of {{site.data.reuse.es_name}} configurations in your storage location, apply the following YAML to restore {{site.data.reuse.es_name}} configurations from the previously created backup.
+To restore your {{site.data.reuse.es_name}} configurations within your cluster after you have a successful backup of {{site.data.reuse.es_name}} configurations in your storage location, apply the following YAML to restore {{site.data.reuse.es_name}} configurations from the previously created backup:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: <eventstreams-restore>
-  namespace: openshift-adp
-spec:
-  backupName: <eventstreams-backup>
-  includeClusterResources: true
-  existingResourcePolicy: update
-  hooks: {}
-  includedNamespaces:
-  - <eventstreams-namespace>
-  - openshift-marketplace
-  itemOperationTimeout: 1h0m0s
-  orLabelSelectors:
-  - matchExpressions:
-      - key: backup.eventstreams.ibm.com/component
-        operator: In
-        values:
-        - catalogsource
-        - operatorgroup
-        - subscription
-        - eventstreams
-        - kafkaconnect
-        - kafkatopic
-        - kafkauser
-        - kafkabridge
-        - kafkaconnector
-        - kafkarebalance
-```
+  ```yaml
+  apiVersion: velero.io/v1
+  kind: Restore
+  metadata:
+    name: <eventstreams-restore>
+    namespace: openshift-adp
+  spec:
+    backupName: <eventstreams-backup>
+    includeClusterResources: true
+    existingResourcePolicy: update
+    hooks: {}
+    includedNamespaces:
+    - <eventstreams-namespace>
+    - openshift-marketplace
+    itemOperationTimeout: 1h0m0s
+    orLabelSelectors:
+    - matchExpressions:
+        - key: backup.eventstreams.ibm.com/component
+          operator: In
+          values:
+          - catalogsource
+          - operatorgroup
+          - subscription
+          - eventstreams
+          - kafkaconnect
+          - kafkatopic
+          - kafkauser
+          - kafkabridge
+          - kafkaconnector
+          - kafkarebalance
+    - matchLabels:
+        eventstreams.ibm.com/component-type: certificate-authority
+    - matchLabels:
+        eventstreams.ibm.com/kind: KafkaUser
+  ```
 
 Where:
 
@@ -171,7 +185,70 @@ Where:
 - `<eventstreams-backup>` is the name of backup that you created earlier.
 - `<eventstreams-namespace>` is the name of namespaces to be restored. You can restore more than one namespace at the same time.
 
-Wait for the restore process to be completed. After the status of your restore instance is `completed`, all the application instances will be restored.
+Wait for the restore process to be completed. After the status of your restore instance is `completed`, all the application instances are restored.
+
+
+### Verifying backup content
+
+You can use [the Velero CLI](https://velero.io/docs/v1.8/basic-install/#install-the-cli){:target="_blank"} to verify the contents of the backup and ensure that all the required resources are backed up. To verify your backup by using the Velero CLI, run the following command:
+
+```shell
+velero backup describe <backup-name> --details -n openshift-adp
+```
+
+Running this command displays the list of resources that are backed up under the `Resource List` section. For example:
+
+```shell
+Resource List:
+  apiextensions.k8s.io/v1/CustomResourceDefinition:
+    - eventstreams.eventstreams.ibm.com
+    - eventstreamsgeoreplicators.eventstreams.ibm.com
+    - kafkabridges.eventstreams.ibm.com
+    - kafkaconnectors.eventstreams.ibm.com
+    - kafkaconnects.eventstreams.ibm.com
+    - kafkamirrormaker2s.eventstreams.ibm.com
+    - kafkanodepools.eventstreams.ibm.com
+    - kafkarebalances.eventstreams.ibm.com
+    - kafkas.eventstreams.ibm.com
+    - kafkatopics.eventstreams.ibm.com
+    - kafkausers.eventstreams.ibm.com
+    - strimzipodsets.core.eventstreams.ibm.com
+  eventstreams.ibm.com/v1beta2/EventStreams:
+    - <namespace>/minimal-prod
+  eventstreams.ibm.com/v1beta2/KafkaTopic:
+    - <namespace>/bookings
+    - <namespace>/orders
+    - <namespace>/reservations
+    - <namespace>/transactions
+  eventstreams.ibm.com/v1beta2/KafkaUser:
+    - <namespace>/adminuser
+    - <namespace>/reservationstarter
+    - <namespace>/user2
+    - <namespace>/user3
+    - <namespace>/user4
+  operators.coreos.com/v1/OperatorGroup:
+    - <namespace>/<namespace>-9sqtt
+  operators.coreos.com/v1alpha1/CatalogSource:
+    - openshift-marketplace/ibm-operator-catalog
+  operators.coreos.com/v1alpha1/Subscription:
+    - <namespace>/ibm-eventstreams
+  v1/Namespace:
+    - <namespace>
+    - openshift-marketplace
+  v1/Secret:
+    - <namespace>/adminuser
+    - <namespace>/minimal-prod-clients-ca
+    - <namespace>/minimal-prod-clients-ca-cert
+    - <namespace>/minimal-prod-cluster-ca
+    - <namespace>/minimal-prod-cluster-ca-cert
+    - <namespace>/minimal-prod-ibm-es-ac-reg
+    - <namespace>/minimal-prod-ibm-es-georep-source-user
+    - <namespace>/minimal-prod-ibm-es-kafka-user
+    - <namespace>/reservationstarter
+    - <namespace>/user2
+    - <namespace>/user3
+    - <namespace>/user4
+```
 
 ### Restoring in a new cluster
 
@@ -185,10 +262,17 @@ Follow the steps to restore your {{site.data.reuse.es_name}} configurations in a
 
 4. After restoration is completed, verify that all the {{site.data.reuse.es_name}} resources are restored and functioning as expected.
 
+### Enable reconciliation of the Kafka users
+
+Enable the reconciliation of all Kafka users after restoring your {{site.data.reuse.es_name}} configurations in a new cluster by running the following command:
+
+```shell
+oc annotate KafkaUser -n <namespace> --all strimzi.io/pause-reconciliation-
+```
+
 ## Migrating topic data
 
 The backup and restoration process by using OADP is primarily focused on safeguarding and recovering {{site.data.reuse.es_name}} configurations. However, for comprehensive disaster recovery, it is essential to extend these efforts to include the backup and restoration of topic data.
 
-In {{site.data.reuse.es_name}}, data replication can be effectively achieved through the use of geo-replication. Implement geo-replication as part of your data protection strategy to ensure the seamless migration of data.
+In {{site.data.reuse.es_name}}, data replication can be effectively achieved through the use of MirrorMaker 2.0. 
 
-Learn how to [set up data replication by using geo-replication](../../georeplication/setting-up).

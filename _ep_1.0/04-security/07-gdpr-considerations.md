@@ -97,7 +97,7 @@ may wish to consider aspects such as:
 
 {{site.data.reuse.ep_name}} stores data on stateful media within the cluster. The data stored by {{site.data.reuse.ep_name}} pods is encrypted by default.
 
-Data sent to {{site.data.reuse.flink_long}} through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"} is stored by Flink. In production deployments, persistent storage is used. For encrypting the persistent storage used by Flink, see the documentation for your storage provider, for example, [Red Hat Ceph Storage - Encryption and Key Management](https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/6/html/data_security_and_hardening_guide/assembly-encryption-and-key-management){:target="_blank"}.
+Data sent to {{site.data.reuse.ibm_flink_operator}} through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"} is stored by Flink. In production deployments, persistent storage is used. For encrypting the persistent storage used by Flink, see the documentation for your storage provider, for example, [Red Hat Ceph Storage - Encryption and Key Management](https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/6/html/data_security_and_hardening_guide/assembly-encryption-and-key-management){:target="_blank"}.
 
 ## Data Access
 

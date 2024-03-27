@@ -8,7 +8,7 @@ toc: true
 
 ## Symptom
 
-The {{site.data.reuse.flink_long}} installed on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers watching single namespace creates ClusterRole and ClusterRoleBinding instead of Role and RoleBinding.
+The {{site.data.reuse.ibm_flink_operator}} installed on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers watching single namespace creates ClusterRole and ClusterRoleBinding instead of Role and RoleBinding.
 
 ## Causes
 
@@ -16,9 +16,9 @@ When `watchAnyNamespace` is set to `false` (default), an issue in the Helm templ
 
 ## Resolving the problem
 
-You can resolve the problem by installing the {{site.data.reuse.flink_long}} that will manage the `FlinkDeployment` instances in only a single namespace with no custom configurations such as `kubernetesServiceDnsDomain`, or `webhook.create`.
+You can resolve the problem by installing the {{site.data.reuse.ibm_flink_operator}} that will manage the `FlinkDeployment` instances in only a single namespace with no custom configurations such as `kubernetesServiceDnsDomain`, or `webhook.create`.
 
-Run the following command to install the {{site.data.reuse.flink_long}} in the `my-flink` namespace:
+Run the following command to install the {{site.data.reuse.ibm_flink_operator}} in the `my-flink` namespace:
 
 ```shell
 helm install \

@@ -12,10 +12,10 @@ CASE is a specification that defines metadata and structure for packaging, manag
 
 {{site.data.reuse.ep_name}} has two operators that must be installed:
 
-- {{site.data.reuse.flink_long}}
+- {{site.data.reuse.ibm_flink_operator}}
 - {{site.data.reuse.ep_name}}
 
-Follow the instructions to download the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} CASE bundles, mirror the images, apply catalog sources, and install the operators.
+Follow the instructions to download the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} CASE bundles, mirror the images, apply catalog sources, and install the operators.
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
-1. Run the following command to download, validate, and extract the {{site.data.reuse.flink_long}} CASE.
+1. Run the following command to download, validate, and extract the {{site.data.reuse.ibm_flink_operator}} CASE.
 
    ```shell
    oc ibm-pak get ibm-eventautomation-flink --version <case-version>
@@ -100,7 +100,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    oc ibm-pak get $CASE_NAME
    ```
 
-3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
    For example, ensure that the following files have been generated for {{site.data.reuse.ep_name}}.
 
@@ -165,7 +165,7 @@ Where:
 - `target-registry-user` is the username for the internal container image registry.
 - `target-registry-pass` is the password for the internal container image registry.
 
-**Note:** You can configure with separate target registry for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+**Note:** You can configure with separate target registry for {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
 ## Mirror the images
 
@@ -177,7 +177,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 1. Run the following command to generate mirror manifests:
 
-   - For {{site.data.reuse.flink_long}}:
+   - For {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
@@ -202,7 +202,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 2. Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
 
-   - To copy the images of {{site.data.reuse.flink_long}}:
+   - To copy the images of {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
@@ -241,7 +241,7 @@ Complete the following steps to mirror the images from your host to your offline
 2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command for Apache Flink:
 
-   - For {{site.data.reuse.flink_long}}:
+   - For {{site.data.reuse.ibm_flink_operator}}:
 
      ```shell
      oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/image-content-source-policy.yaml
@@ -273,7 +273,7 @@ oc get MachineConfigPool -w
 
 Apply the catalog sources for the operator to the cluster by running the following command:
 
-- For {{site.data.reuse.flink_long}}:
+- For {{site.data.reuse.ibm_flink_operator}}:
 
   ```shell
   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml

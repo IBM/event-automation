@@ -168,7 +168,7 @@ You can create your own certificates for configuring external access. When promp
      Other key lengths and algorithms are also supported. See the following lists for supported cipher suites.\\
      **Note:** In the following lists, the string "TLS" is interchangeable with "SSL" and vice versa. For example, where TLS_RSA_WITH_AES_128_CBC_SHA is specified, SSL_RSA_WITH_AES_128_CBC_SHA also applies. For more information about each cipher suite, go to the  [Internet Assigned Numbers Authority (IANA) site](https://www.iana.org/assignments/tls-parameters/tls-parameters.xml) and search for the selected cipher suite ID.
 
-     ![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, the following cipher suites are supported, using TLS 1.2 and later only:
+     ![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, the following cipher suites are supported, using TLS 1.2 and later only:
      - TLS_RSA_WITH_AES_128_GCM_SHA256
      - TLS_RSA_WITH_AES_256_GCM_SHA384
      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256

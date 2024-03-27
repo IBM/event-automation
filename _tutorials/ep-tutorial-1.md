@@ -20,9 +20,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 You will also need to [run the optional instructions for creating a PostgreSQL database](../guided/tutorial-0#postgresql-database). This database will provide a source of reference data that you will use to enrich the Kafka events.
 
-### Operator versions
+### Versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
 - Event Endpoint Management 11.1.1
 - Event Processing 1.1.1

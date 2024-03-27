@@ -10,6 +10,28 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.1.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Updates to publish options
+
+{{site.data.reuse.eem_name}} 11.1.4 introduces a user interface update for publishing options. For more information, see [Creating an option](../../describe/managing-topics#create_option) and [Publishing options](../../describe/publishing-topics).
+
+### Support for {{site.data.reuse.openshift}} 4.15
+
+{{site.data.reuse.eem_name}} version 11.1.4 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.15.
+
+### Support for Kubernetes 1.29
+
+{{site.data.reuse.eem_name}} version 11.1.4 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for Kubernetes platforms version 1.29 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.1.4 contains security and bug fixes.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.1.4 compared to 11.1.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later")
+
+## Release 11.1.3
+
 ### Support for Linux on IBM Z
 
 In addition to Linux 64-bit (x86_64) systems, {{site.data.reuse.eem_name}} 11.1.3 and later is also supported on OpenShift deployments running on Linux on IBM Z systems (s390x).

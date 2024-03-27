@@ -83,7 +83,7 @@ To send messages from IBM MQ to {{site.data.reuse.es_name}}, create a topic and 
 
 You can also send IBM MQ messages to Apache Kafka running locally on your machine, see the [public GitHub repository](https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/UsingMQwithKafkaConnect.md) for more details.
 
-![Event Streams 2018.3.1 icon](../../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, use the following steps:
+![Event Streams 2018.3.1 icon](../{{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") In {{site.data.reuse.es_name}} 2018.3.1, use the following steps:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 2. Click the **Topics** tab.
 3. If you have not previously created the topic to use with the connector, create it now by clicking **Create topic**.

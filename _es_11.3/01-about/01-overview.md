@@ -22,7 +22,7 @@ toc: true
 
 - A command-line interface (CLI) to enable manual and scripted cluster management. For example, you can use the {{site.data.reuse.es_name}} CLI to inspect brokers, manage topics, deploy schemas, and manage geo-replication.
 
-- Geo-replication of topics between clusters to enable [disaster recovery](../../georeplication/disaster-recovery).
+- A simplified mechanism for replication of topics between clusters ("geo-replication").
 
 - A REST API for producing messages to {{site.data.reuse.es_name}} topics, expanding event source possibilities.
 

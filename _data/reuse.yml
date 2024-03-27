@@ -14,13 +14,13 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.1.3"
+eem_current_version: "11.1.4"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.1.3"
+ep_current_version: "1.1.4"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.1.3"
+flink_operator_current_version: "1.1.4"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -40,8 +40,8 @@ ep_name: "Event Processing"
 # {{site.data.reuse.es_name}}
 es_name: "Event Streams"
 
-# {{site.data.reuse.flink_long}}
-flink_long: "IBM Operator for Apache Flink"
+# {{site.data.reuse.ibm_flink_operator}}
+ibm_flink_operator: "IBM Operator for Apache Flink"
 
 # No site.data.reuse.flink_short (without the "IBM"" prefix), because "Operator for Apache Flink" would be confusing,
 # due to the existence of the Apache Flink operator.
@@ -302,6 +302,14 @@ es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands ca
 
 # {{site.data.reuse.jmx_deprecated}}
 jmx_deprecated: "**Note:** Support for jmxtrans in Event Streams version 11.1.5 and later is deprecated, as the jmxtrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating jmxtrans."
+
+#########
+# Event Processing Notes #
+#########
+
+# {{site.data.reuse.array_expression_note}}
+array_expression_note: "**Note:** The **Assistant** drop-down menu does not support array properties. However, you can manually write the expressions by selecting the property from the list that appears when you press Ctrl+Space in the **Expression** field."
+
 #####################################################
 # DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #
 #####################################################

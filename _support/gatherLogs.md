@@ -15,7 +15,7 @@ To help IBM Support troubleshoot any issues with your {{site.data.reuse.ea_long}
 
 To run the log gathering script, ensure you have the following installed on your system:
 
-- If using OpenShift, the [{{site.data.reuse.openshift_short}} CLI (`oc`)](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} version 4.10 or later.
+- If using OpenShift, the [{{site.data.reuse.openshift_short}} CLI (`oc`)](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} version 4.10 or later.
 - If using other Kubernetes platforms, the [Kubernetes command-line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} version 1.24 or later.
 - The latest 1.1.1 version of [`openssl` command-line tool](https://www.openssl.org/source/){:target="_blank"}.
 
@@ -30,7 +30,7 @@ To gather logs from an online environment:
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 3. Change directory to the `/support` folder of the cloned repository.
 4. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
@@ -56,7 +56,7 @@ To gather logs from an online environment:
       ./ibm-events-must-gather -n samplenamespace -m eventprocessing
       ```
 
-   - For example, to gather logs for {{site.data.reuse.flink_long}}, run the following command:
+   - For example, to gather logs for {{site.data.reuse.ibm_flink_operator}}, run the following command:
 
      ```shell
      ./ibm-events-must-gather -n samplenamespace -m flink
@@ -71,7 +71,7 @@ To gather logs from an online environment:
         - `--es-namespace` specifies the namespace containing the {{site.data.reuse.es_name}} instance to gather data from.
         - `--eem-namespace` specifies the namespace containing the {{site.data.reuse.eem_name}} instance to gather data from.
         - `--ep-namespace` specifies the namespace containing the {{site.data.reuse.ep_name}} instance to gather data from.
-        - `--flink-namespace` specifies the namespace containing the {{site.data.reuse.flink_long}} instance to gather data from.
+        - `--flink-namespace` specifies the namespace containing the {{site.data.reuse.ibm_flink_operator}} instance to gather data from.
 
 The logs gathered are stored in an archive file called `ibm-events-must-gather-<timestamp>.tar.gz`, which is added to the current working directory.
 
@@ -104,7 +104,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 
 6. Change directory to the `/support` folder of the cloned repository.
 
@@ -132,7 +132,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
       ./ibm-events-must-gather -n samplenamespace -m eventprocessing
       ```
 
-   - For example, to gather logs for {{site.data.reuse.flink_long}}, run the following command:
+   - For example, to gather logs for {{site.data.reuse.ibm_flink_operator}}, run the following command:
 
      ```shell
      ./ibm-events-must-gather -n samplenamespace -m flink
@@ -160,7 +160,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
         - `--es-namespace` specifies the namespace containing the {{site.data.reuse.es_name}} instance to gather data from.
         - `--eem-namespace` specifies the namespace containing the {{site.data.reuse.eem_name}} instance to gather data from.
         - `--ep-namespace` specifies the namespace containing the {{site.data.reuse.ep_name}} instance to gather data from.
-        - `--flink-namespace` specifies the namespace containing the {{site.data.reuse.flink_long}} instance to gather data from.
+        - `--flink-namespace` specifies the namespace containing the {{site.data.reuse.ibm_flink_operator}} instance to gather data from.
 
 The logs gathered are stored in an archive file called `ibm-events-must-gather-<timestamp>.tar.gz`, which is added to the current working directory.
 
@@ -175,7 +175,7 @@ See the following table for information about the modules that are supported by 
 | `schema`          | Gathers internal information about the Schema Registry.                                                           | {{site.data.reuse.es_name}}    |
 | `eem`             | Gathers logs relating to instances of {{site.data.reuse.eem_name}} and the {{site.data.reuse.eem_name}} operator. | {{site.data.reuse.eem_name}}   |
 | `eventprocessing` | Gathers logs relating to instances of {{site.data.reuse.ep_name}} and the {{site.data.reuse.ep_name}} operator.   | {{site.data.reuse.ep_name}}    |
-| `flink`           | Gathers logs relating to your {{site.data.reuse.flink_long}} and the Flink instances it manages.                  | {{site.data.reuse.flink_long}} |
+| `flink`           | Gathers logs relating to your {{site.data.reuse.ibm_flink_operator}} and the Flink instances it manages.                  | {{site.data.reuse.ibm_flink_operator}} |
 | `failure`         | Gathers logs relating to unhealthy Kubernetes objects on the cluster.                                             | All                            |
 | `overview`        | Gathers general information about the cluster environment.                                                        | All                            |
 | `system`          | Gathers information about the system, resource usage, and the network.                                            | All                            |

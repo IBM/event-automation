@@ -12,10 +12,10 @@ CASE is a specification that defines metadata and structure for packaging, manag
 
 {{site.data.reuse.ep_name}} has two operators that must be installed:
 
-- {{site.data.reuse.flink_long}}
+- {{site.data.reuse.ibm_flink_operator}}
 - {{site.data.reuse.ep_name}}
 
-Follow the instructions to download the {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}} CASE bundles, mirror the images, apply catalog sources, and install the operators on OpenShift and other Kubernetes platforms.
+Follow the instructions to download the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} CASE bundles, mirror the images, apply catalog sources, and install the operators on OpenShift and other Kubernetes platforms.
 
 **Note:** For completing tasks by using the command line, you can use both `kubectl` and `oc` commands if your deployment is on the {{site.data.reuse.openshift_short}}. This documentation set includes instructions that use the `kubectl` command, except for cases where the task is specific to OpenShift.
 
@@ -92,7 +92,7 @@ Before mirroring your images, download the CASE by following these instructions:
    kubectl ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
    ```
 
-2. Run the following command to download, validate, and extract the {{site.data.reuse.flink_long}} CASE.
+2. Run the following command to download, validate, and extract the {{site.data.reuse.ibm_flink_operator}} CASE.
 
    ```shell
    kubectl ibm-pak get ibm-eventautomation-flink --version <case-version>
@@ -101,7 +101,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+   kubectl ibm-pak get ibm-eventautomation-flink --version 1.1.5
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -133,7 +133,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+   kubectl ibm-pak get ibm-eventprocessing --version 1.1.5
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -153,7 +153,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
+   Download of CASE: ibm-eventprocessing, version: 1.1.5 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -164,7 +164,7 @@ Before mirroring your images, download the CASE by following these instructions:
 
    Where `<case-name>` is either `ibm-eventprocessing` or `ibm-eventautomation-flink`.
 
-4. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+4. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
 
    For example, ensure that the following files have been generated for {{site.data.reuse.ep_name}}.
 
@@ -176,13 +176,13 @@ Before mirroring your images, download the CASE by following these instructions:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── {{site.data.reuse.ep_current_version}}
+   │   │       └── 1.1.5
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
+   │   │           ├── ibm-eventprocessing-1.1.5-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.1.5-charts.csv
+   │   │           ├── ibm-eventprocessing-1.1.5-images.csv
+   │   │           ├── ibm-eventprocessing-1.1.5.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -242,7 +242,7 @@ Where:
 - `<target-registry-user>` is the username for the internal container image registry.
 - `<target-registry-pass>` is the password for the internal container image registry.
 
-**Note:** You can configure with separate target registry for {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.flink_long}} and {{site.data.reuse.ep_name}}.
+**Note:** You can configure with separate target registry for {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
 ## Mirror the images
 
@@ -254,7 +254,7 @@ Follow the instructions to mirror the images from your host to your offline envi
 
 Run the following command to generate mirror manifests:
 
-- For {{site.data.reuse.flink_long}}:
+- For {{site.data.reuse.ibm_flink_operator}}:
 
   ```shell
   kubectl ibm-pak generate mirror-manifests ibm-eventautomation-flink <target-registry> 
@@ -283,7 +283,7 @@ Run the following command to copy the images to the local registry. Your device 
 
 - If you are installing on the {{site.data.reuse.openshift_short}}, run the following command:
 
-  For {{site.data.reuse.flink_long}}:
+  For {{site.data.reuse.ibm_flink_operator}}:
 
   ```shell
   oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt --filter-by-os '.*'  --skip-multiple-scopes --max-per-registry=1
@@ -297,7 +297,7 @@ Run the following command to copy the images to the local registry. Your device 
 
 - If you are installing on Kubernetes platforms other than OpenShift, run the following command:
 
-  For {{site.data.reuse.flink_long}}:
+  For {{site.data.reuse.ibm_flink_operator}}:
 
   ```shell
   cat ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -I {} sh -c 'echo {}; {}'
@@ -311,7 +311,7 @@ Run the following command to copy the images to the local registry. Your device 
 
   **Note:** If you are using a macOS system and encounter the `xargs: command line cannot be assembled, too long` error, add `-S1024` to `xargs`, and run the command as follows:
 
-  For {{site.data.reuse.flink_long}}:
+  For {{site.data.reuse.ibm_flink_operator}}:
 
   ```shell
   cat ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
@@ -339,7 +339,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command:
 
-   For {{site.data.reuse.flink_long}}:
+   For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/image-content-source-policy.yaml
@@ -379,7 +379,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 Apply the catalog sources for the operators to the cluster by running the following command:
 
 
-For {{site.data.reuse.flink_long}}:
+For {{site.data.reuse.ibm_flink_operator}}:
 
 ```shell
 oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
@@ -398,9 +398,11 @@ Where `<case-version>` is the version of the CASE file.
 
 Follow the instructions to install the operator based on your platform.
 
+
+
 ### Installing on OpenShift
  
-After you consider the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing [{{site.data.reuse.flink_long}}](../installing/#installing-the-ibm-operator-for-apache-flink) and the [{{site.data.reuse.ep_name}} operator](../installing/#installing-the-event-processing-operator).
+After you consider the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing [{{site.data.reuse.ibm_flink_operator}}](../installing/#installing-the-ibm-operator-for-apache-flink) and the [{{site.data.reuse.ep_name}} operator](../installing/#installing-the-event-processing-operator).
 
 ### Installing on other Kubernetes platforms by using the `kubectl`
 
@@ -412,7 +414,7 @@ Complete the following steps to install the operator:
    kubectl create namespace <target-namespace>
    ```
 
-2. Create an image pull secret called `ibm-entitlement-key` in the namespace where you want to install the {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} operator. The secret enables container images to be pulled from the target registry:
+2. Create an image pull secret called `ibm-entitlement-key` in the namespace where you want to install the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} operator. The secret enables container images to be pulled from the target registry:
 
    ```shell
    kubectl create secret docker-registry ibm-entitlement-key --docker-username="<target-registry-user>" --docker-password="<target-registry-password>" --docker-server="<target-registry>" -n <target-namespace>
@@ -422,11 +424,11 @@ Complete the following steps to install the operator:
     - `<target-registry-user>` is the username that you provide to authenticate with your internal registry.
     - `<target-registry-password>` is the password associated with the `<target-registry-user>`.
     - `<target-registry>` is the internal registry hosting the operator images.
-    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
    
    **Note:** If you are installing the instance in a different namespace, create the image pull secret (`ibm-entitlement-key`) again in the namespace where you want to install the instance.
 
-3. Install the {{site.data.reuse.flink_long}} Custom Resource Definitions (CRDs) by using the Helm CLI:
+3. Install the {{site.data.reuse.ibm_flink_operator}} Custom Resource Definitions (CRDs) by using the Helm CLI:
 
    ```shell
    helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventautomation-flink/<case-version>/charts/ibm-eventautomation-flink-operator-crd-<case-version>.tgz -n <target-namespace>
@@ -435,9 +437,9 @@ Complete the following steps to install the operator:
    Where:
     - `<release-name>` is the name that you provide to identify the Helm release of the Flink CRDs.
     - `<case-version>` is the CASE version.
-    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
 
-4. Install the {{site.data.reuse.flink_long}} by using the Helm CLI:
+4. Install the {{site.data.reuse.ibm_flink_operator}} by using the Helm CLI:
 
    ```shell
    helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventautomation-flink/<case-version>/charts/ibm-eventautomation-flink-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<target_registry> --set public.path="cpopen/" --set private.repo=<target_registry> --set private.path="cp/ibm-eventautomation-flink/" --set watchAnyNamespace=<true/false>
@@ -446,7 +448,7 @@ Complete the following steps to install the operator:
    Where:
     - `<release-name>` is the name that you provide to identify the Helm release of the Flink operator.
     - `<case-version>` is the CASE version.
-    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
     - `<target_registry>` is the internal container image registry.
 
    **Important:** If your private registry requires authentication, run the following command to add the image pull secret to the Flink service account:
@@ -464,9 +466,8 @@ Complete the following steps to install the operator:
    Where:
     - `<release-name>` is the name that you provide to identify the Helm release responsible for the {{site.data.reuse.ep_name}} CRDs.
     - `<case-version>` is the CASE version.
-    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
 
-  
 6. Install the {{site.data.reuse.ep_name}} operator by using the Helm CLI:
 
    ```shell
@@ -476,7 +477,7 @@ Complete the following steps to install the operator:
    Where:
    - `<release-name>` is the name that you provide to identify the helm release responsible for the event processing operator.
    - `<case-version>` is the CASE version.
-   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}}.
+   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}.
    - `<target_registry>` is the internal container image registry.
 
 Wait for the installation to complete.

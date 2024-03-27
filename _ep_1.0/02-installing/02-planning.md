@@ -45,22 +45,22 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 
 ## Flink sample deployments
 
-A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
 The following table provides an overview of the Flink sample configurations and their resource requirements:
 
 | Sample | CPU limit per Task Manager | Memory per Task Manager | Slots per Task Manager | Parallelism | Max. number of flows per Task Manager | Job Manager High Availability | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
 |--------|---------------------------|-------------------------|------------------------|-------------|---------------------------------------|-------------------------------|-----|
 | Quick Start | 0.5 | 2GB | 4 | 1 | 2 | No | 1 |
-| Minimal Production | 1 | 2GB | 10 | 1 | 5 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes (but with 1 replica) in {{site.data.reuse.flink_long}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.flink_long}} version 1.0.0 | 2 |
+| Minimal Production | 1 | 2GB | 10 | 1 | 5 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes (but with 1 replica) in {{site.data.reuse.ibm_flink_operator}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.ibm_flink_operator}} version 1.0.0 | 2 |
 | Production | 2 | 4GB | 10 | 1 | 5 | Yes | 3 |
-| Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1 but set to 1 in the sample | 1 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes in {{site.data.reuse.flink_long}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.flink_long}} version 1.0.0 (but can be configured) | 3 |
+| Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1 but set to 1 in the sample | 1 | ![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later")Yes in {{site.data.reuse.ibm_flink_operator}} 1.0.1 and later  <br/><br/> No in {{site.data.reuse.ibm_flink_operator}} version 1.0.0 (but can be configured) | 3 |
 
 **Important:**
 - Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
 - The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
 
-The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.flink_long}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
+The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
 
 Points to consider for resource requirements:
 
@@ -109,9 +109,9 @@ This sample does not configure Flink with High Availability for the Flink Job Ma
 The Minimal Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for small production workloads.
 
 
-![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later") In {{site.data.reuse.flink_long}} 1.0.1 and later, this sample configures Flink with minimal High Availability for the Flink Job Manager. This means that Flink jobs are restarted automatically if the Flink cluster restarts. However, some downtime is expected as there is only a single Job Manager replica. 
+![IBM Operator for Apache Flink 1.0.1 icon]({{ 'images' | relative_url }}/1.0.1.svg "In IBM Operator for Apache Flink 1.0.1 and later") In {{site.data.reuse.ibm_flink_operator}} 1.0.1 and later, this sample configures Flink with minimal High Availability for the Flink Job Manager. This means that Flink jobs are restarted automatically if the Flink cluster restarts. However, some downtime is expected as there is only a single Job Manager replica. 
 
-In {{site.data.reuse.flink_long}} 1.0.0, this sample does not configure Flink with High Availability for the Flink Job Manager, thus Flink jobs are not automatically restarted if the Flink cluster restarts.
+In {{site.data.reuse.ibm_flink_operator}} 1.0.0, this sample does not configure Flink with High Availability for the Flink Job Manager, thus Flink jobs are not automatically restarted if the Flink cluster restarts.
 
 ### Flink Production sample
 

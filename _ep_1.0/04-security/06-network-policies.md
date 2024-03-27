@@ -19,7 +19,7 @@ When you install an instance of {{site.data.reuse.ep_name}}, the required networ
    kubectl get netpol -n <namespace>
    ```
 
-For the operator and operand pods of {{site.data.reuse.flink_long}}, network policies are not deployed automatically, but can be deployed as described in [Flink network policies](#flink-network-policies).
+For the operator and operand pods of {{site.data.reuse.ibm_flink_operator}}, network policies are not deployed automatically, but can be deployed as described in [Flink network policies](#flink-network-policies).
 
 The following tables provide information about the network connections of {{site.data.reuse.ep_name}} and Flink pods.
 
@@ -113,12 +113,12 @@ The following tables provide information about the outbound network connections 
 
 ## Flink network policies
 
-Network policies are not deployed automatically when installing {{site.data.reuse.flink_long}}. For increased security, you can
+Network policies are not deployed automatically when installing {{site.data.reuse.ibm_flink_operator}}. For increased security, you can
 deploy the deny-all-ingress policy as shown in [Considerations for ingress](#considerations-for-ingress). In this case,
 network policies for Flink pods need to be deployed following these steps:
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Add the following network policy to the namespace where the {{site.data.reuse.flink_long}} is installed.
+2. Add the following network policy to the namespace where the {{site.data.reuse.ibm_flink_operator}} is installed.
 
 ```yaml
    kind: NetworkPolicy

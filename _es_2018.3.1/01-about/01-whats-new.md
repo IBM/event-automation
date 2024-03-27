@@ -46,7 +46,7 @@ See the updated tables for the {{site.data.reuse.es_name}} [resource requirement
 
 Any difference in features or behaviour between {{site.data.reuse.es_name}} releases is highlighted in the documentation using the following graphics:
 
-- ![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") Applicable to {{site.data.reuse.es_name}} 2018.3.1.
+- ![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") Applicable to {{site.data.reuse.es_name}} 2018.3.1.
 - ![Event Streams 2018.3.0 icon](../../../images/2018.3.0.svg "In Event Streams 2018.3.0.") Applicable to {{site.data.reuse.es_name}} 2018.3.0.
 
 ## Release 2018.3.0

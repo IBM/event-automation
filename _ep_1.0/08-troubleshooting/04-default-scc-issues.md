@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-The installation of the {{site.data.reuse.flink_long}} instance is unsuccessful, and the instance reports a `Failed` [status](../../installing/post-installation/).
+The installation of the {{site.data.reuse.ibm_flink_operator}} instance is unsuccessful, and the instance reports a `Failed` [status](../../installing/post-installation/).
 
 - The `conditions` field under status contains the following error message:
 
@@ -27,9 +27,9 @@ The installation of the {{site.data.reuse.flink_long}} instance is unsuccessful,
 
 ## Causes
 
-{{site.data.reuse.flink_long}} has been tested with the default `restricted-v2` Security Context Constraint (SCC) provided by the {{site.data.reuse.openshift_short}}.
+{{site.data.reuse.ibm_flink_operator}} has been tested with the default `restricted-v2` Security Context Constraint (SCC) provided by the {{site.data.reuse.openshift_short}}.
 
-If a user or any other operator applies a custom SCC that removes permissions required by {{site.data.reuse.flink_long}}, then this will cause issues.
+If a user or any other operator applies a custom SCC that removes permissions required by {{site.data.reuse.ibm_flink_operator}}, then this will cause issues.
 
 ## Resolving the problem
 
@@ -37,7 +37,7 @@ Apply the custom [Security Context Constraint](https://github.com/IBM/ibm-event-
 
 To do this, edit the `event-automation-scc.yaml` file to add your namespace and apply it using `oc` tool as follows:
 
-1. Edit the `event-automation-scc.yaml` and add the namespace where your {{site.data.reuse.flink_long}} instance is installed.
+1. Edit the `event-automation-scc.yaml` and add the namespace where your {{site.data.reuse.ibm_flink_operator}} instance is installed.
 
 2. {{site.data.reuse.openshift_cli_login}}
 

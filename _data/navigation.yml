@@ -426,7 +426,9 @@ latest_epdocs:
       - title: "Flink instances cannot access SQL runner JAR file"
         url: /troubleshooting/flink-jar-permissions/
       - title: "Filters are not applied after enriching events with database nodes"
-        url: /troubleshooting/enrichment-filter/        
+        url: /troubleshooting/enrichment-filter/
+      - title: "Error in flows during upgrade or import"  
+        url: /troubleshooting/migration-issue/        
 
 100_epdocs:
   - title: About
@@ -2748,6 +2750,7 @@ latestdocs:
         url: /troubleshooting/openshift-route-incorrect/
       - title: "UI is unable to display consumer groups for a topic"
         url: /troubleshooting/invalid-negative-offset/
+        
 
 # Sidebar navigation for 2019.2.1.
 

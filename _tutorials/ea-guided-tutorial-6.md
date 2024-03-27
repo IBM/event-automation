@@ -8,7 +8,10 @@ cardType: "large"
 order: 6
 ---
 
+**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
+
 {% include video.html videoSource="videos/tutorials/guided/06-discover.mp4" %}{: class="tutorial-video" }
+
 
 ## Scenario: Sharing results of analysis and processing
 {: #scenario}

@@ -12,7 +12,7 @@ Upgrade your {{site.data.reuse.ep_name}} deployment as follows. Review the upgra
 
 You can upgrade {{site.data.reuse.ep_name}} to the [latest 1.1.x version]({{ 'support/matrix/#event-processing' | relative_url }}) directly from 1.1.0 or any 1.0.x version by using operator version 1.1.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
-- On OpenShift, you can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} to the latest 1.1.x version by using operator channel v1.1. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
+- On OpenShift, you can upgrade {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} to the latest 1.1.x version by using operator channel v1.1. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
 - On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
 
@@ -20,7 +20,7 @@ You can upgrade {{site.data.reuse.ep_name}} to the [latest 1.1.x version]({{ 'su
 
 - Ensure you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
+- To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
 
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
@@ -53,12 +53,12 @@ Complete the following steps to plan your upgrade on OpenShift.
 - If your existing Subscription does not use the v1.1 channel, your upgrade is a change in a minor version. Complete the following steps to upgrade:
   1. [Stop your flows](#stopping-flows-for-major-and-minor-upgrades).
   2. Ensure the [catalog source for new version is available](#making-new-catalog-source-available).
-  3. Change your Subscription to the `v1.1` channel by using [the CLI](#upgrading-subscription-by-using-the-cli) or [the web console](#upgrading-subscription-by-using-the-web-console). The channel change will upgrade your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
+  3. Change your Subscription to the `v1.1` channel by using [the CLI](#upgrading-subscription-by-using-the-cli) or [the web console](#upgrading-subscription-by-using-the-web-console). The channel change will upgrade your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} operators, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
   4. [Restart your flows](#restart-your-flows) after the upgrade.
 
 - If your existing Subscription is already on the v1.1 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available.
    
-   The {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} operators will be automatically upgrade to the latest 1.1.x when they are available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
+   The {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} operators will be automatically upgrade to the latest 1.1.x when they are available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
 
 ### Stopping flows for major and minor upgrades
 
@@ -70,7 +70,7 @@ If you are upgrading to a new major or minor release (first and second digit cha
  2. In the flow that you want to stop, select **View flow**.
  3. In the navigation banner, click **Stop** to stop the flow.
     
-**Note:** When upgrading to a new major or minor version (such as upgrading from v1.0 to v1.1), ensure you upgrade both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.flink_long}} operator, then complete the [post-upgrade tasks](#post-upgrade-tasks), before using your flows again.
+**Note:** When upgrading to a new major or minor version (such as upgrading from v1.0 to v1.1), ensure you upgrade both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} operator, then complete the [post-upgrade tasks](#post-upgrade-tasks), before using your flows again.
 
 ### Making new catalog source available
 
@@ -102,7 +102,7 @@ For {{site.data.reuse.ep_name}}:
 For Flink:
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure the required {{site.data.reuse.flink_long}} Operator Upgrade Channel is available:
+2. Ensure the required {{site.data.reuse.ibm_flink_operator}} Operator Upgrade Channel is available:
 
    ```shell
    oc get packagemanifest ibm-eventautomation-flink -o=jsonpath='{.status.channels[*].name}'
@@ -114,7 +114,7 @@ For Flink:
    oc patch subscription -n <namespace> ibm-eventautomation-flink --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
 
-4. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+4. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
 
@@ -141,11 +141,11 @@ For Flink:
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
 3. From the **Project** list, select the namespace (project) the instance is installed in.
-4. Locate the operator that manages your Flink instance in the namespace. It is called **{{site.data.reuse.flink_long}}** in the **Name** column. Click the **{{site.data.reuse.flink_long}}** in the row.
+4. Locate the operator that manages your Flink instance in the namespace. It is called **{{site.data.reuse.ibm_flink_operator}}** in the **Name** column. Click the **{{site.data.reuse.ibm_flink_operator}}** in the row.
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
 6. Select the version number in the **Update channel** section (for example, **v1.1**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription update channel** dialog.
-8. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+8. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All Flink pods that need to be updated as part of the upgrade will be rolled.
 
@@ -214,7 +214,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on other Kubernetes platforms by using Helm.
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.flink_long}} CRDs. 
+2. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs. 
 3. Run the following command to upgrade the Helm release that manages your Flink CRDs:
 
 
@@ -222,7 +222,7 @@ You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on 
    helm upgrade <flink_crd_release_name> ibm-helm/ibm-eventautomation-flink-operator-crd
    ```
 
-4. Upgrade the Helm release of {{site.data.reuse.flink_long}}. Switch to the correct namespace if your CRD Helm release is in a different namespace to your operator and then run:
+4. Upgrade the Helm release of {{site.data.reuse.ibm_flink_operator}}. Switch to the correct namespace if your CRD Helm release is in a different namespace to your operator and then run:
 
    ```shell
    helm upgrade <flink_release_name> ibm-helm/ibm-eventautomation-flink-operator <install_flags>
@@ -290,4 +290,57 @@ This only applies if you stopped flows before upgrade. After the successful upgr
 1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
 2. In the flow that you want to run, select **Edit flow**.
 3. In the navigation banner, expand **Run**, and select either **Events from now** or **Include historical** to run your flow.
+
+### Securing communication with Flink deployments
+
+To secure your communication between {{site.data.reuse.ep_name}} and Flink deployments, complete the following steps:
+
+1. Stop any {{site.data.reuse.ep_name}} flows that are currently running.
+1. [Create](../configuring#configuring-tls-to-secure-communication-with-flink-deployments) the required JKS secrets for the Flink operator, the Flink instances, and optionally for {{site.data.reuse.ep_name}}.
+1. Ensure that the required certificates are mounted in your operator by running the command:
+
+   ```shell
+   kubectl exec -it <flink-operator-pod> -- ls /opt/flink/tls-cert
+   ```
+
+   The required `truststore.jks` file is listed in the output.
+
+   **Note:** If the `truststore.jks` file is not present, restart the Flink operator pod by deleting it:
+
+   ```shell
+   kubectl delete pod <pod-name> -n <namespace>
+   ```
+
+1. Add your SSL configuration to the `spec.flinkConfiguration` section in the `FlinkDeployment` custom resource. For example:
+
+   ```yaml
+   spec:
+     flinkConfiguration:
+       security.ssl.enabled: 'true'
+       security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+       security.ssl.truststore-password: <jks-password>
+       security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+       security.ssl.keystore-password: <jks-password>
+       security.ssl.key-password: <jks-password>
+       kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+   ```
+
+   Where `<jks-secret>` is the secret containing the keystores and truststores for your deployment, and `<jks-password>` is the password for those stores.
+
+
+1. Wait for your `FlinkDeployment` pods to restart.
+1. Add the relevant Flink TLS configuration to the `spec.flink.tls` section in the `EventProcessing` custom resource. For example:
+
+   ```yaml
+   spec:
+     flink:
+       tls:
+         secretKeyRef:
+           key: <key-containing-password-value>
+           name: <flink-jks-password-secret>
+         secretName: <flink-jks-secret>
+   ```
+
+1. Wait for the `EventProcessing` pod to restart.
+1. Restart your {{site.data.reuse.ep_name}} flows.
 

@@ -22,14 +22,14 @@ You need to deploy an App Connect Designer. [Instructions for how to do this](..
 
 The example App Connect flow in this tutorial sends notifications to [Slack](https://slack.com/). You will need an access token for the Slack API to complete the tutorial as described below, alternatively you can choose a different destination for your notifications.
 
-### Operator versions
+### Versions
 
-This tutorial was written using the following versions of {{ site.data.reuse.ea_short }} operators. Screenshots may differ from the current interface if you are using a newer version.
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 3.2.1
+- Event Streams 11.2.1
 - Event Endpoint Management 11.0.1
 - Event Processing 1.0.0
-- App Connect 8.2.1
+- App Connect 11.2.1
 
 ## Instructions
 

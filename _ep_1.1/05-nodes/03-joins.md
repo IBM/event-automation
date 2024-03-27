@@ -42,6 +42,27 @@ To configure an interval join, complete the following steps:
 
 To define your join condition, on the **Join condition** section, in the **Define events** text box, enter your expression.
 
+Examples:
+- Simple expression:
+
+   ```
+   source1.example_property = source2.example_property
+   ```
+  
+ - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Expression with a complex object property:
+  
+   ```
+   source1.example_property.nested_object_property.leaf_property = source2.leaf_property
+   ```
+
+- ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") Expressions with array properties:
+  
+   ```
+   - ARRAY_CONTAINS(source1.example_property.nested_object_property.leaf_array_property, source2.leaf_property)
+   - ELEMENT(source1.array_property) = source2.leaf_property
+   ```
+
+
 Alternatively, to use the assistant to create your expression, complete the following steps:
 
 1. Click the **Assistant** drop-down menu to open the assistant.
@@ -50,6 +71,8 @@ Alternatively, to use the assistant to create your expression, complete the foll
 4. Click **Add to expression** to insert the expression into the text-box.
 
 **Note:** Ensure that the property you choose for both sides of your expression has the same data type. 
+
+ {{site.data.reuse.array_expression_note}}
 
 #### Time window condition
 

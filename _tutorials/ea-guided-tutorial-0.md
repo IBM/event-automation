@@ -8,7 +8,10 @@ cardType: "large"
 order: 0
 ---
 
+**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
+
 {% include video.html videoSource="videos/tutorials/guided/00-setup.mp4" %}{: class="tutorial-video" }
+
 
 ## Overview
 

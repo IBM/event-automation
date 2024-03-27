@@ -6,7 +6,7 @@ slug: diagnosing-installation-issues
 toc: false
 ---
 
-![Event Streams 2018.3.1 icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1.") To help troubleshoot and resolve installation issues, you can run a diagnostic script that checks your deployment for potential problems.
+![Event Streams 2018.3.1 icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1.") To help troubleshoot and resolve installation issues, you can run a diagnostic script that checks your deployment for potential problems.
 
 **Important:** Do not use the script before the installation process completes. Despite a successful installation message, some processes might still need to complete, and it can take up to 10 minutes before {{site.data.reuse.es_name}} is available to use.
 

@@ -15,8 +15,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.14/welcome/index.html){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.15/welcome/index.html){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -70,7 +70,7 @@ In addition to the previous permissions, the {{site.data.reuse.eem_name}} operat
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.14/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 

@@ -10,7 +10,7 @@ Monitoring the health of your Flink jobs helps to verify that your operations ar
 
 ![Flink monitoring architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-ep-flink.svg "Diagram showing the architecture of Flink monitoring as part of IBM Event Automation.")
 
-You can use any monitoring solution compatible with Prometheus to collect, store, visualize, and set up alerts based on metrics provided by {{site.data.reuse.flink_long}}.
+You can use any monitoring solution compatible with Prometheus to collect, store, visualize, and set up alerts based on metrics provided by {{site.data.reuse.ibm_flink_operator}}.
 
 ## Grafana
 

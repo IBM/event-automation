@@ -33,13 +33,13 @@ To configure a filter node, complete the following steps:
 3. Enter an expression in the **Filter Expression** text box to filter the events. The expression consists of a property, a mathematical condition, and a value. You can create a simple expression with one condition or a complex expression with multiple conditions based on your requirement. You can create multiple conditions within an expression by using `AND` or `OR`.
 
    Examples:
-      - simple expression:
+      - Simple expression:
 
         ```
         example_property > 100
         ```
 
-      - complex expression:
+      - Complex expression:
 
          ```
          example_property1 > 50 AND example_property2 > 30 OR example_property3 < 25 AND example_property4 < 250
@@ -50,11 +50,20 @@ To configure a filter node, complete the following steps:
          ```
          example_property.nested_property IS NOT NULL AND example_property.nested_property.leaf_property > 100
          ```
-     
+      - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") Expression with an array property:
+  
+  
+         ```
+         example_array_property[1] IS NOT NULL AND ARRAY_CONTAINS(example_array_property, 10)
+         ```
+      **Note:** The index of arrays starts at 1, not at 0.
 
    **Note:** Expressions are prioritized based on [operator precedence](https://calcite.apache.org/docs/reference.html#operators-and-functions){:target="_blank"}.
 
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
+
+   {{site.data.reuse.array_expression_note}}
+
 4. Scroll down and click **Configure Filter** to complete the configuration.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the filter node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
@@ -89,7 +98,38 @@ To configure a transform node, complete the following steps:
 1. Click **Create new property** to add a new property to the table.
 1. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} and enter a name for your property.
 1. Enter your expression in the **Expression** text box to define your property.
-   
+
+   Examples:
+      - Simple expressions:
+
+        ```
+        - example_number_property1 * example_number_property2
+        - POWER(`example_number_property1`, 2)
+        ```
+  
+      - Complex expressions:
+
+         ```
+         - REGEXP_EXTRACT(`example_property`, '([A-Z]+)\-([0-9]+)\-([0-9]+)', 1)
+         - IF(`example_number_property` >= 20, 'high', 'low')
+         - TO_TIMESTAMP(example_string_property, 'EEE MMM dd HH:mm:ss zzz yyyy')
+         - DAYOFWEEK( CAST(example_timestamp_property AS DATE) )
+         ```
+      - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Expressions with complex object property:
+  
+         ```
+         - example_property.nested_object_property
+         - example_property.nested_object_property.leaf_property
+         - CONCAT( CAST(example_property.nested_object_property.leaf_property AS STRING), ‘$’)
+         ```
+      - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") Expressions with array properties:
+  
+         ```
+         - ARRAY_JOIN(`example_string_array_property`, ', ')
+         - ARRAY_REMOVE(example_property.nested_object_property.leaf_array_property, NULL)
+         - example_property BETWEEN example_array_property[1] AND example_array_property[2]
+         - example_property.nested_object_property.leaf_array_property
+         ```
    ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") **Note:** The expression can also simply refer to existing properties. This is particularly useful when renaming complex object properties or when moving nested properties to the top-level.
 1. Optional: To use the assistant to enter an expression, complete the following steps:
    1. Click the **Assistant** drop-down menu to open the assistant.
@@ -98,6 +138,8 @@ To configure a transform node, complete the following steps:
    4. Select **Insert into expression** to add the expression in the text-box.
 
       **Note:** Ensure you choose the values with correct data type for your expression. Properties that are used as values in the comparison operations must be of the same data type. Arithmetic operations are only allowed on integer and double data types. String operations are only possible with properties of string data type. Some temporal functions require a timestamp data type.
+
+    {{site.data.reuse.array_expression_note}}
 2. Optional: Repeat steps 3 to 6 to create more properties.  
 3. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
 4. ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") Only **leaf** properties are listed in the **Output properties** table. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.

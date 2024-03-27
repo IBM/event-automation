@@ -154,12 +154,12 @@ Delete remaining PVs:
 
 ### By using the OpenShift web console
 
-To delete the {{site.data.reuse.flink_long}}:
+To delete the {{site.data.reuse.ibm_flink_operator}}:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.flink_long}} to be deleted to open the actions menu.
+4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.ibm_flink_operator}} to be deleted to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
@@ -174,7 +174,7 @@ To delete the {{site.data.reuse.ep_name}} operator:
 
 ### By using the OpenShift CLI (`oc`)
 
-Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} from the namespace:
+Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} from the namespace:
 
 ```shell
 oc delete subscription ibm-eventprocessing
@@ -200,7 +200,7 @@ oc get subscription ibm-eventautomation-flink -o yaml | grep currentCSV
 
 ### By using the Helm CLI (`helm`)
 
-Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}} from the namespace:
+Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} from the namespace:
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are in the namespace where your {{site.data.reuse.ep_name}} and flink operators are installed:
@@ -209,7 +209,7 @@ Run the following commands to uninstall your {{site.data.reuse.ep_name}} operato
    kubectl config set-context --current --namespace=<namespace>
    ```
 
-3. List your Helm releases and identify the releases that matches the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.flink_long}}:
+3. List your Helm releases and identify the releases that matches the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
    helm list
@@ -242,7 +242,7 @@ Secrets that are created by the Cert Manager are not deleted automatically. You 
 
 ### By using the OpenShift web console
 
-To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets by using the web console:
+To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} secrets by using the web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Workloads** dropdown and select **Secrets** to open the **Secrets** dashboard.
@@ -253,7 +253,7 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets
 
 ### By using the CLI
 
-To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets by using the CLI:
+To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} secrets by using the CLI:
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are using the namespace where your {{site.data.reuse.ep_name}} operator was located:
@@ -262,7 +262,7 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets
    kubectl config set-context --current --namespace=<namespace>
    ```
 
-3. List the secrets and identify any that match the instance you deleted. The secrets created for {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} begin with the name of your {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} instances.
+3. List the secrets and identify any that match the instance you deleted. The secrets created for {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} begin with the name of your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} instances.
 
    ```shell
    kubectl get secrets
@@ -276,7 +276,7 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} secrets
 
 ## Removing {{site.data.reuse.ep_name}} Custom Resource Definitions
 
-The {{site.data.reuse.flink_long}} and the {{site.data.reuse.ep_name}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want.
+The {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want.
 
 ### By using the OpenShift web console
 
@@ -284,7 +284,7 @@ To delete Flink CRDs:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Administration** and click **CustomResourceDefinitions**.
-3. Enter `flinkdeployment` in the **Filter by name** box to filter the CRDs associated with {{site.data.reuse.flink_long}}.
+3. Enter `flinkdeployment` in the **Filter by name** box to filter the CRDs associated with {{site.data.reuse.ibm_flink_operator}}.
 4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the CRD to be deleted to open the actions menu.
 5. Click the **Delete Custom Resource Definition** menu option to open the confirmation panel.
 6. Check the name of the CRD and click **Delete** to remove the CRD.
@@ -300,7 +300,7 @@ To delete {{site.data.reuse.ep_name}} CRDs:
 
 ### By using the Helm CLI
 
-If you are running on other Kubernetes platforms, you can simply uninstall the Helm releases that are managing the {{site.data.reuse.ep_name}} and {{site.data.reuse.flink_long}} CRDs. Run the following commands to delete the CRDs:
+If you are running on other Kubernetes platforms, you can simply uninstall the Helm releases that are managing the {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} CRDs. Run the following commands to delete the CRDs:
 
 ```shell
 helm uninstall <eventprocessing-operator-crd-release-name>

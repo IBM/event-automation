@@ -43,7 +43,7 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 1. {{site.data.reuse.cncf_cli_login}}
 
 
-2. Switch to the namespace where the {{site.data.reuse.flink_long}} is installed:
+2. Switch to the namespace where the {{site.data.reuse.ibm_flink_operator}} is installed:
 
    ```shell
    kubectl config set-context --current --namespace=<namespace>
@@ -83,7 +83,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    e. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
-2. Create the {{site.data.reuse.flink_long}} `FlinkDeployment` custom resource.
+2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
    a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a production sample with persistent storage. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
 

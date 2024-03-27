@@ -117,7 +117,7 @@ SET 'key' = 'value';
 1. {{site.data.reuse.cncf_cli_login}}
 
 
-2. Switch to the namespace where the {{site.data.reuse.flink_long}} is installed.
+2. Switch to the namespace where the {{site.data.reuse.ibm_flink_operator}} is installed.
 
    ```shell
    kubectl config set-context --current --namespace=<namespace>

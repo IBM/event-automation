@@ -10,7 +10,7 @@ Kafka quotas enforce limits on produce and fetch requests to control the broker 
 
 Using quotas, administrators can throttle client access to the brokers by imposing network bandwidth or data limits, or both.
 
-![Event Streams 2018.3.1 and later icon](../../../images/2018.3.1.svg "In Event Streams 2018.3.1 and later.") Kafka quotas are supported in {{site.data.reuse.es_name}} 2018.3.1 and later.
+![Event Streams 2018.3.1 and later icon]({{ 'images' | relative_url }}/2018.3.1.svg "In Event Streams 2018.3.1 and later.") Kafka quotas are supported in {{site.data.reuse.es_name}} 2018.3.1 and later.
 
 ## About Kafka quotas
 

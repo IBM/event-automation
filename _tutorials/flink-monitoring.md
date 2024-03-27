@@ -19,7 +19,7 @@ To set up Prometheus for your Flink instance and visualize the collected metrics
 
 Before you can configure Grafana dashboards to view the metrics, integrate your Flink instance with Prometheus as follows.
 
-1. Ensure you have [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}) the {{site.data.reuse.flink_long}} on the {{site.data.reuse.openshift}}. Also ensure you have installed the Prometheus stack on your cluster by using the `kube-prometheus` project. For more information, see the [kube-prometheus GitHub repository](https://github.com/prometheus-operator/kube-prometheus){:target="_blank"}.
+1. Ensure you have [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}) the {{site.data.reuse.ibm_flink_operator}} on the {{site.data.reuse.openshift}}. Also ensure you have installed the Prometheus stack on your cluster by using the `kube-prometheus` project. For more information, see the [kube-prometheus GitHub repository](https://github.com/prometheus-operator/kube-prometheus){:target="_blank"}.
 
 2. Create the following ConfigMap in the `openshift-monitoring` namespace if it does not yet exist. If a ConfigMap already exist, ensure that the configuration is similar to the following:
 
@@ -85,7 +85,7 @@ The metrics sent by Flink to Prometheus are now visible in OpenShift Container P
 
 Ensure you have the following set up:
 
-- The {{site.data.reuse.flink_long}} [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}).
+- The {{site.data.reuse.ibm_flink_operator}} [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}).
 - The [integration of Flink with Prometheus](#integrating-flink-with-prometheus) completed.
 
 ### Installing Grafana
@@ -223,7 +223,7 @@ If you have configured an external Grafana instance and want to access your Prom
 
 Ensure you have the following set up:
 
-- Ensure you have [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}) the {{site.data.reuse.flink_long}} on the {{site.data.reuse.openshift}}. Also ensure you have installed the Prometheus stack on your cluster by using the `kube-prometheus` project. For more information, see the [kube-prometheus GitHub repository](https://github.com/prometheus-operator/kube-prometheus){:target="_blank"}.
+- Ensure you have [installed]({{ 'ep/installing/installing/#installing-the-ibm-operator-for-apache-flink' | relative_url }}) the {{site.data.reuse.ibm_flink_operator}} on the {{site.data.reuse.openshift}}. Also ensure you have installed the Prometheus stack on your cluster by using the `kube-prometheus` project. For more information, see the [kube-prometheus GitHub repository](https://github.com/prometheus-operator/kube-prometheus){:target="_blank"}.
 - [Integration of Flink with Prometheus](#integrating-flink-with-prometheus) is completed. 
 
 

@@ -174,7 +174,7 @@ kind: KafkaConnector
 metadata:
   name: mq-sink
   labels:
-    # The 'eventstreams.ibm.com/cluster' label identifies the KafkaConnect instance in which to create this connector. 
+    # The 'eventstreams.ibm.com/cluster' label identifies the KafkaConnect instance in which to create this connector.
     # That KafkaConnect instance must have the 'eventstreams.ibm.com/use-connector-resources' annotation set to 'true'.
     eventstreams.ibm.com/cluster: <kafka_connect_name>
     backup.eventstreams.ibm.com/component: kafkaconnector
@@ -195,7 +195,6 @@ spec:
 ```
 
 A list of all the possible flags can be found by running the command `kubectl es connector-config-mq-sink --help`. For all available configuration options for IBM MQ sink connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).
-
 
 ## Downloading the MQ sink connector v2
 
@@ -284,7 +283,6 @@ Follow the instructions to enable exactly-once delivery in the IBM MQ sink conne
 
 **Important**: Exactly-once support for sink connectors is only available in distributed mode.
 
-
 ### Prerequisites
 
 Ensure the following values are set in your environment before you enable the exactly-once behavior:
@@ -294,7 +292,6 @@ Ensure the following values are set in your environment before you enable the ex
 * On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
 * On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the state messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
 * Ensure that the messages that are sent through the MQ sink connector v2 do not expire, and that all the messages on the state queue are persistent.
-
 
 ### Enabling exactly-once delivery
 
@@ -342,7 +339,101 @@ Create a state queue as follows.
 
 **Note:** If the sink connector is delivering messages to an IBM MQ for z/OS shared queue, then for performance reasons, the state queue should be placed on the same coupling facility structure.
 
-### Exactly-once failure scenarios
+## Enabling MQMD in IBM MQ sink connector v2
 
-The IBM MQ sink connector is designed to fail on start-up in certain cases to ensure that exactly-once delivery is not compromised.
-In some of these failure scenarios, it is necessary for an IBM MQ administrator to remove messages from the exactly-once state queue before the IBM MQ sink connector can start up and deliver messages from the sink queue again. In these cases, the IBM MQ sink connector has the `FAILED` status and the Kafka Connect logs describe any required administrative action.
+You can configure the IBM MQ sink connector v2 to add values to the [MQ message descriptor (MQMD)](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=mqi-mqmd-message-descriptor){:target="_blank"}. The MQMD is used to add additional control information to accompany the message data before sending to MQ.
+
+### Prerequisites
+
+Adding values to the MQMD is only supported in the IBM MQ sink connector v2, which is only supported on Kafka Connect version 2.6.0 or later.
+
+### Enabling MQMD
+
+Configure the following properties in the `KafkaConnector` custom resource to enable adding values to the MQMD:
+
+1. Set the `mq.message.mqmd.write` property to `true` in the IBM MQ sink connector v2. By default, it is set to `false`.
+
+2. Configure the `mq.message.mqmd.context` property according to the message context. Options include:
+
+   * `ALL`, which corresponds to `WMQ_MDCTX_SET_ALL_CONTEXT`
+   * `IDENTITY`, mapped to `WMQ_MDCTX_SET_IDENTITY_CONTEXT`
+
+   **Important:** If your message contains any of the following properties, you must ensure that `WMQ_MQMD_MESSAGE_CONTEXT` is set to either `WMQ_MDCTX_SET_IDENTITY_CONTEXT` or `WMQ_MDCTX_SET_ALL_CONTEXT`:
+
+   * JMS_IBM_MQMD_UserIdentifier
+   * JMS_IBM_MQMD_AccountingToken
+   * JMS_IBM_MQMD_ApplIdentityData
+
+   Similarly, if your message includes any of the following properties, set the `WMQ_MQMD_MESSAGE_CONTEXT` field to `WMQ_MDCTX_SET_ALL_CONTEXT`:
+  
+   * JMS_IBM_MQMD_PutApplType
+   * JMS_IBM_MQMD_PutApplName
+   * JMS_IBM_MQMD_PutDate
+   * JMS_IBM_MQMD_PutTime
+   * JMS_IBM_MQMD_ApplOriginData
+
+   Other message properties do not require the `mq.message.mqmd.context` property.
+
+### Creating a custom message builder
+
+The MQ sink connector v2 uses the default message builder to write messages to MQ. You can also create a custom message builder to tailor message properties based on your specific requirements.
+
+For example, complete the following steps to create a custom message builder that overrides values of MQMD fields such as `JMS_IBM_MQMD_USERIDENTIFIER`, `JMS_IBM_MQMD_APPLIDENTITYDATA`, and `JMS_IBM_MQMD_PERSISTENCE` for outgoing messages:
+
+1. Create a Java class called `CustomMessageDescriptorBuilder` that extends the `DefaultMessageBuilder` provided by the MQ sink connector v2. The `CustomMessageDescriptorBuilder` class is the custom message builder.
+
+   ```java
+   // CustomMessageDescriptorBuilder.java
+   import javax.jms.JMSContext;
+   import javax.jms.JMSException;
+   import javax.jms.Message;
+   import org.apache.kafka.connect.errors.ConnectException;
+   import org.apache.kafka.connect.sink.SinkRecord;
+   import com.ibm.eventstreams.connect.mqsink.builders.DefaultMessageBuilder;
+   import com.ibm.msg.client.jms.JmsConstants;
+
+   public class CustomMessageDescriptorBuilder extends DefaultMessageBuilder {
+
+      @Override
+      public Message getJMSMessage(final JMSContext jmsCtxt, final SinkRecord record) {
+         final Message message = super.getJMSMessage(jmsCtxt, record);
+         try {
+               // Override properties
+               message.setStringProperty(JmsConstants.JMS_IBM_MQMD_USERIDENTIFIER, "Sample User");
+               message.setStringProperty(JmsConstants.JMS_IBM_MQMD_APPLIDENTITYDATA, String.format("{}-{}-{}", record.topic(), record.kafkaOffset(), record.kafkaPartition()));
+               // Set persistence based on message content
+               if (message.getBody(String.class).startsWith("PRIORITY")) {
+                  message.setIntProperty(JmsConstants.JMS_IBM_MQMD_PERSISTENCE, MQConstants.MQPER_PERSISTENT);
+               } else {
+                  message.setIntProperty(JmsConstants.JMS_IBM_MQMD_PERSISTENCE, MQConstants.MQPER_NOT_PERSISTENT);
+               }
+         } catch (final JMSException e) {
+               throw new ConnectException("Failed to write property", e);
+         }
+         return message;
+      }
+   }
+   ```
+
+1. In the `getJMSMessage()` method, override the values of MQMD properties based on your requirements. In the earlier example, `JMS_IBM_MQMD_USERIDENTIFIER` and `JMS_IBM_MQMD_APPLIDENTITYDATA` properties are set with sample values, and the `JMS_IBM_MQMD_PERSISTENCE` property is set based on the message content.
+
+1. Package your custom message builder into a JAR file along with any dependencies it might have. Ensure that this JAR file is placed in a folder alongside the connector JAR file:
+
+   ```shell
+   mq-sink-connector/
+   |-- ibm-mq-sink-connector.jar
+   |-- custom-message-builder.jar
+   ```
+
+1. Configure the IBM MQ sink connector v2 to use your custom message builder class. Specify the class name of your custom message builder in the connector configuration:
+
+   ```yaml
+   mq.message.builder=<name-of-custom-message-builder>
+   mq.message.body.jms=true
+   mq.message.mqmd.write=true
+   mq.message.mqmd.context=ALL
+   # ...
+   ```
+
+   Where `<name-of-custom-message-builder>` is the name of your custom message builder.
+

@@ -114,17 +114,21 @@ latest_eemdocs:
         url: /describe/adding-topics/
       - title: "Managing topics"
         url: /describe/managing-topics/
+      - title: "Managing options"
+        url: /describe/managing-options/
       - title: "Adding controls to options"
         url: /describe/option-controls/
       - title: "Managing clusters"
         url: /describe/managing-clusters/
+      - title: "Publishing topics"
+        url: /describe/publishing-topics-a/
       - title: "Publishing options"
         url: /describe/publishing-topics/
       - title: "Managing user access to options"
         url: /describe/managing-user-access-to-topics/
       - title: "Managing gateways"
         url: /describe/managing-gateways/
-      
+
   - title: Subscribe and consume
     children:
       - title: "Discovering topics"
@@ -427,8 +431,8 @@ latest_epdocs:
         url: /troubleshooting/flink-jar-permissions/
       - title: "Filters are not applied after enriching events with database nodes"
         url: /troubleshooting/enrichment-filter/
-      - title: "Error in flows during upgrade or import"  
-        url: /troubleshooting/migration-issue/        
+      - title: "Error in flows during upgrade or import"
+        url: /troubleshooting/migration-issue/
 
 100_epdocs:
   - title: About
@@ -484,7 +488,7 @@ latest_epdocs:
         url: /security/gdpr-considerations/
       - title: "Encrypting your data"
         url: /security/data-encryption/
-        
+
   - title: Administering
     children:
       - title: "Monitoring Flink health"
@@ -617,7 +621,7 @@ latestdocs:
       - title: "Using Apache Kafka console tools"
         url: /getting-started/using-kafka-console-tools/
       - title: "Sharing topic with Event Endpoint Management"
-        url: /getting-started/sharing-topic/    
+        url: /getting-started/sharing-topic/
   - title: Schemas
     children:
       - title: "Schemas overview"
@@ -766,6 +770,9 @@ latestdocs:
         url: /troubleshooting/default-psp-issues/
       - title: "Geo-replicator fails when replicating a topic"
         url: /troubleshooting/georep-fails/
+      - title: "Errors in IBM MQ connectors"
+        url: /troubleshooting/mq-connector-fails/
+
 
 # Sidebar navigation for Event Streams 11.2 docs
 112docs:
@@ -976,6 +983,8 @@ latestdocs:
         url: /troubleshooting/default-psp-issues/
       - title: "Geo-replicator fails when replicating a topic"
         url: /troubleshooting/georep-fails/
+      - title: "Errors in IBM MQ connectors"
+        url: /troubleshooting/mq-connector-fails/
 
 # Sidebar navigation for 11.1.
 
@@ -2750,7 +2759,7 @@ latestdocs:
         url: /troubleshooting/openshift-route-incorrect/
       - title: "UI is unable to display consumer groups for a topic"
         url: /troubleshooting/invalid-negative-offset/
-        
+
 
 # Sidebar navigation for 2019.2.1.
 

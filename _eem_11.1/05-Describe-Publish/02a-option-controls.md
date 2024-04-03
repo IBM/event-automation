@@ -8,7 +8,9 @@ toc: true
 
 You can add controls to options so that you have greater management over how topic data is presented to consumers. For instance, you can use the approval control to manage who can subscribe to your topic, the schema filtering control ensures consistency, and redaction hides sensitive data. 
 
-Options can use each of the control types in combination to allow you to manage how events are consumed. Note that you cannot delete or edit controls after the option has been published.
+Options can use each of the control types in combination to allow you to manage how events are consumed. 
+
+**Note:** You cannot delete or edit controls after the option containing them has been published.
 
 ## Approval
 {: #approval-controls}
@@ -138,7 +140,9 @@ The option tile is updated to show that a redaction control is added. If you nee
 ## Schema filtering
 {: #schema-filter}
 
-![Event Endpoint Management 11.1.2 icon]({{ 'images' | relative_url }}/11.1.2.svg "In Event Endpoint Management 11.1.2 and later") You can add the schema filtering control to manage how the data in your topic is presented. When an option is set up with schema filtering enabled, a subscriber only has access to the fields determined by the schema that you add to the topics' event information window.
+![Event Endpoint Management 11.1.2 icon]({{ 'images' | relative_url }}/11.1.2.svg "In Event Endpoint Management 11.1.2 and later") You can add the schema filtering control to manage how the data in your topic is presented. The schema filtering control is either on or off. It removes events that do not match the schema provided in the topics' event information. It prevents clients from receiving bad messages which could result in the client crashing.
+
+When an option is set up with schema filtering enabled, a subscriber only has access to the fields determined by the schema that you add to the topics' event information window.
 
 ### Adding the schema filtering control
 {: #adding-schema-filter}

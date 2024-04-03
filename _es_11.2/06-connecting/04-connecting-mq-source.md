@@ -217,7 +217,6 @@ By default, IBM MQ source connector v2 does not package any external dependencie
 
 Add the following dependencies to the IBM MQ source connector v2:
 
-
   artifactId | groupId  | version
 --|---|---
   connect-api   | org.apache.kafka | >= 3.4.1
@@ -261,9 +260,8 @@ IBM MQ source connector v2 offers exactly-once message delivery semantics. An ad
 
 **Note**:
 
-- Exactly-once support for source connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
-- Enabling exactly-once delivery in the IBM MQ source connector v2, results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
-
+* Exactly-once support for source connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
+* Enabling exactly-once delivery in the IBM MQ source connector v2, results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
 
 ### Prerequisites
 
@@ -316,11 +314,6 @@ Create a state queue as follows.
 
 **Note:** If the source connector is consuming messages from an IBM MQ for z/OS shared queue, then for performance reasons, the state queue should be placed on the same coupling facility structure.
 
-### Exactly-once failure scenarios
-
-The IBM MQ source connector is designed to fail on start-up in certain cases to ensure that exactly-once delivery is not compromised.
-In some of these failure scenarios, it will be necessary for an IBM MQ administrator to remove messages from the exactly-once state queue before the IBM MQ source connector can start up and deliver messages from the source queue again. In these cases, the IBM MQ source connector will have the `FAILED` status and the Kafka Connect logs will describe any required administrative action.
-
-## Advanced configuration.
+## Advanced configuration
 
 For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../connecting-mq/#configuration-options).

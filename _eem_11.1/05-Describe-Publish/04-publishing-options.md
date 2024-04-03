@@ -6,9 +6,9 @@ slug: publishing-topics
 toc: true
 ---
 
-![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") After [adding your topic](../adding-topics) and [creating an option](../managing-topics#create_option), you can publish your option to a set of [gateway groups](../../about/key-concepts#gateway-group) which will make it available in the catalog.
+![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") After [adding your topic](../adding-topics) and [creating an option](../managing-options#create_option), you can publish your option to a set of [gateway groups](../../about/key-concepts#gateway-group) which will make it available in the catalog.
 
-All the topics with published options are displayed along with tags and status information in the {{site.data.reuse.eem_name}} catalog. The topic owner can edit or delete their options after publishing it, as described in [managing topics](../managing-topics#edit_option).
+All the topics with published options are displayed along with tags and status information in the {{site.data.reuse.eem_name}} catalog. The topic owner can edit or delete their options after publishing it, as described in [managing topics](../managing-options#edit_option).
 
 Application developers can then [discover](../../consume-subscribe/discovering-topics/) available event data and [subscribe](../../consume-subscribe/subscribing-to-topics/) to the published options directly or request access if approval is required.
 

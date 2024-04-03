@@ -142,91 +142,35 @@ To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow thes
 7. Click **Delete schema** to delete the existing schema.
 8. To upload the modified schema, click **Add an Avro schema** and select the `.avsc` or `.avro` file that you modified and saved earlier.
   
-## ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") Creating an option
-{: #create_option}
+<!-- Delete the following section - "Topic lifecycle state" section when 11.2.0 comes along -->
 
-To create an option, complete the following steps: 
+## Topic lifecycle state
 
-1. In the navigation pane, click **Topics**.
-1. Click the topic that you want to work with. 
-1. Click the **Options** tab on the **Topic detail** page. 
-1. Click **Create option**. The **Details** pane is displayed.
-1. In the **Option** field, provide a name for your option.
-1. In the **Alias** field, provide a valid Kafka topic name.  
+In {{site.data.reuse.eem_name}} 11.1.1 and earlier versions, after adding the Kafka topic as an event source, it can have different lifecycle states. The lifecycle state of your event source determines whether it can be [subscribed](../../consume-subscribe/subscribing-to-topics) to by users, [socialized in the **Catalog**](../../consume-subscribe/discovering-topics), and available to perform any other operations.
 
-   **Note**: The alias must meet the following conditions:
-      - Be less than 200 characters in length, 
-      - Have no white space included,
-      - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
-1. In the **Description** field, provide a description of your option.
-1. Click **Next**. The **Controls** pane is displayed.
-1. Optional: If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
+The lifecycle of a Kafka topic in {{site.data.reuse.eem_name}} progresses through as follows:
 
-   ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") **Note**: If you are using {{site.data.reuse.eem_name}} 11.1.4 and later, click **Save**. The **Options** tab in the **Topic detail** page is displayed. You can publish the option from this page when you are ready.
+- **Unpublished**: this topic is not socialized in the **Catalog**, cannot be subscribed to by other users, and has no current subscriptions.
+- **Published**: this topic is socialized in the **Catalog**, and users can create new subscriptions to use it.
+- **Archived**: this topic is socialized in the **Catalog**, and has existing subscriptions, but users cannot create new subscriptions.
 
-   
-1. Click **Next**. The **Publish option** pane is displayed.
-1. If you are ready to publish your option, click **Publish**. For more information about publishing options, see [publishing options](../publishing-topics).
-1. To complete the option, click **Save**.
+The **Manage** tab on the **Topic Detail** page allows users to manage a topic's lifecycle state. You can see both the topic's current state and a button to advance it to the next state on this page.
 
+You can change the lifecycle state of an event source as follows:
 
-## Editing an option
-{: #edit_option}
+- To change the **Unpublished** state to **Published**, click the **Publish topic** button.
+- To change the **Published** state to **Archived**, click the **Archive topic** button.
+  **Note:** This option is only available if a published topic has subscribers.
+- To change the **Archived** state to **Published**, click the **Publish topic** button.
+- To change the **Published** state to **Unpublished**, click the **Unpublish topic** button.
+  **Note:** This option is only available if a published topic has no current subscribers.
 
-To edit an option's details, complete the following steps:
+**Note:** **Archived** topics automatically return to the **Unpublished** state when all subscribers have their [subscriptions revoked](../managing-user-access-to-topics#revoking-subscriptions) from using this topic.
 
-1. In the navigation pane, click **Topics**.
-1. Click the topic that you want to work with. 
-1. In the **Topic detail** page, click the **Options** tab.
-1. Depending on your version of {{site.data.reuse.eem_name}}, complete one of the following steps to edit the option:
-   - If you are using {{site.data.reuse.eem_name}} version 11.1.3 or earlier, click **Edit** ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} for the option that you want to edit. The **Edit option** window is displayed.
-   - ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") If you are using {{site.data.reuse.eem_name}} version 11.1.4 and later, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "The more options icon."){:height="30px" width="15px"} **More options**, and select **Edit**. The **Edit option** window is displayed. 
-1. In the **Details** pane, edit the fields that you want to change. 
+A topic can be [edited](#editing-a-topic) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
 
-    **Note**: 
-    - Restrictions and validation checks ensure each field meets requirements for options.
-    - The **Alias** is only editable when the option is in an [unpublished state](#option-lifecycle-states).
-1. On the **Controls** pane, edit the controls as required.
-1. After you make changes, click **Save**.
-1. To cancel changes, click **Cancel**.
+**Note:** Only **Unpublished** topics can be [deleted](#deleting-a-topic) from {{site.data.reuse.eem_name}}.
 
-
-
-## Option lifecycle states
-{: #option-lifecycle-states}
-
-After adding an option to a topic in {{site.data.reuse.eem_name}}, the option can have different lifecycle states. The lifecycle state of your option determines whether it can be [subscribed](../../consume-subscribe/subscribing-to-topics) to by users and [socialized in the catalog](../../consume-subscribe/discovering-topics).
-
-The lifecycle of an option in {{site.data.reuse.eem_name}} progresses as follows:
-
-- **Unpublished**: This option is not socialized in the **Catalog**. It cannot be subscribed to by other users and has no current subscriptions.
-- **Published**: This option is socialized in the **Catalog**. Users can create new subscriptions to use it.
-- **Archived**: This option is socialized in the **Catalog** and has existing subscriptions. Users cannot create new subscriptions to use it.
-
-The **Options** tab on the **Topic detail** page allows users to manage a topics options and the state of an option is shown in the status field of the option's tile. 
-
-To change the lifecycle state of an option, complete the following steps:
-
-1. In the navigation pane, click **Topics**.
-1. Click the topic that you want to work with. 
-1. Click the **Options** tab on the **Topic detail** page.
-1. For the option that you want to edit, click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"}. A pop-up window to edit your option is displayed.
-1. In the side bar, click **Publish option**. You can see the option's current state and a button to advance it to the next state in this pane.
-
-    - To change the **Unpublished** state to **Published**, click **Publish**.
-    - To change the **Published** state to **Archived**, click **Archive**.
-      - **Note:** This option is only available if a published topic has subscribers.
-    - To change the **Published** state to **Unpublished**, click **Unpublish**.
-      - **Note:** This option is only available if a published topic has no current subscribers.
-    - To change the **Archived** state to **Published**, click **Publish**.
-1. After you make changes, click **Save**.
-1. To cancel changes, click **Cancel**.
-
-**Note:** **Archived** options automatically return to the **Unpublished** state when all subscribers have their [subscriptions revoked](../managing-user-access-to-options#revoking-subscriptions) from using this topic.
-
-An option can be [edited](#edit_option) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
-
-**Note:** Only **Unpublished** options can [be deleted from {{site.data.reuse.eem_name}}](#deleting-an-option).
 
 ## Deleting a topic
 
@@ -243,16 +187,4 @@ To delete a topic from {{site.data.reuse.eem_name}}, complete the following step
 
 Topics can also be deleted from the **Topics** page. Only topics with **Unpublished** options contain a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"} in their row in the topic table. To delete a topic from the **Topics** page, click the delete icon and follow the previous steps 5 to 6.
 
-## Deleting an option
 
-An option can be deleted from a topic if it's in an **Unpublished** state. Deleting an option removes all the details and controls about the option but the topic will remain. To move your option into a state so that you can delete it, refer to the different [lifecycle states](#option-lifecycle-states) of an option.
-
-To delete an option from {{site.data.reuse.eem_name}}, complete the following steps:
-
-1. In the navigation pane, click **Topics**.
-1. Find the topic that the option belongs to and ensure that the Option status is 0 published. All options in the **Unpublished** state will have a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"} in their row in the topic table.
-1. Click the topic that you want to work with. 
-1. Open the **Options** tab within the **Topic detail** page. 
-1. For the option that you want to delete, click the **Delete** icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"}.
-1. Enter the name of the option to confirm the option that you want to delete. 
-1. Click **Delete**. (**Delete** is visible in the footer if you entered the topic name that you want to delete correctly).

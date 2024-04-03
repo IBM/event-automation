@@ -10,6 +10,10 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
 ## Release 11.3.1
 
+### Support for MQ message descriptor in the IBM MQ sink connector v2
+
+The IBM MQ sink connector v2 now supports adding additional control information to your message data by using the MQ message descriptor (MQMD). For more information, see [enabling MQMD](../../connecting/mq/sink/#enabling-mqmd-in-ibm-mq-sink-connector-v2).
+
 ### IBM support for Oracle (Debezium) source connector
 
 IBM support is now available for the [Oracle (Debezium) source connector]({{ 'connectors/kc-source-oracle/installation' | relative_url }}) to monitor Oracle database tables and write all change events to Kafka topics.

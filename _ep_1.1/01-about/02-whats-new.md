@@ -18,9 +18,9 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 {{site.data.reuse.ep_name}} release 1.1.4 includes support for events with [primitive type array](../../nodes/eventnodes/#define-event-structure) properties. Primitive arrays are supported in both JSON and Apache Avro formats with any level of nesting.
 
-### Support for {{site.data.reuse.openshift}} 1.15
+### Support for {{site.data.reuse.openshift}} 4.15
 
-{{site.data.reuse.ep_name}} version 1.1.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 1.15.
+{{site.data.reuse.ep_name}} version 1.1.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.15.
 
 ### Support for Kubernetes 1.29
 

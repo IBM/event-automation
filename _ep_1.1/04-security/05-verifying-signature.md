@@ -242,7 +242,7 @@ Obtain the required files as follows:
 
    For {{site.data.reuse.ibm_flink_operator}}:
 
-      - ![IBM Operator for Apache Flink 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg “In IBM Operator for Apache Flink 1.1.5 and later”) In {{site.data.reuse.ibm_flink_operator}} 1.1.5 and later:
+      - ![IBM Operator for Apache Flink 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In IBM Operator for Apache Flink 1.1.5 and later") In {{site.data.reuse.ibm_flink_operator}} 1.1.5 and later:
    ```shell
    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.1.6/ibm-eventautomation-flink-1.1.6-images.csv \
      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do

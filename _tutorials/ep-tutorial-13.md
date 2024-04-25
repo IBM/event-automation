@@ -147,11 +147,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 The next step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 
-1. Use the **Run** menu, and select **Include historical** to run your filter on the history of door badge events available on this Kafka topic.
+Use the **Run** menu, and select **Include historical** to run your filter on the history of door badge events available on this Kafka topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-16.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-16.png "running the flow")
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-16.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-16.png "running the flow")
 
-    Click **Stop** after you have reviewed the events.
+Click **Stop** after you have reviewed the events.
 
 ### Step 5 : Filter to events of interest
 
@@ -185,11 +185,11 @@ The next step is to identify cancellations where the customer changed their mind
 
 The final step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 
-1. Use the **Run** menu, and select **Include historical** to run your filter on the history of cancellation events available on this Kafka topic.
+Use the **Run** menu, and select **Include historical** to run your filter on the history of cancellation events available on this Kafka topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow")
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow")
 
-    Verify that all events are for cancellation events with a reason of `CHANGEDMIND`.
+Verify that all events are for cancellation events with a reason of `CHANGEDMIND`.
 
 
 ## Recap

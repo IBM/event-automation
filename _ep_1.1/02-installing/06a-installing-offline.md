@@ -101,7 +101,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventautomation-flink --version 1.1.5
+   kubectl ibm-pak get ibm-eventautomation-flink --version 1.1.6
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -121,7 +121,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventautomation-flink, version: 1.1.0 is complete
+   Download of CASE: ibm-eventautomation-flink, version: 1.1.6 is complete
    ```
 
 3. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
@@ -133,7 +133,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventprocessing --version 1.1.5
+   kubectl ibm-pak get ibm-eventprocessing --version 1.1.6
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -153,7 +153,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: 1.1.5 is complete
+   Download of CASE: ibm-eventprocessing, version: 1.1.6 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -176,13 +176,13 @@ Before mirroring your images, download the CASE by following these instructions:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── 1.1.5
+   │   │       └── 1.1.6
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-1.1.5-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-1.1.5-charts.csv
-   │   │           ├── ibm-eventprocessing-1.1.5-images.csv
-   │   │           ├── ibm-eventprocessing-1.1.5.tgz
+   │   │           ├── ibm-eventprocessing-1.1.6-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.1.6-charts.csv
+   │   │           ├── ibm-eventprocessing-1.1.6-images.csv
+   │   │           ├── ibm-eventprocessing-1.1.6.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -379,17 +379,33 @@ Ensure that all the images have been mirrored to the target registry by checking
 Apply the catalog sources for the operators to the cluster by running the following command:
 
 
-For {{site.data.reuse.ibm_flink_operator}}:
+- For {{site.data.reuse.ibm_flink_operator}}:
 
-```shell
-oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
-```
+  ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") If you are installing {{site.data.reuse.ep_name}} 1.1.5 or later:
 
-For {{site.data.reuse.ep_name}}:
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources.yaml
+  ```
 
-```shell
-oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
-```
+  If you are installing a version earlier than 1.1.5:
+
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources-linux-amd64.yaml
+  ```
+
+- For {{site.data.reuse.ep_name}}:
+
+  ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") If you are installing {{site.data.reuse.ep_name}} 1.1.5 or later:
+
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources.yaml
+  ```
+
+  If you are installing a version earlier than 1.1.5:
+
+  ```shell
+  oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources-linux-amd64.yaml
+  ```
 
 Where `<case-version>` is the version of the CASE file.
 

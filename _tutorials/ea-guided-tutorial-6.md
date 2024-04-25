@@ -30,31 +30,43 @@ If you haven't completed that tutorial yet, you should do it now.
 
 The next step is to provide the topic details to create an entry in the catalog.
 
-1. Go to the **{{site.data.reuse.eem_name}}** topics page.
+1. Go to the {{site.data.reuse.es_name}} page for the new `ORDERS.EMEA` topic created in [the previous tutorial](./tutorial-5).
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12.png "running the flow")
 
-   If you need a reminder of how to access {{site.data.reuse.eem_name}}, you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
+   If you need a reminder of how to access {{site.data.reuse.es_name}}, you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
 
-1. Click the **Add topic** button.
+1. Click **Share for reuse**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page")
 
-1. Reuse the existing connection details of the {{site.data.reuse.es_name}} cluster.
+1. Click **Next**.
+
+1. Paste your access token from {{site.data.reuse.eem_name}} cluster.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the EEM topics page")
 
-1. Choose the new `ORDERS.EMEA` topic created in [the previous tutorial](./tutorial-5).
+   You can [generate access tokens]({{ '/eem/security/api-tokens#creating-a-token' | relative_url }}) from the profile page in {{site.data.reuse.eem_name}}.
+
+1. Give the event source the name `EMEA orders`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of EEM"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of EEM")
 
-1. Click **Add topic**.
+   Verify the sample message selected.
+
+1. Click **Share for reuse**.
 
 ### Step 3 : Document the topic
 
 The next step is to document the topic to describe the events that your processing flow is producing.
 
-1. Click the new `ORDERS.EMEA` topic.
+1. Go to the {{site.data.reuse.eem_name}} **Topics** page.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page")
+
+   If you need a reminder of how to access {{site.data.reuse.eem_name}}, you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
+
+1. Click the new `EMEA orders` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "screenshot of EEM"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "screenshot of EEM")
 
@@ -68,14 +80,6 @@ The next step is to document the topic to describe the events that your processi
 
    Suggested description:
    > "Events from the EMEA region recorded by the order management system"
-
-1. Use the Copy button in {{site.data.reuse.es_name}} to get a recent example message from the topic.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-8.png "screenshot of Event Streams message viewer"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-8.png "screenshot of Event Streams message viewer")
-
-1. Add the sample message to the documentation for the topic.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-9.png "screenshot of catalog edit form"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-9.png "screenshot of catalog edit form")
 
 1. Click **Save**.
 
@@ -97,7 +101,7 @@ The final step is to publish the new topic in the catalog so that it can be disc
 
    As this is the only option, `ORDERS.EMEA` is a reasonable alias.
 
-1. As we are not adding any additional controls, click **Next**.
+1. As we are not adding any additional controls, click **Save**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor")
 
@@ -105,11 +109,9 @@ The final step is to publish the new topic in the catalog so that it can be disc
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iii.png "screenshot of topics editor")
 
-1. Choose the gateway group.
+1. Confirm the gateway group and click **Publish**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor")
-
-1. Click **Save**.
 
 1. Confirm that the topic is published by switching to the catalog.
 
@@ -129,4 +131,4 @@ The documentation you provided will enable other people in your enterprise to ma
 
 You have completed the guided tutorial. You used all three capabilities in {{ site.data.reuse.ea_long }}: creating topics in {{site.data.reuse.es_name}}, discovering and publishing topics in {{site.data.reuse.eem_name}}, and processing events in {{site.data.reuse.ep_name}}.
 
-If you would like more ideas of things to try in {{site.data.reuse.ep_name}}, we have more [Tutorials for Event Processing]({{ 'tutorials/event-processing-examples/example-03' | relative_url }}), which are there to show you other things that you can do, and inspire you with ideas for your own projects.
+If you would like more ideas of things to try in {{site.data.reuse.ep_name}}, we have more [Tutorials for Event Processing]({{ 'tutorials' | relative_url }}), which are there to show you other things that you can do, and inspire you with ideas for your own projects.

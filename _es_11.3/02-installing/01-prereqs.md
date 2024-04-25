@@ -16,8 +16,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.14/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.15/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - As an option, you can [install](#prereqs-fs) a supported version of the {{site.data.reuse.icpfs}} to use the components offered by {{site.data.reuse.fs}}.
 
 
@@ -105,7 +105,7 @@ For instructions about installing geo-replication, see [configuring](../configur
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.14/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.es_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -209,5 +209,7 @@ Configuring your access with Keycloak in {{site.data.reuse.es_name}} has the fol
 
 - You cannot access the dashboards that are included in the {{site.data.reuse.es_name}} UI for monitoring [Kafka health](../../administering/cluster-health/#viewing-the-preconfigured-dashboard) and [topic health](../../administering/topic-health/).
 - The {{site.data.reuse.es_name}} [CLI](../post-installation/#installing-the-event-streams-command-line-interface) is not supported.
+
+  **Note:** You can authenticate the CLI by using a different mechanism (for example, SCRAM) even if you have other authentication mechanisms configured for your {{site.data.reuse.es_name}} instance (for example, Keycloak).
 
 - Authentication with Keycloak is not supported for [REST endpoints](../configuring/#rest-services-access) (REST Producer, Admin API, Apicurio Registry).

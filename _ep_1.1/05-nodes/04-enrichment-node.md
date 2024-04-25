@@ -15,7 +15,7 @@ In situations where the data in the source table might not offer significant ins
 
 With the database node, you can retrieve data from external databases (PostgreSQL, MySQL, or Oracle) and integrate the data with the events within your workflow. 
 
-**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
+**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
 
 ### Adding a database node
 

@@ -24,8 +24,8 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Endpoint Management 11.1.1
-- Event Processing 1.1.1
+- Event Endpoint Management 11.3.1
+- Event Processing 1.1.5
 
 ## Instructions
 
@@ -39,7 +39,7 @@ For this scenario, you need a source of door badge events.
 
     If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
-1. Find the `DOOR.BADGEIN` topic.
+1. Find the `Door badge events` topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the EEM catalog")
 
@@ -67,11 +67,9 @@ For this scenario, you need a source of door badge events.
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
-1. Create an **Event source** node.
+1. Update the **Event source** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-2.png "adding an event source node")
-
-    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
     Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
@@ -95,8 +93,6 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Paste in the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
-    You need to accept the certificates for the Event Gateway to proceed.
-
     Click **Next**.
 
 1. Generate access credentials for accessing this stream of events from the {{site.data.reuse.eem_name}} page.
@@ -113,9 +109,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Confirm the name of the topic that you want to process events from.
+1. Select `JSON` as the message format used in this topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use")
+
+    **Did you know?** The catalog page for this topic tells you that events on this topic are JSON strings.
 
     Click **Next**.
 
@@ -127,15 +125,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the sample message enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
-1. In {{site.data.reuse.ep_name}}, click the **Upload a schema or sample message**.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste sample message into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-i.png "paste sample message into the event source")
-
-1. Paste the sample message into the event source config in the **JSON** tab.
+1. Paste the sample message into the **JSON sample message** box.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source")
 
-1. Change the type of the `badgetime` property to `Timestamp`.
+1. Confirm that the type of the `badgetime` property has automatically been detected as `Timestamp`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-11.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-11.png "creating an event source node")
 
@@ -197,7 +191,7 @@ The next step is to define transformations that will derive additional propertie
 
 1. Click **Next** and then **Configure** to finalize the transform.
 
-### Step 5 : Testing the flow
+### Step 5 : Test the flow
 
 The next step is to run your event processing flow and view the results.
 
@@ -243,7 +237,7 @@ The next step is to identify door badge events that occur at weekends. The addit
 
 1. Click **Configure** to finalize the filter.
 
-### Step 7 : Testing the flow
+### Step 7 : Test the flow
 
 The next step is to run your event processing flow again and view the results.
 
@@ -263,7 +257,7 @@ The next step is to add additional information about the building to these out-o
 
     Create a database node by dragging one onto the canvas. You can find this in the **Enrichment** section of the left panel.
 
-1. Give the database node a name and paste the JDBC URI for your database into the Database server box.
+1. Give the database node a name and paste the JDBC URI for your database into the **Database URL** field.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-22.png "defining event enrichment"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-22.png "defining event enrichment")
 
@@ -307,7 +301,7 @@ The next step is to add additional information about the building to these out-o
 
 1. Click **Configure** to finalize the enrichment.
 
-### Step 9 : Testing the flow
+### Step 9 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 

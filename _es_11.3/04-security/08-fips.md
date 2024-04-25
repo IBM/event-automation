@@ -10,7 +10,7 @@ Find out how to set up {{site.data.reuse.es_name}} to be FIPS-compliant by using
 
 ## Requirements
 
-To run a FIPS-compliant {{site.data.reuse.es_name}} deployment, ensure that you have a [FIPS-enabled OpenShift Container Platform cluster](https://docs.openshift.com/container-platform/4.14/installing/installing-fips.html#installing-fips-mode_installing-fips){:target="_blank"} available with {{site.data.reuse.es_name}} version of 11.3.0 or later installed.
+To run a FIPS-compliant {{site.data.reuse.es_name}} deployment, ensure that you have a [FIPS-enabled OpenShift Container Platform cluster](https://docs.openshift.com/container-platform/4.15/installing/installing-fips.html#installing-fips-mode_installing-fips){:target="_blank"} available with {{site.data.reuse.es_name}} version of 11.3.0 or later installed.
 
 ### Configuring {{site.data.reuse.es_name}} for FIPS
 

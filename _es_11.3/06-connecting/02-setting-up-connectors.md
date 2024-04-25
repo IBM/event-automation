@@ -248,6 +248,17 @@ spec:
     pod:
       imagePullSecrets:
         - name: default-dockercfg-abcde
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - s390x
+                      - ppc64le
     connectContainer:
       securityContext:
         allowPrivilegeEscalation: false

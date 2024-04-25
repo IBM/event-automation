@@ -30,16 +30,16 @@ You can use [Grafana](https://grafana.com/docs/grafana/latest/){:target="_blank"
 
 ## Kibana
 
-You can use the Kibana service that is provided by the {{site.data.reuse.openshift_short}} [cluster logging](https://docs.openshift.com/container-platform/4.14/logging/cluster-logging.html){:target="_blank"}, and use the example [Kibana dashboards](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"} to monitor for specific errors in the logs and set up alerts for when a number of errors occur over a period of time in your {{site.data.reuse.es_name}} instance.
+You can use the Kibana service that is provided by the {{site.data.reuse.openshift_short}} [cluster logging](https://docs.openshift.com/container-platform/4.15/logging/cluster-logging.html){:target="_blank"}, and use the example [Kibana dashboards](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"} to monitor for specific errors in the logs and set up alerts for when a number of errors occur over a period of time in your {{site.data.reuse.es_name}} instance.
 
 To install the {{site.data.reuse.es_name}} Kibana dashboards, follow these steps:
 
-1. Ensure you have [cluster logging](https://docs.openshift.com/container-platform/4.14/logging/cluster-logging-deploying.html){:target="_blank"} installed.
+1. Ensure you have [cluster logging](https://docs.openshift.com/container-platform/4.15/logging/cluster-logging-deploying.html){:target="_blank"} installed.
 2. Download the JSON file that includes the example Kibana dashboards for {{site.data.reuse.es_name}} from [GitHub](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"}.
 
 3. Navigate to the Kibana homepage on your cluster.
 
-   {{site.data.reuse.openshift_ui_login}} Then follow the instructions to navigate to [the cluster logging's Kibana homepage](https://docs.openshift.com/container-platform/4.14/logging/log_visualization/logging-kibana.html#cluster-logging-visualizer-kibana_logging-kibana){:target="_blank"}.
+   {{site.data.reuse.openshift_ui_login}} Then follow the instructions to navigate to [the cluster logging's Kibana homepage](https://docs.openshift.com/container-platform/4.15/logging/log_visualization/logging-kibana.html#cluster-logging-visualizer-kibana_logging-kibana){:target="_blank"}.
 4. Click **Management** in the navigation on the left.
 5. Click **Index patterns**.
 6. Click **Create index pattern**.

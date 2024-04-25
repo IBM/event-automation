@@ -163,4 +163,3 @@ To configure a transform node, complete the following steps:
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the transform node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "DiagIconram showing red checkbox."){:height="30px" width="15px"} appears.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
-

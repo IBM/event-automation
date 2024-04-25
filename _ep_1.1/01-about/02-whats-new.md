@@ -10,6 +10,27 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+
+### Support for Avro schema that uses a schema registry
+
+{{site.data.reuse.ep_name}} release 1.1.5 includes support for the Avro schema that uses a schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. In addition to message formats **JSON** and **Avro**, the event source node now supports a new message format **Avro (schema registry)**. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node/).
+
+### Support for Linux on IBM Z
+
+In addition to Linux 64-bit (x86_64) systems, {{site.data.reuse.ep_name}} 1.1.5 and later is also [supported]({{ 'support/matrix/#event-processing' | relative_url }}) on OpenShift deployments running on Linux on IBM Z systems (s390x).
+
+**Note:** You cannot install {{site.data.reuse.ep_name}} on other Kubernetes platforms except OpenShift when running on IBM Z systems.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.5 compared to 1.1.4 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.5 and {{site.data.reuse.ibm_flink_operator}} version 1.1.5 contain security and bug fixes.
+
+## Release 1.1.4
+
 ### Secure communication with Flink deployments
 
 {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} can now [communicate](../../installing/planning/#securing-communication-with-flink-deployments) with TLS enabled Flink deployments to enhance security.
@@ -80,7 +101,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Support for Oracle database
 
-{{site.data.reuse.ep_name}} release 1.1.1 introduces support for enriching your events from an Oracle database. You can now [connect](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink) to an Oracle database and integrate the Oracle data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
+{{site.data.reuse.ep_name}} release 1.1.1 introduces support for enriching your events from an Oracle database. You can now [connect](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) to an Oracle database and integrate the Oracle data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
 
 ### Documentation: Highlighting differences between versions
 
@@ -98,7 +119,7 @@ The {{site.data.reuse.ibm_flink_operator}} version 1.1.0 update includes Apache 
 
 ### Support for MySQL database
 
-{{site.data.reuse.ep_name}} release 1.1.0 introduces support for enriching your events from a MySQL database. You can now [connect](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink) to a MySQL database and integrate the MySQL data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
+{{site.data.reuse.ep_name}} release 1.1.0 introduces support for enriching your events from a MySQL database. You can now [connect](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) to a MySQL database and integrate the MySQL data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
 
 ### Reuse a time window in aggregate and top-n nodes
 

@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.2.5
-- Event Endpoint Management 11.1.1
-- Event Processing 1.1.1
+- Event Streams 11.3.1
+- Event Endpoint Management 11.1.5
+- Event Processing 1.1.5
 
 ## Instructions
 
@@ -46,11 +46,11 @@ A good place to discover sources of event streams to process is in the catalog, 
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `ORDERS` topic contains events about orders that are made.
+1. The `Orders` topic contains events about orders that are made.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
 
-1. The `CANCELS` topic contains events about orders that are cancelled.
+1. The `Cancellations` topic contains events about orders that are cancelled.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog")
 
@@ -109,7 +109,7 @@ The next step is find large cancelled orders, by joining our "large orders" stre
 
    **Tip**: Renaming properties to explain what they mean in your joined stream makes the output easier to use. For this join, instead of having two properties that are called "event_time", naming them "order time" and "cancel time" makes the meaning clearer.
 
-### Step 5 : Testing the flow
+### Step 5 : Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -247,7 +247,7 @@ The next step is to define the event destination for your flow.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-28.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-28.png "adding an event destination node")
 
-### Step 14 : Start the flow
+### Step 14 : Test the flow
 
 The final step is to run the flow and confirm that the notifications about suspicious orders are produced to the new topic.
 

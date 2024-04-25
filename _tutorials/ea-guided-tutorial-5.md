@@ -83,11 +83,9 @@ The next step is to define the event destination for your flow.
    In **Details > Node name**, name the destination as `output`.
 
 
-1. Put the Kafka listener address from {{site.data.reuse.es_name}} into the server address for the event destination node.
+1. Paste the internal Kafka listener address copied from {{site.data.reuse.es_name}} in [Step 2](#step-2--create-a-destination-kafka-topic) into the **Server** field.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-7.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-7.png "adding an event destination node")
-
-   You need to accept the certificates for the Kafka cluster to proceed.
 
 1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
 
@@ -101,7 +99,7 @@ The next step is to define the event destination for your flow.
 
 1. Click **Configure** to finalize the event destination.
 
-### Step 4 : Start the flow
+### Step 4 : Test the flow
 
 The final step is to run the flow and confirm that the EMEA orders are produced to the new topic.
 

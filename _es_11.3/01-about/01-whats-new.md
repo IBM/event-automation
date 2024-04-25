@@ -8,11 +8,41 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
+
+## Release 11.3.2
+
+### IBM Support to additional databases when using the JDBC sink connector
+
+In addition to the support for Oracle databases, IBM Support is now extended to DB2, Microsoft SQL Server, MySQL, and PostgreSQL databases when using the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).
+
+### Support for {{site.data.reuse.openshift}} 4.15
+
+{{site.data.reuse.es_name}} version 11.3.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.15.
+
+### Support for Kubernetes 1.29
+
+{{site.data.reuse.es_name}} version 11.3.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for Kubernetes platforms version 1.29 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Apicurio version updated to 2.5.10.Final
+
+{{site.data.reuse.es_name}} 11.3.2 includes support for Apicurio Registry 2.5.10.Final. Ensure all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.4.1 or later, then [migrate to the latest Apicurio](../../installing/upgrading/#migrate-to-latest-apicurio-registry).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.3.2 compared to 11.3.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.3.2 icon]({{ 'images' | relative_url }}/11.3.2.svg "In Event Streams 11.3.2 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.3.2 contains security and bug fixes.
+
+
 ## Release 11.3.1
 
 ### Support for MQ message descriptor in the IBM MQ sink connector v2
 
 The IBM MQ sink connector v2 now supports adding additional control information to your message data by using the MQ message descriptor (MQMD). For more information, see [enabling MQMD](../../connecting/mq/sink/#enabling-mqmd-in-ibm-mq-sink-connector-v2).
+
+**Note:** Support for MQMD is only available in the IBM MQ sink connector version 2.1.0 or later.
 
 ### IBM support for Oracle (Debezium) source connector
 

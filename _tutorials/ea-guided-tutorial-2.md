@@ -30,9 +30,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.0
-- Event Endpoint Management 11.1.1
-- Event Processing 1.1.1
+- Event Streams 11.3.1
+- Event Endpoint Management 11.1.5
+- Event Processing 1.1.5
 
 ## Instructions
 
@@ -52,11 +52,11 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 The next step is to bring the stream of events to process into the flow. We will reuse the topic connection information from an earlier tutorial.
 
-1. Create an **Event source** node.
+1. Update the **Event source** node.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2.png "adding an event source node")
 
-    Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Choose the `ORDERS` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
@@ -102,7 +102,7 @@ The next step is to define the transformation that will remove the customer pers
 
     Remove properties from events by clicking the remove property icon next to their name.
 
-### Step 4 : Testing the flow
+### Step 4 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 

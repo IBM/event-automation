@@ -18,5 +18,5 @@ categories:
 ---
 JDBC sink connector for copying data from Apache Kafka into a database.
 
-IBM supports connections to Oracle databases only.
+IBM supports connections to DB2, Microsoft SQL Server, MySQL, Oracle, and PostgreSQL databases.
 

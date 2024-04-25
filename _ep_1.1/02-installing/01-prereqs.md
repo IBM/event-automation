@@ -6,8 +6,6 @@ slug: prerequisites
 toc: true
 ---
 
-
-
 Ensure your environment meets the following prerequisites before installing {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
 ## Container environment
@@ -252,3 +250,20 @@ Verify that the `cert-manager` operator shows as `Succeeded` in the namespaces w
 If you are installing {{site.data.reuse.ep_name}} in an offline environment, follow the instructions in the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-installing-cert-offline){:target="_blank"} to mirror the necessary images, and install the Cert Manager from its CASE bundle.
 
 Verify that the `cert-manager` operator shows as `Succeeded` in the namespaces where you want to use {{site.data.reuse.ep_name}}.
+
+## Schema registry requirements
+
+![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") 
+
+You can define the event structure with an Avro schema that uses a schema registry.
+
+Before you configure the event source node with an Avro schema that uses a schema registry, the following requirements must be met:
+
+- Only the schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API is supported.
+- To securely connect the schema registry and {{site.data.reuse.ep_name}}, an SSL connection must be enabled. For more information, see [configuring](../configuring/#configuring-schema-registry-and-databases-with-ssl).
+- Ensure that you retrieve the URL to the REST endpoint of the schema registry. For example, to retrieve the URL from {{site.data.reuse.es_name}}, complete the following steps:
+
+
+   1. Log in to your {{site.data.reuse.es_name}} UI as an administrator from a supported web browser. For more information, see [how to determine the login URL]({{ 'es/getting-started/logging-in/' | relative_url }}) for your Event Streams UI.
+   1. In the {{site.data.reuse.es_name}} home page, click the **Connect to this cluster** tile to open the **Cluster connection** tile.
+   1. Copy the schema registry URL in the **Schema registry endpoint**. Use this URL when you configure the event source node.

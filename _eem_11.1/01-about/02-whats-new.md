@@ -10,6 +10,21 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.1.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Produce events
+
+{{site.data.reuse.eem_name}} version 11.1.5 introduces the ability for client applications to [write events](../key-concepts/#produce) to an [event endpoint](../key-concepts/#event-endpoint) through the {{site.data.reuse.egw}}. Kafka administrators can manage these connections with [schema enforcement](../../describe/option-controls/#schema-enforcement) and [approval controls](../../describe/option-controls/#approval-controls). 
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.1.5 compared to 11.1.4 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.1.5 contains security and bug fixes.
+
+
+## Release 11.1.4
+
 ### Updates to publish options
 
 {{site.data.reuse.eem_name}} 11.1.4 introduces a user interface update for publishing options. For more information, see [Creating an option](../../describe/managing-topics#create_option) and [Publishing options](../../describe/publishing-topics).

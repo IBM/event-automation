@@ -55,7 +55,7 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
     <dependency>
         <groupId>io.apicurio</groupId>
         <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
-        <version>2.5.10.Final</version>
+        <version>2.5.8.Final</version>
     </dependency>
     ```
 
@@ -465,11 +465,11 @@ To use the Apicurio Registry  `converter` library, add the following dependency 
 <dependency>
     <groupId>io.apicurio</groupId>
     <artifactId>apicurio-registry-utils-converter</artifactId>
-    <version>2.5.10.Final</version>
+    <version>2.5.8.Final</version>
 </dependency>
 ```
 
-Alternatively, if you are not building your connector, you can download the Apicurio converter artifacts from [Maven](https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.5.10.Final/apicurio-registry-distro-connect-converter-2.5.10.Final.tar.gz){:target="_blank"}.
+Alternatively, if you are not building your connector, you can download the Apicurio converter artifacts from [Maven](https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.5.8.Final/apicurio-registry-distro-connect-converter-2.5.8.Final.tar.gz){:target="_blank"}.
 
 After downloading, extract the `tar.gz` file and place the folder with all the JARs into a subdirectory within the folder where you are building your `KafkaConnect` image.
 

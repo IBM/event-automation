@@ -26,8 +26,6 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
       license.accept: 'true'
   ```
 
-- To run the SQL client, you must disable [TLS](../../installing/configuring/#configuring-tls-to-secure-communication-with-flink-deployments) in your `FlinkDeployment`.
-
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
   For more information, see [Exporting flows](../exporting-flows).
@@ -39,9 +37,6 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
     For security reasons, the values containing sensitive credentials are removed from the {{site.data.reuse.ep_name}} UI when exporting the SQL statements, so you must restore them.
 
     For more information about Flink SQL Kafka connectors, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/connectors/table/kafka/){:target="_blank"}.
-
-    **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backlash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"`
-
 
   - Connector properties values.
 

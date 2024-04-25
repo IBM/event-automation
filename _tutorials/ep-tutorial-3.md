@@ -24,9 +24,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.2.5
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -42,7 +42,7 @@ For this scenario, you need a source of order events. A good place to discover s
 
    If there are no topics in the catalog, you need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `Orders` topic contains events about orders that are made.
+1. The `ORDERS` topic contains events about orders that are made.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
 

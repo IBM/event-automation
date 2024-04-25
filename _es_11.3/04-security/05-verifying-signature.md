@@ -14,7 +14,7 @@ You can use the signature to verify that the images came from IBM when they are 
 
 - Ensure that the following command-line tools are installed on your computer. On Linux systems, these images can typically be installed by using the package manager.
 
-  - [The OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}
+  - [The OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}
   - [The IBM Catalog Management Plug-in for IBM Cloud Paks (ibm-pak)](https://github.com/IBM/ibm-pak-plugin/releases/latest){:target="_blank"}
   - [GNU Privacy Guard (GnuPG) version 2](https://gnupg.org/){:target="_blank"}
   - [Skopeo](https://github.com/containers/skopeo){:target="_blank"}
@@ -106,7 +106,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: 3.3.2 is complete
+   Download of CASE: ibm-eventstreams, version: 1.7.3 is complete
    ```
 
 4. Verify that the CASE archive and images `.csv` files have been generated for the {{site.data.reuse.es_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.es_name}} CASE.
@@ -119,13 +119,13 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── 3.3.2
+   │   │       └── 1.7.3
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-3.3.2-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-3.3.2-charts.csv
-   │   │           ├── ibm-eventstreams-3.3.2-images.csv
-   │   │           ├── ibm-eventstreams-3.3.2.tgz
+   │   │           ├── ibm-eventstreams-1.7.3-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-1.7.3-charts.csv
+   │   │           ├── ibm-eventstreams-1.7.3-images.csv
+   │   │           ├── ibm-eventstreams-1.7.3.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror

@@ -15,9 +15,9 @@ title: "IBM Event Automation"
 title_separator: "-"
 version: &name "IBM" # &name is a YAML anchor which can be *referenced later
 description: &description "IBM Event Automation provides features to collect, distribute, and process your stream of event data."
-url: "https://pages.github.ibm.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl: "/event-integration/event-automation-docs" # the subpath of your site, e.g. "/blog"
-repository: "event-integration/event-automation-docs"
+url: "https://ibm.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl: "/event-automation" # the subpath of your site, e.g. "/blog"
+repository: "event-automation"
 relative_permalinks: false
 teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)

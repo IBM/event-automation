@@ -25,9 +25,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -43,7 +43,7 @@ For this scenario, you are processing an existing stream of events. You will sta
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `Stock movement updates` topic contains the events used in this tutorial.
+1. The `STOCK.MOVEMENT` topic contains the events used in this tutorial.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the EEM catalog")
 
@@ -83,23 +83,19 @@ The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects
 
 1. Create a flow, and give it a name and description to explain that you will use it to deduplicate the events on the stock movements topic.
 
-1. Update the **Event source** node.
+1. Create an **Event source** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5.png "adding an event source node")
 
    Use the server address information and **Generate access credentials** button on the topic page in the catalog from [Step 1](#step-1--discover-the-source-topic-to-use) to configure the event source node.
 
-   When prompted for the message format, select **JSON**. Provide the sample message from the catalog page.
+   **Tip**: If you need a reminder about how to create an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
 
-   **Tip**: If you need a reminder about how to configure an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
-
-   **Tip**: You will need the access credentials that you create here again in [Step 4](#step-4--export-and-prepare-the-pre-processing-sql). Downloading the credentials from the catalog makes this easier.
+   **Tip**: You will need the access credentials that you create here again in [Step 4](#step-4--export-and-prepare-the-pre-processing-sql). Saving the credentials JSON from the catalog makes this easier.
 
 1. Create an **Event destination** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-6.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-6.png "adding an event destination node")
-
-   Create an event destination node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
 1. Configure the event destination node by using the internal server address from {{site.data.reuse.es_name}}.
 
@@ -185,7 +181,7 @@ The outline of your SQL is now ready. The next step is to prepare the deduplicat
 
    Modify `Stock movements` and `Unique stock movements` to match the names that you gave your event source and event destination nodes. You can find those names in the two `CREATE TABLE` commands in the SQL file.
 
-   **Tip**: You can learn more about [deduplication in the Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/sql/queries/deduplication/){:target="_blank"} if you would like to understand how this works.
+   **Tip**: You can learn more about [deduplication in the Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/sql/queries/deduplication/){:target="_blank"} if you would like to understand how this works.
 
 ### Step 6 : Modify the event destination
 
@@ -200,7 +196,7 @@ CREATE TABLE `Unique stock movements`
     `warehouse`                    STRING,
     `product`                      STRING,
     `quantity`                     BIGINT,
-    `updatetime`                   TIMESTAMP(9),
+    `updatetime`                   STRING,
     `event_time`                   TIMESTAMP(6)
 )
 ```
@@ -218,7 +214,7 @@ You need to make a few modifications to this definition to prepare it for use by
        `warehouse`                    STRING,
        `product`                      STRING,
        `quantity`                     BIGINT,
-       `updatetime`                   TIMESTAMP(9),
+       `updatetime`                   STRING,
        `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp'
    )
    ```
@@ -234,13 +230,13 @@ You need to make a few modifications to this definition to prepare it for use by
        `warehouse`                    STRING,
        `product`                      STRING,
        `quantity`                     BIGINT,
-       `updatetime`                   TIMESTAMP(9),
+       `updatetime`                   STRING,
        `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp',
        PRIMARY KEY (`movementid`) NOT ENFORCED
    )
    ```
 
-1. Modify the connector name to use `upsert-kafka` (instead of append) mode.
+1. Modify the connector name to use `upsert` (instead of append) mode.
 
    ```sql
        PRIMARY KEY (`movementid`) NOT ENFORCED
@@ -269,7 +265,9 @@ The final step is to submit your finished deduplication job to Flink.
 
    ```sh
    POD_NAME=$(oc get pods \
-       -l component=jobmanager,app=my-flink,app.kubernetes.io/instance=ibm-eventautomation-flink \
+       -l component=jobmanager \
+       -l app=my-flink \
+       -l app.kubernetes.io/instance=ibm-eventautomation-flink \
        -n event-automation \
        -o custom-columns=Name:.metadata.name \
        --no-headers=true)

@@ -6,9 +6,7 @@ slug: managing-topics
 toc: true
 ---
 
-After [adding a Kafka topic](../adding-topics) as an event source to {{site.data.reuse.eem_name}}, you can use the **Topics detail** page to subsequently edit the details you provide about the topic, socialize it, and find out more about its usage.
-
-**Note:** The type of an event source cannot be edited. This can only be set when [adding the topic as an event source](../adding-topics).
+After [adding a Kafka topic](../adding-topics) as an event source to {{site.data.reuse.eem_name}}, you can use the **Topics detail** page to subsequently edit the details you provide about the topic, socialize it, and find out more about its usage. 
 
 ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") In {{site.data.reuse.eem_name}} 11.1.1 and later, you can manage an option's [lifecycle state](#option-lifecycle-states) and remove an option from the catalog from this page.
 
@@ -144,6 +142,7 @@ To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow thes
 7. Click **Delete schema** to delete the existing schema.
 8. To upload the modified schema, click **Add an Avro schema** and select the `.avsc` or `.avro` file that you modified and saved earlier.
   
+<!-- Delete the following section - "Topic lifecycle state" section when 11.2.0 comes along -->
 
 ## Topic lifecycle state
 
@@ -175,7 +174,7 @@ A topic can be [edited](#editing-a-topic) in any lifecycle state. However, the s
 
 ## Deleting a topic
 
-A topic can be deleted from {{site.data.reuse.eem_name}} only if it has no **Published** or **Archived** options. Deleting a topic removes all details about your topic.
+A topic can be deleted from {{site.data.reuse.eem_name}} only if it has **Unpublished** options. Deleting a topic removes all details about your topic.
 
 To delete a topic from {{site.data.reuse.eem_name}}, complete the following steps: 
 

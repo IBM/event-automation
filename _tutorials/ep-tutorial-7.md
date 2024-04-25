@@ -22,9 +22,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.3.0
+- Event Endpoint Management 11.1.1
+- Event Processing 1.1.1
 
 ## Instructions
 
@@ -40,7 +40,7 @@ For this scenario, you need to find information about the source of door badge e
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
-1. The `Door badge events` topic contains events about door badge events.
+1. The `DOOR.BADGEIN` topic contains events about door badge events.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the EEM catalog")
 
@@ -50,7 +50,7 @@ For this scenario, you need to find information about the source of door badge e
    >
    > This delay can be inconsistent, so messages on the topic are often out of sequence as a result.
 
-1. If the topic owner hadn't provided this warning, you would have needed to observe messages on the Kafka topic itself to identify this. Confirm this by observing messages on the `DOOR.BADGEIN` topic in the {{site.data.reuse.es_name}} topic viewer.
+1. If the topic owner hadn't provided this warning, you would have needed to observe messages on the Kafka topic itself to identify this. Confirm this by observing messages on the topic in the {{site.data.reuse.es_name}} topic viewer.
 
    If you need a reminder about how to access the **{{site.data.reuse.es_name}}** catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -72,7 +72,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. Create a flow, and give it a name and description to explain that you will use it to track hourly badge events.
 
-1. Update the **Event source** node.
+1. Create an **Event source** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-4.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-4.png "creating an event source node")
 
@@ -84,11 +84,13 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-6.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-6.png "creating an event source node")
 
+   You need to accept the certificates to continue.
+
 1. Fill in credentials by using a username and password created in {{site.data.reuse.eem_name}} using the **Generate access credentials** button.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node")
 
-1. Select `JSON` as the message format used in this topic.
+1. Choose the `DOOR.BADGEIN` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node")
 
@@ -100,7 +102,7 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node")
 
-1. Verify that the type of the `badgetime` property has been automatically detected as `Timestamp`.
+1. Change the type of the `badgetime` property to `Timestamp`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-11.png "creating an event source node")
 
@@ -164,7 +166,7 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow")
 
-### Step 5 : Test the flow
+### Step 5 : Run the flow
 
 The final step is to run your completed flow.
 

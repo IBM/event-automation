@@ -85,13 +85,13 @@ Complete the following steps to download the CASE archive:
 3. Identify the available {{site.data.reuse.eem_name}} CASE versions:
 
    ```shell
-   oc ibm-pak list --case-name ibm-eventendpointmanagement
+   oc ibm-pak list ibm-eventendpointmanagement
    ```
 
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
 
    ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version 11.1.6
+   oc ibm-pak get ibm-eventendpointmanagement --version 11.1.5
    ```
 
    By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
@@ -111,7 +111,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.1.6 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: 11.1.5 is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated for {{site.data.reuse.eem_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.eem_name}} CASE.
@@ -124,14 +124,14 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.1.6
+   │   │       └── 11.1.5
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.1.6.tgz
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-images.csv
+   │   │           ├── ibm-eventendpointmanagement-11.1.5.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror
@@ -153,21 +153,10 @@ Obtain the required files as follows:
 
     To verify the image signatures for a {{site.data.reuse.eem_name}}-certified container, use the file that is named in the format `ibm-eventendpointmanagement-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.eem_name}} CASE version.
 
-2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. Run the following command to list images by tag:
+2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
-   - ![Event Endpoint Management 11.1.3 icon]({{ 'images' | relative_url }}/11.1.3.svg "In Event Endpoint Management 11.1.3 and later") In {{site.data.reuse.eem_name}} 11.1.3 and later:
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.1.6/ibm-eventendpointmanagement-11.1.6-images.csv \
-   | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-   if [[ "$mtype" == "LIST" ]]; then
-       echo "$registry/$image_name:$tag"
-   fi
-   done
-   ```
-
-   - In {{site.data.reuse.eem_name}} 11.1.2 and earlier:
-   ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.1.2/ibm-eventendpointmanagement-11.1.2-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.1.5/ibm-eventendpointmanagement-11.1.5-images.csv \
    | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
    if [[ "$mtype" == "IMAGE" ]]; then
        echo "$registry/$image_name:$tag"

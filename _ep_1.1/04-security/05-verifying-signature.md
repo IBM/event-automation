@@ -87,13 +87,13 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    For {{site.data.reuse.ep_name}}:
 
    ```shell
-   oc ibm-pak list --case-name ibm-eventprocessing
+   oc ibm-pak list ibm-eventprocessing
    ```
 
    For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
-   oc ibm-pak list --case-name ibm-eventautomation-flink
+   oc ibm-pak list ibm-eventautomation-flink
    ```
 
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
@@ -103,7 +103,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    For {{site.data.reuse.ep_name}}:
 
    ```shell
-   oc ibm-pak get ibm-eventprocessing --version 1.1.6
+   oc ibm-pak get ibm-eventprocessing --version 1.1.5
    ```
 
    ```shell
@@ -121,13 +121,13 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: 1.1.6 is complete
+   Download of CASE: ibm-eventprocessing, version: 1.1.5 is complete
    ```
 
    For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
-   oc ibm-pak get ibm-eventautomation-flink --version 1.1.6
+   oc ibm-pak get ibm-eventautomation-flink --version 1.1.5
    ```
 
    ```shell
@@ -145,7 +145,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventautomation-flink, version: 1.1.6 is complete
+   Download of CASE: ibm-eventautomation-flink, version: 1.1.5 is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated. For example, ensure you have the following files generated for the CASE.
@@ -160,14 +160,14 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── 1.1.6
+   │   │       └── 1.1.5
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventprocessing-1.1.6-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-1.1.6-charts.csv
-   │   │           ├── ibm-eventprocessing-1.1.6-images.csv
-   │   │           ├── ibm-eventprocessing-1.1.6.tgz
+   │   │           ├── ibm-eventprocessing-1.1.5-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.1.5-charts.csv
+   │   │           ├── ibm-eventprocessing-1.1.5-images.csv
+   │   │           ├── ibm-eventprocessing-1.1.5.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -186,14 +186,14 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    ├── data
    │   ├── cases
    │   │   ├── ibm-eventautomation-flink
-   │   │   │   └── 1.1.6
+   │   │   │   └── 1.1.5
    │   │   │       ├── caseDependencyMapping.csv
    │   │   │       ├── charts
    │   │   │       ├── component-set-config.yaml
-   │   │   │       ├── ibm-eventautomation-flink-1.1.6-airgap-metadata.yaml
-   │   │   │       ├── ibm-eventautomation-flink-1.1.6-charts.csv
-   │   │   │       ├── ibm-eventautomation-flink-1.1.6-images.csv
-   │   │   │       ├── ibm-eventautomation-flink-1.1.6.tgz
+   │   │   │       ├── ibm-eventautomation-flink-1.1.5-airgap-metadata.yaml
+   │   │   │       ├── ibm-eventautomation-flink-1.1.5-charts.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.1.5-images.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.1.5.tgz
    │   │   │       └── resourceIndexes
    │   │   │           └── ibm-eventautomation-flink-resourcesIndex.yaml
    │   └── mirror
@@ -216,23 +216,12 @@ Obtain the required files as follows:
 
     To verify the image signatures for a {{site.data.reuse.ibm_flink_operator}}-certified container, use the file that is named in the format `ibm-eventautomation-flink-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.ibm_flink_operator}} CASE version.
 
-2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. Run the following commands to list images by tag:
+2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. To list images by tag:
 
    For {{site.data.reuse.ep_name}}:
 
-      - ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later") In {{site.data.reuse.ep_name}} 1.1.5 and later:
    ```shell
    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/1.1.5/ibm-eventprocessing-1.1.5-images.csv \
-     | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-       if [[ "$mtype" == "LIST" ]]; then
-          echo "$registry/$image_name:$tag"
-       fi
-     done
-   ```
-
-      - In {{site.data.reuse.ep_name}} 1.1.4 and earlier:
-   ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/1.1.6/ibm-eventprocessing-1.1.6-images.csv \
      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
        if [[ "$mtype" == "IMAGE" ]]; then
           echo "$registry/$image_name:$tag"
@@ -242,19 +231,8 @@ Obtain the required files as follows:
 
    For {{site.data.reuse.ibm_flink_operator}}:
 
-      - ![IBM Operator for Apache Flink 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg “In IBM Operator for Apache Flink 1.1.5 and later”) In {{site.data.reuse.ibm_flink_operator}} 1.1.5 and later:
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.1.6/ibm-eventautomation-flink-1.1.6-images.csv \
-     | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
-       if [[ "$mtype" == "LIST" ]]; then
-         echo "$registry/$image_name:$tag"
-       fi
-     done
-   ```
-
-     - In {{site.data.reuse.ibm_flink_operator}} 1.1.4 and earlier:
-   ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.1.4/ibm-eventautomation-flink-1.1.4-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.1.5/ibm-eventautomation-flink-1.1.5-images.csv \
      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
        if [[ "$mtype" == "IMAGE" ]]; then
          echo "$registry/$image_name:$tag"

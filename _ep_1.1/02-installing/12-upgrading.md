@@ -20,8 +20,6 @@ You can upgrade {{site.data.reuse.ep_name}} to the [latest 1.1.x version]({{ 'su
 
 - Ensure you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- If you are upgrading from {{site.data.reuse.ep_name}} version 1.1.2 or earlier, fix any flows that are in an [**Error** state](../../getting-started/canvas/#flow-statuses), or delete any such flows if no longer required.
-
 - To upgrade without data loss, your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
 
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.

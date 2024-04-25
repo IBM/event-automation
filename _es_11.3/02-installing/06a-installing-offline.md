@@ -30,8 +30,8 @@ Ensure you have the following set up for your environment:
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.15/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.14/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -90,7 +90,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: 3.3.2 is complete
+   Download of CASE: ibm-eventstreams, version: 1.7.3 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -111,13 +111,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── 3.3.2
+   │   │       └── 1.7.3
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-3.3.2-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-3.3.2-charts.csv
-   │   │           ├── ibm-eventstreams-3.3.2-images.csv
-   │   │           ├── ibm-eventstreams-3.3.2.tgz
+   │   │           ├── ibm-eventstreams-1.7.3-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-1.7.3-charts.csv
+   │   │           ├── ibm-eventstreams-1.7.3-images.csv
+   │   │           ├── ibm-eventstreams-1.7.3.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror
@@ -241,7 +241,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 <!--Only offline environment -->
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.15/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
+2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command:
 
    ```shell

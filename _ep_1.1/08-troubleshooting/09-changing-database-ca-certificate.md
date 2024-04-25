@@ -27,6 +27,6 @@ The certificates that are used to validate the identity of the database server m
 
 To resolve the error, the system administrator must complete the following steps:
 
-1. [Update the secret](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) through {{site.data.reuse.ep_name}} again.
+1. [Update the secret](../../installing/configuring/#configuring-databases-with-ssl-in-event-processing-and-flink) through {{site.data.reuse.ep_name}} again.
 2. Delete the {{site.data.reuse.ep_name}} pod.
 3. Wait for the pods to become ready.

@@ -113,7 +113,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.1.6 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: 11.1.5 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -134,14 +134,14 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.1.6
+   │   │       └── 11.1.5
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.1.6-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.1.6.tgz
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-11.1.5-images.csv
+   │   │           ├── ibm-eventendpointmanagement-11.1.5.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror

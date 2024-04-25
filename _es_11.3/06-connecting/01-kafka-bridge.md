@@ -64,18 +64,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: true
         runAsNonRoot: true
-    pod:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/arch
-                    operator: In
-                    values:
-                      - amd64
-                      - s390x
-                      - ppc64le
 ```
 
 - The following example includes an {{site.data.reuse.es_name}} cluster that requires SCRAM-SHA-512 authentication for user access, and the user `<username>` was [created](../../security/managing-access/#managing-access-to-kafka-resources) for Kafka Bridge earlier. In addition, it includes TLS authentication for the connection between the {{site.data.reuse.es_name}} instance (called `development`) and the Kafka Bridge.
@@ -114,18 +102,6 @@ spec:
         privileged: false
         readOnlyRootFilesystem: true
         runAsNonRoot: true
-    pod:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/arch
-                    operator: In
-                    values:
-                      - amd64
-                      - s390x
-                      - ppc64le
 ```
 
 

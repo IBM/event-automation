@@ -128,8 +128,8 @@ latest_eemdocs:
         url: /describe/managing-user-access-to-topics/
       - title: "Managing gateways"
         url: /describe/managing-gateways/
-      
-  - title: Subscribe
+
+  - title: Subscribe and consume
     children:
       - title: "Discovering topics"
         url: /consume-subscribe/discovering-topics/
@@ -137,9 +137,10 @@ latest_eemdocs:
         url: /consume-subscribe/subscribing-to-topics/
       - title: "Managing subscriptions"
         url: /consume-subscribe/managing-subscriptions/
-      - title: "Configuring a client application to connect to an event endpoint"
+      - title: "Setting your application to consume from a topic"
         url: /consume-subscribe/setting-your-application-to-consume/
- 
+      - title: "Subscription approvals"
+        url: /consume-subscribe/approval-requests/
   - title: "Integrating with IBM API Connect"
     children:
       - title: "Integration overview"
@@ -148,13 +149,10 @@ latest_eemdocs:
         url: /integrating-with-apic/configure-eem-for-apic/
       - title: "Export an AsyncAPI for use in API Connect"
         url: /integrating-with-apic/export-asyncapi/
- 
   - title: Reference
     children:
       - title: "API reference for the CRDs"
         url: /reference/api-reference/
-      - title: Event Endpoint Management Admin API
-        url: /../eem-api/   
   - title: Troubleshooting
     children:
       - title: "Troubleshooting overview"
@@ -402,8 +400,6 @@ latest_epdocs:
     children:
       - title: "API reference for the CRDs"
         url: /reference/api-reference/
-      - title: "Supported Flink SQL functions"
-        url: /reference/supported-functions/
 
   - title: Troubleshooting
     children:
@@ -526,8 +522,6 @@ latest_epdocs:
     children:
       - title: "API reference for the CRDs"
         url: /reference/api-reference/
-      - title: "Supported Flink SQL functions"
-        url: /reference/supported-functions/
 
   - title: Troubleshooting
     children:
@@ -732,10 +726,6 @@ latestdocs:
         url: /reference/api-reference-es/
       - title: "API reference for the geo-replicator CRDs"
         url: /reference/api-reference-esgr/
-      - title: REST Producer API
-        url: /../api/ 
-      - title: Schema registry API
-        url: /../schema-api/ 
   - title: Troubleshooting
     children:
       - title: "Troubleshooting overview"

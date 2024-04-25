@@ -111,198 +111,165 @@ You can use the search pane to search for a particular topic.
 1. As you start typing the topic name in the search pane, you get a filtered list of matching topics.
 2. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic you want.
 
-3. ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, select the expected message format:
-
-
-  **Avro:** The topic contains Apache Avro binary-encoded messages. An Avro schema is required to decode incoming messages and define the structure of the source event. 
-
-  **JSON:** The topic contains JSON formatted messages. A sample JSON message is required to define the structure of the source event.
-
-  ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry):**
-  The topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry. When connected to the schema registry, the source node retrieves the schema from the registry to decode the binary message. The information about the schema registry and the Avro schema is [required](../../installing/prerequisites/#schema-registry-requirements) to define the structure of the source event. 
-
-
-After selecting the message format, click **Next**.
-
+After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, click the **Next** button at the bottom right of the page.
 
 #### Define event structure
 
-To define the [event](../../about/key-concepts#event) structure, you must define the structure of messages consumed from the Kafka topic. Depending on the expected data encoding type of incoming Kafka messages:
+To define the [event](../../about/key-concepts#event) structure, you must define the structure of messages consumed from the Kafka topic:
 
-- In versions earlier than 1.1.1:
-  - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
-  - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
+1. Select **Upload a schema or sample message**.
+2. Select how you want to define the event structure:
+   
+   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:** 
+     - If the topic contains Apache Avro binary-encoded events, the event structure must be provided as an Avro schema. The schema must describe the following structure: type **record** with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+   
+     - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
 
-- ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") **Avro:**
-  {: #event-source-avro}
+       For example, the following schema sets the `optionalComments` as an optional field:
+
+       ```json
+       {
+         "name": "Order",
+         "type": "record",
+         "fields": [
+           { "name": "orderID", "type": "int" },
+           { "name": "optionalComments", "type": ["null", "string"] }
+         ]
+       }
+       ```
+     - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The fields also support the `record` type to describe an object containing a set of primitive or other objects as fields, with support for multiple levels of nesting.
   
-  - If the topic contains Apache Avro binary-encoded messages, the event structure must be provided as an Avro schema. The schema must describe the `record` type with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+       For example, the following schema describes an order containing a product and data related to that product, including optional fields with logicalType:  
 
-  - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
-
-    For example, the following schema sets the `optionalComments` as an optional field:
-
-    ```json
-    {
-      "name": "Order",
-      "type": "record",
-      "fields": [
-        { "name": "orderID", "type": "int" },
-        { "name": "optionalComments", "type": ["null", "string"] }
-      ]
-    }
-  ```
-
-  - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The fields also support the `record` type to describe an object containing a set of primitive or other objects as fields, with support for multiple levels of nesting.
-
-    For example, the following schema describes an order containing a product and data related to that product, including optional fields with logicalType:  
-
-    ```json
-    {
-      "type": "record",
-      "name": "Order",
-      "fields": [
-        { "name": "orderID", "type": "long" },
-        { "name": "orderTime", "type": { "type": "long", "logicalType": "timestamp-millis" } },
-        {
-          "name": "product",
-          "type": {
-          "type": "record",
-          "name": "product",
-          "fields": [
-            { "name": "id", "type": "long" },
-            { "name": "price", "type": "double" },
-            { "name": "quantity", "type": "long" },
-            { "name": "optionalComment", "type": ["null", "string"] },
-            { "name": "optionalTimestamp", "type": ["null", { "type": "long", "logicalType": "timestamp-millis" }] }
-          ]
-        }
-      }
-      ]
-    }
-    ```
-
-  - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The `record` type also supports primitive arrays, including arrays of `strings`, `numbers`, and `booleans`. However, arrays of fields with `logicalType` are not supported. 
-
-      **Note:** An array itself or an element within an array can be null.
-
-    For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.
-
-    ```json
-      {
-        "name": "Order",
-        "type": "record",
-        "fields": [
-          {
-            "name": "orderId",
-            "type": "long"
-          },
-          {
-            "name": "products",
-            "type": {
-              "type": "array",
-              "items": [
-                "null",
-                "string"
-              ]
+       ```json
+       {
+         "type": "record",
+         "name": "Order",
+         "fields": [
+           { "name": "orderID", "type": "long" },
+           { "name": "orderTime", "type": { "type": "long", "logicalType": "timestamp-millis" } },
+           {
+             "name": "product",
+             "type": {
+             "type": "record",
+             "name": "product",
+             "fields": [
+               { "name": "id", "type": "long" },
+               { "name": "price", "type": "double" },
+               { "name": "quantity", "type": "long" },
+               { "name": "optionalComment", "type": ["null", "string"] },
+               { "name": "optionalTimestamp", "type": ["null", { "type": "long", "logicalType": "timestamp-millis" }] }
+             ]
             }
-          },
+          }
+         ]
+       }
+       ```
+      - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The `record` type also supports primitive arrays, including arrays of `strings`, `numbers`, and `booleans`. However, arrays of fields with `logicalType` are not supported. 
+
+         **Note:** An array itself or an element within an array can be null.
+
+        For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.
+
+        ```json
           {
-            "name": "address",
-            "type": {
-              "type": "record",
-              "namespace": "Record",
-              "name": "address",
-              "fields": [
-                {
-                  "name": "shippingAddress",
-                  "type": {
-                    "type": "record",
-                    "namespace": "Record.address",
-                    "name": "shippingAddress",
-                    "fields": [
-                      {
-                        "name": "line1",
-                        "type": [
-                          "null",
-                          "string"
-                        ]
-                      },
-                      {
-                        "name": "contact_nos",
-                        "type": [
-                          "null",
+            "name": "Order",
+            "type": "record",
+            "fields": [
+              {
+                "name": "orderId",
+                "type": "long"
+              },
+              {
+                "name": "products",
+                "type": {
+                  "type": "array",
+                  "items": [
+                    "null",
+                    "string"
+                  ]
+                }
+              },
+              {
+                "name": "address",
+                "type": {
+                  "type": "record",
+                  "namespace": "Record",
+                  "name": "address",
+                  "fields": [
+                    {
+                      "name": "shippingAddress",
+                      "type": {
+                        "type": "record",
+                        "namespace": "Record.address",
+                        "name": "shippingAddress",
+                        "fields": [
                           {
-                            "type": "array",
-                            "items": "long"
+                            "name": "line1",
+                            "type": [
+                              "null",
+                              "string"
+                            ]
+                          },
+                          {
+                            "name": "contact_nos",
+                            "type": [
+                              "null",
+                              {
+                                "type": "array",
+                                "items": "long"
+                              }
+                            ]
                           }
                         ]
                       }
-                    ]
-                  }
+                    }
+                  ]
                 }
-              ]
-            }
+              }
+            ]
           }
-        ]
-      }
-    ``` 
-- **JSON:** 
-  - If the topic contains JSON formatted messages, the event structure must be provided as a sample JSON message. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.
-  - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The `object` JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.
-
-    For example, the following sample message is supported:
-
-    ```json
-    {
-    "orderId": 123456789,
-    "orderTime": 1708363158092,
-    "product": {
-          "id": 789456123,
-          "price": 99.99,
-          "quantity": 99,
-          "optionalComment": "a comment"
-      }
-    }  
-    ``` 
-  - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The JSON data type supports arrays of primitive types such as `strings`, `numbers`, and `booleans`. However, arrays of `timestamps` are not supported. 
-
-    Arrays can be at any nested level and should only contain elements of the same type.
-
-    For example:
+        ``` 
+   - **JSON:** 
+     - If the topic contains JSON events, the event structure must be provided as a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.
+     - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The `object` JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.
   
-    ```json
-    {
-      "orderId": 253,
-      "products": [ "ProductA", "ProductB", "ProductC" ],
-      "address": {
-          "postal_code": 91001,
-          "contact_nos": [ 99033, 92236 ]
+       For example, the following sample message is supported:
+
+       ```json
+       {
+        "orderId": 123456789,
+        "orderTime": 1708363158092,
+        "product": {
+             "id": 789456123,
+             "price": 99.99,
+             "quantity": 99,
+             "optionalComment": "a comment"
+         }
+       }  
+       ``` 
+     - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The JSON data type supports arrays of primitive types such as `strings`, `numbers`, and `booleans`. However, arrays of `timestamps` are not supported. 
+
+        Arrays can be at any nested level and should only contain elements of the same type.
+        
+        For example:
+      
+        ```json
+        {
+          "orderId": 253,
+          "products": [ "ProductA", "ProductB", "ProductC" ],
+          "address": {
+              "postal_code": 91001,
+              "contact_nos": [ 99033, 92236 ]
+            }
         }
-    }
-    ``` 
-- ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry)**:
+        ``` 
+        
+   In versions earlier than 1.1.1:
+    - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
+    - **Sample message** to derive the structure from a sample JSON event. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`.
 
-  This format supports the Avro schema from a schema registry such as {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. If the topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry, enter the following information to connect to your schema registry and define the structure of the source event:
-  
-  1. Before you begin, ensure that the [prerequisites](../../installing/prerequisites#schema-registry-requirements) to connect to a schema registry are met.
-  1. In the **Schema registry URL** field, enter the [URL](../../installing/prerequisites/#schema-registry-requirements) to the REST endpoint of the schema registry.
-
-      **Important:** Ensure you append the Apicurio schema registry REST endpoint URL with `/apis/ccompat/v6` as a suffix. For example, if you are using {{site.data.reuse.es_name}}, the valid schema registry URL is `https://<schema_registry_endpoint>/apis/ccompat/v6`
-
-  1. In the **Authentication method** field, select **No authentication** or **Basic authentication**, which requires a username and password.
-  1. In the **Avro schema** field, provide the Avro schema that is used to encode topic messages to define the structure of the source event. For more information about Avro schemas, see the [previous section](#event-source-avro).
-
-
-![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After you provide required information to define the event structure, click **Next** to go to the **Customize event structure** pane.
-
-In versions earlier than 1.1.5, after you provide a valid schema or sample message, click **Done**.
-
-
-
-#### ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") Customize event structure
-
-**Note:** In 1.1.5 and later, the following configurations are moved to the **Customize event structure** pane. If you are running a version earlier than 1.1.5, the following sections are covered as part of the earlier **Define event structure** pane.
+1. After you provide a valid schema or sample message, click **Done**.
 
 ##### Event properties
 
@@ -427,3 +394,5 @@ appears on the event destination node if the event destination node is configure
 If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
+
+

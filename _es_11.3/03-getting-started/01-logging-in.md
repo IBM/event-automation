@@ -79,7 +79,7 @@ You can retrieve the URL for accessing the {{site.data.reuse.es_name}} CLI:
 - By using the {{site.data.reuse.openshift_short}} web console.
 - By using the Kubernetes command-line tool (`kubectl`).
 
-**Note:** Authentication through Keycloak is not supported in the {{site.data.reuse.es_name}} CLI. You can authenticate the {{site.data.reuse.es_name}} CLI with the SCRAM authentication and then proceed to use an {{site.data.reuse.es_name}} instance that is configured with Keycloak.
+**Note:** The {{site.data.reuse.es_name}} CLI is not available when configuring {{site.data.reuse.es_name}} with Keycloak.
 
 ### Using the {{site.data.reuse.openshift_short}} web console
 

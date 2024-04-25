@@ -26,9 +26,9 @@ The example App Connect flow in this tutorial sends notifications to [Slack](htt
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.2.1
+- Event Endpoint Management 11.0.1
+- Event Processing 1.0.0
 - App Connect 11.2.1
 
 ## Instructions
@@ -45,7 +45,7 @@ If you haven't completed that tutorial yet, you should do it now.
 
    If the flow is not running, start it now.
 
-1. Find the EMEA orders topic in the {{site.data.reuse.eem_name}} catalog that you added in the [Share events for discovery by others](../guided/tutorial-6) tutorial.
+1. Find the topic in the {{site.data.reuse.eem_name}} catalog that you added in the [Share events for discovery by others](../guided/tutorial-6) tutorial.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-1.png "screenshot of the EEM catalog")
 
@@ -164,7 +164,7 @@ The next step is to complete the App Connect flow by adding a node to send notif
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of App Connect")
 
 
-### Step 5 : Test the flow
+### Step 5 : Run the flow
 
 The flow is now ready to run. The final step is to start it.
 

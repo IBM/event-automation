@@ -11,7 +11,7 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
 ## Release 11.3.2
 
-### IBM Support to additional databases when using the JDBC sink connector
+### IBM Support for additional databases when using the JDBC sink connector
 
 In addition to the support for Oracle databases, IBM Support is now extended to DB2, Microsoft SQL Server, MySQL, and PostgreSQL databases when using the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).
 

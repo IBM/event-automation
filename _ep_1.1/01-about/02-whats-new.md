@@ -11,9 +11,9 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 ## Release {{site.data.reuse.ep_current_version}}
 
 
-### Support for Avro schema that uses a schema registry
+### Support for Avro schemas that uses a schema registry
 
-{{site.data.reuse.ep_name}} release 1.1.5 includes support for the Avro schema that uses a schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. In addition to message formats **JSON** and **Avro**, the event source node now supports a new message format **Avro (schema registry)**. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node/).
+{{site.data.reuse.ep_name}} release 1.1.5 includes support for Avro schemas that uses a schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. In addition to message formats **JSON** and **Avro**, the event source node now supports a new message format **Avro (schema registry)**. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node) and the associated [tutorial]({{ 'tutorials' | relative_url }}/event-processing-examples/example-13) about handling formats that use a schema registry.
 
 ### Support for Linux on IBM Z
 

@@ -646,22 +646,27 @@ spec:
 
 
 
-## Configuring databases with SSL in {{site.data.reuse.ep_name}} and Flink
+## Configuring schema registry and databases with SSL
 
 PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
 
-If a database is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
+![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") Schema registry such as Apicurio registry from {{site.data.reuse.es_name}} can also be configured with SSL in {{site.data.reuse.ep_name}} and Flink.
 
-To enable SSL connections to databases from {{site.data.reuse.ep_name}} and Flink:
 
-1. Add the CA certificate used to issue the certificate presented by a PostgreSQL, MySQL, or an Oracle database to a Java truststore.
+If a database or a schema registry is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
+
+To enable SSL connections to a schema registry and databases from {{site.data.reuse.ep_name}} and Flink, complete the following steps:
+
+1. Add the CA certificate used to issue the certificate presented by a schema registry or an Oracle, MySQL, or PostgreSQL database to a Java truststore.
 2. Create a secret with the truststore.
 3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
 
 
 ### Add the CA certificate to the truststore
 
-1. Obtain the CA certificate of the PostgreSQL, MySQL, or the Oracle database from your database administrator.
+1. Obtain the CA certificate of a schema registry or an Oracle, MySQL, or PostgreSQL database from your administrator. 
+
+   For example, to obtain the certificate from an {{site.data.reuse.es_name}} schema registry, see the [{{site.data.reuse.es_name}} documentation]({{ 'es/schemas/using-with-rest-producer/' | relative_url }}).
 2. Add the certificate for the CA to the truststore by running the following command:
 
    ```shell
@@ -768,9 +773,9 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
 
 Wait for the {{site.data.reuse.ep_name}} and the Flink pods to become ready.
 
-The capability to create SSL connections between {{site.data.reuse.ibm_flink_operator}}, {{site.data.reuse.ep_name}}, and a secured database is enabled.
+The capability to create SSL connections between a secured database or a schema registry, {{site.data.reuse.ibm_flink_operator}}, and {{site.data.reuse.ep_name}} is enabled.
 
-## Configuring multiple databases with SSL in {{site.data.reuse.ep_name}} and Flink
+## Configuring multiple databases with SSL
 
 If you have an existing secured SSL connection with a database and want to add a secured SSL connection to another database, follow the instructions to add the certificate of the new database to the existing truststore and update the secret. 
 

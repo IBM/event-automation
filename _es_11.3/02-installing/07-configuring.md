@@ -82,7 +82,7 @@ spec:
 # ...
 ```
 
-If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.14/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
+If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.15/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
 
 Where optional values are not specified:
 
@@ -230,7 +230,7 @@ You can choose to change the authentication type of the UI access from IAM to SC
          - type: integrationKeycloak
    ```
 
-  **Note:** The {{site.data.reuse.es_name}} CLI is not available when configuring {{site.data.reuse.es_name}} with Keycloak. For Keycloak requirements and limitations, see the [prerequisites](../../installing/prerequisites/#prereqs-keycloak).
+  **Note:** Authentication through Keycloak is not supported in the {{site.data.reuse.es_name}} CLI. You can authenticate the {{site.data.reuse.es_name}} CLI with the SCRAM authentication and then proceed to use an {{site.data.reuse.es_name}} instance that is configured with Keycloak. For Keycloak requirements and limitations, see the [prerequisites](../../installing/prerequisites/#prereqs-keycloak).
 
 - The login requirement for the UI is disabled when all Kafka authentication and authorization is disabled. This is demonstrated by the proof-of-concept [**lightweight without security**](../planning/#example-deployment-lightweight-without-security) sample.
   
@@ -718,7 +718,9 @@ template:
                 - myvalue
 ```
 
-You can also configure architecture-based node affinity. For example, to configure a component to only deploy on `amd64` architecture, you can use the following settings:
+You can also configure architecture-based node affinity. For example, to configure a component to deploy on Linux on IBM z13 (`s390x`), Linux on IBM Power Systems (`ppc64le`), and Linux 64-bit (`amd64`) systems, you can use the following settings:
+
+![Event Streams 11.3.2 icon]({{ 'images' | relative_url }}/11.3.2.svg "In Event Streams 11.3.2 and later.")Node affinities for Linux on IBM Power Systems (`ppc64le`), Linux 64-bit (`amd64`) systems , and Linux on IBM z13 (`s390x`) architectures are added by default. However, you can specify node affinities in the {{site.data.reuse.es_name}} custom resource to deploy pods only on the specific architecture.
 
 ```yaml
 # ...
@@ -733,6 +735,8 @@ template:
                 operator: In
                 values:
                 - amd64
+                - s390x
+                - ppc64le
 ```
 
 ## Enabling collection of producer metrics
@@ -987,6 +991,18 @@ spec:
         privileged: false
         readOnlyRootFilesystem: true
         runAsNonRoot: true
+    pod:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - s390x
+                      - ppc64le
 ```
 
 Depending on your setup and purpose of deployment, you can add more `replicas` which sets the number of Kafka Bridge instances to run. For production environments, for example, consider deploying more than one replica for resilience.

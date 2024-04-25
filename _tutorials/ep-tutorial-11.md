@@ -11,7 +11,7 @@ order: 11
 **Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
 
 {% include video.html videoSource="videos/tutorials/examples/11-mqmessages.mp4" %}{: class="tutorial-video" }
-   
+
 
 ## Scenario
 
@@ -30,8 +30,7 @@ You will also need to [run the optional instructions for deploying an MQ queue m
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
 - Event Streams 11.2.1
-- Event Endpoint Management 11.0.1
-- Event Processing 1.0.0
+- Event Processing 1.1.5
 - MQ 2.4.0
 
 ## Instructions
@@ -321,13 +320,13 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
 1. Create a flow, and give it a name and description to explain that you will use it to process events originating from MQ.
 
-1. Create an **Event source** node.
+1. Update the **Event source** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-6.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-6.png "adding an event source node")
 
-   Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
+   Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**.
 
-1. Hover over the node, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**, and add a new event source.
+1. Add a new event source.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-7.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-7.png "adding an event source node")
 
@@ -337,15 +336,13 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-9.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-9.png "adding an event source node")
 
-   You need to accept the certificates for the Kafka cluster to proceed.
-
 1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-10.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-10.png "adding an event source node")
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics) section of the Tutorial Setup instructions.
 
-1. Select the `MQ.COMMANDS` topic to use as a destination.
+1. Select the `MQ.COMMANDS` topic, and specify a message format of `JSON`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node")
 
@@ -359,11 +356,9 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node")
 
-1. Identify the `ordertime` property in the message contents as describing a timestamp.
+1. Verify that the `ordertime` property in the message contents has been automatically detected as a timestamp.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-30.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-30.png "adding an event source node")
-
-   In the **Event structure** table, choose `TIMESTAMP` as the Type mapping for the `ordertime` property.
 
 1. Identify the `ordertime` property as the timestamp to use for events.
 
@@ -387,7 +382,7 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    Click and drag from the small gray dot on the event source to the matching dot on the aggregate node.
 
-   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node. 
+   **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
 
 1. Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
@@ -416,7 +411,7 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
 1. Click **Configure** to finalize the aggregate.
 
-### Step 7 : Testing the flow
+### Step 7 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 

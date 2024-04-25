@@ -49,7 +49,7 @@ If any of the components are not ready for an extended period of time, check the
    ![Example pod overview]({{ 'images' | relative_url }}/pod_overview.png "Example screen capture showing pod details with graphs for memory and CPU usage"){:height="100%" width="100%"}
 9. Click on the **Logs** tab to search logs.
 
-**Tip:** You can also use the [cluster logging](https://docs.openshift.com/container-platform/4.14/logging/cluster-logging.html){:target="_blank"} provided by the {{site.data.reuse.openshift_short}} to collect, store, and visualize logs. The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). You can download and install the pre-configured {{site.data.reuse.es_name}} Kibana dashboards by following the instructions in [monitoring cluster health](../cluster-health/).
+**Tip:** You can also use the [cluster logging](https://docs.openshift.com/container-platform/4.15/logging/cluster-logging.html){:target="_blank"} provided by the {{site.data.reuse.openshift_short}} to collect, store, and visualize logs. The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). You can download and install the pre-configured {{site.data.reuse.es_name}} Kibana dashboards by following the instructions in [monitoring cluster health](../cluster-health/).
 
 ### Using the CLI
 
@@ -65,6 +65,6 @@ If any of the components are not ready for an extended period of time, check the
    kubectl -n <namespace> logs <pod-name> -c <container_name>
    ```
 
-For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pod){:target="\_blank"}.
+For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pods){:target="_blank"}.
 
 **Note:** After a component restarts, the `kubectl` command retrieves the logs for the new instance of the container. To retrieve the logs for a previous instance of the container, add the `-–previous` option to the `kubectl logs` command.

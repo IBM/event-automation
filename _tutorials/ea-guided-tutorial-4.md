@@ -38,9 +38,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.0
-- Event Endpoint Management 11.1.1
-- Event Processing 1.1.1
+- Event Streams 11.3.1
+- Event Endpoint Management 11.1.5
+- Event Processing 1.1.5
 
 ## Instructions
 
@@ -60,11 +60,11 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 The next step is to bring the stream of events to process into the flow. We will reuse the topic connection information from an earlier tutorial.
 
-1. Create an **Event source** node.
+1. Update the **Event source** node.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-2.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-2.png "adding an event source node")
 
-   Create an event source node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
+   Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Choose the `ORDERS` topic that you used in the [Identify orders from a specific region](./tutorial-1) tutorial.
 
@@ -143,7 +143,7 @@ The next step is to find a stream of order cancellation events to add to your fl
 
    If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](./tutorial-0#populating-the-catalog).
 
-1. Find the `CANCELS` topic.
+1. Find the `Cancellations` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog")
 
@@ -185,8 +185,6 @@ The next step is to bring this additional stream of events that you discovered i
 
    Paste in the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
-   You need to accept the certificates for the Event Gateway to proceed.
-
 1. Generate access credentials for accessing this stream of events from the {{site.data.reuse.eem_name}} page.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-14.png "getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-14.png "getting the credentials to use")
@@ -201,9 +199,11 @@ The next step is to bring this additional stream of events that you discovered i
 
    **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
-1. Confirm the name of the topic that you want to process events from.
+1. Select `Avro` as the message format used in this topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-16.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-16.png "selecting a topic to use")
+
+   **Did you know?** The catalog page for this topic tells you that events on this topic are serialized as binary-encoded Avro data.
 
    Click "Next".
 
@@ -211,15 +211,11 @@ The next step is to bring this additional stream of events that you discovered i
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17.png "paste schema into the event source")
 
-   Click the Copy button in the Schema box to copy the schema to the clipboard.
+   Switch to the JSON schema view, and then click the **Copy** icon for the schema to copy it to the clipboard.
 
    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema will enable {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
-1. In {{site.data.reuse.ep_name}}, click the "Upload a schema or sample message" button.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17-i.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-17-i.png "paste schema into the event source")
-
-1. Paste the schema into the event source config in the **Avro** tab.
+1. Paste the schema into the event source config in the **Avro schema** box.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use")
 

@@ -12,9 +12,9 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
 - Ensure you have configured [persistent storage](../../installing/configuring#configuring-persistent-storage) before you trigger a savepoint.
 
-- You have [installed](../../installing/installing#install-a-flink-instance) a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource, and you successfully [verified](../../installing/post-installation/#verifying-an-installation) it.
+- Ensure that you have installed a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource.
 
-  For more information, see [installing](../../installing/installing#install-a-flink-instance) a `FlinkDeployment` instance and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
+  For more information, see [installing](../../installing/installing#install-a-flink-instance) a Flink instance and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
 
   **Note:** When deploying Flink for non-production environments (such as development or testing purposes), set `license.use` to `EventAutomationNonProduction` in the `FlinkDeployment` custom resource:
 

@@ -65,7 +65,7 @@ If your request is rejected, then **Request access** is reset and you can submit
 
 ## Next steps
 
-After creating a subscription, you can access the event endpoint you subscribed to through the Event Gateway. [The Catalog](../discovering-topics#the-catalog) contains sample code and connection information to help you configure your application to [consume from the event source](../setting-your-application-to-consume) or [produce to the event source](../setting-your-application-to-produce).
+After creating a subscription, you can access the event endpoint you subscribed to through the Event Gateway. [The Catalog](../discovering-topics#the-catalog) contains sample code and connection information to help you [configure your application](../setting-your-application-to-consume) to consume from or produce to the event source.
 
 **Note**: ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later") The ability to produce events is only available in {{site.data.reuse.eem_name}} version 11.1.5 and later.
 

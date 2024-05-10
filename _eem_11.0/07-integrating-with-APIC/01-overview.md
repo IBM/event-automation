@@ -6,9 +6,9 @@ slug: overview
 toc: true
 ---
 
-You can setup an integration between {{site.data.reuse.eem_name}} and IBM API Connect.
+You can setup an integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}}.
 
-**Note:** To set up this integration, IBM API Connect 10.0.6 is required, and both your {{site.data.reuse.eem_name}} and API Connect instances must be deployed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster.
+**Note:** To set up this integration, {{site.data.reuse.apic_short}} 10.0.6 is required, and both your {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}} instances must be deployed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster.
 
 {{site.data.reuse.eem_name}} provides the capability to describe and catalog the APIs of Kafka event sources, and to socialize those APIs with application developers.
 
@@ -18,11 +18,11 @@ Asynchronous APIs can be described by using the [AsyncAPI](https://www.asyncapi.
 
 With {{site.data.reuse.eem_name}}, you can generate an AsyncAPI document that describes the API of a Kafka event source.
 
-Using the "gateway director" model, {{site.data.reuse.eem_name}} provides the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway) for use in IBM API Connect. This means {{site.data.reuse.eem_name}} can be registered as an {{site.data.reuse.egw}} Service in the Cloud Manager. From {{site.data.reuse.eem_name}}, you can export the AsyncAPI document that defines an event source, and then use API Manager to add it to a catalog, making the API details available in the Developer Portal. This enables the management of events and APIs in one place.
+Using the "gateway director" model, {{site.data.reuse.eem_name}} provides the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway) for use in {{site.data.reuse.apic_short}}. This means {{site.data.reuse.eem_name}} can be registered as an {{site.data.reuse.egw}} Service in the Cloud Manager. From {{site.data.reuse.eem_name}}, you can export the AsyncAPI document that defines an event source, and then use API Manager to add it to a catalog, making the API details available in the Developer Portal. This enables the management of events and APIs in one place.
 
 Application developers can discover the event source and configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream.
 
-The following diagram provides an overview of integrating {{site.data.reuse.eem_name}} with API Connect.
+The following diagram provides an overview of integrating {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_short}}.
 
 ![Integrating Event Endpoint Management with API Connect.]({{ 'images' | relative_url }}/EEM_APIC_Overview.png "Diagram that shows integrating Event Endpoint Management with API Connect"){:height="100%" width="100%"}
 

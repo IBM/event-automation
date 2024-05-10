@@ -3,7 +3,7 @@ title: FilePulse
 sortTitle: FilePulse
 connectorID: kc-source-filepulse
 direction: source
-support: community
+support: IBM
 type: kafkaConnect
 iconInitial: Fp
 iconGradient: 2
@@ -15,4 +15,6 @@ categories:
   - Storage
 ---
 FilePulse source connector parses, transforms and streams file, in any format, into Kafka topics. You can use this connector to read files from: local-filesystem, Amazon S3, Azure Storage and Google Cloud Storage.
+
+**Note:** IBM Support is only available for the connector when it is used with the Amazon Simple Storage Service (Amazon S3).
 

@@ -43,6 +43,12 @@ es_name: "Event Streams"
 # {{site.data.reuse.ibm_flink_operator}}
 ibm_flink_operator: "IBM Operator for Apache Flink"
 
+# {{site.data.reuse.apic_long}}
+apic_long: IBM API Connect
+
+# {{site.data.reuse.apic_short}}
+apic_short: API Connect
+
 # No site.data.reuse.flink_short (without the "IBM"" prefix), because "Operator for Apache Flink" would be confusing,
 # due to the existence of the Apache Flink operator.
 # When referring to the operand pods (Flink jobmanager/taskmanager), or to the Flink capability in general, the words

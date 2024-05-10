@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-When integrated with IBM API Connect, {{site.data.reuse.egw}} pods fail after upgrading {{site.data.reuse.eem_name}} to 11.1.0. The {{site.data.reuse.eem_manager}} logs display the following `MissingElementException` error:
+When integrated with {{site.data.reuse.apic_short}}, {{site.data.reuse.egw}} pods fail after upgrading {{site.data.reuse.eem_name}} to 11.1.0. The {{site.data.reuse.eem_manager}} logs display the following `MissingElementException` error:
 
 ```shell
 ERROR com.ibm.ei.data.core.AdminManager - [lambda$getOrganization$101:574]
@@ -17,7 +17,7 @@ com.ibm.ei.core.utils.MissingElementException: MissingElementException{path='con
 
 ## Causes
 
-The `Subscription` data that is created by using API Connect is not migrated as expected when upgrading your {{site.data.reuse.eem_name}} instance.
+The `Subscription` data that is created by using {{site.data.reuse.apic_short}} is not migrated as expected when upgrading your {{site.data.reuse.eem_name}} instance.
 
 ## Resolving the problem
 

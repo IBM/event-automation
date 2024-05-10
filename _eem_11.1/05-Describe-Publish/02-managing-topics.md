@@ -24,7 +24,7 @@ The details of your topic appear in three sections:
 - ![Event Endpoint Management 11.1.1 icon]({{ 'images' | relative_url }}/11.1.1.svg "In Event Endpoint Management 11.1.1 and later") **Options**: This section displays all the options created for this topic. Options can be provided or removed by [creating an option](#create_option) or [deleting an option](#deleting-an-option).
 - **Manage**: This section displays the current [lifecycle status](#option-lifecycle-states) of your options for this topic in {{site.data.reuse.eem_name}}, including [the ability for users to discover and subscribe to](../publishing-options) your option and [the current set of subscribed users of your option](../managing-user-access-to-options).
 
-You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with IBM API Connect](../../integrating-with-apic/export-asyncapi/).
+You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with {{site.data.reuse.apic_short}}](../../integrating-with-apic/export-asyncapi/).
 
 ## Editing a topic
 {: #edit-topic}

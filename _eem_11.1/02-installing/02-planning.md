@@ -22,7 +22,7 @@ If you are [installing](../installing#installing-an-event-endpoint-management-in
 
 - [Quick start](#example-deployment-quick-start)
 - [Production](#example-deployment-production)
-- [Quick start with API Connect integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
 
 If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
@@ -34,7 +34,7 @@ If you are installing on other Kubernetes platforms, the following samples are a
 
 - [Quick start](#example-deployment-quick-start)
 - [Production](#example-deployment-production)
-- [Quick start with API Connect integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
 
@@ -69,9 +69,9 @@ Resource requirements for this deployment:
 
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
 
-### Example deployment: **Quick start with API Connect integration**
+### Example deployment: **Quick start with {{site.data.reuse.apic_short}} integration**
 
-Overview: A production instance with support for persistence OpenID Connect (OIDC) authentication and includes configuration options for API Connect integration.
+Overview: A production instance with support for persistence OpenID Connect (OIDC) authentication and includes configuration options for {{site.data.reuse.apic_short}} integration.
 
 This example installs a production-ready {{site.data.reuse.eem_name}} instance, with persistence and using local authentication.
 

@@ -19,7 +19,7 @@ The details of your topic appear in two sections:
 - The **Information** section: displays all the possible information presented to a user when a topic is [socialized in the catalog](../publishing-topics). These can be provided or removed by [editing your topic](#editing-a-topic).
 - The **Manage** section: displays the current [lifecycle status](#topic-lifecycle-state) of your topic in {{site.data.reuse.eem_name}}, including [the ability for users to subscribe and discover](../publishing-topics) your topic and [the current set of subscribed users of your topic](../managing-user-access-to-topics).
 
-You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with IBM API Connect](../../integrating-with-apic/export-asyncapi/).
+You can also [delete](#deleting-a-topic) your topic from this page, or [export this topic for use with {{site.data.reuse.apic_long}}](../../integrating-with-apic/export-asyncapi/).
 
 ## Editing a topic
 

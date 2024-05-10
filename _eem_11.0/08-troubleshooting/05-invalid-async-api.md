@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-If you create a topic in {{site.data.reuse.eem_name}} and edit the topic without adding a schema, and then click **Export AsyncAPI for IBM API Connect** button. The exported AsyncAPI is invalid for usage in IBM API Connect. The value for  `channels.<topic_name>.subscribe.message.payload` is an empty string:
+If you create a topic in {{site.data.reuse.eem_name}} and edit the topic without adding a schema, and then click **Export AsyncAPI for {{site.data.reuse.apic_long}}** button. The exported AsyncAPI is invalid for usage in {{site.data.reuse.apic_short}}. The value for  `channels.<topic_name>.subscribe.message.payload` is an empty string:
 
 ```yaml
 # excerpt from exported AsyncApi
@@ -25,7 +25,7 @@ channels:
 ---
 ```
 
-If you use the invalid AsyncAPI document in API Connect, the following error will occur in the API Connect Developer Portal:
+If you use the invalid AsyncAPI document in {{site.data.reuse.apic_short}}, the following error will occur in the {{site.data.reuse.apic_short}} Developer Portal:
 
 ```shell
 Error: Cannot read properties of null (reading 'type')
@@ -41,4 +41,4 @@ This can be resolved in one of two ways:
 
 - Upload a valid schema for your topic by [editing your topic](../../describe/managing-topics#editing-a-topic). If a schema is present when you try to export the AsyncAPI, {{site.data.reuse.eem_name}} generates a document with the correct payload.
 
-- If you do not want to add a schema for your topic and you want to export the topic to be used in API Connect, you can amend the downloaded document to make it valid for an API Connect import. You can do this by editing the downloaded AsyncAPI and amending the `channels.<topic_name>.subscribe.message.payload` field to be equal to `{}` and removing the `channels.<topic_name>.subscribe.schemaFormat` field. Once edited, the AsyncAPI document is valid and can be imported into API Connect.
+- If you do not want to add a schema for your topic and you want to export the topic to be used in {{site.data.reuse.apic_short}}, you can amend the downloaded document to make it valid for an {{site.data.reuse.apic_short}} import. You can do this by editing the downloaded AsyncAPI and amending the `channels.<topic_name>.subscribe.message.payload` field to be equal to `{}` and removing the `channels.<topic_name>.subscribe.schemaFormat` field. Once edited, the AsyncAPI document is valid and can be imported into {{site.data.reuse.apic_short}}.

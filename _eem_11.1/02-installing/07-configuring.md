@@ -319,7 +319,7 @@ See the following example for setting up OpenSSL tool to generate a CA and certi
    DNS.8 = ${MANAGER_NAME}-ibm-eem-admin-${NAMESPACE}.${CLUSTER_API}
    ```
 
-    **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.eem_manager}} `ui`, `gateway`, `admin` (for the Admin API), and, if integration with IBM API Connect is required, the `apic` endpoint hostnames:
+    **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.eem_manager}} `ui`, `gateway`, `admin` (for the Admin API), and, if integration with {{site.data.reuse.apic_long}} is required, the `apic` endpoint hostnames:
     - You are planning to specify hostnames in the `EventEndpointManagement` custom resource under `spec.manager.endpoints`.
     - You are planning to create additional routes or ingress.
     - You are not running on {{site.data.reuse.openshift_short}}.

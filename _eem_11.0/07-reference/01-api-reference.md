@@ -40,9 +40,9 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| clientSubjectDN | string | Common name used for mTLS with API Connect. |
+| clientSubjectDN | string | Common name used for mTLS with {{site.data.reuse.apic_short}}. |
 | jwks | [jwks](#resource-jwks) | Objects containing jwks configuration. |
-| tls | boolean | Enable/Disable mTLS with API Connect. |
+| tls | boolean | Enable/Disable mTLS with {{site.data.reuse.apic_short}}. |
 
 ### Resource: `authConfig`
 
@@ -88,7 +88,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field             | Type                               | Description                                             |
 |-------------------|------------------------------------|---------------------------------------------------------|
-| apic              | [apic](#resource-apic)             | Object containing API Connect connection configuration. |
+| apic              | [apic](#resource-apic)             | Object containing {{site.data.reuse.apic_short}} connection configuration. |
 | authConfig        | [authConfig](#resource-authconfig) | Object containing authentication configuration.         |
 | endpoints         | [][endpoint](#resource-endpoint)   | List of endpoint configuration.                         |
 | extensionServices | object                             | Configure extension service endpoints.                  |

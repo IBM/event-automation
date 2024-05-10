@@ -11,6 +11,12 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
 ## Release 11.3.2
 
+### IBM Support for the FilePulse connector
+
+IBM support is now available for the [FilePulse source connector]({{ 'connectors/kc-source-filepulse/installation' | relative_url}}) to parse, transform, and stream files into Kafka topics.
+
+**Note:** IBM Support is only available for the connector when it is used with the Amazon Simple Storage Service (Amazon S3).
+
 ### IBM Support for additional databases when using the JDBC sink connector
 
 In addition to the support for Oracle databases, IBM Support is now extended to DB2, Microsoft SQL Server, MySQL, and PostgreSQL databases when using the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).

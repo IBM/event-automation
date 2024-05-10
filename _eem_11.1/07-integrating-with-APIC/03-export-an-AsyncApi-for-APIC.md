@@ -6,7 +6,7 @@ slug: export-asyncapi
 toc: true
 ---
 
-You can download an AsyncAPI document from your topics in {{site.data.reuse.eem_name}}, and then import this AsyncAPI into API Connect. After you imported the AsyncAPI document into API Connect, you can use the API Manager to socialize this event-driven API in the Developer Portal, enabling the management of events and APIs in one place.
+You can download an AsyncAPI document from your topics in {{site.data.reuse.eem_name}}, and then import this AsyncAPI into {{site.data.reuse.apic_short}}. After you imported the AsyncAPI document into {{site.data.reuse.apic_short}}, you can use the API Manager to socialize this event-driven API in the Developer Portal, enabling the management of events and APIs in one place.
 
 Before you begin, ensure that you [configured](../configure-eem-for-apic) {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service.
 
@@ -16,15 +16,15 @@ To export an AsyncAPI for your topic, complete the following steps.
 
 1. In the {{site.data.reuse.eem_name}} UI, go to the **Topics** page, and select the topic you want to export.
 2. Click the **Options** tab, then click ![Export icon]({{ 'images' | relative_url }}/export.svg "The export icon."){:height="30px" width="15px"} **Export**. A dialog is displayed.
-3. Select **For IBM API Connect (contains credentials)** as the export format, then click **Export**.
+3. Select **For {{site.data.reuse.apic_long}} (contains credentials)** as the export format, then click **Export**.
 
-**Note**: You cannot export options that contain approval control to IBM API Connect. 
+**Note**: You cannot export options that contain approval control to {{site.data.reuse.apic_short}}. 
 
 An AsyncAPI document that describes the topic is downloaded as a YAML file.
 
-## Configure a Catalog in API Connect
+## Configure a Catalog in {{site.data.reuse.apic_short}}
 
-See the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps on how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured ](../configure-eem-for-apic) {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service.
+See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps on how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured ](../configure-eem-for-apic) {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service.
 
 ## Import the AsyncAPI document
 
@@ -42,7 +42,7 @@ To import the AsyncAPI document, complete the following steps in the API Manager
 
 ## Publish the API and Product
 
-See the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=definitions-publishing-api){:target="_blank"} for information about how to publish an API and a Product. When publishing the Product, select the Catalog you [configured](#configure-a-catalog-in-api-connect) earlier.
+See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=definitions-publishing-api){:target="_blank"} for information about how to publish an API and a Product. When publishing the Product, select the Catalog you [configured](#configure-a-catalog-in-api-connect) earlier.
 
 ## Create a subscription to the Product
 

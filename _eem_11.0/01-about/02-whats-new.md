@@ -12,7 +12,7 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.0.x.
 
 ### Security and bug fixes
 
-{{site.data.reuse.eem_name}} release 11.0.5 contains a bug fix [which allows credentials generated in IBM API Connect to be accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
+{{site.data.reuse.eem_name}} release 11.0.5 contains a bug fix [which allows credentials generated in {{site.data.reuse.apic_long}} to be accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
 
 ## Release 11.0.4
 
@@ -30,7 +30,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 
 ### Known issues
 
-[Credentials generated in IBM API Connect are not accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
+[Credentials generated in {{site.data.reuse.apic_long}} are not accepted by the {{site.data.reuse.egw}}](../../troubleshooting/eem-apic-clients-do-not-connect).
 
 ## Release 11.0.3
 
@@ -79,7 +79,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 
 ## Release 11.0.0
 
-{{site.data.reuse.eem_name}} 11.0.0 simplifies how users can discover, socialize, and use events in your organization. This release also makes {{site.data.reuse.eem_name}} a stand-alone capability, meaning it no longer requires an instance of IBM API Connect instance to be deployed.
+{{site.data.reuse.eem_name}} 11.0.0 simplifies how users can discover, socialize, and use events in your organization. This release also makes {{site.data.reuse.eem_name}} a stand-alone capability, meaning it no longer requires an instance of {{site.data.reuse.apic_long}} instance to be deployed.
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.0.0.
 
@@ -87,9 +87,9 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.0.0.
 
 The {{site.data.reuse.eem_name}} 11.0.0 UI is available with an enhanced user experience, [making Kafka topic discovery](../../describe/adding-topics), and [socialization](../../describe/publishing-topics) simpler.
 
-### Integration with IBM API Connect
+### Integration with {{site.data.reuse.apic_long}}
 
-You can [integrate {{site.data.reuse.eem_name}} 11.0.0 with IBM API Connect 10.0.6](../../integrating-with-apic/overview), when deployed as part of {{site.data.reuse.cp4i}}.
+You can [integrate {{site.data.reuse.eem_name}} 11.0.0 with {{site.data.reuse.apic_long}} 10.0.6](../../integrating-with-apic/overview), when deployed as part of {{site.data.reuse.cp4i}}.
 
 ### Simpler installation
 
@@ -103,4 +103,4 @@ You can [integrate {{site.data.reuse.eem_name}} 11.0.0 with IBM API Connect 10.0
 
 - [Manager logs contain `java.security.NoSuchAlgorithmException` messages](../../troubleshooting/no-such-algorithm-log).
 - [{{site.data.reuse.egw}} in `Evicted` state](../../troubleshooting/evicted-gateway)
-- [Invalid schema payload in exported AsyncAPI for API Connect](../../troubleshooting/invalid-async-api)
+- [Invalid schema payload in exported AsyncAPI for {{site.data.reuse.apic_short}}](../../troubleshooting/invalid-async-api)

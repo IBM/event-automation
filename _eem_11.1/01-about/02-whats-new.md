@@ -106,9 +106,9 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 
 {{site.data.reuse.eem_name}} release 11.1.0 introduces the [{{site.data.reuse.eem_name}} Admin API]({{ 'eem-api' | relative_url }}) for accessing {{site.data.reuse.eem_name}} features programmatically. Access to the Admin API is [controlled by tokens](../../security/api-tokens).
 
-### Support for IBM API Connect in non-{{site.data.reuse.cp4i}} deployments
+### Support for {{site.data.reuse.apic_long}} in non-{{site.data.reuse.cp4i}} deployments
 
-{{site.data.reuse.eem_name}} release 11.1.0 [can be integrated with IBM API Connect 10.0.7 and later](../../integrating-with-apic/overview) without requiring an {{site.data.reuse.cp4i}} deployment.
+{{site.data.reuse.eem_name}} release 11.1.0 [can be integrated with {{site.data.reuse.apic_long}} 10.0.7 and later](../../integrating-with-apic/overview) without requiring an {{site.data.reuse.cp4i}} deployment.
 
 ### Support for {{site.data.reuse.openshift}} 4.14
 

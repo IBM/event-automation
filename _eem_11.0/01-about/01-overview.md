@@ -13,7 +13,7 @@ Access to the event sources are managed by the Event Gateway. The Event Gateway 
 
 ![Event Endpoint Management architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-endpoint-management.svg "Diagram showing the Event Endpoint Management architecture as part of IBM Event Automation.")
 
-{{site.data.reuse.eem_name}} can be deployed as a standalone installation, or it can be deployed as part of Cloud Pak For Integration. You can also integrate {{site.data.reuse.eem_name}} with API Connect by importing the AsyncAPI document that defines the Kafka event source. This integration provides the option to use events as part of your overall API management solution.
+{{site.data.reuse.eem_name}} can be deployed as a standalone installation, or it can be deployed as part of Cloud Pak For Integration. You can also integrate {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} by importing the AsyncAPI document that defines the Kafka event source. This integration provides the option to use events as part of your overall API management solution.
 
 The following diagram provides an overview of {{site.data.reuse.eem_name}}.
 

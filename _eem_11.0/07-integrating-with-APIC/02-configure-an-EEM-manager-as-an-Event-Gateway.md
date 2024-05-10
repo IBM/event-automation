@@ -6,43 +6,43 @@ slug: configure-eem-for-apic
 toc: true
 ---
 
-You can configure your {{site.data.reuse.eem_name}} instance (Manager) to be registered as an {{site.data.reuse.egw}} Service in IBM API Connect, which you can use to manage events and APIs in one place.
+You can configure your {{site.data.reuse.eem_name}} instance (Manager) to be registered as an {{site.data.reuse.egw}} Service in {{site.data.reuse.apic_long}}, which you can use to manage events and APIs in one place.
 
 To register {{site.data.reuse.eem_name}} instance as an {{site.data.reuse.egw}} Service:
 
-1. Add the server certificate of API Connect and the JSON Web Key Set (JWKS) endpoint as configuration in your {{site.data.reuse.eem_name}} instance so that communications received from API Connect are trusted. 
+1. Add the server certificate of {{site.data.reuse.apic_short}} and the JSON Web Key Set (JWKS) endpoint as configuration in your {{site.data.reuse.eem_name}} instance so that communications received from {{site.data.reuse.apic_short}} are trusted. 
 2. Use the {{site.data.reuse.egw}} API and the {{site.data.reuse.eem_manager}} Manager endpoint to configure an {{site.data.reuse.egw}} Service in Cloud Manager.
 
-**Important:** Ensure you install and configure an instance of both an {{site.data.reuse.eem_manager}} and an {{site.data.reuse.egw}} before configuring API Connect integration with that {{site.data.reuse.eem_manager}} instance.
+**Important:** Ensure you install and configure an instance of both an {{site.data.reuse.eem_manager}} and an {{site.data.reuse.egw}} before configuring {{site.data.reuse.apic_short}} integration with that {{site.data.reuse.eem_manager}} instance.
 
 To configure your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service, complete the following steps:
 
-## Retrieve the API Connect JSON Web Key Set (JWKS) endpoint
+## Retrieve the {{site.data.reuse.apic_short}} JSON Web Key Set (JWKS) endpoint
 
-Before beginning, you must retrieve the API Connect `jwksUrl` endpoint.
+Before beginning, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl` endpoint.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. Expand the **Project** drop-down menu and select the project the API Connect instance is installed in.
+3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.apic_short}} instance is installed in.
 4. Select the **API Connect** operator.
 5. In the **API Connect cluster**, click the installed instance.
 6. In the **YAML**, find the `status.endpoints` section of the `APIConnectCluster` custom resource. 
 7. Retrieve the value in the `jwksUrl` field.
 
-The value that you retrieved is required to configure trust between API Connect and {{site.data.reuse.eem_name}}.
+The value that you retrieved is required to configure trust between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}.
 
-## Configure {{site.data.reuse.eem_name}} to trust API Connect
+## Configure {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}
 
-To allow communication between API Connect and {{site.data.reuse.eem_name}}, you must add the certificate presented on the `jwksUrl` endpoint to {{site.data.reuse.eem_name}} as a trusted certificate. Additionally, you must provide a JWKS endpoint, which will be used to authenticate messages received from API Connect.
+To allow communication between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}, you must add the certificate presented on the `jwksUrl` endpoint to {{site.data.reuse.eem_name}} as a trusted certificate. Additionally, you must provide a JWKS endpoint, which will be used to authenticate messages received from {{site.data.reuse.apic_short}}.
 
-1. Download the server certificate from an API Connect endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
+1. Download the server certificate from an {{site.data.reuse.apic_short}} endpoint, either by opening the URL in a browser, or by running the following command and then copying the certificate details into a file:
 
    ```bash
    openssl s_client -connect <jwksUrl value>
    ```
 
-   Where `<jwksUrl value>` is the API Connect `jwksUrl` endpoint that you retrieved earlier.
-2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the downloaded certificate. Create a secret to store the API Connect certificate as follows.
+   Where `<jwksUrl value>` is the {{site.data.reuse.apic_short}} `jwksUrl` endpoint that you retrieved earlier.
+2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the downloaded certificate. Create a secret to store the {{site.data.reuse.apic_short}} certificate as follows.
 
    - Using the {{site.data.reuse.openshift_short}} UI:
      
@@ -86,7 +86,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
         - `<base64-certificate>` is the Base64 encoded certificate that you obtained in step 1.
 
 
-3. Update the `EventEndpointManagement` instance with the API Connect configuration details:
+3. Update the `EventEndpointManagement` instance with the {{site.data.reuse.apic_short}} configuration details:
 
    - On {{site.data.reuse.openshift_short}}:
 
@@ -150,7 +150,7 @@ To allow communication between API Connect and {{site.data.reuse.eem_name}}, you
 
 ## Enabling mutual TLS
 
-JSON Web Token (JWT) authentication is used by default to verify messages that are received from API Connect and cannot be disabled. All communications the {{site.data.reuse.egw}} Service receive from API Connect contain a JWT, and the JWKS endpoint you provided earlier is used to validate this token to ensure the authenticity of each message. 
+JSON Web Token (JWT) authentication is used by default to verify messages that are received from {{site.data.reuse.apic_short}} and cannot be disabled. All communications the {{site.data.reuse.egw}} Service receive from {{site.data.reuse.apic_short}} contain a JWT, and the JWKS endpoint you provided earlier is used to validate this token to ensure the authenticity of each message. 
 
 Based on your security requirements, you can optionally choose to also enable mutual TLS (MTLS), which uses certificates for authentication:
 
@@ -197,9 +197,9 @@ Based on your security requirements, you can optionally choose to also enable mu
       kubectl apply -f <file_name>
       ```
 
-## Registering {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service in API Connect
+## Registering {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service in {{site.data.reuse.apic_short}}
 
-After configuring the {{site.data.reuse.eem_name}} to trust API Connect, register the {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service as follows:
+After configuring the {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}, register the {{site.data.reuse.eem_name}} as an {{site.data.reuse.egw}} Service as follows:
 
 ### Obtain certificates for a TLS client profile on OpenShift
 
@@ -213,7 +213,7 @@ After configuring the {{site.data.reuse.eem_name}} to trust API Connect, registe
 
 N.b if you provided your own certificate via a secret for the eem manager use the data stored in that
 
-For more information on these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
+For more information on these certificates, see the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
 ### Obtain certificates for a TLS client profile on other Kubernetes platforms
 
@@ -236,12 +236,12 @@ For more information on these certificates, see the [API Connect documentation](
 
 **Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
 
-For more information about these certificates, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
+For more information about these certificates, see the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
 ### Navigate to Cloud Manager
 
 1. {{site.data.reuse.task_openshift_select_routes}}
-2. Expand the **Project** drop-down menu and select the project the API Connect instance is installed in.
+2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.apic_short}} instance is installed in.
 3. Use the search bar to find the route with the **Name** ending in `admin`. Click the URL in the **Location** column. This takes you to the Cloud Manager UI.
 
 ### Create a TLS Client Profile
@@ -262,7 +262,7 @@ Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}}
 
 ### Retrieving the {{site.data.reuse.egw}} management endpoint
 
-To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where configuration updates from API Connect are sent. This is referred to as the **Service Endpoint** when registering an {{site.data.reuse.egw}} Service in the Cloud Manager. This endpoint can be retrieved from {{site.data.reuse.eem_name}} as follows:
+To register an {{site.data.reuse.eem_name}} instance with {{site.data.reuse.apic_short}}, you must provide an endpoint which defines where configuration updates from {{site.data.reuse.apic_short}} are sent. This is referred to as the **Service Endpoint** when registering an {{site.data.reuse.egw}} Service in the Cloud Manager. This endpoint can be retrieved from {{site.data.reuse.eem_name}} as follows:
 
 #### Using the OpenShift web console
 
@@ -279,7 +279,7 @@ To register an {{site.data.reuse.eem_name}} instance with API Connect, you must 
    ```shell
    kubectl config set-context --current --namespace=<namespace>
    ```
-3. List the ingress resources and locate the API Connect ingress for your instance, unless overridden the name  ends in `-apic`.
+3. List the ingress resources and locate the {{site.data.reuse.apic_short}} ingress for your instance, unless overridden the name  ends in `-apic`.
 
     ```shell
     kubectl get ingress
@@ -288,7 +288,7 @@ To register an {{site.data.reuse.eem_name}} instance with API Connect, you must 
 
 ## Retrieving the {{site.data.reuse.egw}} client endpoint
 
-To register an {{site.data.reuse.eem_name}} instance with API Connect, you must provide an endpoint which defines where clients should connect to in order to consume events. Depending where you have [deployed your {{site.data.reuse.egw}}](../../installing/deploy-gateways), the steps to retrieve the client endpoint will differ:
+To register an {{site.data.reuse.eem_name}} instance with {{site.data.reuse.apic_short}}, you must provide an endpoint which defines where clients should connect to in order to consume events. Depending where you have [deployed your {{site.data.reuse.egw}}](../../installing/deploy-gateways), the steps to retrieve the client endpoint will differ:
 
 ### OpenShift cluster deployment
 
@@ -306,7 +306,7 @@ To register an {{site.data.reuse.eem_name}} instance with API Connect, you must 
    ```shell
    kubectl config set-context --current --namespace=<namespace>
    ```
-3. List the ingress resources and locate the API Connect ingress for your instance, unless overridden the name ends in `-ibm-egw-rt`.
+3. List the ingress resources and locate the {{site.data.reuse.apic_short}} ingress for your instance, unless overridden the name ends in `-ibm-egw-rt`.
 
     ```shell
     kubectl get ingress
@@ -326,7 +326,7 @@ To socialize the {{site.data.reuse.egw}} client endpoint, register the {{site.da
 3. In the **Service endpoint** field, enter the management endpoint that you [obtained earlier](#retrieving-the-event-gateway-management-endpoint).
 4. Select the TLS client profile that you created earlier from the **TLS client profile** drop-down menu. 
 5. In the **API invocation endpoint** field, enter the [{{site.data.reuse.egw}} API endpoint that you obtained earlier](#retrieving-the-event-gateway-client-endpoint).
-6. Use the default TLS server profile that API Connect provides from the drop-down menu.
+6. Use the default TLS server profile that {{site.data.reuse.apic_short}} provides from the drop-down menu.
 7. Click **Save**.
 
-The Cloud Manager UI displays a notification to indicate the {{site.data.reuse.egw}} Service is successfully registered. You can now [export an AsyncAPI](../export-asyncapi) to use in API Connect.
+The Cloud Manager UI displays a notification to indicate the {{site.data.reuse.egw}} Service is successfully registered. You can now [export an AsyncAPI](../export-asyncapi) to use in {{site.data.reuse.apic_short}}.

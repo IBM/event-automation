@@ -189,6 +189,8 @@ latest_eemdocs:
         url: /troubleshooting/new-controls-not-picked-up/
       - title: "Redaction fails for nested fields"
         url: /troubleshooting/nested-redaction-fails/
+      - title: "Subscribed topics not available with API Connect subscription credentials"
+        url: /troubleshooting/apic-subscription-topics-unavailable/
 
 110_eemdocs:
   - title: About
@@ -312,6 +314,8 @@ latest_eemdocs:
         url: /troubleshooting/certificate-rotation/
       - title: "502 Bad Gateway error when logging in to UI"
         url: /troubleshooting/502-bad-gateway/
+      - title: "Subscribed topics not available with API Connect subscription credentials"
+        url: /troubleshooting/apic-subscription-topics-unavailable/
 
 # Event Processing
 latest_epdocs:

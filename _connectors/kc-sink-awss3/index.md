@@ -3,7 +3,7 @@ title: Amazon S3
 sortTitle: AWSS3
 connectorID: kc-sink-awss3
 direction: sink
-support: community
+support: IBM
 type: kafkaConnect
 iconInitial: S3
 iconGradient: 3

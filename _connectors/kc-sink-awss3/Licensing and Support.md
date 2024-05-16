@@ -15,7 +15,7 @@ sections:
       - { text: 'View the license', url: 'https://github.com/aiven/s3-connector-for-apache-kafka/blob/main/LICENSE' }
   - section:
     title: "Support"
-    type: "Community"
+    type: "IBM Support"
     buttons:
-      - { text: 'Raise issue', url: 'https://github.com/aiven/s3-connector-for-apache-kafka/issues' }
+      - { text: 'Raise issue', url: '../../support/' }
 ---

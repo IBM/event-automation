@@ -11,6 +11,10 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.3.x.
 
 ## Release 11.3.2
 
+### IBM Support for the Amazon S3 sink connector
+
+IBM support is now available for the [Amazon S3 sink connector]({{ 'connectors/kc-sink-awss3/installation' | relative_url}}) for storing Apache Kafka messages to an Amazon Simple Storage Service (Amazon S3) bucket.
+
 ### IBM Support for the FilePulse connector
 
 IBM support is now available for the [FilePulse source connector]({{ 'connectors/kc-source-filepulse/installation' | relative_url}}) to parse, transform, and stream files into Kafka topics.

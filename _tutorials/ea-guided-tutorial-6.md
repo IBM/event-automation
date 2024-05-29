@@ -60,7 +60,7 @@ The next step is to provide the topic details to create an entry in the catalog.
 
 The next step is to document the topic to describe the events that your processing flow is producing.
 
-1. Go to the {{site.data.reuse.eem_name}} **Topics** page.
+1. Go to the {{site.data.reuse.eem_name}} **Manage Topics** page.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "screenshot of the EEM topics page")
 

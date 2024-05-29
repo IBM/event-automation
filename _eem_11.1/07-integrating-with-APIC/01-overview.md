@@ -26,7 +26,7 @@ Application developers can discover the event source and configure their applica
 
 The following diagram provides an overview of integrating {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_short}}.
 
-![Integrating Event Endpoint Management with API Connect.]({{ 'images' | relative_url }}/EEM_APIC_Overview.png "Diagram that shows integrating Event Endpoint Management with API Connect"){:height="100%" width="100%"}
+![Integrating Event Endpoint Management with {{site.data.reuse.apic_short}}.]({{ 'images' | relative_url }}/EEM_APIC_Overview.png "Diagram that shows integrating Event Endpoint Management with {{site.data.reuse.apic_short}}"){:height="100%" width="100%"}
 
 1. The Kafka administrator describes the Kafka topic, which is the event source. They can select a topic from an existing Kafka cluster or specify a new cluster, after which the topics on that cluster can be made available by adding and describing them.
 2. The Kafka administrator adds the Kafka topic to the {{site.data.reuse.eem_name}} UI.

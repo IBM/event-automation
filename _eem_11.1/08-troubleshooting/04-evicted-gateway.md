@@ -12,7 +12,7 @@ When an {{site.data.reuse.egw}} instance is set up with ephemeral storage, it is
 
 ## Causes
 
-Kubernetes pods use [ephemeral storage](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-emphemeralstorage-consumption){:target="_blank"} for scratch space, caching and for logs. The {{site.data.reuse.egw}} is spewing out logs that are not being cleaned up in time, which causes the {{site.data.reuse.egw}} to reach the `Evicted` state.
+Kubernetes pods use [ephemeral storage](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-emphemeralstorage-consumption){:target="_blank"} for scratch space, caching and for logs. The {{site.data.reuse.egw}} is spewing out logs that are not being cleaned up in time, which causes the {{site.data.reuse.egw}} to reach the `Evicted` state.
 
 ## Resolving the problem
 

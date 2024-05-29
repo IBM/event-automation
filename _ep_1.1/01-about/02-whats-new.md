@@ -11,9 +11,41 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 ## Release {{site.data.reuse.ep_current_version}}
 
 
+### Auto-detection of a topic message format in the event source node
+
+When you configure the [event source node](../../nodes/eventnodes/#event-source) and select the Kafka topic from which to consume messages, {{site.data.reuse.ep_name}} attempts to determine the format of messages from the topic. For more information, see [auto-detection](../../nodes/eventnodes/#auto-detection-of-message-format). 
+
+
+### Processor node: Unpack arrays
+
+{{site.data.reuse.ep_name}} release 1.1.7 introduces a node to unpack the array properties in the events within your {{site.data.reuse.ep_name}} flow. With the unpack array node, you can unpack each array element into a new property in separate events, or unpack the array elements into new properties. For more information, see [Unpack arrays](../../nodes/processornodes/#unpack-arrays).
+
+
+
+
+
+### Enrichment node: API
+
+{{site.data.reuse.ep_name}} release 1.1.7 introduces the **API** node. With the API node, you can establish connections with external APIs and integrate the data with the events within your {{site.data.reuse.ep_name}} flow. For more information, see the [API node](../../nodes/enrichmentnode/#enrichment-from-an-api).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.7 compared to 1.1.5 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.")
+
+### Support for Kubernetes 1.30
+
+{{site.data.reuse.ep_name}} version 1.1.7 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for Kubernetes platforms version 1.30 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.7 and {{site.data.reuse.ibm_flink_operator}} version 1.1.7 contain security and bug fixes.
+
+## Release 1.1.5
+
 ### Support for Avro schemas that use a schema registry
 
 {{site.data.reuse.ep_name}} release 1.1.5 includes support for Avro schemas that use a schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. In addition to message formats **JSON** and **Avro**, the event source node now supports a new message format **Avro (schema registry)**. For more information, see [event nodes](../../nodes/eventnodes/#configuring-a-source-node) and the associated [tutorial]({{ 'tutorials' | relative_url }}/event-processing-examples/example-13) about handling formats that use a schema registry.
+
 
 ### Support for Linux on IBM Z
 
@@ -101,7 +133,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Support for Oracle database
 
-{{site.data.reuse.ep_name}} release 1.1.1 introduces support for enriching your events from an Oracle database. You can now [connect](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) to an Oracle database and integrate the Oracle data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
+{{site.data.reuse.ep_name}} release 1.1.1 introduces support for enriching your events from an Oracle database. You can now [connect](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) to an Oracle database and integrate the Oracle data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
 
 ### Documentation: Highlighting differences between versions
 
@@ -119,7 +151,7 @@ The {{site.data.reuse.ibm_flink_operator}} version 1.1.0 update includes Apache 
 
 ### Support for MySQL database
 
-{{site.data.reuse.ep_name}} release 1.1.0 introduces support for enriching your events from a MySQL database. You can now [connect](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) to a MySQL database and integrate the MySQL data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
+{{site.data.reuse.ep_name}} release 1.1.0 introduces support for enriching your events from a MySQL database. You can now [connect](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) to a MySQL database and integrate the MySQL data with the events within your {{site.data.reuse.ep_name}} flow by using the [database](../../nodes/enrichmentnode/#database) node.
 
 ### Reuse a time window in aggregate and top-n nodes
 
@@ -140,4 +172,4 @@ This feature enables you to implement scenarios such as "Calculate the 3 product
 
 ### Security and bug fixes
 
-{{site.data.reuse.ep_name}} release 1.1.0 and {{site.data.reuse.ibm_flink_operator}} version 1.1.0 contain security and bug fixes.
+{{site.data.reuse.ep_name}} release 1.1.0 and {{site.data.reuse.ibm_flink_operator}} version 1.1.0 contain security and bug fixes. 

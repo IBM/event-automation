@@ -8,19 +8,6 @@ toc: true
 
 ![Event Processing 1.0.5 icon]({{ 'images' | relative_url }}/1.0.5.svg "In Event Processing 1.0.5 and later") The following sections provide instructions about installing {{site.data.reuse.ep_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
-## Overview
-
-{{site.data.reuse.ep_name}} is an operator-based release and uses custom resources to define the deployment configuration.
-{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}}
-operator. These operators deploy and manage the entire lifecycle of your Flink and {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `FlinkDeployment` and `EventProcessing` custom resources.
-
-Installing {{site.data.reuse.ep_name}} has the following phases:
-
-1. Install the {{site.data.reuse.ibm_flink_operator}}: this deploys the operator that will install and manage your Flink instances.
-2. Install the {{site.data.reuse.ep_name}} operator: this deploys the operator that will install and manage your {{site.data.reuse.ep_name}} instances.
-3. Install one or more instances of Flink by using the {{site.data.reuse.ibm_flink_operator}}.
-4. Install one or more instances of {{site.data.reuse.ep_name}} by using the {{site.data.reuse.ep_name}} operator.
-
 ## Before you begin
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites).

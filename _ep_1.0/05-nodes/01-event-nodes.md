@@ -75,7 +75,7 @@ In the **Connect to Kafka cluster** section, provide the broker address or addre
 
 **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
-If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/consume-subscribe/setting-your-application-to-consume' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
+If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
 
 
 #### Access credentials
@@ -98,7 +98,7 @@ Based on the inputs your cluster administrator provided for setting up the Kafka
   Retrieve the credentials from your cluster administrator and complete the following steps.
 
   1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
-  2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/consume-subscribe/subscribing-to-topics/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
+  2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
 
   3. Click **Next**.
 

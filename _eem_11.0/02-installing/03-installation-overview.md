@@ -15,8 +15,6 @@ A deployment of {{site.data.reuse.eem_name}} consists of a single {{site.data.re
 - {{site.data.reuse.eem_manager}} instances are defined by the `EventEndpointManagement` custom resource type.
 - {{site.data.reuse.egw}} instances are defined by the `EventGateway` custom resource type.
 
-![Event Endpoint Management architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-endpoint-management.svg "Diagram showing the Event Endpoint Management architecture as part of IBM Event Automation")
-
 Installing {{site.data.reuse.eem_name}} includes the following high-level steps:
 
 1. Determine if you will be installing in an:

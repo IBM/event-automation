@@ -21,7 +21,7 @@ If you are using {{site.data.reuse.openshift}}, ensure you have the following se
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
 - A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
-- The Kubernetes command-line tool (`kubectl`) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+- The Kubernetes command-line tool (`kubectl`) [installed](https://v1-29.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 ## Hardware requirements
 
@@ -41,7 +41,7 @@ Minimum resource requirements are as follows, and are based on the total of requ
 
 **Note:** {{site.data.reuse.eem_name}} provides sample configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.eem_name}} installation on your system yet, always ensure you include the resource requirements for the operator together with the intended {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instance requirements (quick start or production).
 
-[Requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
+[Requests and limits](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
 
 - Requests set the minimum requirements a container requires to be scheduled. If your system does not have the required request value, then the services will not start up.
 - Limits set the value beyond which a container cannot consume the resource. It is the upper limit within your system for the service. Containers that exceed a CPU resource limit are throttled, and containers that exceed a memory resource limit are terminated by the system.
@@ -86,7 +86,7 @@ To expose {{site.data.reuse.eem_name}} services externally outside your cluster,
 - Kubernetes ingress resources when installing on other Kubernetes platforms.
 
 
-To use ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.eem_name}} services to work. Refer to your ingress controller documentation for more information.
+To use ingress, ensure you install and run an [ingress controller](https://v1-29.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.eem_name}} services to work. Refer to your ingress controller documentation for more information.
 
 ## Data storage requirements
 

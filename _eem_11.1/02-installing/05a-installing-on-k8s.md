@@ -16,11 +16,11 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Create a namespace
 
-Create a namespace into which the {{site.data.reuse.eem_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.eem_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.eem_name}}. This is required because {{site.data.reuse.eem_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
 
-**Important:** Do not use any of the initial or system [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.eem_name}} (some examples of these are: `default`, `kube-node-lease`, `kube-public`, and `kube-system`).
+**Important:** Do not use any of the initial or system [namespaces](https://v1-29.docs.kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.eem_name}} (some examples of these are: `default`, `kube-node-lease`, `kube-public`, and `kube-system`).
 
 
 ## Add the Helm repository

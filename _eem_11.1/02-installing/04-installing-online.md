@@ -456,7 +456,7 @@ To configure an `EventEndpointManagement` custom resource, complete the followin
 4. In **Manager > tls**, use one of the following configurations (for additional options, see the [configuring](../configuring/#configuring-tls) section):
 
    - User-provided CA certificate: In **caSecretName**, choose the name of the secret that contains the root CA certificate to be used by the operator in generating other certificates.
-   - User-provided certificate: In **secretName**, choose the name of the secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the manager.
+   - User-provided certificate: In **secretName**, choose the name of the secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the Manager.
    - Operator-configured CA: By default, if no value is provided for **caSecretName** and **secretName**, a self-signed Issuer and CA certificate is generated.
 
    For more information, see [configuring TLS](../configuring/#configuring-tls).

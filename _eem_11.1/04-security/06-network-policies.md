@@ -8,7 +8,7 @@ toc: true
 
 ## Inbound network connections (ingress)
 
-[Network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"} are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.
+[Network policies](https://v1-29.docs.kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"} are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.
 
 When you install an instance of {{site.data.reuse.eem_name}}, the required network policies will be automatically created unless they are disabled through configuration options. To review the network policies that have been applied:
 

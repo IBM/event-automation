@@ -9,20 +9,6 @@ toc: true
 
 The following sections provide instructions about installing {{site.data.reuse.ep_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
-## Overview
-
-{{site.data.reuse.ep_name}} is an operator-based release and uses custom resources to define the deployment configuration.
-{{site.data.reuse.ep_name}} requires the installation of the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}}
-operator. These operators deploy and manage the entire lifecycle of your Flink and {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `FlinkDeployment` and `EventProcessing` custom resources.
-
-Installing {{site.data.reuse.ep_name}} has the following phases:
-
-1. Install the {{site.data.reuse.ibm_flink_operator}}: this deploys the operator that will install and manage your Flink instances.
-2. Install the {{site.data.reuse.ep_name}} operator: this deploys the operator that will install and manage your {{site.data.reuse.ep_name}} instances.
-3. Install one or more instances of Flink by using the {{site.data.reuse.ibm_flink_operator}}.
-4. Install one or more instances of {{site.data.reuse.ep_name}} by using the {{site.data.reuse.ep_name}} operator.
-
-
 ## Before you begin
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#ibm-cert-manager) a supported version of the IBM Cert Manager.
@@ -190,7 +176,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version 1.1.6
+     oc ibm-pak get ibm-eventautomation-flink --version 1.1.7
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -202,7 +188,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventprocessing --version 1.1.6
+     oc ibm-pak get ibm-eventprocessing --version 1.1.7
      ```
 
 3. Generate mirror manifests by running the following command:
@@ -247,7 +233,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.1.6/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.1.7/catalog-sources.yaml
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -267,7 +253,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.1.6/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.1.7/catalog-sources.yaml
      ```
 
 This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.

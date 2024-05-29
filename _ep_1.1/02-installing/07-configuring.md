@@ -26,8 +26,6 @@ Consider the following resources before configuring your `FlinkDeployment` custo
 Before you create a Flink instance, create a secret that contains the JKS truststore, which you will be using for your `FlinkDeployment` instances and a secret that contains the password for this JKS truststore. The truststore secret must be called `flink-operator-cert` with the key in the secret defined as `truststore.jks`. The truststore password must be defined in the secret `operator-certificate-password` with the key in the secret set as `password` and the associated value being the password.
 
 
-
-
 To create truststores and keystores, complete any one of the following methods:
 
 - See the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/security/security-ssl/#creating-and-deploying-keystores-and-truststores){:target="_blank"} to manually create keystores and truststores.
@@ -646,27 +644,34 @@ spec:
 
 
 
-## Configuring schema registry and databases with SSL
+## Configuring SSL for API server, database, and schema registry
 
-PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
+  Databases, such as PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
 
-![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") Schema registry such as Apicurio registry from {{site.data.reuse.es_name}} can also be configured with SSL in {{site.data.reuse.ep_name}} and Flink.
+![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") Schema registry such as Apicurio registry in {{site.data.reuse.es_name}} can also be configured to SSL in {{site.data.reuse.ep_name}} and Flink.
+
+![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") You can use the same procedure mentioned in [Add the CA certificate to the truststore](#add-the-ca-certificate-to-the-truststore) to configure the CA certificate for the API server used for API enrichment.
 
 
-If a database or a schema registry is exposing a TLS encrypted endpoint where the certificate is self signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
+If an API server, database, or a schema registry exposes a TLS encrypted endpoint where the certificate is self-signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
 
-To enable SSL connections to a schema registry and databases from {{site.data.reuse.ep_name}} and Flink, complete the following steps:
+To enable SSL connections to an API server, database, and a schema registry from {{site.data.reuse.ep_name}} and Flink, complete the following steps:
 
-1. Add the CA certificate used to issue the certificate presented by a schema registry or an Oracle, MySQL, or PostgreSQL database to a Java truststore.
+1. Add the CA certificate used to issue the certificate presented by an API server, database, or a schema registry to a Java truststore.
 2. Create a secret with the truststore.
 3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
 
 
 ### Add the CA certificate to the truststore
 
-1. Obtain the CA certificate of a schema registry or an Oracle, MySQL, or PostgreSQL database from your administrator. 
+1. Obtain a CA certificate of an API server, database, or schema registry from your administrator.
 
    For example, to obtain the certificate from an {{site.data.reuse.es_name}} schema registry, see the [{{site.data.reuse.es_name}} documentation]({{ 'es/schemas/using-with-rest-producer/' | relative_url }}).
+
+   To retrieve the certificate from a REST endpoint of an API server, run the following command:
+   ```shell
+   openssl s_client -showcerts -connect <API_HOSTNAME>[:<PORT>] </dev/null 2>/dev/null|openssl x509 -outform PEM > /tmp/restServerCert.pem
+   ```
 2. Add the certificate for the CA to the truststore by running the following command:
 
    ```shell
@@ -678,6 +683,7 @@ To enable SSL connections to a schema registry and databases from {{site.data.re
    - `<cert_name>` is the alias name you want to give to the certificate being imported into the keystore.
    - `<path_to_ca_cert>` is the path to the CA certificate file that you want to import into the keystore.
 
+   **Important:** If you use the `p12` format (not `jks`) for the API server, the whole certificate chain must be in the truststore (CA, intermediate CA and certificate).
 
 ### Create a secret with the truststore
 
@@ -731,7 +737,7 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
                    path: truststore.<keystore-extension>
                secretName: ssl-truststore
    ```
-
+   **Important:** Use the same value for the `<keystore-extension>` placeholder in both {{site.data.reuse.ep_name}} and Flink custom resources.
 1. Save your changes and then click **Reload**.
 1. {{site.data.reuse.task_openshift_navigate_installed_operators}}
 1. {{site.data.reuse.task_openshift_select_operator_flink}}
@@ -767,13 +773,13 @@ Complete the following steps to mount the secret through {{site.data.reuse.ep_na
            - key: truststore.<keystore-extension>
              path: truststore.<keystore-extension>
          secretName: ssl-truststore
-     ```
-
+    ```    
 1. Save your changes and then click **Reload**.
 
 Wait for the {{site.data.reuse.ep_name}} and the Flink pods to become ready.
 
-The capability to create SSL connections between a secured database or a schema registry, {{site.data.reuse.ibm_flink_operator}}, and {{site.data.reuse.ep_name}} is enabled.
+The capability to create SSL connections between an API server, registered database, schema registry, and Flink with {{site.data.reuse.ep_name}} is enabled.
+
 
 ## Configuring multiple databases with SSL
 

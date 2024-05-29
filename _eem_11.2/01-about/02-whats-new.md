@@ -10,11 +10,6 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.2.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
-
-### Control external access through the {{site.data.reuse.egw}} 
-
-In {{site.data.reuse.eem_name}} version 11.2.0, you can [control](../../installing/configuring/#configuring-external-access-to-the-event-gateway) the number of routes or ingresses that the {{site.data.reuse.egw}} exposes for external access by setting the`spec.maxNumKafkaBrokers` field in the `EventGateway` custom resource. The value of `spec.maxNumKafkaBrokers` must be set to the total number of Kafka brokers available for the {{site.data.reuse.egw}} to access. By default, the value is 20.
-
 ### Updates to supported Kubernetes versions
 
 - {{site.data.reuse.eem_name}} version 11.2.0 introduces support for Kubernetes platforms version 1.30 that support the Red Hat Universal Base Images (UBI) containers.

@@ -278,11 +278,17 @@ collections:
   "eem_11.1":
     version: "11.1"
     output: true
+    permalink: /eem/:collection/:categories/:slug/
+    product: eem
+    order: 2
+  "eem_11.2":
+    version: "11.2"
+    output: true
     latest: true
     permalink: /eem/:categories/:slug/
     product: eem
     tag: Latest
-    order: 2
+    order: 3
   "ep_1.0":
     version: "1.0"
     output: true
@@ -649,6 +655,19 @@ defaults:
     values:
       collection: "eem_11.1"
       version: "11.1"
+      product: eem
+      layout: single
+      mastheadNavItem: Event Endpoint Management
+      versioned: true
+      sidebar:
+        nav: "111_eemdocs"
+    #_eem_11.2
+  - scope:
+      path: ""
+      type: "eem_11.2"
+    values:
+      collection: "eem_11.2"
+      version: "11.2"
       product: eem
       layout: single
       latest: true

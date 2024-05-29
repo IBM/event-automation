@@ -71,7 +71,7 @@ To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse
 
 ```shell
 docker login cp.icr.io -u cp
-docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:{{site.data.reuse.eem_current_version}}
+docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:11.1.5
 ```
 
 The password to log in to the IBM Container software library is your entitlement key, which you can obtain from the container software library [site](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.

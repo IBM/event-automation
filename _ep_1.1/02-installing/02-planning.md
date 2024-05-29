@@ -221,7 +221,7 @@ To configure the certificates, see [configuring TLS](../configuring/#configuring
 
 ### Securing communication with Flink deployments
 
-![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") When you install {{site.data.reuse.ibm_flink_operator}} in a production environment, you should enable TLS in your `FlinkDeployment` instance, so that all communication between {{site.data.reuse.ep_name}} and Flink pods (such as Flink Job Manager (JM) and Task Manager (TM) pods) uses mutual TLS and the REST endpoint is encrypted. To secure the communication between {{site.data.reuse.ep_name}} and Flink pods:
+![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") When you install {{site.data.reuse.ibm_flink_operator}} in a production environment, enable TLS in your `FlinkDeployment` instance, so that all communication between Flink pods, such as Flink Job Manager (JM) and Task Manager (TM) pods, use mutual TLS, and the REST endpoint is encrypted. To secure the communication between {{site.data.reuse.ep_name}} and Flink pods:
 
 - Create a secret that contains a JKS keystore, and a truststore that contains the correct CA certificate.
 - Create a secret that contains the password for those keystore and truststore.

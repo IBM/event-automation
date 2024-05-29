@@ -53,13 +53,13 @@ The clothing company created a flow called `Filter` and provided a description t
     **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
 1. Click **Next**. The **Access credentials** pane is displayed.
-1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/consume-subscribe/subscribing-to-topics/' | relative_url }}).
+1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to topics]({{ '/eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}).
 1. Click **Next**. The **Topic selection** pane is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
 1. Click **Next**. The **Define event structure** pane is displayed.
 1. Provide a schema or sample message available from the topic. To do this, click **Upload a schema or sample message +** and paste a valid schema into the **Topic schema** or the **Sample message** tab.
 
-   Enter an Avro schema in the **Topic schema** tab, or click the **Sample message** tab and enter the sample message in JSON format. For more information, see [Event information]({{ '/eem/describe/managing-topics/#event-information' | relative_url }}).
+   Enter an Avro schema in the **Topic schema** tab, or click the **Sample message** tab and enter the sample message in JSON format. For more information, see [Event information]({{ '/eem/describe/managing-event-sources/#event-information' | relative_url }}).
 
 1. Set an event time and leave the event source to be saved for later reuse. Saving the connection details makes creating similar event sources a lot quicker because there is no need to enter the same details again.
 1. Click **Configure**. The canvas is displayed and your event source node has a green checkmark, which indicates that the node has been configured successfully.

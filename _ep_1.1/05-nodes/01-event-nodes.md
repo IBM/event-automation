@@ -75,7 +75,7 @@ In the **Connect to Kafka cluster** section, provide the broker address or addre
 
 **Note:** To add more addresses, click **Add URL +** and enter the server address.
 
-If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/consume-subscribe/setting-your-application-to-consume' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
+If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
 
 
 #### Access credentials
@@ -98,7 +98,7 @@ Based on the inputs your cluster administrator provided for setting up the Kafka
   Retrieve the credentials from your cluster administrator and complete the following steps:
 
   1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
-  2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/consume-subscribe/subscribing-to-topics/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
+  2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
 
   3. Click **Next**.
 
@@ -113,6 +113,15 @@ You can use the search pane to search for a particular topic.
 
 3. ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, select the expected message format:
 
+   ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.")  When you select a topic, {{site.data.reuse.ep_name}} attempts to automatically detect the message format by analyzing the last message of the topic:
+
+   - **Message format is detected:** If the topic contains a message with a supported format, for example, Avro with a registry, Avro, or JSON, the format is auto-selected in the **Select Message format** drop-down.
+
+   - **Message format is undetected:** {{site.data.reuse.ep_name}} does not determine the message format if no message is available in the selected topic. In such cases, you can select the message format from the **Select message format** drop-down.
+
+   **Note:** To start the auto-detection manually, click the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"} to auto-detect the format from the last message.
+
+
 
   **Avro:** The topic contains Apache Avro binary-encoded messages. An Avro schema is required to decode incoming messages and define the structure of the source event. 
 
@@ -121,8 +130,8 @@ You can use the search pane to search for a particular topic.
   ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry):**
   The topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry. When connected to the schema registry, the source node retrieves the schema from the registry to decode the binary message. The information about the schema registry and the Avro schema is [required](../../installing/prerequisites/#schema-registry-requirements) to define the structure of the source event. 
 
-
 After selecting the message format, click **Next**.
+
 
 
 #### Define event structure
@@ -137,6 +146,10 @@ To define the [event](../../about/key-concepts#event) structure, you must define
   {: #event-source-avro}
   
   - If the topic contains Apache Avro binary-encoded messages, the event structure must be provided as an Avro schema. The schema must describe the `record` type with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
+
+    ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") If the message format is auto-detected in the previous **Topic selection** pane, in the **Avro schema** field, {{site.data.reuse.ep_name}} automatically populates the Avro schema that was used to produce the last detected message in the topic.
+
+     **Note:** The Avro schema detected automatically is read-only.
 
   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
 
@@ -246,9 +259,12 @@ To define the [event](../../about/key-concepts#event) structure, you must define
           }
         ]
       }
-    ``` 
+    ```
+
 - **JSON:** 
   - If the topic contains JSON formatted messages, the event structure must be provided as a sample JSON message. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.
+
+    ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") **Note:** If the detected format is JSON, {{site.data.reuse.ep_name}} automatically populates the sample message in the **JSON sample message** field that uses the content of the last message from the topic. 
   - ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") The `object` JSON data type is also supported. The properties inside the objects can contain a set of primitive JSON data types or other objects. Multiple levels of nesting are supported.
 
     For example, the following sample message is supported:
@@ -264,7 +280,8 @@ To define the [event](../../about/key-concepts#event) structure, you must define
           "optionalComment": "a comment"
       }
     }  
-    ``` 
+    ```
+
   - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The JSON data type supports arrays of primitive types such as `strings`, `numbers`, and `booleans`. However, arrays of `timestamps` are not supported. 
 
     Arrays can be at any nested level and should only contain elements of the same type.
@@ -280,7 +297,7 @@ To define the [event](../../about/key-concepts#event) structure, you must define
           "contact_nos": [ 99033, 92236 ]
         }
     }
-    ``` 
+    ```
 - ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry)**:
 
   This format supports the Avro schema from a schema registry such as {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. If the topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry, enter the following information to connect to your schema registry and define the structure of the source event:
@@ -291,7 +308,16 @@ To define the [event](../../about/key-concepts#event) structure, you must define
       **Important:** Ensure you append the Apicurio schema registry REST endpoint URL with `/apis/ccompat/v6` as a suffix. For example, if you are using {{site.data.reuse.es_name}}, the valid schema registry URL is `https://<schema_registry_endpoint>/apis/ccompat/v6`
 
   1. In the **Authentication method** field, select **No authentication** or **Basic authentication**, which requires a username and password.
-  1. In the **Avro schema** field, provide the Avro schema that is used to encode topic messages to define the structure of the source event. For more information about Avro schemas, see the [previous section](#event-source-avro).
+
+  1. ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") If the message format is auto-detected in the previous **Topic selection** pane, click **Next** to auto-populate the Avro schema.
+
+     In the **Avro schema** field, {{site.data.reuse.ep_name}} automatically populates the Avro schema that was used to produce the last detected message in the topic.
+
+     **Note:** The Avro schema detected automatically is read-only.
+
+     In versions earlier than 1.1.7 or if your message format is manually selected in the previous **Topic selection** pane, in the **Avro schema** field, paste the Avro schema that is used to encode topic messages to define the structure of the source event. 
+
+     For more information about Avro schemas, see the [previous section](#event-source-avro).
 
 
 ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After you provide required information to define the event structure, click **Next** to go to the **Customize event structure** pane.

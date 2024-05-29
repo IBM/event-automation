@@ -8,11 +8,11 @@ toc: true
 
 ## Symptoms
 
-- If the CA certificate of a secure database server is modified, any running flows that are connected to the database display the `Flink job failure` error status in the {{site.data.reuse.ep_name}} UI.
+- If the CA certificate of a secure database server is modified, any running flows that are connected to the database stop processing events.
 
 - When you enter the URL of a secured database while [configuring](../../nodes/enrichmentnode/#configuring-a-database-node) your database node in the {{site.data.reuse.ep_name}} UI, the `Invalid JDBC URL` error is displayed.
 
-- When you view the logs as a system administrator for either the `backend` container within the {{site.data.reuse.ep_name}} pod or the Flink `taskmanager` while attempting to establish a connection to the database, an error message similar to the following is displayed:
+- When you view the logs as a system administrator for the Flink `taskmanager` while attempting to establish a connection to the database, an error message similar to the following is displayed:
 
   ```shell
   (CERTIFICATE_UNKNOWN): PKIX path validation failed: java.security.cert.CertPathValidatorException: Path does not chain with any of the trust anchors
@@ -27,6 +27,6 @@ The certificates that are used to validate the identity of the database server m
 
 To resolve the error, the system administrator must complete the following steps:
 
-1. [Update the secret](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl) through {{site.data.reuse.ep_name}} again.
+1. [Update the secret](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) through {{site.data.reuse.ep_name}} again.
 2. Delete the {{site.data.reuse.ep_name}} pod.
 3. Wait for the pods to become ready.

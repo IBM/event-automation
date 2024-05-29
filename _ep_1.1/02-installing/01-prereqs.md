@@ -6,7 +6,9 @@ slug: prerequisites
 toc: true
 ---
 
-Ensure your environment meets the following prerequisites before installing {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
+Ensure your environment meets the following prerequisites before installing {{site.data.reuse.ep_name}} and the associated {{site.data.reuse.ibm_flink_operator}}.
+
+**Note:** {{site.data.reuse.ep_flink_version_align_note}}
 
 ## Container environment
 
@@ -35,7 +37,7 @@ Always ensure that you have sufficient resources in your environment to deploy t
 
 Flink resource requirements:
 
-| Deployment                                                                                         | CPU (cores)                       | Memory (Gi)                    | Chargeable cores (see [Flink samples](../planning/#flink-sample-deployments)) |
+| Deployment                                                                                         | CPU (cores)                       | Memory (GiB)                    | Chargeable cores (see [Flink samples](../planning/#flink-sample-deployments)) |
 |----------------------------------------------------------------------------------------------------|-----------------------------------|--------------------------------|-------------------------------------------------------------------------------|
 | [Operator](#operator-requirements)                                                                 | 0.2                               | 1.0                            | N/A                                                                           |
 | [Quick Start](../planning/#flink-quick-start-sample)                                               | 1.0                               | 4.0                            | 1                                                                             |
@@ -45,7 +47,7 @@ Flink resource requirements:
 
 {{site.data.reuse.ep_name}} resource requirements:
 
-| Deployment                                                      | CPU (cores) | Memory (Gi) | Chargeable cores |
+| Deployment                                                      | CPU (cores) | Memory (GiB) | Chargeable cores |
 | --------------------------------------------------------------- | ----------- | ----------- | ---- |
 | [Operator](#operator-requirements)                              | 0.2         | 1.0         | N/A  |
 | [Quick start](../planning/#event-processing-sample-deployments) | 0.5         | 0.5         | N/A  |
@@ -75,9 +77,9 @@ The {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_ope
 
 The {{site.data.reuse.ep_name}} operator has the following minimum resource requirements. Ensure that you always include sufficient CPU capacity and physical memory in your environment to service the operator requirements.
 
-| CPU request (cores) | CPU limit (cores) | Memory request (Gi) | Memory limit (Gi) |
+| CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) |
 | ------------------- | ----------------- | ------------------- | ----------------- |
-| 0.2                 | 1.0               | 0.25                | 0.25              |
+| 0.2                 | 1.0               | 0.25                | ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") 0.5 <br> In earlier versions: 0.25         |
 
 ##### Cluster-scoped permissions required
 
@@ -95,7 +97,7 @@ In addition to the previous permissions, the {{site.data.reuse.ep_name}} operato
 
 The {{site.data.reuse.ibm_flink_operator}} has the following minimum resource requirements.
 
-| CPU request (cores) | CPU limit (cores) | Memory request (Gi) | Memory limit (Gi) |
+| CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) |
 | ------------------- | ----------------- | ------------------- | ----------------- |
 | 0.2                 | 1.0               | 0.25                | 0.5               |
 
@@ -260,7 +262,7 @@ You can define the event structure with an Avro schema that uses a schema regist
 Before you configure the event source node with an Avro schema that uses a schema registry, the following requirements must be met:
 
 - Only the schema registry from {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API is supported.
-- To securely connect the schema registry and {{site.data.reuse.ep_name}}, an SSL connection must be enabled. For more information, see [configuring](../configuring/#configuring-schema-registry-and-databases-with-ssl).
+- To securely connect the schema registry and {{site.data.reuse.ep_name}}, an SSL connection must be enabled. For more information, see [configuring](../configuring/#configuring-ssl-for-api-server-database-and-schema-registry).
 - Ensure that you retrieve the URL to the REST endpoint of the schema registry. For example, to retrieve the URL from {{site.data.reuse.es_name}}, complete the following steps:
 
 

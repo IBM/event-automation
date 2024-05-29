@@ -15,9 +15,9 @@ To help IBM Support troubleshoot any issues with your {{site.data.reuse.ea_long}
 
 To run the log gathering script, ensure you have the following installed on your system:
 
-- If using OpenShift, the [{{site.data.reuse.openshift_short}} CLI (`oc`)](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"} version 4.10 or later.
-- If using other Kubernetes platforms, the [Kubernetes command-line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} version 1.24 or later.
-- The latest 1.1.1 version of [`openssl` command-line tool](https://www.openssl.org/source/){:target="_blank"}.
+- The [Kubernetes command-line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} version 1.24 or later.
+- Version 1.1.1 or later of the [`openssl` command-line tool](https://www.openssl.org/source/){:target="_blank"}.
+- The `sed` (or `gsed` for macOS users) command-line tool.
 
 **Important:** The gather scripts are written in bash. To run the scripts on Windows, ensure that you are running the scripts from a bash prompt. For example, git bash is a suitable shell environment and is available as part of the Git for Windows distribution.
 

@@ -8,6 +8,7 @@ toc: true
  The following processor nodes are available in {{site.data.reuse.ep_name}}: 
  - [Filter](#filter)
  - [Transform](#transform)
+ - [Unpack arrays](#unpack-arrays)
 
 ## Filter
 
@@ -22,7 +23,7 @@ To add a filter node, complete the following steps:
 3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-The **Configure a Filter** window appears.
+The **Configure a Filter** window opens.
 
 ### Configuring a filter node
 
@@ -163,3 +164,58 @@ To configure a transform node, complete the following steps:
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the transform node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "DiagIconram showing red checkbox."){:height="30px" width="15px"} appears.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
+
+## Unpack arrays
+
+![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.")  An unpack array node takes an existing array of elements in a stream of events to unpack it. You can unpack each array element into a new property in separate events, or unpack the array elements into new properties that are all included in the same event. 
+
+### Adding an unpack array node
+
+To add an unpack array node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+1. In the **Palette**, under **Processors**, drag-and-drop the **Unpack arrays** node into the canvas.
+1. Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
+1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   The **Configure unpack node** window opens.
+
+### Configuring unpack array node
+
+To configure the unpack array node, complete the following steps:
+
+1. {{site.data.reuse.node_details}}
+1. Click **Next** to open the **Array selection** pane.
+1. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Diagram showing unchecked radio button."){:height="30px" width="15px"} of the array you want to unpack.
+
+   **Note:** You can use the search bar to search for a particular array. As you start typing the array name in the search bar, you get a filtered list of matching arrays.
+1. Click **Next** to open the **Unpacking the array** pane.
+1. The following options are available to unpack the array:
+
+   
+   - **Unpack into events:** To unpack each array element into a new property in separate events, in the **Property name** field, provide a name for the property that represents the array element. You will have as many events as array elements and each event contains the property with one of the array elements.
+   - **Unpack into properties:** To unpack each array element into properties within an event, provide a name in the **Property name** field for each property that represents the array element. By default, properties are listed sequentially (1, 2, 3,...). 
+
+     - To add a property, click **Add next element**, and provide a name for the property in the **Property name** field.
+     - To remove a property, click the **Delete property** icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Remove topic icon."){:height="30px" width="15px"} corresponding to the property you want to remove.
+     - To edit the name of a property, hover over the name, and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
+
+   **Note:**
+    - The order of the properties in the table corresponds to the order in the array: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2, 3], then the first property p1 is mapped to the first array element 1, p2 is mapped to 2, and p3 is mapped to 3.
+    - If the array contains more elements than the number of properties, elements with no mapping are dropped: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2, 3, 4], then the first property p1 is mapped to the first array element 1, p2 is mapped to 2, p3 is mapped to 3, and 4 is dropped.
+    - If the array contains fewer elements than the number of properties, then the properties with no mapping carries a null value: For example, if you define the properties p1, p2, and p3 in this order, and you have the array [1, 2], then the first property p1 is mapped to the first array element 1, p2 mapped to 2, and p3 is null.
+    - If you define a property p, and you have the array [1, 2], you will have one event where p equals 1 and another event where p equals 2. 
+ 1. Click **Next** to open the **Output properties** pane. 
+ 
+    The properties that you added in the previous step are displayed in the **Output properties**. You can manage the properties that come from this node to suit your requirements.
+
+    **Note:** The array that you selected to unpack is not part of the output properties.
+ 
+  1. To complete an unpack node configuration, click **Configure**.
+
+   A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the unpack array node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.               
+
+
+
+
+

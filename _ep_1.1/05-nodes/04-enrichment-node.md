@@ -1,21 +1,23 @@
 ---
-title: "Enrichment node"
+title: "Enrichment nodes"
 excerpt: "Event Processing provides a set of nodes to create event stream processing flows."
 categories: nodes
 slug: enrichmentnode
 toc: true
 ---
 
-Find out more about the enrichment database node that is available in {{site.data.reuse.ep_name}}.
+The following enrichment nodes are available in {{site.data.reuse.ep_name}}:
 
+- [Database](#enrichment-from-a-database)
+- [API](#enrichment-from-an-api)
 
-## Database
+## Enrichment from a database
 
 In situations where the data in the source table might not offer significant insights on its own, establishing connections with external databases and integrating their data can yield a more comprehensive result.
 
 With the database node, you can retrieve data from external databases (PostgreSQL, MySQL, or Oracle) and integrate the data with the events within your workflow. 
 
-**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-schema-registry-and-databases-with-ssl). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
+**Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
 
 ### Adding a database node
 
@@ -127,3 +129,89 @@ To configure a database node, complete the following steps.
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the database node if the database node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
+
+
+## Enrichment from an API
+
+![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") In situations where the data in the source table might not offer significant insights on its own, making calls to external APIs and integrating data from the API responses can yield a more comprehensive result.
+
+### Prerequisites and limitations
+
+To configure the API node, ensure you upload an OpenAPI document that meets the following requirements:
+
+ - OpenAPI specification 3.0 or 3.1 is required.
+ - At least one [URL](https://swagger.io/docs/specification/api-host-and-base-path/){:target="_blank"} with the `http` or `https` protocol is required. Relative URLs or URLs with variables are not supported. For URLs that use the `https` protocol, ensure you [configure](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) Flink and {{site.data.reuse.ep_name}} to enable SSL connections.
+ - At least one `GET` or `POST` [operation](https://swagger.io/docs/specification/paths-and-operations/){:target="_blank"} is required with the following requirements:
+    - The operation uses one of the following [security methods](https://swagger.io/docs/specification/authentication/){:target="_blank"}: basic authentication, API keys (in the header or query parameter), or no authentication (None).
+    - Uses the [media types](https://swagger.io/docs/specification/media-types/){:target="_blank"} `application` or `JSON` for the response (`GET` and `POST`) and the request body (`POST`).
+    - Does not have required parameters of type `array`. 
+    - For [parameter serialization](https://swagger.io/docs/specification/serialization/){:target="_blank"} of query parameters, the `style` attribute is either set to the `form` style, or no `style` attribute is specified, and for path parameters, the `style` attribute is either set to the `simple` style, or no `style` attribute is specified.
+
+The API enrichment in {{site.data.reuse.ep_name}} has the following limitations:
+
+- Only `GET` and `POST` operations are supported for API enrichment.
+- Only the supported API parameters are available to configure the API node.
+- A single API node can only support one API operation. Chain multiple API nodes together to support multiple API operations.
+- If an API fails to respond or returns a status code other than the 200-299 success code, the Flink job does not fail, but no output events are generated.
+- The response schema with the lowest success code is used. The operation must define a status code in the range of 200-299 or use the 2xx status code. The API node uses the 2xx code if no numeric success code is defined.
+- The impact on processing performance depends on the response time of the API server, network latency, and the size of payloads.
+- The configured authentication credentials cannot be verified at flow authoring time. If the credentials need to be corrected or renewed for a running flow, stop the flow and reconfigure the node.
+- [Multiple security schemes](https://swagger.io/docs/specification/authentication/#multiple){:target="_blank"} cannot be combined with `AND` logic for the same API operation. Only `OR` logic is supported, for example, **Basic** or **API key** authentication.
+- A header parameter’s value can be set as a literal, but not by an input event property.
+- String literal values cannot contain single or double quotation marks (`'`, `"`). However, such values can be conveyed in input event properties. You can define string literals with quotation marks in a transform node that precedes the API enrichment node.
+- The value of API parameters of type `string` cannot contain backslash characters (`\`) when specifying the value as a literal value or mapping it to an event property.
+- OpenAPI can define [minimum and maximum](https://swagger.io/docs/specification/data-models/data-types/#range){:target="_blank"} values for numeric parameters and [`pattern`](https://swagger.io/docs/specification/data-models/data-types/#pattern){:target="_blank"} for string parameters, but the API node does not enforce them. An API returns a response other than a success code (2xx) if the parameter values are not compliant. In such cases, the processing job does not fail, but no output event is generated.
+- For API parameters where the schema defines the type by using `oneOf`, only the first type is used.
+- The optional `format` attribute provided by the OpenAPI for [API parameter types](https://swagger.io/docs/specification/data-models/data-types/){:target="_blank"} are treated as follows:
+   - For filtering matching types of event properties, and validating the configured literal values, `date` and `date-time` formats are used for `string` type, `float` and `double` formats for `number` type, and `int32` and `int64` formats for `integer` type.
+   - Parameters of type `string` are excluded if their `format` is `binary`.
+   - Other values of the `format` field are not used by the API node, including custom formats. When such values are present, parameters of type `number` are treated as `double`, and parameters of type `integer` are treated as `int64`. 
+   - Custom formats cannot be treated specifically, as their semantics are not specified in OpenAPI. Check the API documentation you use to ensure that the event property or the literal value that feeds the API parameter contains the appropriate values.
+- The parameter names and fields in the nested request body and response payloads do not support the slash (`/`) character.
+
+### Adding an API node
+
+To add an API node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+2. In the **Palette**, under **Enrichment**, drag the **API** node into the canvas.
+3. {{site.data.reuse.node_connect}} A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the API node indicating that the node is yet to be configured.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node. The **Enrichment from API** window appears.
+
+### Configuring an API node
+
+To configure an API node, complete the following steps:
+
+1. {{site.data.reuse.node_details}}
+1. Click **Next**. The **API definition** pane is displayed.
+1. To upload an OpenAPI document, drag a file or click **Drag and drop a file here or click to upload** and select the file that you want to upload.
+
+   **Note:** Ensure your OpenAPI document meets the [required conditions](#prerequisites-and-limitations).
+
+1. From the **Select a GET or POST operation to enrich from** drop-down, select an operation.
+1. Click **Next**. The **API access** pane is displayed.
+1. From the **API URL** drop-down, select an API URL.
+
+   **Note:** Using URLs with the `https` protocol requires [configuring](../../installing/configuring#configuring-ssl-for-api-server-database-and-schema-registry) Flink and {{site.data.reuse.ep_name}} to enable SSL connections.
+
+1. From the **Authentication method** drop-down, select an authentication method. 
+
+   **Note:** {{site.data.reuse.ep_name}} supports **Basic**, **API Key**, and **None** (no authentication) authentication methods. The options available in the drop-down list depend on the security methods defined in the OpenAPI document for the selected operation.
+
+1. Depending on the authentication method selected, enter your user name and password, or API key, and click **Next**. The **Input mapping** pane is displayed.
+
+   **Note:** Authentication credentials are only required for the **API key** and **Basic** authentication methods. Contact the API owner for access credentials.
+
+1. To configure the **Required Inputs**, select an event property or enter a constant value. You can also select and configure input parameters from the **Optional Inputs** list.
+
+   **Important:** Ensure that all the parameters in the **Required Inputs** are configured.
+
+   **Notes:**
+   - The dropdown for selecting event properties automatically filters properties for an SQL type that is compatible with the API parameter type.
+   - The value provided for the API parameters must be compliant with the documented API constraints, including minimum and maximum values, format, or enumerated values.
+
+1. Click **Next**. The **Output properties** pane is displayed, which contains properties from the preceding node and the API response. Remove the fields that you do not want to include in the output.
+
+   **Note:** To rename properties, hover over a property, and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
+
+1. Click **Configure** to complete the configuration.

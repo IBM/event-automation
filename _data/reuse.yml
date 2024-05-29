@@ -14,19 +14,19 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.1.5"
+eem_current_version: "11.2.0"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.1.5"
+ep_current_version: "1.1.7"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.1.5"
+flink_operator_current_version: "1.1.7"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
 
 # {{site.data.reuse.eem_manager}}
-eem_manager: "Event Endpoint Management Manager"
+eem_manager: "Event Manager"
 
 # {{site.data.reuse.eem_ubp_license_id}}
 eem_ubp_license_id: "L-GGQD-G7AYJD"
@@ -109,7 +109,11 @@ jmx-secret: <releasename>ibm-es-jmx-secret
 # {{site.data.reuse.jmx-secret-name}}
 jmx-secret-name: <clustername>-jmx
 
+# {{site.data.reuse.apic_long}}
+apic_long: IBM API Connect
 
+# {{site.data.reuse.apic_short}}
+apic_short: API Connect
 
 
 ###############
@@ -216,6 +220,7 @@ task_openshift_select_operator_ep: "Expand the **Project** dropdown and select t
 # {{site.data.reuse.task_openshift_select_instance_ep}}
 task_openshift_select_instance_ep: "Select the **Event Processing** tab and search the **Name** column for the installed instance and click it."
 
+
 ###############
 # Nodes Steps #
 ###############
@@ -315,6 +320,9 @@ jmx_deprecated: "**Note:** Support for jmxtrans in Event Streams version 11.1.5 
 
 # {{site.data.reuse.array_expression_note}}
 array_expression_note: "**Note:** The **Assistant** drop-down menu does not support array properties. However, you can manually write the expressions by selecting the property from the list that appears when you press Ctrl+Space in the **Expression** field."
+
+# {{site.data.reuse.ep_flink_version_align_note}}
+ep_flink_version_align_note: "Ensure that the Event Processing version and the IBM Operator for Apache Flink version are the same."
 
 #####################################################
 # DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #

@@ -133,12 +133,12 @@ data in JSON format. The amount of data stored is proportional to the number of 
 catalog and the number of subscribers. For storage classes that support resizing, it might be sufficient to begin with `100Mi`,
 monitor and extend as needed. By default, a value of `500Mi` is used.
 
-You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
+You either need to create a [persistent volume](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
 - For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.15/storage/understanding-persistent-storage.html){:target="_blank"}.
-- For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
+- For other Kubernetes platforms, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 

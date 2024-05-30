@@ -147,6 +147,7 @@ This adds the catalog source for {{site.data.reuse.eem_name}} to the OperatorHub
 
 ### Adding specific versions
 
+
 **Important:** Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.
 
 Before you can install the required operator versions and use them to create instances of the {{site.data.reuse.eem_manager}}, make their catalog source available in your cluster as described in the following steps.

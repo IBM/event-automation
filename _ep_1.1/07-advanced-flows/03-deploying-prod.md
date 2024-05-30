@@ -79,8 +79,18 @@ Some adaptations to this procedure are required to build the Docker image and us
    kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK_IMAGE
    ```
 
-   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to IBM Flink image with its SHA digest, as determined in the previous step.
+   b. Edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} and change the `FROM` clause to use the IBM Flink image with its SHA digest, as determined in the previous step.
 
+   ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") In {{site.data.reuse.ep_name}} 1.1.5 and later:
+   
+   ```shell
+   FROM --platform=<platform> <IBM Flink image with digest>
+   ```
+
+   Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target.
+
+   In versions earlier than 1.1.5:
+   
    ```shell
    FROM <IBM Flink image with digest>
    ```

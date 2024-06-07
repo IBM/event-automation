@@ -88,14 +88,12 @@ Before mirroring your images, set the environment variables for the CASE images 
    kubectl ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
    ```
 
-2. Run the following command to download, validate, and extract the {{site.data.reuse.eem_name}} CASE.
+2. Run the following command to download, validate, and extract the latest {{site.data.reuse.eem_name}} CASE version.
 
    ```shell
-   kubectl ibm-pak get ibm-eventendpointmanagement --version <case-version>
+   kubectl ibm-pak get ibm-eventendpointmanagement
    ```
-
-   Where `<case-version>` is the version of the CASE file to be downloaded.
-
+   
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
 
    ```shell
@@ -113,14 +111,10 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
+   Download of CASE: ibm-eventendpointmanagement, version: 11.2.0+20240603.010000 is complete
    ```
 
-   **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
-
-   ```shell
-   kubectl ibm-pak get ibm-eventendpointmanagement
-   ```
+   **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
 
 3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
 
@@ -134,14 +128,16 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── {{site.data.reuse.eem_current_version}}
+   │   │       └── 11.2.0+20240603.010000
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
+   |   |           |   ├── ibm-eem-operator-11.2.0.tgz
+   |   |           |   └── ibm-eem-operator-crd-11.2.0.tgz
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
+   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-images.csv
+   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror

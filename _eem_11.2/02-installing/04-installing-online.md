@@ -163,20 +163,13 @@ Before you can install the required operator versions and use them to create ins
    oc ibm-pak --help
    ```
 
-2. Run the following command to download, validate, and extract the CASE.
+2. Run the following command to download, validate, and extract the latest CASE version.
 
    ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version <case-version>
+   oc ibm-pak get ibm-eventendpointmanagement 
    ```
 
-    Where `<case-version>` is the version of the CASE you want to install. For example:
-
-   ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version {{site.data.reuse.eem_current_version}}
-   ```
-
-
-   **Note:** If you omit `--version <case-version>`, the latest version is downloaded.
+   **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
 
 3. Generate mirror manifests by running the following command:
 

@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const element = container.getElementsByClassName("active")[0]
 
     if (element && !isInViewport(element)) {
-    container.scrollTop = element.offsetTop - (container.offsetTop);
+    container.scrollTop = element.offsetTop - container.offsetTop - window.innerHeight/2.2;
+      //element.scrollIntoView({ block: "center" });    
     }
   }
 }, false);

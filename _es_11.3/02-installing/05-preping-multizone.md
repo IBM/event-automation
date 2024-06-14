@@ -25,7 +25,7 @@ To determine if your cluster is zone aware:
    kubectl get nodes --show-labels
    ```
 
-If your Kubernetes cluster is zone aware, the [label](https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/){:target="_blank"} `topology.kubernetes.io/zone` is displayed against each node.
+If your Kubernetes cluster is zone aware, the [label](https://v1-29.docs.kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/){:target="_blank"} `topology.kubernetes.io/zone` is displayed against each node.
  
 The value of the label is the zone the node is in, for example, `es-zone-1`.
 

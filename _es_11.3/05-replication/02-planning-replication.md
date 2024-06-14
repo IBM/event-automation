@@ -8,7 +8,7 @@ toc: true
 
 Consider the following when planning for geo-replication:
 
-- If you want to use the CLI to set up geo-replication, ensure you have the [Kubernetes CLI installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+- If you want to use the CLI to set up geo-replication, ensure you have the [Kubernetes CLI installed](https://v1-29.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 - Geo-replication requires both the origin and destination {{site.data.reuse.es_name}} instances to have client authentication enabled on the external listener and the internal TLS listener.
 - If you are using geo-replication for disaster-recovery scenarios, see the guidance about [configuring your clusters and applications](../failover/#preparing-clusters-and-applications-for-switching) to ensure you can switch clusters if one becomes unavailable.
 -	[Prepare your destination cluster](#preparing-a-destination-cluster) by creating an EventStreamsGeoReplicator instance and defining the number of geo-replication workers.

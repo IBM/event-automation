@@ -65,6 +65,6 @@ If any of the components are not ready for an extended period of time, check the
    kubectl -n <namespace> logs <pod-name> -c <container_name>
    ```
 
-For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pods){:target="_blank"}.
+For more information about debugging, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pods){:target="_blank"}.
 
 **Note:** After a component restarts, the `kubectl` command retrieves the logs for the new instance of the container. To retrieve the logs for a previous instance of the container, add the `-–previous` option to the `kubectl logs` command.

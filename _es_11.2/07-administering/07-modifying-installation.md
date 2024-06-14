@@ -42,7 +42,7 @@ To modify configuration settings by using the Kubernetes command-line tool (`kub
 
 ## Modifying Kafka broker configuration settings
 
-Kafka supports a number of [key/value pair settings](http://kafka.apache.org/documentation/#brokerconfigs){:target="_blank"} for broker configuration, typically provided in a properties file.
+Kafka supports a number of [key/value pair settings](http://kafka.apache.org/35/documentation/#brokerconfigs){:target="_blank"} for broker configuration, typically provided in a properties file.
 
 In {{site.data.reuse.es_name}}, these settings are defined in an `EventStreams` custom resource under the `spec.strimziOverrides.kafka.config` property.
 
@@ -64,4 +64,4 @@ spec:
          num.io.threads: 24
 ```
 
-You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/latest/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
+You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/0.37.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.

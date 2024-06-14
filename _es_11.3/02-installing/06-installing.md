@@ -13,7 +13,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Overview
 
-{{site.data.reuse.es_name}} is an [operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
+{{site.data.reuse.es_name}} is an [operator-based](https://v1-29.docs.kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
 
 Installing {{site.data.reuse.es_name}} has two phases:
 

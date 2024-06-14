@@ -54,6 +54,6 @@ If a user or any other operator applies a custom PSP that removes permissions th
 
 Apply the custom Pod Security Policy (PSP) provided by [IBM Cloud Pak](https://github.com/IBM/cloud-pak/blob/master/spec/security/psp/ibm-restricted-psp.yaml){:target="_blank"} to enable permissions required by the product.
 
-For information about applying the PSP, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-policy){:target="_blank"}.
+For information about applying the PSP, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/security/pod-security-policy){:target="_blank"}.
 
 **Note:** Pod Security Policies (PSP) is removed from Kubernetes versions 1.25 and later.

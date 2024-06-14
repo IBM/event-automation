@@ -24,7 +24,7 @@ If you are upgrading from {{site.data.reuse.eem_name}} version 11.0.x, you must 
 
 - Ensure you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.4?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
 - To upgrade successfully, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data will be lost.
 

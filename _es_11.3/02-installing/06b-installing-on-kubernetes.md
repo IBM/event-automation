@@ -10,7 +10,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Overview
 
-{{site.data.reuse.es_name}} is an [operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
+{{site.data.reuse.es_name}} is an [operator-based](https://v1-29.docs.kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations. The {{site.data.reuse.es_name}} operator uses the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
 
 When deploying in an air-gapped (also referred to as offline or disconnected) environment, follow the instructions in the [offline installation](../offline) to install {{site.data.reuse.es_name}} on OpenShift and other Kubernetes platforms by using the CASE package.
 
@@ -28,11 +28,11 @@ Installing {{site.data.reuse.es_name}} has two phases:
 
 ## Create a namespace
 
-Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.es_name}}. This is required because {{site.data.reuse.es_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
 
-**Important:** Do not use any of the initial or system [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.es_name}} (`default`, `kube-node-lease`, `kube-public`, and `kube-system`).
+**Important:** Do not use any of the initial or system [namespaces](https://v1-29.docs.kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.es_name}} (`default`, `kube-node-lease`, `kube-public`, and `kube-system`).
 
 
 ## Add the Helm repository

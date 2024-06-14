@@ -37,7 +37,7 @@ toc: true
 
 ## Operators
 
-Kubernetes [Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} are designed to simplify the deployment and maintenance of complex applications. They do this by packaging up and abstracting away domain-specific knowledge of how to deploy, configure and operate the application and its component parts. An Operator can then extend Kubernetes by providing new Kubernetes constructs to support these abstractions, simplifying the initial deployment and subsequent lifecycle management of the application.
+Kubernetes [Operators](https://v1-29.docs.kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} are designed to simplify the deployment and maintenance of complex applications. They do this by packaging up and abstracting away domain-specific knowledge of how to deploy, configure and operate the application and its component parts. An Operator can then extend Kubernetes by providing new Kubernetes constructs to support these abstractions, simplifying the initial deployment and subsequent lifecycle management of the application.
 
 Strimzi uses Operators in this manner to facilitate the deployment of Kafka clusters. {{site.data.reuse.es_name}} builds on top of Strimzi to deploy not only the Kafka components but also the additional features outlined earlier. A new Kubernetes resource `EventStreams` is provided (in Kubernetes referred to as a `kind`), to allow the definition of a complete deployment that brings together the components provided by Strimzi and {{site.data.reuse.es_name}}. This information is defined in a standard YAML document and deployed in a single operation.
 

@@ -66,7 +66,7 @@ You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
 For OpenShift and other Kubernetes platforms running without {{site.data.reuse.fs}}, install the {{site.data.reuse.es_name}} CLI with the Kubernetes command-line tool (`kubectl`) as follows:
 
-1. Ensure you have the Kubernetes command-line tool (`kubectl`) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+1. Ensure you have the Kubernetes command-line tool (`kubectl`) [installed](https://v1-29.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 2. [Log in](../../getting-started/logging-in/) to your {{site.data.reuse.es_name}} instance as an administrator.
 3. Click **Toolbox** in the primary navigation.
 4. Go to the **{{site.data.reuse.es_name}} command-line interface** section and click **Find out more**.
@@ -77,7 +77,7 @@ For OpenShift and other Kubernetes platforms running without {{site.data.reuse.f
    sudo mv ./kubectl-es-plugin.bin /usr/local/bin/kubectl-es
    ```
 
-For more information about `kubectl` plugins, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/){:target="_blank"}.
+For more information about `kubectl` plugins, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/){:target="_blank"}.
 
 To start the {{site.data.reuse.es_name}} CLI and check all available command options in the CLI, use the `kubectl es` command.
 For an exhaustive list of commands, you can run:
@@ -130,7 +130,7 @@ If you have load balancing set up to manage traffic for your cluster, ensure tha
 On the {{site.data.reuse.openshift_short}}, {{site.data.reuse.es_name}} uses routes.
 If you are using OpenShift, ensure your [router](https://docs.openshift.com/container-platform/4.15/networking/routes/route-configuration.html){:target="_blank"} is set up as required.
 
-On other Kubernetes platforms, {{site.data.reuse.es_name}} uses ingress for [external access](../configuring/#configuring-access). You can configure ingress to provide load balancing through an ingress controller. Ensure your [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/){:target="_blank"} is set up as required for your Kubernetes platform.
+On other Kubernetes platforms, {{site.data.reuse.es_name}} uses ingress for [external access](../configuring/#configuring-access). You can configure ingress to provide load balancing through an ingress controller. Ensure your [ingress](https://v1-29.docs.kubernetes.io/docs/concepts/services-networking/ingress/){:target="_blank"} is set up as required for your Kubernetes platform.
 
 ## Connecting clients
 

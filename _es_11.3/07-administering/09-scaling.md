@@ -59,7 +59,7 @@ spec:
           cpu: 4000m
 ```
 
-A description of the syntax for these values can be found in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu){:target="_blank"}.
+A description of the syntax for these values can be found in the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu){:target="_blank"}.
 
 
 ## Increase the memory request or limit settings for the Kafka brokers and ZooKeeper nodes
@@ -94,7 +94,7 @@ spec:
           memory: 8096Mi
 ```
 
-The syntax for these values can be found in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory){:target="_blank"}.
+The syntax for these values can be found in the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory){:target="_blank"}.
 
 
 
@@ -118,7 +118,7 @@ spec:
         memory: 8096Mi
 ```
 
-The syntax for these values can be found in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory){:target="_blank"}.
+The syntax for these values can be found in the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory){:target="_blank"}.
 
 
 ## Modifying the JVM settings for Kafka brokers
@@ -127,7 +127,7 @@ If you have specific requirements, you can modify the JVM settings for the Kafka
 
 **Note:** Take care when modifying these settings as changes can have an impact on the functioning of the product.
 
-**Note:** Only a [selected subset](https://strimzi.io/docs/operators/latest/configuring.html#con-common-configuration-jvm-reference){:target="_blank"} of the available JVM options can be configured.
+**Note:** Only a [selected subset](https://strimzi.io/docs/operators/0.39.0/configuring.html#con-common-configuration-jvm-reference){:target="_blank"} of the available JVM options can be configured.
 
 JVM settings for the Kafka brokers are defined in the `EventStreams` custom resource in the `spec.strimziOverrides.kafka.jvmOptions` property. For example:
 

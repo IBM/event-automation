@@ -186,16 +186,16 @@ Ensure you have sufficient CPU capacity and physical memory in your environment 
 
 If you plan to have persistent volumes, [consider the disk space](../capacity-planning/#disk-space-for-persistent-volumes) required for storage.
 
-Both Kafka and ZooKeeper rely on fast write access to disks. Use separate dedicated disks for storing Kafka and ZooKeeper data. For more information, see the disks and filesystems guidance in the [Kafka documentation](https://kafka.apache.org/documentation/#diskandfs){:target="_blank"}, and the deployment guidance in the [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.5.7/zookeeperAdmin.html#sc_designing){:target="_blank"}.
+Both Kafka and ZooKeeper rely on fast write access to disks. Use separate dedicated disks for storing Kafka and ZooKeeper data. For more information, see the disks and filesystems guidance in the [Kafka documentation](https://kafka.apache.org/36/documentation/#diskandfs){:target="_blank"}, and the deployment guidance in the [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.5.7/zookeeperAdmin.html#sc_designing){:target="_blank"}.
 
 If persistence is enabled, each Kafka broker and ZooKeeper server requires one physical volume each. The number of Kafka brokers and ZooKeeper servers depends on your setup (for example, see the provided samples described in [resource requirements](../prerequisites/#resource-requirements)).
 
-You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"} for each physical volume, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}. Each component can use a different storage class to control how physical volumes are allocated.
+You either need to create a [persistent volume](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"} for each physical volume, or specify a storage class that supports [dynamic provisioning](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}. Each component can use a different storage class to control how physical volumes are allocated.
 
  For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
 - For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.15/storage/understanding-persistent-storage.html){:target="_blank"}.
-- For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
+- For other Kubernetes platforms, see the [Kubernetes documentation](https://v1-29.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the Cluster Administrator role for creating persistent volumes or a storage class.
 
@@ -287,7 +287,7 @@ You can also further ensure high availability for your environment by increasing
 
 To add further resilience to your {{site.data.reuse.es_name}} cluster, you can split your servers across multiple data centers or zones, so that even if one zone experiences a failure, you still have a working system.
 
-[Multizone support](https://kubernetes.io/docs/setup/best-practices/multiple-zones/){:target="_blank"} provides the option to run a single Kubernetes cluster in multiple availability zones within the same region. Multizone clusters are clusters of either physical or virtual servers that are spread over different locations to achieve greater resiliency. If one location is shut down for any reason, the rest of the cluster is unaffected.
+[Multizone support](https://v1-29.docs.kubernetes.io/docs/setup/best-practices/multiple-zones/){:target="_blank"} provides the option to run a single Kubernetes cluster in multiple availability zones within the same region. Multizone clusters are clusters of either physical or virtual servers that are spread over different locations to achieve greater resiliency. If one location is shut down for any reason, the rest of the cluster is unaffected.
 
 **Note:** For {{site.data.reuse.es_name}} to work effectively within a multizone cluster, the network latency between zones must not be greater than 20 ms for Kafka to replicate data to the other brokers.
 
@@ -295,7 +295,7 @@ Typically, high availability requires a minimum of 3 zones (sites or data center
 
 Kubernetes platforms require a minimum of 3 zones for high availability topologies and {{site.data.reuse.es_name}} supports that model. This is different from the traditional primary and backup site configuration, and is a move to support the quorum-based application paradigm.
 
-With [zone awareness](https://kubernetes.io/docs/setup/best-practices/multiple-zones/#distributing-nodes-across-zones){:target="_blank"}, Kubernetes automatically distributes pods in a replication controller across different zones. For workload-critical components, for example Kafka, ZooKeeper and REST Producer, set the number of replicas of each component to at least match the number of zones. This provides at least one replica of each component in each zone, so in the event of loss of a zone the service will continue using the other working zones.
+With [zone awareness](https://v1-29.docs.kubernetes.io/docs/setup/best-practices/multiple-zones/#distributing-nodes-across-zones){:target="_blank"}, Kubernetes automatically distributes pods in a replication controller across different zones. For workload-critical components, for example Kafka, ZooKeeper and REST Producer, set the number of replicas of each component to at least match the number of zones. This provides at least one replica of each component in each zone, so in the event of loss of a zone the service will continue using the other working zones.
 
 For information about how to prepare multiple zones, see [preparing for multizone clusters](../preparing-multizone).
 
@@ -335,7 +335,7 @@ You can use log data to monitor cluster activity and investigate any problems af
 
 ## Kafka static configuration properties
 
-You can set [Kafka broker configuration](https://strimzi.io/docs/operators/latest/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
+You can set [Kafka broker configuration](https://strimzi.io/docs/operators/0.39.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
 
 You can also use this configuration property to modify read-only Kafka broker settings for an existing {{site.data.reuse.es_name}} installation. Read-only parameters are defined by Kafka as settings that require a broker restart. Find out more about the [Kafka configuration options and how to modify them](../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings) for an existing installation.
 

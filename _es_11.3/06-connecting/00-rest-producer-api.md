@@ -224,7 +224,7 @@ Each KafkaUser has a related secret that stores all credentials needed for the m
 - `user.password` - password for accessing the client private key
 - `user.p12` - PKCS #12 archive containing the client certificate and private key
 
-By default, the name of the secret is same as the name of the KafkaUser. For more information about secrets, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.31.1/configuring.html#user_secrets){:target="_blank"}.
+By default, the name of the secret is same as the name of the KafkaUser. For more information about secrets, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.39.0/deploying.html#user_secrets_generated_by_the_user_operator){:target="_blank"}.
 
 For some systems, for example CICS, you need to download and import the client CA certificate into your truststore. The client CA certificate can be downloaded using the Kubernetes command-line tool (`kubectl`) or the {{site.data.reuse.openshift_short}} web console.
 

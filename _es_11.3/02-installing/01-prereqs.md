@@ -24,7 +24,7 @@ If you are using {{site.data.reuse.openshift}}, ensure you have the following se
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
 - A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The Kubernetes command-line tool (`kubectl`) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+- The Kubernetes command-line tool (`kubectl`) [installed](https://v1-29.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 **Note:** For completing tasks by using the command line, you can use both `kubectl` and `oc` commands if your deployment is on the  {{site.data.reuse.openshift_short}}. This documentation set includes instructions that use the `kubectl` command, except for cases where the task is specific to OpenShift.
 
@@ -57,10 +57,10 @@ Always ensure you have sufficient resources in your environment to deploy the {{
 
 **Note:** {{site.data.reuse.es_name}} provides sample configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.es_name}} installation on your system yet, always ensure you include the resource requirements for the operator together with the intended {{site.data.reuse.es_name}} instance requirements (development or production).
 
-{{site.data.reuse.es_name}} is a [Kubernetes operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations.
+{{site.data.reuse.es_name}} is a [Kubernetes operator-based](https://v1-29.docs.kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.es_name}} configurations.
 The {{site.data.reuse.es_name}} operator uses the declared required state of your {{site.data.reuse.es_name}} in the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.es_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventStreams` custom resource type.
 
-The provided samples define typical configuration settings for your {{site.data.reuse.es_name}} instance, including broker configurations, security settings, and default values for resources such as CPU and memory defined as "request" and "limit" settings. [Requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
+The provided samples define typical configuration settings for your {{site.data.reuse.es_name}} instance, including broker configurations, security settings, and default values for resources such as CPU and memory defined as "request" and "limit" settings. [Requests and limits](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
 
 - Requests set the minimum requirements a container requires to be scheduled. If your system does not have the required request value, then the services will not start up.
 - Limits set the value beyond which a container cannot consume the resource. It is the upper limit within your system for the service. Containers that exceed a CPU resource limit are throttled, and containers that exceed a memory resource limit are terminated by the system.
@@ -118,7 +118,7 @@ If used, {{site.data.reuse.es_name}} requires a Pod Security Standard (PSS) to b
 By default, {{site.data.reuse.es_name}} complies with the following:
 
 -  Kubernetes 1.24 and earlier complies with the `ibm-restricted-psp` [Pod Security Policy](https://github.com/IBM/cloud-pak/blob/master/spec/security/psp/ibm-restricted-psp.yaml){:target="_blank"}.
--  Kubernetes 1.25 and later complies with the built-in `restricted` [Pod Security Standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/){:target="_blank"}.
+-  Kubernetes 1.25 and later complies with the built-in `restricted` [Pod Security Standard](https://v1-29.docs.kubernetes.io/docs/concepts/security/pod-security-standards/){:target="_blank"}.
 
 ## Network requirements
 
@@ -128,7 +128,7 @@ By default, {{site.data.reuse.es_name}} complies with the following:
 
 When you want to expose {{site.data.reuse.es_name}} services externally outside your cluster, you can use OpenShift routes or ingress on other Kubernetes platforms.
 
-When using ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.es_name}} services to work. Refer to your ingress controller documentation for more information.
+When using ingress, ensure you install and run an [ingress controller](https://v1-29.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.es_name}} services to work. Refer to your ingress controller documentation for more information.
 
 ## Data storage requirements
 

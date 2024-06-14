@@ -107,7 +107,7 @@ users may also wish to consider when ensuring compliance with GDPR.
 - Kubernetes activity logs for containers running within the Pods that make up the {{site.data.reuse.es_name}} deployment
 - Logs captured on the local file system for the Kafka container running in the Kakfa pod for each node
 
-By default, messages published to topics are retained for a week after their initial receipt, but this can be configured by modifying [Kafka broker settings](https://kafka.apache.org/documentation/#brokerconfigs){:target="_blank"}. These settings are [configured](../../installing/configuring/#applying-kafka-broker-configuration-settings) using the `EventStreams` custom resource.
+By default, messages published to topics are retained for a week after their initial receipt, but this can be configured by modifying [Kafka broker settings](https://kafka.apache.org/36/documentation/#brokerconfigs){:target="_blank"}. These settings are [configured](../../installing/configuring/#applying-kafka-broker-configuration-settings) using the `EventStreams` custom resource.
 
 ## Data Access
 
@@ -122,7 +122,7 @@ For more information about controlling access to data stored in {{site.data.reus
 
 Cluster-level configuration and resources, including logs that might contain message data, are accessible through your Kubernetes platform.
 
-[Access and authorization controls](https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/){:target="_blank"} can be used to control which users are able to access this cluster-level information.
+[Access and authorization controls](https://v1-29.docs.kubernetes.io/docs/reference/access-authn-authz/controlling-access/){:target="_blank"} can be used to control which users are able to access this cluster-level information.
 
 ## Data Processing
 

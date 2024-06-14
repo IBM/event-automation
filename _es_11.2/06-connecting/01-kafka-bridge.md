@@ -10,7 +10,7 @@ Connect client applications to your {{site.data.reuse.es_name}} Kafka cluster ov
 
 ## Overview
 
-With [Kafka Bridge](https://strimzi.io/docs/bridge/latest/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
+With [Kafka Bridge](https://strimzi.io/docs/bridge/0.26.1/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
 
 ![Event Streams - Kafka Bridge architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-bridge.svg "Diagram showing the architecture of the Kafka bridge in Event Streams as part of IBM Event Automation.")
 
@@ -158,7 +158,7 @@ The related request operations are the following:
 - `GET /topics/{topicname}/partitions/{partitionid}`
 - `GET /topics/{topicname}/partitions/{partitionid}/offsets`
 
-For more detailed information about the request paths, see the [Strimzi documentation](https://strimzi.io/docs/bridge/latest/#_paths){:target="_blank"}.
+For more detailed information about the request paths, see the [Strimzi documentation](https://strimzi.io/docs/bridge/0.26.1/#_paths){:target="_blank"}.
 
 ### Content types
 
@@ -248,7 +248,7 @@ To consume messages over HTTP with Kafka Bridge:
 
 #### Creating a Kafka Bridge consumer
 
-To interact with your Kafka cluster, the Kafka Bridge requires a consumer. To create the Kafka Bridge [consumer endpoint](https://strimzi.io/docs/bridge/latest/#_createconsumer){:target="_blank"}, create a consumer within a consumer group. For example, the following command creates a Kafka Bridge consumer called `my-consumer` in a new consumer group called `my-group`:
+To interact with your Kafka cluster, the Kafka Bridge requires a consumer. To create the Kafka Bridge [consumer endpoint](https://strimzi.io/docs/bridge/0.26.1/#_createconsumer){:target="_blank"}, create a consumer within a consumer group. For example, the following command creates a Kafka Bridge consumer called `my-consumer` in a new consumer group called `my-group`:
 
 ```shell
 curl -X POST http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group \
@@ -272,7 +272,7 @@ If the request is successful, the Kafka Bridge returns an HTTP status code `200 
 
 #### Subscribing to topics
 
-After creating a Kafka Bridge consumer, you can subscribe the Kafka Bridge consumer to topics by creating a [subscription endpoint](https://strimzi.io/docs/bridge/latest/#_subscribe){:target="_blank"}. For example, the following command subscribes the consumer to the topic called `my-topic`:
+After creating a Kafka Bridge consumer, you can subscribe the Kafka Bridge consumer to topics by creating a [subscription endpoint](https://strimzi.io/docs/bridge/0.26.1/#_subscribe){:target="_blank"}. For example, the following command subscribes the consumer to the topic called `my-topic`:
 
 ```shell
 curl -X POST http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group/instances/my-consumer/subscription \
@@ -289,7 +289,7 @@ After subscribing, the consumer receives all messages that are produced to the t
 
 #### Retrieving messages from topics
 
-After subscribing a Kafka Bridge consumer to a topic, your client applications can retrieve the messages on the topic from the Kafka Bridge consumer. To retrieve the latest messages, request data from the [records endpoint](https://strimzi.io/docs/bridge/latest/#_poll){:target="_blank"}. The following is an example command to retrieve messages from `my-topic`:
+After subscribing a Kafka Bridge consumer to a topic, your client applications can retrieve the messages on the topic from the Kafka Bridge consumer. To retrieve the latest messages, request data from the [records endpoint](https://strimzi.io/docs/bridge/0.26.1/#_poll){:target="_blank"}. The following is an example command to retrieve messages from `my-topic`:
 
 ```shell
 curl -X GET http://my-bridge-route-es-kafka-bridge.apps.example.com/consumers/my-group/instances/my-consumer/records \
@@ -311,7 +311,7 @@ while true; do sleep 1;  curl -X GET http://my-bridge-route-es-kafka-bridge.apps
 
 If you no longer need a Kafka Bridge consumer, delete it to free up resources on the bridge.
 
-Use the [delete consumer endpoint](https://strimzi.io/docs/bridge/latest/#_deleteconsumer){:target="_blank"} to delete a consumer instance. For example, to delete the consumer [created earlier](#creating-a-kafka-bridge-consumer), run the following command:
+Use the [delete consumer endpoint](https://strimzi.io/docs/bridge/0.26.1/#_deleteconsumer){:target="_blank"} to delete a consumer instance. For example, to delete the consumer [created earlier](#creating-a-kafka-bridge-consumer), run the following command:
 
 ```shell
 curl -X DELETE http://my-bridge-bridge-service:80/consumers/my-group/instances/my-consumer/

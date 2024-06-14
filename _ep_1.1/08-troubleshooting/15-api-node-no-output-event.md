@@ -43,22 +43,27 @@ The API node can be configured to call the API using an `https` URL while the ce
 
 #### To verify
 
-Check the Flink Task Manager log for the following error:
+Check the Flink Task Manager log for any one of the following errors:
 
-```
+```shell
 ERROR com.getindata.connectors.http.internal.table.lookup.JavaNetHttpPollingClient [] - Exception during HTTP request.
 java.io.IOException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 ```
 
+```shell
+java.lang.RuntimeException: Unable to create KeyStore for Http Connector Security Context.
+	at com.getindata.connectors.http.internal.security.SecurityContext.createFromKeyStore(SecurityContext.java:95) ~[flink-http-connector-0.14.0.jar:?]
+```
+
 #### Resolving the problem
 
-* Check the [SSL configuration](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry).
-* If the configured certificate expired, or a certificate in its certificate chain expired, the system administrator must complete the following steps:
-1. [Update the secret](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) through {{site.data.reuse.ep_name}} and Flink.
-2. Stop the flow.
-2. Delete the {{site.data.reuse.ep_name}} and Flink pods.
-3. Wait for the pods to become ready.
-6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
+* Check the [SSL configuration for the API server](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry).
+* If it is not configured, or the configured certificate has expired, or a certificate in its certificate chain has expired, the system administrator must complete the following steps:
+  1. Complete or update the [SSL configuration for the API server](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) through {{site.data.reuse.ep_name}} and Flink.
+  1. Stop the flow.
+  1. Delete the {{site.data.reuse.ep_name}} and Flink pods.
+  1. Wait for the pods to become ready.
+  1. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
 
 
 ### API credentials misconfiguration

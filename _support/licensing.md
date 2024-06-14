@@ -74,13 +74,13 @@ Where `<license-use-value>` must match the intended product usage that you purch
 
 ## Chargeable containers
 
-The following table shows the chargeable containers within each {{site.data.reuse.ea_long}} capability. You can also find the list of chargeable containers documented in the product license (see links to [license IDs](#available-licenses) earlier).
+The following table lists the chargeable containers within each {{site.data.reuse.ea_long}} capability, including the container pod names for each in brackets. You can also find the list of chargeable containers documented in the product license (see links to [license IDs](#available-licenses) earlier).
 
 All other containers that might form part of the deployment are supported, and do not require additional licenses. 
 
-{{site.data.reuse.es_name}} capability | {{site.data.reuse.eem_name}} capability | {{site.data.reuse.ep_name}} capability
+{{site.data.reuse.es_name}} capability | {{site.data.reuse.eem_name}} capability | {{site.data.reuse.ep_name}} capability|
 ---------------|----------------------------|---
-- Kafka brokers <br> - Geo-Replicator nodes <br> - MirrorMaker 2.0 nodes <br> - Kafka Connect nodes hosted by Event Automation | - Event Endpoint Management manager <br> - Event Gateway |  - Flink Job Manager  <br> - Flink Task Manager <br> <br> **Note:** For more information about chargeable containers for Flink, see [guidance about Flink samples]({{ '/ep/installing/planning/#flink-sample-deployments' | relative_url }}).
+- Kafka brokers (`kafka`) <br> - Geo-Replicator nodes (`georep`) <br> - MirrorMaker 2.0 nodes (`mirrormaker2`)  <br> - Kafka Connect nodes hosted by Event Automation (`connect`) | - Event Manager (`manager`) <br> - Event Gateway (`egw`) | Flink Job Manager and Flink Task Manager (`flink-main-container`) <br> <br> **Note:** For more information about chargeable containers for Flink, see [guidance about Flink samples]({{ '/ep/installing/planning/#flink-sample-deployments' | relative_url }}).
 
 
 ## Calculating licenses required

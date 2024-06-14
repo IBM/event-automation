@@ -116,72 +116,30 @@ The {{site.data.reuse.eem_name}} user interface (UI) is supported on the followi
 
 ## Certificate management
 
+By default, all certificates that are required by {{site.data.reuse.eem_name}} are managed by a certificate manager. A certificate manager simplifies the process of creating, renewing, and using those certificates.
 
-By default, all certificates that are required by {{site.data.reuse.eem_name}} are managed by a certificate manager. A certificate manager simplifies the process of creating, renewing, and using those certificates. 
+- On {{site.data.reuse.openshift}}, install the cert-manager Operator for Red Hat OpenShift.
+- On other Kubernetes platforms, use a certificate manager installation, for example [cert-manager](https://cert-manager.io/docs/), that supports `Issuer.cert-manager.io/v1` and `Certificate.cert-manager.io/v1` GroupVersionKind (GVK), or create certificates manually and provide them to {{site.data.reuse.eem_name}} by using Kubernetes secrets.
 
-- On {{site.data.reuse.openshift}}, install IBM Cert Manager.
-- On other Kubernetes platforms, use a certificate manager installation that supports `Issuer.cert-manager.io/v1` and `Certificate.cert-manager.io/v1` GroupVersionKind (GVK), or create certificates manually and provide them to {{site.data.reuse.eem_name}} by using Kubernetes secrets.
+### The cert-manager Operator for {{site.data.reuse.openshift}}
 
-### IBM Cert Manager on {{site.data.reuse.openshift}}
+If you already have the cert-manager Operator for Red Hat OpenShift installed on your cluster, you can skip this section.
 
-If you already have a certificate manager installed on your cluster, you can skip this installation.
+ - To check whether the cert-manager Operator for Red Hat OpenShift is installed on your cluster by using the OpenShift web console, complete the following steps:
 
-To check whether a certificate manager is installed on your cluster by using the OpenShift web console:
+    1. {{site.data.reuse.openshift_ui_login}}
+    2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+    3. In the list of installed operators, check whether **cert-manager Operator for Red Hat OpenShift** is available, and whether the status is showing as `Succeeded` in the `cert-manager-operator` namespace.
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. In the list of installed operators, check whether **IBM Cert Manager** is available, and whether the status is showing as `Succeeded`.
+- To check whether the cert-manager Operator for Red Hat OpenShift is installed on your cluster by using the CLI, run the following command:
 
-Alternatively, to check whether Cert Manager is installed on your cluster by using the CLI, run the following command to check whether `ibm-cert-manager-operator` is available:
+    ```shell
+    oc get pods -n cert-manager
+    ```
 
-```shell
-oc get subs --all-namespaces
-```
+    If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-**Important:** You can only have one Cert Manager operator installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.openshift.com/container-platform/4.15/security/cert_manager_operator/cert-manager-operator-install.html).
 
-To install Cert Manager, see the following sections and follow the instructions for your {{site.data.reuse.fs}} version.
+**Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 
-#### With {{site.data.reuse.fs}} version 3.x
-
-If you are installing {{site.data.reuse.eem_name}} on a cluster where {{site.data.reuse.fs}} version 3.x is already installed, follow these instructions to configure the Cert Manager operator.
-
-**Note:** The following instructions apply to both online and offline clusters.
-
-1. Ensure that you have installed {{site.data.reuse.fs}} as described in the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cpfs?topic=installer){:target="_blank"}.
-
-2. Create an `OperandRequest` custom resource with the following YAML in the Operand Deployment Lifecycle Manager as described in the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cpfs?topic=323-installing-foundational-services-by-using-console#or-create){:target="_blank"}.
-
-   ```yaml
-   apiVersion: operator.ibm.com/v1alpha1
-   kind: OperandRequest
-   metadata:
-      name: common-service
-      namespace: <namespace>
-   spec:
-     requests:
-       - operands:
-          - name: ibm-cert-manager-operator
-         registry: common-service
-         registryNamespace: ibm-common-services
-   ```
-
-   Where `<namespace>` is the namespace from where you are creating the `OperandRequest` and planning to install the {{site.data.reuse.eem_name}} operator.
-
-In the namespaces where you want to use {{site.data.reuse.eem_name}}, verify that the `cert-manager` operator status is `Succeeded`.
-
-#### With {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}}
-
-Follow the instructions to install Cert Manager 4.0.0 as part of {{site.data.reuse.fs}} version 4.0.0, or without {{site.data.reuse.fs}} in an online or offline environment.
-
-**For online environments**
-
-Follow the [{{site.data.reuse.fs}} instructions](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=management-installing-cert-manager){:target="_blank"} to install IBM Cert Manager version 4.0.0 in online environments that are running with or without foundational services.
-
-In the namespaces where you want to use {{site.data.reuse.eem_name}}, verify that the `cert-manager` operator status is `Succeeded`.
-
-**For offline environments**
-
-If you are installing {{site.data.reuse.eem_name}} in an offline environment, follow the instructions in the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-installing-cert-offline){:target="_blank"} to mirror the necessary images, and install the IBM Cert Manager from its CASE bundle.
-
-In the namespaces where you want to use {{site.data.reuse.eem_name}}, verify that the `cert-manager` operator status is `Succeeded`.

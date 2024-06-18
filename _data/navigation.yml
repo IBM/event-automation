@@ -826,7 +826,7 @@ latestdocs:
       - title: "About MirrorMaker"
         url: /mirroring/mirrormaker/
       - title: "Switching clusters"
-        url: /georeplication/failover/
+        url: /mirroring/failover/
   - title: Geo-replication
     children:
       - title: "About geo-replication"

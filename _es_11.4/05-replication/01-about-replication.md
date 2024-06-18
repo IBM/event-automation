@@ -16,7 +16,7 @@ Geo-replication can help with various service availability scenarios, for exampl
 * Making mission-critical data safe: you might have mission-critical data that your applications depend on to provide services. Using the geo-replication feature, you can back up your topics to several destinations to ensure their safety and availability.
 * Migrating data: you can ensure your topic data can be moved to another deployment, for example, when switching from a test to a production environment.
 
-**Note:** The geo-replication feature only provides access to a subset of the capabilities of the underlying [MirrorMaker 2.0](../../mirroring/mirrormaker) capability. For certain use cases, such as creating copies of topics for [disaster recovery](../disaster-recovery) purposes, it is best to use the underlying MirrorMaker 2.0 directly to access a wider set of features. 
+**Note:** The geo-replication feature only provides access to a subset of the capabilities of the underlying [MirrorMaker 2.0](../../mirroring/mirrormaker) capability. For certain use cases, such as creating copies of topics for [disaster recovery](../../installing/disaster-recovery) purposes, it is best to use the underlying MirrorMaker 2.0 directly to access a wider set of features. 
 
 ## How it works
 

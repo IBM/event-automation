@@ -120,7 +120,7 @@ To view this information on the origin cluster by using the CLI:
 
    ```
 
-Each geo-replicator creates a MirrorSource connector and a MirrorCheckpoint connector. The MirrorSource connector replicates data from the origin to the destination cluster. You can use the MirrorCheckpoint connector during [failover](../failover/#updating-consumer-group-offsets-by-using-checkpoints) from the origin to the destination cluster.
+Each geo-replicator creates a MirrorSource connector and a MirrorCheckpoint connector. The MirrorSource connector replicates data from the origin to the destination cluster. You can use the MirrorCheckpoint connector during [failover](../../mirroring/failover/#updating-consumer-group-offsets-by-using-checkpoints) from the origin to the destination cluster.
 
 To manage geo-replication on the origin cluster by using the CLI:
 1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}

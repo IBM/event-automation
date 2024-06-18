@@ -41,4 +41,4 @@ Disaster recovery:
 
 Infrastructure maintenance:
 
-[Using MirrorMaker 2.0 to migrate to a different region](https://community.ibm.com/community/user/integration/blogs/dale-lane1/2024/04/18/mirrormaker-for-migration){:target="_blank"}
+  * [Using MirrorMaker 2.0 to migrate to a different region](https://community.ibm.com/community/user/integration/blogs/dale-lane1/2024/04/18/mirrormaker-for-migration){:target="_blank"}

@@ -24,7 +24,7 @@ You can upgrade {{site.data.reuse.ep_name}} and the associated {{site.data.reuse
 
 - To upgrade without data loss, your {{site.data.reuse.ep_name}} and Flink instances must have [persistent storage enabled](../configuring/#enabling-persistent-storage). If you upgrade instances which use ephemeral storage, all data will be lost.
 
-- If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+- If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete the steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 **Important:** You will experience some downtime during the {{site.data.reuse.ep_name}} upgrade while the pods for the relevant components are recycled.
 
@@ -70,7 +70,7 @@ If you are upgrading to a new major or minor release (first and second digit cha
     
  1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
  2. In the flow that you want to stop, select **View flow**.
- 3. In the navigation banner, click **Stop** to stop the flow.
+ 3. In the navigation banner, click **Stop flow** to stop the flow.
     
 **Note:** When upgrading to a new major or minor version (such as upgrading from v1.0 to v1.1), ensure you upgrade both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} operator, then complete the [post-upgrade tasks](#post-upgrade-tasks), before using your flows again.
 
@@ -80,7 +80,9 @@ Before you can upgrade to the latest version, the catalog source for the new ver
 
 - Latest versions: If your catalog source is the IBM Operator Catalog, latest versions are always available when published, and you do not have to make new catalog sources available.
 
-- Specific versions: If you applied a catalog source for a specific version to control the version of the operator and instances that are installed, you must [apply the new catalog source](../installing/#adding-specific-versions) you want to upgrade to.
+- Specific versions: If you used the CASE bundle to install catalog source for a specific previous version, you must download and use a new CASE bundle for the version you want to upgrade to.
+  - If you used the CASE bundle for an online install, [apply the new catalog source](../installing/#adding-specific-versions) to update the `CatalogSource`.
+  - If you used the CASE bundle for an offline install that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
 
 ### Upgrading Subscription by using the CLI
 
@@ -116,7 +118,7 @@ For Flink:
    oc patch subscription -n <namespace> ibm-eventautomation-flink --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
 
-4. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+4. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete the steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
 
@@ -147,7 +149,7 @@ For Flink:
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.
 6. Select the version number in the **Update channel** section (for example, **v1.1**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v1.1**, and click the **Save** button on the **Change Subscription update channel** dialog.
-8. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+8. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete the steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 All Flink pods that need to be updated as part of the upgrade will be rolled.
 
@@ -203,6 +205,8 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       ```
 
       Check the `version:` value in the output, for example: `version: 1.1.1`
+
+- If your existing installation is in an offline environment, you must carry out the steps in the offline install instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before completing the steps below.
 
 - If the chart version for your existing deployment is 1.0.x, your upgrade is a change in a minor version. Complete the following steps to upgrade:
   1. [Stop your flows](#stopping-flows-for-major-and-minor-upgrades) before the upgrade (this is the same process as on the OpenShift platform).
@@ -277,7 +281,7 @@ Where:
 
 - If your Flink instance is a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} and you disabled the webhook of the Flink operator (`--set webhook.create=false`), you must update the `spec.flinkVersion` and `spec.image` fields of your `FlinkDeployment` custom resource to match the new values of the `IBM_FLINK_IMAGE` and `IBM_FLINK_VERSION` [environment variables](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) on the Flink operator pod.
 
-- If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete steps 1a, 1b, 1e, and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+- If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying advanced flows in [production environments](../../advanced/deploying-production), complete the steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
 ## Post-upgrade tasks
 
@@ -291,7 +295,7 @@ This only applies if you stopped flows before upgrade. After the successful upgr
 
 1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
 2. In the flow that you want to run, select **Edit flow**.
-3. In the navigation banner, expand **Run**, and select either **Events from now** or **Include historical** to run your flow.
+3. In the navigation banner, expand **Run flow**, and select either **Events from now** or **Include historical** to run your flow.
 
 ### Securing communication with Flink deployments
 

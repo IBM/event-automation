@@ -14,7 +14,7 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 
 You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.2.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from 11.2.0 or any 11.1.x version by using operator version 11.2.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
-If you are upgrading from {{site.data.reuse.eem_name}} version 11.0.x, you must first [upgrade your installation to 11.1.x]({{ 'eem/eem_11.1' | relative_url }}/installing/upgrading/) before you can upgrade to 11.2.x.
+If you are upgrading from {{site.data.reuse.eem_name}} version 11.0.x, you must first [upgrade your installation to 11.1.x]({{ 'eem/eem_11.1' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to 11.2.x.
 
 - On OpenShift, you can upgrade to the latest version by using operator channel v11.2. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
@@ -69,7 +69,9 @@ Before you can upgrade to the latest version, make the catalog source for the ve
 
 - Latest versions: If your catalog source is the IBM Operator Catalog, latest versions are always available when published, and you do not have to make new catalog sources available.
 
-- Specific versions: If you applied a catalog source for a specific version to control the version of the operator and instances that are installed, you must [apply the new catalog source](../installing/#adding-specific-versions) you want to upgrade to.
+- Specific versions: If you used the CASE bundle to install catalog source for a specific previous version, you must download and use a new CASE bundle for the version you want to upgrade to.
+  - If you used the CASE bundle for an online install, [apply the new catalog source](../installing/#adding-specific-versions) to update the `CatalogSource`.
+  - If you used the CASE bundle for an offline install that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
 
 The change to a new Channel, if needed, would be a later step.
 
@@ -161,7 +163,9 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       
       Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
 
-- If the chart version for your existing deployment is earlier than 11.1.x, you must first [upgrade your installation to 11.1.x]({{ 'eem/eem_11.1' | relative_url }}/installing/upgrading/), including any post-upgrade tasks.
+- If the chart version for your existing deployment is earlier than 11.1.x, you must first [upgrade your installation to 11.1.x]({{ 'eem/eem_11.1' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.2.x version.
+
+- If your existing installation is in an offline environment, you must repeat the steps in the offline install instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before upgrading. Then complete the [helm upgrade](#upgrading-by-using-helm) instructions in the following section.
 
 - If the chart version for your existing deployment is 11.1.x, your upgrade involves a change in a minor version. Complete the following steps to upgrade to the latest version:
   1. Before upgrading, [update your instance configuration](#update-your-instance-configuration) to ensure compatibility across the version change.
@@ -169,7 +173,6 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
   2. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then automatically upgrade your {{site.data.reuse.eem_manager}} instance, and if applicable, your {{site.data.reuse.egw}} instance as well.
 
   1. Follow steps in [post-upgrade tasks](#post-upgrade-tasks) to make sure you are using current license IDs for the new channel.
-
 
 - If the chart version for your existing deployment is 11.2.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically.
 

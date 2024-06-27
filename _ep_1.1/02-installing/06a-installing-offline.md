@@ -101,7 +101,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventautomation-flink --version 1.1.7
+   kubectl ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -412,8 +412,9 @@ Where `<case-version>` is the version of the CASE file.
 
 ## Install the operator
 
-Follow the instructions to install the operator based on your platform.
+If you are installing the operator for the first time, complete the instructions in the following sections to install it on the platform that you are using.
 
+If you are upgrading an existing offline installation, follow the [upgrading](../upgrading) instructions to upgrade your operator to the version that you [downloaded](#download-the-case-bundle) and [mirrored](#mirror-the-images) earlier.
 
 
 ### Installing on OpenShift

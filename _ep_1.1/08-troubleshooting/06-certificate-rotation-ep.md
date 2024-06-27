@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-When using IBM Cert Manager for certificate generation, attempting to log in to the {{site.data.reuse.ep_name}} UI fails with the following error:
+When using a certificate manager for certificate generation, attempting to log in to the {{site.data.reuse.ep_name}} UI fails with the following error:
 
 ```json
 {
@@ -19,7 +19,7 @@ When using IBM Cert Manager for certificate generation, attempting to log in to 
 
 ## Causes
 
-IBM Cert Manager automatically rotates certificates after approximately 60 days. {{site.data.reuse.ep_name}} does not pick up the updated certificate secret, resulting in an SSL handshake failure.
+The certificate manager automatically rotates certificates after approximately 60 days. {{site.data.reuse.ep_name}} does not pick up the updated certificate secret, resulting in an SSL handshake failure.
 
 ## Resolving the problem
 

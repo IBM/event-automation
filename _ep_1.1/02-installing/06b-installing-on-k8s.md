@@ -47,6 +47,7 @@ Before installing an operator, decide whether you want the operator to:
 
   To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances in any other namespace.
 
+**Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
 
 ## Install the CRDs
 
@@ -141,6 +142,8 @@ helm install flink ibm-helm/ibm-eventautomation-flink-operator -n "my-flink" --s
 
 Ensure you have considered the {{site.data.reuse.ep_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
+**Important:** You can only install one version of the {{site.data.reuse.ep_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+
 To install the operator, run the following command:
 
 ```shell
@@ -158,7 +161,7 @@ Where:
 - `<namespace>` is the name of the namespace where you want to install the operator.
 - `webhook.create=<true/false>` determines whether the validating webhook is deployed (default is `true` if not specified).
 
-  Set to `false` if you do not have IBM Cert Manager installed and will be creating your own certificates for your {{site.data.reuse.ep_name}} instances.
+  Set to `false` if you do not have a certificate manager installed and will be creating your own certificates for your {{site.data.reuse.ep_name}} instances.
 
 - `kubernetesServiceDnsDomain=<your.k8s.svc.dns.domain>` allows certificate to be created by utilizing the correct Kubernetes service DNS domain as a suffix on hosts in the `dnsNames` section of the certificate (default is `cluster.local` if not specified).
 

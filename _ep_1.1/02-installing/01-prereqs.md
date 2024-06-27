@@ -81,6 +81,8 @@ The {{site.data.reuse.ep_name}} operator has the following minimum resource requ
 | ------------------- | ----------------- | ------------------- | ----------------- |
 | 0.2                 | 1.0               | 0.25                | ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") 0.5 <br> In earlier versions: 0.25         |
 
+You can only install one version of the {{site.data.reuse.ep_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+
 ##### Cluster-scoped permissions required
 
 The {{site.data.reuse.ep_name}} operator requires the following cluster-scoped permissions:
@@ -212,11 +214,12 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 
-## Schema registry requirements
 
-![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") 
+## ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.")&nbsp;Schema registry requirements
 
-You can define the event structure with an Avro schema that uses a schema registry.
+ 
+
+You can define the event structure and consume encoded messages that use an Avro schema that is stored in a schema registry.
 
 Before you configure the event source node with an Avro schema that uses a schema registry, the following requirements must be met:
 
@@ -228,3 +231,7 @@ Before you configure the event source node with an Avro schema that uses a schem
    1. Log in to your {{site.data.reuse.es_name}} UI as an administrator from a supported web browser. For more information, see [how to determine the login URL]({{ 'es/getting-started/logging-in/' | relative_url }}) for your Event Streams UI.
    1. In the {{site.data.reuse.es_name}} home page, click the **Connect to this cluster** tile to open the **Cluster connection** tile.
    1. Copy the schema registry URL in the **Schema registry endpoint**. Use this URL when you configure the event source node.
+
+**Important:** Expected messages in the topic that is configured in the event source node must be compatible with the Confluent Avro format (Avro binary-encoded messages with a schema ID encoded in 4 bytes). For instance, when messages are produced by using a Java producer and the [{{site.data.reuse.es_name}} Apicurio Registry]({{ 'es/schemas/setting-java-apps-apicurio-serdes/#additional-configuration-options-for-apicurio-serdes-library' |  relative_url }}), ensure that you set the following properties:
+- `apicurio.registry.headers.enabled=false`
+- `apicurio.registry.as-confluent=true`

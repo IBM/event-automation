@@ -18,23 +18,17 @@ Decide the purpose of your deployment, for example, whether you want to try a st
 
 A number of sample configurations are available when installing {{site.data.reuse.eem_name}} on which you can base your deployment. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
-If you are [installing](../installing#installing-an-event-endpoint-management-instance-by-using-the-web-console) on the {{site.data.reuse.openshift_short}}, you can view and apply the following sample configurations in the web console:
+If you are installing on the {{site.data.reuse.openshift_short}} or on other Kubernetes platforms, the following samples are available:
 
 - [Quick start](#example-deployment-quick-start)
-- [Production](#example-deployment-production)
 - [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Production](#example-deployment-production)
 
 If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
 - [Quick start](#example-deployment-quick-start)
 - [Production](#example-deployment-production)
 - [Usage-based pricing](#example-deployment-usage-based-pricing)
-
-If you are installing on other Kubernetes platforms, the following samples are available in the Helm chart package:
-
-- [Quick start](#example-deployment-quick-start)
-- [Production](#example-deployment-production)
-- [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
 
@@ -71,9 +65,9 @@ Ensure you have sufficient CPU capacity and physical memory in your environment 
 
 ### Example deployment: **Quick start with {{site.data.reuse.apic_short}} integration**
 
-Overview: A production instance with support for persistence OpenID Connect (OIDC) authentication and includes configuration options for {{site.data.reuse.apic_short}} integration.
+Overview: A development {{site.data.reuse.eem_name}} instance with no persistence, local authentication, and configuration options for the {{site.data.reuse.apic_short}} integration.
 
-This example installs a production-ready {{site.data.reuse.eem_name}} instance, with persistence and using local authentication.
+This example is suitable for testing a starter deployment of {{site.data.reuse.eem_name}} that can be configured to integrate with {{site.data.reuse.apic_short}}.
 
 Resource requirements for this deployment:
 

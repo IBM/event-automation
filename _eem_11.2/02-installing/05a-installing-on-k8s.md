@@ -36,6 +36,8 @@ helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/
 
 Ensure you have considered the {{site.data.reuse.eem_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
+**Important:** You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+
 ### Install the CRDs
 
 Before installing the operator, the Custom Resource Definitions (CRDs) for {{site.data.reuse.eem_name}} must be installed.  To install the CRDs, run the following command:
@@ -70,6 +72,8 @@ Before installing the {{site.data.reuse.eem_name}} operator, decide if you want 
 
 **Note:** If the Kubernetes service Domain Name System (DNS) domain for your cluster is not `cluster.local`, set `kubernetesServiceDnsDomain` as required.
 
+**Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If one operator is installed to manage all namespaces and another to manage a single namespace on the same cluster, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
+
 
 ### Installing the operator
 
@@ -90,7 +94,7 @@ Where:
 - `<namespace>` is the name of the namespace where you want to install the operator.
 - `webhook.create=<true/false>` determines whether the validating webhook is deployed (default is `true` if not specified).
 
-   Set to `false` if you do not have IBM Cert Manager installed and will be creating your own certificates for your {{site.data.reuse.eem_manager}} instances.
+   Set to `false` if you do not have a certificate manager installed and will be creating your own certificates for your {{site.data.reuse.eem_manager}} instances.
 
 - `kubernetesServiceDnsDomain=<your.k8s.svc.dns.domain>` allows certificate to be created by utilizing the correct Kubernetes service DNS domain as a suffix on hosts in the `dnsNames` section of the certificate (default is `cluster.local` if not specified).
 

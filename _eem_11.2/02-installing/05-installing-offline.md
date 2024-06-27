@@ -111,7 +111,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.2.0+20240603.010000 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
    ```
 
    **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
@@ -128,16 +128,16 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.2.0+20240603.010000
+   │   │       └── {{site.data.reuse.eem_current_version}}
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   |   |           |   ├── ibm-eem-operator-11.2.0.tgz
-   |   |           |   └── ibm-eem-operator-crd-11.2.0.tgz
+   |   |           |   ├── ibm-eem-operator-{{site.data.reuse.eem_current_version}}.tgz
+   |   |           |   └── ibm-eem-operator-crd-{{site.data.reuse.eem_current_version}}.tgz
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000.tgz
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror
@@ -298,7 +298,11 @@ Where `<case-version>` is the version of the CASE you want to install.
 
 ## Install the operator
 
-Follow the instructions to install the operator based on your platform.
+If you are installing the operator for the first time, complete the instructions in the following sections to install it on the platform that you are using.
+
+If you are upgrading an existing offline installation, follow the [upgrading](../upgrading) instructions to upgrade your operator to the version that you [downloaded](#download-the-case-bundle) and [mirrored](#mirror-the-images) earlier.
+
+**Important:** You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 ### Installing on OpenShift
  

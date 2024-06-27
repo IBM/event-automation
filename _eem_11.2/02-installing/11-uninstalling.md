@@ -286,14 +286,14 @@ Take caution when deleting CRDs and check there are no instances of the CRDs, or
    helm uninstall <release name>
    ```
 
-## Uninstalling the IBM Cert Manager on {{site.data.reuse.openshift_short}}
+## Uninstalling a certificate manager on {{site.data.reuse.openshift_short}}
 
-To delete the IBM Cert Manager operator:
+To delete a certificate manager operator:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the IBM Cert Manager operator that is to be deleted to open the actions menu.
+4. Find the certificate manager that you want to delete, and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 

@@ -25,9 +25,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.0
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -87,9 +87,9 @@ The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5.png "adding an event source node")
 
-   Use the server address information and **Generate access credentials** button on the topic page in the catalog from [Step 1](#step-1--discover-the-source-topic-to-use) to configure the event source node.
+   Use the server address information and **Generate access credentials** button on the `Stock movement updates` topic page in the catalog from [Step 1](#step-1--discover-the-source-topic-to-use) to configure the event source node.
 
-   When prompted for the message format, select **JSON**. Provide the sample message from the catalog page.
+   The message format is auto-selected and the sample message is auto-populated in the **Message format** pane.
 
    **Tip**: If you need a reminder about how to configure an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
 

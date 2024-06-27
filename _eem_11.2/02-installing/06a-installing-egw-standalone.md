@@ -15,11 +15,12 @@ A stand-alone gateway is useful when you need to position the gateway closer to 
 ## Limitations
 Endpoints that need to be shared between a mixture of stand-alone gateways and those in a Kubernetes cluster must use a host address that is resolvable by all gateways. For example, if the cluster that is associated with a Kafka topic uses an internal service address for a Kafka cluster, then a stand-alone gateway will not be able to resolve that address outside of the cluster. In such cases, separate event source aliases must be created and deployed to different gateways.
 
-
 A Kafka client implementation might require that the {{site.data.reuse.egw}} presents at least one endpoint for each broker that the client is expecting to connect to. Therefore, ensure you manually configure the number of ports exposed on the host of the {{site.data.reuse.egw}} container to be greater than or equal to the maximum number of brokers across all the clusters that the {{site.data.reuse.egw}} is managing. Also ensure that all the host ports map to the exposed port on the {{site.data.reuse.egw}} container.
 
 ## Prerequisites
 The stand-alone {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Metric Tool](#installing-the-ibm-license-metric-tool) for any other deployments.
+
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") In {{site.data.reuse.eem_manager}} 11.2.1 and later, the client certificate for the {{site.data.reuse.egw}} does not require a subject alternative name (SAN) URI to be specified. Instead, this information is set by using the [configuration options](#configuration-options) when deploying the {{site.data.reuse.egw}}. For information about installing a stand-alone gateway by using the previous deployment process, see the [11.1 documentation](../../eem_11.1/installing/standalone-gateways).
 
 ## System requirements
 
@@ -49,25 +50,7 @@ Create a local folder called `certs` on the host where you want to run the servi
 
 ## {{site.data.reuse.egw}} client certificate
 
-As detailed in the [certificates](#certificates) section, the {{site.data.reuse.egw}} uses a client certificate to register itself with the {{site.data.reuse.eem_manager}}. This certificate provides the necessary authentication and authorization to allow the gateway to pull information about event sources and subscriptions from the {{site.data.reuse.eem_manager}}. This means that the certificate has the following requirements:
-
-
-- It must be issued by a CA that the {{site.data.reuse.eem_manager}} trusts.
-- It must have a subject alternative name (SAN) URI of the following format : `egw://<host>:<port>/<gwgroup>/<gwid>`
-
-Where:
-  - **host**: Is the host name that Kafka applications use to connect to the gateway.
-  - **port**: Is the port number that Kafka applications use to connect to the gateway.
-  - **gwgroup**: Is the name of the group that this gateway belongs to.
-  - **gwid**: Is the unique ID for this gateway.
-
-The following shows an example of this SAN requirement:
-
-```yaml
-X509v3 extensions:
-   X509v3 Subject Alternative Name: 
-         URI:egw://localhost:8080/london/londongw1
-```
+The {{site.data.reuse.egw}} uses a client certificate to register itself with the {{site.data.reuse.eem_manager}}. This certificate provides the authentication and authorization that allows the gateway to pull information about topics and subscriptions from the {{site.data.reuse.eem_manager}}. This means that the certificate must be issued by a CA that the {{site.data.reuse.eem_manager}} trusts.
 
 ## Installing
 
@@ -85,12 +68,15 @@ The password to log in to the IBM Container software library is your entitlement
 Before you start the {{site.data.reuse.egw}}, define the following options:
 
 - **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint defined in the {{site.data.reuse.eem_manager}}, and will contain `ibm-eem-gateway` in the URL.
-- **GATEWAY_PORT**: The port on the container that is exposed for external connections from Kafka applications.
+- **GATEWAY_ID**: The unique ID for this gateway.
+- **GATEWAY_GROUP**: The name of the group for the gateway to join.
+- **GATEWAY_PORT**: The port on the host that is exposed for external connections from Kafka applications.
+- **GATEWAY_CONTACT**: Optional: for providing contact information that is displayed in the {{site.data.reuse.eem_name}} UI.
 - **PATH_TO_CERTIFICATES**: A local directory in which the [certificates](#certificates) are placed.
 - **KAFKA_ADVERTISED_LISTENER**: The host and port that Kafka applications should receive when making requests. If applications have direct access, then this will be the host and port of the {{site.data.reuse.egw}}, otherwise it should be the host and port of the routing or proxy service that is in front of the {{site.data.reuse.egw}}.
-- **swid**: Specifies the license under which the stand-alone {{site.data.reuse.egw}} is deployed. It must be either **EA** for Event Automation licensed or **CP4I** for CP4I licensed.
+- **PORT_MAPPINGS**: a sequence of port assignments (`-p <HOST_PORT>:<GATEWAY_PORT>`) that satisfies the requirement that the number of exposed host ports is greater than, or equal to, the total number of Kafka brokers that are managed by this gateway.
+- **swid**: Specifies the license under which the stand-alone {{site.data.reuse.egw}} is deployed. It must be either **EA** for Event Automation license, or **CP4I** for Cloud Pak for Integration license.
 - **ubp**: Optionally, set this environment variable in the Docker container if the stand-alone {{site.data.reuse.egw}} is licensed under Usage Based Pricing terms. You cannot specify both the **ubp** and **swid** options at the same time as they are mutually exclusive licensing terms.
-- **PORT_MAPPINGS**: a sequence of port assignments, `-p <HOST_PORT>:<GATEWAY_PORT>`, that satisfies the requirement that the number of exposed host ports is greater than or equal to the total number of kafka brokers that are managed by this gateway.
 
 ## Starting the {{site.data.reuse.egw}}
 
@@ -99,6 +85,7 @@ To run the {{site.data.reuse.egw}}, use the following command and the configurat
 ```shell
 docker run -e backendURL="<EEM_BACKEND_URL>" -e swid="EA/CP4I" [-e ubp=true] \
    -e KAFKA_ADVERTISED_LISTENER="<KAFKA_ADVERTISED_LISTENER>" -e GATEWAY_PORT="<GATEWAY_PORT>" \
+   -e GATEWAY_ID="<GATEWAY_ID>"  -e GATEWAY_GROUP="<GATEWAY_GROUP>" -e GATEWAY_CONTACT="<GATEWAY_CONTACT>" \
    -e certPaths="/certs/eem/client.pem,/certs/eem/client.key,/certs/eem/ca.pem,/certs/eem/egwclient.pem,/certs/eem/egwclient-key.pem" \
    -v <PATH_TO_CERTIFICATES>:/certs/eem -d -p <HOST_PORT>:<GATEWAY_PORT> <IMAGE_NAME_FROM_CONTAINER_REGISTRY>
 ```

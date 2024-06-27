@@ -29,8 +29,8 @@ You will also need to [run the optional instructions for deploying an MQ queue m
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 11.2.1
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Processing 1.1.8
 - MQ 2.4.0
 
 ## Instructions
@@ -342,19 +342,13 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics) section of the Tutorial Setup instructions.
 
-1. Select the `MQ.COMMANDS` topic, and specify a message format of `JSON`.
+1. Select the `MQ.COMMANDS` topic, and click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node")
 
-1. Copy the most recent message payload from the {{site.data.reuse.es_name}} topic view.
+1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the `JSON sample message` field.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node")
-
-   The first message, produced before you added the transform definition, will not be compatible for use with {{site.data.reuse.ep_name}}.
-
-1. Paste the message payload into the {{site.data.reuse.ep_name}} event source as a sample message.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-13.png "adding an event source node")
 
 1. Verify that the `ordertime` property in the message contents has been automatically detected as a timestamp.
 

@@ -10,6 +10,31 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Support for events with complex array properties
+
+{{site.data.reuse.ep_name}} release 1.1.8 and later includes support for events containing properties that are an array of objects or an array of arrays. Complex arrays are supported in JSON and Avro formats and can be at any nested level. For more information, see [complex arrays](../../nodes/eventnodes/#complex-arrays).
+
+
+### Event source node does not process uncommitted events from Kafka topics
+
+{{site.data.reuse.ep_name}} release 1.1.8 enhances the ability for the event source node to process committed events from Kafka topics. This update ensures that uncommitted events sent within a Kafka transaction are not processed by {{site.data.reuse.ep_name}} when the transaction fails or is aborted.
+
+
+### Flink user-defined functions (UDFs) in the exported SQL
+
+In {{site.data.reuse.ep_name}} release 1.1.0 and later, UDFs can be used when deploying jobs in [development](../../advanced/deploying-development) or [production](../../advanced/deploying-production) environments. For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql) and the related [GitHub samples](https://ibm.biz/ep-flink-udf-sample){:target="_blank"}.
+
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.8 compared to 1.1.7 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.")
+
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.8 and {{site.data.reuse.ibm_flink_operator}} version 1.1.8 contain security and bug fixes.
+
+## Release 1.1.7
 
 ### Auto-detection of a topic message format in the event source node
 
@@ -19,9 +44,6 @@ When you configure the [event source node](../../nodes/eventnodes/#event-source)
 ### Processor node: Unpack arrays
 
 {{site.data.reuse.ep_name}} release 1.1.7 introduces a node to unpack the array properties in the events within your {{site.data.reuse.ep_name}} flow. With the unpack array node, you can unpack each array element into a new property in separate events, or unpack the array elements into new properties. For more information, see [Unpack arrays](../../nodes/processornodes/#unpack-arrays).
-
-
-
 
 
 ### Enrichment node: API

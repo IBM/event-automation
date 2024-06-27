@@ -38,8 +38,8 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
       **Note**: You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
 
 1. To define a new time window:
-   1. In the **Specify the property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
-   1. In the **Specify the time window duration** field, specify the duration of each time window.
+   1. In the **Property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
+   1. In the **Time window duration** field, specify the duration of each time window.
 
       **Note**: A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
       The start time and the end time values are timestamps. An event is assigned to a time window if its event time is between the start time and the end time of this time window. The aggregate calculation is performed for all events contained in every time window. The closure of a time window triggers the top number calculation when either of the following conditions are met:
@@ -48,7 +48,7 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
 
       In a standard time window, events are assigned to time windows of a fixed-size that do not overlap. For example, "Calculate the average price of products sold every day". To assign events to one or more time windows, you need to enable a rolling time window. An example of a rolling time window is "Calculate the average price of products sold in the last twenty-four hours and repeat this calculation every hour".
    1. Optional: To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
-      1. In the **Specify the offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
+      1. In the **Offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
 1. Click **Next** to open the **Aggregate function** pane.
 1. To define how you would like to aggregate events over time windows, in the **Aggregate function** field, select an aggregate function.
 1. In the **Property to aggregate** field, select the event property that you want to use.
@@ -105,8 +105,8 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
    **Note**: You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
 
 1. To define a new time window:
-   1. In the **Specify the property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
-   1. In the **Specify the time window duration** field, specify the duration of each time window.
+   1. In the **Property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
+   1. In the **Time window duration** field, specify the duration of each time window.
 
       **Note**: A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
       The start time and the end time values are timestamps. An event is assigned to a time window if its event time is between the start time and the end time of this time window. The top number calculation is performed for all events contained in every time window. The closure of a time window triggers the top number calculation when either of the following conditions are met:
@@ -116,10 +116,10 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
 
       In a standard time window, events are assigned to time windows of a fixed-size that do not overlap. For example, "Get the 5 most valuable orders placed every day". To assign events to one or more time windows, you need to enable a rolling time window. An example of a rolling time window is "Get the 5 most valuable orders placed in the last 24 hours and repeat this calculation every hour".
    1. Optional: To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
-      1. In the **Specify the offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
+      1. In the **Offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
 1. Click **Next** to open the **Condition** pane.
-1. In the **Specify the number of results to keep on each window** field, specify the number of results that you want to see for each time period.
-1. In the **Number of results to keep on each window** field, select the property to use for sorting the events.
+1. In the **Number of results to keep on each window** field, specify the number of results that you want to see for each time period.
+1. In the **Ordered by** field, select the property to use for sorting the events.
 1. Select **Ascending** or **Descending** according to the following rule:
 
    - If you select **Ascending**, you get the events with the top number of lowest values of the selected property, for instance from 1 to 9. For strings, it would sort in the order A to Z.

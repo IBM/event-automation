@@ -119,6 +119,7 @@ To configure a database node, complete the following steps.
    event.country_code = database_table.country_code
    ```
 
+   **Note:** Ensure the expressions contain an equality condition.
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant offers two separate drop-down lists of properties, for the source table attributes and the database table attributes with constraints, enabling you to construct the expression.
 1. After you defined an expression, click **Next** to open the **Enrich Properties** pane. Include or reject the database table fields for further processing.
 1. Click **Next** to open the **Output properties** pane, which contains both the input fields from the preceding node, and the previously chosen database table fields. Remove the fields that you do not want to be visible in the output.
@@ -188,7 +189,7 @@ To configure an API node, complete the following steps:
 
    **Note:** Ensure your OpenAPI document meets the [required conditions](#prerequisites-and-limitations).
 
-1. From the **Select a GET or POST operation to enrich from** drop-down, select an operation.
+1. From the **GET or POST operation to enrich from** drop-down, select an operation.
 1. Click **Next**. The **API access** pane is displayed.
 1. From the **API URL** drop-down, select an API URL.
 

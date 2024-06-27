@@ -17,7 +17,7 @@ ERROR: Topic topic-name [0] error: Subscribed topic not available: topic-name: B
 
 ## Causes
 
-Topics can be socialized through {{site.data.reuse.eem_name}}, and made available in the Developer Portal in {{site.data.reuse.apic_long}}. Topics are added to the API Manager catalog as event sources by [exporting the AsyncAPI documents](../../integrating-with-apic/export-asyncapi/) and publishing them to products. An {{site.data.reuse.apic_short}} application is created and subscribes to these products.
+Topics can be socialized through {{site.data.reuse.eem_name}}, and made available in the Developer Portal in {{site.data.reuse.apic_long}}. Topics are added to the API Manager catalog as event sources by [exporting the AsyncAPI documents](../../integrating-with-apic/generate-asyncapi/) and publishing them to products. An {{site.data.reuse.apic_short}} application is created and subscribes to these products.
 
 The `unknown topic` error message occurs when more than one API is published to a single product and an application is subscribed to that product. This error can also occur when the application is subscribed to multiple products.
 

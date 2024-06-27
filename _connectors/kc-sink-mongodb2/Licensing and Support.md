@@ -15,7 +15,7 @@ sections:
       - { text: 'View the license', url: 'https://github.com/mongodb/mongo-kafka/blob/master/LICENSE.txt' }
   - section:
     title: "Support"
-    type: "Community"
+    type: "IBM Support"
     buttons:
-      - { text: 'Raise issue', url: 'https://jira.mongodb.org/projects/KAFKA/issues/' }
+      - { text: 'Raise issue', url: '../../support/' }
 ---

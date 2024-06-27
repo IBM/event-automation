@@ -10,7 +10,7 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
 **Important:** This deployment cannot be used with {{site.data.reuse.ep_name}} UI.
 
-**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the `release-1.5` and `release-1.6` branches.
+**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the release branches.
 
 ## Prerequisites
 
@@ -39,6 +39,12 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
     - A `SELECT` clause that takes one or all of the columns of the last temporary view.
 
     For more information about how to define a Flink SQL sink, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/sql/insert/#insert-from-select-queries){:target="_blank"}.
+
+## Use Flink user-defined functions
+
+Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
+
+For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
 
 ## Setup a connection to the Flink cluster
 
@@ -95,11 +101,22 @@ Some adaptations to this procedure are required to build the Docker image and us
    FROM <IBM Flink image with digest>
    ```
 
-   c. Remove the sample SQL statement files from the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   c. If at the previous [optional step](#use-flink-user-defined-functions) you introduced the use of Flink user-defined functions (UDFs), edit the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to copy the JAR file that contains the UDF classes:
 
-   d. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   ```shell
+   COPY --chown=flink:root <path-of-the-udf-jar> /opt/flink/lib
+   ```
 
-   e. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   For example:
+   ```shell
+   COPY --chown=flink:root /udfproject/target/udf.jar /opt/flink/lib
+   ```
+
+   d. Remove the sample SQL statement files from the [sql-scripts directory](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+
+   e. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+
+   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.14/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 

@@ -25,7 +25,7 @@ The details of your event source appear in three sections:
 - **Options**: This section displays all the options created for this event source. Options can be provided or removed by [creating an option](#create_option) or [deleting an option](#deleting-an-option).
 - **Manage**: This section displays the current [lifecycle status](#option-lifecycle-states) of your options for this event source in {{site.data.reuse.eem_name}}, including [the ability for users to discover and subscribe to](../publishing-options) your option and [the current set of subscribed users of your option](../managing-user-access-to-options).
 
-You can also [delete](#deleting-an-event-source) your event source from this page, or [export this event source for use with {{site.data.reuse.apic_long}}](../../integrating-with-apic/export-asyncapi/).
+You can also [delete](#deleting-an-event-source) your event source from this page, or [import this event source for use with {{site.data.reuse.apic_long}}](../../integrating-with-apic/generate-asyncapi/).
 
 ## Editing an event source
 {: #edit-event-source}
@@ -54,10 +54,13 @@ You can edit the following information in this pane. Restrictions and validation
 
 ### Event information
 
-The event information provides details to help use the events from the topic. 
-- **Upload Schema:** You can provide an Avro schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic. Checks are made to ensure a valid Avro schema has been uploaded. If a valid file has been uploaded, a preview of the schema is displayed. If the schema is invalid, a validation failure is displayed and the schema is not saved. When consuming events in Avro binary or Avro JSON format from the topic, you can use an option that contains the [schema filtering control](../option-controls#schema-filter) to filter out any events that do not match the schema. 
+The event information provides details to help use the events from the topic.
 
-    **Note:** The schema must also be saved as a `.avsc` or `.avro` file. Invalid file formats will not be saved when uploaded, and the topic will not have a schema. 
+- **Upload Schema:** You can provide an Avro schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic.  Checks are made to ensure a valid schema has been uploaded. If a valid schema has been uploaded, a preview of the schema is displayed. If the schema is invalid, a validation failure is displayed and the schema is not saved. When consuming events in a JSON, Avro binary, or an Avro JSON format from the topic, you can use an option that contains the [schema filtering control](../option-controls#schema-filter) to filter out any events that do not match the schema. 
+
+  ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") You can also provide a JSON schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic.
+
+    **Note:** The schema must also be saved as a `.avsc`, `.avro`, or `.json` file. Invalid file formats will not be saved when uploaded, and the topic will not have a schema.
 - **Schema description:** You can add detailed information about the schema. 
 - **Sample messages:** You can provide examples of the messages that are emitted by the event source. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
 

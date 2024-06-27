@@ -22,9 +22,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.0
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -88,17 +88,16 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-7.png "creating an event source node")
 
-1. Select `JSON` as the message format used in this topic.
+1. Confirm the name of the topic that you want to process events from.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-7.1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-7.1.png "selecting a topic to use")
+
+    Click **Next**.
+1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the `JSON sample message` field. 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-8.png "creating an event source node")
 
-1. Copy the sample message for door badge events from the {{site.data.reuse.eem_name}} catalog.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-9.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-9.png "creating an event source node")
-
-1. Use the sample message to configure the event source node.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-10.png "creating an event source node")
+   Click **Next**.
 
 1. Verify that the type of the `badgetime` property has been automatically detected as `Timestamp`.
 

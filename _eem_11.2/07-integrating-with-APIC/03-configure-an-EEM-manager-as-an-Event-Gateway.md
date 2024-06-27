@@ -19,7 +19,9 @@ Follow the steps to configure your {{site.data.reuse.eem_manager}} as an {{site.
 
 ## Retrieve the {{site.data.reuse.apic_short}} JSON Web Key Set (JWKS) endpoint
 
-Before beginning, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl` endpoint.
+Before you begin, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl` endpoint. The value that you retrieve is required to configure trust between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}.
+
+### By using the OpenShift web console
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -29,7 +31,9 @@ Before beginning, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl`
 6. In the **YAML**, find the `status.endpoints` section of the `APIConnectCluster` custom resource. 
 7. Retrieve the value in the `jwksUrl` field.
 
-The value that you retrieved is required to configure trust between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}.
+### By using other Kubernetes platforms
+
+The `jwksUrl` is defined as the platform API hostname with the following subpath: `api/cloud/oauth2/certs`. See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=communication-enable-jwt-security-instead-mtls#plan_using_jwt_security__title__3){:target="_blank"} for more information about how to retrieve by using the `kubectl` CLI.
 
 ## Configure {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}
 
@@ -37,13 +41,13 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
 1. Obtain a copy of the {{site.data.reuse.apic_short}} CA certificate.
    
-   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. More information about the `ingress-ca` can be found [here](https://www.ibm.com/docs/vi/api-connect/10.0.x?topic=information-api-connect-tls-certificates)
+   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. More information about the `ingress-ca` can be found [here](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=information-api-connect-tls-certificates){:target="_blank"}.
    
-   **Note:** If installed as a part of a {{site.data.reuse.cp4i}} instance, the name of your secret will be prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`
+   **Note:** If installed as a part of an {{site.data.reuse.cp4i}} instance, the name of your secret is prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`.
    
    The CA certificate can be obtained from the Kubernetes cluster where your {{site.data.reuse.apic_short}} instance is installed by using the Openshift UI if running in an Openshift environment, or by using the CLI.
    
-   - Using the {{site.data.reuse.openshift_short}} UI:
+   - By using the {{site.data.reuse.openshift_short}} web console:
      
      1. {{site.data.reuse.openshift_ui_login}}
      2. Expand the **Workloads** drop-down menu and select **Secrets**.
@@ -52,7 +56,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
      5. Click the **YAML** tab.
      6. Copy the value under `data.ca.crt`.
 
-   - Using the CLI:
+   - By using the CLI:
 
      1. {{site.data.reuse.cncf_cli_login}}
      2. Run the following command to extract the Base64-encoded certificate:
@@ -67,7 +71,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
 2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the CA certificate. Create a secret to store the {{site.data.reuse.apic_short}} certificate as follows.
 
-   - Using the {{site.data.reuse.openshift_short}} UI:
+   - By using the {{site.data.reuse.openshift_short}} web console:
 
     **Note:** When creating secrets in the {{site.data.reuse.openshift_short}} UI, the input value must not be encoded. Therefore, if you have a Base64-encoded certificate from step 1, decode it before completing the following steps.
      
@@ -80,7 +84,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
      7. Under **Value**, select the text area, and enter the decoded certificate.
      8. Click **Create**.
    
-   - Using the CLI:
+   - By using the CLI:
           
      1. {{site.data.reuse.cncf_cli_login}}
      2. Run the following command to create a secret called `apim-cpd`:
@@ -173,7 +177,7 @@ JSON Web Token (JWT) authentication is used by default to verify messages that a
 
 Based on your security requirements, you can optionally choose to also enable mutual TLS (MTLS), which uses certificates for authentication:
 
-### On {{site.data.reuse.openshift_short}}
+### On {{site.data.reuse.openshift_short}} web console
 
    Use the web console to modify the `EventEndpointManagement` instance's configuration:
 
@@ -230,9 +234,7 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 6. Copy the **tls.crt** and save it in a file called `manager-client.pem`
 7. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
 
-N.b if you provided your own certificate via a secret for the eem manager use the data stored in that
-
-For more information on these certificates, see the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
+**Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
 
 ### Obtain certificates for a TLS client profile on other Kubernetes platforms
 
@@ -254,8 +256,6 @@ For more information on these certificates, see the [{{site.data.reuse.apic_shor
 6. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
 
 **Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
-
-For more information about these certificates, see the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=integration-cp4i-list-issuers-ca-certificates-secrets){:target="_blank"}.
 
 ### Navigate to Cloud Manager
 
@@ -348,4 +348,4 @@ To socialize the {{site.data.reuse.egw}} client endpoint, register the {{site.da
 6. Use the default TLS server profile that {{site.data.reuse.apic_short}} provides from the drop-down menu.
 7. Click **Save**.
 
-The Cloud Manager UI displays a notification to indicate the {{site.data.reuse.egw}} Service is successfully registered. You can now [export an AsyncAPI](../export-asyncapi) to use in {{site.data.reuse.apic_short}}.
+The Cloud Manager UI displays a notification to indicate the {{site.data.reuse.egw}} Service is successfully registered. You can now [generate an AsyncAPI](../generate-asyncapi) to use in {{site.data.reuse.apic_short}}.

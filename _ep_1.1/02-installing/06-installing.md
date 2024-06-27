@@ -11,7 +11,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Before you begin
 
-- Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#ibm-cert-manager) a supported version of the IBM Cert Manager.
+- Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#certificate-management) a supported version of a certificate manager.
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
 - Obtain the connection details for your {{site.data.reuse.openshift_short}} cluster from your administrator.
 - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") To secure the communication between Flink pods, [configure TLS for Flink](../configuring#configuring-tls-to-secure-communication-with-flink-deployments).
@@ -81,6 +81,8 @@ Before installing an operator, decide whether you want the operator to:
 - Only manage instances in a **single namespace**.
 
   To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances in any other namespace.
+
+**Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
 
 ## Decide version control and catalog source
 
@@ -176,7 +178,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version 1.1.7
+     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -188,7 +190,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventprocessing --version 1.1.7
+     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
      ```
 
 3. Generate mirror manifests by running the following command:
@@ -410,6 +412,8 @@ When the {{site.data.reuse.ibm_flink_operator}} is installed, the following addi
 ### Installing the {{site.data.reuse.ep_name}} operator
 
 Ensure you have considered the {{site.data.reuse.ep_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
+
+**Important:** You can only install one version of the {{site.data.reuse.ep_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 #### Installing the {{site.data.reuse.ep_name}} operator by using the web console
 

@@ -3,7 +3,7 @@ title: MongoDB
 sortTitle: MongoDB
 connectorID: kc-source-mongodb2
 direction: source
-support: community
+support: IBM
 type: kafkaConnect
 iconInitial: Mg
 iconGradient: 2

@@ -27,4 +27,4 @@ Use the Event Source wizard to replace the certificate stored in {{site.data.reu
 2. Stop the flow.
 2. Hover over the source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed.
 5. Accept the new certificates and complete the wizard steps.
-6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
+6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run flow** and select either **Events from now** or **Include historical** to run your flow.

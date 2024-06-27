@@ -89,14 +89,22 @@ You can add multiple redaction controls to one option.
 
 #### Before you begin:
 
-You can use a redaction control with event sources that use an Avro schema, and for event sources without a schema that have JSON formatted messages only. This is because the {{site.data.reuse.egw}} needs to know the schema and how the data in the event source is encoded. For this reason, you must ensure that:
+You can use a redaction control with event sources that use an Avro schema, and for event sources without a schema that have JSON-formatted messages only. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded. 
+
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") You can also use a redaction control with event sources that use a JSON schema.
+
+For this reason, you must ensure that:
 
 - For event sources with an Avro schema:
   - An Avro schema is added to the event source.
-  - The content is encoded as `avro/json` or `avro/binary`. By default, encoding for all event sources is set to unknown.
+  - The message format is `Avro-encoded JSON` or `Avro-encoded binary`. By default, the message format for all event sources is set to unknown.
+
+- For event sources with a JSON schema:
+  - A JSON schema is added to the event source.
+  - The message format is `JSON`. By default, the message format for all event sources is set to unknown.
 
 - For event sources without a schema:
-  - The content is encoded as `application/json`. By default, encoding for all event sources is set to unknown.
+  - The message format is `JSON`. By default, the message format for all event sources is set to unknown.
 
 To add a schema or provide the encoding, [edit the information window of the event source](../managing-event-sources#edit-event-source).
 
@@ -133,7 +141,7 @@ To add a redaction control to an option, complete the following steps.
 1. Optional: If a schema is associated with the event source and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.
 1. If you select **Hash value**, select the hash algorithm that you want to use.
    
-   **Note**: If the property that you select has a maximum length value associated with it as defined in the Avro schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
+   **Note**: If the property that you select has a maximum length value associated with it as defined in the schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
       * `SHA-256` produces a string of 64 characters.
       * `SHA-512` produces a string of 128 characters.
 1. Click **Add control**. A redaction control is added to the table.
@@ -150,10 +158,19 @@ When an option is set up with schema filtering enabled, a subscriber only has ac
 
 #### Before you begin:
 
-If a schema is not associated with the event source, the option to add the schema filtering control is disabled. The schema filtering control can only be applied to events that use an Avro schema. As well as the schema, the {{site.data.reuse.egw}} needs to know how the data in the event source is encoded. For this reason, you must ensure that:
+If a schema is not associated with the event source, the option to add the schema filtering control is disabled. The schema filtering control can only be applied to events that use an Avro schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded.
 
-- An Avro schema is added to the event source.
-- The content is encoded as `avro/json` or `avro/binary`. By default, encoding for all event sources is set to unknown.
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") The schema filtering control can also be applied to events that use a JSON schema.
+
+For this reason, you must ensure that:
+
+- For event sources with an Avro schema:
+  - An Avro schema is added to the event source.
+  - The message format is `Avro-encoded JSON` or `Avro-encoded binary`. By default, the message format for all event sources is set to unknown.
+
+- For event sources with a JSON schema:
+  - A JSON schema is added to the event source.
+  - The message format is `JSON`. By default, the message format for all event sources is set to unknown.
 
 To add a schema or provide the encoding, [edit the information window of the event source](../managing-event-sources#edit-event-source).
 
@@ -187,10 +204,19 @@ You can add the schema enforcement control to manage the kind of data that a cli
 
 #### Before you begin:
 
-If a schema is not associated with the event source, the option to add the schema enforcement control is disabled. The schema enforcement control can only be applied to events that use an Avro schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded. For this reason, you must ensure that:
+If a schema is not associated with the event source, the option to add the schema enforcement control is disabled. The schema enforcement control can only be applied to events that use an Avro schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded. 
 
-- An Avro schema is added to the event source.
-- The content is encoded as `avro/json` or `avro/binary`. By default, encoding for all event sources is set to unknown.
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") The schema enforcement control can also be applied to events that use a JSON schema.
+
+For this reason, you must ensure that:
+
+- For event sources with an Avro schema:
+  - An Avro schema is added to the event source.
+  - The message format is `Avro-encoded JSON` or `Avro-encoded binary`. By default, the message format for all event sources is set to unknown.
+
+- For event sources with a JSON schema:
+  - A JSON schema is added to the event source.
+  - The message format is `JSON`. By default, the message format for all event sources is set to unknown.
 
 To add a schema or provide the encoding, [edit the event source information](../managing-event-sources#edit-event-source).
 

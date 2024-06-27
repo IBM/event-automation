@@ -20,8 +20,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.1.4
-- {{site.data.reuse.ep_name}} 1.1.4
+- {{site.data.reuse.eem_name}} 11.2.0
+- {{site.data.reuse.ep_name}} 1.1.8
 
 ## Instructions
 
@@ -79,7 +79,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
+1. Get the server address for the event source from the {{site.data.reuse.eem_name}} catalog page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-5.png "getting connection details from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-5.png "getting connection details from the catalog")
 
@@ -92,8 +92,6 @@ The next step is to bring the stream of events you discovered in the catalog int
     Give the node a name that describes this stream of events: `Orders`.
 
     In the **Server** field, paste the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
-
-    You need to accept the certificates for the {{site.data.reuse.egw}} to proceed.
 
     Click **Next**.
 
@@ -125,11 +123,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
-1. In {{site.data.reuse.ep_name}}, click **Upload a schema or sample message**.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-10.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-10.png "paste schema into the event source")
-
-1. Paste the schema into the event source config in the **Avro** tab.
+1. The `Avro` message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste sschema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source")
 

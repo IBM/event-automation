@@ -24,8 +24,8 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Endpoint Management 11.3.1
-- Event Processing 1.1.5
+- Event Endpoint Management 11.2.0
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -79,7 +79,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
+1. Get the server address for the event source from the {{site.data.reuse.eem_name}} catalog page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-5.png "getting connection details from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-5.png "getting connection details from the catalog")
 
@@ -109,25 +109,19 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Select `JSON` as the message format used in this topic.
+1. Confirm the name of the topic that you want to process events from.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.1.png "selecting a topic to use")
+
+    Click **Next**.
+
+1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the `JSON sample message` field.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use")
 
     **Did you know?** The catalog page for this topic tells you that events on this topic are JSON strings.
 
     Click **Next**.
-
-1. Get the sample message for door badge events from {{site.data.reuse.eem_name}}.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy sample message from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "copy sample message from the catalog")
-
-    Click **Copy** in the Sample message section to copy the sample message to the clipboard.
-
-    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the sample message enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
-
-1. Paste the sample message into the **JSON sample message** box.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-10.png "paste sample message into the event source")
 
 1. Confirm that the type of the `badgetime` property has automatically been detected as `Timestamp`.
 

@@ -29,11 +29,13 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | endpoints             | [][endpoint](#resource-endpoint) | List of endpoint configurations.                                            |
 | gatewayGroupName      | string                           | The name of the gateway group to which this gateway is to be added.          |
 | gatewayID             | string                           | The identifier of the gateway group to which this gateway is to be added.          |
+| ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1.") gatewayContact        | string                           | The contact information of the gateway administrator.                      |
 | license               | [license](#resource-license)     | Object containing product licensing details.                                |
 | managerEndpoint       | string                           | The endpoint address for an {{site.data.reuse.eem_manager}} instance.       |
 | template              | [template](#resource-template)   | Object containing Kubernetes resource overrides.                            |
 | tls                   | [tls](#resource-tls)             | Object containing TLS configuration.                                        |
 | fips                  | [fips](#resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.    |
+| numKafkaBrokers       | integer                          | The maximum number of Kafka brokers that the gateway can connect to.             |
 
 ## API Reference of Objects Used in the CRDs
 
@@ -49,7 +51,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| authType | string | The authentication method you are going to use. One of `LOCAL` or `OIDC`. |
+| authType | string | The authentication method you are going to use. One of `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK`. |
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
 
 ### Resource: `endpoint`

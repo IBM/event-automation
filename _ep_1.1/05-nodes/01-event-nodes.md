@@ -73,7 +73,11 @@ Kafka runs as a cluster of one or more servers. These servers are called brokers
 
 In the **Connect to Kafka cluster** section, provide the broker address or addresses of the Kafka cluster that you want to connect to as bootstrap servers. You can get the broker addresses for the event source from your cluster administrator.
 
-**Note:** To add more addresses, click **Add URL +** and enter the server address.
+A bootstrap server address should be defined in the form: `hostname:port`. 
+
+For example: `kafkaBoostrapServer:9000`
+
+**Note:** To add more addresses, click **Add bootstrap server +** and enter the server address.
 
 If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
 
@@ -110,33 +114,39 @@ You can use the search pane to search for a particular topic.
 
 1. As you start typing the topic name in the search pane, you get a filtered list of matching topics.
 2. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic you want.
+3. After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, depending on your Event Processing version, complete one of the following steps:
 
-3. ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, select the expected message format:
+   - ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later") In {{site.data.reuse.ep_name}} version 1.1.8, click **Next** to go to the **Message format** pane.
 
-   ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.")  When you select a topic, {{site.data.reuse.ep_name}} attempts to automatically detect the message format by analyzing the last message of the topic:
+   - In {{site.data.reuse.ep_name}} version 1.1.7, scroll down and verify that the auto-detected message format is correct, and then click **Next** to go to the **Define event structure** pane.
 
-   - **Message format is detected:** If the topic contains a message with a supported format, for example, Avro with a registry, Avro, or JSON, the format is auto-selected in the **Select Message format** drop-down.
-
-   - **Message format is undetected:** {{site.data.reuse.ep_name}} does not determine the message format if no message is available in the selected topic. In such cases, you can select the message format from the **Select message format** drop-down.
-
-   **Note:** To start the auto-detection manually, click the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"} to auto-detect the format from the last message.
+   - In {{site.data.reuse.ep_name}} 1.1.5 and 1.1.6, scroll down and select the expected message format, and then click **Next** to go to the **Define event structure** pane.
 
 
 
-  **Avro:** The topic contains Apache Avro binary-encoded messages. An Avro schema is required to decode incoming messages and define the structure of the source event. 
+#### ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") Message format
+{: #message-format}
 
-  **JSON:** The topic contains JSON formatted messages. A sample JSON message is required to define the structure of the source event.
+{{site.data.reuse.ep_name}} attempts to automatically detect the message format by analyzing the last message of the topic. In some cases the auto-detected format could not match the actual format of the last message. For more information, see the [troubleshooting](../../troubleshooting/bad-output-from-auto-detection/) to address auto-detection message format issues.
+- **Message format is detected:** If the topic contains a message with a supported format, for example, Avro, Avro (schema registry), or JSON, the message format is auto-selected in the **Message format** drop-down.
 
-  ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry):**
-  The topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry. When connected to the schema registry, the source node retrieves the schema from the registry to decode the binary message. The information about the schema registry and the Avro schema is [required](../../installing/prerequisites/#schema-registry-requirements) to define the structure of the source event. 
+    **Note:** After changing the auto-detected format to a different option in the drop-down, if you want to revert to the initially detected format, click the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"}.
 
-After selecting the message format, click **Next**.
+- **Message format is undetected:** {{site.data.reuse.ep_name}} does not determine the message format if no message is available in the selected topic. In such cases, you can select the message format from the **Message format** drop-down.
+
+    **Note:** To automatically detect the message format, click the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"} after adding new messages to the topic.
 
 
+**Avro:** The topic contains Apache Avro binary-encoded messages. An Avro schema is required to decode incoming messages and define the structure of the source event. 
 
-#### Define event structure
+**JSON:** The topic contains JSON formatted messages. A sample JSON message is required to define the structure of the source event.
 
-To define the [event](../../about/key-concepts#event) structure, you must define the structure of messages consumed from the Kafka topic. Depending on the expected data encoding type of incoming Kafka messages:
+![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry):**
+The topic contains messages encoded using an Avro schema stored in a registry. Messages produced in the topic must meet the requirements that are described in [prerequisites](../../installing/prerequisites#schema-registry-requirements). When connected to the schema registry, the source node retrieves the schema from the registry to decode the binary message. The information about the schema registry and the Avro schema is required to define the structure of the source event.
+
+**Note:** If you are using a version earlier than 1.1.7, complete the following sections in the **Define event structure** pane.
+
+To define the [event](../../about/key-concepts#event) structure, you must define the structure of messages consumed from the Kafka topic. Depending on the expected format of incoming Kafka messages:
 
 - In versions earlier than 1.1.1:
   - **Topic schema** to define the structure from an Apache Avro schema of type **record** whose primitive fields are of Avro type `string`, `int`, `long`, `float`, `double`, or `boolean`.
@@ -147,9 +157,13 @@ To define the [event](../../about/key-concepts#event) structure, you must define
   
   - If the topic contains Apache Avro binary-encoded messages, the event structure must be provided as an Avro schema. The schema must describe the `record` type with fields that are the primitive data types such as `string`, `int`, `long`, `float`, `double`, or `boolean` and logical types (`uuid`, `date`, `timestamp-millis` or `timestamp-micros`). Avro also supports a combination of `null` and `<primitive-data-type>` (`[null, <primitive-data-type>]`) for optional fields.
 
-    ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") If the message format is auto-detected in the previous **Topic selection** pane, in the **Avro schema** field, {{site.data.reuse.ep_name}} automatically populates the Avro schema that was used to produce the last detected message in the topic.
+   
+    ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") In the **Message format** pane, manually paste the schema in the **Avro schema** field after the message format is auto-detected in the **Message format** drop-down.
 
-     **Note:** The Avro schema detected automatically is read-only.
+    
+
+    In {{site.data.reuse.ep_name}} versions 1.1.8 and later, the **Message format** drop-down has been moved to the **Message format** pane. If you are using a version earlier than 1.1.8, in the **Topic selection** pane, manually paste the schema in the **Avro schema** field after the message format is auto-detected in the **Message format** drop-down. 
+         
 
   - ![Event Processing 1.1.1 icon]({{ 'images' | relative_url }}/1.1.1.svg "In Event Processing 1.1.1 and later.") The fields also support `time-millis` logical type.
 
@@ -195,9 +209,119 @@ To define the [event](../../about/key-concepts#event) structure, you must define
     }
     ```
 
+  - ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") The `record` type can include fields that are complex arrays,including an array of arrays and an array of objects. The complex arrays also support nested objects or nested primitive arrays, such as arrays of `strings`, `numbers`, and `booleans`. However, arrays of fields with `logicalType` are not supported.
+     {: #complex-arrays}
+
+     **Note:** Fields inside an object of an array cannot be deselected, but you can still assign a data type for each of them. Use the **Transform** node to remove a complex array from the event.
+
+    For example, consider a schema describing an order with a field for `productDetails`, which is an array of object. The `inventoryDetails` and `contactDetails` fields indicate an array of arrays. The schema also contains nested arrays or objects.
+
+    ```json
+      {
+        "name": "Order",
+        "type": "record",
+        "fields": [
+          {
+            "name": "productDetails",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "fields": [
+                  {
+                    "name": "productName",
+                    "type": "string"
+                  },
+                  {
+                    "name": "purchase",
+                    "type": "string"
+                  },
+                  {
+                    "name": "codes",
+                    "type": {
+                      "type": "array",
+                      "items": [
+                        "null",
+                        "int"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "inventoryDetails",
+            "type": [
+              "null",
+              {
+                "type": "array",
+                "items": [
+                  "null",
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "record",
+                      "fields": [
+                        {
+                          "name": "inventoryName",
+                          "type": [
+                            "null",
+                            {
+                              "type": "array",
+                              "items": [
+                                "null",
+                                "string"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "productCodes",
+                          "type": [
+                            "null",
+                            {
+                              "type": "array",
+                              "items": [
+                                "null",
+                                "int"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "contactDetails",
+            "type": [
+              "null",
+              {
+                "type": "array",
+                "items": [
+                  "null",
+                  {
+                    "type": "array",
+                    "items": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      } 
+    ```  
+
   - ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.") The `record` type also supports primitive arrays, including arrays of `strings`, `numbers`, and `booleans`. However, arrays of fields with `logicalType` are not supported. 
 
-      **Note:** An array itself or an element within an array can be null.
+      **Note:** Optional arrays and elements in the arrays are supported. However, optional records are not supported.
 
     For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.
 
@@ -260,6 +384,7 @@ To define the [event](../../about/key-concepts#event) structure, you must define
         ]
       }
     ```
+  
 
 - **JSON:** 
   - If the topic contains JSON formatted messages, the event structure must be provided as a sample JSON message. The event properties must use the primitive JSON data types `string`, `number`, or `boolean`. Null values are supported when processing JSON events, but the provided sample JSON should contain only non-null values to determine the right type of properties.
@@ -271,8 +396,8 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 
     ```json
     {
-    "orderId": 123456789,
-    "orderTime": 1708363158092,
+      "orderId": 123456789,
+      "orderTime": 1708363158092,
     "product": {
           "id": 789456123,
           "price": 99.99,
@@ -298,9 +423,56 @@ To define the [event](../../about/key-concepts#event) structure, you must define
         }
     }
     ```
-- ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry)**:
 
-  This format supports the Avro schema from a schema registry such as {{site.data.reuse.es_name}} or a registry that supports the Confluent REST API. If the topic contains Avro binary-encoded messages with a global ID of 4 bytes, for the schema that is stored in a schema registry, enter the following information to connect to your schema registry and define the structure of the source event:
+  - ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") The JSON data type supports complex arrays, including an array of arrays and an array of objects. The complex arrays also support nested objects or nested primitive arrays, such as arrays of `strings`, `numbers`, and `booleans`. However, arrays of timestamps are not supported. Arrays can be at any nested level and should only contain elements of the same type.
+
+      **Note:** You can select or deselect the fields inside an object of an array. 
+
+    For example:
+
+    ```json
+      {
+        "orderId": 253,
+        "productDetails": [
+          {
+            "productName": "item1",
+            "purchase": "online",
+            "codes": [
+              65456,
+              76577
+            ]
+          }
+        ],
+        "inventoryDetails": [
+          [
+            {
+              "inventoryName": [
+                "item1",
+                "item2"
+              ],
+              "productCodes": [
+                65456,
+                76577
+              ]
+            }
+          ]
+        ],
+        "contactDetails": [
+          [
+            "8623464"
+          ],
+          [
+            "2754274"
+          ]
+        ]
+      }    
+    ```
+
+- ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") **Avro (schema registry)**:
+  
+  This format supports messages encoded using an Avro schema that is stored in a supported registry. Messages produced in the topic must meet the requirements that are described in [prerequisites](../../installing/prerequisites#schema-registry-requirements). To connect to a supported registry that stores the Avro schema, enter the following information and define the structure of the source event:
+
+  **Note:** In {{site.data.reuse.ep_name}} versions 1.1.8 and later, the **Message format** drop-down has been moved to the **Message format** pane.  
   
   1. Before you begin, ensure that the [prerequisites](../../installing/prerequisites#schema-registry-requirements) to connect to a schema registry are met.
   1. In the **Schema registry URL** field, enter the [URL](../../installing/prerequisites/#schema-registry-requirements) to the REST endpoint of the schema registry.
@@ -309,33 +481,41 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 
   1. In the **Authentication method** field, select **No authentication** or **Basic authentication**, which requires a username and password.
 
-  1. ![Event Processing 1.1.7 icon]({{ 'images' | relative_url }}/1.1.7.svg "In Event Processing 1.1.7 and later.") If the message format is auto-detected in the previous **Topic selection** pane, click **Next** to auto-populate the Avro schema.
+  1. ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") If the message format is auto-detected earlier in the **Message format** pane, click **Next** to auto-populate the Avro schema.
 
-     In the **Avro schema** field, {{site.data.reuse.ep_name}} automatically populates the Avro schema that was used to produce the last detected message in the topic.
+     In {{site.data.reuse.ep_name}} version 1.1.7, if the message format is auto-detected in the **Topic selection** pane, click **Next** to auto-populate the Avro schema. 
+
+     In the **Avro schema** field, {{site.data.reuse.ep_name}} automatically populates the Avro (schema registry) that was used to produce the last detected message in the topic.
 
      **Note:** The Avro schema detected automatically is read-only.
 
-     In versions earlier than 1.1.7 or if your message format is manually selected in the previous **Topic selection** pane, in the **Avro schema** field, paste the Avro schema that is used to encode topic messages to define the structure of the source event. 
+     In {{site.data.reuse.ep_name}} versions earlier than 1.1.7, if your message format is manually selected in the **Topic selection** pane, in the **Avro schema** field, paste the Avro schema that is used to encode topic messages to define the structure of the source event.      
+       
 
      For more information about Avro schemas, see the [previous section](#event-source-avro).
 
+![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") After you provide required information to define the event structure, click **Next** to go to the **Event details** pane.
 
-![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") After you provide required information to define the event structure, click **Next** to go to the **Customize event structure** pane.
+![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") In versions 1.1.5, 1.1.6, and 1.1.7, after you provide required information to define the event structure, click **Next** to go to the **Customize event structure** pane.
 
 In versions earlier than 1.1.5, after you provide a valid schema or sample message, click **Done**.
 
 
 
-#### ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later.") Customize event structure
+#### ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") Event details
 
-**Note:** In 1.1.5 and later, the following configurations are moved to the **Customize event structure** pane. If you are running a version earlier than 1.1.5, the following sections are covered as part of the earlier **Define event structure** pane.
+**Note:** 
+
+- In {{site.data.reuse.ep_name}} 1.1.8 and later, the **Event details** pane covers the following configurations.
+- In versions 1.1.5, 1.1.6, and 1.1.7, the following configurations are available in the **Customize event structure** pane. 
+- If you are running a version earlier than 1.1.5, the following configurations are covered as part of the earlier **Define event structure** pane.
 
 ##### Event properties
 
 - All message properties are selected by default to define the structure of source events.
-- You can unselect properties that are not relevant.
+- You can clear the properties that are not relevant in the **Property** checkbox.
 
-Once the event source is configured you will be able to rename properties by connecting a transform node to the event source.
+After the event source is configured, you will be able to rename properties by connecting a transform node to the event source.
 
 ##### Type mapping
 
@@ -453,3 +633,4 @@ appears on the event destination node if the event destination node is configure
 If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
+

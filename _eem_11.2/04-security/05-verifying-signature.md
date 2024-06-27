@@ -91,7 +91,7 @@ Complete the following steps to download the CASE archive:
 4. Run the following command to download, validate, and extract a specific version of the CASE archive.
 
    ```shell
-   oc ibm-pak get ibm-eventendpointmanagement --version 11.2.0+20240603.010000
+   oc ibm-pak get ibm-eventendpointmanagement --version {{site.data.reuse.eem_current_version}}
    ```
 
    By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
@@ -111,7 +111,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: 11.2.0+20240603.010000 is complete
+   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated for {{site.data.reuse.eem_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.eem_name}} CASE.
@@ -124,16 +124,16 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── 11.2.0+20240603.010000
+   │   │       └── {{site.data.reuse.eem_current_version}}
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   |   |           |   ├── ibm-eem-operator-11.2.0.tgz
-   |   |           |   └── ibm-eem-operator-crd-11.2.0.tgz
+   |   |           |   ├── ibm-eem-operator-{{site.data.reuse.eem_current_version}}.tgz
+   |   |           |   └── ibm-eem-operator-crd-{{site.data.reuse.eem_current_version}}.tgz
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000-images.csv
-   │   │           ├── ibm-eventendpointmanagement-11.2.0+20240603.010000.tgz
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
+   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror
@@ -158,7 +158,7 @@ Obtain the required files as follows:
 2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. Run the following command to list images by tag:
 
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/11.2.0+20240603.010000/ibm-eventendpointmanagement-11.2.0+20240603.010000-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/{{site.data.reuse.eem_current_version}}/ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv \
    | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
    if [[ "$mtype" == "LIST" ]]; then
        echo "$registry/$image_name:$tag"

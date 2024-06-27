@@ -495,7 +495,7 @@ The {{site.data.reuse.egw}} uses a client certificate to register itself with th
 
 
 - It must be issued by a CA that the {{site.data.reuse.eem_manager}} trusts.
-- It must have a subject alternative name (SAN) URI of the format: `egw://<host>:<port>/<gwgroup>/<gwid>`
+- In {{site.data.reuse.eem_name}} 11.2.0 and earlier, the certificate must have a subject alternative name (SAN) URI of the format: `egw://<host>:<port>/<gwgroup>/<gwid>`
 
   Where:
 
@@ -604,7 +604,11 @@ See the following example for setting up OpenSSL tool to generate a CA and certi
    URI.1 = egw://${GATEWAY_NAME}:443/${GATEWAY_GROUP}/${GATEWAY_ID}
    ```
 
-    **Important:** If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the endpoint hostnames:
+    **Important:**
+    
+    ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1.") In {{site.data.reuse.eem_name}} 11.2.1 and later, URI.1 found in `[alt_names]` is not required.
+    
+    If you are planning to do any of the following for your deployment, ensure you modify the `[alt_names]` section in the previous example to include the endpoint hostnames:
     - You are planning to specify hostnames in the `EventGateway` custom resource under `spec.endpoints`.
     - You are planning to create additional routes or ingress.
     - You are not running on {{site.data.reuse.openshift_short}}.
@@ -734,7 +738,7 @@ spec:
 
 Authentication is configured in the `EventEndpointManagement` configuration.
 
-Two types of authentication are available: LOCAL and OIDC. For more information, see [managing access](../../security/managing-access).
+The following authentication types are available: LOCAL, OIDC, and INTEGRATION_KEYCLOAK if you are deploying as part of {{site.data.reuse.cp4i}}. For more information, see [managing access](../../security/managing-access).
 
 ## Deploy network policies
 

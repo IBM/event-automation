@@ -11,6 +11,10 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.4.x.
 
 ## Release 11.4.0
 
+### IBM support for MongoDB source and the MongoDB sink connector
+
+IBM support is now available for the [MongoDB source connector]({{ 'connectors/kc-source-mongodb2/installation' | relative_url }}) and the [MongoDB sink connector]({{ 'connectors/kc-sink-mongodb2/installation' | relative_url }}).
+
 ### OpenShift only: Monitoring dashboard is now supported with all authentication mechanisms
 
 You can now access the **Monitoring** dashboard with any authentication mechanism on OpenShift including SCRAM authentication and Keycloak authentication. For more information about enabling and accessing the dashboard, see [monitoring cluster health](../../administering/cluster-health#viewing-the-preconfigured-dashboard).

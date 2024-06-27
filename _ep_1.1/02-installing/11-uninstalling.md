@@ -222,16 +222,14 @@ Run the following commands to uninstall your {{site.data.reuse.ep_name}} operato
    helm uninstall <eventautomation-flink-operator-release-name>
    ```
 
-## Uninstalling IBM Cert Manager
+## Uninstalling a certificate manager on {{site.data.reuse.openshift_short}}
 
-Follow the instructions in the [{{site.data.reuse.icpfs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.0?topic=manager-manual-steps-uninstalling-singleton-services-cert){:target="_blank"} to uninstall the singleton services.
-
-To delete the IBM Cert Manager operator by using the OpenShift web console:
+To delete a certificate manager operator by using the OpenShift web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
-4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the Cert Manager operator to be deleted to open the actions menu.
+4. Find the certificate manager that you want to delete, and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 

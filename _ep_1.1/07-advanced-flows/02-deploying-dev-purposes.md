@@ -12,7 +12,7 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
 - Ensure you have configured [persistent storage](../../installing/configuring#configuring-persistent-storage) before you trigger a savepoint.
 
-- Ensure that you have installed a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource.
+- Ensure that you have installed a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} instance of Flink by using a `FlinkDeployment` custom resource. This session cluster must be different from the one used by {{site.data.reuse.ep_name}}.
 
   For more information, see [installing](../../installing/installing#install-a-flink-instance) a Flink instance and [Flink sample deployments](../../installing/planning/#flink-sample-deployments).
 
@@ -26,13 +26,25 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
       license.accept: 'true'
   ```
 
-- To run the SQL client, you must disable [TLS](../../installing/configuring/#configuring-tls-to-secure-communication-with-flink-deployments) in your `FlinkDeployment`.
+- To run the SQL client, you must disable [TLS](../../installing/configuring/#configuring-tls-to-secure-communication-with-flink-deployments) by removing the following Flink configuration parameters from your `FlinkDeployment` custom resource:
+
+   ```yaml
+  spec:
+    flinkConfiguration:
+      security.ssl.enabled: 'true'
+      security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+      security.ssl.truststore-password: <jks-password>
+      security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+      security.ssl.keystore-password: <jks-password>
+      security.ssl.key-password: <jks-password>
+      kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+  ```
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
   For more information, see [exporting flows](../exporting-flows).
 
-- You updated the Flink SQL Kafka connectors properties and values defined in file `statements.sql` to match your target environment: 
+- You updated the Flink SQL Kafka connectors properties and values defined in the file `statements.sql` to match your target environment: 
 
   - Sensitive credentials.
 
@@ -49,7 +61,7 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
     **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. 
 
-  - To deploy a running Flink job, the SQL statements in file `statements.sql` must contain one of the following:
+  - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following:
        - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
        - A `SELECT` clause that takes one or all of the columns of the last temporary view.
 
@@ -117,7 +129,13 @@ SET 'key' = 'value';
   SET 'execution.savepoint.ignore-unclaimed-state' = 'true';
   ```
 
-### Setup a connection to the Flink cluster
+## Use Flink user-defined functions
+
+Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
+
+For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
+
+## Setup a connection to the Flink cluster
 
 1. {{site.data.reuse.cncf_cli_login}}
 
@@ -170,8 +188,18 @@ SET 'key' = 'value';
    kubectl cp -c flink-main-container statements.sql ${FLINK_JOB_MANAGER}:/tmp
    ```
 
+3. If at the previous [optional step](#use-flink-user-defined-functions) you introduced the use of Flink user-defined functions (UDFs), copy the JAR file that contains the UDF classes:
 
-3. Submit the Flink SQL job to the Flink cluster:
+   ```shell
+   kubectl cp -c flink-main-container <path-of-the-udf-jar> ${FLINK_JOB_MANAGER}:/opt/flink/lib
+   ```
+
+   For example:
+   ```shell
+   kubectl cp -c flink-main-container /udfproject/target/udf.jar ${FLINK_JOB_MANAGER}:/opt/flink/lib
+   ```
+
+4. Submit the Flink SQL job to the Flink cluster:
 
    ```shell
    kubectl exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null -f /tmp/statements.sql

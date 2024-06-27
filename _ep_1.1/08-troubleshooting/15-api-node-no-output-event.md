@@ -63,8 +63,7 @@ java.lang.RuntimeException: Unable to create KeyStore for Http Connector Securit
   1. Stop the flow.
   1. Delete the {{site.data.reuse.ep_name}} and Flink pods.
   1. Wait for the pods to become ready.
-  1. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
-
+  1. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run flow** and select either **Events from now** or **Include historical** to run your flow.
 
 ### API credentials misconfiguration
 
@@ -83,7 +82,7 @@ WARN  com.getindata.connectors.http.internal.table.lookup.JavaNetHttpPollingClie
 Complete the following steps:
 1. Stop the flow.
 2. Correct the configuration of the API credentials in the [node configuration](../../nodes/enrichmentnode/#configuring-an-api-node).
-6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run** and select either **Events from now** or **Include historical** to run your flow.
+6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, expand **Run flow** and select either **Events from now** or **Include historical** to run your flow.
 
 
 ### No usable response from the API server

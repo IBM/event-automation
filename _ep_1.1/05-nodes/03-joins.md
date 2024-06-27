@@ -62,12 +62,20 @@ Examples:
    - ELEMENT(source1.array_property) = source2.leaf_property
    ```
 
+- ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") Expressions with complex array properties:
+
+   ```
+   - ELEMENT(source1.example_array_property) = ELEMENT(source2.example_array_of_array_of_object_property[1][1].stringArray)
+   - ARRAY_CONTAINS(source1.example_array_of_array_of_object_property[1][1].floatArray, source2.example_array_of_object_property[1].floatArray)
+   - CARDINALITY(source1.example_array_of_array_property[1]) = CARDINALITY(source2.example_array_property) 
+   ```
+
 
 Alternatively, to use the assistant to create your expression, complete the following steps:
 
 1. Click the **Assistant** drop-down menu to open the assistant.
-2. In the **Specify property from [name of the first event source]** drop-down menu, select the property that you want to match.
-3. In the **Specify property from [name of the second event source]** drop-down menu, select a property to match the one chosen in step 2.
+2. In the **Property from [name of the first event source]** drop-down menu, select the property that you want to match.
+3. In the **Property from [name of the second event source]** drop-down menu, select a property to match the one chosen in step 2.
 4. Click **Add to expression** to insert the expression into the text-box.
 
 **Note:** Ensure that the property you choose for both sides of your expression has the same data type. 

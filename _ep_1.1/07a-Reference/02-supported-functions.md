@@ -6,7 +6,9 @@ slug: supported-functions
 toc: true
 ---
 
-The following is a list of all the Flink SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/systemfunctions/#temporal-functions){:target="_blank"}.
+The following lists the Flink built-in SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/systemfunctions){:target="_blank"}.
+
+Additionally, [user-defined SQL functions](#user-defined-functions-in-the-exported-sql) can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when deploying jobs in a [development](../../advanced/deploying-development) or [production](../../advanced/deploying-production) environment.
 
 ## Temporal functions
 
@@ -123,7 +125,7 @@ The following is a list of all the Flink SQL functions supported by {{site.data.
 | `CAST(value AS type)`| This function returns a new value being cast to type type. A CAST error throws an exception and fails the job. When performing a cast operation that may fail, like STRING to INT, one should rather use TRY_CAST, in order to handle errors. If “table.exec.legacy-cast-behaviour” is enabled, CAST behaves like TRY_CAST. For example, CAST(‘42’ AS INT) returns 42; CAST(NULL AS STRING) returns NULL of type STRING; CAST(’non-number’ AS INT) throws an exception and fails the job. |
 | `TRY_CAST(value AS type)` | This function is similar to CAST, but returns NULL instead of failing the job in case of error. For example, TRY_CAST(‘42’ AS INT) returns 42; TRY_CAST(NULL AS STRING) returns NULL of type STRING; TRY_CAST(’non-number’ AS INT) returns NULL of type INT; COALESCE(TRY_CAST(’non-number’ AS INT), 0) returns 0 of type INT. |
 
-## Collection functions 
+## Collection functions
 
 ![Event Processing 1.1.4 icon]({{ 'images' | relative_url }}/1.1.4.svg "In Event Processing 1.1.4 and later.")
 
@@ -142,5 +144,38 @@ The following is a list of all the Flink SQL functions supported by {{site.data.
 | `ELEMENT(array)`  | This function returns the sole element of array (whose cardinality should be one). Returns NULL if array is empty. Throws an exception if array has more than one element. |
 
 
+## User-defined functions in the exported SQL
 
+User-defined functions (UDFs) are extension points allowing to implement a custom logic. For more information about UDFs, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/udfs/){:target="_blank"}.
 
+For implementing UDFs, see the following resources:
+
+* The [implementation guide](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/functions/udfs/#implementation-guide){:target="_blank"} in the Apache Flink documentation.
+* The [sample project](https://ibm.biz/ep-flink-udf-sample){:target="_blank"} in the {{site.data.reuse.ea_long}} GitHub repository.
+
+In {{site.data.reuse.ep_name}}, UDFs can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when [deploying jobs for development purposes](../../advanced/deploying-development) or [deploying jobs in a production environment](../../advanced/deploying-production).
+
+**Note:** UDFs cannot be used in the {{site.data.reuse.ep_name}} UI.
+
+Complete the following steps:
+
+1. Implement the UDF in a Java project and package the compiled classes of this implementation in a JAR file, for example `udf.jar`.
+
+2. [Export](../../advanced/exporting-flows) a flow that you want in the SQL format and edit the SQL to add the following statement:
+
+   ```sql
+   CREATE FUNCTION <UDF_NAME> AS '<udf_fully_qualified_class_name>';
+   ```
+
+   For example:
+
+   ```sql
+   CREATE FUNCTION ANALYZE_STRING AS 'org.example.AnalyzeStringFunction';
+   ```
+
+3. Use the UDF in the exported SQL at any place where the built-in functions can be used.
+
+4. To add the JAR file that contains the UDF classes (for example `udf.jar`) to be available to the Flink runtime, complete any one of the following steps:
+
+   * For deploying jobs in a [development environment](../../advanced/deploying-development), see step 3 in [Submit a Flink SQL job](../../advanced/deploying-development/#submit-a-flink-sql-job).
+   * For deploying jobs in a [production environment](../../advanced/deploying-production), see step 1c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner).

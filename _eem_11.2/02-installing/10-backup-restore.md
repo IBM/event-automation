@@ -9,10 +9,10 @@ toc: true
 
 To back up and restore your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances, you can use a backup tool such as [Velero](https://velero.io/){:target="_blank"}. In addition, consider using a [storage class](../prerequisites#data-storage-requirements) that supports the [Container Storage Interface (CSI) snapshotting](https://docs.openshift.com/container-platform/4.15/storage/container_storage_interface/persistent-storage-csi-snapshots.html){:target="_blank"} (for example, the [Ceph File System](https://docs.ceph.com/en/latest/cephfs/){:target="_blank"}).
 
-If you are running on the {{site.data.reuse.openshift}}, the [OADP operator](https://docs.openshift.com/container-platform/4.15/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} uses Velero 
+If you are running on {{site.data.reuse.openshift}}, the [OADP operator](https://docs.openshift.com/container-platform/4.15/backup_and_restore/index.html#application-backup-restore-operations-overview){:target="_blank"} uses Velero 
 and simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.  
 
-On other Kubernetes platforms, Velero provides a Helm chart which you can use to install the software or a command line tool.
+On other Kubernetes platforms, Velero provides a Helm chart that you can use to install the software or a command-line tool.
 
 Follow these instructions to back up and restore your Event Endpoint Management and Event Gateway instances.
 
@@ -25,138 +25,123 @@ To back up and restore the {{site.data.reuse.eem_manager}} and {{site.data.reuse
   - Secrets containing certificates that are associated with the related instances.
   - The {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations.
 
-  This means that your backup location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions you can use to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"} or [Velero](https://velero.io/plugins/) documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
+This means that your backup storage location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions available to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/oadp-features-plugins.html#oadp-plugins_oadp-features-plugin){:target="_blank"} or [Velero](https://velero.io/plugins/){:target="_blank"} documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
 
-- If you are on the {{site.data.reuse.openshift_short}} and using the OADP operator to back up your instances, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing and configuring the `DataProtectionApplication` custom resource, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and select the storage type you want to configure.
+In your CSI-supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured.
 
-- In your CSI supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured for the `CSI` storage provider in your cluster.
+If you are on the {{site.data.reuse.openshift_short}} and use the OADP operator to back up your instances, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing the OADP operator, see the [installing OADP documentation](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"}. You can also find more links about configuring the `DataProtectionApplication` custom resource for different backup locations in the installing OADP documentation. An example `DataProtectionApplication` configured against a [quickstart minio instance](https://velero.io/docs/main/contributions/minio/#set-up-server){:target="_blank"} would look as follows:
+```yaml
+apiVersion: oadp.openshift.io/v1alpha1
+kind: DataProtectionApplication
+metadata:
+  name: velero-minio
+  namespace: openshift-adp
+spec:
+  backupLocations:
+    - velero:
+        config:
+          profile: default
+          region: minio
+          s3ForcePathStyle: 'true'
+          s3Url: 'http://minio.velero.svc:9000'
+        credential:
+          key: minio
+          name: minio-credentials
+        default: true
+        objectStorage:
+          bucket: velero
+          prefix: velero
+        provider: aws
+  configuration:
+    nodeAgent:
+      uploaderType: restic
+    velero:
+      defaultPlugins:
+        - openshift
+        - aws
+        - kubevirt
+        - csi
+```
 
-- To ensure that the correct items are backed up and restored properly, you can [install the Velero client.](https://velero.io/docs/main/basic-install/){:target="_blank"}
+Optionally, to ensure that the correct items are backed up and restored properly, you can [install the Velero client](https://velero.io/docs/main/basic-install/){:target="_blank"}.
 
 ## Backing up
 
-If applicable, after your `DataProtectionApplication` is configured and other dependencies are prepared, you can back up your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
+Note the different labels that are used to identify resources to back up depending on your version of {{site.data.reuse.eem_name}}.
 
-Create two `Backup` custom resources to back up your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
+- ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later.") For {{site.data.reuse.eem_name}} 11.2.1 and later, the label is:
 
-  - One for the main encryption key, secrets, and the PVCs containing the data of your instance deployments.
-  - The other for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations.
+  ```shell
+  backup.events.ibm.com/component: eventendpointmanagement
+  ```
 
- Complete the following steps to create two `Backup` custom resources:
+- For {{site.data.reuse.eem_name}} 11.2.0, the label is:
+  ```shell
+  events.ibm.com/backup: required
+  ```
 
-1. To ensure that only the main encryption key, secrets, and the PVCs that contain the data are configured for back up, and to easily separate them from the other resources that are related to the {{site.data.reuse.eem_manager}} instance, ensure that the `events.ibm.com/backup: required` label and the `app.kubernetes.io/name: ibm-event-endpoint-management` label are added to the following resources:
 
-   - The PVCs in the {{site.data.reuse.eem_manager}} instance namespace with names starting with `manager-storage-<event-manager-instance-name>-ibm-eem-manager-`.
-   - Any custom named PVC configured on the {{site.data.reuse.eem_manager}} instance.
-   - The secret in the {{site.data.reuse.eem_manager}} instance namespace with the name that ends with `-mek-bak`. For example, `<eem_instance_name>-ibm-eem-mek-bak`.
-   - Any custom secrets containing certificates added to the {{site.data.reuse.eem_manager}} instance as `trustedCertificates`.
+The code samples that are provided in the following steps are designed to work with any version.
 
-   In addition, add labels to the following secrets:
+When you have configured the Velero instance, complete the following steps to create a backup of your {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} instances.
 
-   - If using the cert manager default configuration for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances, add the `events.ibm.com/backup: required` and `app.kubernetes.io/name: ibm-event-endpoint-management` labels to secrets with the names `<event-manager-instance-name>-ibm-eem-manager-ca`, `<event-manager-instance-name>-ibm-eem-manager`, and `<egw_instance_name>-ibm-egw-cert`.
+1. Add the appropriate back up label, for your version of {{site.data.reuse.eem_name}}, to the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource. The {{site.data.reuse.eem_name}} operator adds the label to the other Kubernetes resources required for back up and restore. 
 
-   - If using custom secrets, add the `events.ibm.com/backup: required` and `app.kubernetes.io/name: ibm-event-endpoint-management` labels to all secrets supplied on the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource TLS configurations.
+    If the label is added to an existing instance of {{site.data.reuse.eem_manager}} or {{site.data.reuse.egw}}, the labels are treated as metadata only and are not added to other Kubernetes resources. To ensure that the label is added to other Kubernetes resources, roll the operator pod after the label change, or change any parameter in the `.spec` section of the custom resource when you change the label. To validate this process has worked correctly, use an example resource such as the Kubernetes secret `<eem_instance_name>-ibm-eem-mek-bak`, with the backup label present on this secret.
+1. Add the back up label to the `PersistentVolumeClaim` that is binding the {{site.data.reuse.eem_manager}} instance to the `PersistentVolume`.
+1. Create and apply a `Backup` custom resource by using the following snippet template.  
 
-   **Note:** If you want to include your user role mappings configuration in the backup, add the labels to the secret named `<eem_instance_name>-ibm-eem-user-roles`.
+   In `spec.includedNamespaces`, add all the namespaces where the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are installed. If you are using {{site.data.reuse.eem_name}} 11.2.0 or earlier, and you have multiple instances of {{site.data.reuse.eem_name}} or other components of Event Automation in the same namespace, you might want to consider adding another label to the backup resources so that you can uniquely identify them.
 
-2. To ensure the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations are configured for back up, add the `events.ibm-event-endpoint-management.ibm.com/backup=required` label to the following custom resources if not present:
+    ```yaml
+    apiVersion: velero.io/v1
+    kind: Backup
+    metadata:
+      name: <unique_name>
+      namespace: openshift-adp
+    spec:
+      storageLocation: <backup_storage_location>
+      includeClusterResources: true
+      snapshotVolumes: true
+      orLabelSelectors:
+        - matchExpressions:
+            - key: backup.events.ibm.com/component
+              operator: In
+              values:
+                - catalogsource
+                - operatorgroup
+                - subscription
+                - eventendpointmanagement
+                - eventgateway
+        - matchExpressions:
+            - key: events.ibm.com/backup
+              operator: In
+              values:
+                - required
+      includedNamespaces:
+        - <event-manager-instance-namespace>
+        - <event-gateway-instance-namespace>
+    ```  
 
-   - The {{site.data.reuse.eem_manager}} custom resource
-   - The {{site.data.reuse.egw}} custom resource
-
-3. After the labels are applied, create and apply a `Backup` custom resource as follows that backs up secrets containing the encryption key and certificates, and the PVCs containing the data of your instance. Also, include the snapshots in the custom resource if you are using a `CSI` storage provider.
-
-   ```yaml
-   apiVersion: velero.io/v1
-   kind: Backup
-   metadata:
-     name: <unique_name>
-     namespace: openshift-adp
-   spec:
-     includedResources:
-       - secrets
-       - persistentvolumeclaims
-       # To ensure the volume data is backed up when using CSI
-       - volumesnapshots 
-       - volumesnapshotcontents
-     storageLocation: <backup_storage_location_cr_name>
-     includeClusterResources: true
-     labelSelector:
-       matchLabels:
-         app.kubernetes.io/name: ibm-event-endpoint-management
-         events.ibm.com/backup: required
-     includedNamespaces:
-       - <event-manager-instance-namespace>
-       - <event-gateway-instance-namespace>
-     excludedResources: []
-   ```
-
-   **Note:** Under `spec.includedNamespaces`, add all namespaces where {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are installed.
-
-   See the [OADP](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Backup` custom resource.
-
-4. After the `Backup` custom resource is applied, check whether the custom resource is updated with status information similar to the following snippet:
+1. After the `Backup` custom resource is applied, check whether the custom resource is updated with status information similar to the following snippet:
 
    ```yaml
    status:
      progress:
-       itemsBackedUp: 11
-       totalItems: 11
+       itemsBackedUp: 12
+       totalItems: 12
      csiVolumeSnapshotsCompleted: 1
      csiVolumeSnapshotsAttempted: 1
      phase: Completed
    ```
 
-5. To ensure the resources specified in the `Backup` custom resource are backed up properly, run the following command: 
+1. Optional: Run the following command in the Velero CLI to ensure that the resources that are specified in the `Backup` custom resource are backed up properly: 
 
    ```shell
    velero backup describe <backup_name> --details -n openshift-adp
    ```
 
-6. Create and apply another `Backup` custom resource as follows to back up the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations.
-
-   ```yaml
-   apiVersion: velero.io/v1
-   kind: Backup
-   metadata:
-     name: <unique_name>
-     namespace: openshift-adp
-   spec:
-     defaultVolumesToRestic: false
-     includeClusterResources: true
-     storageLocation: <backup_storage_location_cr_name>
-     includedNamespaces:
-       - <event-manager-instance-namespace>
-       - <event-gateway-instance-namespace>
-     orLabelSelectors:
-     - matchExpressions:
-       - key: events.ibm-event-endpoint-management.ibm.com/backup
-         operator: In
-         values:
-         - required
-   ```
-
-   **Note:** Under `spec.includedNamespaces`, add all namespaces where {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are installed. 
-
-7. After the `Backup` of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resources is applied, check whether the `Backup` custom resource is updated with status information similar to the following:
-
-   ```yaml
-   status:
-     progress:
-       itemsBackedUp: 5
-       totalItems: 5
-     phase: Completed
-   ```
-
-8. To ensure your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations are backed up properly, run the following command:
-
-   ```shell
-   velero backup describe <backup_name> --details -n openshift-adp
-   ```
-
-If you are facing problems in creating a backup, see the [troubleshooting information for OADP](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/troubleshooting.html){:target="_blank"}.
-
-**Important:** The name of your `Backup` custom resource is required to [restore](#restoring) your instance from the backup.
+If you have problems creating a backup, see the [troubleshooting information for OADP](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/troubleshooting.html){:target="_blank"}.
 
 ## Restoring
 
@@ -168,15 +153,15 @@ Restoring your instance might be required for a number of reasons:
 - To wind back the data to a previous state.
 - Loss of the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
 
-You can restore the backed up {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances as follows.
+Before you restore your instance, the {{site.data.reuse.eem_name}} operator must be installed.
 
-Before restoring your instance, the {{site.data.reuse.eem_name}} operator must be installed again in the previously installed namespace if it was lost.
-
-**Note:** In the namespace that you are restoring to, ensure that you do not have an instance with the same name as the one you are restoring. You cannot restore {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances in the namespace if another instance with the same name already exists there. If you are trying to rewind your data, you must [uninstall](../uninstalling) the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances you are restoring.
+**Note:** You must restore your instance into a namespace with the same name that the backup was taken from. Ensure that you do not have an instance with the same name as the one you are restoring. You cannot restore {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances in the namespace if another instance with the same name exists there. If you are trying to rewind your data, you must [uninstall](../uninstalling) the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances that you are restoring.
 
 To restore your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances, complete the following steps:
 
-1. To restore the encryption key secret, certificate secrets, and the PVC resources, create and apply a `Restore` custom resource similar to the following YAML:
+1. Create and apply a `Restore` custom resource by using the following snippet.  
+
+   In `spec.includedNamespaces`, add all the namespaces where {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances were previously installed, these namespaces should exist before the restore.
 
    ```yaml
    apiVersion: velero.io/v1
@@ -187,50 +172,38 @@ To restore your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} inst
    spec:
      backupName: <name_of_the_backup_to_restore>
      existingResourcePolicy: update
-     excludedResources: []
-     includedResources: []
      restorePVs: true
+     orLabelSelectors:
+     - matchExpressions:
+       - key: backup.events.ibm.com/component
+         operator: In
+         values:
+         - catalogsource
+         - operatorgroup
+         - subscription
+         - eventendpointmanagement
+         - eventgateway
+     - matchExpressions:
+       - key: events.ibm.com/backup
+         operator: In
+         values:
+           - required
+     includedNamespaces:
+       - <event-manager-instance-namespace>
+       - <event-gateway-instance-namespace>
    ```
-    Where `<name_of_the_backup_to_restore>` is the backup of the encryption key secret, certificate secrets, and the PVC resources.
 
-    See the [OADP](https://docs.openshift.com/container-platform/4.15/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.html){:target="_blank"} and [Velero](https://velero.io/){:target="_blank"} documentation for more configuration options for the `Restore` custom resource. For example, you can configure your custom resource to restore to an alternative namespace.
+1. After the `Restore` custom resource is applied and in `Completed` state, check that both the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are created, and are in `Running` state.
 
-2. When you are applying this custom resource, the backup is loaded from the backup location and the `<eem_instance_name>-ibm-eem-mek-bak` secret, `manager-storage-<event-manager-instance-name>-ibm-eem-manager-0` PVC and secrets containing TLS certificates are re-created.
+1. Secure your access again by following guidance in the [managing access](../../security/managing-access) and [managing roles](../../security/user-roles) topics.
 
-    Before proceeding to the next step, wait for the `Restore` custom resource to be applied and in `Completed` state, then check that the encryption key secret, the PVC resources and certficate secrets are created, and ensure that the resources are in `Ready` state.
+You can access the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances again with the same configuration and data that you used when you backed up the data.
 
-    **Note:** Velero removes some labels and annotations such as the `volume.beta.kubernetes.io/storage-provisioner` annotation when restoring PVCs. For some providers, this might leave the PVC in a `Pending` state. To fix this manually, add the `volume.beta.kubernetes.io/storage-provisioner` annotation back into the PVC with the same value as the `volume.kubernetes.io/storage-provisioner` annotation.
+## Handling multiple instances
 
-3. After the encryption key secret, TLS secrets, and the PVC resources are restored, and in `Ready` state, you can restore the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations. To do this, create and apply another `Restore` custom resource similar to the following YAML:
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later.") In {{site.data.reuse.eem_name}} 11.2.1 and later, you can customize the label `backup.events.ibm.com/component: eventendpointmanagement` to differentiate between different instances of {{site.data.reuse.eem_name}} that might exist in the same namespace. 
 
-    ```yaml
-    apiVersion: velero.io/v1
-    kind: Restore
-    metadata:
-      name: <unique_name>
-      namespace: openshift-adp
-    spec:
-      backupName: <name_of_the_backup_to_restore>
-      includeClusterResources: true
-      existingResourcePolicy: update
-      hooks: {}
-      includedNamespaces:
-      - < event-manager-instance-namespace>
-      - <event-gateway-instance-namespace>
-      itemOperationTimeout: 1h0m0s
-      orLabelSelectors:
-      - matchExpressions:
-        - key: events.ibm-event-endpoint-management.ibm.com/backup
-          operator: In
-          values:
-          - required
-    ```
-    Where `<name_of_the_backup_to_restore>`is the backup of the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource configurations. 
- 
-    **Note:** Under `spec.includedNamespaces`, add all namespaces where {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are installed.
+To customize the label, complete the following steps:
 
-4. After the `Restore` custom resource is applied and in `Completed` state, check that both the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are created, and are in `Running` state.
-
-5. Secure your access again by following guidance in the [managing access](../../security/managing-access) and [managing roles](../../security/user-roles) topics.
-
-You can access the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances again with the same configuration and data as when the back up happened.
+1. Change the `eventendpointmanagement` value to any custom value. For example, `my-eem`. 
+1. Ensure that the custom value is listed in the list of values in the backup and restore custom resources.

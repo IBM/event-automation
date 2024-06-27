@@ -22,8 +22,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots might differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.3.1
-- {{site.data.reuse.ep_name}} 1.1.5
+- {{site.data.reuse.es_name}} 11.4.0
+- {{site.data.reuse.ep_name}} 1.1.8
 
 ## Instructions
 
@@ -99,7 +99,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Give the node a name that describes this stream of events: `cancellations`.
 
-    Paste the server address that you copied from {{site.data.reuse.es_name}} in the previous step and click **Next**..
+    Paste the server address that you copied from {{site.data.reuse.es_name}} in the previous step and click **Next**.
 
 1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
 
@@ -107,11 +107,15 @@ The next step is to bring the stream of events you discovered in the catalog int
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics).
 
-1. Select the `CANCELLATIONS.REG` topic and choose `Avro (schema registry)` as the message format used in your selected topic.
+1. Select the `CANCELLATIONS.REG` topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10.png "selecting a topic to use")
 
-    Click **Next**.
+1. Click **Next**. The **Message format** pane is displayed.
+
+    The format `Avro (schema registry)` is auto-selected in the **Message format** drop-down.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10.1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10.1.png "selecting a topic to use")
 
 1. Get the schema registry endpoint URL from {{site.data.reuse.es_name}}.
 
@@ -125,15 +129,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Use the same username and password for the `kafka-demo-apps` user for accessing the schema registry.
 
-1. Copy the schema from the {{site.data.reuse.es_name}} schema page.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-13.png "copy schema"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-13.png "copy schema")
-
-1. Paste the schema into the **Avro schema** field.
+1. Click **Next** to auto-populate the Avro schema in the **Avro schema** field.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-14.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-14.png "paste schema into the event source")
 
-    Give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating {{site.data.reuse.ep_name}} nodes.
+    The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating {{site.data.reuse.ep_name}} nodes.
 
     Click **Next**.
 

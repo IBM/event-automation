@@ -18,11 +18,11 @@ Decide the purpose of your deployment, for example, whether you want to try a st
 
 A number of sample configurations are available when installing {{site.data.reuse.eem_name}} on which you can base your deployment. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
-If you are [installing](../installing#installing-an-event-endpoint-management-instance-by-using-the-web-console) on the {{site.data.reuse.openshift_short}}, you can view and apply the following sample configurations in the web console:
+If you are installing on the {{site.data.reuse.openshift_short}} or on other Kubernetes platforms, the following samples are available:
 
 - [Quick start](#example-deployment-quick-start)
-- [Production](#example-deployment-production)
 - [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Production](#example-deployment-production)
 
 If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
@@ -30,19 +30,13 @@ If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the fol
 - [Production](#example-deployment-production)
 - [Usage-based pricing](#example-deployment-usage-based-pricing)
 
-If you are installing on other Kubernetes platforms, the following samples are available in the Helm chart package:
-
-- [Quick start](#example-deployment-quick-start)
-- [Production](#example-deployment-production)
-- [Quick start with {{site.data.reuse.apic_short}} integration](#example-deployment-quick-start-with-api-connect-integration)
-
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
 
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
 ### Example deployment: **Quick start**
 
-Overview: A development {{site.data.reuse.eem_name}} instance with reduced resources, using ephemeral storage and local authentication.
+Overview: A development {{site.data.reuse.eem_manager}} instance with reduced resources, using ephemeral storage and local authentication.
 
 This example provides a starter deployment that can be used if you simply want to try {{site.data.reuse.eem_name}} with a minimum resource footprint. This example is deployed with no persistence and reduced resources.
 
@@ -52,13 +46,13 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.25                | 0.5               | 0.25                | 0.5               | 1     |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
+Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Production**
 
 Overview: A production instance with support for persistence and OpenID Connect (OIDC) authentication.
 
-This example installs a production-ready {{site.data.reuse.eem_name}} instance, with dynamically provisioned persistence, using OIDC authentication with keycloak, using provided CA and custom UI certificates.
+This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, using OIDC authentication with keycloak, using provided CA and custom UI certificates.
 
 Resource requirements for this deployment:
 
@@ -67,13 +61,13 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
+Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Quick start with {{site.data.reuse.apic_short}} integration**
 
-Overview: A production instance with support for persistence OpenID Connect (OIDC) authentication and includes configuration options for {{site.data.reuse.apic_short}} integration.
+Overview: A development {{site.data.reuse.eem_manager}} instance with no persistence, local authentication, and configuration options for the {{site.data.reuse.apic_short}} integration.
 
-This example installs a production-ready {{site.data.reuse.eem_name}} instance, with persistence and using local authentication.
+This example is suitable for testing a starter deployment of {{site.data.reuse.eem_name}} that can be configured to integrate with {{site.data.reuse.apic_short}}.
 
 Resource requirements for this deployment:
 
@@ -81,7 +75,7 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
+Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Usage-based pricing**
 
@@ -91,7 +85,7 @@ Overview: A production instance with additional fields to point to an installed 
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_name}} instance is able to consume.
+Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ## Sample deployments for {{site.data.reuse.egw}}
 
@@ -142,14 +136,14 @@ For information about creating persistent volumes and creating a storage class t
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 
-- If these persistent volumes are to be created manually, this must be done by the cluster administrator before installing {{site.data.reuse.eem_name}}. These will then be claimed from a central pool when the {{site.data.reuse.eem_name}} instance is deployed.
+- If these persistent volumes are to be created manually, this must be done by the cluster administrator before installing {{site.data.reuse.eem_name}}. These will then be claimed from a central pool when the {{site.data.reuse.eem_manager}} instance is deployed.
 - If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.15/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
 
 **Important:** When creating persistent volumes ensure the **Access mode** is set to `ReadWriteOnce` for the volume.
 
 To use persistent storage, [configure the storage properties](../configuring/#enabling-persistent-storage) in your `EventEndpointManagement` custom resource.
 
-**Note:** If you intend to [back up](../backup-restore/#before-you-begin) your {{site.data.reuse.eem_name}} instance, consider a storage class that supports `CSI snapshotting`.
+**Note:** If you intend to [back up](../backup-restore/#before-you-begin) your {{site.data.reuse.eem_manager}} instance, consider a storage class that supports `CSI snapshotting`.
 
 ## Planning for security
 
@@ -158,8 +152,8 @@ There are two main areas of security to consider when installing {{site.data.reu
 1. The type of authentication the UI uses. You can choose LOCAL or OIDC.
    - If LOCAL, then the UI will use a secret that has a list of users and passwords.
    - If OIDC, then you must provide all the required information to connect to your OIDC provider.
-2. The certificates you provide when configuring the {{site.data.reuse.eem_name}} instance and Event Gateway instance. Both use mutual TLS.
-   - For an {{site.data.reuse.eem_name}} instance, use **one** of the following configurations:
+2. The certificates you provide when configuring the {{site.data.reuse.eem_manager}} instance and Event Gateway instance. Both use mutual TLS.
+   - For an {{site.data.reuse.eem_manager}} instance, use **one** of the following configurations:
      - **User-provided CA certificate**: Provide a secret containing a certificate authority (CA) certificate, which is used to generate other certificates.
      - **User-provided certificate**: Provide a secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the {{site.data.reuse.eem_manager}}.
      - **Operator-configured CA**: The operator creates a self-signed CA certificate and you can use it to generate all the other required certificates.

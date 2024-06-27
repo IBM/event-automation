@@ -9,8 +9,9 @@ toc: true
 You can manage access to {{site.data.reuse.eem_name}} by defining authentication and authorization rules. Authentication rules control login access, and authorization rules control what actions the user has permissions to take after logging in.
 
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
-1. Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
-2. [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
+- Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
+- [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
+- By using the [Keycloak](#setting-up-integration-keycloak-authentication) that is provided by {{site.data.reuse.cp4i}}.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.
@@ -353,3 +354,66 @@ spec:
           certificate: ca.crt
         - ...
 ```
+
+## {{site.data.reuse.cp4i}}: Setting up Keycloak authentication
+
+You can authenticate users by using the Keycloak provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
+
+### Using {{site.data.reuse.openshift_short}} UI
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. In the **Installed Operators** view, change to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
+3. Edit the custom resource for the instance and add the `spec.manager.authConfig` section to include `authType: INTEGRATION_KEYCLOAK` as follows:
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventEndpointManagement
+   ...
+   spec:
+     ...
+     manager:
+       authConfig:
+         authType: INTEGRATION_KEYCLOAK
+     ...
+   ```
+
+### Using the CLI
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-manager-instance), or for other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-manager-instance).
+3. Change to the namespace where your instance is installed.
+4. Edit the custom resource for the instance as follows:
+
+   ```bash
+   kubectl edit eventendpointmanagement/<custom-resource-name>
+   ```
+
+   Edit the `spec.manager.authConfig` section to include `authType: INTEGRATION_KEYCLOAK` as follows:
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventEndpointManagement
+   ...
+   spec:
+     ...
+     manager:
+       authConfig:
+          authType: INTEGRATION_KEYCLOAK
+     ...
+   ```
+
+### Assigning roles to your Keycloak users and groups
+
+For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created with the name `ibm-eem-<namespace>-<eem-instance-name>`. Attached to this client is the author role. For your user or group to have author privileges in the UI, map the author role to the user or group as follows: 
+
+1. {{site.data.reuse.openshift_ui_login}}
+1. Expand the **Networking** dropdown and select **Routes** to open the **Routes** page. 
+1. Select the project where the Keycloak operator is installed.
+1. In the row for **Keycloak**, select the link provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
+1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. For example, `cs-keycloak-initial-admin` or `integration-admin-initial-temporary-credentials` if {{site.data.reuse.cp4i}} Platform Navigator instance has been created.
+1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
+1. Select either **Users** or **Groups**.
+1. Click the name of the user or group that you want to work with.
+1. Click the **Role mapping** tab.
+1. Click **Assign role**.
+1. In the drop-down menu, select **Filter by clients**, and then click the author role defined by the relevant Keycloak client.
+1. Click **Assign**.

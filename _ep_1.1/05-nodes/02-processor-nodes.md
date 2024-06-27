@@ -57,6 +57,14 @@ To configure a filter node, complete the following steps:
          ```
          example_array_property[1] IS NOT NULL AND ARRAY_CONTAINS(example_array_property, 10)
          ```
+
+      - ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") Expression with complex array property:
+
+
+         ```
+         example_array_of_array_property[1][1] IS NOT NULL AND ARRAY_CONTAINS(example_array_of_array_property[1][1], 10)
+         ```      
+
       **Note:** The index of arrays starts at 1, not at 0.
 
    **Note:** Expressions are prioritized based on [operator precedence](https://calcite.apache.org/docs/reference.html#operators-and-functions){:target="_blank"}.
@@ -131,10 +139,21 @@ To configure a transform node, complete the following steps:
          - example_property BETWEEN example_array_property[1] AND example_array_property[2]
          - example_property.nested_object_property.leaf_array_property
          ```
+
+      - ![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") Expressions with complex array properties:   
+
+         ```
+         - CARDINALITY(example_array_of_object_property) = 1
+         - CARDINALITY(example_array_of_array_of_object_property[1][1].stringArray) = 1 AND example_array_of_array_of_object_property[1][1].stringArray[1] LIKE 'red'
+         - CARDINALITY(example_array_of_array_of_object_property[1][1].booleanArray) = 1 AND ELEMENT(example_array_of_array_of_object_property[1][1].booleanArray) IS TRUE
+         - ARRAY_CONTAINS(example_array_of_array_property[2], 'red') 
+         ```   
+
+
    ![Event Processing 1.1.3 icon]({{ 'images' | relative_url }}/1.1.3.svg "In Event Processing 1.1.3 and later.") **Note:** The expression can also simply refer to existing properties. This is particularly useful when renaming complex object properties or when moving nested properties to the top-level.
 1. Optional: To use the assistant to enter an expression, complete the following steps:
    1. Click the **Assistant** drop-down menu to open the assistant.
-   2. From the **Select function** list, select a function with which you want to create an expression.
+   2. From the **Function** list, select a function with which you want to create an expression.
    3. In the function you selected previously, enter the required values.
    4. Select **Insert into expression** to add the expression in the text-box.
 

@@ -107,6 +107,8 @@ latest_eemdocs:
         url: /security/api-tokens/
       - title: "Enabling FIPS"
         url: /security/fips/
+      - title: "Enabling hostname verification"
+        url: /security/hostname-verification/
 
   - title: Describe and publish
     children:
@@ -138,14 +140,29 @@ latest_eemdocs:
       - title: "Configuring a client application to connect to an event endpoint"
         url: /subscribe/configure-your-application-to-connect/
  
+  - title: "Combining API and event management"
+    children:
+      - title: "Overview"
+        url: /api-and-event-management/overview/
+      - title: "Why combine API and event management"
+        url: /api-and-event-management/combining-events-and-api-management/
+      - title: "API and event management personas"
+        url: /api-and-event-management/personas/
+      - title: "Component topology"
+        url: /api-and-event-management/components/
+
   - title: "Integrating with IBM API Connect"
     children:
-      - title: "Integration overview"
+      - title: "Overview"
         url: /integrating-with-apic/overview/
+      - title: "Integration concepts and glossary"
+        url: /integrating-with-apic/apic-eem-concepts/
       - title: "Configure the Manager as an Event Gateway Service"
         url: /integrating-with-apic/configure-eem-for-apic/
-      - title: "Export an AsyncAPI for use in API Connect"
-        url: /integrating-with-apic/export-asyncapi/
+      - title: "Generating an AsyncAPI document for use in API Connect"
+        url: /integrating-with-apic/generate-asyncapi/
+      - title: "API and event management: example scenario"
+        url: /integrating-with-apic/apic-eem-scenario/
  
   - title: Reference
     children:
@@ -588,6 +605,8 @@ latest_epdocs:
         url: /troubleshooting/migration-issue/
       - title: "Enrichment from API produces no output events"
         url: /troubleshooting/no-output-event-from-api-node/
+      - title: "Auto-detection message format issues"
+        url: /troubleshooting/bad-output-from-auto-detection/
 
 100_epdocs:
   - title: About

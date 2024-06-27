@@ -78,3 +78,50 @@ Use the OpenShift web console to view the status of pods in your {{site.data.reu
 View the **Events** tab for the Apache Flink task manager pod that is not in a `Running` state. The **Events** tab includes details such as **insufficient memory** or **insufficient cpu**.
 
 Make additional resources available in your OpenShift cluster to allow your {{site.data.reuse.ep_name}} flow to run, and start emitting events.
+
+### Multiple restart of Flink jobs
+
+If you have been waiting for some time to see the results of your running flow but still do not see any results, one reason might be that the Flink job is restarting multiple times.
+
+#### To verify
+
+If the Flink job is having an error, it restarts multiple times depending on the value of the Flink `restart-strategy` settings. Only after the `restart-strategy` loop ends, the Flink job is considered failed, and the {{site.data.reuse.ep_name}} UI displays an error. For more information, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/ops/state/task_failure_recovery/#restart-strategies){:target="_blank"}.
+
+
+The following are a few examples of the Flink job failure:
+
+ - Invalid credentials
+ - Unreachable URL
+ - Wrong Avro schema 
+ 
+ You can view the errors in the Flink pod logs during the restart process and see the error at the end of this process in the {{site.data.reuse.ep_name}} UI.
+
+
+
+#### To resolve the problem
+
+Check the Flink task manager pod logs for exceptions and take appropriate actions.
+
+The following are the examples when you can view the logs due to an error in the Flink jobs:
+
+- When the Flink job restarts:
+
+  ```shell
+  2024-06-06 12:22:22,767 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job xxxxx (<joibId>) switched from state RUNNING to RESTARTING.
+  ```
+
+  ```shell
+  2024-06-06 12:22:52,777 INFO  org.apache.flink.runtime.executiongraph.ExecutionGraph       [] - Job xxxxx (<joibId>) switched from state RESTARTING to RUNNING.
+  ```
+
+- When the URL is unreachable:
+
+  ```shell
+  Caused by: org.apache.kafka.common.config.ConfigException: No resolvable bootstrap urls given in bootstrap.servers
+  ```
+
+- When wrong Avro schemas are provided for a topic:
+
+  ```shell
+  Caused by: java.io.IOException: Failed to deserialize Avro record.
+  ```

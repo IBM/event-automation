@@ -56,6 +56,8 @@ The {{site.data.reuse.eem_name}} operator requires the following minimum resourc
 | ------------------- | ----------------- | ------------------- | ----------------- |
 | 0.2                 | 1.0               | 0.25                | 0.5               |
 
+You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+
 #### Cluster-scoped permissions required
 
 The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped permissions, even if the operator is set manage instances in a single namespace:
@@ -142,4 +144,14 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 - If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.openshift.com/container-platform/4.15/security/cert_manager_operator/cert-manager-operator-install.html).
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
+
+## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i}}
+{: #prereqs-keycloak}
+
+If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-identity-access-management){:target="_blank"}.
+
+![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later.") Keycloak is supported in {{site.data.reuse.eem_name}} 11.2.1 and later when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
+
+For more information, see sections about [configuring UI security](../configuring/#configuring-authentication) and [managing access with Keycloak](../../security/managing-access/#setting-up-integration-keycloak-authentication).
+
 

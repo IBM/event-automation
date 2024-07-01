@@ -114,23 +114,33 @@ The next step is to add your topic to the {{site.data.reuse.eem_name}} catalog a
 
 The final step is to publish the new topic in the catalog so that it can be discovered by other teams in your enterprise.
 
+Creating two options for the topic will allow teams to consume the topic in different ways: one option with full, unredacted access to all properties in the events that will require your approval, and a second option which can be accessed without approval, but which redacts the customer name from events.
+
 1. Click the **Create option** button in the **Options** tab.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10.png "screenshot of topics editor")
 
-1. Create a name for the access option that you are creating.
+1. Create a name for the first access option that you are creating.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-i.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-i.png "screenshot of topics editor")
 
-   Calling the option "Self service" is a good way to describe a topic being published without any approval requirements.
+   Calling the option "Full access (approval required)" is a good way to describe a topic being published without redactions.
 
 1. Create a topic alias for the option.
 
-   As this is the only option, `ORDERS.EMEA` is a reasonable alias.
+   To distinguish it from the second option, `ORDERS.EMEA.FULL` is a reasonable alias.
 
-1. As we are not adding any additional controls, click **Save**.
+1. Click **Next** to proceed to the Controls page.
+
+1. Click the **Add control** button to define the control for this option.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ii.png "screenshot of topics editor")
+
+1. Select the **Approval** control and click **Add control**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iv.png "screenshot of controls editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-iv.png "screenshot of controls editor")
+
+1. As we are not adding any additional controls, click **Save**.
 
 1. Click **Publish**.
 
@@ -139,6 +149,44 @@ The final step is to publish the new topic in the catalog so that it can be disc
 1. Confirm the gateway group and click **Publish**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-11.png "screenshot of topics editor")
+
+1. Click the **Create option** button again to start adding the second option.
+
+1. Create a name for the second access option that you are creating.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-v.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-v.png "screenshot of topics editor")
+
+   Calling the option "Self service (redacted)" is a good way to describe a topic being published without any approval requirements.
+
+1. Create a topic alias for the option.
+
+   To distinguish it from the first option, `ORDERS.EMEA.REDACTED` is a reasonable alias.
+
+1. Click **Next** to proceed to the Controls page.
+
+1. Click the **Add control** button to define the control for this option.
+
+1. Select the **Redaction** control and click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-vi.png "screenshot of controls editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-vi.png "screenshot of controls editor")
+
+1. Specify **$.customer** as the property to redact, and enter **redacted** as the value to replace customer names with.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-vii.png "screenshot of controls editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-vii.png "screenshot of controls editor")
+
+1. Click on **Add control**.
+
+1. As we are not adding any additional controls, click **Save**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-viii.png "screenshot of controls editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-viii.png "screenshot of controls editor")
+
+1. Click **Publish**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ix.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-ix.png "screenshot of topics editor")
+
+1. Confirm the gateway group and click **Publish**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-x.png "screenshot of topics editor"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-10-x.png "screenshot of topics editor")
 
 1. Confirm that the topic is published by switching to the catalog.
 
@@ -152,7 +200,7 @@ The final step is to publish the new topic in the catalog so that it can be disc
 
 You published the results of your event processing flow to a catalog.
 
-The documentation you provided will enable other people in your enterprise to make use of the events your flow is producing, and the catalog will allow them to create their own credentials for using the topic.
+The documentation you provided will enable other people in your enterprise to make use of the events your flow is producing, and the catalog will allow them to create their own credentials for using the topic. The options you created provide a good compromise between instant, self-service access for non-sensitive event properties, and controlled access to sensitive properties when needed.
 
 ## Next step
 

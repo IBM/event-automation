@@ -204,6 +204,8 @@ latest_eemdocs:
         url: /troubleshooting/apic-subscription-topics-unavailable/
       - title: "Event Manager fails to start when configured with API Connect JWKS endpoint"
         url: /troubleshooting/crashloop-with-apic-jwks-timeout/
+      - title: "Event Manager fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
 
 111_eemdocs:
   - title: About
@@ -351,6 +353,8 @@ latest_eemdocs:
         url: /troubleshooting/apic-subscription-topics-unavailable/
       - title: "Event Manager fails to start when configured with API Connect JWKS endpoint"
         url: /troubleshooting/crashloop-with-apic-jwks-timeout/
+      - title: "Event Manager fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
 
 110_eemdocs:
   - title: About
@@ -476,6 +480,8 @@ latest_eemdocs:
         url: /troubleshooting/502-bad-gateway/
       - title: "Subscribed topics not available with API Connect subscription credentials"
         url: /troubleshooting/apic-subscription-topics-unavailable/
+      - title: "Event Manager fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
 
 # Event Processing
 latest_epdocs:
@@ -607,6 +613,10 @@ latest_epdocs:
         url: /troubleshooting/no-output-event-from-api-node/
       - title: "Auto-detection message format issues"
         url: /troubleshooting/bad-output-from-auto-detection/
+      - title: "Event Processing fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
+      - title: "IBM Operator for Apache Flink fails to automatically update the image to 1.1.8 after upgrading"
+        url: /troubleshooting/image-not-upgraded/
 
 100_epdocs:
   - title: About
@@ -729,6 +739,8 @@ latest_epdocs:
         url: /troubleshooting/changing-database-ca-certificate/
       - title: "Flink instances cannot access SQL runner JAR file"
         url: /troubleshooting/flink-jar-permissions/
+      - title: "Event Processing fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
 
 # Event Streams 11.4 docs
 

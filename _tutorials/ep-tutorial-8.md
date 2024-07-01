@@ -47,7 +47,7 @@ If you haven't completed that tutorial yet, you should do it now.
 
 1. Find the EMEA orders topic in the {{site.data.reuse.eem_name}} catalog that you added in the [Share events for discovery by others](../guided/tutorial-6) tutorial.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the EEM catalog")
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -82,7 +82,7 @@ The first thing to do is to make this destination topic available for use in App
 
 1. Click **Connect**.
 
-1. Enter connection information into App Connect (from the {{site.data.reuse.eem_name}} catalog).
+1. Enter connection information into App Connect (from the {{site.data.reuse.eem_name}} catalog). Select the **Self service (redacted)** option, as you do not need customer details for this processing.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of App Connect")
 
@@ -116,7 +116,7 @@ The first thing to do is to make this destination topic available for use in App
 
 1. Click **Connect**.
 
-1. Choose the `ORDERS.EMEA` topic.
+1. Choose the `ORDERS.EMEA.REDACTED` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of App Connect")
 

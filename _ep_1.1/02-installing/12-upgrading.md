@@ -220,7 +220,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on other Kubernetes platforms by using Helm.
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs. 
+2. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs.
 3. Run the following command to upgrade the Helm release that manages your Flink CRDs:
 
 
@@ -350,3 +350,14 @@ To secure your communication between {{site.data.reuse.ep_name}} and Flink deplo
 1. Wait for the `EventProcessing` pod to restart.
 1. Restart your {{site.data.reuse.ep_name}} flows.
 
+### Update the image version to 1.1.8
+
+![Event Processing 1.1.8 icon]({{ 'images' | relative_url }}/1.1.8.svg "In Event Processing 1.1.8 and later.") After upgrading your {{site.data.reuse.ep_name}} version to 1.1.8, trigger the mutating admission webhook to update the image version to 1.1.8 by running the following command:
+
+```shell
+kubectl patch flinkdeployment <instance-name -n <namespace> \
+  --type='json' \
+  -p='[{"op": "replace", "path": "/spec/flinkConfiguration/table.exec.source.idle-timeout", "value":"31 s"}]'
+```
+
+The previous command changes an arbitrary Flink configuration parameter in the `FlinkDeployment` custom resource to trigger the mutating admission webhook.

@@ -113,12 +113,14 @@ If the API server log is not accessible, or does not display the values of the i
 kind: FlinkDeployment
 [...]
 spec:
- podTemplate:
+  podTemplate:
     [...]
     spec:
-      env:
-        - name: API_ENRICHMENT_LOG_API_PARAMETERS
-          value: true
+      containers:
+        - name: flink-main-container
+          env:
+            - name: API_ENRICHMENT_LOG_API_PARAMETERS
+              value: true
 ```
 
 With this option enabled, the additional information can be found in the log of the Flink Task Manager after the following log entry:

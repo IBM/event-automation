@@ -19,14 +19,49 @@ When you install an instance of the {{site.data.reuse.eem_manager}}, the require
    kubectl get netpol -n <namespace>
    ```
 
-The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.eem_manager}} instance. For information about how to stop deployment of the network policies, see the note after each table.
+The following tables provide information about the network policies that are applicable to each pod within the {{site.data.reuse.eem_manager}} instance. Information about how to stop deployment of the network policies are included in the notes after each table.
+
+**Note:** Not all networking solutions support network policies. Creating `NetworkPolicy` resources on clusters with solutions that do not support policies has no effect on restricting traffic.
 
 
 ### {{site.data.reuse.eem_name}} operator pod
 
 | **Type** | **Origin**                                                                                   | **Port** | **Reason**                  | **Enabled in policy**                                                                                  |
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------------------------------------------------------------------------------|
-| TCP      | Anywhere                                                                                     | 8443     | Operator validating webhook | Always                                                                                                 |
+| TCP      |  See details below                                                                               | 8443     | Operator validating webhook | Always                                                                                                 |
+
+On {{site.data.reuse.openshift_short}}, a network policy is created which restricts ingress communication by using a namespace `matchLabel` that is set to `policy-group.network.openshift.io/host-network: ''`.  If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.  
+
+On other Kubernetes platforms, a network policy is created that restricts traffic to the individual ports, but does not restrict where that traffic originates from. For increased security, you can delete this auto-generated network policy, and create a more secure network policy that restricts ingress traffic to the operator pod's port to be only from the Kubernetes API server. 
+
+To delete the auto-generated network policy, specify `--set deployOperatorNetworkPolicy=false` when installing the Helm chart. You can then create your own network policy.
+
+If you are using a CNI plugin that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
+
+The following is an example network policy that allows access to a CIDR block:
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-apiserver-eem-webhook
+spec:
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 192.168.78.128/32
+    ports:
+    - port: 8443
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: ibm-eem-operator
+      app.kubernetes.io/name: ibm-event-endpoint-management
+  policyTypes:
+  - Ingress
+```
+
+**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plugin.
 
 **Note:** To delete the network policy of the {{site.data.reuse.eem_name}} operator:
 - On the {{site.data.reuse.openshift_short}}: modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`.  Do this after the initial installation of the operator.

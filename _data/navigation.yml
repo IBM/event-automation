@@ -109,6 +109,8 @@ latest_eemdocs:
         url: /security/fips/
       - title: "Enabling hostname verification"
         url: /security/hostname-verification/
+      - title: "Audit logging"
+        url: /security/audit-logging/
 
   - title: Describe and publish
     children:
@@ -267,6 +269,8 @@ latest_eemdocs:
         url: /security/api-tokens/
       - title: "Enabling FIPS"
         url: /security/fips/
+      - title: "Audit logging"
+        url: /security/audit-logging/
 
   - title: Describe and publish
     children:

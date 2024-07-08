@@ -34,9 +34,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.2
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -44,7 +44,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
    If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](./tutorial-access#event-processing).
 

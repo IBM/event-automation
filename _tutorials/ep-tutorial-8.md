@@ -47,7 +47,7 @@ If you haven't completed that tutorial yet, you should do it now.
 
 1. Find the EMEA orders topic in the {{site.data.reuse.eem_name}} catalog that you added in the [Share events for discovery by others](../guided/tutorial-6) tutorial.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-13.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -68,15 +68,15 @@ The first thing to do is to make this destination topic available for use in App
        -o jsonpath='https://{.spec.host}'
    ```
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-2.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-2.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-2.png "screenshot of the App Connect dashboard")
 
 1. Create an event-driven flow and call it `EMEA order notifications`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-3.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-3.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-3.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-3.png "screenshot of the App Connect dashboard")
 
 1. Start the flow with a Kafka **New message** event.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-4.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-4.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-4.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-4.png "screenshot of the App Connect dashboard")
 
    Choose Kafka from the list of Applications, and click "New message".
 
@@ -84,7 +84,7 @@ The first thing to do is to make this destination topic available for use in App
 
 1. Enter connection information into App Connect (from the {{site.data.reuse.eem_name}} catalog). Select the **Self service (redacted)** option, as you do not need customer details for this processing.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-5.png "screenshot of the App Connect dashboard")
 
    **Authorization type**: `SASL_SSL`
 
@@ -98,7 +98,7 @@ The first thing to do is to make this destination topic available for use in App
 
 1. Download the certificates from the {{site.data.reuse.eem_name}} catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-6.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-6.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-6.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-6.png "screenshot of the Event Endpoint Management catalog")
 
 1. Prepare the downloaded certificate file for use with App Connect.
 
@@ -112,13 +112,13 @@ The first thing to do is to make this destination topic available for use in App
 
 1. Paste the edited certificate contents into the **CA certificate** field.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-8.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-8.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-8.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-8.png "screenshot of the App Connect dashboard")
 
 1. Click **Connect**.
 
 1. Choose the `ORDERS.EMEA.REDACTED` topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-9.png "screenshot of the App Connect dashboard")
 
 
 
@@ -128,19 +128,19 @@ The next step is to parse the events on the topic to allow it to be used in App 
 
 1. Add a **JSON parser** node to the flow from the Toolbox.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-10.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-10.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-10.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-10.png "screenshot of the App Connect dashboard")
 
 1. Choose the message **Payload** as the JSON input.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-11.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-11.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-11.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-11.png "screenshot of the App Connect dashboard")
 
 1. Copy the sample message payload from the {{site.data.reuse.eem_name}} catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-12.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-12.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-12.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-12.png "screenshot of the Event Endpoint Management catalog")
 
 1. Paste the sample message payload into the **Example JSON** box in App Connect.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-13.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-13.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-13.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-13.png "screenshot of the App Connect dashboard")
 
 1. Click the **Generate Schema** button.
 
@@ -151,17 +151,17 @@ The next step is to complete the App Connect flow by adding a node to send notif
 
 1. Add a **Slack** node to the flow from the "Applications & APIs" list and choose **Send message**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-14.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-14.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-14.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-14.png "screenshot of the App Connect dashboard")
 
 1. Click **Connect** and provide your Slack access token.
 
 1. Set the destination for messages.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-15.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-15.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-15.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-15.png "screenshot of the App Connect dashboard")
 
 1. Add the message text. You can include fields from the parsed Kafka message as demonstrated in the following screen capture.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the App Connect dashboard")
 
 
 ### Step 5 : Test the flow
@@ -170,7 +170,7 @@ The flow is now ready to run. The final step is to start it.
 
 1. Click **Start flow**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-17.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-17.png "screenshot of App Connect")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-17.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-17.png "screenshot of the App Connect dashboard")
 
 1. Open Slack and verify that new orders made in the EMEA region result in a notification in the selected Slack channel.
 

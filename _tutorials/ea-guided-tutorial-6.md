@@ -18,6 +18,18 @@ order: 6
 
 The EMEA operations team wants to share their new topic of EMEA orders for use by other teams in their enterprise.
 
+## Before you begin
+
+The instructions in this tutorial use the [Tutorial environment](./tutorial-0), which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the [setup instructions](./tutorial-0#deploy-the-tutorial) to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.
+
+### Versions
+
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
+
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.2
+- Event Processing 1.1.8
+
 ## Instructions
 
 ### Step 1 : Create a flow
@@ -26,7 +38,7 @@ This tutorial begins with the flow that is created in [Triggering actions](./tut
 
 If you haven't completed that tutorial yet, you should do it now.
 
-<!-- ### Step 2 : Add the topic to the catalog
+### Step 2 : Add the topic to the catalog
 
 The next step is to provide the topic details to create an entry in the catalog.
 
@@ -38,62 +50,42 @@ The next step is to provide the topic details to create an entry in the catalog.
 
 1. Click **Share for reuse**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the EEM topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the Event Endpoint Management topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-2.png "screenshot of the Event Endpoint Management topics page")
 
 1. Click **Next**.
 
 1. Paste your access token from {{site.data.reuse.eem_name}} cluster.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the EEM topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the EEM topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the Event Endpoint Management topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-3.png "screenshot of the Event Endpoint Management topics page")
 
    You can [generate access tokens]({{ '/eem/security/api-tokens#creating-a-token' | relative_url }}) from the profile page in {{site.data.reuse.eem_name}}.
 
 1. Give the event source the name `EMEA orders`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of EEM"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of EEM")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of Event Endpoint Management"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-4.png "screenshot of Event Endpoint Management")
 
    Verify the sample message selected.
 
 1. Click **Share for reuse**.
--->
 
-### Step 2 : Add and describe your topic
 
-The next step is to add your topic to the {{site.data.reuse.eem_name}} catalog and to describe the events that your processing flow is producing.
+### Step 3 : Document the topic
 
-1. In the {{site.data.reuse.eem_name}} UI, click **Manage topics** in the navigation pane, then click **Add topic**.
+The next step is to document the topic to describe the events that your processing flow is producing.
+
+1. In the {{site.data.reuse.eem_name}} UI, go to the **Manage topics** page.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "Screenshot of the Manage topics page in the Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1.png "Screenshot of the Manage topics page in the Event Endpoint Management UI")
 
    If you need a reminder of how to access {{site.data.reuse.eem_name}}, you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
 
-1. Select **Consume events**, and click **Next**. This determines how applications will interact with the your topic as an event source.
-
-1. In **Cluster connection**, select **Event Streams** from the list of existing clusters, then click **Next**.
-
-1. From the list of topics available on the cluster, select the new `ORDERS.EMEA` topic created in [the previous tutorial](./tutorial-5). Give the event source the unique name `EMEA orders`.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1a.png "Screenshot showing ORDERS.EMEA selected and unique name EMEA orders added in the Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1a.png "Screenshot showing ORDERS.EMEA selected and unique name EMEA orders added in the Event Endpoint Management UI")
-
-1. Click **Add topic**. Your topic is added to the catalog as an event source.
-
-1. Go to the {{site.data.reuse.es_name}} UI, locate the **ORDERS.EMEA** topic in the list of topics, and click the row.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1b.png "Screenshot showing Topics list in the Event Streams UI with ORDERS.EMEA topic row"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1b.png "Screenshot showing Topics list in the Event Streams UI with ORDERS.EMEA topic row")
-
-1. Select a message, and copy the sample message from the **Formatted Payload** tab.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1c.png "Screenshot showing ORDER.EMEA topic details in the Event Streams UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1c.png "Screenshot showing ORDER.EMEA topic details in the Event Streams UI")
-
-1. Go to the {{site.data.reuse.eem_name}} UI, and click **Manage Topics**.
-
 1. Click the new `EMEA orders` topic.
 
-   <!--[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "screenshot of EEM"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "screenshot of EEM")-->
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "Screenshot of the Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-5.png "screenshot of Event Endpoint Management")
 
 1. Click **Edit information** to provide documentation for the topic.
 
-   <!--[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-6.png "screenshot of EEM"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-6.png "screenshot of EEM")-->
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-6.png "Screenshot of the Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-6.png "screenshot of Event Endpoint Management")
 
 1. Add a description of the events generated by your processing flow.
 
@@ -102,15 +94,13 @@ The next step is to add your topic to the {{site.data.reuse.eem_name}} catalog a
    Suggested description:
    > "Events from the EMEA region recorded by the order management system"
 
-1. Click **Event information** in the navigation, and set the message format to **JSON**.
-
-1. Paste the sample message in the **Sample message** field.
+1. Click **Event information** in the navigation, and verify that the message format is set to **JSON**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1d.png "Screenshot showing edit event information panel in Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-6-1d.png "Screenshot showing edit event information panel in Event Endpoint Management UI")
 
 1. Click **Save**.
 
-### Step 3 : Publish the topic
+### Step 4 : Publish the topic
 
 The final step is to publish the new topic in the catalog so that it can be discovered by other teams in your enterprise.
 

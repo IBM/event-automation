@@ -37,7 +37,7 @@ For this scenario, you are processing an existing stream of events. You will sta
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -45,7 +45,7 @@ For this scenario, you are processing an existing stream of events. You will sta
 
 1. The `Stock movement updates` topic contains the events used in this tutorial.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-1.png "screenshot of the Event Endpoint Management catalog")
 
    **Tip**: Notice that the topic information describes the issue that we are addressing in this tutorial. Documenting potential issues and considerations for using topics is essential for enabling effective reuse.
 
@@ -58,17 +58,17 @@ The next step is to create this topic.
 
 1. Go to the **{{site.data.reuse.es_name}}** topics manager.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-2.png "screenshot of the ES topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-2.png "screenshot of the ES topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-2.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-2.png "screenshot of the Event Streams topics page")
 
    If you need a reminder about how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
 
 1. Create a new topic called `STOCK.MOVEMENT.UNIQUE`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the ES topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the ES topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the Event Streams topics page")
 
 1. Create the topic with **3 partitions** to match the `STOCK.MOVEMENT` source topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the ES topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the ES topics page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the Event Streams topics page")
 
 
 ### Step 3 : Create a skeleton processing flow
@@ -77,7 +77,7 @@ The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
    If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 

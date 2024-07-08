@@ -22,6 +22,18 @@ When processing events we can send the results to a new Kafka topic. This lets t
 
 The EMEA operations team wants to provide a dedicated stream of EMEA order events for further processing.
 
+## Before you begin
+
+The instructions in this tutorial use the [Tutorial environment](./tutorial-0), which includes a selection of topics each with a live stream of events, created to allow you to explore features in IBM Event Automation. Following the [setup instructions](./tutorial-0#deploy-the-tutorial) to deploy the demo environment gives you a complete instance of IBM Event Automation that you can use to follow this tutorial for yourself.
+
+### Versions
+
+This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
+
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.2
+- Event Processing 1.1.8
+
 ## Instructions
 
 ### Step 1 : Create a flow

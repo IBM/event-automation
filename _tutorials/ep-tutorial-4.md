@@ -40,7 +40,7 @@ A good place to discover sources of event streams to process is in the catalog, 
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -48,11 +48,11 @@ A good place to discover sources of event streams to process is in the catalog, 
 
 1. The `Orders` topic contains events about orders that are made.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog")
 
 1. The `Cancellations` topic contains events about orders that are cancelled.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the Event Endpoint Management catalog")
 
 ### Step 2 : Provide sources of events
 
@@ -217,7 +217,7 @@ The next step is to create a topic that you will use for the results from this f
 
 1. Go to the {{site.data.reuse.es_name}} home page.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "ES home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "ES home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "Event Streams home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-2.png "Event Streams home page")
 
    If you need a reminder of how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
 

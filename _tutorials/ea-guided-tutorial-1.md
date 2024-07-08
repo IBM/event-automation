@@ -32,9 +32,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.2
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -44,7 +44,7 @@ For this scenario, you need a source of order events. A good place to discover s
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
     If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
 
@@ -52,13 +52,13 @@ For this scenario, you need a source of order events. A good place to discover s
 
 1. Find the `Orders` topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-1.png "screenshot of the Event Endpoint Management catalog")
 
 1. Click into the topic to review the information about the events that are available here.
 
     Look at the schema to see the properties in the order events, and get an idea of what to expect from events on this topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog")
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Do the following steps in a separate browser window or tab.
 
@@ -68,7 +68,7 @@ The next step is to start processing this stream of events, to create a custom s
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
     If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](./tutorial-access#event-processing).
 
@@ -121,13 +121,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
-1. Select `Avro` as the message format used in this topic.
+1. Confirm that you will be processing the `ORDERS` topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-10.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-10.png "selecting a topic to use")
 
-    **Did you know?** The catalog page for this topic tells you that events on this topic are serialized as binary-encoded Avro data.
-
-    Click "Next".
+    Click **Next**.
 
 1. Get the schema for order events from {{site.data.reuse.eem_name}}.
 
@@ -140,6 +138,10 @@ The next step is to bring the stream of events you discovered in the catalog int
 1. Paste the schema into the event source config in the **Avro schema** box.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source")
+
+    Notice that the message format of `Avro` was automatically detected from the most recent message on the topic.
+
+    Click **Next**.
 
 1. Leave the event source to be saved for later reuse.
 
@@ -173,7 +175,7 @@ The next step is to start processing this stream of events, by creating the filt
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16.png "defining the filter")
 
-1. Click "Add to expression".
+1. Click **Add to expression**.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter")
 

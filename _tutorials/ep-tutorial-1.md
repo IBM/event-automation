@@ -24,7 +24,7 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Endpoint Management 11.2.0
+- Event Endpoint Management 11.2.2
 - Event Processing 1.1.8
 
 ## Instructions
@@ -35,19 +35,19 @@ For this scenario, you need a source of door badge events.
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
     If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
 1. Find the `Door badge events` topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-4.png "screenshot of the Event Endpoint Management catalog")
 
 1. Click into the topic to review the information about the events that are available here.
 
-    Look at the sample message to see the properties in the door events, and get an idea of what to expect from events on this topic.
+    Look at the schema and sample message to see the properties in the door events, and get an idea of what to expect from events on this topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-3.png "screenshot of the Event Endpoint Management catalog")
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Complete the following steps in a separate browser window or tab.
 
@@ -55,7 +55,7 @@ For this scenario, you need a source of door badge events.
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
     If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 
@@ -103,7 +103,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-9.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-9.png "specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 

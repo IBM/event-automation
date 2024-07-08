@@ -38,9 +38,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.4.0
+- Event Endpoint Management 11.2.2
+- Event Processing 1.1.8
 
 ## Instructions
 
@@ -48,7 +48,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
    If you need a reminder of how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](./tutorial-access#event-processing).
 
@@ -110,7 +110,7 @@ The next step is to identify the large orders.
 
    **Tip**: You don't need to use the assistant if you know the expression you would like. You can type the expression in directly, and use the auto-complete and syntax-checking to make sure you enter it correctly.
 
-1. Click "Add to expression".
+1. Click **Add to expression**.
 
 1. Click **Configure** to finalize the filter.
 
@@ -137,7 +137,7 @@ The next step is to find a stream of order cancellation events to add to your fl
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](./tutorial-access#event-endpoint-management).
 
@@ -145,13 +145,13 @@ The next step is to find a stream of order cancellation events to add to your fl
 
 1. Find the `Cancellations` topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-8.png "screenshot of the Event Endpoint Management catalog")
 
 1. Click into the topic to review the information about the events that are available here.
 
    Look at the schema to see the properties in the order events, and get an idea of what to expect from events on this topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-9.png "screenshot of the Event Endpoint Management catalog")
 
 **Tip**: Keep this page open, and use your first browser window to continue developing the event processing flow. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work.
 
@@ -199,13 +199,11 @@ The next step is to bring this additional stream of events that you discovered i
 
    **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
-1. Select `Avro` as the message format used in this topic.
+1. Confirm that you will be processing the `CANCELS` topic.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-16.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-16.png "selecting a topic to use")
 
-   **Did you know?** The catalog page for this topic tells you that events on this topic are serialized as binary-encoded Avro data.
-
-   Click "Next".
+   Click **Next**.
 
 1. Get the schema for cancellation events from {{site.data.reuse.eem_name}}.
 
@@ -218,6 +216,10 @@ The next step is to bring this additional stream of events that you discovered i
 1. Paste the schema into the event source config in the **Avro schema** box.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-18.png "save for re-use")
+
+   Notice that the message format of `Avro` was automatically detected from the most recent message on the topic.
+
+   Click **Next**.
 
 1. Leave the event source to be saved for later reuse.
 
@@ -239,17 +241,17 @@ The next step is to specify how to correlate the large orders with the cancellat
 
    Click and drag from the small gray dot on the cancellations event source to the matching dot on the filter node. Do the same for the large orders filter node.
 
+   Hover over the join node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
 1. Give the join node a name that describes the events it should identify: `Cancelled large orders`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-20.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-20.png "joining the streams")
-
-   Hover over the join node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 1. Define the join by matching the `orderid` from cancellation events with the `id` from order events.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-21.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-21.png "joining the streams")
 
-   Click "Add to expression" and then click "Next".
+   Click **Add to expression** and then click **Next**.
 
 1. Specify that you are interested in detecting cancellations that are made within 30 minutes of the (large) order.
 
@@ -316,7 +318,7 @@ The next step is identify small orders that occur within a short time of cancell
 
    This will identify small orders of the same product that a large order has been cancelled for.
 
-   Click "Add to expression" and then click "Next".
+   Click **Add to expression** and then click **Next**.
 
 1. Specify `30 minutes` the time window that you want to use for the join.
 

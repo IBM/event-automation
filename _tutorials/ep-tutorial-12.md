@@ -32,20 +32,20 @@ For this scenario, you need a source for the `Online orders` events and the `Out
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
     If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
 2. Find the `Online orders` and `Out of stock notifications` topics.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-1.png "screenshot of the Event Endpoint Management catalog")
 
 3. Click into the topics to review the information about the events that are available here.
    Look at the schema to see the properties in the events, and get an idea of what to expect from events on these topics.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-2.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-2.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-2.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-2.png "screenshot of the Event Endpoint Management catalog")
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-2.1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-2.1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-2.1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-2.1.png "screenshot of the Event Endpoint Management catalog")
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Complete the following steps in a separate browser window or tab.
 
@@ -53,7 +53,7 @@ For this scenario, you need a source for the `Online orders` events and the `Out
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
     If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 
@@ -125,7 +125,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. The `Avro` message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste sschema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source")
 
 1. Change the type of the `ordertime` property to `Timestamp (with time zone)`. 
 

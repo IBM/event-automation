@@ -34,7 +34,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder of how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -42,7 +42,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. The `Door badge events` topic contains events about door badge events.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the EEM catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the EEM catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-1.png "screenshot of the Event Endpoint Management catalog")
 
    Note the warning in the catalog:
 
@@ -56,9 +56,9 @@ For this scenario, you need to find information about the source of door badge e
 
    Look for examples of messages that, even on the same partition, result in an older badge event (according to the `badgetime` property) being on the topic after an earlier badge event.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the ES topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the ES topic")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the Event Streams topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-2.png "screenshot of the Event Streams topic")
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-3.png "screenshot of the ES topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-3.png "screenshot of the ES topic")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-3.png "screenshot of the Event Streams topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-3.png "screenshot of the Event Streams topic")
 
    Verify that the timestamp on the Kafka message is not a reliable indicator of when the event occurred, and is frequently up to a few minutes after the actual event.
 
@@ -66,7 +66,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the EP home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/ep-home.png "screenshot of the Event Processing home page")
 
    If you need a reminder about how to access the {{site.data.reuse.ep_name}} home page, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-processing).
 

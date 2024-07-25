@@ -76,7 +76,7 @@ Ensure that you have sufficient disk space for persistent storage.
 
 ### Dynamic provisioning
 
-If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.15/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
+If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.16/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
 To configure this, set `spec.manager.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml
@@ -860,7 +860,7 @@ spec:
 
 ### Configuring external access to the {{site.data.reuse.egw}}
 
-A Kafka client implementation might require access to at least one route or ingress for each broker that the client is expecting to connect to. To present a route or an ingress, you can manually configure the number of routes associated with an {{site.data.reuse.egw}} in the `EventGateway` custom resource.
+A Kafka client implementation might require access to at least one route or ingress for each broker that the client is expecting to connect to. To present a route or an ingress, you can manually configure the number of routes that are associated with an {{site.data.reuse.egw}} in the `EventGateway` custom resource.
 
 For example, you can set the number of routes in the `spec.maxNumKafkaBrokers` field of your `EventGateway` custom resource, as shown in the following code snippet:
 
@@ -876,3 +876,41 @@ spec:
 ```
 
 If `spec. maxNumKafkaBrokers` value is not provided, the default (`20`) is used. The value of the `spec.maxNumKafkaBrokers` must be greater than or equal to the total number of brokers managed by this {{site.data.reuse.egw}}.
+
+### Configuring gateway security
+
+![Event Endpoint Management 11.2.3 icon]({{ 'images' | relative_url }}/11.2.3.svg "In Event Endpoint Management 11.2.3 and later.") In Event Endpoint Management 11.2.3 and later, you can configure a number of settings that help protect the {{site.data.reuse.egw_short}} from uncontrolled resource consumption such as excessive memory usage, or connection exhaustion. Enable these features to help you ensure that the gateway remains available and responsive. 
+
+The following table lists all of the parameters that are available in the `EventGateway` custom resource in the `security` section. All parameters are optional. The values that are used in the sample following the table are the default values when the parameter is not defined. A value of -1 represents no limit.
+
+  | Parameter | Description | Default |
+  | ------    | --------| ---------|
+  | `spec.security.connection.closeDelayMs` | The minimum delay in milliseconds after you close a connection. This helps prevent spam. | 8000 |
+  | `spec.security.connection.closeJitterMs` | Additional delay in milliseconds after you close a connection. This helps prevent attacks. | 4000 |
+  | `spec.security.connection.perSubLimit` | The maximum allowed TCP connections for each subscription. | -1 (no limit) |
+  | `spec.security.authentication.maxRetries` | The maximum number of failed authentication attempts after which further attempts are blocked. | -1 (no limit) |
+  | `spec.security.authentication.retryBackoffMs` | The backoff time in milliseconds between consecutive failed authentication attempts. | 0 |
+  | `spec.security.authentication.lockoutPeriod` | The duration in seconds while the account is locked after an unsuccessful authentication attempt. | 0 |
+  | `spec.security.request.maxSizeBytes` | The maximum size allowed for the request payload in bytes. | -1 (no limit) |
+{: caption="Table 1. Parameter description" caption-side="bottom"}
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+# ...
+spec:
+  license:
+    # ...
+  security:
+    connection:
+      closeDelayMs: 8000
+      closeJitterMs: 4000
+      perSubLimit: -1
+    authentication:
+      maxRetries: -1
+      retryBackoffMs: 0
+      lockoutPeriod: 0
+    request:
+      maxSizeBytes: -1
+# ... 
+```

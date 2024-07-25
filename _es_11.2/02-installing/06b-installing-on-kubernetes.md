@@ -157,7 +157,7 @@ Before installing an {{site.data.reuse.es_name}} instance, create an image pull 
    Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
 
    ```shell
-   kubectl create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n "<target-namespace>"
+   kubectl create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n "<image-namespace>"
    ```
 
 
@@ -182,7 +182,7 @@ To deploy an {{site.data.reuse.es_name}} instance, run the following commands:
 1. Apply the configured `EventStreams` custom resource in the selected namespace:
 
    ```shell
-   kubectl apply -f <custom-resource-file-path> -n "<target-namespace>"
+   kubectl apply -f <custom-resource-file-path> -n "<image-namespace>"
    ```
 
    For example:

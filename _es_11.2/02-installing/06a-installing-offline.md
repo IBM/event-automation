@@ -51,7 +51,7 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 - The target (internal) image registry where all the images will be mirrored to.
 - The OpenShift or other Kubernetes cluster to install the operator on.
 
-**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images, and an image registry where the images will be mirrored.
 
 **Important:** Ensure you have access to the Kubernetes cluster by running the `kubectl get namespaces` command which lists all the available namespaces.
 
@@ -132,7 +132,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 
 <!--Only offline environment -->
 
-To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. You need a Docker CLI login (`docker login`) or Podman CLI login (`podman login`) for configuring the registry. 
+To mirror images across both the source registry and the image registry where all images are available publicly, you must create an authentication secret for each. You need a Docker CLI login (`docker login`) or Podman CLI login (`podman login`) for configuring the registry. 
 
 A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms other than OpenShift.
 
@@ -159,25 +159,25 @@ Additionally, if you are installing on Kubernetes platforms other than OpenShift
 skopeo login <source-registry> -u <source-registry-user> -p <source-registry-pass>
 ```
 
-### Creating an authentication secret for the target registry
+### Creating an authentication secret for the image registry
 
-Run the following command to create an authentication secret for the target registry:
+Run the following command to create an authentication secret for the image registry:
 
 ```shell
-docker login <target-registry> --username <target-registry-user> --password <target-registry-pass>
+docker login <image-registry> --username <image-registry-user> --password <image-registry-pass>
 ```
 
 Additionally, if you are running on Kubernetes platforms other than OpenShift, run the following command:
 
 ```shell
-skopeo login <target-registry> -u <target-registry-user> -p <target-registry-pass>
+skopeo login <image-registry> -u <image-registry-user> -p <image-registry-pass>
 ```
 
 Where:
 
-- `target-registry` is the internal container image registry.
-- `target-registry-user` is the username for the internal container image registry.
-- `target-registry-pass` is the password for the internal container image registry.
+- `<image-registry>` is the internal container image registry.
+- `<image-registry-user>` is the username for the internal container image registry.
+- `<image-registry-pass>` is the password for the internal container image registry.
 
 
 ## Mirror the images
@@ -191,14 +191,14 @@ Complete the following steps to mirror the images from your host to your offline
 1. Run the following command to generate mirror manifests:
 
    ```shell
-   kubectl ibm-pak generate mirror-manifests ibm-eventstreams <target-registry>
+   kubectl ibm-pak generate mirror-manifests ibm-eventstreams <image-registry>
    ```
 
-   Where `target-registry` is the internal container image registry.
+   Where `<image-registry>` is the internal container image registry.
 
    **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
 
-   This generates the following files based on the target (internal) registry provided:
+   This generates the following files based on the image registry provided:
 
    - catalog-sources.yaml
    - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
@@ -229,9 +229,9 @@ Complete the following steps to mirror the images from your host to your offline
 
 
    - `<case-version>` is the version of the CASE file to be copied.
-   - `target-registry` is the internal container image registry.
+   - `<image-registry>` is the internal container image registry.
 
-Ensure that all the images have been mirrored to the target registry by checking the registry.
+Ensure that all the images have been mirrored to the image registry by checking the registry.
 
 ## Create `ImageContentSourcePolicy` on OpenShift platform
 
@@ -241,7 +241,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 <!--Only offline environment -->
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
+2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.openshift.com/container-platform/4.12/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `<image-registry>`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command:
 
    ```shell
@@ -250,7 +250,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
    Where `<case-version>` is the version of the CASE file.
 
-4. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
+4. Additionally, a global image pull secret must be added so that images can be pulled from the image registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the image registry.
 
    **Important:**
    Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
@@ -297,32 +297,32 @@ Complete the following steps to install the operator:
 1. Create a namespace where you want to install the operator:
 
    ```shell
-   kubectl create namespace <target-namespace>
+   kubectl create namespace <image-namespace>
    ```
 
-2. Create an image pull secret called `ibm-entitlement-key` in the namespace where you want to install the {{site.data.reuse.es_name}} operator. The secret enables container images to be pulled from the target registry:
+2. Create an image pull secret called `ibm-entitlement-key` in the namespace where you want to install the {{site.data.reuse.es_name}} operator. The secret enables container images to be pulled from the image registry:
 
    ```shell
-   kubectl create secret docker-registry ibm-entitlement-key --docker-username="<target-registry-user>" --docker-password="<TARGET_REGISTRY_PASS>" --docker-server="<TARGET_REGISTRY>" -n <target-namespace>
+   kubectl create secret docker-registry ibm-entitlement-key --docker-username="<image-registry-user>" --docker-password="<image-registry-pass>" --docker-server="<image-registry>" -n <image-namespace>
    ```
 
 3. Install the operator by using the Helm CLI: 
 
    ```shell
-   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventstreams/<case-version>/charts/ibm-eventstreams-operator-<case-version>.tgz -n <target-namespace> --set imagePullPolicy="Always" --set public.repo=<TARGET_REGISTRY> --set public.path="cpopen/" --set private.repo=<TARGET_REGISTRY> --set private.path="cp/" --set watchAnyNamespace=<true/false>
+   helm install <release-name> ~/.ibm-pak/data/cases/ibm-eventstreams/<case-version>/charts/ibm-eventstreams-operator-<case-version>.tgz -n <image-namespace> --set imagePullPolicy="Always" --set public.repo=<image-registry> --set public.path="cpopen/" --set private.repo=<image-registry> --set private.path="cp/" --set watchAnyNamespace=<true/false>
    ```
 
    Where:
    - `<release-name>` is the name you provide to identify your operator.
-   - `<target-namespace>` is the namespace where we want to install IBM Event Streams.
+   - `<image-namespace>` is the namespace where we want to install IBM Event Streams.
    - `<case-version>` is the CASE version. 
-   - `<TARGET_REGISTRY>` is the internal container image registry. 
-   - `<target-registry-user>` is the username for the internal container image registry.
-   - `<TARGET_REGISTRY_PASS>` is the password for the internal container image registry.
+   - `<image-registry>` is the internal container image registry. 
+   - `<image-registry-user>` is the username for the internal container image registry.
+   - `<image-registry-pass>` is the password for the internal container image registry.
 
 4. Wait for the installation to complete.
 5. You can now verify your installation and consider other [post-installation tasks](../post-installation/).
 
 ## Install an instance
 
-{{site.data.reuse.es_name}} instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the {{site.data.reuse.es_name}} instances on [OpenShift](../installing/#install-an-event-streams-instance), or on other [Kubernetes platforms](../instaling-on-kubernetes/#install-an-event-streams-instance).
+{{site.data.reuse.es_name}} instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the {{site.data.reuse.es_name}} instances on [OpenShift](../installing/#install-an-event-streams-instance), or on other [Kubernetes platforms](../installing-on-kubernetes/#install-an-event-streams-instance).

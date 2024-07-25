@@ -10,6 +10,26 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.2.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### New security controls for the {{site.data.reuse.egw_short}}
+
+{{site.data.reuse.eem_name}} release 11.2.3 introduces [security controls](../../installing/configuring#configuring-gateway-security) that you can modify in the `EventGateway` custom resource to ensure that the {{site.data.reuse.egw_short}} is always available and responsive.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.2.3 compared to 11.2.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.2.3 icon]({{ 'images' | relative_url }}/11.2.3.svg "In Event Endpoint Management 11.2.3 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.2.2 contains security and bug fixes.
+
+## Release 11.2.2
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.2.3 contains security and bug fixes.
+
+## Release 11.2.2
+
 ### Security and bug fixes
 
 {{site.data.reuse.eem_name}} release 11.2.2 contains security and bug fixes.
@@ -44,6 +64,10 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 {{site.data.reuse.eem_name}} release 11.2.1 contains security and bug fixes.
 
 ## Release 11.2.0
+
+### Support for {{site.data.reuse.openshift}} 4.16
+
+{{site.data.reuse.eem_name}} version 11.2.0 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.16.
 
 ### Updates to supported Kubernetes versions
 

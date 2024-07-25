@@ -18,19 +18,16 @@ Endpoints that need to be shared between a mixture of stand-alone gateways and t
 A Kafka client implementation might require that the {{site.data.reuse.egw}} presents at least one endpoint for each broker that the client is expecting to connect to. Therefore, ensure you manually configure the number of ports exposed on the host of the {{site.data.reuse.egw}} container to be greater than or equal to the maximum number of brokers across all the clusters that the {{site.data.reuse.egw}} is managing. Also ensure that all the host ports map to the exposed port on the {{site.data.reuse.egw}} container.
 
 ## Prerequisites
-The stand-alone {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Metric Tool](#installing-the-ibm-license-metric-tool) for any other deployments.
 
-![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") In {{site.data.reuse.eem_manager}} 11.2.1 and later, the client certificate for the {{site.data.reuse.egw}} does not require a subject alternative name (SAN) URI to be specified. Instead, this information is set by using the [configuration options](#configuration-options) when deploying the {{site.data.reuse.egw}}. For information about installing a stand-alone gateway by using the previous deployment process, see the [11.1 documentation](../../eem_11.1/installing/standalone-gateways).
+- The stand-alone {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Metric Tool](#installing-the-ibm-license-metric-tool) for any other deployments.
+
+- A supported container host environment as defined in the [Red Hat Enterprise Linux Container Compatibility Matrix](https://access.redhat.com/support/policy/rhel-container-compatibility){:target="_blank"} is required.
+
+- ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1 and later") In {{site.data.reuse.eem_manager}} 11.2.1 and later, the client certificate for the {{site.data.reuse.egw}} does not require a subject alternative name (SAN) URI to be specified. Instead, this information is set by using the [configuration options](#configuration-options) when deploying the {{site.data.reuse.egw}}. For information about installing a stand-alone gateway by using the previous deployment process, see the [11.1 documentation](../../eem_11.1/installing/standalone-gateways).
 
 ## System requirements
 
 Ensure that you have at least 2 CPU cores and 2 GiB of memory available on the system that you want to install and run the stand-alone {{site.data.reuse.egw}}.
-
-## Supported operating systems
-
-- Red Hat Enterprise Linux® Server 7 (x86-64)
-- SUSE Linux® Enterprise Server (SLES) 12.0 (x86-64)
-- Linux on IBM z13 (s390x) or later systems
 
 ## Certificates
 
@@ -54,7 +51,7 @@ The {{site.data.reuse.egw}} uses a client certificate to register itself with th
 
 ## Installing
 
-To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as follows:
+The stand-alone {{site.data.reuse.egw}} image is provided as a multi-architecture docker image, with support for Linux 64-bit (x86_64) systems and Linux on IBM z (s390x) architectures. To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as follows:
 
 ```shell
 docker login cp.icr.io -u cp

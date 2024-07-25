@@ -14,13 +14,13 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.2.2"
+eem_current_version: "11.2.3"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.1.8"
+ep_current_version: "1.1.9"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.1.8"
+flink_operator_current_version: "1.1.9"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -323,6 +323,9 @@ array_expression_note: "**Note:** The **Assistant** drop-down menu does not supp
 
 # {{site.data.reuse.ep_flink_version_align_note}}
 ep_flink_version_align_note: "Ensure that the Event Processing version and the IBM Operator for Apache Flink version are the same."
+
+# {{site.data.reuse.ep_treeview_note}}
+ep_treeview_note: "**Note:** In Event Processing 1.1.9 and later, a tree view of the event structure is available. To view all the input properties of the current node, click **View input properties** in the upper-right corner of the pane."
 
 #####################################################
 # DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #

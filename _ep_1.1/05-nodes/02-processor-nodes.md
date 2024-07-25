@@ -30,7 +30,9 @@ The **Configure a Filter** window opens.
 To configure a filter node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
-2. Click **Next** to open the **Define Filter** pane.  
+2. Click **Next** to open the **Define Filter** pane. 
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}} 
 3. Enter an expression in the **Filter Expression** text box to filter the events. The expression consists of a property, a mathematical condition, and a value. You can create a simple expression with one condition or a complex expression with multiple conditions based on your requirement. You can create multiple conditions within an expression by using `AND` or `OR`.
 
    Examples:
@@ -104,6 +106,8 @@ To configure a transform node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
 1. Click **Next** to open the **Create properties** pane.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
 1. Click **Create new property** to add a new property to the table.
 1. Hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} and enter a name for your property.
 1. Enter your expression in the **Expression** text box to define your property.
@@ -205,6 +209,8 @@ To configure the unpack array node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
 1. Click **Next** to open the **Array selection** pane.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
 1. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Diagram showing unchecked radio button."){:height="30px" width="15px"} of the array you want to unpack.
 
    **Note:** You can use the search bar to search for a particular array. As you start typing the array name in the search bar, you get a filtered list of matching arrays.

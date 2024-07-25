@@ -91,7 +91,7 @@ Ensure you meet the following prerequisites before downloading the CASE archive 
 
 If the cluster has a bastion host which has access to the public internet, then the following steps can be performed from the bastion host.
 
-**Note**: In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
+**Note**: In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to an image registry where the images will be mirrored.
 
 ### Download the CASE archive
 

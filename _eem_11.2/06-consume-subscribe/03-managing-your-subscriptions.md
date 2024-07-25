@@ -33,4 +33,4 @@ Credentials are removed when the associated subscription is deleted. You can del
 
 When the credentials are revoked, a confirmation message is displayed, and the subscription is removed from your subscriptions list.
 
-By revoking a subscription, the gateway no longer allows revoked credentials to be used in new connection attempts. Client connections that are already connected stay connected until they disconnect. When the client disconnects, a new subscription with new credentials is required to re-connect.
+By revoking a subscription, any client that uses that subscription is no longer able to consume or produce data after the next gateway poll of the {{site.data.reuse.eem_manager}} (default is 30 seconds). To reconnect that client, a new subscription with new credentials is required.

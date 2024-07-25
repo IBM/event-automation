@@ -10,6 +10,25 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Tree view for event properties
+
+{{site.data.reuse.ep_name}} release 1.1.9 introduces a tree view for displaying the input properties of a node. The tree view is available in the following nodes: [processor](../../nodes/processornodes/), [windowed](../../nodes/windowednodes/), [join](../../nodes/joins/), and [enrichment](../../nodes/enrichmentnode/).
+
+### Support for {{site.data.reuse.openshift}} 4.16
+
+{{site.data.reuse.ep_name}} version 1.1.9 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.16.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.1.9 compared to 1.1.8 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.")
+
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.1.9 and {{site.data.reuse.ibm_flink_operator}} version 1.1.9 contain security and bug fixes.
+
+## Release 1.1.8
+
 ### Support for events with complex array properties
 
 {{site.data.reuse.ep_name}} release 1.1.8 and later includes support for events containing properties that are an array of objects or an array of arrays. Complex arrays are supported in JSON and Avro formats and can be at any nested level. For more information, see [complex arrays](../../nodes/eventnodes/#complex-arrays).

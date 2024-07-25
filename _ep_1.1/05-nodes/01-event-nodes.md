@@ -323,6 +323,8 @@ To define the [event](../../about/key-concepts#event) structure, you must define
 
       **Note:** Optional arrays and elements in the arrays are supported. However, optional records are not supported.
 
+      ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") Optional records are supported in **Avro (schema registry)**. However, optional records are not supported in **Avro**.
+
     For example, consider a schema describing an order with a field for products, which is an array containing string values and can contain null values. The schema also contains nested arrays.
 
     ```json
@@ -490,7 +492,6 @@ To define the [event](../../about/key-concepts#event) structure, you must define
      **Note:** The Avro schema detected automatically is read-only.
 
      In {{site.data.reuse.ep_name}} versions earlier than 1.1.7, if your message format is manually selected in the **Topic selection** pane, in the **Avro schema** field, paste the Avro schema that is used to encode topic messages to define the structure of the source event.      
-       
 
      For more information about Avro schemas, see the [previous section](#event-source-avro).
 

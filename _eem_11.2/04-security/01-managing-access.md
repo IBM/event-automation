@@ -359,6 +359,35 @@ spec:
 
 You can authenticate users by using the Keycloak provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
 
+**Note:** When you modify an existing {{site.data.reuse.eem_name}} instance to use INTEGRATION_KEYCLOAK, ensure that the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles` has the following contents:
+
+```json
+{
+  "mappings": [
+    {
+      "id": "admin",
+      "roles": [
+        "admin"
+      ]
+    },
+    {
+      "id": "author",
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "id": "viewer",
+      "roles": [
+        "viewer"
+      ]
+    }
+  ]
+}
+```
+For more information, see [Assigning roles to users](../user-roles#assigning-roles-to-users).
+
+
 ### Using {{site.data.reuse.openshift_short}} UI
 
 1. {{site.data.reuse.openshift_ui_login}}

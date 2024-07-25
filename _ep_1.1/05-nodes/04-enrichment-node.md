@@ -121,6 +121,9 @@ To configure a database node, complete the following steps.
 
    **Note:** Ensure the expressions contain an equality condition.
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant offers two separate drop-down lists of properties, for the source table attributes and the database table attributes with constraints, enabling you to construct the expression.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
+
 1. After you defined an expression, click **Next** to open the **Enrich Properties** pane. Include or reject the database table fields for further processing.
 1. Click **Next** to open the **Output properties** pane, which contains both the input fields from the preceding node, and the previously chosen database table fields. Remove the fields that you do not want to be visible in the output.
 
@@ -144,8 +147,8 @@ To configure the API node, ensure you upload an OpenAPI document that meets the 
  - At least one [URL](https://swagger.io/docs/specification/api-host-and-base-path/){:target="_blank"} with the `http` or `https` protocol is required. Relative URLs or URLs with variables are not supported. For URLs that use the `https` protocol, ensure you [configure](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry) Flink and {{site.data.reuse.ep_name}} to enable SSL connections.
  - At least one `GET` or `POST` [operation](https://swagger.io/docs/specification/paths-and-operations/){:target="_blank"} is required with the following requirements:
     - The operation uses one of the following [security methods](https://swagger.io/docs/specification/authentication/){:target="_blank"}: basic authentication, API keys (in the header or query parameter), or no authentication (None).
-    - Uses the [media types](https://swagger.io/docs/specification/media-types/){:target="_blank"} `application` or `JSON` for the response (`GET` and `POST`) and the request body (`POST`).
-    - Does not have required parameters of type `array`. 
+    - Has the [media type](https://swagger.io/docs/specification/media-types/){:target="_blank"} `application/json` for the response (`GET` and `POST`) and the request body (`POST`).
+    - Does not have required parameters of type `array`. However, the operation can still define optional parameters of type `array`, but these parameters are not made available for configuring the API node.
     - For [parameter serialization](https://swagger.io/docs/specification/serialization/){:target="_blank"} of query parameters, the `style` attribute is either set to the `form` style, or no `style` attribute is specified, and for path parameters, the `style` attribute is either set to the `simple` style, or no `style` attribute is specified.
 
 The API enrichment in {{site.data.reuse.ep_name}} has the following limitations:
@@ -202,6 +205,8 @@ To configure an API node, complete the following steps:
 1. Depending on the authentication method selected, enter your user name and password, or API key, and click **Next**. The **Input mapping** pane is displayed.
 
    **Note:** Authentication credentials are only required for the **API key** and **Basic** authentication methods. Contact the API owner for access credentials.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
 
 1. To configure the **Required Inputs**, select an event property or enter a constant value. You can also select and configure input parameters from the **Optional Inputs** list.
 

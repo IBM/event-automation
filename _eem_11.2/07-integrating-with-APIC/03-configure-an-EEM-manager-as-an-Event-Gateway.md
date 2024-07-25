@@ -41,11 +41,11 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
 1. Obtain a copy of the {{site.data.reuse.apic_short}} CA certificate.
    
-   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. More information about the `ingress-ca` can be found [here](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=information-api-connect-tls-certificates){:target="_blank"}.
+   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. For more information about `ingress-ca`, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=information-api-connect-tls-certificates){:target="_blank"}.
    
    **Note:** If installed as a part of an {{site.data.reuse.cp4i}} instance, the name of your secret is prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`.
    
-   The CA certificate can be obtained from the Kubernetes cluster where your {{site.data.reuse.apic_short}} instance is installed by using the Openshift UI if running in an Openshift environment, or by using the CLI.
+   You can obtain the CA certificate from the Kubernetes cluster where your {{site.data.reuse.apic_short}} instance is installed by using the Openshift UI if running in an Openshift environment, or by using the CLI.
    
    - By using the {{site.data.reuse.openshift_short}} web console:
      
@@ -53,27 +53,36 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
      2. Expand the **Workloads** drop-down menu and select **Secrets**.
      3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.apic_short}} instance is installed in.
      4. Find the `<name>-ingress-ca` secret, and select it.
-     5. Click the **YAML** tab.
-     6. Copy the value under `data.ca.crt`.
+     5. Depending on how you want to create the secret in the next step, copy the value from one of the following locations:
+        - For a decoded value to be used in the OpenShift web console, click the **Details** tab and copy value in `ca.crt`.
+        - For a Base64-encoded value to be used with the CLI, click the **YAML** tab and copy the value under `data.ca.crt`.
+        
+        <!--**Note:** This value is Base64-encoded. However, if you retrieve the value from the **Details** tab, the value is not Base64-encoded.-->
 
    - By using the CLI:
 
      1. {{site.data.reuse.cncf_cli_login}}
-     2. Run the following command to extract the Base64-encoded certificate:
+     2. Depending on how you want to create the secret in the next step, run the following command:
         
-        ```shell
-        kubectl -n <APIC namespace> get secret <ingress-ca name> -ojsonpath="{.data['ca\.crt']}"
-        ```
-        
-        Where `APIC namespace` is the namespace where your {{site.data.reuse.apic_short}} instance is installed.
+        - To extract the decoded certificate to be used in the OpenShift web console:
+          
+          ```shell
+          kubectl -n <APIC namespace> get secret <ingress-ca name> -ojsonpath="{.data['ca\.crt']}" | base64 -d
+          ```
 
-    **Note:** This value is Base64-encoded. However, if you retrieve the value from the **Details** tab in the {{site.data.reuse.openshift_short}} UI instead, the value is not Base64-encoded.
+        - To extract the Base64-encoded certificate to use with the CLI:
+          
+          ```shell
+          kubectl -n <APIC namespace> get secret <ingress-ca name> -ojsonpath="{.data['ca\.crt']}"
+          ```
+          
+          Where `APIC namespace` is the namespace where your {{site.data.reuse.apic_short}} instance is installed.
 
 2. In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the CA certificate. Create a secret to store the {{site.data.reuse.apic_short}} certificate as follows.
 
    - By using the {{site.data.reuse.openshift_short}} web console:
 
-    **Note:** When creating secrets in the {{site.data.reuse.openshift_short}} UI, the input value must not be encoded. Therefore, if you have a Base64-encoded certificate from step 1, decode it before completing the following steps.
+     **Note:** When creating secrets in the {{site.data.reuse.openshift_short}} UI, the input value must not be encoded. Therefore, ensure you retrieve a decoded value in step 1, or if you have a Base64-encoded certificate, decode it before completing the following steps.
      
      1. {{site.data.reuse.openshift_ui_login}}
      2. Expand the **Workloads** drop-down menu and select **Secrets**.
@@ -85,6 +94,8 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
      8. Click **Create**.
    
    - By using the CLI:
+     
+      **Note:** When creating secrets by using the CLI, the certificate must be Base64-encoded.
           
      1. {{site.data.reuse.cncf_cli_login}}
      2. Run the following command to create a secret called `apim-cpd`:
@@ -102,12 +113,11 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
         type: Opaque
         EOF
         ```
-        
+
         Where:
-        
+
         - `<namespace>` is the namespace the {{site.data.reuse.eem_manager}} instance is installed in.
         - `<Base64-certificate>` is the Base64-encoded certificate that you obtained in step 1.
-
 
 3. Update the `EventEndpointManagement` instance with the {{site.data.reuse.apic_short}} configuration details as follows.
 

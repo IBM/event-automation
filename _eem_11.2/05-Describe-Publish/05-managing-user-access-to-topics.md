@@ -29,7 +29,7 @@ The **Subscribers** list details all the current subscriptions for options on yo
 
 ## Removing subscriptions
 
-After socializing your option, you can remove subscriptions to it. After removing a subscription, the gateway no longer allows credentials that have been removed to be used in new connection attempts. Client connections that are already connected stay connected until they disconnect.
+After socializing your option, you can remove subscriptions to it. After removing a subscription, any client that uses that subscription is no longer able to consume or produce data after the next gateway poll of the {{site.data.reuse.eem_manager}} (default is 30 seconds). To reconnect that client, a new subscription with new credentials is required.
 
 To remove subscriptions, complete the following steps:
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.

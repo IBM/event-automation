@@ -27,17 +27,18 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | config                | string                           | N/A. Usage not advised.                                                     |
 | deployNetworkPolicies | boolean                          | Control the deployment of NetworkPolicies that are used by the instance. (default: true) |
 | endpoints             | [][endpoint](#resource-endpoint) | List of endpoint configurations.                                            |
+| fips                  | [fips](#resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.    |
 | gatewayGroupName      | string                           | The name of the gateway group to which this gateway is to be added.          |
 | gatewayID             | string                           | The identifier of the gateway group to which this gateway is to be added.          |
 | ![Event Endpoint Management 11.2.1 icon]({{ 'images' | relative_url }}/11.2.1.svg "In Event Endpoint Management 11.2.1.") gatewayContact        | string                           | The contact information of the gateway administrator.                      |
 | license               | [license](#resource-license)     | Object containing product licensing details.                                |
 | managerEndpoint       | string                           | The endpoint address for an {{site.data.reuse.eem_manager}} instance.       |
+| numKafkaBrokers       | integer                          | The maximum number of Kafka brokers that the gateway can connect to.             |
+| security              | [security](#resource-security)   | Object containing security configuration.                                        |
 | template              | [template](#resource-template)   | Object containing Kubernetes resource overrides.                            |
 | tls                   | [tls](#resource-tls)             | Object containing TLS configuration.                                        |
-| fips                  | [fips](#resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.    |
-| numKafkaBrokers       | integer                          | The maximum number of Kafka brokers that the gateway can connect to.             |
 
-## API Reference of Objects Used in the CRDs
+## API reference of objects used in the CRDs
 
 ### Resource: `apic`
 
@@ -53,6 +54,22 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | ----------- | ----------- | ----------- |
 | authType | string | The authentication method you are going to use. One of `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK`. |
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
+
+### Resource: `authentication`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| maxRetries | integer | The maximum number of failed authentication attempts after which further attempts are blocked. Default is -1 (no limit). |
+| retryBackoffMs | integer | The backoff time in milliseconds between consecutive failed authentication attempts. Default is 0. |
+| lockoutPeriod | integer | The duration in seconds while the account is locked after an unsuccessful authentication attempt. Default is 0. |
+
+### Resource: `connection`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| closeDelayMs | integer | The minimum delay in milliseconds after you close a connection. This helps prevent spam. Default is 8000. |
+| closeJitterMs | integer | Additional delay in milliseconds after you close a connection. This helps prevent attacks. Default is 4000.|
+| perSubLimit | integer | The maximum allowed TCP connections for each subscription. Default is -1 (no limit). |
 
 ### Resource: `endpoint`
 
@@ -70,6 +87,12 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 - Valid values for `name` are:
   - For `EventEndpointManagement` resources: `ui`, `gateway`, `admin`, and `apic`.
   - For `EventGateway` resources: `gateway`. 
+
+### Resource: `fips`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. |
 
 ### Resource: `jwks`
 
@@ -123,6 +146,20 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | ----------- | ----------- | ----------- |
 | spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
+### Resource: `request`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| maxSizeBytes | integer | The maximum size allowed for the request payload in bytes. Default is -1 (no limit). |
+
+### Resource: `security`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| connection | [connection](#resource-connection) | Object containing connection options.  |
+| authentication| [authentication](#resource-authentication) | Object containing authentication options.  |
+| request | [request](#resource-request) | Object containing request options.  |
+
 ### Resource: `storage`
 
 | Field | Type | Description |
@@ -156,11 +193,6 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | trustedCertificates | array[[trustedCertificate](#resource-trustedcertificate)] | A set of secrets containing certificates which the {{site.data.reuse.eem_manager}} should trust when communicating with other services, such as gateways or OIDC providers. |
 | ui | [ui](#resource-ui) | Object containing TLS configuration explicitly for the UI. (Not present in eventgateway.events.ibm.com/v1beta1) |
 
-### Resource: `fips`
-
-| Field | Type | Description |
-| ----------- | ----------- | ----------- |
-| mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. |
 
 ### Resource: `trustedCertificate`
 

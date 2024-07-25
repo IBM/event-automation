@@ -94,7 +94,7 @@ Before installing an {{site.data.reuse.es_name}} instance, create an image pull 
    Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
 
    ```shell
-   oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <target-namespace>
+   oc create secret docker-registry ibm-entitlement-key --docker-username=cp --docker-password="<your-entitlement-key>" --docker-server="cp.icr.io" -n <image-namespace>
    ```
 
 
@@ -202,7 +202,7 @@ Before you can install the required operator versions and use them to create ins
 
    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
-   The previous command generates the following files based on the target (internal) registry provided:
+   The previous command generates the following files based on the image registry provided:
 
    - catalog-sources.yaml
    - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
@@ -254,7 +254,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    - Change to the custom namespace if you are installing the operator for use in a specific namespace only.
 
    ```shell
-   oc project <target-namespace>
+   oc project <image-namespace>
    ```
 
 2. Check whether there is an existing `OperatorGroup` in your target namespace:
@@ -267,17 +267,17 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
 
    If there is no `OperatorGroup`, create one as follows:
 
-   a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
+   a. Create a YAML file with the following content, replacing `<image-namespace>` with your namespace:
 
    ```yaml
    apiVersion: operators.coreos.com/v1
    kind: OperatorGroup
    metadata:
      name: ibm-eventautomation-operatorgroup
-     namespace: <target-namespace>
+     namespace: <image-namespace>
    spec:
      targetNamespaces:
-       - <target-namespace>
+       - <image-namespace>
    ```
    
    b. Save the file as `operator-group.yaml`.
@@ -297,7 +297,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    kind: Subscription
    metadata:
      name: ibm-eventstreams
-     namespace: <target-namespace>
+     namespace: <image-namespace>
      labels:
        backup.eventstreams.ibm.com/component: subscription
    spec:
@@ -309,7 +309,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
 
    Where:
 
-   - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.es_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
+   - `<image-namespace>` is the namespace where you want to install {{site.data.reuse.es_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
    - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }})).
    - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventstreams` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
 

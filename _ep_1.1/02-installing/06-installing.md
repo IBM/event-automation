@@ -18,7 +18,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Create a project (namespace)
 
-Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.openshift.com/container-platform/4.14/applications/projects/working-with-projects.html){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.openshift.com/container-platform/4.16/applications/projects/working-with-projects.html){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.ep_name}}. This is required because {{site.data.reuse.ep_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
@@ -160,7 +160,7 @@ Before you can install the required operator versions and use them to create ins
 
 1. Before you begin, ensure that you have the following set up for your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
@@ -235,7 +235,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.1.7/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources.yaml
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -255,7 +255,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.1.7/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources.yaml
      ```
 
 This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.

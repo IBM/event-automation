@@ -82,6 +82,8 @@ Alternatively, to use the assistant to create your expression, complete the foll
 
  {{site.data.reuse.array_expression_note}}
 
+![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
+
 #### Time window condition
 
 To define the time window condition, complete the following steps:

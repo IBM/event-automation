@@ -103,7 +103,7 @@ Data sent to {{site.data.reuse.ibm_flink_operator}} through [Apache Kafka®](htt
 
 For information about controlling access to data stored in {{site.data.reuse.ep_name}}, see [managing access](../managing-access).
 
-Cluster-level configuration and resources are accessible through the {{site.data.reuse.openshift_short}} [web console](https://docs.openshift.com/container-platform/4.14/web_console/web-console.html){:target="_blank"} and by using the [`kubectl` CLI](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+Cluster-level configuration and resources are accessible through the {{site.data.reuse.openshift_short}} [web console](https://docs.openshift.com/container-platform/4.16/web_console/web-console.html){:target="_blank"} and by using the [`kubectl` CLI](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 [Access and authorization controls](https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/){:target="_blank"} can be used to control which users are able to access this cluster-level information.
 

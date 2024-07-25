@@ -50,6 +50,9 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
    1. Optional: To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
       1. In the **Offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
 1. Click **Next** to open the **Aggregate function** pane.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}} 
+
 1. To define how you would like to aggregate events over time windows, in the **Aggregate function** field, select an aggregate function.
 1. In the **Property to aggregate** field, select the event property that you want to use.
 1. Optional: To compute aggregate operations on additional properties over each time window, click **Add another aggregate function** and repeat steps 7 and 8.
@@ -118,6 +121,8 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
    1. Optional: To enable a rolling time window, in the **Calculate a rolling time window** field, select **Yes**.
       1. In the **Offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
 1. Click **Next** to open the **Condition** pane.
+
+   ![Event Processing 1.1.9 icon]({{ 'images' | relative_url }}/1.1.9.svg "In Event Processing 1.1.9 and later.") {{site.data.reuse.ep_treeview_note}}
 1. In the **Number of results to keep on each window** field, specify the number of results that you want to see for each time period.
 1. In the **Ordered by** field, select the property to use for sorting the events.
 1. Select **Ascending** or **Descending** according to the following rule:

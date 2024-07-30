@@ -129,7 +129,7 @@ In your firewall settings, ensure you enable communication for the endpoints tha
 If you have load balancing set up to manage traffic for your cluster, ensure that it is set up to handle the {{site.data.reuse.es_name}} endpoints.
 
 On the {{site.data.reuse.openshift_short}}, {{site.data.reuse.es_name}} uses routes.
-If you are using OpenShift, ensure your [router](https://docs.openshift.com/container-platform/4.15/networking/routes/route-configuration.html){:target="_blank"} is set up as required.
+If you are using OpenShift, ensure your [router](https://docs.openshift.com/container-platform/4.16/networking/routes/route-configuration.html){:target="_blank"} is set up as required.
 
 On other Kubernetes platforms, {{site.data.reuse.es_name}} uses ingress for [external access](../configuring/#configuring-access). You can configure ingress to provide load balancing through an ingress controller. Ensure your [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/){:target="_blank"} is set up as required for your Kubernetes platform.
 

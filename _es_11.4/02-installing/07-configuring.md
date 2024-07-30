@@ -82,7 +82,7 @@ spec:
 # ...
 ```
 
-If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.15/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
+If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.16/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
 
 Where optional values are not specified:
 

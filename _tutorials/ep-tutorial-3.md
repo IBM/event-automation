@@ -111,20 +111,20 @@ The next step is to filter the stream of events based on this new total order va
 
 
 
-1. Use the assistant to start a filter based on orders with an `order total` greater than `575`.
+1. Use the assistant to start a filter based on orders with an `order total` greater than `350`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-5.png "Screen capture displaying the Filter node Assistant")
 
 1. Click **Add to expression**.
 
 1. Edit the filter so that it also only matches orders that are made in the EMEA `region`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "Screen capture displaying a Filter node expression")
 
    Suggested value for the filter expression:
 
    ```sql
-   `order total` > 575 AND region = 'EMEA'
+   `order total` > 350 AND region = 'EMEA'
    ```
 
 1. Click **Configure** to finalize the filter.

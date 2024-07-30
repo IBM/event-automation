@@ -20,12 +20,6 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 
 ### Security and bug fixes
 
-{{site.data.reuse.eem_name}} release 11.2.2 contains security and bug fixes.
-
-## Release 11.2.2
-
-### Security and bug fixes
-
 {{site.data.reuse.eem_name}} release 11.2.3 contains security and bug fixes.
 
 ## Release 11.2.2

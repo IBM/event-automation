@@ -1,6 +1,6 @@
 ---
 title: "No such algorithm exception log"
-excerpt: "Unexpected exception log in the {{site.data.reuse.eem_manager}} pod, indicating an algorithm is missing."
+excerpt: "Unexpected exception log in the Event Manager pod, indicating an algorithm is missing."
 categories: troubleshooting
 slug: no-such-algorithm-log
 toc: true

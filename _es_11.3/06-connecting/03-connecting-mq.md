@@ -17,12 +17,12 @@ Connectors are available for copying data in both directions.
 
     You can use the {{site.data.reuse.kafka-connect-mq-source-short}} to copy data from IBM MQ into {{site.data.reuse.es_name}} or Apache Kafka. The connector copies messages from a source MQ queue to a target Kafka topic.
 
-    **Note:** The [IBM MQ source connector v2]({{ 'connectors/kc-source-ibm-mq2/installation' | relative_url}}), which is built on the IBM MQ source connector v1, offers additional features such as [exactly-once delivery](../mq/source/#exactly-once-message-delivery-semantics-in-ibm-mq-source-connector-v2) of data from IBM MQ into {{site.data.reuse.es_name}} or Apache Kafka.
+    **Note:** The [IBM MQ source connector v2]({{ 'connectors/kc-source-ibm-mq/installation' | relative_url}}), which is built on the IBM MQ source connector v1, offers additional features such as [exactly-once delivery](../mq/source/#exactly-once-message-delivery-semantics-in-ibm-mq-source-connector-v2) of data from IBM MQ into {{site.data.reuse.es_name}} or Apache Kafka.
  - [{{site.data.reuse.kafka-connect-mq-sink}}](../mq/sink/):
 
     You can use the {{site.data.reuse.kafka-connect-mq-sink-short}} to copy data from {{site.data.reuse.es_name}} or Apache Kafka into IBM MQ. The connector copies messages from a Kafka topic into a MQ queue.
 
-    **Note:** The [IBM MQ sink connector v2]({{ 'connectors/kc-sink-ibm-mq2/installation' | relative_url}}), which is built on the IBM MQ sink connector v1, offers additional features such as [exactly-once delivery](../mq/sink/#exactly-once-message-delivery-semantics-in-ibm-mq-sink-connector-v2) of data from Apache Kafka into IBM MQ.
+    **Note:** The [IBM MQ sink connector v2]({{ 'connectors/kc-sink-ibm-mq/installation' | relative_url}}), which is built on the IBM MQ sink connector v1, offers additional features such as [exactly-once delivery](../mq/sink/#exactly-once-message-delivery-semantics-in-ibm-mq-sink-connector-v2) of data from Apache Kafka into IBM MQ.
 
 ![Kafka Connect: MQ source and sink connectors]({{ 'images' | relative_url }}/mq_sink_and_source.png "Diagram showing a representation of how Event Streams and MQ can be connected by using the MQ source and MQ sink connectors.")
 

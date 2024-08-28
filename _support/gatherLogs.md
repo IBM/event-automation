@@ -16,7 +16,7 @@ To help IBM Support troubleshoot any issues with your {{site.data.reuse.ea_long}
 To run the log gathering script, ensure you have the following installed on your system:
 
 - The [Kubernetes command-line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} version 1.24 or later.
-- Version 1.1.1 or later of the [`openssl` command-line tool](https://www.openssl.org/source/){:target="_blank"}.
+- Version 1.1.1 or later of the `openssl` [command-line tool](https://www.openssl.org/source/){:target="_blank"}.
 - The `sed` (or `gsed` for macOS users) command-line tool.
 
 **Important:** The gather scripts are written in bash. To run the scripts on Windows, ensure that you are running the scripts from a bash prompt. For example, git bash is a suitable shell environment and is available as part of the Git for Windows distribution.
@@ -30,7 +30,7 @@ To gather logs from an online environment:
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-2. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+2. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 3. Change directory to the `/support` folder of the cloned repository.
 4. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
@@ -104,7 +104,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-5. Log in to your cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+5. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.openshift.com/container-platform/4.15/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 
 6. Change directory to the `/support` folder of the cloned repository.
 
@@ -182,4 +182,4 @@ See the following table for information about the modules that are supported by 
 
 ## Additional information
 
-If your issues relate to running flows in {{site.data.reuse.ep_name}}, it is also helpful to provide IBM Support with a copy of the relevant flows. You can do this by [exporting the flows to SQL](../../ep/advanced/exporting-flows#exporting-flows) and including the SQL files with the logs that you return.
+If you are experiencing issues with running flows when using the {{site.data.reuse.ep_name}} UI, ensure that you clicked **Run Flow** before gathering the relevant logs. If the flow is not running in the {{site.data.reuse.ep_name}} UI, then the relevant container logs might not be available as Flink dynamically scales to zero. It is also helpful to provide IBM Support with a copy of the relevant flow as SQL. You can do this by [exporting the flows to SQL](../../ep/advanced/exporting-flows#exporting-flows) and including the SQL files with the logs that you return.

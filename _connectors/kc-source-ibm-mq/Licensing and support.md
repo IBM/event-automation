@@ -1,6 +1,6 @@
 ---
 order: 2
-forID: kc-source-ibm-mq2
+forID: kc-source-mq
 sections:
   - section:
     title: "Get help"
@@ -9,10 +9,10 @@ sections:
       - { text: 'View the documentation', url: '../../es/connecting/mq/source' }
   - section:
     title: "Licensing"
-    type: "IBM Event Automation license, IBM Cloud Pak for Integration license"
-    description: "The IBM MQ source connector v2 is available under the IBM Event Automation license and IBM Cloud Pak for Integration license."
+    type: "Apache License 2.0"
+    description: "The IBM MQ connector is available under the Apache License 2.0 license."
     buttons:
-      - { text: 'View the license', url: '../../support/licensing/#ibm-event-automation-license-information' }
+      - { text: 'View the license', url: 'https://github.com/ibm-messaging/kafka-connect-mq-source/blob/master/LICENSE' }
   - section:
     title: "Support"
     type: "IBM Support"

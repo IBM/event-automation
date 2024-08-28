@@ -102,10 +102,12 @@ function connectorCard(card, url) {
 
       if (responseTime < 400) {
         setTimeout(() => {
-          getById('contentLoadContainer').innerHTML = loadedContent
+          getById('contentLoadContainer').innerHTML = loadedContent;
+          addHandlersForButtons();
         }, 400)
       } else {
-        getById('contentLoadContainer').innerHTML = loadedContent
+        getById('contentLoadContainer').innerHTML = loadedContent;
+        addHandlersForButtons();
       }
 
       setTimeout(() => {

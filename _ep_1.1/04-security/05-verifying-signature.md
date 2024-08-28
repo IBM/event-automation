@@ -121,13 +121,13 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
+   Download of CASE: ibm-eventprocessing, version: 1.1.9 is complete
    ```
 
    For {{site.data.reuse.ibm_flink_operator}}:
 
    ```shell
-   oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.ep_current_version}}
+   oc ibm-pak get ibm-eventautomation-flink --version 1.1.9
    ```
 
    ```shell
@@ -145,7 +145,7 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventautomation-flink, version: {{site.data.reuse.flink_operator_current_version}} is complete
+   Download of CASE: ibm-eventautomation-flink, version: 1.1.9 is complete
    ```
 
 5. Verify that the CASE archive and images `.csv` files have been generated. For example, ensure you have the following files generated for the CASE.
@@ -160,14 +160,14 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── {{site.data.reuse.ep_current_version}}
+   │   │       └── 1.1.9
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
+   │   │           ├── ibm-eventprocessing-1.1.9-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.1.9-charts.csv
+   │   │           ├── ibm-eventprocessing-1.1.9-images.csv
+   │   │           ├── ibm-eventprocessing-1.1.9.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror
@@ -186,14 +186,14 @@ Complete the following steps to download the {{site.data.reuse.ep_name}} CASE ar
    ├── data
    │   ├── cases
    │   │   ├── ibm-eventautomation-flink
-   │   │   │   └── {{site.data.reuse.flink_operator_current_version}}
+   │   │   │   └── 1.1.9
    │   │   │       ├── caseDependencyMapping.csv
    │   │   │       ├── charts
    │   │   │       ├── component-set-config.yaml
-   │   │   │       ├── ibm-eventautomation-flink-{{site.data.reuse.flink_operator_current_version}}-airgap-metadata.yaml
-   │   │   │       ├── ibm-eventautomation-flink-{{site.data.reuse.flink_operator_current_version}}-charts.csv
-   │   │   │       ├── ibm-eventautomation-flink-{{site.data.reuse.flink_operator_current_version}}-images.csv
-   │   │   │       ├── ibm-eventautomation-flink-{{site.data.reuse.flink_operator_current_version}}.tgz
+   │   │   │       ├── ibm-eventautomation-flink-1.1.9-airgap-metadata.yaml
+   │   │   │       ├── ibm-eventautomation-flink-1.1.9-charts.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.1.9-images.csv
+   │   │   │       ├── ibm-eventautomation-flink-1.1.9.tgz
    │   │   │       └── resourceIndexes
    │   │   │           └── ibm-eventautomation-flink-resourcesIndex.yaml
    │   └── mirror
@@ -223,7 +223,7 @@ Obtain the required files as follows:
       
       - ![Event Processing 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In Event Processing 1.1.5 and later") In {{site.data.reuse.ep_name}} 1.1.5 and later:
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventprocessing/1.1.9/ibm-eventprocessing-1.1.9-images.csv \
      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
        if [[ "$mtype" == "LIST" ]]; then
           echo "$registry/$image_name:$tag"
@@ -246,7 +246,7 @@ Obtain the required files as follows:
      
       - ![IBM Operator for Apache Flink 1.1.5 icon]({{ 'images' | relative_url }}/1.1.5.svg "In IBM Operator for Apache Flink 1.1.5 and later") In {{site.data.reuse.ibm_flink_operator}} 1.1.5 and later:
    ```shell
-   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/ibm-eventautomation-flink-{{site.data.reuse.flink_operator_current_version}}-images.csv \
+   tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventautomation-flink/1.1.9/ibm-eventautomation-flink-1.1.9-images.csv \
      | while IFS="," read registry image_name tag digest mtype os arch variant insecure digest_source image_type groups; do
        if [[ "$mtype" == "LIST" ]]; then
          echo "$registry/$image_name:$tag"
@@ -311,7 +311,7 @@ To verify the image signatures, complete the following steps:
 
    ```shell
    mkdir images
-   skopeo copy docker://icr.io/cpopen/ibm-eventprocessing-operator-catalog:v{{site.data.reuse.ep_current_version}} dir:./images
+   skopeo copy docker://icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.1.9 dir:./images
    ```
 
    This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
@@ -325,7 +325,7 @@ To verify the image signatures, complete the following steps:
    For example:
 
    ```shell
-   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventprocessing-operator-catalog:v{{site.data.reuse.ep_current_version}} ${fingerprint} ./images/signature-1
+   skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventprocessing-operator-catalog:v1.1.9 ${fingerprint} ./images/signature-1
    ```
 
    You will receive a confirmation similar to the following:

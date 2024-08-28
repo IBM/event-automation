@@ -1,6 +1,6 @@
 ---
 title: "Managing topics"
-excerpt: "Find out how you can edit topic information, create options for a topic and remove topics and options from {{site.data.reuse.eem_name}}."
+excerpt: "Find out how you can edit topic information, create options for a topic and remove topics and options from Event Endpoint Management."
 categories: describe
 slug: managing-topics
 toc: true

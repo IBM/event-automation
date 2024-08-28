@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.1.x.
 
-## Release {{site.data.reuse.ep_current_version}}
+## Release 1.1.9
 
 ### Tree view for event properties
 
@@ -57,7 +57,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 ### Auto-detection of a topic message format in the event source node
 
-When you configure the [event source node](../../nodes/eventnodes/#event-source) and select the Kafka topic from which to consume messages, {{site.data.reuse.ep_name}} attempts to determine the format of messages from the topic. For more information, see [auto-detection](../../nodes/eventnodes/#auto-detection-of-message-format). 
+When you configure the [event source node](../../nodes/eventnodes/#event-source) and select the Kafka topic from which to consume messages, {{site.data.reuse.ep_name}} attempts to determine the format of messages from the topic. For more information, see [auto-detection](../../nodes/eventnodes/#message-format). 
 
 
 ### Processor node: Unpack arrays

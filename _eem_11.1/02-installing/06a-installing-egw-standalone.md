@@ -45,6 +45,7 @@ Create a local folder called `certs` on the host where you want to run the servi
 - **ca.pem**: The public certificate for the CA that issues the {{site.data.reuse.eem_manager}} certificate.
 
 ## {{site.data.reuse.egw}} client certificate
+{: #event-gateway-client-certificate}
 
 As detailed in the [certificates](#certificates) section, the {{site.data.reuse.egw}} uses a client certificate to register itself with {{site.data.reuse.eem_manager}}. This certificate provides the necessary authentication and authorization to allow the gateway to pull information about topics and subscriptions from {{site.data.reuse.eem_manager}}. This means that the certificate has the following requirements:
 

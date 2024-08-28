@@ -11,18 +11,18 @@ You can run [Kafka Streams](https://kafka.apache.org/documentation/streams/){:ta
 
 Follow the steps in this tutorial to understand how to set up your existing Kafka Streams application to run in {{site.data.reuse.es_name}}, including how to set the correct connection and permission properties to allow your application to work with Event Streams.
 
-The examples mentioned in this tutorial are based on the [`WordCountDemo.java` sample](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java){:target="_blank"} which reads messages from an input topic called `streams-plaintext-input` and writes the words, together with an occurrence count for each word, to an output topic called `streams-wordcount-output`.
+The examples mentioned in this tutorial are based on the `WordCountDemo.java` [sample](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java){:target="_blank"} which reads messages from an input topic called `streams-plaintext-input` and writes the words, together with an occurrence count for each word, to an output topic called `streams-wordcount-output`.
 
 ## Prerequisites
 
 - Ensure you have an {{site.data.reuse.es_name}} installation available. This tutorial is based on {{site.data.reuse.es_name}} version 11.0.3.
-- Ensure you have a [Kafka Streams](https://kafka.apache.org/documentation/streams/){:target="_blank"} application ready to use. You can also use one of the Kafka Streams [sample applications](https://github.com/apache/kafka/tree/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples){:target="_blank"} such as the  `WordCountDemo.java` sample used here.
+- Ensure you have a [Kafka Streams](https://kafka.apache.org/documentation/streams/){:target="_blank"} application ready to use. You can also use one of the Kafka Streams [sample applications](https://github.com/apache/kafka/tree/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples){:target="_blank"} such as the `WordCountDemo.java` sample used here.
 
 ## Creating input and output topics
 
 Create the input and output topics in {{site.data.reuse.es_name}}.
 
-For example, you can create the topics and name them as they are named in the [`WordCountDemo.java` sample](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java){:target="_blank"} application. For demonstration purposes, the topics only have 1 replica and 1 partition.
+For example, you can create the topics and name them as they are named in the `WordCountDemo.java` [sample](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java){:target="_blank"} application. For demonstration purposes, the topics only have 1 replica and 1 partition.
 
 To create the topics:
 
@@ -58,7 +58,7 @@ To set up permissions:
    sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required required username="<scram_username>" password="<scram_password>";
    ```
 
-To send messages to the input topic, use the bootstrap address, the input topic name, and the new properties file you created. For example, run [`kafka-console-producer.sh`](https://github.com/apache/kafka/blob/3.3/bin/kafka-console-producer.sh){:target="_blank"} with the following options:
+To send messages to the input topic, use the bootstrap address, the input topic name, and the new properties file you created. For example, run [kafka-console-producer.sh](https://github.com/apache/kafka/blob/3.3/bin/kafka-console-producer.sh){:target="_blank"} with the following options:
 
 - `--broker-list <broker_url>`: where `<broker_url>` is your cluster's broker URL copied earlier from the **Bootstrap server** section.
 - `--topic <topic_name>`: where `<topic_name>` is the name of your input topic, in this example, `streams-plaintext-input`.
@@ -103,7 +103,7 @@ To set up permissions and secure the connection:
    The permissions are required to do the following:
 
    - Create topics: Kafka Streams creates intermediate topics for the operations performed in the stream.
-   - Join a consumer group: to be able to read messages from the input topic, it joins the group [`streams-wordcount`](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java#L62){:target="_blank"}.
+   - Join a consumer group: to be able to read messages from the input topic, it joins the group [streams-wordcount](https://github.com/apache/kafka/blob/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples/wordcount/WordCountDemo.java#L62){:target="_blank"}.
    - Produce and consume messages.
 
 1. Click the **Sample code** tab, and copy the snippet from the **Sample connection code** section into your Kafka Streams application to set up a secure connection from your application to your {{site.data.reuse.es_name}} instance.
@@ -159,7 +159,7 @@ To set up permissions:
 1. Click the **Sample code** tab, and copy the snippet from the **Sample configuration properties** section into a new file called `streams-demo-output.properties`. This creates a new properties file for your Kafka Streams application.
 1. Replace `<certs.PKCS12_file_location>` with the path to your truststore file, `<truststore_password>` with the password for the PKCS12 file, and `<scram_username>` and `<scram_password>` with the SCRAM username and password generated for the input topic.
 
-To view messages on the output topic, use the bootstrap address, the output topic name, and the new properties file you created. For example, run [`kafka-console-consumer.sh`](https://github.com/apache/kafka/blob/3.3/bin/kafka-console-consumer.sh){:target="_blank"} with the following options:
+To view messages on the output topic, use the bootstrap address, the output topic name, and the new properties file you created. For example, run [kafka-console-consumer.sh](https://github.com/apache/kafka/blob/3.3/bin/kafka-console-consumer.sh){:target="_blank"} with the following options:
 
 - `--bootstrap-server <broker_url>`: where `<broker_url>` is your cluster's broker URL copied earlier from the **Bootstrap server** section.
 - `--topic <topic_name>`: where `<topic_name>` is the name of your output topic, in this example, `streams-wordcount-output`.

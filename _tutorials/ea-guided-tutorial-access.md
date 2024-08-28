@@ -35,7 +35,7 @@ The tutorial environment includes a deployment of an admin web interface for eac
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-2.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-2.png "OpenShift Console")
 
 
-Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+Alternatively, to get this information using the `oc` [CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
 
 ```sh
 # URL
@@ -76,7 +76,7 @@ oc get secret \
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-4.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-4.png "OpenShift Console")
 
 
-Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+Alternatively, to get this information using the `oc` [CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
 
 ```sh
 # URL
@@ -117,7 +117,7 @@ oc get secret \
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-6.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-6.png "OpenShift Console")
 
 
-Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+Alternatively, to get this information using the `oc` [CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
 
 ```sh
 # URL
@@ -145,7 +145,7 @@ Some of the tutorials involve configuring a Kafka application. The tutorial play
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-6.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-6.png "OpenShift Console")
 
-Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+Alternatively, to get this information using the `oc` [CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
 
 ```sh
 oc get secret \
@@ -166,7 +166,7 @@ Some of the tutorials involve enriching Kafka events by using reference data fro
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-8.png "OpenShift Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-0-8.png "OpenShift Console")
 
-Alternatively, to get this information using the [`oc` CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
+Alternatively, to get this information using the `oc` [CLI](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"}:
 
 ```sh
 oc get secret \

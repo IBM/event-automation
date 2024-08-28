@@ -1,6 +1,6 @@
 ---
 title: "Managing event sources"
-excerpt: "Find out how you can edit event source information, create options for an event source and remove event sources and options from {{site.data.reuse.eem_name}}."
+excerpt: "Find out how you can edit event source information, create options for an event source and remove event sources and options from Event Endpoint Management."
 categories: describe
 slug: managing-event-sources
 toc: true

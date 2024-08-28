@@ -10,7 +10,7 @@ Options enable you to socialize one event source multiple times and in different
 
 An option can have a variety of [controls](../../describe/option-controls/) that enable you to have greater control over how the events are used. One event source can have many options and each option can contain numerous controls as demonstrated in the following diagram. For example, one event source can have 3 options. One of those options has the schema filtering and redaction control set; the other option has no controls; and the other option has all 3 controls (schema filtering, redaction and approval). So each option is providing a different control set for a subscriber to interact with. In each case, the original event source remains untouched and all the controls that you add are enforced as it passes through the {{site.data.reuse.egw_short}}. 
 
-![Options and controls]({{ 'images' | relative_url }}/options-controls.png "Diagram showing the relationship between options and controls."){:height="75%" width="75%"}
+![Options and controls]({{ 'images' | relative_url }}/options-controls.png "Diagram showing the relationship between options and controls."){:height="60%" width="60%"}
 
 
 ## Creating an option

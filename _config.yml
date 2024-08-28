@@ -290,11 +290,17 @@ collections:
   "eem_11.2":
     version: "11.2"
     output: true
+    permalink: /eem/:collection/:categories/:slug/
+    product: eem
+    order: 3
+  "eem_11.3":
+    version: "11.3"
+    output: true
     latest: true
     permalink: /eem/:categories/:slug/
     product: eem
     tag: Latest
-    order: 3
+    order: 4
   "ep_1.0":
     version: "1.0"
     output: true
@@ -304,11 +310,17 @@ collections:
   "ep_1.1":
     version: "1.1"
     output: true
+    permalink: /ep/:collection/:categories/:slug/
+    product: ep
+    order: 2
+  "ep_1.2":
+    version: "1.2"
+    output: true
     latest: true
     permalink: /ep/:categories/:slug/
     product: ep
     tag: Latest
-    order: 2
+    order: 3
   "tutorials":
     output: true
     permalink: /:collection/:path/
@@ -692,6 +704,19 @@ defaults:
       version: "11.2"
       product: eem
       layout: single
+      mastheadNavItem: Event Endpoint Management
+      versioned: true
+      sidebar:
+        nav: "112_eemdocs"
+    #_eem_11.3
+  - scope:
+      path: ""
+      type: "eem_11.3"
+    values:
+      collection: "eem_11.3"
+      version: "11.3"
+      product: eem
+      layout: single
       latest: true
       mastheadNavItem: Event Endpoint Management
       versioned: true
@@ -717,6 +742,19 @@ defaults:
     values:
       collection: "ep_1.1"
       version: "1.1"
+      product: ep
+      layout: single
+      mastheadNavItem: Event Processing
+      versioned: true
+      sidebar:
+        nav: "110_epdocs"
+  #_ep_1.2
+  - scope:
+      path: ""
+      type: "ep_1.2"
+    values:
+      collection: "ep_1.2"
+      version: "1.2"
       product: ep
       layout: single
       latest: true

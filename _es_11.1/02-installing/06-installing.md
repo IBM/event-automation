@@ -223,7 +223,7 @@ The KRaft mode in {{site.data.reuse.es_name}} has the following limitations:
 
 To enable KRaft, ensure you enable both the `UseKRaft` and `StrimziPodSet` feature gates. After the {{site.data.reuse.es_name}} operator is installed and created, edit your `ClusterServiceVersion` object on the {{site.data.reuse.openshift_short}} by running the following command:
 
-**Note:** This command requires the [`yq` YAML](https://github.com/mikefarah/yq){:target="_blank"} parsing and editing tool.
+**Note:** This command requires the `yq` [YAML](https://github.com/mikefarah/yq){:target="_blank"} parsing and editing tool.
 
 ```shell
 oc get csv -n <namespace> ibm-eventstreams.v<operator_version> -oyaml | yq e "(.spec.install.spec.deployments[0].spec.template.spec.containers[0].env[] | select(.name==\"STRIMZI_FEATURE_GATES\")) .value=\"+UseStrimziPodSets,+UseKRaft\"" | oc apply -f

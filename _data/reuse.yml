@@ -14,13 +14,13 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.2.3"
+eem_current_version: "11.3.0"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.1.9"
+ep_current_version: "1.2.0"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.1.9"
+flink_operator_current_version: "1.2.0"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -140,7 +140,7 @@ cp_cli_login: "Log in to your cluster as an administrator by using the IBM Cloud
 
 
 # {{site.data.reuse.openshift_cli_login}}
-openshift_cli_login: "Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the [`oc` CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"} (`oc login`)."
+openshift_cli_login: "Log in to your Red Hat OpenShift Container Platform as a cluster administrator by using the `oc` [CLI](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands){:target=\"_blank\"} (`oc login`)."
 
 # {{site.data.reuse.openshift_ui_login}}
 openshift_ui_login: "Log in to the OpenShift Container Platform [web console](https://docs.openshift.com/container-platform/4.14/web_console/web-console.html){:target=\"_blank\"} using your login credentials."
@@ -174,7 +174,7 @@ es_cli_init_111: "Initialize the Event Streams CLI by following the instructions
 es_cli_init_111_samesection: "Initialize the Event Streams CLI by following the instructions in [logging in](../logging-in/#logging-in-to-event-streams-cli)."
 
 # {{site.data.reuse.cncf_cli_login}}
-cncf_cli_login: "Log in to your Kubernetes cluster as a cluster administrator by setting your [`kubectl` context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target=\"_blank\"}."
+cncf_cli_login: "Log in to your Kubernetes cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target=\"_blank\"}."
 
 # {{site.data.reuse.enter_install_details}}
 enter_install_details: "Enter a release name that identifies your Event Streams installation, select the target namespace you created previously, select a target cluster (for example, **local-cluster**), and accept the terms of the license agreement."
@@ -325,7 +325,7 @@ array_expression_note: "**Note:** The **Assistant** drop-down menu does not supp
 ep_flink_version_align_note: "Ensure that the Event Processing version and the IBM Operator for Apache Flink version are the same."
 
 # {{site.data.reuse.ep_treeview_note}}
-ep_treeview_note: "**Note:** In Event Processing 1.1.9 and later, a tree view of the event structure is available. To view all the input properties of the current node, click **View input properties** in the upper-right corner of the pane."
+ep_treeview_note: "**Note:** A tree view of the event structure is available. To view all the input properties of the current node, click **View input properties** in the upper-right corner of the pane."
 
 #####################################################
 # DEPRECATED (USED IN OLDER DOCUMENTATION VERSIONS) #

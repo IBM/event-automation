@@ -103,7 +103,8 @@ layout: connectorsAll
                 {% else if button.file %}
                   {% capture url %}{{ site.url }}{{ site.baseurl }}/assets/connectorDownloads/{{ button.file }}{% endcapture %}
                 {% endif %}
-                <button class="button primary large" onclick="window.open('{{ url }}','_blank')">
+                <!--<button class="button primary large" onclick="window.open('{{ url }}','_blank')"> --->
+                  <button class="button primary large" url="{{ url }}"> 
                   {% case button.type %}
                     {% when 'GitHub' %}
                       <div class="image">

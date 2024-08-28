@@ -270,7 +270,7 @@ IBM MQ source connector v2 offers exactly-once message delivery semantics. An ad
 
 Ensure the following values are set in your environment before you enable the exactly-once behavior:
 
-* When the MQ source connector v2 has been configured to deliver messages to Kafka with exactly-once semantics, ensure that the downstream consumers are only consuming transactionally committed messages. You can do this by setting the [`isolation.level`](https://kafka.apache.org/36/documentation/#consumerconfigs_isolation.level){:target="_blank"} configuration property to `read_committed`.
+* When the MQ source connector v2 has been configured to deliver messages to Kafka with exactly-once semantics, ensure that the downstream consumers are only consuming transactionally committed messages. You can do this by setting the [isolation.level](https://kafka.apache.org/36/documentation/#consumerconfigs_isolation.level){:target="_blank"} configuration property to `read_committed`.
 * The IBM MQ source connector must run on Kafka Connect version 3.3.0 or later and the `exactly.once.source.support` property must be set to `enabled` in the Kafka Connect worker configuration. For more information about the `exactly.once.source.support` setting, and the Access Control List (ACL) requirements for the worker nodes, see the [Apache Kafka documentation](https://kafka.apache.org/36/documentation/#connect_exactlyoncesource){:target="_blank"}.
 * On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
 * On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.
@@ -282,7 +282,7 @@ Ensure you configure the following properties to enable exactly-once delivery:
 
 * The IBM MQ source connector must have the state queue name configured in the `mq.exactly.once.state.queue` property. The value of the `mq.exactly.once.state.queue` property is the name of a pre-configured IBM MQ queue on the same queue manager as the source IBM MQ queue.
 
-* If you are configuring the [`transaction.boundary`](https://kafka.apache.org/36/documentation/#sourceconnectorconfigs_transaction.boundary){:target="_blank"} property, the only permitted property value for the IBM MQ source connector is `poll` (the default value). The `poll` value in the `transaction.boundary` property ensures that the Kafka producer transactions are started and committed for each batch of records that are provided to Kafka by the IBM MQ source connector v2.
+* If you are configuring the [transaction.boundary](https://kafka.apache.org/36/documentation/#sourceconnectorconfigs_transaction.boundary){:target="_blank"} property, the only permitted property value for the IBM MQ source connector is `poll` (the default value). The `poll` value in the `transaction.boundary` property ensures that the Kafka producer transactions are started and committed for each batch of records that are provided to Kafka by the IBM MQ source connector v2.
 
 * Only a single connector task can run in the Kafka Connect instance. As a consequence, the `tasks.max` property must be set to `1` to ensure that failure scenarios do not cause duplicated messages to be delivered.
 

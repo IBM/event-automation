@@ -107,6 +107,159 @@ latest_eemdocs:
         url: /security/api-tokens/
       - title: "Enabling FIPS"
         url: /security/fips/
+      - title: "Audit logging"
+        url: /security/audit-logging/
+
+  - title: Describe and publish
+    children:
+      - title: "Describing event sources"
+        url: /describe/adding-topics/
+      - title: "Managing event sources"
+        url: /describe/managing-event-sources/
+      - title: "Managing options"
+        url: /describe/managing-options/
+      - title: "Adding controls to options"
+        url: /describe/option-controls/
+      - title: "Managing clusters"
+        url: /describe/managing-clusters/
+      - title: "Publishing options"
+        url: /describe/publishing-options/
+      - title: "Managing user access to options"
+        url: /describe/managing-user-access-to-topics/
+      - title: "Managing gateways"
+        url: /describe/managing-gateways/
+      
+  - title: Subscribe
+    children:
+      - title: "Discovering event endpoints"
+        url: /subscribe/discovering-event-endpoints/
+      - title: "Subscribing to event endpoints"
+        url: /subscribe/subscribing-to-event-endpoints/
+      - title: "Managing subscriptions"
+        url: /subscribe/managing-subscriptions/
+      - title: "Configuring a client application to connect to an event endpoint"
+        url: /subscribe/configure-your-application-to-connect/
+ 
+  - title: "Combining API and event management"
+    children:
+      - title: "Overview"
+        url: /api-and-event-management/overview/
+      - title: "Why combine API and event management"
+        url: /api-and-event-management/combining-events-and-api-management/
+      - title: "API and event management personas"
+        url: /api-and-event-management/personas/
+      - title: "Component topology"
+        url: /api-and-event-management/components/
+
+  - title: "Integrating with IBM API Connect"
+    children:
+      - title: "Overview"
+        url: /integrating-with-apic/overview/
+      - title: "Integration concepts and glossary"
+        url: /integrating-with-apic/apic-eem-concepts/
+      - title: "Configure the Manager as an Event Gateway Service"
+        url: /integrating-with-apic/configure-eem-for-apic/
+      - title: "Generating an AsyncAPI document for use in API Connect"
+        url: /integrating-with-apic/generate-asyncapi/
+      - title: "API and event management: example scenario"
+        url: /integrating-with-apic/apic-eem-scenario/
+ 
+  - title: Reference
+    children:
+      - title: "API reference for the CRDs"
+        url: /reference/api-reference/
+      - title: Event Endpoint Management Admin API
+        url: /../eem-api/   
+  - title: Troubleshooting
+    children:
+      - title: "Troubleshooting overview"
+        url: /troubleshooting/intro/
+      - title: "Gathering logs"
+        url: /troubleshooting/gathering-logs/
+      - title: "Configuring trace logging"
+        url: /troubleshooting/trace-logging/
+      - title: "No such algorithm exception log"
+        url: /troubleshooting/no-such-algorithm-log/
+      - title: "Event Gateway in 'Evicted' state"
+        url: /troubleshooting/evicted-gateway/
+      - title: "Error when logging in to UI after changing CA certificate"
+        url: /troubleshooting/changing-ca-certificate/
+      - title: "Kafka application fails with SSLHandshakeException"
+        url: /troubleshooting/ssl-protocol-failure/
+      - title: "Configuring usage-based reporting"
+        url: /troubleshooting/usage-based-reporting/
+      - title: "Event Gateway fails with SSL errors"
+        url: /troubleshooting/ssl-error/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
+      - title: "502 Bad Gateway error when logging in to UI"
+        url: /troubleshooting/502-bad-gateway/
+      - title: "Subscribed topics not available with API Connect subscription credentials"
+        url: /troubleshooting/apic-subscription-topics-unavailable/
+      - title: "Event Manager fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
+      - title: "Unable to publish an option due to incompatible controls" 
+        url: /troubleshooting/unexpected-option-not-publishable/
+112_eemdocs:
+  - title: About
+    children:
+      - title: "Introduction"
+        url: /about/overview/
+      - title: "What's new"
+        url: /about/whats-new/
+      - title: "Key concepts"
+        url: /about/key-concepts/
+
+  - title: Installing
+    children:
+      - title: "Prerequisites"
+        url: /installing/prerequisites/
+      - title: "Planning your installation"
+        url: /installing/planning/
+      - title: "Installation overview"
+        url: "/installing/overview/"
+      - title: "Installing the Manager in an online OpenShift environment"
+        url: /installing/installing/
+      - title: "Installing the Manager in an offline environment"
+        url: /installing/offline/
+      - title: "Installing the Manager on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
+      - title: "Installing Event Gateways on the same cluster"
+        url: /installing/deploy-gateways/
+      - title: "Installing stand-alone Event Gateways"
+        url: /installing/standalone-gateways/
+      - title: "Configuring"
+        url: /installing/configuring/
+      - title: "Post-installation tasks"
+        url: /installing/post-installation/
+      - title: "Backing up and restoring"
+        url: /installing/backup-restore/
+      - title: "Uninstalling"
+        url: /installing/uninstalling/
+      - title: "Upgrading"
+        url: /installing/upgrading/
+  - title: Getting started
+    children:
+      - title: "Logging in"
+        url: /getting-started/logging-in/
+  - title: Security
+    children:
+      - title: "Managing access"
+        url: /security/managing-access/
+      - title: "Managing user roles"
+        url: /security/user-roles/
+      - title: "Verifying container image signatures"
+        url: /security/verifying-signature/
+      - title: "Network policies"
+        url: /security/network-policies/
+      - title: "Considerations for GDPR"
+        url: /security/gdpr-considerations/
+      - title: "Encrypting your data"
+        url: /security/data-encryption/
+      - title: "Managing access to the Admin API"
+        url: /security/api-tokens/
+      - title: "Enabling FIPS"
+        url: /security/fips/
       - title: "Enabling hostname verification"
         url: /security/hostname-verification/
       - title: "Audit logging"
@@ -489,6 +642,140 @@ latest_eemdocs:
 
 # Event Processing
 latest_epdocs:
+  - title: About
+    children:
+      - title: "Introduction"
+        url: /about/overview/
+      - title: "What's new"
+        url: /about/whats-new/
+      - title: "Key concepts"
+        url: /about/key-concepts/
+
+  - title: Installing
+    children:
+      - title: "Prerequisites"
+        url: /installing/prerequisites/
+      - title: "Planning your installation"
+        url: /installing/planning/
+      - title: "Installation overview"
+        url: "/installing/overview/"
+      - title: "Installing in an online OpenShift environment"
+        url: /installing/installing/
+      - title: "Installing in an offline environment"
+        url: /installing/offline/
+      - title: "Installing on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
+      - title: "Configuring"
+        url: /installing/configuring/
+      - title: "Post-installation tasks"
+        url: /installing/post-installation/
+      - title: "Backing up and restoring"
+        url: /installing/backup-restore/
+      - title: "Uninstalling"
+        url: /installing/uninstalling/
+      - title: "Upgrading"
+        url: /installing/upgrading/
+
+  - title: Getting started with Authoring
+    children:
+      - title: "Logging in"
+        url: /getting-started/logging-in/
+      - title: "Building a simple flow"
+        url: /getting-started/canvas/
+
+  - title: Security
+    children:
+      - title: "Managing access"
+        url: /security/managing-access/
+      - title: "Managing user roles"
+        url: /security/user-roles/
+      - title: "Verifying container image signatures"
+        url: /security/verifying-signature/
+      - title: "Network policies"
+        url: /security/network-policies/
+      - title: "Considerations for GDPR"
+        url: /security/gdpr-considerations/
+      - title: "Encrypting your data"
+        url: /security/data-encryption/
+
+  - title: Administering
+    children:
+      - title: "Monitoring Flink health"
+        url: /administering/flink-health/
+
+  - title: Nodes
+    children:
+        - title: "Node overview"
+          url: /nodes/summary/
+        - title: "Events"
+          url: /nodes/eventnodes/
+        - title: "Processors"
+          url: /nodes/processornodes/
+        - title: "Windowed"
+          url: /nodes/windowednodes/
+        - title: "Joins"
+          url: /nodes/joins/
+        - title: "Enrichment"
+          url: /nodes/enrichmentnode/
+
+  - title: Deploying advanced flows
+    children:
+      - title: "Exporting and importing flows"
+        url: /advanced/exporting-flows/
+      - title: "Deploying jobs in development environments"
+        url: /advanced/deploying-development/
+      - title: "Deploying jobs in production environments"
+        url: /advanced/deploying-production/
+
+  - title: Reference
+    children:
+      - title: "Event structure definition"
+        url: /reference/event-structure/    
+      - title: "API reference for the CRDs"
+        url: /reference/api-reference/
+      - title: "Supported Flink SQL functions"
+        url: /reference/supported-functions/
+
+  - title: Troubleshooting
+    children:
+      - title: "Troubleshooting overview"
+        url: /troubleshooting/intro/
+      - title: "Gathering logs"
+        url: /troubleshooting/gathering-logs/
+      - title: "Configuring trace logging"
+        url: /troubleshooting/trace-logging/
+      - title: "Error when logging in to UI after changing CA certificate"
+        url: /troubleshooting/changing-ca-certificate/
+      - title: "Results stuck in `Waiting for output events`"
+        url: /troubleshooting/waiting-for-events/
+      - title: "The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues"
+        url: /troubleshooting/default-scc-issues/
+      - title: "Running flows stop working"
+        url: /troubleshooting/flows-stop-working/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
+      - title: "Flink instances cannot access jobResultStore"
+        url: /troubleshooting/fsgroup-not-set/
+      - title: "Operator watching single namespace has escalated permissions"
+        url: /troubleshooting/rbac/
+      - title: "Error when you connect to a database after modifying a CA certificate"
+        url: /troubleshooting/changing-database-ca-certificate/
+      - title: "Flink pods enter ImagePullBackOff state"
+        url: /troubleshooting/flink-imagepullbackoff/
+      - title: "Flink instances cannot access SQL runner JAR file"
+        url: /troubleshooting/flink-jar-permissions/
+      - title: "Error in flows during upgrade or import"
+        url: /troubleshooting/migration-issue/
+      - title: "Enrichment from API produces no output events"
+        url: /troubleshooting/no-output-event-from-api-node/
+      - title: "Auto-detection message format issues"
+        url: /troubleshooting/bad-output-from-auto-detection/
+      - title: "Event Processing fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
+      - title: "Incorrect event time property format causes Flink job to fail"
+        url: /troubleshooting/event-time-property   
+
+110_epdocs:
   - title: About
     children:
       - title: "Introduction"

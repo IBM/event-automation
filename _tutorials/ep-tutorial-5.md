@@ -201,7 +201,7 @@ CREATE TABLE `Unique stock movements`
     `product`                      STRING,
     `quantity`                     BIGINT,
     `updatetime`                   TIMESTAMP(9),
-    `event_time`                   TIMESTAMP(6)
+    `event_time`                   timestamp(3)
 )
 ```
 
@@ -219,7 +219,7 @@ You need to make a few modifications to this definition to prepare it for use by
        `product`                      STRING,
        `quantity`                     BIGINT,
        `updatetime`                   TIMESTAMP(9),
-       `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp'
+       `event_time`                   timestamp(3) METADATA FROM 'timestamp'
    )
    ```
 
@@ -235,7 +235,7 @@ You need to make a few modifications to this definition to prepare it for use by
        `product`                      STRING,
        `quantity`                     BIGINT,
        `updatetime`                   TIMESTAMP(9),
-       `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp',
+       `event_time`                   timestamp(3) METADATA FROM 'timestamp',
        PRIMARY KEY (`movementid`) NOT ENFORCED
    )
    ```

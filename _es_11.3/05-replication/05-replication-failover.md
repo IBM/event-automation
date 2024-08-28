@@ -121,7 +121,7 @@ Geo-replication uses the Kafka Mirror Maker 2.0 `MirrorCheckpointConnector` to a
 kubectl es topics --internal
 ```
 
-When processing messages from the destination cluster, you can use the checkpoints to start consuming from an offset that is equivalent to the last committed offset on the origin cluster. If your application is written in Java, Kafka's [`RemoteClusterUtils`](https://kafka.apache.org/25/javadoc/org/apache/kafka/connect/mirror/RemoteClusterUtils.html){:target="_blank"} class provides the `translateOffsets()` utility method to retrieve the destination cluster offsets for a consumer group from the checkpoints topic. You can then use the `KafkaConsumer.seek()` method to override the offsets that the consumer will use on the next `poll`.
+When processing messages from the destination cluster, you can use the checkpoints to start consuming from an offset that is equivalent to the last committed offset on the origin cluster. If your application is written in Java, Kafka's [RemoteClusterUtils](https://kafka.apache.org/25/javadoc/org/apache/kafka/connect/mirror/RemoteClusterUtils.html){:target="_blank"} class provides the `translateOffsets()` utility method to retrieve the destination cluster offsets for a consumer group from the checkpoints topic. You can then use the `KafkaConsumer.seek()` method to override the offsets that the consumer will use on the next `poll`.
 
 For example, the following Java code snippet will update the `example-group` consumer group offset from the `origin-cluster` cluster to the destination cluster equivalent:
 

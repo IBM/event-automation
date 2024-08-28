@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.2.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.2.3
 
 ### New security controls for the {{site.data.reuse.egw_short}}
 

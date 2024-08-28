@@ -117,7 +117,7 @@ To process the messages in **{{site.data.reuse.ep_name}}**, you first need to fl
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-20.png "editing the MQ connector"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-20.png "editing the MQ connector")
 
-   It is the [`install/supporting-demo-resources/mq/templates/06-connector.yaml`](https://github.com/IBM/event-automation-demo/blob/main/install/supporting-demo-resources/mq/templates/06-connector.yaml) file, included in the folder for the files you used to [set up the MQ queue manager](../guided/tutorial-0#ibm-mq) for this tutorial.
+   It is the [install/supporting-demo-resources/mq/templates/06-connector.yaml](https://github.com/IBM/event-automation-demo/blob/main/install/supporting-demo-resources/mq/templates/06-connector.yaml) file, included in the folder for the files you used to [set up the MQ queue manager](../guided/tutorial-0#ibm-mq) for this tutorial.
 
 2. Add a transform definition to flatten the message value.
 

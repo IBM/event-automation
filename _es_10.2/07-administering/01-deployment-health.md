@@ -52,6 +52,6 @@ If any of the components are not ready for an extended period of time, check the
 2. To retrieve detailed log data for a pod to help analyze problems, use the following command:\\
    `oc -n <namespace> logs <pod-name> -c <container_name>`
 
-For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pod){:target=”\_blank”}. You can use the [`oc` command](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/usage-oc-kubectl.html){:target=“\_blank”} instead of `kubectl` to perform the debugging steps.
+For more information about debugging, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/#using-kubectl-describe-pod-to-fetch-details-about-pod){:target=”\_blank”}. You can use the `oc` [command](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/usage-oc-kubectl.html){:target=“\_blank”} instead of `kubectl` to perform the debugging steps.
 
 **Note:** After a component restarts, the `oc` command retrieves the logs for the new instance of the container. To retrieve the logs for a previous instance of the container, add the `-–previous` option to the `oc logs` command.

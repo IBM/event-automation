@@ -44,9 +44,9 @@ active
   <button role="button" aria-labelledBy="heading{{ connectorID }}" tabindex="0" id="{{ connectorID }}"
     aria-label="Open connector {{ connector.title }}" class="card" {% if isAllConnectors %} {%- comment -%}use
     {{ connectorURL }} if first page is description{%- endcomment -%}
-    onclick="connectorCard(this,'{{ theFirstSubPageURL }}');" {% else %} {%- comment -%}{%- endcomment -%}
+    onclick="(()=>{connectorCard(this,'{{ theFirstSubPageURL }}');addHandlersForButtons();})()" {% else %} {%- comment -%}{%- endcomment -%}
     {%- comment -%}use {{ connectorURL }} if first page is description{%- endcomment -%}
-    onclick="connectorCard(this,'{{ theFirstSubPageURL }}');" {% endif %}>
+    onclick="(()=>{connectorCard(this,'{{ theFirstSubPageURL }}');addHandlersForButtons();})()" {% endif %}>
     <div class="cardContent">
       <div class="diagram {{ connector.direction }}">
         {% if connector.icon %}

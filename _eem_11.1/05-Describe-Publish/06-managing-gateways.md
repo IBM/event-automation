@@ -1,6 +1,6 @@
 ---
 title: "Managing gateways"
-excerpt: "Find out how you can monitor deployed Gateway instances in the {{site.data.reuse.eem_name}} UI"
+excerpt: "Find out how you can monitor deployed Gateway instances in the Event Endpoint Management UI"
 categories: describe
 slug: managing-gateways
 toc: true

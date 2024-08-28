@@ -1,7 +1,7 @@
 ---
 
 title: "Discovering event endpoints"
-excerpt: Use the {{site.data.reuse.eem_name}} Catalog to discover information about the available event sources and the event data they provide, so that you can choose the ones you want to use in your applications and flows."
+excerpt: Use the Event Endpoint Management Catalog to discover information about the available event sources and the event data they provide, so that you can choose the ones you want to use in your applications and flows."
 categories: subscribe
 slug: discovering-event-endpoints
 toc: true

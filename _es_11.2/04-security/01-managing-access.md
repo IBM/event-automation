@@ -20,7 +20,7 @@ Additionally, the {{site.data.reuse.es_name}} cluster can be configured to autho
 
 When Kafka authentication is enabled, the {{site.data.reuse.es_name}} UI and CLI requires you to log in by using an {{site.data.reuse.icpfs}} Identity and Access Management (IAM) user, or by using a Kafka user configured with SCRAM-SHA-512 authentication, depending on the authentication type set for the `adminUI` in the `EventStreams` custom resource (see [configuring UI and CLI security](../../installing/configuring/#configuring-ui-and-cli-security)).
 
-{{site.data.reuse.iam_note}} For other Kubernetes platforms, you can log in by using a Kafka user configured with SCRAM-SHA-512 authentication. You can create a Kafka user by applying a [`KafkaUser` custom resource](#creating-a-kafkauser-by-using-yaml).
+{{site.data.reuse.iam_note}} For other Kubernetes platforms, you can log in by using a Kafka user configured with SCRAM-SHA-512 authentication. You can create a Kafka user by applying a `KafkaUser` [custom resource](#creating-a-kafkauser-by-using-yaml).
 
 
 

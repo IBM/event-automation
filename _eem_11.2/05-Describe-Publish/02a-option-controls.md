@@ -202,6 +202,8 @@ You can apply the following control to options for produce-enabled event sources
 
 You can add the schema enforcement control to manage the kind of data that a client can write to an event endpoint. When an option is set up with schema enforcement enabled, a subscriber can only produce events to the event endpoint that comply with the schema that you add to the event source's event information.
 
+**Note:** When sending messages to an event endpoint, the Kafka protocol might group multiple messages together into a single batch. This means that if a single message in the batch does not conform to the schema, the entire batch is rejected and none of the messages are written to the event endpoint. 
+
 #### Before you begin:
 
 If a schema is not associated with the event source, the option to add the schema enforcement control is disabled. The schema enforcement control can only be applied to events that use an Avro schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded. 

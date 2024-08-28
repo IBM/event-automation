@@ -26,7 +26,7 @@ Running the operator in this mode ensures that your {{site.data.reuse.es_name}} 
 
 1. To enable the `StrimziPodSetOnlyReconciliation` mode, follow these steps: 
 
-   **Note:** This command requires the [`yq` YAML](https://github.com/mikefarah/yq){:target="_blank"} parsing and editing tool.
+   **Note:** This command requires the `yq` [YAML](https://github.com/mikefarah/yq){:target="_blank"} parsing and editing tool.
    - If you are running on the {{site.data.reuse.openshift_short}}, run the following command to update the `ClusterServiceVersion` of the `EventStreams` operator:
 
      ```shell

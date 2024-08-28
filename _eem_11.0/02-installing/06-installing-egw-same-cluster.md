@@ -1,6 +1,6 @@
 ---
 title: "Installing Event Gateways on the same cluster"
-excerpt: "To provide access to your socialized topics, find out how to install and configure Gateways and Gateway groups on the same cluster as the {{site.data.reuse.eem_manager}} instance."
+excerpt: "To provide access to your socialized topics, find out how to install and configure Gateways and Gateway groups on the same cluster as the Event Manager instance."
 categories: installing
 slug: deploy-gateways
 toc: true

@@ -176,7 +176,7 @@ The next step is to define a join node to merge the two event streams to identif
 
    Click **Next**.
 
-1. To identify products that have run out of stock within one hour of being ordered, use the `Out-of-stock(outofstocktime)` event as the event to detect and `Orders(event-time)` event as the event to set the time window with a one hour time window.
+1. To identify products that have run out of stock within one hour of being ordered, use the `Out-of-stock(outofstocktime)` event as the event to detect and `Orders(ordertime)` event as the event to set the time window with a one hour time window.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-17.png "setting time window condition"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-17.png "setting time window condition")
 

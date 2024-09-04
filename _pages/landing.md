@@ -16,19 +16,17 @@ sections:
 
 <details class="details">
   <summary><b>Release 1.1.0.0</b></summary>
-  <p><a href="{{ site.url }}{{ site.baseurl }}/support/licensing/#ibm-event-automation-license-information" target="_blank">See license information.</a></p>
+  <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
- <!-- 
     <h3>Event Streams</h3>
     <h4>11.5.0 - what's new:</h4>
     <ul>
-      <li>Simplified topic management with Unidirectional Topic Operator</li>
-      <li>Kafka version updated to 3.7.1</li>
-      <li>New ways to create and delete topics</li>
+      <li>Simplified Kafka topic management with Unidirectional Topic Operator (UTO)</li>
+      <li>Apicurio version updated to 2.6.2.Final</li>
+      <li>Kafka version upgraded to 3.7.1</li>
       <li>Security and bug fixes</li>
-    </ul> 
--->
+    </ul>
     <h3>Event Endpoint Management</h3>
     <h4>11.3.0 - what's new:</h4>
     <ul>
@@ -52,7 +50,7 @@ sections:
 
 <details class=details>
   <summary><b>Release 1.0.0.0</b></summary>
-  <p><a href="{{ site.url }}{{ site.baseurl }}/support/licensing/#ibm-event-automation-license-information" target="_blank">See license information.</a></p>
+  <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
     <h3>Event Streams</h3>

@@ -119,10 +119,17 @@ The clothing company selected **Include historical** to run the filter on the hi
 
 ## Flow statuses
 
-A flow status indicates the current state of the flow. A flow can be in one of the following states:
+A flow status indicates the current state of the flow. To view the status of a flow, navigate to the **Flows** section on the homepage of the {{site.data.reuse.ep_name}} UI. Each flow tile displays the current status of the flow.
+
+![Flow tiles displaying various statuses]({{ 'images' | relative_url }}/flowcard-status.png "Image of flow tiles displaying various statuses")
+
+
+A flow can be in one of the following states:
 
 - **Draft:** Indicates that the flow includes one or more nodes that need to be configured. The flow cannot be run.
 - **Valid:** Indicates that all nodes in the flow are configured and valid. The flow is ready to run.
 - **Invalid:** Indicates that the nodes in the flow are configured but have a validation error, or a required node is missing. The flow cannot be run.
 - **Running:** Indicates that the flow is configured, validated, running, and generating output.
 - **Error:** Indicates that an error occurred during the runtime of a previously running flow.
+
+**Tip:** You can click the icon next to **Invalid** and **Error** states to find more information about the error.

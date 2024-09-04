@@ -28,8 +28,9 @@ egw: "Event Gateway"
 # {{site.data.reuse.eem_manager}}
 eem_manager: "Event Manager"
 
+
 # {{site.data.reuse.eem_ubp_license_id}}
-eem_ubp_license_id: "L-GGQD-G7AYJD"
+eem_ubp_license_id: "L-FTGN-WUM5C5"
 
 # {{site.data.reuse.egw_short}}
 egw_short: "Event Gateway"

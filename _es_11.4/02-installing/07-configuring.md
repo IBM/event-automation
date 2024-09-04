@@ -19,7 +19,7 @@ You can modify the samples, save them, and apply custom configuration settings a
 
 On OpenShift, you can configure and apply them by using the [command line](../installing/#installing-an-instance-by-using-the-cli) or by dragging and dropping them onto the {{site.data.reuse.openshift_short}} [web console](../installing/#installing-by-using-the-yaml-view), and editing them.
 
-**Note:** When applying custom Kafka configuration settings to your {{site.data.reuse.es_name}}, check the [Kafka documentation](https://kafka.apache.org/documentation){:target="_blank"} to ensure the new configuration settings are consistent and do not cause conflicts.
+**Note:** When applying custom Kafka configuration settings to your {{site.data.reuse.es_name}}, check the [Kafka documentation](https://kafka.apache.org/37/documentation){:target="_blank"} to ensure the new configuration settings are consistent and do not cause conflicts.
 
 ## Checking configuration settings
 
@@ -242,7 +242,7 @@ You can choose to change the authentication type of the UI access from IAM to SC
 
 ## Applying Kafka broker configuration settings
 
-Kafka supports a number of [broker configuration settings](http://kafka.apache.org/documentation/#brokerconfigs){:target="_blank"}, typically provided in a properties file.
+Kafka supports a number of [broker configuration settings](http://kafka.apache.org/37/documentation/#brokerconfigs){:target="_blank"}, typically provided in a properties file.
 
 When creating an instance of {{site.data.reuse.es_name}}, these settings are defined in an `EventStreams` custom resource under a the `spec.strimziOverrides.kafka.config` property.
 
@@ -801,7 +801,7 @@ spec:
 # ...
 ```
 
-**Important:** Enabling the Kafka Proxy to gather producer metrics places an intermediary between your producing clients and your Kafka brokers. This adds latency to any traffic to your Kafka brokers. Consider the performance implications of having the proxy in front of your Kafka brokers. You can also leave the proxy disabled and gather producer metrics from the clients directly by using [JMX](https://kafka.apache.org/documentation/#monitoring){:target="_blank"}.
+**Important:** Enabling the Kafka Proxy to gather producer metrics places an intermediary between your producing clients and your Kafka brokers. This adds latency to any traffic to your Kafka brokers. Consider the performance implications of having the proxy in front of your Kafka brokers. You can also leave the proxy disabled and gather producer metrics from the clients directly by using [JMX](https://kafka.apache.org/37/documentation/#monitoring){:target="_blank"}.
 
 
 ## Configuring external monitoring through Prometheus

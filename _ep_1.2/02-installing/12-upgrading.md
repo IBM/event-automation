@@ -89,7 +89,9 @@ Before you can upgrade to the latest version, the catalog source for the new ver
   - If you used the CASE bundle for an online install, [apply the new catalog source](../installing/#adding-specific-versions) to update the `CatalogSource`.
   - If you used the CASE bundle for an offline install that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
 
-  - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It should eventually reflect the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`. In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is shown under `Installed Operators`. Using the CLI, when you check the status of the `Subscription` custom resource, the `status.installedCSV` field shows the current operator version.  
+  - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It eventually reflects the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`:
+    - In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is displayed under `Installed Operators`. 
+    - If you are using the CLI, check the status of the `Subscription` custom resource, the `status.installedCSV` field shows the current operator version.  
 
 
 
@@ -304,9 +306,9 @@ After the upgrade, verify the status of the {{site.data.reuse.ep_name}} and Flin
 
 After upgrading your operators to {{site.data.reuse.ep_name}} 1.2.x from version 1.1.x, you must update [the license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) value in the `spec.license.license` field of your custom resources, depending on the program that you purchased.
 
-You can make this change via the console or the CLI/API, and it is required for both OLM and Helm installations.
+You can make this change by using the web console or the CLI, and it is required for both OLM and Helm installations.
 
-The components will be in an error state until you do this, and will not run the new version until the new license ID is entered. After you change the license IDs, check the custom resource status to confirm they are successfully running the new version.
+The components will show errors and will not work with the new version until you update the license ID. After you change the license IDs, check the custom resource status to confirm they are successfully running the new version.
 
 ### Restart your flows
 

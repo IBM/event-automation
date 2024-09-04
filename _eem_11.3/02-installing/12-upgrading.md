@@ -80,7 +80,9 @@ Before you can upgrade to the latest version, make the catalog source for the ve
 - Specific versions: If you used the CASE bundle to install catalog source for a specific previous version, you must download and use a new CASE bundle for the version you want to upgrade to.
   - If you used the CASE bundle for an online install, [apply the new catalog source](../installing/#adding-specific-versions) to update the `CatalogSource`.
   - If you used the CASE bundle for an offline install that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
-  - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It should eventually reflect the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`. In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is shown under `Installed Operators`. Using the CLI, when you check the status of the `Subscription` custom resource, the `status.installedCSV` field shows the current operator version.  
+  - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It eventually reflects the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`:
+    - In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is displayed under `Installed Operators`. 
+    - If you are using the CLI, check the status of the `Subscription` custom resource, the `status.installedCSV` field shows the current operator version.  
 
 The change to a new Channel, if needed, would be a later step.
 

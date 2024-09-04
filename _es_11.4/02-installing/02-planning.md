@@ -186,7 +186,7 @@ Ensure you have sufficient CPU capacity and physical memory in your environment 
 
 If you plan to have persistent volumes, [consider the disk space](../capacity-planning/#disk-space-for-persistent-volumes) required for storage.
 
-Both Kafka and ZooKeeper rely on fast write access to disks. Use separate dedicated disks for storing Kafka and ZooKeeper data. For more information, see the disks and filesystems guidance in the [Kafka documentation](https://kafka.apache.org/documentation/#diskandfs){:target="_blank"}, and the deployment guidance in the [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.5.7/zookeeperAdmin.html#sc_designing){:target="_blank"}.
+Both Kafka and ZooKeeper rely on fast write access to disks. Use separate dedicated disks for storing Kafka and ZooKeeper data. For more information, see the disks and filesystems guidance in the [Kafka documentation](https://kafka.apache.org/37/documentation/#diskandfs){:target="_blank"}, and the deployment guidance in the [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.5.7/zookeeperAdmin.html#sc_designing){:target="_blank"}.
 
 If persistence is enabled, each Kafka broker and ZooKeeper server requires one physical volume each. The number of Kafka brokers and ZooKeeper servers depends on your setup (for example, see the provided samples described in [resource requirements](../prerequisites/#resource-requirements)).
 
@@ -329,7 +329,7 @@ You can set up {{site.data.reuse.es_name}} to use the following Cruise Control f
 
 {{site.data.reuse.es_name}} follows widely adopted logging method for containerized applications and writes to standard output and standard error streams.
 
-You can install any logging solution that integrates with Kubernetes such as [cluster logging](https://docs.openshift.com/container-platform/4.16/logging/cluster-logging.html){:target="_blank"} provided by the {{site.data.reuse.openshift_short}} to collect, store, and visualize logs.
+You can install any logging solution that integrates with Kubernetes such as [cluster logging](https://docs.openshift.com/container-platform/4.16/observability/logging/cluster-logging.html){:target="_blank"} provided by the {{site.data.reuse.openshift_short}} to collect, store, and visualize logs.
 
 You can use log data to monitor cluster activity and investigate any problems affecting your [system health](../../administering/deployment-health/).
 

@@ -4,7 +4,6 @@ forID: kc-sink-mq
 categories: [sink]
 ---
 
-
 {{site.data.reuse.es_name}} provides additional help for setting up a Kafka Connect environment and starting the MQ sink connector. Log in to the {{site.data.reuse.es_name}} UI, click the **Toolbox** tab and scroll to the **Connectors** section.
 
 You can download the MQ sink connector from GitHub:

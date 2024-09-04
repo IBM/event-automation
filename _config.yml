@@ -270,11 +270,17 @@ collections:
   "es_11.4":
     output: true
     version: "11.4"
+    permalink: /es/:collection/:categories/:slug/
+    order: 15
+    product: es
+  "es_11.5":
+    output: true
+    version: "11.5"
     tag: Latest
     latest: true
     permalink: /es/:categories/:slug/
-    order: 15
-    product: es
+    order: 16
+    product: es    
   "eem_11.0":
     version: "11.0"
     output: true
@@ -658,6 +664,23 @@ defaults:
     values:
       collection: "es_11.4"
       version: "11.4"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "114docs"
+  # _11.5
+  - scope:
+      path: ""
+      type: "es_11.5"
+    values:
+      collection: "es_11.5"
+      version: "11.5"
       product: es
       layout: single
       read_time: false

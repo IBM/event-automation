@@ -22,7 +22,7 @@ sections:
     <h3>Event Streams</h3>
     <h4>11.5.0 - what's new:</h4>
     <ul>
-      <li>Simplified Kafka topic management with Unidirectional Topic Operator (UTO)</li>
+      <li>Topic operator enhancements</li>
       <li>Apicurio version updated to 2.6.2.Final</li>
       <li>Kafka version upgraded to 3.7.1</li>
       <li>Security and bug fixes</li>

@@ -14,7 +14,8 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.5.x.
 
 ### Topic operator enhancements
 
-The Topic operator has been enhanced to improve efficiency and scaling, and to remove the dependency on ZooKeeper. In version 11.5.0 and later, {{site.data.reuse.es_name}} uses the Topic operator and `KafkaTopic` custom resources to create, update,and delete Kafka topics.
+The Topic operator has been enhanced to improve efficiency and scaling, and to remove the dependency on ZooKeeper. In version 11.5.0 and later, the {{site.data.reuse.es_name}} UI and CLI use the Topic operator and `KafkaTopic` custom resources to manage Kafka topics. As a result, the Topic operator is no longer an optional component.
+
 
 ### Apicurio version updated to 2.6.2.Final
 

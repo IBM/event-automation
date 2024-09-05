@@ -12,9 +12,10 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.5.x.
 
 ## Release 11.5.0
 
-### Simplified Kafka topic management with Unidirectional Topic Operator (UTO)
+### Topic operator enhancements
 
-{{site.data.reuse.es_name}} version 11.5.0 introduces simplified Kafka topic management by using Kubernetes custom resources (CRs) for creating, updating, and deleting Kafka topics.
+The Topic operator has been enhanced to improve efficiency and scaling, and to remove the dependency on ZooKeeper. In version 11.5.0 and later, the {{site.data.reuse.es_name}} UI and CLI use the Topic operator and `KafkaTopic` custom resources to manage Kafka topics. As a result, the Topic operator is no longer an optional component.
+
 
 ### Apicurio version updated to 2.6.2.Final
 

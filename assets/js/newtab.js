@@ -18,7 +18,6 @@ function isTrustedDomain(link){
 function addHandlersForButtons(){
   const links = document.getElementsByTagName('a');
   const buttonLinks = document.getElementsByClassName('button primary large');
-  console.log(buttonLinks);
   const blankLinks = [];
 
   // Convert HTMLCollection to array
@@ -29,7 +28,7 @@ function addHandlersForButtons(){
       if (link.hasAttribute("href") && !isTrustedDomain(link))  {
         blankLinks.push(link); // Push the link element itself
       }
-      
+
     }
   });
 
@@ -72,33 +71,41 @@ function handleLinkClick(event) {
   ) {
     // Prevent the default behavior of following the link
     event.preventDefault();
-    console.log(window.location.pathname);
 
     // Extract the href attribute from the link
     const href1 = event.target.getAttribute("href");
     // Get the current URL pathname
   var pathname = window.location.pathname;
 
+  
   // Check for the presence of certain segments
-  if (pathname.includes("/es/") || pathname.includes("/eem/") || pathname.includes("/ep/")) {
+  if (pathname.includes("/event-automation-docs/")) {
     // Redirect to the longer URL
-    window.open(`../../../redirecting?URL=${href1}`);
-  } else {
+    window.open(`/event-integration/event-automation-docs/redirecting?URL=${href1}`);
+  } else if ( pathname.includes("/event-automation/") ) {
     // Redirect to the shorter URL
-    window.open(`../../redirecting?URL=${href1}`);
+    window.open(`/event-automation/redirecting?URL=${href1}`);
   }
-   
     return href1;
-    // Open a new window with the href as the URL
-    // window.open(href, "_blank");
   }
   
   else if (
     event.currentTarget.className === "button primary large" &&
     event.currentTarget.hasAttribute("url")
   ) {
+
+    var pathname = window.location.pathname;
     let url = event.currentTarget.getAttribute("url");
-    window.open(`../../redirecting?URL=${url}`);
+
+  
+  // Check for the presence of certain segments
+  if (pathname.includes("/event-automation-docs/")) {
+    // Redirect to the longer URL
+    window.open(`/event-integration/event-automation-docs/redirecting?URL=${url}`);
+  } else if ( pathname.includes("/event-automation/") ) {
+    // Redirect to the shorter URL
+    window.open(`/event-automation/redirecting?URL=${url}`);
+  }
     return url;
     // Open a new window with the href as the URL
     // window.open(href, "_blank");

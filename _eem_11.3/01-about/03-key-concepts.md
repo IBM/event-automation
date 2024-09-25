@@ -10,6 +10,10 @@ Read about the key concepts and terms used in {{site.data.reuse.eem_name}}. The 
 
 ![Event Endpoint Management key concepts.]({{ 'images' | relative_url }}/eem-key-concepts.png "Diagram that demonstrates the key concepts in Event Endpoint Management.")
 
+## Event
+
+An event represents a meaningful occurrence or change in the state of a system or a value. Find out more about [key concepts]({{ 'es/about/key-concepts/#event' | relative_url }}) related to Apache Kafka.
+
 ## Topic
 
 A Kafka topic, which contains a set of related events.

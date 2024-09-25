@@ -12,7 +12,7 @@ Upgrade your {{site.data.reuse.ep_name}} deployment as follows. Review the upgra
 
 ## Upgrade paths
 
-You can upgrade {{site.data.reuse.ep_name}} and the associated {{site.data.reuse.ibm_flink_operator}} to the [latest 1.2.x version]({{ 'support/matrix/#event-processing' | relative_url }}) directly from 1.2.0 or any 1.1.x version by using operator version 1.2.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
+You can upgrade {{site.data.reuse.ep_name}} and the associated {{site.data.reuse.ibm_flink_operator}} to the [latest 1.2.x version]({{ 'support/matrix/#event-processing' | relative_url }}) directly from any earlier 1.2.x or any 1.1.x version by using the latest 1.2.x operators. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
 If you are upgrading from {{site.data.reuse.ep_name}} version 1.0.x, you must first [upgrade your installation to 1.1.x]({{ 'ep/ep_1.1' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to 1.2.x.
 

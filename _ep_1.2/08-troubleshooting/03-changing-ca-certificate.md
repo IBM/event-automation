@@ -1,6 +1,6 @@
 ---
 title: "Error when logging in to UI after changing CA certificate"
-excerpt: "Logging in to UI fails with error `Failed to create SSL connection.`"
+excerpt: "Logging in to UI fails with `Application is not available` error"
 categories: troubleshooting
 slug: changing-ca-certificate
 toc: true
@@ -8,14 +8,9 @@ toc: true
 
 ## Symptoms
 
-After the CA certificate is changed, when attempting to log in to the UI, the following error is presented.
+After the CA certificate is changed, when attempting to log in to the UI, the following error is displayed:
 
-```json
-{
-  "error_code" : 500,
-  "message" : "Failed to create SSL connection"
-}
-```
+![Screen capture displaying the error for when changing CA certificate]({{ 'images' | relative_url }}/changing-certificate-error.png "Screen capture displaying the error for when changing CA certificate")
 
 ## Causes
 

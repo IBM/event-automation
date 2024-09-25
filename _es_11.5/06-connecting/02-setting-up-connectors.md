@@ -6,11 +6,13 @@ slug: setting-up-connectors
 toc: true
 ---
 
+
 {{site.data.reuse.es_name}} helps you integrate Kafka with external systems by setting up and managing [Kafka Connect and connectors](../connectors/#what-is-kafka-connect) as custom resources.
 
 ## Using Kafka Connect
 
-To start Kafka Connect, define a `KafkaConnect` custom resource and configure it for your environment. A `KafkaConnect` custom resource represents a Kafka Connect distributed cluster and contains information about your Kafka cluster, the connectors that you want to use, and how you want to distribute the workload. Each connector is started and managed by configuring and creating a `KafkaConnector` custom resource. 
+- To start Kafka Connect, define a `KafkaConnect` custom resource and configure it for your environment. A `KafkaConnect` custom resource represents a Kafka Connect distributed cluster and contains information about your Kafka cluster, the connectors that you want to use, and how you want to distribute the workload.
+- Each connector is started and managed by configuring and creating a `KafkaConnector` custom resource.
 
 Complete the following sections to set up your Kafka Connect environment.
 

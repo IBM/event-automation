@@ -17,7 +17,7 @@ IBM support is now available for the [MongoDB source connector]({{ 'connectors/k
 
 ### Support for {{site.data.reuse.openshift}} 4.16
 
-{{site.data.reuse.es_name}} version 11.4.0 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.16.4 and later.
+{{site.data.reuse.es_name}} version 11.4.0 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.16.4 and later fix levels.
 
 ### OpenShift only: Monitoring dashboard is now supported with all authentication mechanisms
 

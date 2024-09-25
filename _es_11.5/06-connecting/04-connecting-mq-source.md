@@ -117,6 +117,74 @@ If you are using the IBM MQ Operator to set up a queue manager, you can use the 
 
 The queue manager is now ready to accept connection from the connector and get messages from a queue.
 
+## Configuring Kafka Connect
+
+Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/):
+
+1. The MQ source connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-source/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ source connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
+
+1. Start the Kafka Connect by using the `KafkaConnect` custom resource. You can use the following sample `KafkaConnect` custom resource to get started:
+
+
+```yaml
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnect
+metadata:
+  name: mq-source-connector
+  namespace: es
+  annotations:
+    eventstreams.ibm.com/use-connector-resources: true  
+  labels:
+    backup.eventstreams.ibm.com/component: kafkaconnect
+spec:
+  authentication:
+    certificateAndKey:
+      certificate: user.crt
+      key: user.key
+      secretName: my-kafka-user
+    type: tls
+  bootstrapServers: mtls-listener.my-cluster:443  
+  build:
+    output:
+      image: my-image-registry.my-kafka-connect-image:latest  
+      type: docker
+    plugins:
+      - artifacts:
+          - type: jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar     
+        name: mq-source
+  template:
+    buildConfig:
+      pullSecret: ibm-entitlement-key
+    pod:
+      imagePullSecrets:
+        - name: default-dockercfg-abcde
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - s390x
+                      - ppc64le
+    connectContainer:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+  tls:
+    trustedCertificates:
+      - certificate: ca.crt
+        secretName: <eventstreams-instance>-cluster-ca-cert
+```
+
 ## Configuring the connector to connect to MQ
 
 To connect to IBM MQ and to your {{site.data.reuse.es_name}} or Apache Kafka cluster, the connector requires configuration settings added to a `KafkaConnector` custom resource that represents the connector.
@@ -191,18 +259,13 @@ spec:
 ```
 
 Run the following command to find a list of all the possible flags:
- `kubectl es connector-config-mq-source --help`. 
- For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../#configuration-options).
+
+`kubectl es connector-config-mq-source --help`. 
+
+For all available configuration options for IBM MQ source connector, see [connecting to IBM MQ](../#configuration-options).
 
 
-
-## Configuring Kafka Connect
-
-Set up your Kafka Connect environment with the MQ source connector as described in [setting up connectors](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, [add connector dependencies](#adding-connector-dependencies), and when starting the connector, use the Kafka Connect [YAML file](../../setting-up-connectors/#sample-file) you created earlier. 
-
-
-
-### Verifying the log output
+## Verifying the log output
 
 Verify the log output of Kafka Connect includes the following messages that indicate the connector task has started and successfully connected to IBM MQ:
 
@@ -233,8 +296,8 @@ IBM MQ source connector offers exactly-once message delivery semantics. An addit
 
 **Note**:
 
-- Exactly-once support for source connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
-- Enabling exactly-once delivery in the IBM MQ source connector, results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
+- Exactly-once support for IBM MQ connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
+- Enabling exactly-once delivery in the IBM MQ connector results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
 
 
 ### Prerequisites

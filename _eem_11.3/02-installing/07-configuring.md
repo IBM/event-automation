@@ -893,3 +893,125 @@ spec:
       maxSizeBytes: -1
 # ... 
 ```
+
+## ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.")Exporting metrics with OpenTelemetry
+
+To configure an {{site.data.reuse.eem_manager}} instance or an {{site.data.reuse.egw}} instance to emit metrics, you configure the `openTelemetry` section on the associated custom resource. On an `EventEndpointManagement` custom resource, the OpenTelemetry section is specified at `spec.manager.openTelemetry`. On an `EventGateway` custom resource, the OpenTelemetry section is specified at `spec.openTelemetry`.
+
+OpenTelemetry is disabled by default. When it is enabled, all agent instrumentation other than {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} remains disabled unless individually enabled. There are a number of configuration options available as explained below and further customization is possible with environment variables:
+
+```yaml
+  openTelemetry:
+    endpoint: 'https://my.collector.endpoint:4317'
+    protocol: grpc
+    interval: 30000
+    tls:
+      secretName: my-mtls-secret
+      clientKey: tls.key
+      clientCertificate: tls.crt 
+      trustedCertificate:
+        secretName: my-collector-endpoint-ca-secret
+        certificate: ca.crt
+    instrumentations:
+      - name: netty
+        enabled: true
+      - name: runtime-telemetry
+        enabled: true
+```
+
+Where:
+
+`endpoint`: The server endpoint where the OpenTelemetry data is sent. This is a required property when you configure the OpenTelemetry section and the specified endpoint must include the protocol, `http://` or `https://`.
+
+`protocol`: The communication protocol to use for communicating to the endpoint. Example values are `grpc` and `http/protobuf`, the default value is `grpc`.
+
+`interval`: The interval in milliseconds between the start of two export attempts. The default value is 30000 which indicates that metrics export at 30 second intervals.
+
+`tls.secretName`: A secret that contains the clients certificates to use for mutualTLS (mTLS).
+
+`tls.clientKey`: The key in the secret that holds the encoded client key, for example `tls.key`. (Note that the certificate must be created with PKCS8 encoding).
+
+`tls.clientCertificate`: The key in the secret that holds the PKCS8 encoded client certificate/chain, for example `tls.crt`. (Note that the certificate must be created with PKCS8 encoding).
+
+`tls.trustedCertificate.secretName`: A secret that contains a CA certificate to trust to verify the endpoint server's certificate.
+
+`tls.trustedCertificate.certificate`: The key in the secret that holds the CA certificate to trust, for example `ca.crt`.
+
+`instrumentations`: This section allows you to define additional instrumentations to enable. {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} metrics are enabled by default when OpenTelemetry is enabled.
+
+  - `name`: An instrumentation name. This name is then added into an environment variable of the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`, for a list of instrumentation names, see [Suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}.  You do not need to specify the environment variable, only the instrumentation name.
+
+  - `enabled`: A boolean indicating whether to enable or disable the specified instrumentation.
+
+
+
+The following additional OpenTelemetry metric environment variables are set by default:
+
+- `OTEL_SERVICE_NAME = "EEM Manager - <EventEndpointManagement instance name>"`
+- `OTEL_SERVICE_NAME = "EEM Gateway - <EventGateway gateway-group-name/gateway-group-id>"`
+
+If you want to add additional configuration for the OpenTelemetry agent you can [add environment variables](#setting-environment-variables) to the custom resource.
+
+
+### Example: Exporting metrics from an {{site.data.reuse.eem_manager}}
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventEndpointManagement
+# ...
+spec:
+  license:
+    # ...
+  manager:
+    openTelemetry:
+      endpoint: 'https://some.collector.endpoint:4317'
+      tls:
+        trustedCertificate:
+          secretName: mysecret
+          certificate: ca.crt
+# ... 
+```
+
+### Example: Exporting metrics from an {{site.data.reuse.egw}}
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+# ...
+spec:
+  license:
+    # ...
+  openTelemetry:
+    endpoint: 'https://some.collector.endpoint:4317'
+    tls:
+      trustedCertificate:
+        secretName: mysecret
+        certificate: ca.crt
+# ... 
+```
+
+### Example: Adding additional OpenTelemetry exporter environment variables on an {{site.data.reuse.eem_manager}}
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventEndpointManagement
+# ...
+spec:
+  license:
+    # ...
+  manager:
+    openTelemetry:
+      endpoint: 'https://some.collector.endpoint:4317'
+      tls:
+        trustedCertificate:
+          secretName: mysecret
+          certificate: ca.crt
+    template:
+        pod:
+          spec:
+            containers:
+              - env:
+                  - name: OTEL_EXPORTER_OTLP_HEADERS
+                    value: "api-key=key,other-config-value=value"
+# ... 
+```

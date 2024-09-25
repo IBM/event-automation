@@ -6,13 +6,13 @@ slug: upgrading
 toc: true
 ---
 
-Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances. 
+Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances if they are on the same cluster. To upgrade a stand-alone {{site.data.reuse.egw}}, see [upgrading a stand-alone {{site.data.reuse.egw}}](../standalone-gateways/#upgrade-stand-alone-egw).
 
 Review the upgrade procedure and decide the right steps to take for your deployment based on your platform and the version level you are upgrading to.
 
 ## Upgrade paths
 
-You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.3.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.2.x version by using operator version 11.3.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.3.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.3.x or any 11.2.x version by using the latest 11.3.x operator. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
 If you are upgrading from {{site.data.reuse.eem_name}} version 11.1.x, you must first [upgrade your installation to 11.2.x]({{ 'eem/eem_11.2' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to 11.3.x.
 
@@ -37,6 +37,8 @@ In {{site.data.reuse.eem_name}} 11.3.0 and later, hostname verification is enabl
 Before upgrading to {{site.data.reuse.eem_name}} 11.3.x from any 11.2.x version, ensure that the certificates have been updated on your Kafka cluster to provide the hostname.
 
 Without the hostname, the connection between Kafka and the Event Gateway will be broken, which will cause Kafka clients that are connecting through the Event Gateway to fail.
+
+To check whether the certificates on your Kafka cluster include the hostname, contact your certificate provider. 
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
 
@@ -248,3 +250,5 @@ After the upgrade, verify the status of the {{site.data.reuse.eem_name}}, by usi
 ### Updating license IDs
 
 After upgrading to {{site.data.reuse.eem_name}} 11.3.x from version 11.2.x, you must update [the license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) value in the `spec.license.license` field of your custom resources depending on the program that you purchased.  You cannot modify your custom resources until you provide a valid license ID.
+
+

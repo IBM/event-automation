@@ -33,7 +33,12 @@ Before you begin, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl`
 
 ### By using other Kubernetes platforms
 
-The `jwksUrl` is defined as the platform API hostname with the following subpath: `api/cloud/oauth2/certs`. See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=communication-enable-jwt-security-instead-mtls#plan_using_jwt_security__title__3){:target="_blank"} for more information about how to retrieve by using the `kubectl` CLI.
+The `jwksUrl` is defined as the platform API hostname with the following subpath: `api/cloud/oauth2/certs`. To obtain the `jwksUrl` from your {{site.data.reuse.apic_short}} custom resource, complete the following steps: 
+1. {{site.data.reuse.cncf_cli_login}}
+2. Get the list of endpoints from your {{site.data.reuse.apic_short}} pod by using the following command `kubectl describe pod <apic-pod>`.
+3. Look for the **APIC_PLATFORM_API_ENDPOINT**.    
+   **Note**: The **APIC_PLATFORM_API_ENDPOINT** is a URL with `/api` at the end. 
+4. To obtain the `jwksUrl`, append `/cloud/oauth2/certs` to the end of the **APIC_PLATFORM_API_ENDPOINT** URL.
 
 ## Configure {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}
 

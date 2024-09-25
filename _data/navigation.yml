@@ -73,7 +73,7 @@ latest_eemdocs:
         url: /installing/installing-on-kubernetes/
       - title: "Installing Event Gateways on the same cluster"
         url: /installing/deploy-gateways/
-      - title: "Installing stand-alone Event Gateways"
+      - title: "Installing and upgrading stand-alone Event Gateways"
         url: /installing/standalone-gateways/
       - title: "Configuring"
         url: /installing/configuring/
@@ -200,6 +200,8 @@ latest_eemdocs:
         url: /troubleshooting/no-main-key-backup/
       - title: "Unable to publish an option due to incompatible controls" 
         url: /troubleshooting/unexpected-option-not-publishable/
+      - title: "Event Manager is in a pending state with `EEM endpoints not ready for key exchange` message" 
+        url: /troubleshooting/not-ready-key-exchange/
 112_eemdocs:
   - title: About
     children:

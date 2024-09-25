@@ -26,8 +26,8 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 |-----------------------|----------------------------------|-----------------------------------------------------------------------------|
 | config                | string                           | N/A. Usage not advised.                                                     |
 | deployNetworkPolicies | boolean                          | Control the deployment of NetworkPolicies that are used by the instance. (default: true) |
-| endpoints             | [][endpoint](#resource-endpoint) | List of endpoint configurations.                                            |
-| fips                  | [fips](#resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.    |
+| endpoints             | [endpoint](#resource-endpoint)   | List of endpoint configurations.                                            |
+| fips                  | [fips](#resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.   |
 | gatewayGroupName      | string                           | The name of the gateway group to which this gateway is to be added.          |
 | gatewayID             | string                           | The identifier of the gateway group to which this gateway is to be added.          |
 | gatewayContact        | string                           | The contact information of the gateway administrator.                      |
@@ -37,6 +37,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | security              | [security](#resource-security)   | Object containing security configuration.                                        |
 | template              | [template](#resource-template)   | Object containing Kubernetes resource overrides.                            |
 | tls                   | [tls](#resource-tls)             | Object containing TLS configuration.                                        |
+| openTelemetry         | [openTelemetry](#resource-opentelemetry) | Object containing OpenTelemetry configuration.                      |
 
 ## API reference of objects used in the CRDs
 
@@ -123,6 +124,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | template          | [template](#resource-template)     | Object containing Kubernetes resource overrides.        |
 | tls               | [tls](#resource-tls)               | Object containing TLS configuration.                    |
 | fips              | [fips](#resource-fips)             | Object containing Federal Information Processing Standard (FIPS) configuration.    |
+| openTelemetry     | [openTelemetry](#resource-opentelemetry) | Object containing OpenTelemetry configuration.    |
 
 ### Resource: `oidcConfig`
 
@@ -193,6 +195,14 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | trustedCertificates | array[[trustedCertificate](#resource-trustedcertificate)] | A set of secrets containing certificates which the {{site.data.reuse.eem_manager}} should trust when communicating with other services, such as gateways or OIDC providers. |
 | ui | [ui](#resource-ui) | Object containing TLS configuration explicitly for the UI. (Not present in eventgateway.events.ibm.com/v1beta1) |
 
+### Resource: `otelTLS`
+
+| Field | Type | Description |
+| ----------- | ----------- | ----------- |
+| clientCertificate | string | The key in the secret that holds the value of the PKCS8 encoded client certificate to use for mutualTLS (mTLS). |
+| clientKey | string | The key in the secret that holds the value of the PKCS8 encoded private key certificate to use for mutualTLS (mTLS). |
+| secretName | string | The name of a secret containing certificates for securing component communications for mutualTLS (mTLS). |
+| trustedCertificate | [trustedCertificate](#resource-trustedcertificate) | Configuration of a secret containing a TLS certificate to trust to validate the endpoint servers identity. |
 
 ### Resource: `trustedCertificate`
 
@@ -209,6 +219,26 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | key | string | The key in the secret that holds the value of the private key. |
 | secretName | string | The name of a secret containing certificates for securing component communications. |
 | serverCertificate | string | The key in the secret that holds the value of the server certificate. |
+
+### ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.") Resource: `openTelemetry` 
+
+| Field            | Type    | Description |
+| ---------------- | --------| ----------- |
+| endpoint         | string  | The endpoint to send the OpenTelemetry metrics.  Must include protocol http:// or https:// |
+| protocol         | string  | The transport protocol to use, grpc (default) or http/protobuf. |
+| interval         | integer | The interval between reporting of metrics in milliseconds. Default is 30000. |
+| tls              | [otelTLS](#resource-oteltls) | The configuration of SSL Certificates for mTLS and a trusted certificate for endpoint server validation. |
+| instrumentations | [][instrumentation](#resource-instrumentation) | A list of instrumentations to enable in addition to those for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}. |
+
+### Resource: `instrumentation`
+
+| Field        | Type    | Description |
+| ------------ | --------| ----------- |
+| name         | string  | The instrumentation name.  |
+| enabled      | boolean  | Whether to enable or disabled the specified instrumentation. |
+
+**Important:**
+- The instrumentation name should be the instrumentation shortname. The supplied shortname is then configured as an env var against the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>` automatically.
 
 ## status
 

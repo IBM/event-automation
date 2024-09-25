@@ -12,10 +12,6 @@ order: 2
 
 When processing events we can modify events to remove some properties from the events. Transforms work on individual events in the stream.
 
-**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
-
-{% include video.html videoSource="videos/tutorials/guided/02-transform.mp4" %}{: class="tutorial-video" }
-
 
 ## Scenario: Redact personal information from order events
 {: #scenario}
@@ -30,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.4.0
-- Event Endpoint Management 11.2.2
-- Event Processing 1.1.8
+- Event Streams 11.5.0
+- Event Endpoint Management 11.3.0
+- Event Processing 1.2.0
 
 ## Instructions
 
@@ -64,13 +60,14 @@ The next step is to bring the stream of events to process into the flow. We will
 
     **Tip**: If you haven't followed that tutorial, you can click **Add new event source** instead, and follow the [Provide a source of events](./tutorial-1#event-source) steps in the previous tutorial to define a new Event source from scratch.
 
-1. Click **Next**.
+    Click **Next**.
 
-1. The schema for events on this topic defined before is displayed. Click **Configure**.
+1. In the **Event details** pane, the schema for events on this topic defined before is displayed. 
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-2-i.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial2-schemas.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial2-schemas.png "adding an event source node")
 
-1. To rename the event source, click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}, and enter a name for your event source node in the **Details > Node name** section.
+   Click **Configure**. 
+
 
 ### Step 3 : Define the transformation
 

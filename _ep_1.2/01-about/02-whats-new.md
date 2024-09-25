@@ -8,8 +8,15 @@ toc: true
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.2.x.
 
+
+
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.2.1 and {{site.data.reuse.ibm_flink_operator}} version 1.2.1 contain security and bug fixes.
+
+## Release 1.2.0
 
 ### Support for key and headers in the event source node
 

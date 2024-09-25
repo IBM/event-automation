@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-After the CA certificate is changed, when attempting to log in to the UI, the following error is presented.
+After the CA certificate is changed, when attempting to log in to the UI, the following error is displayed:
 
 ```json
 {
@@ -16,6 +16,7 @@ After the CA certificate is changed, when attempting to log in to the UI, the fo
   "message" : "Failed to create SSL connection"
 }
 ```
+
 
 ## Causes
 

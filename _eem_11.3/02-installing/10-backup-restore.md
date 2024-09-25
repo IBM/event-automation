@@ -78,7 +78,10 @@ When you have configured the Velero instance, complete the following steps to cr
 1. Add the appropriate back up label, for your version of {{site.data.reuse.eem_name}}, to the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} custom resource. The {{site.data.reuse.eem_name}} operator adds the label to the other Kubernetes resources required for back up and restore. 
 
     If the label is added to an existing instance of {{site.data.reuse.eem_manager}} or {{site.data.reuse.egw}}, the labels are treated as metadata only and are not added to other Kubernetes resources. To ensure that the label is added to other Kubernetes resources, roll the operator pod after the label change, or change any parameter in the `.spec` section of the custom resource when you change the label. To validate this process has worked correctly, use an example resource such as the Kubernetes secret `<eem_instance_name>-ibm-eem-mek-bak`, with the backup label present on this secret.
-1. Add the back up label to the `PersistentVolumeClaim` that is binding the {{site.data.reuse.eem_manager}} instance to the `PersistentVolume`.
+1. In {{site.data.reuse.eem_name}} version 11.3.0, add the back up label to the `PersistentVolumeClaim` that is binding the {{site.data.reuse.eem_manager}} instance to the `PersistentVolume`. 
+   
+   **Note:** ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Endpoint Management 11.3.1 and later.") In version 11.3.1 and later, this step is not required.
+
 1. Create and apply a `Backup` custom resource by using the following snippet template.  
 
    In `spec.includedNamespaces`, add all the namespaces where the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are installed. 

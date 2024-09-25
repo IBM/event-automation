@@ -10,7 +10,9 @@ Read about the key concepts and terms used in Event Processing.
 
 ## Event
 
-An event is anything that happens at a [specific time](#event-time). For example, when a customer makes a purchase, a sensor detects a threshold, or a stock price changes. 
+An event represents a meaningful occurrence or change in the state of a system or a value. Find out more about [key concepts]({{ 'es/about/key-concepts/#event' | relative_url }}) related to Apache Kafka.
+
+When processing events, an event is anything that happens at a [specific time](#event-time). For example, when a customer makes a purchase, a sensor detects a threshold, or a stock price changes. 
 An event is characterized by its properties, such as purchase item and date, temperature and date,
 stock price and last updated date. 
 Events processed by a [flow](#flow) are available through an [event source](#event-source).

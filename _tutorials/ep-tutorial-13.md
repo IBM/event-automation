@@ -22,8 +22,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots might differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.4.0
-- {{site.data.reuse.ep_name}} 1.1.8
+- {{site.data.reuse.es_name}} 11.5.0
+- {{site.data.reuse.ep_name}} 1.2.0
 
 ## Instructions
 
@@ -95,33 +95,36 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Configure the new event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-8.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-8.png "connection details for the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
+    
 
-    Give the node a name that describes this stream of events: `cancellations`.
+    Paste the server address that you copied from {{site.data.reuse.es_name}} in the previous step, and click **Next**.
 
-    Paste the server address that you copied from {{site.data.reuse.es_name}} in the previous step and click **Next**.
+1. Copy the username and password from Event Endpoint Management and paste into Event Processing to allow access to the topic.
 
-1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-9.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-9.png "adding an event source node")
+    The username starts with `eem-`.
+
+    Click **Next**.
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics).
 
 1. Select the `CANCELLATIONS.REG` topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10.png "selecting a topic to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10-new.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10-new.png "selecting a topic to use")
 
 1. Click **Next**. The **Message format** pane is displayed.
 
     The format `Avro (schema registry)` is auto-selected in the **Message format** drop-down.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10.1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10.1.png "selecting a topic to use")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-10-1-new.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-10-1-new.png "selecting a topic to use")
 
 1. Get the schema registry endpoint URL from {{site.data.reuse.es_name}}.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-11.png "copy schema registry endpoint"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-11.png "copy schema registry endpoint")
 
-    Click **Copy** icon in the **Schema registry endpoint** section to copy the endpoint URL to the clipboard.
+    Click the **Copy** icon in the **Schema registry endpoint** section to copy the endpoint URL to the clipboard.
 
 1. Paste the schema registry endpoint URL into the **Schema registry URL** box. Append `/apis/ccompat/v6` to the end of the URL.
 
@@ -129,17 +132,25 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Use the same username and password for the `kafka-demo-apps` user for accessing the schema registry.
 
-1. Click **Next** to auto-populate the Avro schema in the **Avro schema** field.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-14.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-14.png "paste schema into the event source")
+1. Click **Next** to auto-populate the Avro schema in the **Avro schema** field.    
 
     The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating {{site.data.reuse.ep_name}} nodes.
 
     Click **Next**.
 
+1. In the **Key and headers** pane, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/key-headers.png "key and headers pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/key-headers.png "key and headers pane") 
+
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message. 
+
+1. In the **Event details** pane, enter the node name as `cancellations` in the **Node name** field. 
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/cancellations.png "enter a node name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/cancellations.png "enter a node name")   
+
 1. Set the lateness to 0.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-15.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-15.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-15-new.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-15-new.png "creating an event source node")
 
 1. Click **Configure** to finalize the event source.
 

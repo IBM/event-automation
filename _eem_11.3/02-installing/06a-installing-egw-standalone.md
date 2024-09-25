@@ -1,5 +1,5 @@
 ---
-title: "Installing stand-alone Event Gateways"
+title: "Installing and upgrading stand-alone Event Gateways"
 excerpt: "To provide access to your socialized event endpoints, find out how to install and configure stand-alone Event Gateways outside your cluster, for example, to place it closer to your Kafka deployment."
 categories: installing
 slug: standalone-gateways
@@ -9,7 +9,6 @@ toc: true
 A stand-alone gateway is useful when you need to position the gateway closer to your Kafka installation. If you need to install the {{site.data.reuse.egw}} on a different cluster to your {{site.data.reuse.eem_manager}} instance, you can install a stand-alone {{site.data.reuse.egw}} instance. The following sections describe how to install a stand-alone {{site.data.reuse.egw}} instance in an online environment.
 
 **Note:** Stand-alone {{site.data.reuse.egw}} instances can only be installed in an online environment.
-
 
 
 ## Limitations
@@ -95,4 +94,16 @@ The IBM License Metric Tool checks usage and entitlement to the stand-alone {{si
 
 Ensure that you [install](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} the IBM License Metric Tool before you install the stand-alone {{site.data.reuse.egw}}. Also review the additional Docker-specific License Metric Tool [considerations](https://www.ibm.com/docs/en/license-metric-tool?topic=configuration-discovering-software-in-docker-containers){:target="_blank"}.
 
-**Note:** When deploying a stand-alone gateway on Linux on IBM z13 (s390x), the [IBM License Metric Tool disconnected scanner](https://www.ibm.com/docs/en/license-metric-tool?topic=installing-disconnected-scanners-ansible-lite){:target="_blank"} must be installed and configured alongside the stand-alone gateway. This is in addition to the License Metric Tool running on a supported platform. Submit the results from the disconnected scanner to the License Metric Tool [at regular intervals](https://www.ibm.com/docs/en/license-metric-tool?topic=installing-license-metric-tool-lite-end-end-checklist){:target="_blank"} to maintain licensing compliance.
+
+## Upgrading a stand-alone {{site.data.reuse.egw}}
+{: #upgrade-stand-alone-egw}
+
+To upgrade a stand-alone {{site.data.reuse.egw}}, complete the following steps: 
+
+1. Download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as described in [installing a new standalone-gateway](#installing).
+1. To ensure that the new gateway works with previously configured clients, use the same bootstrap server address and certificate detail as set for the old gateway when running the command to start the new gateway.
+1. Check whether any new configuration is required to deploy the gateway version correctly and adjust the command to start the gateway accordingly. For more information, see [the available configuration options](#configuration-options).
+1. Uninstall the previous gateway as described in [uninstalling a stand-alone {{site.data.reuse.egw}}](../uninstalling/#uninstalling-a-stand-alone-event-gateway).
+1. Start the new {{site.data.reuse.egw}} as described in [starting the {{site.data.reuse.egw}}](#starting-the-event-gateway).
+
+

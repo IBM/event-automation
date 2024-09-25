@@ -11,7 +11,7 @@ You can manage access to {{site.data.reuse.eem_name}} by defining authentication
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
 - Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
 - [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
-- By using the [Keycloak](#setting-up-integration-keycloak-authentication) that is provided by {{site.data.reuse.cp4i}}.
+- By using the [Keycloak](#keycloak-authentication) that is provided by {{site.data.reuse.cp4i}}.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.
@@ -356,6 +356,7 @@ spec:
 ```
 
 ## {{site.data.reuse.cp4i}}: Setting up Keycloak authentication
+{: #keycloak-authentication}
 
 You can authenticate users by using the Keycloak provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
 

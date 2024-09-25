@@ -10,6 +10,20 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.3.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Exporting metrics
+
+{{site.data.reuse.eem_name}} release 11.3.1 introduces the ability to export metrics using OpenTelemetry. For more information, see [Exporting metrics with OpenTelemetry](../../installing/configuring/#exporting-metrics-with-opentelemetry).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.3.1 compared to 11.3.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.")
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.3.1 contains security and bug fixes.
+
+## Release 11.3.0
+
 ### Quota control
 
 {{site.data.reuse.eem_name}} release 11.3.0 introduces the ability to enforce quotas on [consumers](../../describe/option-controls/#quota-consume) and [producers](../../describe/option-controls/#quota-produce) that connect through the {{site.data.reuse.egw}}.

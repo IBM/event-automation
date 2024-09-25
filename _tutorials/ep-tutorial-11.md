@@ -8,11 +8,6 @@ cardType: "large"
 order: 11
 ---
 
-**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
-
-{% include video.html videoSource="videos/tutorials/examples/11-mqmessages.mp4" %}{: class="tutorial-video" }
-
-
 ## Scenario
 
 IBM MQ queues and topics are a valuable source of events for processing. In this tutorial, you will see how MQ messages can be surfaced on Kafka topics, from where they can be used as a source of events for {{site.data.reuse.ep_name}}.
@@ -29,8 +24,8 @@ You will also need to [run the optional instructions for deploying an MQ queue m
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 11.4.0
-- Event Processing 1.1.8
+- Event Streams 11.5.0
+- Event Processing 1.2.0
 - MQ 2.4.0
 
 ## Instructions
@@ -334,21 +329,32 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-8.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-8.png "adding an event source node")
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-9.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-9.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
 
-1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
+1. In the **Access credentials** pane, use the username and password for the `kafka-demo-apps` user for accessing the new topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-10.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-10.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](../guided/tutorial-access#accessing-kafka-topics) section of the Tutorial Setup instructions.
 
 1. Select the `MQ.COMMANDS` topic, and click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-11.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-11-new.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-11-new.png "adding an event source node")
 
-1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the `JSON sample message` field.
+1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the **JSON sample message** field.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-12.png "adding an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-8-new1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-8-new1.png "selecting a topic to use")
+
+1. In the **Key and headers** pane, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/enrich-events.png "message format pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/enrich-events.png "message format pane")  
+
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message. 
+
+1. In the **Event details** pane, enter the node name as `Commands` in the **Node name** field. 
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-22-new.png "map key and headers"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-22-new.png "map key and header")   
+   
 
 1. Verify that the `ordertime` property in the message contents has been automatically detected as a timestamp.
 

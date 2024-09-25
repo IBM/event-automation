@@ -12,9 +12,6 @@ order: 5
 
 When processing events we can send the results to a new Kafka topic. This lets the results from the flow be used to trigger automations, notifications, business workflows, or be processed further in other applications.
 
-**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
-
-{% include video.html videoSource="videos/tutorials/guided/05-eventdestination.mp4" %}{: class="tutorial-video" }
 
 
 ## Scenario : Distributing results of analysis and processing
@@ -30,9 +27,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.4.0
-- Event Endpoint Management 11.2.2
-- Event Processing 1.1.8
+- Event Streams 11.5.0
+- Event Endpoint Management 11.3.0
+- Event Processing 1.2.0
 
 ## Instructions
 
@@ -78,7 +75,7 @@ The next step is to create a topic that you will use for the results from this f
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination")
 
-   Click the copy button for the **Internal** Kafka listener to copy the address to the clipboard.
+   Click the **Copy** icon for the **Internal** Kafka listener to copy the address to the clipboard.
 
 ### Step 3 : Provide a destination for results
 
@@ -90,28 +87,31 @@ The next step is to define the event destination for your flow.
 
    Create an event destination node by dragging one onto the canvas. You can find this in the **Events** section of the left panel.
 
-1. Hover over the event destination node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.
-
-   In **Details > Node name**, name the destination as `output`.
+1. Hover over the event destination node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.  
 
 
 1. Paste the internal Kafka listener address copied from {{site.data.reuse.es_name}} in [Step 2](#step-2--create-a-destination-kafka-topic) into the **Server** field.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-7.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-7.png "adding an event destination node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5-new.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5-new.png "connection details for the event source")
+
+ 
 
 1. Use the username and password for the `kafka-demo-apps` user for accessing the new topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-8.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-8.png "adding an event destination node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial5-8.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial5-8.png "adding an event destination node")
 
    If you need a reminder of the password for the `kafka-demo-apps` user, you can review the [Accessing Kafka topics](./tutorial-access#accessing-kafka-topics) section of the Tutorial Setup instructions.
 
-1. Select the new `ORDERS.EMEA` topic to use as a destination.
+1. In the **Topic selection** pane, select the new `ORDERS.EMEA` topic to use as a destination.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-9.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-9.png "adding an event destination node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-9-new.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-9-new.png "adding an event destination node")
+
+   Click **Next**.
+
 
 1. Click **Configure** to finalize the event destination.
 
-### Step 4 : Test the flow
+### Step 4 : Test the flow  
 
 The final step is to run the flow and confirm that the EMEA orders are produced to the new topic.
 

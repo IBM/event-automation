@@ -12,10 +12,6 @@ order: 1
 
 When processing events, we can use filter operations to select a subset that we want to use. Filtering works on individual events in the stream.
 
-**Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.
-
-{% include video.html videoSource="videos/tutorials/guided/01-filter.mp4" %}{: class="tutorial-video" }
-
 
 ## Scenario : Identify orders from a specific region
 {: #scenario}
@@ -32,9 +28,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.4.0
-- Event Endpoint Management 11.2.2
-- Event Processing 1.1.8
+- Event Streams 11.5.0
+- Event Endpoint Management 11.3.0
+- Event Processing 1.2.0
 
 ## Instructions
 
@@ -95,37 +91,38 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6.png "getting connection details from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6.png "getting connection details from the catalog")
 
-    Click the Copy button next to the Servers address to copy the address to the clipboard.
+    Click the **Copy** icon next to the **Servers** field to copy the address to the clipboard.
 
 1. Configure the new event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-7.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-7.png "connection details for the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-configure.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-configure.png "connection details for the event source")
+    
 
-    Give the node a name that describes this stream of events: `Orders`.
-
-    Paste in the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
+   In {{site.data.reuse.ep_name}}, paste the server address in the **Server** field that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
 1. Generate access credentials for accessing this stream of events from the {{site.data.reuse.eem_name}} page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-8.png "getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-8.png "getting the credentials to use")
 
-    Click the "Generate access credentials" button at the top of the page, and provide your contact details.
+    Click **Generate access credentials** at the top of the page, and provide your contact details.
 
     **Did you know?** Providing your contact details allows the owner of the topic to know who is accessing their stream of events.
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-9.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-9.png "specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-login.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-login.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 
     **Did you know?** The username and password you created is unique to you, and is only for accessing this topic. If you need to revoke this password, you can do it without impacting other users of this topic.
 
-1. Confirm that you will be processing the `ORDERS` topic.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-10.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-10.png "selecting a topic to use")
-
     Click **Next**.
+
+1. Select the `ORDERS` topic to process events from, and click **Next**.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-23.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-23.png "selecting a topic to use")
+
+    
 
 1. Get the schema for order events from {{site.data.reuse.eem_name}}.
 
@@ -135,17 +132,24 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The schema will enable {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
-1. Paste the schema into the event source config in the **Avro schema** box.
+1. The Avro message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field, and click **Next**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12.png "paste schema into the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-new.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-12-new.png "paste schema into the event source")
 
-    Notice that the message format of `Avro` was automatically detected from the most recent message on the topic.
+    
+1. In the **Key and headers** pane, click **Next**.
 
-    Click **Next**.
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/new-key-headers.png "map key and headers"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/new-key-headers.png "map key and header")   
 
-1. Leave the event source to be saved for later reuse.
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-13.png "save for re-use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-13.png "save for re-use")
+1. In the **Event details** pane, enter the node a name that describes this stream of events: `Orders`.
+    
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/event-details1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/event-details1.png "connection details for the event source") 
+   
+   **Note:** The auto-detected key and headers are displayed unselected in the **Event details** pane under the **Property name** column.
+    
+   Leave the event source to be saved for later reuse.    
 
     **Tip**: Saving the connection details makes the later steps in the tutorial that use this same topic quicker. It avoids you needing to enter these details again.
 
@@ -184,7 +188,7 @@ The next step is to start processing this stream of events, by creating the filt
 
 ### Step 5 : Test the flow
 
-The final step is to run your event processing flow and view the results.
+The next step is to run your event processing flow and view the results.
 
 1. Use the **Run** menu, and select **Include historical** to run your filter on the history of order events available on this Kafka topic.
 
@@ -197,6 +201,8 @@ The final step is to run your event processing flow and view the results.
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-18.png "viewing the results"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-18.png "viewing the results")
 
 1. When you have finished reviewing the results, you can stop this flow.
+
+
 
 ## Recap
 

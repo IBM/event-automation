@@ -117,6 +117,74 @@ If you are using IBM MQ Operator to set up a queue manager, you can use the foll
 
 The queue manager is now ready to accept connection from the connector and put messages on a queue.
 
+## Configuring Kafka Connect
+
+Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/):
+
+1. The MQ sink connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ sink connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
+
+1. Start the Kafka Connect by using the `KafkaConnect` custom resource. You can use the following sample `KafkaConnect` custom resource to get started:
+
+```yaml
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnect
+metadata:
+  name: mq-sink-connector
+  namespace: es
+  annotations:
+    eventstreams.ibm.com/use-connector-resources: true  
+  labels:
+    backup.eventstreams.ibm.com/component: kafkaconnect
+spec:
+  authentication:
+    certificateAndKey:
+      certificate: user.crt
+      key: user.key
+      secretName: my-kafka-user
+    type: tls
+  bootstrapServers: mtls-listener.my-cluster:443  
+  build:
+    output:
+      image: my-image-registry.my-kafka-connect-image:latest  
+      type: docker
+    plugins:
+      - artifacts:
+          - type: jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar 
+        name: mq-sink
+  template:
+    buildConfig:
+      pullSecret: ibm-entitlement-key
+    pod:
+      imagePullSecrets:
+        - name: default-dockercfg-abcde
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - s390x
+                      - ppc64le
+    connectContainer:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+  tls:
+    trustedCertificates:
+      - certificate: ca.crt
+        secretName: <eventstreams-instance>-cluster-ca-cert
+```
+
+
 ## Configuring the connector to connect to MQ
 
 To connect to IBM MQ and to your {{site.data.reuse.es_name}} or Apache Kafka cluster, the connector requires configuration settings added to a `KafkaConnector` custom resource that represents the connector.
@@ -197,28 +265,9 @@ spec:
 Run the following command to find a list of all the possible flags: `kubectl es connector-config-mq-sink --help`. 
 For all available configuration options for IBM MQ sink connector, see [connecting to IBM MQ](../#configuration-options).
 
-## Downloading the MQ sink connector 
-
-Follow the instructions to download the MQ sink connector from [IBM Fix Central](https://ibm.biz/ea-fix-central){:target="_blank"}.
-
-1. Go to [IBM Fix Central](https://ibm.biz/ea-fix-central){:target="_blank"}. If you are on the **Select fixes** page, you can skip to step 6.
-2. In the **Find Product > Product selector**, enter **IBM Event Automation**.
-3. In the **Installed version**, select a specific version of {{site.data.reuse.ea_long}} or select **All** to list products in all the versions.
-4. In the **Platform**, select **All**, and then click **Continue**.
-5. In the **Identify Fixes** page, select **Browse for fixes**, and then click **Continue**. The available connectors are listed in the **Select fixes** page.
-6. Select the MQ sink connector version you want to download and click **Continue**. For example, `kafka-connect-mq-sink-2.0.0`. The download page opens with the default download option.
-7. In your preferred download option, click the connector (for example, `kafka-connect-mq-sink-2.0.0.jar`) to download the connector.
-
-The connector JAR file is downloaded.
-
-**Important:** To use the Kafka Connect Build capability for setting this connector, you must upload the JAR to a location that is accessible from the cluster, and provide the URL in the Kafka Connect custom resource.
-
-## Configuring Kafka Connect
-
-Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/). When adding connectors, add the MQ connector JAR you downloaded, [add connector dependencies](#adding-connector-dependencies), and when starting the connector, use the Kafka Connect [YAML file](../../setting-up-connectors/#sample-file) you created earlier. 
 
 
-### Verifying the log output
+## Verifying the log output
 
 Verify the log output of Kafka Connect includes the following messages that indicate the connector task has started and successfully connected to IBM MQ:
 
@@ -262,7 +311,10 @@ The IBM MQ sink connector offers exactly-once message delivery semantics. An add
 
 Follow the instructions to enable exactly-once delivery in the IBM MQ sink connector.
 
-**Important**: Exactly-once support for sink connectors is only available in distributed mode.
+**Note**:
+
+- Exactly-once support for IBM MQ connectors is only available in distributed mode; standalone Kafka Connect workers cannot provide exactly-once delivery semantics.
+- Enabling exactly-once delivery in the IBM MQ connector results in extra interactions with IBM MQ and {{site.data.reuse.es_name}}, which reduces the throughput.
 
 ### Prerequisites
 

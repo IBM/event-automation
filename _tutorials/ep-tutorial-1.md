@@ -24,8 +24,8 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Endpoint Management 11.2.2
-- Event Processing 1.1.8
+- Event Endpoint Management 11.3.0
+- Event Processing 1.2.0
 
 ## Instructions
 
@@ -87,9 +87,9 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Configure the new event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-6.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-6.png "connection details for the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
 
-    Give the node a name that describes this stream of events: `door events`.
+    
 
     Paste in the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
@@ -103,34 +103,43 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.png "specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 
     Click **Next**.
 
-1. Confirm the name of the topic that you want to process events from.
+1. Select the `DOOR.BADGEIN` topic that you want to process events from.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9.1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9.1.png "selecting a topic to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/doorbadge.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/doorbadge.png "selecting a topic to use")
 
     Click **Next**.
 
-1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the `JSON sample message` field.
+1. The format `JSON` is auto-selected in the **Message format** drop-down and the sample message is auto-populated in the **JSON sample message** field.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-8.png "selecting a topic to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-8-new1.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-8-new1.png "selecting a topic to use")
 
     **Did you know?** The catalog page for this topic tells you that events on this topic are JSON strings.
 
     Click **Next**.
 
+1. In the **Key and headers** pane, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/enrich-events.png "message format pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/enrich-events.png "message format pane")  
+
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message.
+
+1. In the **Event details** pane, enter the node name as `door events` in the **Node name** field. 
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/door-events.png "enter a node name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/door-events.png "enter a node name")   
+   
+
 1. Confirm that the type of the `badgetime` property has automatically been detected as `Timestamp`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-11.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-11.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-11-new1.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-11-new1.png "creating an event source node")
+   
 
 1. Configure the event source to use the `badgetime` property as the source of the event time, and to tolerate lateness of up to **3 minutes**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-12.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-12.png "creating an event source node")
-
 1. Click **Configure** to finalize the event source.
 
 ### Step 4 : Derive additional properties

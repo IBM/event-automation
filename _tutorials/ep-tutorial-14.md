@@ -30,8 +30,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.2.1
-- {{site.data.reuse.ep_name}} 1.1.8
+- {{site.data.reuse.eem_name}} 11.3.0
+- {{site.data.reuse.ep_name}} 1.2.0
 
 
 ## Instructions
@@ -103,12 +103,13 @@ To create an event source, complete the following steps:
     Click the **Copy** icon next to the **Servers** address to copy the address to the clipboard.
 
 1. Go to {{site.data.reuse.ep_name}}, and configure the new event source.    
+    
 
-    Give the node a name that describes this stream of events: `Return requests`, and click **Next**.
-
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-23.png "Connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-23.png "Connection details for the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
 
     In the **Server** field, paste the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.    
+
+    Click **Next**.
 
     
 
@@ -120,7 +121,7 @@ To create an event source, complete the following steps:
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to access the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "Specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "Specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 
@@ -128,32 +129,36 @@ To create an event source, complete the following steps:
 
 1. Select the `PRODUCT.RETURNS` topic to process events from, and click **Next**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4.png "Select a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4.png "Select a topic to use")    
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/product-returns.png "Select a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/product-returns.png "Select a topic to use")    
 
 
 1. Get the schema for return requests node from {{site.data.reuse.eem_name}}.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-5.png "Event information"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-5.png "Event information")   
 
-   Click **Copy** in the schema section to copy the schema to the clipboard.
+   Click the **Copy** icon in the schema section to copy the schema to the clipboard.
 
    You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating {{site.data.reuse.ep_name}} nodes.
 
 1. The `Avro` message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field, and click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-24.png "Paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-24.png "Paste schema into the event source")  
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/avro.png "Paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/avro.png "Paste schema into the event source")  
 
-   
+1. In the **Key and headers** pane, click **Next**.
 
-1. In the **Event details** pane, change the `returntime` property type to `Timestamp (with time zone)`. 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-key-headers-new.png "map key and headers"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-key-headers-new.png "map key and header")      
+
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message.
+
+1. In the **Event details** pane, change the `returntime` property type to `Timestamp (with time zone)`.
 
    **Note:** The `returntime` string is converted to a timestamp to use `returntime` as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-25.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-25.png "Creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/return-time-1.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/return-time.png "Creating an event source node")
 
 1. Configure the event source to use the `returntime` property as the source of the event time, and to tolerate lateness of up to **1 minute(s)**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-26.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-26.png "Creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/return-time.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-26.png "Creating an event source node")
 
 1. Click **Configure** to finalize the event source configuration.
 
@@ -321,7 +326,7 @@ To create an event source node, complete the following steps:
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Product review schema"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Product review schema")
 
-   Click **Copy** in the schema section to copy the schema to the clipboard.
+   Click the **Copy** icon in the schema section to copy the schema to the clipboard.
 
    You need to give {{site.data.reuse.ep_name}} a description of the events available from the topic. The information in the schema enables {{site.data.reuse.ep_name}} to give guidance for creating {{site.data.reuse.ep_name}} nodes.
 1. Repeat steps 9-12 under [step 3](#step-3-add-an-event-source-node-for-the-return-requests-topic). 

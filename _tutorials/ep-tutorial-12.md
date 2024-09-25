@@ -20,8 +20,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.2.0
-- {{site.data.reuse.ep_name}} 1.1.8
+- {{site.data.reuse.eem_name}} 11.3.0
+- {{site.data.reuse.ep_name}} 1.2.0
 
 ## Instructions
 
@@ -87,9 +87,8 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Configure the new event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-4.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-4.png "connection details for the event source")
-
-    Give the node a name that describes this stream of events: `Orders`.
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
+    
 
     In the **Server** field, paste the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
@@ -103,15 +102,15 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 
     Click **Next**.
 
-1. Confirm the name of the topic that you want to process events from.
+1. Select the `ORDERS.ONLINE` topic to process events from, and click Next.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-8.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-8.png "selecting a topic to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-8-new.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-8-new.png "selecting a topic to use")
 
     Click **Next**.
 
@@ -119,23 +118,35 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-9.png "copy schema from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-9.png "copy schema from the catalog")
 
-    Click **Copy** in the schema section to copy the schema to the clipboard.
+    Click the **Copy** icon in the schema section to copy the schema to the clipboard.
 
     You need to give {{ site.data.reuse.ep_name }} a description of the events available from the topic. The information in the schema enables {{ site.data.reuse.ep_name }} to give guidance for creating event processing nodes.
 
-1. The `Avro` message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field.
+1. The Avro message format is auto-selected in the **Message format** drop-down. Paste the schema into the **Avro schema** field, and click **Next**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-11.png "paste schema into the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-12-new.png "paste schema into the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-12-new.png "paste schema into the event source")
+
+1. In the **Key and headers** pane, click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/key-headers-new.png "key and headers pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/key-headers-new.png "key and headers pane")       
+
+   **Note:** The key and headers are displayed automatically if they are available in the selected topic message. 
+
+1. In the **Event details** pane, enter the node a name that describes this stream of events: `Orders`.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/enter-node-name.png "enter a node name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/enter-node-name.png "enter a node name") 
+   
 
 1. Change the type of the `ordertime` property to `Timestamp (with time zone)`. 
 
    **Note:** The `ordertime` string is converted to a timestamp to use `ordertime` as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-12.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-12.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/timestamp.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/timestamp.png "creating an event source node")
+
 
 1. Configure the event source to use the `ordertime` property as the source of the event time, and to tolerate lateness of up to **1 minute**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13-new.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13-new.png "creating an event source node")
 
 1. Click **Configure** to finalize the event source.
 
@@ -143,7 +154,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Configure the event source to use the `outofstocktime` property as the source of the event time, and to tolerate lateness of up to **1 minute**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13.1.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13.1.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-14-new.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-14-new.png "creating an event source node")
 
 1. Click **Configure** to finalize the event source.
 

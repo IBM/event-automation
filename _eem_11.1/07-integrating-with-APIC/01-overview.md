@@ -8,9 +8,11 @@ toc: true
 
 You can setup an integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}}.
 
-**Note:** To set up this integration, {{site.data.reuse.apic_short}} 10.0.6 or later is required.
+**Note:** To set up this integration, {{site.data.reuse.apic_short}} 10.0.6 or later is required. 
 
-**Important:** If you are integrating with {{site.data.reuse.apic_short}} 10.0.6, the integration requires that both your {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}} instances are deployed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster. If you are integrating with {{site.data.reuse.apic_short}} 10.0.7 or later, the integration does not require {{site.data.reuse.cp4i}}.
+If integrating {{site.data.reuse.apic_short}} 10.0.6 with {{site.data.reuse.eem_name}}, both deployments must be installed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster.
+
+If integrating {{site.data.reuse.apic_short}} 10.0.7 or later with {{site.data.reuse.eem_name}}, there is no requirement to colocate deployments on the same OpenShift or other Kubernetes cluster, and there is no requirement to also deploy {{site.data.reuse.cp4i}}.
 
 {{site.data.reuse.eem_name}} provides the capability to describe and catalog the APIs of Kafka event sources, and to socialize those APIs with application developers.
 

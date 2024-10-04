@@ -8,8 +8,8 @@ toc: true
 
 You can remove the {{site.data.reuse.es_name}} from your platform as follows:
 
-
 ## Uninstalling an {{site.data.reuse.es_name}} instance by using the CLI
+
 You can delete an {{site.data.reuse.es_name}} installation using the Kubernetes command-line tool (`kubectl`):
 
 1. {{site.data.reuse.cncf_cli_login}}
@@ -30,6 +30,8 @@ You can delete an {{site.data.reuse.es_name}} installation using the Kubernetes 
    ```shell
    kubectl delete eventstreams <instance-name> -n <namespace>
    ```
+   **Note:** Ensure that any `KafkaTopic` resources that are not deleted are [cleaned up](#cleaning-up-managed-kafka-topics).
+
 
 ### Check uninstallation progress
 Run the following command to check the progress:
@@ -119,6 +121,7 @@ Delete remaining Persistent Volumes (PVs):
 
 
 ## Uninstalling an {{site.data.reuse.es_name}} instance by using the OpenShift web console
+
 To delete an {{site.data.reuse.es_name}} instance on {{site.data.reuse.openshift_short}}:
 
 1. {{site.data.reuse.openshift_ui_login}}
@@ -128,6 +131,8 @@ To delete an {{site.data.reuse.es_name}} instance on {{site.data.reuse.openshift
 5. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the instance to be deleted to open the actions menu.
 6. Click the **Delete EventStreams** menu option to open the confirmation panel.
 7. Check the namespace and instance name and click **Delete** to shutdown the associated pods and delete the instance.
+
+   **Note:** Ensure that any `KafkaTopic` resources that are not deleted are [cleaned up](#cleaning-up-managed-kafka-topics).
 
 ### Check uninstallation progress
 1. {{site.data.reuse.openshift_ui_login}}
@@ -192,6 +197,17 @@ Delete remaining Persistent Volumes (PVs):
 
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
+## Cleaning up managed Kafka topics
+
+The Topic operator uses Kubernetes [finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/){:target="_blank"} to ensure topics are deleted from Kafka before deleting `KafkaTopic` custom resources.
+
+If the Topic operator is not running or deleted before deleting `KafkaTopic` custom resources, any attempts to delete the `KafkaTopic` custom resources or the namespace will not complete, leaving the resources in a `terminating` state. In such cases, you can bypass the finalization process when deleting managed topics by using the following command.
+
+```shell
+kubectl get kafkatopic <topic_resource_name> -o=json | jq '.metadata.finalizers = null' | kubectl apply -f -
+```
+For more information, see [Removing finalizers on topics](https://strimzi.io/docs/operators/latest/full/deploying.html#con-removing-topic-finalizers-str){:target="_blank"}.
+
 ## Uninstalling an {{site.data.reuse.es_name}} operator on {{site.data.reuse.openshift_short}}
 To delete an {{site.data.reuse.es_name}} operator:
 
@@ -242,3 +258,4 @@ To delete an {{site.data.reuse.es_name}} operator:
 ## Uninstalling {{site.data.reuse.icpfs}} on OpenShift
 
 If you have {{site.data.reuse.icpfs}}, see the [{{site.data.reuse.fs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/3.23?topic=online-uninstalling-foundational-services){:target="_blank"} for information about uninstalling it.
+

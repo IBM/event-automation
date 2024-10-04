@@ -31,7 +31,7 @@ To create truststores and keystores, complete any one of the following methods:
 
 - See the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/deployment/security/security-ssl/#creating-and-deploying-keystores-and-truststores){:target="_blank"} to manually create keystores and truststores.
 
-- Use the cert-manager operator to create and manage these stores for you. A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/tls-setup` to access the samples. You can also use the Apache Flink samples to create the required keystores and truststores.
+- Use the cert-manager operator to create and manage these stores for you. A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/tls-setup` to access the samples. You can also use the Apache Flink samples to create the required keystores and truststores.
 
   For example, see Flink TLS enabled [pre-install sample](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-tls-example/pre-install.yaml){:target="_blank"} and the [basic secure sample](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-tls-example/basic-secure.yaml){:target="_blank"}, which you can modify to suit your requirements.
 

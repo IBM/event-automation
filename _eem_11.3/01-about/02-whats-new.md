@@ -10,6 +10,12 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.3.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.3.2 contains security and bug fixes, including a client compatibility issue.
+
+## Release 11.3.1
+
 ### Exporting metrics
 
 {{site.data.reuse.eem_name}} release 11.3.1 introduces the ability to export metrics using OpenTelemetry. For more information, see [Exporting metrics with OpenTelemetry](../../installing/configuring/#exporting-metrics-with-opentelemetry).

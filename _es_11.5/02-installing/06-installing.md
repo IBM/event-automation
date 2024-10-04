@@ -401,6 +401,7 @@ For example:
 
 
 ## Install an {{site.data.reuse.es_name}} instance
+{: #install-an-event-streams-instance}
 
 Instances of {{site.data.reuse.es_name}} can be created after the {{site.data.reuse.es_name}} operator is installed. If the operator was installed into **a specific namespace**, then it can only be used to manage instances of {{site.data.reuse.es_name}} in that namespace. If the operator was installed for **all namespaces**, then it can be used to manage instances of {{site.data.reuse.es_name}} in any namespace, including those created after the operator was deployed.
 

@@ -11,9 +11,10 @@ Find out how to set up {{site.data.reuse.eem_name}} to be FIPS-compliant by usin
 
 ## Requirements
 
-To run a FIPS-compliant {{site.data.reuse.eem_name}} deployment, you need a [FIPS-enabled OpenShift Container Platform cluster](https://docs.openshift.com/container-platform/4.16/installing/installing-fips.html#installing-fips-mode_installing-fips){:target="_blank"} available with the {{site.data.reuse.eem_name}} operator that is installed with a version of 11.1.0 or later.
+To run a FIPS-compliant {{site.data.reuse.eem_name}} deployment, you need a [FIPS-enabled OpenShift Container Platform cluster](https://docs.openshift.com/container-platform/4.17/installing/overview/installing-fips.html){:target="_blank"} available with the {{site.data.reuse.eem_name}} operator that is installed with a version of 11.1.0 or later.
 
 Ensure that you run both the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}} with the default TLS version of 1.3 and ensure that all clients have the following cipher suites available:
+
 - `TLS_AES_128_GCM_SHA256`
 - `TLS_AES_256_GCM_SHA384`
 

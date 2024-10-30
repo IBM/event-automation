@@ -18,4 +18,4 @@ To learn more, see the following information:
 
 -   [Producing messages](../producing-messages)
 -   [Consuming messages](../consuming-messages)
--   [Apache Kafka documentation](https://kafka.apache.org/37/documentation.html){:target="_blank"}
+-   [Apache Kafka documentation](https://kafka.apache.org/38/documentation.html){:target="_blank"}

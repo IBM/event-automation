@@ -2,12 +2,20 @@
 order: 1
 forID: kc-sink-snowflake
 categories: [sink]
+connectorTitle: "Snowflake"
 ---
 
-1. Download or build the connector plugin JAR from the [repository](https://github.com/snowflakedb/snowflake-kafka-connector){:target="_blank"}.
-2. {{site.data.reuse.kafkaConnectStep2_title}}
+To use the {{page.connectorTitle}} {{page.categories}} connector, complete the following steps:
 
-   {{site.data.reuse.kafkaConnectStep2_content_1}}
-   {{site.data.reuse.kafkaConnectStep2_content1_example}}
-3. {{site.data.reuse.kafkaConnectStep3_title}}
+1. Create a `KafkaConnect` custom resource to define your Kafka Connect runtime and include the {{page.connectorTitle}} {{page.categories}} connector by following the instructions in [setting up and running connectors]({{ 'es/connecting/setting-up-connectors/' | relative_url}}):
+
+    a. {{site.data.reuse.kafkaconnectStep1_newcontent}}    
+
+2. {{site.data.reuse.kafkaconnectStep3_newcontent}}
+
+3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
+   
+   a. {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://docs.snowflake.com/en/user-guide/kafka-connector){:target="_blank"}.
+       
+4. {{site.data.reuse.kafkaconnectStep6_newcontent}}
 

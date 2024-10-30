@@ -19,7 +19,7 @@ You can modify the samples, save them, and apply custom configuration settings a
 
 On OpenShift, you can configure and apply them by using the [command line](../installing/#installing-an-instance-by-using-the-cli) or by dragging and dropping them onto the {{site.data.reuse.openshift_short}} [web console](../installing/#installing-by-using-the-yaml-view), and editing them.
 
-**Note:** When applying custom Kafka configuration settings to your {{site.data.reuse.es_name}}, check the [Kafka documentation](https://kafka.apache.org/37/documentation){:target="_blank"} to ensure the new configuration settings are consistent and do not cause conflicts.
+**Note:** When applying custom Kafka configuration settings to your {{site.data.reuse.es_name}}, check the [Kafka documentation](https://kafka.apache.org/38/documentation){:target="_blank"} to ensure the new configuration settings are consistent and do not cause conflicts.
 
 ## Checking configuration settings
 
@@ -82,7 +82,7 @@ spec:
 # ...
 ```
 
-If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.16/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
+If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.openshift.com/container-platform/4.17/storage/dynamic-provisioning.html){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
 
 Where optional values are not specified:
 
@@ -269,7 +269,7 @@ spec:
 
 This custom resource can be created using the `kubectl` command or the {{site.data.reuse.openshift_short}} web console under the **Event Streams** operator page.
 
-You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/0.42.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
+You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/0.43.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
 
 After deployment, these settings can be [modified](../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings) by updating the `EventStreams` custom resource.
 
@@ -610,7 +610,7 @@ To configure OAuth authentication, configure a Kafka listener with type `oauth`,
 
 {{site.data.reuse.es_name}} supports 2 types of SASL mechanisms: `OAUTHBEARER` or `PLAIN`. By default, OAuth authentication uses `OAUTHBEARER` SASL mechanism, which is the most secure mechanism.
 
-**Important:** For clients that do not support the `OAUTHBEARER` authentication mechanism, you can configure the cluster to use the `PLAIN` mechanism by setting the `enableOauthBearer` property to `false` (default setting is `true` for `OAUTHBEARER`). For more information, see [OAuth 2.0 authentication mechanisms](https://strimzi.io/docs/operators/0.42.0/deploying.html#con-oauth-authentication-broker-str){:target="_blank"}.
+**Important:** For clients that do not support the `OAUTHBEARER` authentication mechanism, you can configure the cluster to use the `PLAIN` mechanism by setting the `enableOauthBearer` property to `false` (default setting is `true` for `OAUTHBEARER`). For more information, see [OAuth 2.0 authentication mechanisms](https://strimzi.io/docs/operators/0.43.0/deploying.html#con-oauth-authentication-broker-str){:target="_blank"}.
 
 #### Configuring OAuth to use fast local JWT validation
 
@@ -641,7 +641,7 @@ spec:
           type: route
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.42.0/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.43.0/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
 
 #### Configuring OAuth to use token validation by using an introspection endpoint
 
@@ -678,7 +678,7 @@ spec:
 
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.42.0/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.43.0/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
 
 
 ### Enable OAuth authorization
@@ -711,7 +711,7 @@ spec:
           - "kubeadmin"
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/0.42.0/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/0.43.0/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
 
 ## Configuring node affinity for components
 
@@ -804,7 +804,7 @@ spec:
 # ...
 ```
 
-**Important:** Enabling the Kafka Proxy to gather producer metrics places an intermediary between your producing clients and your Kafka brokers. This adds latency to any traffic to your Kafka brokers. Consider the performance implications of having the proxy in front of your Kafka brokers. You can also leave the proxy disabled and gather producer metrics from the clients directly by using [JMX](https://kafka.apache.org/37/documentation/#monitoring){:target="_blank"}.
+**Important:** Enabling the Kafka Proxy to gather producer metrics places an intermediary between your producing clients and your Kafka brokers. This adds latency to any traffic to your Kafka brokers. Consider the performance implications of having the proxy in front of your Kafka brokers. You can also leave the proxy disabled and gather producer metrics from the clients directly by using [JMX](https://kafka.apache.org/38/documentation/#monitoring){:target="_blank"}.
 
 
 ## Configuring external monitoring through Prometheus
@@ -976,7 +976,7 @@ You can also configure Kafka Exporter using a `regex` to expose metrics for a co
         topicRegex: orders
 ```
 
-For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/0.42.0/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
+For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/0.43.0/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
 
 ## Configuring the JMX Exporter
 
@@ -1006,8 +1006,8 @@ To enable the collection of all JMX metrics available on the Kafka brokers and Z
 
 For more information about configuration options, see the following documentation:
 
-- [Kafka and ZooKeeper JMX metrics configuration](https://strimzi.io/docs/operators/0.42.0/deploying.html#assembly-metrics-str){:target="_blank"}
-- [Kafka JMX metrics configuration](https://strimzi.io/docs/operators/0.42.0/configuring.html#con-common-configuration-prometheus-reference){:target="_blank"}
+- [Kafka and ZooKeeper JMX metrics configuration](https://strimzi.io/docs/operators/0.43.0/deploying.html#assembly-metrics-str){:target="_blank"}
+- [Kafka JMX metrics configuration](https://strimzi.io/docs/operators/0.43.0/configuring.html#con-common-configuration-prometheus-reference){:target="_blank"}
 
 ## Enabling and configuring Kafka Bridge
 
@@ -1089,7 +1089,7 @@ When configuring Cruise Control, you can define the following settings in the `E
 - Hard goals in `spec.strimziOverrides.cruiseControl.config["hard.goals"]`
 - The capacity limits for broker resources, which Cruise Control uses to determine if resource-based optimization goals are being broken. The `spec.strimziOverrides.cruiseControl.brokerCapacity` property defines the Kafka broker resource capacities that Cruise Control will optimize around.
 
-Cruise Control includes a number of [configuration options](https://github.com/linkedin/cruise-control/wiki/Configurations#cruise-control-configurations){:target="_blank"}. You can modify these configuration options for {{site.data.reuse.es_name}}, except the options managed directly by [Strimzi](https://strimzi.io/docs/operators/0.42.0/configuring.html#property-cruise-control-config-reference){:target="_blank"}.
+Cruise Control includes a number of [configuration options](https://github.com/linkedin/cruise-control/wiki/Configurations#cruise-control-configurations){:target="_blank"}. You can modify these configuration options for {{site.data.reuse.es_name}}, except the options managed directly by [Strimzi](https://strimzi.io/docs/operators/0.43.0/configuring.html#property-cruise-control-config-reference){:target="_blank"}.
 
 When enabled, you can use Cruise Control and the `KafkaRebalance` custom resources to [optimize](../../administering/cruise-control/) your deployed {{site.data.reuse.es_name}} Kafka cluster.
 

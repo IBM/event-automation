@@ -8,6 +8,7 @@ type: kafkaConnect
 iconInitial: Cb
 documentationURL: https://docs.couchbase.com/kafka-connector/current/index.html
 download:
+  -  { type: 'Download', url: 'https://docs.couchbase.com/kafka-connector/current/release-notes.html' }
   -  { type: 'GitHub', url: 'https://github.com/couchbase/kafka-connect-couchbase' }
 categories:
   - Databases

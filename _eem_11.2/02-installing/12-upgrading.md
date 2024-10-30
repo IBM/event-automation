@@ -165,7 +165,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
 - If the chart version for your existing deployment is earlier than 11.1.x, you must first [upgrade your installation to 11.1.x]({{ 'eem/eem_11.1' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.2.x version.
 
-- If your existing installation is in an offline environment, you must repeat the steps in the offline install instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before upgrading. Then complete the [helm upgrade](#upgrading-by-using-helm) instructions in the following section.
+- If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before upgrading. Then complete the [helm upgrade](#upgrading-by-using-helm) instructions in the following section.
 
 - If the chart version for your existing deployment is 11.1.x, your upgrade involves a change in a minor version. Complete the following steps to upgrade to the latest version:
   1. Before upgrading, [update your instance configuration](#update-your-instance-configuration) to ensure compatibility across the version change.

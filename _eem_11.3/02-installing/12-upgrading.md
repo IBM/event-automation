@@ -26,7 +26,9 @@ If you are upgrading from {{site.data.reuse.eem_name}} version 11.1.x, you must 
 
 - If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
-- To upgrade successfully, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data will be lost.
+- To upgrade successfully, your {{site.data.reuse.egw_compatibility_note}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data will be lost.
+
+- Always upgrade your {{site.data.reuse.eem_manager}} instance before upgrading your {{site.data.reuse.egw}} instance.
 
 **Important:** You will experience some downtime during the {{site.data.reuse.eem_name}} upgrade while the pods for the relevant components are recycled.
 
@@ -178,7 +180,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
 - If the chart version for your existing deployment is earlier than 11.2.x, you must first [upgrade your installation to 11.2.x]({{ 'eem/eem_11.2' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.3.x version.
 
-- If your existing installation is in an offline environment, you must repeat the steps in the offline install instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before upgrading. Then complete the [helm upgrade](#upgrading-by-using-helm) instructions in the following section.
+- If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before upgrading. Then complete the [helm upgrade](#upgrading-by-using-helm) instructions in the following section.
 
 - If the chart version for your existing deployment is 11.3.x, your upgrade involves a change in a minor version. Complete the following steps to upgrade to the latest version:
   1. Before upgrading, [update your instance configuration](#update-your-instance-configuration) to ensure compatibility across the version change.

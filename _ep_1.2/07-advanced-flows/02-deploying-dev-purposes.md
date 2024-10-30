@@ -30,29 +30,27 @@ Find out how to deploy your advanced flows in a Flink cluster for development an
 
   For more information, see [exporting flows](../exporting-flows).
 
-- You updated the Flink SQL Kafka connectors properties and values defined in the file `statements.sql` to match your target environment: 
+- You updated the Flink SQL connector properties and values that are defined in the file `statements.sql` to match your target environment.
 
-  - Sensitive credentials.
+  For security reasons, the values containing sensitive credentials, such as username and password, are removed when exporting the SQL statements from the {{site.data.reuse.ep_name}} UI, so you must restore them.
 
-    For security reasons, the values containing sensitive credentials such as username and password are removed from the {{site.data.reuse.ep_name}} UI when exporting the SQL statements, so you must restore them.
+  Also, the exported SQL contains connector configuration that is applicable to the environment targeted in the {{site.data.reuse.ep_name}} UI. When deploying to a different target environment, you might need to adapt the connector properties to the target environment.
 
-    For more information about Flink SQL Kafka connectors, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"}.
+  See the following table for credentials and connector properties information about supported Flink SQL connectors:
 
-    **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backlash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"`
+  | Flink SQL connector | Used by nodes | Sensitive credentials | Connector properties values |
+  | --- | --- | --- | --- |
+  | **Kafka** | [Source](../nodes/eventnodes/#event-source) and [destination](../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector options](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. |
+  | **JDBC**      | [Database](../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector options](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
+  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md){:target="_blank"} | [HTTP connector options](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md#table-api-connector-options){:target="_blank"} |
+
+- To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
+  - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
+  - A `SELECT` clause that takes one or all of the columns of the last temporary view.
+
+  For more information about how to define a Flink SQL sink, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/sql/insert/#insert-from-select-queries){:target="_blank"}.
 
 
-  - Connector properties values.
-
-    For more information about how events can be consumed from Kafka topics, see the [Flink Documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}.
-
-    **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. 
-
-  - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following:
-       - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
-       - A `SELECT` clause that takes one or all of the columns of the last temporary view.
-
-    For more information about how to define a Flink SQL sink, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/sql/insert/#insert-from-select-queries){:target="_blank"}.
-  
 ## Set deployment options
 
 You can specify deployment options in the file `statements.sql`.

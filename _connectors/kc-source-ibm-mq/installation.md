@@ -2,19 +2,21 @@
 order: 1
 forID: kc-source-mq
 categories: [source]
+connectorTitle: "IBM MQ"
 ---
 
 {{site.data.reuse.es_name}} provides additional help for setting up a Kafka Connect environment and starting the MQ source connector. Log in to the {{site.data.reuse.es_name}} UI, click the **Toolbox** tab and scroll to the **Connectors** section.
 
-You can download the MQ source connector from GitHub:
+To use the {{page.connectorTitle}} {{page.categories}} connector, complete the following steps:
 
-1. Download the connector plugin JAR file:
+1. Create a `KafkaConnect` custom resource to define your Kafka Connect runtime and include the {{page.connectorTitle}} {{page.categories}} connector by following the instructions in [setting up and running connectors]({{ 'es/connecting/setting-up-connectors/' | relative_url}}):
 
-    Go to the connector [releases page](https://github.com/ibm-messaging/kafka-connect-mq-source/releases){:target="_blank"} and download the JAR file for the latest release.
+   {{site.data.reuse.kafkaconnectStep1_newcontent}}
 
-2. {{site.data.reuse.kafkaConnectStep2_title}}
+2. {{site.data.reuse.kafkaconnectStep3_newcontent}}  
 
-    {{site.data.reuse.kafkaConnectStep2_content_1}}
-    {{site.data.reuse.kafkaConnectStep2_content1_example}}
-
-3. {{site.data.reuse.kafkaConnectStep3_title}}
+3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
+   
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](../../es/connecting/mq/source/).    
+    
+4. {{site.data.reuse.kafkaconnectStep6_newcontent}}

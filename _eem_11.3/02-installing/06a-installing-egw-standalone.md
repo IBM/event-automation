@@ -22,6 +22,8 @@ A Kafka client implementation might require that the {{site.data.reuse.egw}} pre
 
 - A supported container host environment as defined in the [Red Hat Enterprise Linux Container Compatibility Matrix](https://access.redhat.com/support/policy/rhel-container-compatibility){:target="_blank"} is required.
 
+- {{site.data.reuse.egw_compatibility_note}}
+
 ## System requirements
 
 Ensure that you have at least 2 CPU cores and 2 GiB of memory available on the system that you want to install and run the stand-alone {{site.data.reuse.egw}}.

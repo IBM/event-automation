@@ -18,27 +18,26 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
 
   For more information, see [exporting flows](../exporting-flows).
 
-- You adequately updated the Flink SQL Kafka connectors properties and values defined in file `statements.sql` to match your target environment:
+- You updated the Flink SQL connector properties and values that are defined in the file `statements.sql` to match your target environment.
 
-  - Sensitive credentials.
+  For security reasons, the values containing sensitive credentials, such as username and password, are removed when exporting the SQL statements from the {{site.data.reuse.ep_name}} UI, so you must restore them.
 
-    For security reasons, the values containing sensitive credentials are removed from the {{site.data.reuse.ep_name}} UI when exporting the SQL statements, so you must restore them.
+  Also, the exported SQL contains connector configuration that is applicable to the environment targeted in the {{site.data.reuse.ep_name}} UI. When deploying to a different target environment, you might need to adapt the connector properties to the target environment.
 
-    For more information about Flink SQL Kafka connectors, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"}.
+  See the following table for credentials and connector properties information about supported Flink SQL connectors:
 
-    **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backlash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"`
+  | Flink SQL connector | Used by nodes | Sensitive credentials | Connector properties |
+  | --- | --- | --- | --- |
+  | **Kafka** | [Source](../nodes/eventnodes/#event-source) and [destination](../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. |
+  | **JDBC**      | [Database](../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
+  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md#table-api-connector-options){:target="_blank"} |
 
-  - Connector properties values.
+- To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
+  - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
+  - A `SELECT` clause that takes one or all of the columns of the last temporary view.
 
-    For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}.
+  For more information about how to define a Flink SQL sink, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/sql/insert/#insert-from-select-queries){:target="_blank"}.
 
-    **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`.
-
-  - To deploy a running Flink job, the SQL statements in file `statements.sql` must contain one of the following:
-    - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
-    - A `SELECT` clause that takes one or all of the columns of the last temporary view.
-
-    For more information about how to define a Flink SQL sink, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/sql/insert/#insert-from-select-queries){:target="_blank"}.
 
 ## Use Flink user-defined functions
 
@@ -111,7 +110,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    e. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
-   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.16/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.17/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 

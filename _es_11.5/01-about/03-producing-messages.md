@@ -34,7 +34,7 @@ max.block.ms  | The number of milliseconds that a send or metadata request can b
 max.in.flight.requests.per.connection  | The maximum number of unacknowledged requests that the client sends on a connection before blocking further requests.  | 1,…  |5
 request.timeout.ms  | The maximum amount of time the producer waits for a response to a request. If the response is not received before the timeout elapses, the request is retried or fails if the number of retries has been exhausted.  | 0,…  |30000 (30 seconds)
 
-Many more configuration settings are available, but ensure that you read the [Apache Kafka documentation](https://kafka.apache.org/37/documentation.html){:target="_blank"} thoroughly before experimenting with them.
+Many more configuration settings are available, but ensure that you read the [Apache Kafka documentation](https://kafka.apache.org/38/documentation.html){:target="_blank"} thoroughly before experimenting with them.
 
 ## Partitioning
 
@@ -147,4 +147,4 @@ To learn more, see the following information:
 
 - [Consuming messages](../consuming-messages)
 - [Partition leadership](../partition-leadership/)
-- [Apache Kafka documentation](https://kafka.apache.org/37/documentation.html){:target="_blank"}
+- [Apache Kafka documentation](https://kafka.apache.org/38/documentation.html){:target="_blank"}

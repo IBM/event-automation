@@ -215,9 +215,9 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eventautomation-flink-operator
       ```
 
-      Check the `version:` value in the output, for example: `version: 1.2.1`
+      Check the `version:` value in the output, for example: `version: {{site.data.reuse.flink_operator_current_version}}`
 
-- If your existing installation is in an offline environment, you must carry out the steps in the offline install instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before completing the steps below.
+- If your existing installation is in an offline environment, you must carry out the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before completing the steps below.
 
 - If the chart version for your existing deployment is 1.1.x, your upgrade is a change in a minor version. Complete the following steps to upgrade:
   1. [Stop your flows](#stopping-flows-for-major-and-minor-upgrades) before the upgrade (this is the same process as on the OpenShift platform).

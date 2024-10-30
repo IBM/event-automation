@@ -44,7 +44,7 @@ The following table describes the UI panels and the permissions required to acce
 
 | UI Panel        | Permissions     | Additional Information |
 |:----------------|:----------------|:---------------------------|
-| **Topics**          | `topic.read` or `topic.describe` | - If the user also has `topic.create` permission, the **Topic Create** button is enabled. <br> - If the user has `topic.delete` permission, the **Topic Delete** button in the overflow menu is enabled. |
+| **Topics**          | `topic.read` or `topic.describe` | - If the user also has `topic.create` permission, the **Topic Create** button is enabled. <br> - If the user has `topic.delete` permission, the **Topic Delete** button in the overflow menu is enabled. <br> - If the user has `topic.alter` and `topic.alterConfigs` permission, the **Set topic partitions** button in the overflow menu is enabled. |
 | **Topic Producer**  |   `topic.write`   |  |
 | **Schema registry** | `schema.read`    | If the user also has the `schema.alter` permission, then the **Add Schema** button is enabled. |
 | **Metrics**    | `cluster.alter` |  |

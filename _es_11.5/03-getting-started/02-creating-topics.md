@@ -31,9 +31,11 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
 8. Click **Create topic**. The topic is created and can be viewed from the **Topics** tab located in the primary navigation.
 
+![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes the current state of each topic, and the status icon displays a message providing further information when you hover over the status icon.
+
 **Note:** To view all configuration options you can set for topics, set **Show all available options** to **On**.
 
-**Note:** Kafka supports additional [topic configuration](https://kafka.apache.org/37/documentation/#topicconfigs){:target="_blank"} settings. Enable **Show all available options** to access more detailed configuration settings if required.
+**Note:** Kafka supports additional [topic configuration](https://kafka.apache.org/38/documentation/#topicconfigs){:target="_blank"} settings. Enable **Show all available options** to access more detailed configuration settings if required.
 
 ## By using the CLI
 
@@ -55,6 +57,7 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
    **Important:** Do not set `<replication-factor>` to a greater value than the number of available brokers.
 
+![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} CLI, the topic list includes the number of partitions, number of replicas, and the status information for each topic when you run the `kubectl es topics` command.
 
 **Note:** To view all configuration options you can set for topics, use the help option as follows: 
 
@@ -62,7 +65,7 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 kubectl es topic-create --help
 ```
 
-Kafka supports additional [topic configuration](https://kafka.apache.org/37/documentation/#topicconfigs){:target="_blank"} settings. Extend the topic creation command with one or more `--config <property>=<value>` properties to apply additional configuration settings. The following additional properties are currently supported:
+Kafka supports additional [topic configuration](https://kafka.apache.org/38/documentation/#topicconfigs){:target="_blank"} settings. Extend the topic creation command with one or more `--config <property>=<value>` properties to apply additional configuration settings. The following additional properties are currently supported:
 
 * cleanup.policy
 * compression.type

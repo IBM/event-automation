@@ -2,14 +2,19 @@
 order: 1
 forID: kc-source-couchbase
 categories: [source]
+connectorTitle: "Couchbase"
 ---
 
-1. [Download](https://docs.couchbase.com/kafka-connector/current/release-notes.html){:target="_blank"} the latest ZIP and extract the JAR files.
+To use the {{page.connectorTitle}} {{page.categories}} connector, complete the following steps:
 
+1. Create a `KafkaConnect` custom resource to define your Kafka Connect runtime and include the {{page.connectorTitle}} {{page.categories}} connector by following the instructions in [setting up and running connectors]({{ 'es/connecting/setting-up-connectors/' | relative_url}}):
 
-2. {{site.data.reuse.kafkaConnectStep2_title}}
+   {{site.data.reuse.kafkaconnectStep1_newcontent}}
 
-    {{site.data.reuse.kafkaConnectStep2_content_1}}
-    {{site.data.reuse.kafkaConnectStep2_content1_example}}
+2. {{site.data.reuse.kafkaconnectStep3_newcontent}}  
 
-3. {{site.data.reuse.kafkaConnectStep3_title}}
+3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
+   
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://github.com/couchbase/kafka-connect-couchbase){:target="_blank"}.     
+    
+5. {{site.data.reuse.kafkaconnectStep6_newcontent}}

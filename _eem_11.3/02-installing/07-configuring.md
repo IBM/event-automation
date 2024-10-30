@@ -67,7 +67,7 @@ To persist the data input into an {{site.data.reuse.eem_manager}} instance, conf
 To enable persistent storage for `EventEndpointManagement` , set `spec.manager.storage.type` to `persistent-claim`, and then configure the storage in one of the following ways:
 
 - [dynamic provisioning](#dynamic-provisioning)
-- [providing persistent volume](#providing-persistent-volume)
+- [providing persistent volume](#providing-persistent-volumes)
 - [providing persistent volume and persistent volume claim](#providing-persistent-volume-and-persistent-volume-claim).
 
 Ensure that you have sufficient disk space for persistent storage.
@@ -76,7 +76,7 @@ Ensure that you have sufficient disk space for persistent storage.
 
 ### Dynamic provisioning
 
-If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.16/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
+If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.17/storage/dynamic-provisioning.html) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
 To configure this, set `spec.manager.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml
@@ -717,7 +717,25 @@ spec:
 
 Authentication is configured in the `EventEndpointManagement` configuration.
 
-The following authentication types are available: LOCAL, OIDC, and INTEGRATION_KEYCLOAK if you are deploying as part of {{site.data.reuse.cp4i}}. For more information, see [managing access](../../security/managing-access).
+The following authentication types are available: LOCAL, OIDC, and INTEGRATION_KEYCLOAK if you are deploying as part of {{site.data.reuse.cp4i}}. .
+
+The following code snippet is an example of a configuration that has authentication set to LOCAL.
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventEndpointManagement
+   ...
+   spec:
+     ...
+     manager:
+       authConfig:
+          authType: LOCAL
+     ...
+   ```
+
+Edit the `spec.manager.authConfig` section to include `authType` as `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK` as required.
+
+For more information, see [managing access](../../security/managing-access).
 
 ## Deploy network policies
 

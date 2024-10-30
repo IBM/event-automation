@@ -719,7 +719,8 @@ latest_epdocs:
           url: /nodes/joins/
         - title: "Enrichment"
           url: /nodes/enrichmentnode/
-
+        - title: "Custom"
+          url: /nodes/custom/
   - title: Deploying advanced flows
     children:
       - title: "Exporting and importing flows"
@@ -1269,6 +1270,10 @@ latestdocs:
         url: /troubleshooting/mq-connector-fails/
       - title: "Upgrading to 11.4.x fails due to `inter.broker.protocol.version`"
         url: /troubleshooting/kafka-protocol-error/
+      - title: "OLM blocks upgrades to 11.5.x due to missing `v1alpha1` or `v1beta1` versions in some CRDs"
+        url: /troubleshooting/crd-version-update-fails/
+      - title: "Unable to manage geo-replicators on the Event Streams destination cluster"
+        url: /troubleshooting/error-managing-geo-replicators/
 
 # Sidebar navigation for Event Streams 11.4 docs
 

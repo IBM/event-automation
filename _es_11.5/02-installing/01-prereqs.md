@@ -16,8 +16,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.openshift.com/container-platform/4.16/welcome/index.html){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.openshift.com/container-platform/4.17/welcome/index.html){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - As an option, you can [install](#prereqs-fs) a supported version of the {{site.data.reuse.icpfs}} to use the components offered by {{site.data.reuse.fs}}.
 
 
@@ -105,7 +105,7 @@ For instructions about installing geo-replication, see [configuring](../configur
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.16/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.17/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.es_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -148,7 +148,7 @@ For example, you can use one of the following systems:
 
 The Apicurio Registry is used in {{site.data.reuse.es_name}} to store message schemas. Each {{site.data.reuse.es_name}} cluster has its own instance of Apicurio Registry providing schema registry functionality. 
 
-To connect your applications to use the [Apicurio Registry](../../schemas/overview#schema-registry), ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.6.2 or later.
+To connect your applications to use the [Apicurio Registry](../../schemas/overview#schema-registry), ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later.
 
 ## {{site.data.reuse.es_name}} UI
 

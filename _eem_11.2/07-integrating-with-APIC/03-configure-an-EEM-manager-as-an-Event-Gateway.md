@@ -243,13 +243,13 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 
 1. Expand the **Workloads** drop-down menu and select **Secrets**.
 2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_manager}} instance is installed in.
-3. Use the search bar to locate the secret named `<event-manager-instance-name>-ibm-eem-manager` and click the secret.
+3. Use the search bar to locate the secret named `<event-manager-instance-name>-ibm-eem-manager` and click the secret.   
+
+   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../installing/configuring#configuring-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
 4. Scroll down to the `Data` section.
 5. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
 6. Copy the **tls.crt** and save it in a file called `manager-client.pem`
 7. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
-
-**Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
 
 ### Obtain certificates for a TLS client profile on other Kubernetes platforms
 
@@ -260,7 +260,9 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
    kubectl config set-context --current --namespace=<namespace>
    ```
 
-3. Display the secret for your `EventEndpointManagement` instance, it will have the name `<instance-name>-ibm-eem-manager`.
+3. Display the secret for your `EventEndpointManagement` instance, it will have the name `<instance-name>-ibm-eem-manager`.    
+
+   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../installing/configuring#configuring-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
 
     ```shell
     kubectl get secret <instance-name>-ibm-eem-manager -o yaml
@@ -269,8 +271,6 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 4. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
 5. Copy the **tls.crt** and save it in a file called `manager-client.pem`
 6. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
-
-**Note:** If you provided your own certificate through a secret for the {{site.data.reuse.eem_manager}}, use the data stored in the secret.
 
 ### Navigate to Cloud Manager
 

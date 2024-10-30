@@ -9,7 +9,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
 
-{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=instances-event-streams-deployment){:target="_blank"}.
+{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing-deploying-instances){:target="_blank"}.
 
 ## Overview
 

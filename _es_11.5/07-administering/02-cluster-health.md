@@ -30,27 +30,9 @@ You can use [Grafana](https://grafana.com/docs/grafana/latest/){:target="_blank"
 
 ## Kibana
 
-You can use the Kibana service that is provided by the {{site.data.reuse.openshift_short}} [cluster logging](https://docs.openshift.com/container-platform/4.16/observability/logging/cluster-logging.html){:target="_blank"}, and use the example [Kibana dashboards](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"} to monitor for specific errors in the logs and set up alerts for when a number of errors occur over a period of time in your {{site.data.reuse.es_name}} instance.
+You can use Kibana on OpenShift and other Kubernetes platforms, where it might also be included, or you can install Kibana externally. You can use the example [Kibana dashboards](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"} to monitor for specific errors in the logs and set up alerts for when a number of errors occur over a period of time in your {{site.data.reuse.es_name}} instance.
 
-To install the {{site.data.reuse.es_name}} Kibana dashboards, follow these steps:
-
-1. Ensure you have [cluster logging](https://docs.openshift.com/container-platform/4.16/observability/logging/cluster-logging-deploying.html){:target="_blank"} installed.
-2. Download the JSON file that includes the example Kibana dashboards for {{site.data.reuse.es_name}} from [GitHub](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"}.
-
-3. Navigate to the Kibana homepage on your cluster.
-
-   {{site.data.reuse.openshift_ui_login}} Then follow the instructions to navigate to [the cluster logging's Kibana homepage](https://docs.openshift.com/container-platform/4.16/observability/logging/log_visualization/logging-kibana.html#cluster-logging-visualizer-kibana_logging-kibana){:target="_blank"}.
-4. Click **Management** in the navigation on the left.
-5. Click **Index patterns**.
-6. Click **Create index pattern**.
-7. Enter `app*` in the **Index pattern** field, and click **Next step**.
-8. Select `@timestamp` from the **Time Filter field name** list, and click **Create index pattern**.
-9. Click **Saved Objects**.
-10. Click the **Import** icon and navigate to the JSON file you downloaded earlier that includes the example Kibana dashboards for {{site.data.reuse.es_name}}.
-11. If an `Index Pattern Conflicts` warning is displayed, select the `app*` index pattern from the **New index pattern** list for each conflict, then click **Confirm all changes**.
-12. Click **Dashboard** in the navigation on the left to view the downloaded dashboards.
-
-You can also use Kibana on other Kubernetes platforms, where it might also be included, or you can install Kibana externally. You can use the example [Kibana dashboards](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"} to monitor for specific errors in the logs and set up alerts for when a number of errors occur over a period of time in your {{site.data.reuse.es_name}} instance.
+To install the {{site.data.reuse.es_name}} Kibana dashboards, download the JSON file that includes the example Kibana dashboards for {{site.data.reuse.es_name}} from [GitHub](https://github.com/IBM/ibm-event-automation/tree/master/event-streams/kibana-dashboards){:target="_blank"}, and configure your dashboard based on your platform.
 
 ## IBM Instana
 

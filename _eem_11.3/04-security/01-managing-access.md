@@ -10,13 +10,16 @@ You can manage access to {{site.data.reuse.eem_name}} by defining authentication
 
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
 - Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
-- [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
-- By using the [Keycloak](#keycloak-authentication) that is provided by {{site.data.reuse.cp4i}}.
+- Integrate with an [external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, your existing corporate ID provider, or various public login services.
+- Integrate with the [local Keycloak](#keycloak-authentication) provided by a {{site.data.reuse.cp4i}} installation on the cluster.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.
-2. Define mappings to custom roles in the OIDC provider if you have used an OIDC provider for authentication.
+2. If you have used an OIDC provider for authentication, set up mappings to control roles through your OIDC provider.
+3. If you have integrated with the {{site.data.reuse.cp4i}} identity provider (Keycloak), set up mappings to control roles through Keycloak.
+
 For more information these options, see [managing roles](../user-roles).
+
 
 **Important:** Before you begin, ensure you have [installed the {{site.data.reuse.eem_name}} operator](../../installing/installing).
 
@@ -296,8 +299,8 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
               secretName: oidc-secret
               site: <oidc_provider_base_url>
    ```
-   
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
+
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
@@ -360,83 +363,26 @@ spec:
 
 You can authenticate users by using the Keycloak provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
 
-**Note:** When you modify an existing {{site.data.reuse.eem_name}} instance to use INTEGRATION_KEYCLOAK, ensure that the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles` has the following contents:
-
-```json
-{
-    "mappings": [
-        {
-            "id": "admin",
-            "roles": [
-                "admin",
-                "author"
-            ]
-        },
-        {
-            "id": "viewer",
-            "roles": [
-                "viewer"
-            ]
-        },
-        {
-            "id": "eventendpointmanagement-admin",
-            "roles": [
-                "admin",
-                "author"
-            ]
-        },
-        {
-            "id": "eventendpointmanagement-viewer",
-            "roles": [
-                "viewer"
-            ]
-        },
-        {
-            "id": "eem-admin",
-            "roles": [
-                "admin"
-            ]
-        },
-        {
-            "id": "eem-author",
-            "roles": [
-                "author"
-            ]
-        },
-        {
-            "id": "eem-viewer",
-            "roles": [
-                "viewer"
-            ]
-        },
-        {
-            "id": "author",
-            "roles": [
-                "author"
-            ]
-        }
-    ]
-}
-```
-For more information, see [Assigning roles to users](../user-roles#assigning-roles-to-users).
-
 
 ### Using {{site.data.reuse.openshift_short}} UI
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. In the **Installed Operators** view, change to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 3. Edit the custom resource for the instance and add the `spec.manager.authConfig` section to include `authType: INTEGRATION_KEYCLOAK` as follows:
+
    ```yaml
    apiVersion: events.ibm.com/v1beta1
    kind: EventEndpointManagement
-   ...
+   # ...
    spec:
-     ...
+     # ...
      manager:
        authConfig:
          authType: INTEGRATION_KEYCLOAK
-     ...
+     # ...
    ```
+
+4. Edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure roles and permissions for your users. For more information, see [managing roles](../user-roles/#assign-roles-keycloak).
 
 ### Using the CLI
 
@@ -454,45 +400,12 @@ For more information, see [Assigning roles to users](../user-roles#assigning-rol
    ```yaml
    apiVersion: events.ibm.com/v1beta1
    kind: EventEndpointManagement
-   ...
+   # ...
    spec:
-     ...
+    # ...
      manager:
        authConfig:
           authType: INTEGRATION_KEYCLOAK
-     ...
+    # ...
    ```
-
-### Assigning roles to your Keycloak users and groups
-{: #assign-roles}
-
-For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created with the name `ibm-eem-<namespace>-<eem-instance-name>`. Attached to this client are the following roles:
-- `eem-author`
-- `eem-viewer`
-- `author` (deprecated). 
-
-For your user or group to have author privileges in the UI, map the `eem-author` role to the user or group as follows: 
-
-1. {{site.data.reuse.openshift_ui_login}}
-1. Expand the **Networking** dropdown and select **Routes** to open the **Routes** page. 
-1. Select the project where the Keycloak operator is installed.
-1. In the row for **Keycloak**, select the link provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
-1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. For example, `cs-keycloak-initial-admin` or `integration-admin-initial-temporary-credentials` if {{site.data.reuse.cp4i}} Platform Navigator instance has been created.
-1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
-1. Select either **Users** or **Groups**.
-1. Click the name of the user or group that you want to work with.
-1. Click the **Role mapping** tab.
-1. Click **Assign role**.
-1. In the drop-down menu, select **Filter by clients**, and then click the eem-author role defined by the relevant Keycloak client.
-1. Click **Assign**.
-
-**Note:** The following table lists the roles that INTEGRATION_KEYCLOAK provides for {{site.data.reuse.cp4i}} components:
-
-| Role | Description |
-| --- | --- |
-| **admin** | Grants admin and author access to all {{site.data.reuse.cp4i}} components |
-|**viewer** | Provides viewer access to all {{site.data.reuse.cp4i}} components |
-| **eventendpointmanagement-admin** | Author access to any {{site.data.reuse.eem_name}} instance created within {{site.data.reuse.cp4i}} |
-| **eventendpointmanagement-viewer** | Viewer access to any {{site.data.reuse.eem_name}} instance within {{site.data.reuse.cp4i}} |
-
-
+5. Edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure roles and permissions for your users. For more information, see [managing roles](../user-roles/#assign-roles-keycloak).

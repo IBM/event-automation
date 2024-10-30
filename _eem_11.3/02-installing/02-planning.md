@@ -133,13 +133,13 @@ You either need to create a [persistent volume](https://kubernetes.io/docs/conce
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
-- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.16/storage/understanding-persistent-storage.html){:target="_blank"}.
+- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.openshift.com/container-platform/4.17/storage/understanding-persistent-storage.html){:target="_blank"}.
 - For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 
 - If these persistent volumes are to be created manually, this must be done by the cluster administrator before installing {{site.data.reuse.eem_name}}. These will then be claimed from a central pool when the {{site.data.reuse.eem_manager}} instance is deployed.
-- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.16/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
+- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.openshift.com/container-platform/4.17/storage/dynamic-provisioning.html){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
 
 **Important:** When creating persistent volumes ensure the **Access mode** is set to `ReadWriteOnce` for the volume.
 
@@ -151,9 +151,10 @@ To use persistent storage, [configure the storage properties](../configuring/#en
 
 There are two main areas of security to consider when installing {{site.data.reuse.eem_name}}:
 
-1. The type of authentication the UI uses. You can choose LOCAL or OIDC.
-   - If LOCAL, then the UI will use a secret that has a list of users and passwords.
-   - If OIDC, then you must provide all the required information to connect to your OIDC provider.
+1. The type of authentication the UI uses. You can choose LOCAL, OIDC, or INTEGRATION_KEYCLOAK, depending on your needs.
+   - Choose LOCAL to define a list of users and passwords locally on the cluster.
+   - Choose OIDC to use an existing OIDC-compatible security provider elsewhere in your environment.
+   - Choose INTEGRATION_KEYCLOAK to use an {{site.data.reuse.cp4i}} installation on the same cluster, to manage users and roles.
 2. The certificates you provide when configuring the {{site.data.reuse.eem_manager}} instance and Event Gateway instance. Both use mutual TLS.
    - For an {{site.data.reuse.eem_manager}} instance, use **one** of the following configurations:
      - **User-provided CA certificate**: Provide a secret containing a certificate authority (CA) certificate, which is used to generate other certificates.

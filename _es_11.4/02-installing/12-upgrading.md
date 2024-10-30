@@ -259,7 +259,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
 - If the chart version for your existing deployment is earlier than 3.3.x, you must first [upgrade your installation to 11.3.x]({{ 'es/es_11.3' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to chart version 3.4.x.
 
-- If your existing installation is in an offline environment, you must carry out the steps in the offline install instructions to [download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before running any `helm` commands.
+- If your existing installation is in an offline environment, you must carry out the steps in the offline installation instructions to [download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before running any `helm` commands.
 
 - Complete the steps in [Helm upgrade](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.es_name}} instance automatically.
 

@@ -20,6 +20,15 @@ sections:
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
     <h3>Event Streams</h3>
+    <h4>11.5.1 - what's new:</h4>
+    <ul>
+      <li>Enhanced Kafka topic management</li>
+      <li>Enhanced topic list with status</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.17</li>
+      <li>Kafka version upgraded to 3.8.0</li>
+      <li>Apicurio version updated to 2.6.5.Final</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.5.0 - what's new:</h4>
     <ul>
       <li>Topic operator enhancements</li>
@@ -37,6 +46,13 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.2.2 - what's new:</h4>
+    <ul>
+      <li>Use your Flink SQL with custom nodes</li>
+      <li>Event Processing add-on for IBM Cloud Pak for Integration</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.17</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.2.0 - what's new:</h4>
     <ul>
       <li>Map key and headers into properties</li>

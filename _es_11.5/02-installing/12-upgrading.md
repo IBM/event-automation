@@ -10,7 +10,7 @@ Upgrade your {{site.data.reuse.es_name}} installation as follows. The {{site.dat
 
 ## Upgrade paths
 
-You can upgrade {{site.data.reuse.es_name}} to the [latest 11.5.x version]({{ 'support/matrix/#event-streams' | relative_url }}) directly from any 11.4.x version by using operator version 3.5.x. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
+You can upgrade {{site.data.reuse.es_name}} to the [latest 11.5.x version]({{ 'support/matrix/#event-streams' | relative_url }}) directly from any earlier 11.5.x or any 11.4.x version by using the latest 3.5.x operator. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
 If you are upgrading from {{site.data.reuse.es_name}} version 11.3.x or earlier, you must first [upgrade your installation to 11.4.x]({{ 'es/es_11.4' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade from 11.4.x to 11.5.x.
 
@@ -259,11 +259,11 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eventstreams-operator
       ```
       
-      Check the `version:` value in the output, for example: `version: 3.5.0`
+      Check the `version:` value in the output, for example: `version: 3.5.1`
 
 - If the chart version for your existing deployment is earlier than 3.4.x, you must first [upgrade your installation to 11.4.x]({{ 'es/es_11.4' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to chart version 3.5.x.
 
-- If your existing installation is in an offline environment, you must carry out the steps in the offline install instructions to [download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before running any `helm` commands.
+- If your existing installation is in an offline environment, you must carry out the steps in the offline installation instructions to [download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before running any `helm` commands.
 
 - Complete the steps in [Helm upgrade](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.es_name}} instance automatically.
 
@@ -388,7 +388,7 @@ Before proceeding to the next step, ensure that these topics are no longer manag
    && kubectl delete $(kubectl get kt -n <namespace> -o name | grep transaction-state) -n <namespace>
    ```
 
-For more information, see [Deleting internal topics used by the operator](https://strimzi.io/docs/operators/0.42.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator).
+For more information, see [Deleting internal topics used by the operator](https://strimzi.io/docs/operators/0.43.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator).
 
 ### Verifying the upgrade
 

@@ -49,7 +49,7 @@ If any of the components are not ready for an extended period of time, check the
    ![Example pod overview]({{ 'images' | relative_url }}/pod_overview.png "Example screen capture showing pod details with graphs for memory and CPU usage"){:height="100%" width="100%"}
 9. Click on the **Logs** tab to search logs.
 
-**Tip:** You can also use the [cluster logging](https://docs.openshift.com/container-platform/4.16/observability/logging/cluster-logging-deploying.html){:target="_blank"} provided by the {{site.data.reuse.openshift_short}} to collect, store, and visualize logs. The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). You can download and install the pre-configured {{site.data.reuse.es_name}} Kibana dashboards by following the instructions in [monitoring cluster health](../cluster-health/).
+**Tip:** You can also use the cluster logging provided by {{site.data.reuse.openshift_short}} to collect, store, and visualize logs. The cluster logging components are based upon Elasticsearch, Fluentd, and Kibana (EFK). You can download and install the pre-configured {{site.data.reuse.es_name}} Kibana dashboards by following the instructions in [monitoring cluster health](../cluster-health/).
 
 ### Using the CLI
 

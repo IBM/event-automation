@@ -17,10 +17,10 @@ eem_name: "Event Endpoint Management"
 eem_current_version: "11.3.2"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.2.1"
+ep_current_version: "1.2.2"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.2.1"
+flink_operator_current_version: "1.2.2"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -259,11 +259,11 @@ task_openshift_select_instance_eem: "Click the **Event Endpoint Management** tab
 task_openshift_select_instance_egw: "Click the **Event Gateway** tab and search the **Name** column for the installed instance and click the name."
 
 #########
-# Common Notes #
+# Common notes #
 #########
 
 #########
-# Event Streams Notes #
+# Event Streams notes #
 #########
 
 # {{site.data.reuse.sample_select_note}}
@@ -315,8 +315,45 @@ es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands ca
 # {{site.data.reuse.jmx_deprecated}}
 jmx_deprecated: "**Note:** Support for jmxtrans in Event Streams version 11.1.5 and later is deprecated, as the jmxtrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating jmxtrans."
 
+
+# {{site.data.reuse.kafkaconnectStep1_newcontent}}
+kafkaconnectStep1_newcontent: "When adding the connector to your Kafka Connect runtime, click **Get connector** to obtain the pre-built connector JAR file, or click **Source code** if you want to build the connector JAR file yourself."
+
+# {{site.data.reuse.kafkaconnectStep2_newcontent}}
+kafkaconnectStep2_newcontent: "When adding the connector to your Kafka Connect runtime, click **Source code** to access the source and build the connector JAR file."
+
+# {{site.data.reuse.kafkaconnectStep3_newcontent}}
+kafkaconnectStep3_newcontent: "Apply the configured `KafkaConnect` custom resource to [start the Kafka Connect runtime](../../es/connecting/setting-up-connectors/#starting-kafka-connect) and verify that the connector is available for use."
+
+# {{site.data.reuse.kafkaconnectStep4_newcontent}}
+kafkaconnectStep4_newcontent: "Create a `KafkaConnector` custom resource to define your [connector configuration](../../es/connecting/setting-up-connectors/#configure-the-connector):"
+
+# {{site.data.reuse.kafkaconnectStep5_newcontent}}
+kafkaconnectStep5_newcontent: "Specify the class name and configuration properties for the connector in the `KafkaConnector` custom resource as described in the"
+
+# {{site.data.reuse.kafkaconnectStep6_newcontent}}
+kafkaconnectStep6_newcontent: "Apply the configured `KafkaConnector` custom resource to [start the connector](../../es/connecting/setting-up-connectors/#start-the-connector) and verify that it is running."
+
+# {{site.data.reuse.kafkaconnectStep7_newcontent}}
+kafkaconnectStep7_newcontent: "Start the connector. <br> <br> For more information about how to set up a Kafka Connect runtime, add MQ source connectors to it, and start the connectors, see [running the MQ source connector](../../es/connecting/mq/source/)."
+
+# {{site.data.reuse.kafkaconnectStep8_newcontent}}
+kafkaconnectStep8_newcontent: "Start the connector. <br> <br> For more information about how to set up a Kafka Connect runtime, add MQ sink connectors to it, and start the connectors, see [running the MQ sink connector](../../es/connecting/mq/sink/)."
+
+# {{site.data.reuse.kafkaconnectStep9_newcontent}}
+kafkaconnectStep9_newcontent: "To download the connector JAR file to your Kafka Connect runtime, click  **Get connector**."
+
+
+
 #########
-# Event Processing Notes #
+# Event Endpoint Management notes #
+#########
+
+# {{site.data.reuse.egw_compatibility_note}}
+egw_compatibility_note: "Ensure that both your Event Gateway and Event Manager instances are from the same version of Event Endpoint Management, or that the Event Gateway is from an earlier version."
+
+#########
+# Event Processing notes #
 #########
 
 # {{site.data.reuse.array_expression_note}}

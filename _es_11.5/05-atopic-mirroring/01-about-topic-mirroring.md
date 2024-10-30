@@ -54,7 +54,7 @@ When all the regions produce directly to the central cluster, there are heavy de
 To reduce latency and improve the availability and performance, you can use the aggregate type of mirroring as follows:
 
 1. Ensure that producers write to local clusters, and then pull topic data from the local cluster into a central cluster to process it in aggregate.
-1. Use topic wildcards in your [subscription](https://kafka.apache.org/37/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#subscribe(java.util.regex.Pattern,org.apache.kafka.clients.consumer.ConsumerRebalanceListener)){:target="_blank"} to consume from all the topics at once and perform your processing.
+1. Use topic wildcards in your [subscription](https://kafka.apache.org/38/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#subscribe(java.util.regex.Pattern,org.apache.kafka.clients.consumer.ConsumerRebalanceListener)){:target="_blank"} to consume from all the topics at once and perform your processing.
 
 #### Shared aggregation
 
@@ -66,7 +66,7 @@ To facilitate this, complete the following steps:
 
 1. Create a single logical topic from two physical topics.
 2. Ensure that the producers always produce to a particular local topic which is then mirrored across to the other region.
-3. Ensure that the consumers [subscribe](https://kafka.apache.org/37/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#subscribe(java.util.regex.Pattern,org.apache.kafka.clients.consumer.ConsumerRebalanceListener)){:target="_blank"} by using topic-based wildcards to both the local topic and the remote topic that is mirrored, hence receiving events from producers in both regions.
+3. Ensure that the consumers [subscribe](https://kafka.apache.org/38/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#subscribe(java.util.regex.Pattern,org.apache.kafka.clients.consumer.ConsumerRebalanceListener)){:target="_blank"} by using topic-based wildcards to both the local topic and the remote topic that is mirrored, hence receiving events from producers in both regions.
 
 **Note:** With the shared aggregate pattern, the consumers in each region might receive locally produced events faster than remote produced events. This might be an issue if events with the same key are created on both local and remote locations. Sequence of events is often important and the normal sequence preservation from the Kafka partitioning strategy does not prevail across multiple separate topics.
 

@@ -64,6 +64,21 @@
     /*transition: background-color 0.5s ease-out; */
 
   }
+
+  .heading-anchor {
+    display: none;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    color: #0062fe;
+  }
+
+  
+  h2:hover .heading-anchor,
+  h3:hover .heading-anchor,
+  h4:hover .heading-anchor {
+    display: inline-block;
+    color: #0062fe;
+  }
   
   .details:hover,
   .active .details {

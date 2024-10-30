@@ -9,7 +9,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
 
-{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=instances-event-streams-deployment){:target="_blank"}.
+{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing-deploying-instances){:target="_blank"}.
 
 ## Overview
 
@@ -33,7 +33,7 @@ Installing {{site.data.reuse.es_name}} has two phases:
 
 ## Create a project (namespace)
 
-Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.openshift.com/container-platform/4.16/applications/projects/working-with-projects.html){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.openshift.com/container-platform/4.17/applications/projects/working-with-projects.html){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.es_name}}. This is required because {{site.data.reuse.es_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
@@ -181,7 +181,7 @@ Before you can install the required operator versions and use them to create ins
 
 1. Before you begin, ensure that you have the following set up for your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell

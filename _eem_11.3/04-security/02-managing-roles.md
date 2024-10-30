@@ -15,12 +15,19 @@ After [configuring access](../managing-access) to your {{site.data.reuse.eem_man
 **Note:** You must assign at least one of these roles to each user.
 
 You can set up authorization in one of the following ways:
-1. [Assign each user their roles individually](#setting-up-roles-per-user).
-2. If using an OIDC provider for authentication, [define mappings to custom roles in your OIDC provider](#setting-up-roles-by-using-a-custom-identifier).
+1. [Assign individual roles to users](#assigning-individual-roles-to-users) with local or OIDC authentication.
+2. Optional: If using an OIDC provider for authentication, you can [set up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier), where the custom identifier maps to fields in your external security manager.
+3. If using the {{site.data.reuse.cp4i}} identity provider, you must [assign roles to specific Keycloak groups](#assigning-roles-to-your-keycloak-users-and-groups) to match your {{site.data.reuse.cp4i}} installation, then manage authorization though its Keycloak instance.
 
-## Assigning roles to users
+## Assigning individual roles to users
 
-Users are assigned roles in {{site.data.reuse.eem_name}} through user mapping, where an identifier for the user or a group of users is mapped to a role or set of roles. The mappings are defined in a configuration file that is exposed through the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles`. By default, this file requires separate mapping information for each user.
+Users are assigned roles in {{site.data.reuse.eem_name}} through user mapping, where an identifier for the user or a group of users is mapped to a role or set of roles. The mappings are defined in a configuration file that is exposed through the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles`.
+
+By default, this file requires separate mapping information for each user, where the `id` in the mappings file is the unique identifier of the user:
+
+- When using local authentication, it is the `username` for the user as set in the `<custom-resource-name>-ibm-eem-user-credentials` secret. For more information, see [managing access](../managing-access).
+
+- When using OIDC-based authentication, it is the user's `subject`. You can retrieve this either directly from your OIDC provider, or by logging in to the {{site.data.reuse.eem_name}} UI and setting the path to `/auth/protected/userinfo` in the URL.
 
 The following example shows a user mappings file:
 
@@ -48,13 +55,13 @@ The following example shows a user mappings file:
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
 3. To edit the secret `<custom-resource-name>-ibm-eem-user-roles` with your role mappings, go to **Actions**, and click **Edit Secret**.
-4. Edit the mappings, as described in the [setting up roles per user](#setting-up-roles-per-user) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
+4. Edit the mappings, as described in the [setting up roles per user](#assigning-individual-roles-to-users) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
 5. Click **Save**.
 
 ### Using the CLI
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Create a JSON file called `myroles.json` that contains the user role mappings for your {{site.data.reuse.eem_manager}} instance as described in the [setting up roles per user](#setting-up-roles-per-user) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
+2. Create a `myroles.json` JSON file that contains the user role mappings for your {{site.data.reuse.eem_manager}} instance as described in the [setting up roles per user](#assigning-individual-roles-to-users) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
 
 3. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
 
@@ -88,26 +95,10 @@ The following example shows a user mappings file:
 
 **Note:** The changed configuration file is automatically picked up by the {{site.data.reuse.eem_manager}} instance after a few minutes.
 
-## Setting up roles per user
 
-This is the default set up, where the `id` in the mappings file is the unique identifier of the user:
 
-- When using local authentication, it is the `username` for the user as set in the `<custom-resource-name>-ibm-eem-user-credentials` secret (for more information, see [managing access](../managing-access)).
 
-- When using OIDC-based authentication, it is the user's `subject`. You can retrieve this either directly from your OIDC provider, or by logging in to the {{site.data.reuse.eem_name}} UI and setting the path to `/auth/protected/userinfo` in the URL.
 
-The following example shows a user mappings file:
-
-```json
-"mappings": [
-    {
-    "id": "author1",
-    "roles": [
-      "author"
-    ]
-  }
-    ]
-```
 
 ## Setting up roles by using a custom identifier
 
@@ -119,7 +110,7 @@ To use a custom identifier, you must configure your {{site.data.reuse.eem_manage
 2. `Access Token`
 3. `User Info`
 
-**Note:** If the property is not found, {{site.data.reuse.eem_name}} will attempt to map the user directly by using their `subject` (as mentioned in [setting up roles per user](#setting-up-roles-per-user)).
+**Note:** If the property is not found, {{site.data.reuse.eem_name}} will attempt to map the user directly by using their `subject` (as mentioned in [setting up roles per user](#assigning-individual-roles-to-users)).
 
 To configure the custom property (claim) to use, set the `authorizationClaimPointer` and the `additionalScopes` fields in the `spec.manager.authConfig.oidcConfig` section of your `EventEndpointManagement` custom resource:
 
@@ -211,14 +202,109 @@ Complete the following steps to assign access:
 
    This means that any user who is known to the OIDC provider and has the `developer` role will be able to use {{site.data.reuse.eem_name}}.
 
-**Note:** {{site.data.reuse.eem_name}} checks multiple sources for the configured property. If it does not find the `/data/roles` field in the `ID token`, it will check for it next in the `Access Token`, then finally it will check in the response to the `User Info` API, which is available in all OIDC providers. {{site.data.reuse.eem_name}} uses the value from the first match. If no match is found, it [defaults](#setting-up-roles-per-user) to checking for the user's `subject` directly in the mappings file.
+**Note:** {{site.data.reuse.eem_name}} checks multiple sources for the configured property. If it does not find the `/data/roles` field in the `ID token`, it will check for it next in the `Access Token`, then finally it will check in the response to the `User Info` API, which is available in all OIDC providers. {{site.data.reuse.eem_name}} uses the value from the first match. If no match is found, it defaults to checking for the user's `subject` directly in the mappings file.
+
+
+## Assigning roles to your Keycloak users and groups
+{: #assign-roles-keycloak}
+
+If you want to authenticate with Keycloak, ensure that you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"}, including the required dependencies.
+
+When you configure an {{site.data.reuse.eem_name}} instance with the `INTEGRATION_KEYCLOAK` authentication type, to integrate with a {{site.data.reuse.cp4i}} installation, you must configure the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles` with the following contents:
+
+```json
+{
+    "mappings": [
+        {
+            "id": "admin",
+            "roles": [
+                "admin",
+                "author"
+            ]
+        },
+        {
+            "id": "viewer",
+            "roles": [
+                "viewer"
+            ]
+        },
+        {
+            "id": "eventendpointmanagement-admin",
+            "roles": [
+                "admin",
+                "author"
+            ]
+        },
+        {
+            "id": "eventendpointmanagement-viewer",
+            "roles": [
+                "viewer"
+            ]
+        },
+        {
+            "id": "eem-admin",
+            "roles": [
+                "admin"
+            ]
+        },
+        {
+            "id": "eem-author",
+            "roles": [
+                "author"
+            ]
+        },
+        {
+            "id": "eem-viewer",
+            "roles": [
+                "viewer"
+            ]
+        },
+        {
+            "id": "author",
+            "roles": [
+                "author"
+            ]
+        }
+    ]
+}
+```
+
+For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created with the name `ibm-eem-<namespace>-<eem-instance-name>`. Attached to this client are the following roles:
+
+- `eem-author`
+- `eem-viewer`
+- `author` (deprecated). 
+
+For your user or group to have author privileges in the UI, assign the `eem-author` role to the user or group in the {{site.data.reuse.cp4i}} security console as follows:
+
+1. {{site.data.reuse.openshift_ui_login}}
+1. Expand the **Networking** drop-down, and select **Routes** to open the **Routes** page. 
+1. Select the project where the Keycloak operator is installed.
+1. In the row for **Keycloak**, select the link provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
+1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. See how to [retrieve](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=management-getting-initial-administrator-password){:target="_blank"} your credentials.
+1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
+1. Select either **Users** or **Groups**.
+1. Click the name of the user or group that you want to work with.
+1. Click the **Role mapping** tab.
+1. Click **Assign role**.
+1. In the drop-down menu, select **Filter by clients**, and then click the eem-author role defined by the relevant Keycloak client.
+1. Click **Assign**.
+
+**Note:** The following table lists the roles that INTEGRATION_KEYCLOAK provides for {{site.data.reuse.cp4i}} components:
+
+| Role | Description |
+| --- | --- |
+| **admin** | Admin and author access to all {{site.data.reuse.cp4i}} components |
+|**viewer** | Viewer access to all {{site.data.reuse.cp4i}} components |
+| **eventendpointmanagement-admin** | Author access to any {{site.data.reuse.eem_name}} instance created within {{site.data.reuse.cp4i}} |
+| **eventendpointmanagement-viewer** | Viewer access to any {{site.data.reuse.eem_name}} instance within {{site.data.reuse.cp4i}} |
 
 
 ## Retrieving roles for the Admin API
 
 When using the {{site.data.reuse.eem_name}} Admin API, the [access token for the API](../api-tokens) has the same permissions as the user who created it. 
 
-If you have [set up roles per user](#setting-up-roles-per-user), the permissions are assigned by using the same role mappings file as mentioned earlier without any additional configuration. However, instead of mapping information from the OIDC log in flow, the role is mapped by using the owner of the token.
+If you have [set up roles per user](#assigning-individual-roles-to-users), the permissions are assigned by using the same role mappings file as mentioned earlier without any additional configuration. However, instead of mapping information from the OIDC log in flow, the role is mapped by using the owner of the token.
 
 **Important:** If you have [set up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier), additional configuration is required to ensure Admin API users have the expected permissions. This is because to map users to roles, a custom property in OIDC is used instead of the unique user subject (the owner of the token).
 

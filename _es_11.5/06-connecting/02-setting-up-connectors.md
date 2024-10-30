@@ -346,7 +346,7 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
 
   The following snippet is an example output for the previous command:
 
-  ```output
+  ```shell
   Status:  
     Conditions:  
        Last Transition Time: 2024-06-25T07:56:40.943007974Z  
@@ -452,7 +452,7 @@ kubectl describe kafkaconnector <connector_name>
 
 This command provides the complete description of the connector that you created. You can verify the current status of the connector from the `status` section. For example:
 
-```output
+```shell
 Status: 
     Conditions:  
        Last Transition Time: 2024-07-13T07:56:40.943007974Z  

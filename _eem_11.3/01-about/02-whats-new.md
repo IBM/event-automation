@@ -10,6 +10,10 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.3.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Support for {{site.data.reuse.openshift}} 4.17
+
+{{site.data.reuse.eem_name}} version 11.3.2 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.17.
+
 ### Security and bug fixes
 
 {{site.data.reuse.eem_name}} release 11.3.2 contains security and bug fixes, including a client compatibility issue.

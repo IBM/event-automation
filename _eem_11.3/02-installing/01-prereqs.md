@@ -15,8 +15,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.16/welcome/index.html){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.16/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.17/welcome/index.html){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -67,7 +67,7 @@ The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped 
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.16/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.17/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -108,6 +108,10 @@ For example, you can use one of the following systems:
 
 **Important:** The previous list includes storage providers that you can use to provision persistent volumes for {{site.data.reuse.eem_name}}. There is no guarantee that all features of a storage provider, such as snapshot-based backup and restore of the volumes, are supported. If you want to back up and restore your {{site.data.reuse.eem_manager}} instance, ensure you use a storage provider compatible with the CSI specification for snapshotting.
 
+## {{site.data.reuse.egw}} compatibility
+
+{{site.data.reuse.egw_compatibility_note}}
+
 ## {{site.data.reuse.eem_name}} UI
 
 The {{site.data.reuse.eem_name}} user interface (UI) is supported on the following web browsers:
@@ -141,7 +145,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.openshift.com/container-platform/4.16/security/cert_manager_operator/cert-manager-operator-install.html).
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.openshift.com/container-platform/4.17/security/cert_manager_operator/cert-manager-operator-install.html).
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 

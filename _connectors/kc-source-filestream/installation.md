@@ -2,10 +2,19 @@
 order: 1
 forID: kc-source-filestream
 categories: [source]
+connectorTitle: "FileStream"
 ---
 
-1. Add the connector plugin to Kafka Connect in one of the following ways:
-- [Build a new container image with connector plugins automatically](https://strimzi.io/docs/operators/latest/deploying.html#creating-new-image-using-kafka-connect-build-str){:target="_blank"}
-- [Build a new container image with connector plugins from the Kafka Connect base image](https://strimzi.io/docs/operators/latest/deploying.html#creating-new-image-from-base-str){:target="_blank"}
+To use the {{page.connectorTitle}} {{page.categories}} connector, complete the following steps:
 
-2. {{site.data.reuse.kafkaConnectStep3_title}}
+1. Create a `KafkaConnect` custom resource to define your Kafka Connect runtime and include the {{page.connectorTitle}} {{page.categories}} connector by following the instructions in [setting up and running connectors]({{ 'es/connecting/setting-up-connectors/' | relative_url}}):
+
+   {{site.data.reuse.kafkaconnectStep2_newcontent}}    
+
+2. {{site.data.reuse.kafkaconnectStep3_newcontent}}  
+
+3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
+   
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://github.com/apache/kafka/blob/trunk/config/connect-console-source.properties){:target="_blank"}. 
+   
+4. {{site.data.reuse.kafkaconnectStep6_newcontent}}

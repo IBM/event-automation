@@ -10,7 +10,7 @@ toc: true
 
 Java Management Extensions (JMX) is a way of retrieving metrics from your specific processes dynamically at runtime. This can be used to get metrics that are specific to Java operations on Kafka
 
-To manage resources, management beans (MBeans) are used. MBeans represent a resource in the JVM. There are specific [MBean attributes](https://kafka.apache.org/37/documentation/#remote_jmx){:target="_blank"} you can use with Kafka.
+To manage resources, management beans (MBeans) are used. MBeans represent a resource in the JVM. There are specific [MBean attributes](https://kafka.apache.org/38/documentation/#remote_jmx){:target="_blank"} you can use with Kafka.
 
 Metrics can be retrieved from applications running inside your Kubernetes cluster by connecting to an exposed JMX port.
 

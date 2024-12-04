@@ -104,6 +104,7 @@ function connectorCard(card, url) {
         setTimeout(() => {
           getById('contentLoadContainer').innerHTML = loadedContent;
           addHandlersForButtons();
+          copyCode();
         }, 400)
       } else {
         getById('contentLoadContainer').innerHTML = loadedContent;

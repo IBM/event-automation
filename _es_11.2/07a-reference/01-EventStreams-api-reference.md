@@ -235,8 +235,8 @@ Find out more abut the Custom Resource Definitions (CRDs) that are used by {{sit
 | Property | Type | Description |
 | --- | --- | --- |
 | spec.license | object | Specify the license information for the instance of {{site.data.reuse.es_name}}. |
-| spec.license.accept | boolean | Accept the selected product license by following the guidance in [licensing]({{ 'support/licensing' | relative_url }}){:target="_blank"}. |
-| spec.license.license | string | License ID that the user is selecting and accepting. For more information, see [licensing]({{ 'support/licensing' | relative_url }}){:target="_blank"}. |
+| spec.license.accept | boolean | Accept the selected product license by following the guidance in [licensing]({{ 'support/licensing' | relative_url }}). |
+| spec.license.license | string | License ID that the user is selecting and accepting. For more information, see [licensing]({{ 'support/licensing' | relative_url }}). |
 | spec.license.use | string | Specify if you intend for this installation to be used in a production environment. For more information, see [licensing]({{ 'support/licensing' | relative_url }}).|
 
 ### requestIbmServices

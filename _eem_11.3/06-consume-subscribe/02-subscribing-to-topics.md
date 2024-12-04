@@ -8,9 +8,9 @@ toc: true
 
 After discovering an event endpoint that is suitable for use with your application, you can subscribe to it in a self-service manner in [the Catalog](../discovering-event-endpoints#the-catalog) by generating access credentials.
 
-## Requesting access to an event endpoint
+## Generating access credentials for an event endpoint
 
-You can request access to an event endpoint as follows:
+To generate access credentials for an event endpoint that has not been configured with approval controls, complete the following steps.
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
 2. In the navigation pane, click **Catalog**.

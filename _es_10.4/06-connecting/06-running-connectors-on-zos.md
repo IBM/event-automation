@@ -144,10 +144,10 @@ The bindings connection mode is a configuration option for the connector as desc
 
 ## Starting Kafka Connect on z/OS
 
-Kafka Connect is started using a bash script. If you do not already have bash installed on your z/OS system install it now.
+Kafka Connect is started by using a bash script. If you do not already have bash installed on your z/OS system, install it now.
 
 To install bash version 4.2.53 or later:
-1. Download the bash archive file from [Bash Version 4.2.53](https://www.rocketsoftware.com/product-categories/mainframe/bash-zos){:target="_blank"}
+1. Download the bash archive file from [IBM Open Enterprise Foundation for z/OS](https://www.ibm.com/products/open-enterprise-foundation-zos){:target="_blank"}.
 2. Extract the archive file to get the .tar file:\\
     `gzip -d bash.tar.gz`
 3. FTP the .tar file to your z/OS USS directory such as `/bin`

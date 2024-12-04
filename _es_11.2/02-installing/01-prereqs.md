@@ -18,7 +18,7 @@ If you are using {{site.data.reuse.openshift}}, ensure you have the following se
 
 - A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/welcome/index.html){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
-- As an option, you can [install](#optional-ibm-cloud-pak-foundational-services-for-openshift){:target="_blank"} a supported version of the {{site.data.reuse.icpfs}} to use the components offered by {{site.data.reuse.fs}}.
+- As an option, you can [install](#optional-ibm-cloud-pak-foundational-services-for-openshift) a supported version of the {{site.data.reuse.icpfs}} to use the components offered by {{site.data.reuse.fs}}.
 
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
@@ -169,7 +169,7 @@ The Apache Kafka Java client included with {{site.data.reuse.es_name}} is suppor
 - IBM Java 8 or later
 - Oracle Java 8 or later
 
-You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }}){:target="_blank"}).
+You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }})).
 
 {{site.data.reuse.es_name}} is designed for use with clients based on the `librdkafka` [implementation](https://github.com/edenhill/librdkafka) of the Apache Kafka protocol.
 

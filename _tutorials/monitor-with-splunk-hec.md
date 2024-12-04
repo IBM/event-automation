@@ -180,7 +180,7 @@ spec:
       jmxOptions: {}
 ```
 
-**Tip:** The JMX port can be password-protected to prevent unauthorized pods from accessing it. For more information, see [Configuring secure JMX connections]({{ 'es/es_11.0/security/secure-jmx-connections/' | relative_url}}){:target="_blank"}.
+**Tip:** The JMX port can be password-protected to prevent unauthorized pods from accessing it. For more information, see [Configuring secure JMX connections]({{ 'es/es_11.0/security/secure-jmx-connections/' | relative_url}}).
 
 The following example shows how to configure a jmxtrans deployment for {{site.data.reuse.es_name}} versions earlier than 11.2.0. If you are running {{site.data.reuse.es_name}} versions 11.2.0 and later, follow the instructions in the [GitHub README](https://github.com/IBM/ibm-event-automation/blob/main/event-streams/jmxtrans/README.md){:target="_blank"} to configure a jmxtrans deployment.
 

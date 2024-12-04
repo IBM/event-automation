@@ -11,7 +11,7 @@ You can manage access to your {{site.data.reuse.ep_name}} instance by defining a
 You can set up authentication in {{site.data.reuse.ep_name}} in one of the following ways:
 
 1. Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.ep_name}} runs.
-2. [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
+2. [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication) that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.

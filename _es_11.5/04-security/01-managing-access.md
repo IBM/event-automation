@@ -44,13 +44,18 @@ The following table describes the UI panels and the permissions required to acce
 
 | UI Panel        | Permissions     | Additional Information |
 |:----------------|:----------------|:---------------------------|
-| **Topics**          | `topic.read` or `topic.describe` | - If the user also has `topic.create` permission, the **Topic Create** button is enabled. <br> - If the user has `topic.delete` permission, the **Topic Delete** button in the overflow menu is enabled. <br> - If the user has `topic.alter` and `topic.alterConfigs` permission, the **Set topic partitions** button in the overflow menu is enabled. |
+| **Topics**          | `topic.read` or `topic.describe`  | Displays a list of topics.|
+|  &nbsp;         | `topic.create`| Enables the **Create topic** button.|
+|  &nbsp;          | `topic.delete`| Enables the **Delete topic** button in the overflow menu.|
+| &nbsp;     | `topic.alter`| Enables the **Set topic partitions** button in the overflow menu.|
+|  &nbsp;       | `topic.alterConfigs`| Enables the **Set topic partitions** button in the overflow menu.|
 | **Topic Producer**  |   `topic.write`   |  |
-| **Schema registry** | `schema.read`    | If the user also has the `schema.alter` permission, then the **Add Schema** button is enabled. |
+| **Schema registry** | `schema.read`    |  |
+| &nbsp; |`schema.alter` | Enables the **Add Schema** button.|
 | **Metrics**    | `cluster.alter` |  |
 | **Consumer groups** | `group.read`     |                    |
-| **Geo-replication**  | `cluster.alter` | Geo-replication is enabled for SCRAM authentication. |
-| **Generate credentials**  | `cluster.alter` | **Generate credentials** buttons are enabled in the **Cluster connection** panel. |
+| **Geo-replication**  | `cluster.alter` | Enables geo-replication for SCRAM authentication. |
+| **Generate credentials**  | `cluster.alter` | Enables the **Generate credentials** buttons in the **Cluster connection** panel. |
 | **Starter application** | `topic.read` and `topic.write` | When generating the starter application, the current user ID and password will be configured in the properties. `topic.create` permission is required to create new topics within the Starter App wizard. |
 
 The following tables describe the CLI commands and the permissions required to run them.

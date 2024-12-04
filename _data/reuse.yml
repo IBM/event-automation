@@ -14,7 +14,7 @@ eem_name: "Event Endpoint Management"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.3.2"
+eem_current_version: "11.4.0"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.2.2"
@@ -270,7 +270,7 @@ task_openshift_select_instance_egw: "Click the **Event Gateway** tab and search 
 sample_select_note: "You can select this sample to use when [installing](../installing/) your instance. You can also use it to start out with your configuration, and change settings as required for your purposes. For ways to customize your setup, see [configuring](../configuring)."
 
 # {{site.data.reuse.prod_persistence_note}}
-prod_persistence_note: "**Important:** For production deployments, ensure you configure a storage solution by editing the sample as described in [enabling persistent storage](../es/configuring/#enabling-persistent-storage)."
+prod_persistence_note: "**Important:** For production deployments, ensure you configure a storage solution by editing the sample as described in [enabling persistent storage](../../installing/configuring/#enabling-persistent-storage)."
 
 # {{site.data.reuse.cli_options_short}}
 cli_options_short: "**Tip:** You can use short options instead of spelling out the long version. For example, use `-d` instead of `--destination`, or `-n` instead of `--name`."

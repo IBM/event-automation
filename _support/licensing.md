@@ -40,14 +40,22 @@ From the relevant table in the sections that follow, choose the value for the fo
    ```
 
 Where `<license-use-value>` must match the intended product usage that you purchased.
-  
+
 
 ### {{site.data.reuse.ea_long}} license information
 
+| Program   | License ID (`spec.license.license`)  | Included capabilities | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
+----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
+| {{site.data.reuse.ea_long}} 1.1.0.0 | [**L-AUKS-FKVXVL**](https://www.ibm.com/support/customer/csol/terms/?id=L-AUKS-FKVXVL&lc=en){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.2 and later <br><br> - {{site.data.reuse.eem_name}} 11.4.0 and later <!-- <br><br> - {{site.data.reuse.ep_name}} 1.2.3 and later --> | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** <br> The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1, {{site.data.reuse.eem_name}} 11.4.0, and {{site.data.reuse.ep_name}} 1.2.2, and all later versions. |  N/A |
+| &nbsp; | [**L-KCVZ-JL5CRM**](https://www.ibm.com/support/customer/csol/terms/?id=L-KCVZ-JL5CRM&lc=en#detail-document){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.3.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.2.0 and later  | &nbsp; |  &nbsp; |
+| {{site.data.reuse.ea_long}} 1.0.0.0 | [**L-HRZF-DWHH7A**](https://www.ibm.com/support/customer/csol/terms/?id=L-HRZF-DWHH7A&lc=en#detail-document){:target="_blank"}  | - {{site.data.reuse.es_name}} 11.2.0 to 11.4.0 <br><br> - {{site.data.reuse.eem_name}} 11.0.0 to 11.2.3 <br><br> - {{site.data.reuse.ep_name}} 1.0.0 to 1.1.9  | - `EventAutomationNonProduction` <br> <br> - `EventAutomationProduction` |  N/A |
+
+<!-- 
 | Program   | Included capabilities  | License ID (`spec.license.license`) | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
-| {{site.data.reuse.ea_long}} 1.1.0.0 | - {{site.data.reuse.es_name}} 11.5.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.3.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.2.0 and later | [**L-KCVZ-JL5CRM**](https://www.ibm.com/support/customer/csol/terms/?id=L-KCVZ-JL5CRM&lc=en#detail-document){:target="_blank"}  | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1 and {{site.data.reuse.ep_name}} 1.2.2 and later. This option is not available for {{site.data.reuse.eem_name}}.|  N/A |
+| {{site.data.reuse.ea_long}} 1.1.0.0 | - {{site.data.reuse.es_name}} 11.5.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.3.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.2.0 and later | [**L-KCVZ-JL5CRM**](https://www.ibm.com/support/customer/csol/terms/?id=L-KCVZ-JL5CRM&lc=en#detail-document){:target="_blank"}  | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1, {{site.data.reuse.eem_name}} 11.4.0, and {{site.data.reuse.ep_name}} 1.2.2, and later versions. |  N/A |
 | {{site.data.reuse.ea_long}} 1.0.0.0 |  - {{site.data.reuse.es_name}} 11.2.0 to 11.4.0 <br><br> - {{site.data.reuse.eem_name}} 11.0.0 to 11.2.3 <br><br> - {{site.data.reuse.ep_name}} 1.0.0 to 1.1.9 | [**L-HRZF-DWHH7A**](https://www.ibm.com/support/customer/csol/terms/?id=L-HRZF-DWHH7A&lc=en#detail-document){:target="_blank"}  | - `EventAutomationNonProduction` <br> <br> - `EventAutomationProduction` |  N/A |
+-->
 
 ### {{site.data.reuse.cp4i}} license information
 

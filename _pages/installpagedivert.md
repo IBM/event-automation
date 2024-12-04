@@ -1,6 +1,6 @@
 ---
 title: "Installing Event Streams on your platform"
-excerpt: "Installing Event Streams on your platform."
+# excerpt: "Installing Event Streams on your platform."
 permalink: /installpagedivert/
 sitemap: false
 layout: single

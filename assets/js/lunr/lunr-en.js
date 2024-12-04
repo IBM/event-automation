@@ -133,10 +133,13 @@ function searchResults(theSearchInput) {
         let currentVersion = topic.excerpt;
         let currentIndex = index;
         let url = sortedTopicsByVersion[currentIndex].url;
+        if (url.includes('/connectors/') && url.includes('/index')) {
+          url = url.replace('/index', '/installation');
+        }
         structure += '<div class="card" onclick="pushHistoryState(this);window.open(\''+url+'\',\'_self\')">'
         structure += '<p>'+topic.excerpt+'...</p>'
         structure += '<div class="versionContainer">'
-        structure += '<p class="foundIn heading-five">Found in versions:</h5><br>'
+        structure += '<p class="foundIn heading-five">Found in:</h5><br>'
         sortedTopicsByVersion.forEach((topic, index) => {
           if ( currentVersion == topic.excerpt ) {
             let initial = "";
@@ -144,14 +147,20 @@ function searchResults(theSearchInput) {
               initial = "initial";
             }
             let value;
+            
             if (topic.version.startsWith("ep")) {
               value = "Event Processing - " + topic.version.substr(3);
             } else if (topic.version.startsWith("eem")) {
               value = "Event Endpoint Management - " + topic.version.substr(4);
             } else if (topic.version.startsWith("es")) {
               value =  "Event Streams - " + topic.version.substr(3);
+            } else if (topic.version.startsWith("connectors")) {
+              value =  "Connectors - " + topic.title;
             } else {
               value = topic.version;
+            }
+            if (topic.url.includes('/connectors/') && topic.url.includes('/index')) {
+              topic.url = topic.url.replace('/index', '/installation');
             }
             structure += '<div class="versionPillContainer '+initial+'" onMouseOver="pillHover(this);" onMouseOut="pillBlur(this);" href="'+topic.url+'">'
             structure += '<a class="versionPill" href="'+topic.url+'">'+value+'</a>'

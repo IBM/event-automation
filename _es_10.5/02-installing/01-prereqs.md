@@ -161,6 +161,6 @@ The Apache Kafka Java client included with {{site.data.reuse.es_name}} is suppor
 - IBM Java 8 or later
 - Oracle Java 8 or later
 
-You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }}){:target="_blank"}).
+You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }})).
 
 {{site.data.reuse.es_name}} is designed for use with clients based on the `librdkafka` [implementation](https://github.com/edenhill/librdkafka) of the Apache Kafka protocol.

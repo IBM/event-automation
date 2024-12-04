@@ -10,7 +10,7 @@ You can manage access to {{site.data.reuse.eem_name}} by defining authentication
 
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
 - Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
-- [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
+- [Integrate with an external identity provider](#setting-up-openid-connect-oidc-based-authentication) that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, or various public login services.
 - By using the [Keycloak](#setting-up-integration-keycloak-authentication) that is provided by {{site.data.reuse.cp4i}}.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
@@ -438,7 +438,7 @@ For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created wit
 1. Expand the **Networking** dropdown and select **Routes** to open the **Routes** page. 
 1. Select the project where the Keycloak operator is installed.
 1. In the row for **Keycloak**, select the link provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
-1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. For example, `cs-keycloak-initial-admin` or `integration-admin-initial-temporary-credentials` if {{site.data.reuse.cp4i}} Platform Navigator instance has been created.
+1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. For example, `integration-admin-initial-temporary-credentials`.
 1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
 1. Select either **Users** or **Groups**.
 1. Click the name of the user or group that you want to work with.
@@ -446,3 +446,5 @@ For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created wit
 1. Click **Assign role**.
 1. In the drop-down menu, select **Filter by clients**, and then click the author role defined by the relevant Keycloak client.
 1. Click **Assign**.
+
+For more information about how to administer Keycloak provided by {{site.data.reuse.cp4i}}, see the topic about identity and access management in the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-identity-access-management){:target="_blank"}.

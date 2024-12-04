@@ -1,6 +1,6 @@
 ---
 title: "Notices"
-excerpt: "Legal notices for IBM Event Automation."
+# excerpt: "Legal notices for IBM Event Automation."
 permalink: /notices/
 toc: true
 ---

@@ -6,7 +6,7 @@ slug: multizone-considerations
 toc: true
 ---
 
-As part of planning for a [resilient deployment](../planning/#planning-for-resilience), you can deploy {{site.data.reuse.es_name}} on a multizone {{site.data.reuse.openshift_short}} cluster to allow for greater resilience against external disruption. For more information and instructions, see how to [prepare for a multizone deployment](../preparing-multizone/), or see the [tutorial]({{ 'tutorials/multi-zone-tutorial/' | relative_url }}){:target="_blank"}. Before following these instructions and deploying {{site.data.reuse.es_name}} on a multizone cluster, consider the following information.
+As part of planning for a [resilient deployment](../planning/#planning-for-resilience), you can deploy {{site.data.reuse.es_name}} on a multizone {{site.data.reuse.openshift_short}} cluster to allow for greater resilience against external disruption. For more information and instructions, see how to [prepare for a multizone deployment](../preparing-multizone/), or see the [tutorial]({{ 'tutorials/multi-zone-tutorial/' | relative_url }}). Before following these instructions and deploying {{site.data.reuse.es_name}} on a multizone cluster, consider the following information.
 
 ## Reasons to consider multiple availability zones
 

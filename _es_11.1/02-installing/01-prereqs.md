@@ -29,7 +29,7 @@ Ensure you have the following set up for your environment:
 - A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.openshift.com/container-platform/4.12/installing/index.html#installation-overview_ocp-installation-overview){:target="_blank"}. See the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}) for supported versions.
 - The {{site.data.reuse.openshift_short}} CLI [installed](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
 - The IBM Cloud Pak CLI (`cloudctl`) [installed](https://github.com/IBM/cloud-pak-cli/blob/master/README.md){:target="_blank"}.
-- A supported version of the {{site.data.reuse.icpfs}} [installed](#ibm-cloud-pak-foundational-services){:target="_blank"}.
+- A supported version of the {{site.data.reuse.icpfs}} [installed](#ibm-cloud-pak-foundational-services).
 
 ## Hardware requirements
 
@@ -179,6 +179,6 @@ The Apache Kafka Java client included with {{site.data.reuse.es_name}} is suppor
 - IBM Java 8 or later
 - Oracle Java 8 or later
 
-You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }}){:target="_blank"}).
+You can also use other Kafka version 2.0 or later clients when connecting to {{site.data.reuse.es_name}}. If you encounter client-side issues, IBM can assist you to resolve those issues (see our [support policy]({{ 'support/#support-policy' | relative_url }})).
 
 {{site.data.reuse.es_name}} is designed for use with clients based on the `librdkafka` [implementation](https://github.com/edenhill/librdkafka){:target="_blank"} of the Apache Kafka protocol.

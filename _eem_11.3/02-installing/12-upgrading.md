@@ -26,7 +26,9 @@ If you are upgrading from {{site.data.reuse.eem_name}} version 11.1.x, you must 
 
 - If you installed as part of {{site.data.reuse.cp4i}}, ensure that you have followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
-- To upgrade successfully, your {{site.data.reuse.egw_compatibility_note}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data will be lost.
+- To upgrade successfully, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data will be lost.
+
+- {{site.data.reuse.egw_compatibility_note}}
 
 - Always upgrade your {{site.data.reuse.eem_manager}} instance before upgrading your {{site.data.reuse.egw}} instance.
 
@@ -176,7 +178,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eem-operator
       ```
       
-      Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
+      Check the `version:` value in the output, for example: `version: 11.3.2`
 
 - If the chart version for your existing deployment is earlier than 11.2.x, you must first [upgrade your installation to 11.2.x]({{ 'eem/eem_11.2' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.3.x version.
 

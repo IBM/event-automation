@@ -1,6 +1,6 @@
 ---
 title: "Accessibility"
-excerpt: "Accessibility features for IBM Event Endpoint Management."
+# excerpt: "Accessibility features for IBM Event Endpoint Management."
 permalink: /accessibility/
 toc: true
 ---

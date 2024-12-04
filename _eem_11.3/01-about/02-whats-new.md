@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.3.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.3.2
 
 ### Support for {{site.data.reuse.openshift}} 4.17
 

@@ -914,7 +914,10 @@ spec:
 
 ## ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.")Exporting metrics with OpenTelemetry
 
-To configure an {{site.data.reuse.eem_manager}} instance or an {{site.data.reuse.egw}} instance to emit metrics, you configure the `openTelemetry` section on the associated custom resource. On an `EventEndpointManagement` custom resource, the OpenTelemetry section is specified at `spec.manager.openTelemetry`. On an `EventGateway` custom resource, the OpenTelemetry section is specified at `spec.openTelemetry`.
+To configure an {{site.data.reuse.eem_manager}} instance or an {{site.data.reuse.egw}} instance to emit metrics, you configure the `openTelemetry` section on the associated custom resource. 
+
+- For {{site.data.reuse.eem_manager}} instances, you can configure OpenTelemetry in the `spec.manager.openTelemetry` section of the `EventEndpointManagement` custom resource.
+- For {{site.data.reuse.egw}} instances, you can configure OpenTelemetry in the `spec.openTelemetry` section of the `EventGateway` custom resource. 
 
 OpenTelemetry is disabled by default. When it is enabled, all agent instrumentation other than {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} remains disabled unless individually enabled. There are a number of configuration options available as explained below and further customization is possible with environment variables:
 

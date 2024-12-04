@@ -63,7 +63,11 @@ function createCheckmarkSVG() {
 
 document.addEventListener("DOMContentLoaded", function () {
   if (!document.body) throw new ReferenceError();
+  copyCode();
+});
 
+// Function to add copy code buttons to code blocks
+function copyCode() {
   var codeBlocks = document.querySelectorAll("pre > code");
   codeBlocks.forEach(function (codeBlock) {
     var parent = codeBlock.parentNode;
@@ -109,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 5000);
     });
   });
-});
+}
 
 function copyCodeToClipboard(code) {
   var textarea = document.createElement("textarea");

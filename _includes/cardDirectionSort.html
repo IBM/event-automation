@@ -23,6 +23,24 @@
       {% endif %}
   {% endfor %}
 
+  {%- comment -%}push 'converters' connectors third{%- endcomment -%}
+  {% for direction in allDirections %}          
+      {% if direction.name == "converters" %}
+        {% for connectorCard in direction.items %}   
+          {% assign sortedConnectors = sortedConnectors | push: connectorCard %}
+        {% endfor %}
+      {% endif %}
+  {% endfor %}
+
+  {%- comment -%}push 'transformations' connectors fourth{%- endcomment -%}
+  {% for direction in allDirections %}          
+      {% if direction.name == "transformations" %}
+        {% for connectorCard in direction.items %}   
+          {% assign sortedConnectors = sortedConnectors | push: connectorCard %}
+        {% endfor %}
+      {% endif %}
+  {% endfor %}
+
   {%- comment -%}push 'both' connectors last{%- endcomment -%}
   {% for direction in allDirections %}             
       {% if direction.name == "both" %}

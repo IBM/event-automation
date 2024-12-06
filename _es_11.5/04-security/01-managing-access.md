@@ -46,9 +46,11 @@ The following table describes the UI panels and the permissions required to acce
 |:----------------|:----------------|:---------------------------|
 | **Topics**          | `topic.read` or `topic.describe`  | Displays a list of topics.|
 |  &nbsp;         | `topic.create`| Enables the **Create topic** button.|
-|  &nbsp;          | `topic.delete`| Enables the **Delete topic** button in the overflow menu.|
-| &nbsp;     | `topic.alter`| Enables the **Set topic partitions** button in the overflow menu.|
-|  &nbsp;       | `topic.alterConfigs`| Enables the **Set topic partitions** button in the overflow menu.|
+|  &nbsp;          | `topic.delete`| Enables the **Delete topic** button in the ![Overflow menu]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu**.|
+| &nbsp;     | `topic.alter`| Enables the **Set topic partitions** button in the ![Overflow menu]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu**.|
+|  &nbsp;       | `topic.alterConfigs`| Enables the **Set topic partitions** button in the ![Overflow menu]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu**.|
+|  ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.")  &nbsp;       | `cluster.alter`| Enables the **Set topic replicas** button in the ![Overflow menu]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu**.|
+| ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.")  &nbsp;       | `topic.describeConfigs`| Enables the **Set topic replicas** button in the ![Overflow menu]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu**.|
 | **Topic Producer**  |   `topic.write`   |  |
 | **Schema registry** | `schema.read`    |  |
 | &nbsp; |`schema.alter` | Enables the **Add Schema** button.|
@@ -67,6 +69,7 @@ The following tables describe the CLI commands and the permissions required to r
 | `kubectl es topic-create` | `topic.create`     |
 | `kubectl es topic-partitions-set` <br/>`kubectl es topic-update` | `topic.alter` and `topic.alterConfigs` |
 | `kubectl es topic-delete` <br/>`kubectl es topic-delete-records` | `topic.delete` |
+| ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.")  `kubectl es topic-replicas-set` | `cluster.alter`, `topic.describe`, and `topic.describeConfigs` |
 
 | Consumer group CLI command | Permissions required |
 |:---------------------------|:---------------------|

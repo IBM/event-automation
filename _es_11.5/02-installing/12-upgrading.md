@@ -368,7 +368,7 @@ kubectl delete $(kubectl get kt -n <namespace> -o name | grep strimzi-store-topi
 ```
 #### Discontinue management of other internal topics by the Topic Operator
 
-Internal topics such as `consumer-offsets` and `transaction-state` are used in Kafka but do not need to be managed by the Topic Operator.
+[Internal topics](../../reference/internal-topics) such as `consumer-offsets` and `transaction-state` are used in Kafka but do not need to be managed by the Topic Operator.
 In these cases, you can discontinue their management through the Topic Operator first, and then delete their custom resources without deleting the topics.
 
 For example:
@@ -388,7 +388,9 @@ Before proceeding to the next step, ensure that these topics are no longer manag
    && kubectl delete $(kubectl get kt -n <namespace> -o name | grep transaction-state) -n <namespace>
    ```
 
-For more information, see [Deleting internal topics used by the operator](https://strimzi.io/docs/operators/0.43.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator).
+
+For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.44.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator){:target="_blank"}.
+
 
 ### Verifying the upgrade
 

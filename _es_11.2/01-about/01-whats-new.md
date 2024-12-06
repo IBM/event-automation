@@ -26,7 +26,7 @@ You can back up and restore your {{site.data.reuse.es_name}} static configuratio
 
 ### Additional IBM supported connectors: IBM MQ connectors v2
 
-The [connector catalog]({{ 'connectors' | relative_url }}) now includes additional connectors that are commercially supported for customers with a support entitlement for {{site.data.reuse.ea_long}} and {{site.data.reuse.cp4i}}:
+The [connect catalog]({{ 'connectors' | relative_url }}) now includes additional connectors that are commercially supported for customers with a support entitlement for {{site.data.reuse.ea_long}} and {{site.data.reuse.cp4i}}:
 
 - An [IBM MQ source connector v2]({{ 'connectors/kc-source-ibm-mq/installation' | relative_url }}), which offers both exactly-once and at-least-once delivery of data from IBM MQ to Apache Kafka.
 - An [IBM MQ sink connector v2]({{ 'connectors/kc-sink-ibm-mq/installation' | relative_url }}), which offers both exactly-once and at-least-once delivery of data from Apache Kafka to IBM MQ.

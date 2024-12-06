@@ -64,13 +64,22 @@ active
       <div class="content">
         <div class="titleContent">
           <p class="secondary connectorType">
-            {% for category in connector.direction %}
-              {{ category | capitalize }} connector |
-              {% if connectorTagLowerCase == "kafkaconnect" %}
+            {% for category in connector.direction | downcase %}
+            {% if category == "converters"%}
+                      Converter 
+                      <!-- |  Output format is Converter | Kafka Connect-->
+                  {% elsif category == "transformations" %}
+                      Transformation 
+                      <!-- | Output format is Transformation | Kafka Connect-->
+                  {% else %}
+                      {{ category | capitalize }} connector 
+                      <!-- | Output format is Source connector | Kafka Connect-->
+            {% endif %}
+              <!-- {% if connectorTagLowerCase == "kafkaconnect" %}
                 Kafka Connect
               {% else %}
                 {{ include.connectorType | default: "Other" }}
-              {% endif %}
+              {% endif %}   Output format is Source connector | Other -->
             {% endfor %}
           </p>
           <h3 class="cardconnectorTitle" id="heading{{ connectorID }}">{{ connector.title }}</h3>

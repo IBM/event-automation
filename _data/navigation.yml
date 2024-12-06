@@ -8,7 +8,7 @@ main:
     url: /eem/
   - title: "Event Processing"
     url: /ep/
-  - title: "Connectors"
+  - title: "Connect catalog"
     url: /connectors/
   - title: "Tutorials"
     url: /tutorials/
@@ -32,12 +32,18 @@ connectorCategories:
   - title: "All"
     url: "/connectors"
     slug: all
-  - title: "Source"
+  - title: "Source connectors"
     url: "/connectors/source"
     slug: source
-  - title: "Sink"
+  - title: "Sink connectors"
     url: "/connectors/sink"
     slug: sink
+  - title: "Converters"
+    url: "/connectors/converters"
+    slug: converters
+  - title: "Transformations"
+    url: "/connectors/transformations"
+    slug: transformations
 
 connectorQuickLinks:
   - link:
@@ -1330,7 +1336,7 @@ latestdocs:
         url: /connecting/expose-service/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -1435,6 +1441,8 @@ latestdocs:
         url: /troubleshooting/crd-version-update-fails/
       - title: "Unable to manage geo-replicators on the Event Streams destination cluster"
         url: /troubleshooting/error-managing-geo-replicators/
+      - title: "Event Streams fails to delete foundational services operand request"
+        url: /troubleshooting/cs-not-removed/
 
 # Sidebar navigation for Event Streams 11.4 docs
 
@@ -1570,7 +1578,7 @@ latestdocs:
         url: /connecting/expose-service/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -1797,7 +1805,7 @@ latestdocs:
         url: /connecting/expose-service/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -2015,7 +2023,7 @@ latestdocs:
         url: /connecting/expose-service/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -2218,7 +2226,7 @@ latestdocs:
         url: /connecting/rest-api/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -2415,7 +2423,7 @@ latestdocs:
         url: /connecting/rest-api/
       - title: "Kafka Bridge"
         url: /connecting/kafka-bridge/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -2619,7 +2627,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -2822,7 +2830,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -3021,7 +3029,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -3216,7 +3224,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -3401,7 +3409,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/
@@ -3590,7 +3598,7 @@ latestdocs:
     children:
       - title: "Event Streams producer API"
         url: /connecting/rest-api/
-      - title: "Kafka Connect and connectors"
+      - title: "Kafka Connect"
         url: /connecting/connectors/
       - title: "Setting up and running connectors"
         url: /connecting/setting-up-connectors/

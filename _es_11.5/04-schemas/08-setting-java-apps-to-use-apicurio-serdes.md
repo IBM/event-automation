@@ -459,32 +459,4 @@ value.converter=io.apicurio.registry.utils.converter.AvroConverter
 value.converter.apicurio.registry.url=https://<username>:<password>@<Schema registry endpoint>
 ```
 
-To use the Apicurio Registry  `converter` library, add the following dependency to your project Maven `pom.xml` file:
-
-```xml
-<dependency>
-    <groupId>io.apicurio</groupId>
-    <artifactId>apicurio-registry-utils-converter</artifactId>
-    <version>2.6.5.Final</version>
-</dependency>
-```
-
-Alternatively, if you are not building your connector, you can download the Apicurio converter artifacts from [Maven](https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.6.5.Final/apicurio-registry-distro-connect-converter-2.6.5.Final.tar.gz){:target="_blank"}.
-
-After downloading, extract the `tar.gz` file and place the folder with all the JARs into a subdirectory within the folder where you are building your `KafkaConnect` image.
-
-To enable Kafka properties to be pulled from a file, add the following to your `KafkaConnector` or `KafkaConnect` custom resource definition:
-
-```java
-config.providers: file
-config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider
-```
-
-Then reference the Kafka connection details in the `KafkaConnector` custom resource of your connector. For example, the following shows a value converter with SCRAM credentials specified in the custom resource:
-
-```java
-value.converter.apicurio.registry.url: <username>:<password>@<Schema registry endpoint>
-value.converter.apicurio.registry.request.ssl.truststore.location: "${file:/tmp/strimzi-connect.properties:ssl.truststore.location}"
-value.converter.apicurio.registry.request.ssl.truststore.password: "${file:/tmp/strimzi-connect.properties:ssl.truststore.password}"
-value.converter.apicurio.registry.request.ssl.truststore.type: "${file:/tmp/strimzi-connect.properties:ssl.truststore.type}"
-```
+For more information, see the [Apicurio Avro converter]({{ 'connectors/converter-apicurio-avro/installation' | relative_url }}).

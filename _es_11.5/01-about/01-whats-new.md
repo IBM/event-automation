@@ -8,6 +8,26 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 11.5.x.
 
+
+## Release 11.5.2
+
+
+### Enhanced Kafka topic management
+
+In {{site.data.reuse.es_name}} 11.5.2 and later, you can set the replication factor for Kafka topics by using the {site.data.reuse.es_name}} UI and CLI. For more information, see [setting topic replicas](../../getting-started/managing-topics/#setting-topic-replicas).
+
+### Support for Kubernetes 1.31
+
+{{site.data.reuse.es_name}} version 11.5.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for Kubernetes platforms version 1.31 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.5.2 compared to 11.5.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.5.2 contains security and bug fixes.
+
 ## Release 11.5.1
 
 ### Enhanced Kafka topic management

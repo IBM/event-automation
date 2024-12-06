@@ -1,4 +1,4 @@
-$categories: all sink source other;
+$categories: all sink source converters transformations other;
 $panelWidth: 40rem;
 $panelTransition: .4s $easing;
 $paddingSides: 3rem;
@@ -302,6 +302,8 @@ $paddingSides: 3rem;
             }
 
             &.sink,
+            &.converters,
+            &.transformations,
             &.source {
               .kafkaConnectLabel {
                 border-bottom-color: $brand-01 !important;

@@ -16,7 +16,9 @@ You are unable to pause, resume, or stop geo-replication on the destination {{si
 
 ## Resolving the problem
 
-You can manage geo-replication on the origin cluster by using the {{site.data.reuse.es_name}} UI:
+This issue is resolved in {{site.data.reuse.es_name}} 11.5.2 and later versions.
+
+If you are using an earlier {{site.data.reuse.es_name}} version, the workaround is to manage geo-replication on the origin cluster by using the {{site.data.reuse.es_name}} UI:
 
 1. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 1. Click **Topics** in the primary navigation and then click **Geo-replication**.

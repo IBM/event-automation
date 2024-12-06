@@ -70,6 +70,8 @@ layout: connectorsAll
                     {% endif %}
                   </div>
                 </div>
+                {% for category in page.direction %}
+                {% if category == "source" or category == "sink" %}
                 <div class="sinkSourceArrow" id="sinkSourceArrow">
                   <img alt="connector arrow" src="{{ site.url }}{{ site.baseurl }}/assets/images/icons/connector_sink.svg"
                     onload="loadSinkSourceAnimation();">
@@ -81,15 +83,30 @@ layout: connectorsAll
                     <img alt="event streams icon"
                       src="{{ site.url }}{{ site.baseurl }}/assets/images/icons/kafkaLight.svg">
                   </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
                 </div>
-              </div>
+          
               {% for category in page.direction %}
                 {% if category == "source" %}
                   {%- assign definition = "produces data into Kafka or Event Streams" -%}
-                {% else %}
+                {% elsif category == "sink" %}
                   {%- assign definition = "consumes data from Kafka or Event Streams" -%}
+                {% elsif category == "transformations" %}
+                  {%- assign definition = "transforms data from Kafka or Event Streams" -%}
+                {% elsif category == "converters" %}
+                  {%- assign definition = "Converts Connect objects into a serialized format for producing to Kafka topics." -%}
                 {% endif %}
-                <h4>{{ category | capitalize }} connector: <a class="light">{{ definition }}</a></h4>
+                <h4>
+                  {% if category == "converters"%}
+                      Converter:
+                  {% elsif category == "transformations" %}
+                      Transformation:
+                  {% else %}
+                      {{ category | capitalize }} connector:
+                  {% endif %}
+                  <a class="light">{{ definition }}</a></h4>
               {% endfor %}
               <h1>{{ page.title }}</h1>
               <div class="description">
@@ -119,7 +136,15 @@ layout: connectorsAll
                         <img alt="download icon" src="{{ site.url }}{{ site.baseurl }}/assets/images/icons/download_white.svg" />
                       </div>
                       <div class="content">
+                        {% for category in page.direction %}
+                        {% if category == "converters"%}
+                        <p class="heading-four">Get converter</p>
+                        {% elsif category == "transformations" %}
+                          <p class="heading-four">Get transformation</p>
+                        {% else %}
                         <p class="heading-four">Get connector</p>
+                        {% endif %}
+                        {% endfor %}
                         <!-- <p class="secondary">Download</p> -->
                       </div>
                   {% endcase %}

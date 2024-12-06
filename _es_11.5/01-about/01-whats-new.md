@@ -14,7 +14,7 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.5.x.
 
 ### Enhanced Kafka topic management
 
-In {{site.data.reuse.es_name}} 11.5.2 and later, you can set the replication factor for Kafka topics by using the {site.data.reuse.es_name}} UI and CLI. For more information, see [setting topic replicas](../../getting-started/managing-topics/#setting-topic-replicas).
+In {{site.data.reuse.es_name}} 11.5.2 and later, you can set the replication factor for Kafka topics by using the {{site.data.reuse.es_name}} UI and CLI. For more information, see [setting topic replicas](../../getting-started/managing-topics/#setting-topic-replicas).
 
 ### Support for Kubernetes 1.31
 

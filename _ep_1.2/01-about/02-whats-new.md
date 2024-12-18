@@ -12,6 +12,32 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.2.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
 
+### Deploy flows that are customized for production or test environments
+
+{{site.data.reuse.ep_name}} version 1.2.3 introduces a new [flow export format](../../advanced/exporting-flows/#exporting-flows) that can be used for [deploying jobs that are customized for production or test environments](../../advanced/deploying-customized) into an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink cluster.
+
+In most cases, this new deployment mechanism provides a better user experience and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
+
+**Note**: The [Production - Flink Application cluster sample](../../installing/planning/#flink-production-application-cluster-sample) has been modified, and can only be used with the new deployment mechanism.
+
+### You can now edit flow details and export flows from within the canvas
+
+In {{site.data.reuse.ep_name}} 1.2.3 and later, both the **Edit details** and **Export** features are now also available in **More options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} next to **Run flow** in the navigation banner of the canvas. Also, you can edit the flow name by clicking it in the canvas.
+
+### Support for Kubernetes 1.31
+
+{{site.data.reuse.ep_name}} version 1.2.3 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for Kubernetes platforms version 1.31 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.3 compared to 1.2.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.2.3 and {{site.data.reuse.ibm_flink_operator}} version 1.2.3 contain security and bug fixes.
+
+## Release 1.2.2
+
 ### Use your Flink SQL with custom nodes
 
 In {{site.data.reuse.ep_name}} 1.2.2 and later, you can now use **Custom** nodes to unlock advanced SQL capabilities and run complex queries. Three new custom nodes are available: SQL source, SQL processor, and SQL destination. These nodes support Flink SQL, and can be configured and edited to meet your specific use cases. With the introduction of custom nodes, it is now possible to create flows that support changelog stream. For more information, see [custom nodes](../../nodes/custom) and the associated [tutorial]({{'/tutorials/event-processing-examples/example-05' | relative_url}}) about deduplicating repeated events.
@@ -23,6 +49,8 @@ In {{site.data.reuse.ep_name}} 1.2.2 and later, you can now use **Custom** nodes
 ### Support for {{site.data.reuse.openshift}} 4.17
 
 {{site.data.reuse.ep_name}} version 1.2.2 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.17.
+
+
 
 ### Documentation: Highlighting differences between versions
 

@@ -1,14 +1,20 @@
 ---
-title: "Deploying jobs in production environments"
-excerpt: "Find out how to deploy your advanced flows in a Flink cluster as part of your production environment."
+title: "Deploying jobs by using the Apache SQL Runner sample"
+excerpt: "Find out how to deploy your flows in a Flink cluster as part of your production environment."
 categories: advanced
 slug: deploying-production
 toc: true
 ---
 
-Find out how to deploy your advanced flows in a Flink cluster as part of your production environment.
+Find out how to deploy your flows in an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink cluster as part of your production environment.
 
-**Important:** This deployment cannot be used with {{site.data.reuse.ep_name}} UI.
+**Important:**
+
+* ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Event Processing release 1.2.3 introduces a new flow [export format](../exporting-flows/#exporting-flows), that can be used for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
+
+<!-- pattern node * ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
+
+* This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
 **Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the release branches.
 
@@ -30,7 +36,7 @@ Find out how to deploy your advanced flows in a Flink cluster as part of your pr
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../nodes/eventnodes/#event-source) and [destination](../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. |
   | **JDBC**      | [Database](../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
-  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.15.0/README.md#table-api-connector-options){:target="_blank"} |
+  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md#table-api-connector-options){:target="_blank"}.  <br> <br> ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") **Note:** the HTTP connector version for Event Processing versions 1.2.3 and later is 0.16.0. For earlier {{site.data.reuse.ep_name}} 1.2.x releases, see the 0.15.0 connector documentation. |
 
 - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
   - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
@@ -108,20 +114,114 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    d. Remove the sample SQL statement files from the [sql-scripts directory](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
-   e. Copy the file `statements.sql` to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   e. Copy the `statements.sql` file to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
    f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.17/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
-   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a production sample with persistent storage. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
+   You can use a Kubernetes `FlinkDeployment` custom resource in application mode to deploy a Flink job for processing and deploying the statements in the `statements.sql` file. 
+
+   a. ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") You can start with the following example of an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink instance:
+
+   ```yaml
+   apiVersion: flink.apache.org/v1beta1
+   kind: FlinkDeployment
+   metadata:
+   name: application-cluster-prod
+   spec:
+   image: <image built FROM icr.io/cpopen/ibm-eventautomation-flink/ibm-eventautomation-flink>
+   flinkConfiguration:
+      license.use: EventAutomationProduction
+      license.license: 'L-KCVZ-JL5CRM'
+      license.accept: 'false'
+      high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
+      high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
+      restart-strategy: failure-rate
+      restart-strategy.failure-rate.max-failures-per-interval: '10'
+      restart-strategy.failure-rate.failure-rate-interval: '10 min'
+      restart-strategy.failure-rate.delay: '30 s'
+      execution.checkpointing.interval: '5000'
+      execution.checkpointing.unaligned: 'false'
+      state.backend.type: rocksdb
+      state.backend.rocksdb.thread.num: '10'
+      state.backend.incremental: 'true'
+      state.backend.rocksdb.use-bloom-filter: 'true'
+      state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
+      state.checkpoints.num-retained: '3'
+      state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
+      taskmanager.numberOfTaskSlots: '2'
+      table.exec.source.idle-timeout: '30 s'
+      security.ssl.enabled: 'true'
+      security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+      security.ssl.truststore-password: <jks-password>
+      security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+      security.ssl.keystore-password: <jks-password>
+      security.ssl.key-password: <jks-password>
+      kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+   serviceAccount: flink
+   podTemplate:
+      apiVersion: v1
+      kind: Pod
+      metadata:
+         name: pod-template
+      spec:
+         affinity:
+         podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+               - weight: 80
+               podAffinityTerm:
+                  labelSelector:
+                     matchExpressions:
+                     - key: type
+                        operator: In
+                        values:
+                           - flink-native-kubernetes
+                  topologyKey: kubernetes.io/hostname
+         containers:
+         - name: flink-main-container
+            volumeMounts:
+               - name: flink-logs
+               mountPath: /opt/flink/log
+               - name: flink-volume
+               mountPath: /opt/flink/volume
+         volumes:
+         - name: flink-logs
+            emptyDir: {}
+         - name: flink-volume
+            persistentVolumeClaim:
+               claimName: ibm-flink-pvc
+   jobManager:
+      replicas: 2
+      resource:
+         memory: '4096m'
+         cpu: 0.5
+   taskManager:
+      resource:
+         memory: '4096m'
+         cpu: 2
+   job:
+      jarURI: <insert jar file name here>
+      args: ['<insert path for statements.sql here>']
+      parallelism: 1
+      state: running
+      upgradeMode: savepoint
+      allowNonRestoredState: true
+   mode: native
+   ```
+
+   In {{site.data.reuse.ep_name}} versions earlier than 1.2.3, select the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample.
+
+   **Note**: The Flink instance must be configured with persistent storage.
+
+   If you do not want to use the examples provided earlier, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all Flink samples:
 
    ```yaml
    spec:
-     flinkConfiguration:
-       table.exec.source.idle-timeout: '30 s'
+   flinkConfiguration:
+      table.exec.source.idle-timeout: '30 s'
    ```
-  
+
    For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
 
    b. Append the following `spec.job` parameter, or edit the existing parameter if using the Production - Flink Application cluster sample:
@@ -155,7 +255,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
       ```yaml
       spec:
-        flinkVersion: "v1_18"
+        flinkVersion: "v1_19"
       ```
 
 3. Apply the modified `FlinkDeployment` custom resource.

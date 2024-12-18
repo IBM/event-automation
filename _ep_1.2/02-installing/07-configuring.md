@@ -123,7 +123,10 @@ In order to increase the throughput of your Flink job, you can perform the follo
 - Increase the number of partitions in the Kafka ingress topics used by your Flink event sources.
 - Set the Flink job parallelism to a value equal to this number of partitions.
 
-For more information, see [deploying jobs for development purposes](../../advanced/deploying-development) and [deploying jobs in a production environment](../../advanced/deploying-production).
+For more information, see the following sections:
+- [Deploying jobs customized for production or test environments](../../advanced/deploying-customized)
+- [Deploying jobs in development environments by using the Flink SQL client](../../advanced/deploying-development)
+- [Deploying jobs in production environments by using the Apache SQL Runner sample](../../advanced/deploying-production).
 
 ### Configuring persistent storage
 

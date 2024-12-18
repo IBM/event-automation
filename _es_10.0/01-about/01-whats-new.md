@@ -33,7 +33,7 @@ For more information, see the documentation on creating [Kafka Connect clusters]
 
 ## Additional tested connectors
 
-The [connector catalog]({{ 'connectors' | relative_url }}){:target="_blank"} now includes additional connectors that are commercially supported for customers with a support entitlement for {{site.data.reuse.cp4i}}:
+The [connect catalog]({{ 'connectors' | relative_url }}){:target="_blank"} now includes additional connectors that are commercially supported for customers with a support entitlement for {{site.data.reuse.cp4i}}:
 
  - An Elasticsearch sink connector that subscribes to one or more Kafka topics and writes the records to Elasticsearch.
  - Debezium's PostgreSQL source connector that can monitor the row-level changes in the schemas of a PostgreSQL database and record them in separate Kafka topics.

@@ -23,7 +23,7 @@ If you are using an earlier {{site.data.reuse.es_name}} version, the workaround 
 1. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 1. Click **Topics** in the primary navigation and then click **Geo-replication**.
 1. Click the **Destination location** tab.
-1. Depending on the action you want to achieve, go to the ![More options icon](../../../images/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options** menu and click one of the following options:
+1. Depending on the action you want to achieve, go to the ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu** and click one of the following options:
     - **Pause running replicators**: To pause geo-replication and suspend copying of data from the origin cluster.
     - **Resume paused replicators**: To resume geo-replication from the origin cluster.
     - **Restart failed replicators**: To restart geo-replication from the origin cluster for geo-replicators that experienced problems.

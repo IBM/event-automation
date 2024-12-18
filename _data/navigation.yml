@@ -885,13 +885,15 @@ latest_epdocs:
           url: /nodes/enrichmentnode/
         - title: "Custom"
           url: /nodes/custom/
-  - title: Deploying advanced flows
+  - title: Deploying flows
     children:
       - title: "Exporting and importing flows"
         url: /advanced/exporting-flows/
-      - title: "Deploying jobs in development environments"
+      - title: "Deploying customized jobs"
+        url: /advanced/deploying-customized/
+      - title: "Testing jobs by using the Flink SQL client"
         url: /advanced/deploying-development/
-      - title: "Deploying jobs in production environments"
+      - title: "Deploying jobs by using the Apache SQL Runner sample"
         url: /advanced/deploying-production/
 
   - title: Reference

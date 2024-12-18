@@ -43,7 +43,10 @@ A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconf
 
 ### Converting any node to a custom node
 
-You can convert any existing node on your canvas to a custom node by clicking **Preview SQL** in the node configuration window.
+You can convert any existing node on your canvas to a custom node in two ways:
+
+- Click **Preview SQL** in the node configuration window.
+- ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Hover over the node or right-click the node in the canvas, click **More Options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} , and select **Preview SQL**.
 
 The SQL code of your node is displayed in read-only mode. To convert the node to a custom node and edit the SQL, click **Edit SQL**.
 
@@ -104,9 +107,9 @@ In event streaming, there are two key patterns for how data passes through a str
 
 To support these operations effectively in a Kafka setup, the [Upsert Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/upsert-kafka/){:target="_blank"} is used. This connector enables changelog stream to serve as both input and output of the flow, and can be used in the SQL source or SQL destination nodes:
 
-- To consume events from a Kafka topic that containing a changelog stream, use the Upsert Kafka connector with the SQL source node.
+- To consume events from a Kafka topic that contains a changelog stream, use the Upsert Kafka connector with the SQL source node.
 
-- To send events that containing a changelog stream to Kafka, use the Upsert Kafka connector with the SQL destination node.
+- To send events that contain a changelog stream to Kafka, use the Upsert Kafka connector with the SQL destination node.
 
 - To allow proper tracking of updates and deletions in the changelog stream, you might have to define a primary key in the `CREATE TABLE` statement.
 

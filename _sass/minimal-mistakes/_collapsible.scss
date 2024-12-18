@@ -123,3 +123,44 @@
   .h2_landing {
   padding-left: 2rem;
   }
+
+
+.heading-anchor {
+  position: relative;
+}
+.heading-anchor::before {
+  content: "Copy";
+  position: absolute;
+  top: -20px; /* Adjust the top position */
+  right: 0; /* Set the right position to 0 */
+  transform: translateX(100%); /* Move the tooltip to the right */
+  background-color: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.heading-anchor:hover::before,
+.heading-anchor:focus::before {
+  opacity: 1;
+}
+
+.heading-anchor.show-anchorSVGText::after {
+  content: attr(data-anchorSVGText);
+  position: absolute;
+  top: -20px; /* Adjust the top position */
+  right: 0; /* Set the right position to 0 */
+  transform: translateX(100%); /* Move the tooltip to the right */
+  background-color: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal; /* Add this rule */
+  z-index: 1;
+}

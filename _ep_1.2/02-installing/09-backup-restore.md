@@ -20,7 +20,7 @@ A Flink savepoint is a consistent image of a Flink job's execution state. Backin
 
 This procedure assumes that you have the following deployed: 
 - An [instance of Flink deployed](../installing/) by the {{site.data.reuse.ibm_flink_operator}} and configured with persistent storage with a PersistentVolumeClaim (PVC).
-- Flink jobs as [application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.9/docs/custom-resource/overview/#flinkdeployment){:target="_blank"}.
+- Flink jobs as [application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.9/docs/custom-resource/overview/#application-deployments){:target="_blank"}.
 
 The `FlinkDeployment` custom resource that configures your Flink instance must define the hereafter parameters, each pointing to a different directory on the persistent storage.
 - `spec.flinkConfiguration.state.checkpoints.dir`
@@ -55,18 +55,38 @@ To back up your Flink instance, update each of your deployed instances by editin
 
    ```yaml
    job:
-      jarURI: local:///opt/flink/usrlib/sql-runner.jar
-      args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+      [...]
       savepointTriggerNonce: <integer value>
       state: running
       upgradeMode: savepoint
    ```
 
-3. Save the `FlinkDeployment` custom resource to make it available later for restoring your deployment.
+   d. Save the changes in the `FlinkDeployment` custom resource.
+
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
+
+   For example:
+
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: MANUAL
+   ```
+
+3. Keep the `FlinkDeployment` custom resource and the PVC to make them available later for restoring your deployment.
 
 ### Restoring
 
-To restore a Flink instance that you previously backed up, update your `FlinkDeployment` custom resource as follows.
+To restore a Flink instance that you previously backed up, ensure that your PVC where the savepoint was written to is available, and update your `FlinkDeployment` custom resource as follows.
 
 1. Edit the saved `FlinkDeployment` custom resource that you saved when backing up your instance:
 
@@ -74,17 +94,18 @@ To restore a Flink instance that you previously backed up, update your `FlinkDep
 
    b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
 
-   c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
+   c. Remove `spec.job.savepointTriggerNonce` and its value.
+
+   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported during the backing up operation in step 1.d plus the suffix `/_metadata`.
 
    For example:
 
    ```yaml
    job:
-      jarURI: local:///opt/flink/usrlib/sql-runner.jar
-      args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+      [...]
       state: running
       upgradeMode: savepoint
-      initialSavepointPath: <savepoint directory>
+      initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
       allowNonRestoredState: true
    ```
 

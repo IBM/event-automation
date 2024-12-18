@@ -175,5 +175,6 @@ Complete the following steps:
 
 4. To add the JAR file that contains the UDF classes (for example `udf.jar`) to be available to the Flink runtime, complete any one of the following steps:
 
-   * For deploying jobs in a [development environment](../../advanced/deploying-development), see step 3 in [Submit a Flink SQL job](../../advanced/deploying-development/#submit-a-flink-sql-job).
-   * For deploying jobs in a [production environment](../../advanced/deploying-production), see step 1c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner).
+   * For [deploying jobs in development environments by using the Flink SQL client](../../advanced/deploying-development), see step 3 in [Submit a Flink SQL job](../../advanced/deploying-development/#submit-a-flink-sql-job).
+   * For deploying jobs in production environments by using the Apache SQL Runner sample, see step 1c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner).
+   <!-- HIDE until supported at authoring time * ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") For deploying jobs customized for production or test environments, see [Use Flink user-defined functions](../../advanced/deploying-production#use-fink-user-defined-functions). -->

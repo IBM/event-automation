@@ -20,6 +20,31 @@ Complete the following sections to set up your Kafka Connect environment.
 
 Configure the `KafkaConnect` custom resource with information about your Kafka cluster:
 
+- `authentication`: If your {{site.data.reuse.es_name}} instance is secured with authentication, configure the `spec.authentication` field of `KafkaConnect` custom resource with credentials, which allow the connectors to read and write to Kafka Connect topics. For more information, see [authentication and authorization](../connectors/#authentication-and-authorization).
+
+  - If your {{site.data.reuse.es_name}} instance is secured with SCRAM authentication, specify a username and a secret containing a password, as follows:
+  
+    ```yaml
+    authentication:    
+      type: scram-sha-512
+      username: <my-kafka-user-name>
+      passwordSecret:
+        password: password
+        secretName: <my-kafka-user-name>
+    ```
+  Where `<my-kafka-user-name>` is the name of the `KafkaUser` that will authenticate with the {{site.data.reuse.es_name}} instance.
+
+  - If your {{site.data.reuse.es_name}} instance is secured with Transport Layer Security (TLS) certificates, specify the required client certificate and key, as follows:
+
+    ```yaml
+    authentication:
+      type: tls
+      certificateAndKey:
+        certificate: user.crt
+        secretName: kafka-connect-user
+        key: user.key
+    ```
+
 - `bootstrapservers`: Kafka bootstrap servers to connect to. Use a comma-separated list for `<hostname>:<port>` pairs. For example:
 
   ```yaml
@@ -33,32 +58,8 @@ Configure the `KafkaConnect` custom resource with information about your Kafka c
   ```
 
   Where `<external_listener_name>` is the name of your external Kafka listener.
-
-- `authentication`: If {{site.data.reuse.es_name}} instance is secured with authentication, configure the `spec.authentication` field of `KafkaConnect` custom resource with credentials, which allow the connectors to read and write to Kafka Connect topics. For more information, see [authentication and authorization](../connectors/#authentication-and-authorization).
-
-  If {{site.data.reuse.es_name}} instance is secured with SCRAM authentication, use the following configuration:
-
-  ```yaml
-  authentication:    
-    type: scram-sha-512
-    username: my-user
-    passwordSecret:
-      password: password
-      secretName: my-kafka-user     
-  ```  
-
-  If {{site.data.reuse.es_name}} instance is secured with Transport Layer Security (TLS) authentication, use the following configuration:
-
-  ```yaml
-  authentication:
-    type: tls
-    certificateAndKey:
-      certificate: user.crt
-      secretName: kafka-connect-user
-      key: user.key
-  ```  
-
-- `tls`: If {{site.data.reuse.es_name}} instance is secured with TLS encryption, configure the `spec.tls` field of `KafkaConnect` custom resource with reference to required certificates for connecting securely to Kafka listeners.
+  
+- `tls`: If your {{site.data.reuse.es_name}} instance endpoints require TLS encrypted connections, configure the `spec.tls` field of `KafkaConnect` custom resource with reference to required certificates for connecting securely to Kafka listeners.
   
   ```yaml
   tls:
@@ -71,7 +72,7 @@ Configure the `KafkaConnect` custom resource with information about your Kafka c
 
 Prepare Kafka Connect for connecting to external systems by adding the required connectors using one of the methods described below:
 
-- [Use the {{site.data.reuse.es_name}} operator](#use-the-sitedatareusees_name-operator) to add the connectors by specifying the connectors within a `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will create a container image with Kafka Connect and all the specified connector artifacts, and use it to start Kafka Connect.  
+- [Use the {{site.data.reuse.es_name}} operator](#use-the-sitedatareusees_name-operator) to add the connectors by specifying the connectors within a `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will create a container image with Kafka Connect and all the specified connector artifacts, and use it to start Kafka Connect.
 
 - [Manually add required connectors](#manually-add-required-connectors) and Kafka Connect to a container image and specify the image in `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will use the specified image to start Kafka Connect.
 
@@ -118,7 +119,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
         - type: maven
           group: <group name>
           artifact: <artifact name>
-          version: <version> 
+          version: <version>
   ```
 
   **Note:** If you encounter issues while retrieving the maven artifacts, consider encoding the configuration values. For example, to retrieve the `com.ibm.mq.allclient` artifact, configure your value as `artifact: com%2Eibm%2Emq%2Eallclient`.
@@ -135,7 +136,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
   ```
 
   Where:
-  
+
   - `type` can be `docker` if you want to create a container image or `imagestream` if you are using `OpenShift ImageStream`.
   - `image` is the full name of the new container image including registry address, port number (if listening to a non-standard port), and tag. For example, `my-registry.io/my-connect-cluster-image:my-tag` where:
     - `my-registry.io/my-connect-cluster-image` is the address of the registry.
@@ -158,7 +159,7 @@ If the build process needs to pull or push images from or to a secured container
   template:
     buildPod:
       imagePullSecrets:
-        - name: ibm-entitlement-key 
+        - name: ibm-entitlement-key
   ```
 
 - To provide the secret for pulling any of the images that are used by the specific pod where Kafka Connect is running, specify the secret in `spec.template.pod.imagePullSecrets` section:.
@@ -173,7 +174,7 @@ If the build process needs to pull or push images from or to a secured container
   **Important:** The secrets that are referenced in the `KafkaConnect` custom resource must be present in the same namespace as the `KafkaConnect` instance.
 
 #### Rebuild the Kafka Connect image
- 
+
 Rebuild the Kafka Connect image regularly to ensure that your Kafka Connect environment is up-to-date with changes to Kafka Connect and any new releases of connectors.
 
 When you change the image (`spec.image`) or the connector plugin artifacts configuration (`spec.build.plugins`) in the `KafkaConnect` custom resource, container image is built automatically.
@@ -182,11 +183,11 @@ To pull an upgraded base image or to download the latest connector plugin artifa
 
 ```shell
 eventstreams.ibm.com/force-rebuild: true
-``` 
+```
 
 ### Manually add required connectors
 
-You can create a container image with Kafka Connect and all the required connector artifacts yourself and use it to start Kafka Connect. This approach is useful when the required connectors cannot be included using the operator, for example, when authentication is required to access to connector artifacts. 
+You can create a container image with Kafka Connect and all the required connector artifacts yourself and use it to start Kafka Connect. This approach is useful when the required connectors cannot be included using the operator, for example, when authentication is required to access to connector artifacts.
 
 - {{site.data.reuse.es_name}} Kafka image is a convenient starting point as it includes everything you need to start Kafka Connect. You can prepare a directory containing all the required connectors and use the sample `Dockerfile` to add them to the {{site.data.reuse.es_name}} Kafka image:
 
@@ -205,7 +206,7 @@ You can create a container image with Kafka Connect and all the required connect
   ```shell
   +--  KafkaConnectComponents
   |    +--  Dockerfile
-  |    +--  my-plugins  
+  |    +--  my-plugins
   ```
 
 - If your connector consists of just a single JAR file, you can copy the JAR file directly into the `my-plugins` directory. If your connector consists of multiple JAR files or requires additional dependencies, create a directory for the connector inside the `my-plugins` directory and copy all the JAR files of your connector into `my-plugins` directory. For example, the following snippet shows the directory structure with three connectors:
@@ -227,7 +228,6 @@ You can create a container image with Kafka Connect and all the required connect
   ```
 
   **Note:** You might need to log in to the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"} before building the image to allow the base image that is specified in the `Dockerfile` to be pulled successfully.
-
 
 - Specify the image in the `spec.image` field of `KafkaConnect` resource to start Kafka Connect with the image you have built with your connectors.
 
@@ -268,7 +268,7 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
   **Note:** Set the following factors to `1` if you have less than three brokers in your {{site.data.reuse.es_name}} cluster:
 
   - `config.storage.replication.factor`
-  - `offset.storage.replication.factor`  
+  - `offset.storage.replication.factor`
   - `status.storage.replication.factor`
 
 ## Starting Kafka Connect
@@ -282,7 +282,7 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
     name: mq-connectors
     namespace: es
     annotations:
-      eventstreams.ibm.com/use-connector-resources: true  
+      eventstreams.ibm.com/use-connector-resources: 'true'
     labels:
       backup.eventstreams.ibm.com/component: kafkaconnect
   spec:
@@ -292,19 +292,19 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
         key: user.key
         secretName: my-kafka-user
       type: tls
-    bootstrapServers: mtls-listener.my-cluster:443  
+    bootstrapServers: mtls-listener.my-cluster:443
     build:
       output:
-        image: my-image-registry.my-kafka-connect-image:latest  
+        image: my-image-registry.my-kafka-connect-image:latest
         type: docker
       plugins:
         - artifacts:
             - type: jar
-              url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar     
+              url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar
           name: mq-source
         - artifacts:
             - type: jar
-              url: https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar 
+              url: https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar
           name: mq-sink
     template:
       buildConfig:
@@ -347,12 +347,12 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
   The following snippet is an example output for the previous command:
 
   ```shell
-  Status:  
-    Conditions:  
-       Last Transition Time: 2024-06-25T07:56:40.943007974Z  
+  Status:
+    Conditions:
+       Last Transition Time: 2024-06-25T07:56:40.943007974Z
        Status:               True
-       Type:                 Ready  
-    Connector Plugins:  
+       Type:                 Ready
+    Connector Plugins:
         Class:              com.ibm.eventstreams.connect.mqsource.MQSourceConnector
         Type:               source
         Version:            1.3.2
@@ -374,7 +374,6 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
 | `sasl.mechanism`          | No               | Yes                | `producer.sasl.mechanism`          | `consumer.sasl.mechanism`           |
 | `sasl.jaas.config`        | No               | Yes                | `producer.sasl.jaas.config`        | `consumer.sasl.jaas.config`         |
 
-
 These values can also be set on a per connector level using the `producer.override` and `consumer.override` prefixes.
 
 ## Set up a Kafka connector
@@ -386,7 +385,6 @@ Set up a connector by defining a `KafkaConnector` custom resource with the requi
 ### Configure the connector
 
 - Kafka Connect cluster: Add the label `eventstreams.ibm.com/cluster: <kafka_connect_name>` to `KafkaConnector` custom resource to specify the Kafka Connect cluster where the connector must be started. The value of this label must be set to the name of the corresponding Kafka Connect instance.
-
 
 - `class`: Specifies the complete class name for starting the connector. For example, to set up a MQ sink connector, the name of the connector class is as follows:
 
@@ -441,8 +439,8 @@ spec:
     mq.password: passw0rd
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
-    mq.record.builder: com.ibm.eventstreams.connect.mqsource.builders.DefaultRecordBuilder 
-```  
+    mq.record.builder: com.ibm.eventstreams.connect.mqsource.builders.DefaultRecordBuilder
+```
 
 {{site.data.reuse.es_name}} operator will populate the `status` section of the `KafkaConnector` resource. Use the following command to verify that your connector is running as expected:
 
@@ -453,22 +451,54 @@ kubectl describe kafkaconnector <connector_name>
 This command provides the complete description of the connector that you created. You can verify the current status of the connector from the `status` section. For example:
 
 ```shell
-Status: 
-    Conditions:  
-       Last Transition Time: 2024-07-13T07:56:40.943007974Z  
+Status:
+    Conditions:
+       Last Transition Time: 2024-07-13T07:56:40.943007974Z
        Status:               True
-       Type:                 Ready  
-    Connector Status:  
-       Connector:  
+       Type:                 Ready
+    Connector Status:
+       Connector:
          State:      RUNNING
          worker_id:  mq-connectors-connect-0.mq-connectors-connect-0.es.svc:8083
-        Name:        mq-sink  
-        Tasks:  
-          Id:               0 
-          State:            RUNNING  
+        Name:        mq-sink
+        Tasks:
+          Id:               0
+          State:            RUNNING
           worker_id:        mq-connectors-connect-0.mq-connectors-connect-0.es.svc:8083
-        Type:               sink  
+        Type:               sink
     Observerd Generation:   1
-    Tasks Max:              1  
-```  
+    Tasks Max:              1
+```
 
+## Enabling topic creation for connectors
+
+To enable connectors to dynamically create topics in Kafka when they do not already exist, you must configure specific settings in both Kafka Connect and the connector. This enables Kafka Connect to create topics that are required by connectors without manual intervention or automatic topic creation in the Kafka brokers.
+
+To enable topic creation, follow these steps:
+
+1. In the `KafkaConnect` custom resource, ensure that `topic.creation.enable` is set to `true` to enable topic creation (the default setting is `true`):
+
+     ```yaml
+    topic.creation.enable: true
+     ```
+
+    When set to `true`, Kafka Connect will create topics that are required by the connector.
+
+2. In the `KafkaConnector` custom resource, provide default topic settings by adding the following configurations:
+
+     ```yaml
+    topic.creation.default.partitions: 3
+    topic.creation.default.replication.factor: 1
+     ```
+
+    Where:
+      - **`topic.creation.default.partitions`**: Specifies the default number of partitions for newly created topics.
+      - **`topic.creation.default.replication.factor`**: Specifies the replication factor for newly created topics.
+
+    **Important:** You must specify the default number of partitions and the replication factor for newly created topics. If these values are not provided, Kafka Connect will not create topics, causing connectors that require new topics to fail with errors similar to the following example:
+
+      ```shell
+      Error while fetching metadata with correlation id x, UNKNOWN_TOPIC_OR_PARTITION
+      ```
+
+    For more information about setting partitions and replicas, see [managing topics](../../getting-started/managing-topics/).

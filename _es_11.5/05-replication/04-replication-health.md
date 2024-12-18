@@ -34,10 +34,10 @@ To manage geo-replication on the destination cluster by using the UI:
 2. Click **Topics** in the primary navigation and then click **Geo-replication**.
 3. Click the **Origin locations** tab for details.
 4. Locate the name of the origin cluster for which you want to manage geo-replication for, and choose from one of the following options:
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Pause running replicators**: To pause geo-replication and suspend replication of data from the origin cluster.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Resume paused replicators**: To resume geo-replication and restart replication of data from the origin cluster.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Restart failed replicators**: To restart a geo-replicator that experienced problems.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Stop replication**: To stop geo-replication from the origin cluster.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu > Pause running replicators**: To pause geo-replication and suspend replication of data from the origin cluster.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu > Resume paused replicators**: To resume geo-replication and restart replication of data from the origin cluster.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu > Restart failed replicators**: To restart a geo-replicator that experienced problems.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Overflow menu at end of each row."){:height="30px" width="15px"} **Overflow menu > Stop replication**: To stop geo-replication from the origin cluster.
     
       **Important:** Stopping replication also removes the origin cluster from the list.
 
@@ -71,13 +71,13 @@ To manage geo-replication on the origin cluster by using the UI:
 1. Log in to your origin {{site.data.reuse.es_name}} cluster as an administrator.
 2. Click **Topics** in the primary navigation and then click **Geo-replication**.
 3. Click the name of the destination cluster for which you want to manage geo-replication.
-4. Choose from one of the following options using the top right ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options** menu:
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Pause running geo-replicator**: To pause the geo-replicator for this destination and suspend replication of data to the destination cluster for all topics.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Resume paused geo-replicator**: To resume the paused geo-replicator for this destination and resume replication of data to the destination cluster for all topics.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Restart failed geo-replicator**: To restart a geo-replicator that experienced problems.
-    - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Remove cluster as destination**: To remove the cluster as a destination for geo-replication.
+4. Choose from one of the following options using the top right ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu**:
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Pause running geo-replicator**: To pause the geo-replicator for this destination and suspend replication of data to the destination cluster for all topics.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Resume paused geo-replicator**: To resume the paused geo-replicator for this destination and resume replication of data to the destination cluster for all topics.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Restart failed geo-replicator**: To restart a geo-replicator that experienced problems.
+    - ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Remove cluster as destination**: To remove the cluster as a destination for geo-replication.
 
-To stop an individual topic from being replicated and remove it from the geo-replicator, select ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Stop replicating topic**.
+To stop an individual topic from being replicated and remove it from the geo-replicator, select ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Stop replicating topic**.
 
 ### Using the CLI
 
@@ -214,7 +214,7 @@ To restart a geo-replicator that has an **Error** status from the UI:
 3. Locate the name of the destination cluster for the geo-replicator that has an **Error** status.
 4. Locate the reason for the **Error** status under the entry for the geo-replicator.
 5. Either fix the reported problem with the system or verify that the problem is no longer present.
-6. Select ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at the top right of the destination cluster window."){:height="30px" width="15px"} **More options > Restart failed replicator** to restart the geo-replicator.
+6. Select ![Overflow menu icon]({{ 'images' | relative_url }}/overflow_menu.png "Three vertical dots for the overflow icon at end of each row."){:height="30px" width="15px"} **Overflow menu > Restart failed replicator** to restart the geo-replicator.
 
 ## Using Grafana dashboards to monitor geo-replication
 

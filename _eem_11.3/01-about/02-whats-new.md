@@ -26,7 +26,7 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.3.x.
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.3.1 compared to 11.3.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.")
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.3.1 compared to 11.3.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Endpoint Management 11.3.1 and later.")
 
 ### Security and bug fixes
 

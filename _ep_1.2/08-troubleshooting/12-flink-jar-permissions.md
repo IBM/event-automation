@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-When creating an instance of a `FlinkDeployment` to deploy flows in a [production](../../advanced/deploying-production) environment, the Flink job manager pods go into `CrashLoopBackOff` state and an error similar to the following is displayed in the logs:
+When creating an instance of a `FlinkDeployment` to [deploy jobs in production environments by using the Apache SQL Runner sample](../../advanced/deploying-production) environment, the Flink job manager pods go into `CrashLoopBackOff` state and an error similar to the following is displayed in the logs:
 
 ```shell
 Caused by: java.io.IOException: JAR file can't be read '/opt/flink/usrlib/sql-runner.jar'

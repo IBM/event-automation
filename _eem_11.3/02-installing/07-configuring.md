@@ -912,7 +912,7 @@ spec:
 # ... 
 ```
 
-## ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.")Exporting metrics with OpenTelemetry
+## ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Endpoint Management 11.3.1 and later.")Exporting metrics with OpenTelemetry
 
 To configure an {{site.data.reuse.eem_manager}} instance or an {{site.data.reuse.egw}} instance to emit metrics, you configure the `openTelemetry` section on the associated custom resource. 
 

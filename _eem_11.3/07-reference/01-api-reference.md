@@ -220,7 +220,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | secretName | string | The name of a secret containing certificates for securing component communications. |
 | serverCertificate | string | The key in the secret that holds the value of the server certificate. |
 
-### ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Endpoint Management 11.3.1.") Resource: `openTelemetry` 
+### ![Event Endpoint Management 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Endpoint Management 11.3.1 and later.") Resource: `openTelemetry` 
 
 | Field            | Type    | Description |
 | ---------------- | --------| ----------- |

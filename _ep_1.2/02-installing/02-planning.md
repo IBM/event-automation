@@ -57,8 +57,15 @@ The following table provides an overview of the Flink sample configurations and 
 | Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1 but set to 1 in the sample | 1 | Yes | 3 |
 
 **Important:**
-- Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your advanced flows in a Flink cluster for [development environments](../../advanced/deploying-development).
-- The Production - Flink Application Cluster sample is suitable for deploying your advanced flows in a Flink cluster for [production environments](../../advanced/deploying-production). It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI.
+- Quick Start, Minimal Production, and Production are [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples. They are suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} flow authoring UI, and for deploying your flows in a Flink cluster for [development environments](../../advanced/deploying-development).
+- The Production - Flink Application Cluster sample is suitable for deploying your flows in an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink cluster.
+
+  It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} UI. For the deployment procedure, see:
+  
+  - ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} versions 1.2.3 and later, see [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
+  
+  - In earlier releases, see [deploying jobs by using the Apache SQL Runner sample](../../advanced/deploying-production).
+
 - To [secure your communication](#securing-communication-with-flink-deployments) with Flink deployments, all samples except [Quick Start](#flink-quick-start-sample) require specifying a secret containing a JKS keystore and truststore and the password for that keystore and truststore.
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples.
@@ -123,7 +130,9 @@ The Production – Flink Application Cluster sample is suitable for running a si
 
 This sample configures Flink with High Availability for the Flink Job Manager. Being a Flink application cluster, the Flink jobs are automatically restarted if the Flink cluster restarts.
 
-For information about using this sample, see [deploying jobs in production environments](../../advanced/deploying-production).
+![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} 1.2.3 and later, this sample changed to support [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
+
+If you want to use this sample with an earlier {{site.data.reuse.ep_name}} release than 1.2.3, see [deploying jobs for production by using the Apache SQL Runner sample](../../advanced/deploying-production).
 
 ### Deploying the Flink PVC
 

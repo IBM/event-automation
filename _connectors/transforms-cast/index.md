@@ -4,6 +4,7 @@ sortTitle: Cast
 connectorID: transforms-cast
 direction: transformations
 support: community
+type: kafkaConnect
 iconInitial: C
 iconGradient: 4
 documentationURL: https://kafka.apache.org/documentation/#org.apache.kafka.connect.transforms.Cast

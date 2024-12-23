@@ -821,7 +821,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  - jemoji
+#  - jemoji
   - jekyll-contentblocks
 
 # mimic GitHub Pages with --safe
@@ -830,7 +830,7 @@ whitelist:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  - jemoji
+#  - jemoji
   - jekyll-contentblocks
 
 # Archives

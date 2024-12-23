@@ -43,6 +43,22 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Endpoint Management</h3>
+    <h4>11.4.0 - what's new:</h4>
+    <ul>
+      <li>Deprecation of support for Event Gateway instances from Event Endpoint Management version 11.2.0 and earlier</li>
+      <li>Support for Kubernetes 1.31</li>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h4>11.3.2 - what's new:</h4>
+    <ul>
+      <li>Support for Red Hat OpenShift Container Platform 4.17</li>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h4>11.3.1 - what's new:</h4>
+    <ul>
+      <li>Exporting metrics</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.3.0 - what's new:</h4>
     <ul>
       <li>Set quotas for applications to protect your clusters</li>
@@ -52,11 +68,22 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.2.3 - what's new:</h4>
+    <ul>
+      <li>Deploy flows that are customized for production or test environments</li>
+      <li>You can now edit flow details and export flows from within the canvas</li>
+      <li>Support for Kubernetes 1.31</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.2.2 - what's new:</h4>
     <ul>
       <li>Use your Flink SQL with custom nodes</li>
       <li>Event Processing add-on for IBM Cloud Pak for Integration</li>
       <li>Support for Red Hat OpenShift Container Platform 4.17</li>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h4>1.2.1 - what's new:</h4>
+    <ul>
       <li>Security and bug fixes</li>
     </ul>
     <h4>1.2.0 - what's new:</h4>

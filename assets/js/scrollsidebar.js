@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const icon = document.createElement("span");
         const anchor = document.createElement("a");
         if(heading.id){
-          anchor.href = `#${heading.id}`;
+          // anchor.href = `#${heading.id}`;
           anchor.className = "heading-anchor";
           anchor.innerHTML = `<svg focusable="false" preserveAspectRatio="xMidYMid meet" fill="currentColor" width="16" height="16" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
           <path d="M29.25,6.76a6,6,0,0,0-8.5,0l1.42,1.42a4,4,0,1,1,5.67,5.67l-8,8a4,4,0,1,1-5.67-5.66l1.41-1.42-1.41-1.42-1.42,1.42a6,6,0,0,0,0,8.5A6,6,0,0,0,17,25a6,6,0,0,0,4.27-1.76l8-8A6,6,0,0,0,29.25,6.76Z"></path>

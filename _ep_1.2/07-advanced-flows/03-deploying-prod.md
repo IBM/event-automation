@@ -130,83 +130,83 @@ Some adaptations to this procedure are required to build the Docker image and us
    metadata:
    name: application-cluster-prod
    spec:
-   image: <image built FROM icr.io/cpopen/ibm-eventautomation-flink/ibm-eventautomation-flink>
-   flinkConfiguration:
-      license.use: EventAutomationProduction
-      license.license: 'L-KCVZ-JL5CRM'
-      license.accept: 'false'
-      high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
-      high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
-      restart-strategy: failure-rate
-      restart-strategy.failure-rate.max-failures-per-interval: '10'
-      restart-strategy.failure-rate.failure-rate-interval: '10 min'
-      restart-strategy.failure-rate.delay: '30 s'
-      execution.checkpointing.interval: '5000'
-      execution.checkpointing.unaligned: 'false'
-      state.backend.type: rocksdb
-      state.backend.rocksdb.thread.num: '10'
-      state.backend.incremental: 'true'
-      state.backend.rocksdb.use-bloom-filter: 'true'
-      state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
-      state.checkpoints.num-retained: '3'
-      state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
-      taskmanager.numberOfTaskSlots: '2'
-      table.exec.source.idle-timeout: '30 s'
-      security.ssl.enabled: 'true'
-      security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
-      security.ssl.truststore-password: <jks-password>
-      security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
-      security.ssl.keystore-password: <jks-password>
-      security.ssl.key-password: <jks-password>
-      kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
+     image: <image built FROM icr.io/cpopen/ibm-eventautomation-flink/ibm-eventautomation-flink>
+     flinkConfiguration:
+       license.use: EventAutomationProduction
+       license.license: 'L-KCVZ-JL5CRM'
+       license.accept: 'false'
+       high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
+       high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
+       restart-strategy: failure-rate
+       restart-strategy.failure-rate.max-failures-per-interval: '10'
+       restart-strategy.failure-rate.failure-rate-interval: '10 min'
+       restart-strategy.failure-rate.delay: '30 s'
+       execution.checkpointing.interval: '5000'
+       execution.checkpointing.unaligned: 'false'
+       state.backend.type: rocksdb
+       state.backend.rocksdb.thread.num: '10'
+       state.backend.incremental: 'true'
+       state.backend.rocksdb.use-bloom-filter: 'true'
+       state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
+       state.checkpoints.num-retained: '3'
+       state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
+       taskmanager.numberOfTaskSlots: '2'
+       table.exec.source.idle-timeout: '30 s'
+       security.ssl.enabled: 'true'
+       security.ssl.truststore: /opt/flink/tls-cert/truststore.jks
+       security.ssl.truststore-password: <jks-password>
+       security.ssl.keystore: /opt/flink/tls-cert/keystore.jks
+       security.ssl.keystore-password: <jks-password>
+       security.ssl.key-password: <jks-password>
+       kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
    serviceAccount: flink
    podTemplate:
-      apiVersion: v1
-      kind: Pod
-      metadata:
-         name: pod-template
-      spec:
+     apiVersion: v1
+     kind: Pod
+     metadata:
+       name: pod-template
+       spec:
          affinity:
-         podAntiAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
+           podAntiAffinity:
+             preferredDuringSchedulingIgnoredDuringExecution:
                - weight: 80
-               podAffinityTerm:
-                  labelSelector:
+                 podAffinityTerm:
+                   labelSelector:
                      matchExpressions:
-                     - key: type
-                        operator: In
-                        values:
+                       - key: type
+                         operator: In
+                         values:
                            - flink-native-kubernetes
-                  topologyKey: kubernetes.io/hostname
+                   topologyKey: kubernetes.io/hostname
          containers:
-         - name: flink-main-container
-            volumeMounts:
+           - name: flink-main-container
+             volumeMounts:
                - name: flink-logs
-               mountPath: /opt/flink/log
+                 mountPath: /opt/flink/log
                - name: flink-volume
-               mountPath: /opt/flink/volume
+                 mountPath: /opt/flink/volume
          volumes:
-         - name: flink-logs
-            emptyDir: {}
-         - name: flink-volume
-            persistentVolumeClaim:
+           - name: flink-logs
+             emptyDir: {}
+           - name: flink-volume
+             persistentVolumeClaim:
                claimName: ibm-flink-pvc
    jobManager:
-      replicas: 2
-      resource:
-         memory: '4096m'
-         cpu: 0.5
+     replicas: 2
+     resource:
+       memory: '4096m'
+       cpu: 0.5
    taskManager:
-      resource:
-         memory: '4096m'
-         cpu: 2
+     resource:
+       memory: '4096m'
+       cpu: 2
    job:
-      jarURI: <insert jar file name here>
-      args: ['<insert path for statements.sql here>']
-      parallelism: 1
-      state: running
-      upgradeMode: savepoint
-      allowNonRestoredState: true
+     jarURI: <insert jar file name here>
+     args: ['<insert path for statements.sql here>']
+     parallelism: 1
+     state: running
+     upgradeMode: savepoint
+     allowNonRestoredState: true
    mode: native
    ```
 
@@ -328,35 +328,63 @@ hide autoscaler -->
 
 ## Trigger a savepoint for a running Flink SQL job
 
-1. Edit the `FlinkDeployment` custom resource.
-
-2. Make the following modifications
-
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
-
-   b. Ensure that the value of `spec.job.state` is `running`.
-
-   c. Ensure that the value of `spec.job.savepointTriggerNonce` is an integer that has never been used before for that option.
+1. Ensure that the `status` section indicates that the Job Manager is in `READY` status and that the Flink job is in `RUNNING` status by checking the `FlinkDeployment` custom resource.
 
    ```yaml
-   spec:
-     job:
-       jarURI: local:///opt/flink/usrlib/sql-runner.jar
-       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-       savepointTriggerNonce: <integer value>
-       state: running
-       upgradeMode: savepoint
+   status:
+     jobManagerDeploymentStatus: READY
+     jobStatus:
+       state: RUNNING
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+2. Set the following values in the `FlinkDeployment` custom resource:
 
-   A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-## Stop a Flink SQL with a savepoint
+   b. Set the value of `spec.job.state` to `running`.
+
+   c. Set the value of `spec.job.savepointTriggerNonce` to an integer that has never been used before for that option.
+
+   For example:
+
+
+   ```yaml
+   job:
+     jarURI: local:///opt/flink/usrlib/sql-runner.jar
+     args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+     savepointTriggerNonce: <integer value>
+     state: running
+     upgradeMode: savepoint
+   ```
+
+   d. Save the changes in the `FlinkDeployment` custom resource.
+
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
+
+   For example:
+
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: MANUAL
+   ```
+
+3. Keep the `FlinkDeployment` custom resource and the PVC to make them available later for restoring your deployment.
+
+## Stop a Flink SQL job with a savepoint
 
 1. Edit the `FlinkDeployment` custom resource.
 
-2. Make the following modifications
+2. Make the following modifications:
 
    a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
 
@@ -371,37 +399,71 @@ hide autoscaler -->
        upgradeMode: savepoint
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+3. Save the changes in the `FlinkDeployment` custom resource.
 
-   A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
 
-## Resume a Flink SQL with a savepoint
+   For example:
 
-1. Edit the `FlinkDeployment` custom resource.
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: UPGRADE
+   ```
 
-2. Make the following modifications:
+## Resume a Flink SQL job with a savepoint
+
+1. Edit the `FlinkDeployment` custom resource that you saved earlier when you [triggered a savepoint](#trigger-a-savepoint-for-a-running-flink-job) or the custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
 
    a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
 
    b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
 
-   c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
+   c. Remove `spec.job.savepointTriggerNonce` and its value.
+
+   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location found as described in step 2.d if you [triggered a savepoint](#trigger-a-savepoint-for-a-running-flink-sql-job) earlier or in step 3 if you [suspended](./#stop-a-flink-sql-job-with-a-savepoint) the Flink job earlier, plus the suffix `/_metadata`.
+
+   For example:
 
    ```yaml
-   spec:
-     job:
-       jarURI: local:///opt/flink/usrlib/sql-runner.jar
-       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-       state: running
-       upgradeMode: savepoint
-       initialSavepointPath: <savepoint directory>
-       allowNonRestoredState: true
+   job:
+     jarURI: local:///opt/flink/usrlib/sql-runner.jar
+     args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
+     state: running
+     upgradeMode: savepoint
+     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
+     allowNonRestoredState: true
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+2. Save the changes in the `FlinkDeployment` custom resource.
 
-   The Flink job is automatically resumed from the latest savepoint that Flink finds in `spec.job.initialSavepointPath`.
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
 
+   For example:
+
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: MANUAL
+   ```
 
 ## Enable SSL connection for your database
 

@@ -163,7 +163,7 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
   
    For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
 
-   b. Prepare the `FlinkDeployment` custom resource as shown in step 1 of the [../../installing/installing#Installing-a-flink-instance-by-using-the-cli](Flink installation documentation).
+   b. Prepare the `FlinkDeployment` custom resource as described in step 1 of [installing a Flink instance](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
 
 
 1. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#Installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#Installing-a-flink-instance-by-using-the-cli).
@@ -242,29 +242,57 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 
 ## Trigger a savepoint for a running Flink job
 
-1. Edit the `FlinkDeployment` custom resource.
-
-2. Make the following modifications:
-
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
-
-   b. Ensure that the value of `spec.job.state` is `running`.
-
-   c. Ensure that the value of `spec.job.savepointTriggerNonce` is an integer that has never been used before for that option.
+1. Ensure that the `status` section indicates that the Job Manager is in `READY` status and that the Flink job is in `RUNNING` status by checking the `FlinkDeployment` custom resource.
 
    ```yaml
-   spec:
-     job:
-       jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
-       args: []
-       savepointTriggerNonce: <integer value>
-       state: running
-       upgradeMode: savepoint
+   status:
+     jobManagerDeploymentStatus: READY
+     jobStatus:
+       state: RUNNING
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+2. Set the following values in the `FlinkDeployment` custom resource:
 
-   A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
+
+   b. Set the value of `spec.job.state` to `running`.
+
+   c. Set the value of `spec.job.savepointTriggerNonce` to an integer that has never been used before for that option.
+
+   For example:
+
+
+   ```yaml
+   job:
+     jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
+     args: []
+     savepointTriggerNonce: <integer value>
+     state: running
+     upgradeMode: savepoint
+   ```
+
+   d. Save the changes in the `FlinkDeployment` custom resource.
+
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
+
+   For example:
+
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: MANUAL
+   ```
+
+3. Keep the `FlinkDeployment` custom resource and the PVC to make them available later for restoring your deployment.
 
 ## Stop a Flink job with a savepoint
 
@@ -285,36 +313,53 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
        upgradeMode: savepoint
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
+3. Save the changes in the `FlinkDeployment` custom resource.
 
-   A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
+   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
+
+   For example:
+
+   ```yaml
+   status:
+     [...]
+     jobStatus:
+       [...]
+       savepointInfo:
+         [...]
+         lastSavepoint:
+           formatType: CANONICAL
+           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
+           timeStamp: 1733957991559
+           triggerNonce: 1
+           triggerType: UPGRADE
+   ```
 
 ## Resume a Flink job with a savepoint
 
-1. Edit the `FlinkDeployment` custom resource.
+1. Edit the `FlinkDeployment` custom resource that you saved earlier when you [triggered a savepoint](#trigger-a-savepoint-for-a-running-flink-job) or the custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
 
-2. Make the following modifications:
 
    a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
 
    b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
 
-   c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
+   c. Remove `spec.job.savepointTriggerNonce` and its value.
+
+   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location found as described in step 2.d during [savepoint triggering](./#trigger-a-savepoint-for-a-running-flink-job) or in step 3 if you [suspended](./#stop-a-flink-job-with-a-savepoint) the job, plus the suffix `/_metadata`.
+
+   For example:
 
    ```yaml
-   spec:
-     job:
-       jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
-       args: []
-       state: running
-       upgradeMode: savepoint
-       initialSavepointPath: <savepoint directory>
-       allowNonRestoredState: true
+   job:
+     jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
+     args: []
+     state: running
+     upgradeMode: savepoint
+     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
+     allowNonRestoredState: true
    ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
-
-   The Flink job is automatically resumed from the latest savepoint that Flink finds in `spec.job.initialSavepointPath`.
+2. Apply the modified `FlinkDeployment` custom resource.
 
 
 ## Enable SSL connection for your database
@@ -382,6 +427,5 @@ The successful execution of the Flink job when deploying depends on the correctn
 
 For troubleshooting:
 
-* Check the logs of the active Flink job manager (for errors due to invalid `config.yaml` file, search for `com.ibm.ei.streamproc.model.deploy.imports.ConfigModelException`).
+* Check the logs of the active Flink Job Manager (for errors due to invalid `config.yaml` file, search for `com.ibm.ei.streamproc.model.deploy.imports.ConfigModelException`).
 * Errors due to incorrect configuration can also lead to Flink exceptions, which are logged in the Flink task manager pods.
-

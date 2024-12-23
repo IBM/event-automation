@@ -33,7 +33,7 @@ The `FlinkDeployment` custom resource that configures your Flink instance must d
 
 To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
 
-1. Ensure that the status section indicates that a `JobManager` is ready and the Flink job is running by checking the `FlinkDeployment` custom resource.
+1. Ensure that the `status` section indicates that the Job Manager is in `READY` status and that the Flink job is in `RUNNING` status by checking the `FlinkDeployment` custom resource.
 
    ```yaml
    status:
@@ -42,8 +42,7 @@ To back up your Flink instance, update each of your deployed instances by editin
        state: RUNNING
    ```
 
-2. Edit the `FlinkDeployment` custom resource and make the following changes:
-
+2. Set the following values in the `FlinkDeployment` custom resource:
    a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
    b. Set the value of `spec.job.state` to `running`.
@@ -52,13 +51,12 @@ To back up your Flink instance, update each of your deployed instances by editin
 
    For example:
 
-
    ```yaml
    job:
-      [...]
-      savepointTriggerNonce: <integer value>
-      state: running
-      upgradeMode: savepoint
+     [...]
+     savepointTriggerNonce: <integer value>
+     state: running
+     upgradeMode: savepoint
    ```
 
    d. Save the changes in the `FlinkDeployment` custom resource.
@@ -88,7 +86,7 @@ To back up your Flink instance, update each of your deployed instances by editin
 
 To restore a Flink instance that you previously backed up, ensure that your PVC where the savepoint was written to is available, and update your `FlinkDeployment` custom resource as follows.
 
-1. Edit the saved `FlinkDeployment` custom resource that you saved when backing up your instance:
+1. Edit the `FlinkDeployment` custom resource that you saved earlier when [backing up](#backing-up) your instance:
 
    a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
 
@@ -102,11 +100,11 @@ To restore a Flink instance that you previously backed up, ensure that your PVC 
 
    ```yaml
    job:
-      [...]
-      state: running
-      upgradeMode: savepoint
-      initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
-      allowNonRestoredState: true
+     [...]
+     state: running
+     upgradeMode: savepoint
+     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
+     allowNonRestoredState: true
    ```
 
 2. Apply the modified `FlinkDeployment` custom resource.

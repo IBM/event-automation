@@ -43,6 +43,12 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Endpoint Management</h3>
+    <h4>11.4.1 - what's new:</h4>
+    <ul>
+      <li>Add Kafka topics and clusters manually</li>
+      <li>Support for Mutual TLS</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.4.0 - what's new:</h4>
     <ul>
       <li>Deprecation of support for Event Gateway instances from Event Endpoint Management version 11.2.0 and earlier</li>

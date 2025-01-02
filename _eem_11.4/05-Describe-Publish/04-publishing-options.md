@@ -32,6 +32,7 @@ To publish an option to the catalog, complete the following steps:
    **Note:** 
    - When only one gateway is available, it is selected by default. If you have multiple gateways, you can choose a gateway group from the available options.  
    - Some controls require a supported gateway. For example, you can only add the quota enforcement control to gateways that are version 11.3.0 and later. If you attempt to publish an option to a gateway that does not support specific controls, a notification is displayed to inform you that this action is not possible.
+   - ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") You can only publish options to gateway groups that contain a gateway that has passed the validation checks for the cluster and event source. 
 
 1. Click **Publish**.
 1. To cancel changes, click **Cancel**.

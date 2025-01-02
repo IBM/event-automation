@@ -75,6 +75,45 @@ To approve or reject requests, complete the following steps.
 
 When a request is approved, the viewer can make a new subscription.
 
+### ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Mutual TLS
+{: #mtls}
+
+
+
+If you want to control access to your event endpoint with mTLS, you can add the mTLS control. When an option is set up with an mTLS control, a producer or consumer can connect to the gateway only if they present a valid client certificate. If the certificate is invalid, the gateway refuses the connection request.
+
+#### Steps:
+
+To add the mTLS control to an option, complete the following steps:
+
+1. In the navigation panel, click **Manage topics**.
+1. Click the name of the event source that you want to work with.
+1. Click the **Options** tab.
+1. If you are creating a new option, click **Create option**. The details pane is displayed. 
+    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+1. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+    * In the left panel, click **Controls**. The **Controls** pane is displayed.
+1. Click **Add control**.
+1. Click the **mTLS** tile.
+1. Click **Next**. The **mTLS configuration** window is displayed.
+1. Complete the **mTLS requirements** fields to define the certificate requirements for clients. 
+   - **Common name** is mandatory. All other fields are optional.
+   - Values can contain a single wildcard `*` at any position. For example, if **Common name** is set to `*-domainname`, then the control accepts client certificates with the common names of `c-domainname` or `andre-domainname`.
+   - If your client certificates are self-signed then upload their CA certificate `.pem` file in **Upload CA certificate**. The .pem file must include the full certificate chain. Client certificates that are signed by well-known certificate authorities do not require CA certificate upload.
+   - You can use a sample client certificate to set the **mTLS requirements** field. Drag your sample client certificate into the drop zone and click **Validate Certificate**. The sample certificate is validated and the fields are populated from the certificate. You can then make further updates to these fields manually.
+1. When the **mTLS requirements** fields are set, click **Next**. The **Identifying Factors** window is displayed.
+1. Select how clients are identified.
+- To use a SASL username and password, select **Generate Username and Password**.
+- To use the client certificate subject fields, select **Identifying mTLS Fields** and select the fields that you want to use for client identification. **Common name** is mandatory and cannot be unchecked.
+1. Click **Add control**. The mTLS control is added to the table.
+1. To save the new control for this option, click **Save**.
+
+If you are creating a new option, then the new option tile is displayed in the **Options** tab.
+If you are editing an existing option, then the option tile is updated to show the new mTLS control. 
+
+If you want to edit or delete an mTLS control, return to the **Edit option** window and use the **Edit** or **Delete** icons.
+
+
 ## Consume controls
 {: #consume-controls}
 
@@ -210,11 +249,14 @@ To add the quota enforcement control to an option, complete the following steps.
 1. To set a quota for average megabytes per second, toggle the first switch to the **Yes** position and provide a value in the **Average megabytes per second** field.
 1. To set a quota for average messages per second, toggle the second switch to the **Yes** position and provide a value in the **Average messages per second** field.  
 
-   **Note:** You can set either one or both of the values and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas. 
+   **Note:** You can set either one or both of the values, and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas.
+   
+   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
     
    The gateway enforces the quota by monitoring the use per connection and enforcing a throttle delay that brings the clients usage under the given quota. This can result in spiky behavior during periods of high load which you should take into consideration when you choose the value for your quotas. 
 
    The quota is enforced on a per connection basis. If you set a quota of 1000 messages per second on a topic with 3 partitions, a client will be able to consume 3000 messages before the gateway enforces any quota control on it.
+
 1. Click **Add control**. The quota enforcement control is added to the table.
 1. To save the new control for this option, click **Save**.
 
@@ -288,11 +330,14 @@ To add the quota enforcement control to an option, complete the following steps.
 1. To set a quota for average megabytes per second, toggle the first switch to the **Yes** position, and provide a value in the **Average megabytes per second** field.
 1. To set a quota for average messages per second, toggle the second switch to the **Yes** position, and provide a value in the **Average messages per second** field.   
 
-   **Note:** You can set either one or both of the values and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas. 
+   **Note:** You can set either one or both of the values and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas.
+
+   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
 
    The gateway enforces the quota by monitoring the use per connection and pausing the socket for that connection for a delay that brings the clients usage under the given quota. This can result in spiky behavior during periods of high load which you should take into consideration when you choose the value for your quotas.  
 
    The quota is enforced on a per connection basis. If you set a quota of 1000 messages per second on a topic with 3 partitions, a client will be able to produce 3000 messages before the gateway enforces any quota control on it.
+
 1. Click **Add control**. The quota enforcement control is added to the table.
 1. To save the new control for this option, click **Save**.
 

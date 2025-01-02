@@ -23,9 +23,9 @@ Configure the `KafkaConnect` custom resource with information about your Kafka c
 - `authentication`: If your {{site.data.reuse.es_name}} instance is secured with authentication, configure the `spec.authentication` field of `KafkaConnect` custom resource with credentials, which allow the connectors to read and write to Kafka Connect topics. For more information, see [authentication and authorization](../connectors/#authentication-and-authorization).
 
   - If your {{site.data.reuse.es_name}} instance is secured with SCRAM authentication, specify a username and a secret containing a password, as follows:
-  
+
     ```yaml
-    authentication:    
+    authentication:
       type: scram-sha-512
       username: <my-kafka-user-name>
       passwordSecret:
@@ -58,9 +58,9 @@ Configure the `KafkaConnect` custom resource with information about your Kafka c
   ```
 
   Where `<external_listener_name>` is the name of your external Kafka listener.
-  
+
 - `tls`: If your {{site.data.reuse.es_name}} instance endpoints require TLS encrypted connections, configure the `spec.tls` field of `KafkaConnect` custom resource with reference to required certificates for connecting securely to Kafka listeners.
-  
+
   ```yaml
   tls:
     trustedCertificates:
@@ -168,7 +168,7 @@ If the build process needs to pull or push images from or to a secured container
   template:
     pod:
       imagePullSecrets:
-        - name: default-dockercfg-abcde
+        - name: <pull-secret-name>
   ```
 
   **Important:** The secrets that are referenced in the `KafkaConnect` custom resource must be present in the same namespace as the `KafkaConnect` instance.
@@ -279,8 +279,8 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
   apiVersion: eventstreams.ibm.com/v1beta2
   kind: KafkaConnect
   metadata:
-    name: mq-connectors
-    namespace: es
+    name: <name>
+    namespace: <namespace>
     annotations:
       eventstreams.ibm.com/use-connector-resources: 'true'
     labels:
@@ -290,12 +290,12 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
       certificateAndKey:
         certificate: user.crt
         key: user.key
-        secretName: my-kafka-user
+        secretName: <kafka-user-name>
       type: tls
-    bootstrapServers: mtls-listener.my-cluster:443
+    bootstrapServers: <kafka-bootstrap-address>
     build:
       output:
-        image: my-image-registry.my-kafka-connect-image:latest
+        image: <registry>/<name>:<tag>
         type: docker
       plugins:
         - artifacts:
@@ -311,18 +311,20 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
         pullSecret: ibm-entitlement-key
       pod:
         imagePullSecrets:
-          - name: default-dockercfg-abcde
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: kubernetes.io/arch
-                      operator: In
-                      values:
-                        - amd64
-                        - s390x
-                        - ppc64le
+          - name: <pull-secret-name>
+        metadata:
+          annotations:
+          # These annotations are license-specific. You can adjust them based on your use case.
+          # For Cloud Pak for Integration Production license:
+            eventstreams.production.type: CloudPakForIntegrationProduction
+            productID: 2cba508800504d0abfa48a0e2c4ecbe2
+            productName: IBM Event Streams
+            productVersion: 11.5.2
+            productMetric: VIRTUAL_PROCESSOR_CORE
+            productChargedContainers: <add-name-of-kafka-connect-cr>-connect
+            cloudpakId: c8b82d189e7545f0892db9ef2731b90d
+            cloudpakName: IBM Cloud Pak for Integration
+            productCloudpakRatio: '1:1'
       connectContainer:
         securityContext:
           allowPrivilegeEscalation: false
@@ -335,7 +337,7 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
     tls:
       trustedCertificates:
         - certificate: ca.crt
-          secretName: <eventstreams-instance>-cluster-ca-cert
+          secretName: <eventstreams-instance-name>-cluster-ca-cert
   ```
 
 - {{site.data.reuse.es_name}} operator will populate the `status` section of the `KafkaConect` custom resource. Use the following command to verify that your Kafka Connect cluster is running and connectors configured are available for use:

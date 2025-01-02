@@ -13,12 +13,12 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 ## Upgrade paths
 
 <!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
-<!-- You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.4.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.4.x, 11.3.x, or 11.2.x version by using the latest 11.4.x operator. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is. -->
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.4.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.4.x or 11.3.x version by using the latest 11.4.x operator. 
 
 <!-- Below text to be used for .0 releases -->
-You can upgrade {{site.data.reuse.eem_name}} to the [11.4.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.3.x by using the latest 11.4.0 operator. 
+<!-- You can upgrade {{site.data.reuse.eem_name}} to the [11.4.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.3.x by using the latest 11.4.0 operator. -->
 
-If you are upgrading from {{site.data.reuse.eem_name}} version 11.2.x or earlier, you must first [upgrade your installation to 11.3.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.4.0.
+If you are upgrading from {{site.data.reuse.eem_name}} version 11.2.x or earlier, you must first [upgrade your installation to 11.3.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.4.1.
 
 - On OpenShift, you can upgrade to the latest version by using operator channel v11.4. Review the general upgrade [prerequisites](#prerequisites) before you follow the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
@@ -70,7 +70,7 @@ If your existing Subscription uses a channel earlier than v11.3, you must first 
 
 
 <!-- Below line for non .0 releases only -->
-<!-- - If your existing Subscription is already on the v11.4 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically. -->
+If your existing Subscription is already on the v11.4 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically.
 
 
 ### Making new catalog source available
@@ -104,8 +104,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    oc patch subscription -n <namespace> ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
 <!-- This step can be commented out from releases that do not require license updates. -->
-4. Update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4. The instances will not upgrade until the license ID is updated.
-
+4. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
@@ -123,7 +122,7 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
 6. Select the version number link in the **Update channel** section (for example, **v11.3**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v11.4**, and click **Save** on the **Change Subscription update channel** dialog.
 <!-- This step can be commented out from releases that do not require license updates. -->
-8. Update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4. The instances will not upgrade until the license ID is updated.
+8. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
@@ -182,16 +181,14 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       
       Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
 
-If the chart version for your existing deployment is earlier than 11.3.x, you must first [upgrade your installation to 11.3.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.4.0 version.
+If the chart version for your existing deployment is earlier than 11.3.x, you must first [upgrade your installation to 11.3.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.4.1 version.
 
 If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before you upgrade. 
 
 If the chart version for your existing deployment is 11.3.x, then proceed to [helm upgrade](#upgrading-by-using-helm).
-  <!-- 1. Before upgrading, [update your instance configuration](#update-your-instance-configuration) to ensure compatibility across the version change.  -->
-<!-- Above step link has not linked to anything since 11.1: https://ibm.github.io/event-automation/eem/eem_11.1/installing/upgrading/, and looks like it's NA for 11.2+ so I'm removing this.  -->
 
 <!-- Below line applies to non .0 releases only -->
-<!-- - If the chart version for your existing deployment is 11.4.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically. -->
+If the chart version for your existing deployment is 11.4.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically.
 
 ### Upgrading by using Helm
 
@@ -240,7 +237,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
    ```
 
 <!-- This step can be commented out from releases that do not require license updates. -->
-8. Update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4. The instances will not upgrade until the license ID is updated.
+8. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 
 Where:

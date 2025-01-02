@@ -61,6 +61,22 @@ If your request is approved, the **Request access** button changes to **Generate
 
 If your request is rejected, then **Request access** is reset and you can submit a new request.
 
+## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Mutual TLS
+{: #mtls}
+
+If the event endpoint option is configured with an mTLS control, then to access the endpoint you must present a client certificate that meets the requirements of the mTLS control.
+
+- Your client certificate must be signed by a well-known certificate authority. If your certificate is self-signed, then
+the CA certificate must be uploaded when the [mTLS control is created](../../describe/option-controls#mtls).
+- Your client certificate subject fields must meet the requirements of the mTLS control. Click the tooltip next to **mTLS requirements** to see these requirements. 
+
+If the mTLS Control uses SASL credentials, then a username and password is generated for you.
+
+If the mTLS Control is using Subject Identifying Fields, then when you click **Subscribe** you must provide the subject fields of your client certificate. The subject fields are used to identify you when you access the endpoint. You can upload a `.pem` file of your client certificate to autofill these fields. The certificate subject field values that you provide must be unique, you cannot use the same client certificate in multiple subscriptions.
+<!-- cert validation is also done, but not mentioning it here since it's secondary and not available to mTLS control with SASL creds. We're also implying uniqueness and not mentioning here that it's possible that multiple users could have matching identifying fields if Kevin configures it so. -->
+
+
+
 ## Next steps
 
 After creating a subscription, you can access the event endpoint you subscribed to through the Event Gateway. [The Catalog](../discovering-event-endpoints#the-catalog) contains sample code and connection information to help you [configure your application to connect to an event endpoint](../configure-your-application-to-connect).

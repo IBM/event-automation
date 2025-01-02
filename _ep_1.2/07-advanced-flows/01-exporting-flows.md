@@ -16,7 +16,7 @@ You can export your flow in the following formats:
 
 | Export format | Exported file | Sensitive credentials | Additional comments |
 | --- | --- | --- |
-| ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") **JSON and configuration YAML** | `<flow-name>.zip` file that contains `<flow-name>.json` + `config.yaml` |  Sensitive values are redacted. | For deploying jobs customized for production or test environments, by using command-line, possibly as part of a CI/CD pipeline. |
+| ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") **JSON and configuration YAML** | `<flow-name>.zip` file that contains `flow.json` and `config.yaml` |  Sensitive values are redacted. | For deploying jobs [customized for production or test environments](../deploying-customized), by using the command-line interface, possibly as part of a CI/CD pipeline. |
 | **JSON** | `<flow-name>.json` | Contains credentials | For backing up and sharing flows with others. |
 | **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. |
 
@@ -27,7 +27,7 @@ You can export your flow in the following formats:
 * Exporting a flow as **JSON and configuration YAML** or as **SQL** requires the following prerequisites to be met:
    - [Source nodes](../../nodes/eventnodes/#event-source) are connected to the same graph.
    - Connected nodes are configured and valid. A valid graph has a green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} for all configured nodes.
-   - Connected nodes define a graph that ends with only one node, which must be an [event destination node](../../nodes/eventnodes/#event-destination).
+   - Connected nodes define a graph that ends with only one node. Additionally, for exporting as **JSON and configuration YAML**, the terminal node must be an [event destination node](../../nodes/eventnodes/#event-destination).
 
 To export a flow, complete the following steps:
 

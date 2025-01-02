@@ -191,8 +191,8 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, `"100Gi"`).
-- Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
+- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
+- Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt/storage"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
 
@@ -220,8 +220,8 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, `"100Gi"`).
-- Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt"`).
+- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
+- Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt/storage"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
 ### Providing persistent volume and persistent volume claim

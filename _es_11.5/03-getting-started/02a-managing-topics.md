@@ -14,12 +14,8 @@ You can modify the configuration of a Kafka topic by using the CLI to customize 
 
 You can edit a Kafka topic by using the CLI as follows:
 
-1. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 
-   ```shell
-   kubectl es init
-   ```
 3. Run the following command to edit the configuration of a topic:
 
    ```shell
@@ -59,12 +55,8 @@ To set the number of partitions for Kafka topics by using the UI:
 
 To set the number of partitions for Kafka topics by using the CLI:
 
-1. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 
-   ```shell
-   kubectl es init
-   ```
 3. Run the following command to set the number of topic partitions:
 
    ```shell
@@ -105,12 +97,8 @@ To set the replication factor for Kafka topics by using the UI:
 
 To set the replication factor for Kafka topics by using the CLI:
 
-1. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 
-   ```shell
-   kubectl es init
-   ```
 3. Run the following command to set the replication factor:
 
    ```shell
@@ -135,12 +123,8 @@ To delete a Kafka topic, complete the following steps:
 
 ### By using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 
-   ```shell
-   kubectl es init
-   ```
 3. Run the following command to delete a topic:
 
    ```shell

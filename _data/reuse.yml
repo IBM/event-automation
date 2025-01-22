@@ -17,10 +17,10 @@ eem_name: "Event Endpoint Management"
 eem_current_version: "11.4.1"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.2.3"
+ep_current_version: "1.2.4"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.2.3"
+flink_operator_current_version: "1.2.4"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"

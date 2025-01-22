@@ -25,7 +25,7 @@ To verify that your {{site.data.reuse.es_name}} installation deployed successful
 After all the components of an {{site.data.reuse.es_name}} instance are active and ready, the `EventStreams` custom resource will have a `Ready` phase in the status.
 To verify the status:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the `kubectl get` command as follows:
 
    ```shell
@@ -47,7 +47,7 @@ development      Ready
 
 ## Installing the {{site.data.reuse.es_name}} command-line interface
 
-The {{site.data.reuse.es_name}} CLI is a plugin for the `kubectl` and `cloudctl` CLI. Use the {{site.data.reuse.es_name}} CLI to manage your {{site.data.reuse.es_name}} instance from the command line.
+The {{site.data.reuse.es_name}} CLI is a plug-in for the `kubectl` and `cloudctl` CLI. Use the {{site.data.reuse.es_name}} CLI to manage your {{site.data.reuse.es_name}} instance from the command line.
 
 **Note:** For completing tasks by using the {{site.data.reuse.es_name}} CLI, you can use `cloudctl es` commands if your deployment is on the {{site.data.reuse.openshift_short}} with {{site.data.reuse.fs}}. This documentation set includes instructions that use the `kubectl` command, except for cases where the task is specific to OpenShift with {{site.data.reuse.fs}}.
 
@@ -62,7 +62,7 @@ Examples of management activities include:
 {{site.data.reuse.es_cli_kafkauser_note}} 
 You can also use the {{site.data.reuse.es_name}} UI to generate the Kafka users.
 
-### Kubernetes plugin (`kubectl es`)
+### Kubernetes plug-in (`kubectl es`)
 
 For OpenShift and other Kubernetes platforms running without {{site.data.reuse.fs}}, install the {{site.data.reuse.es_name}} CLI with the Kubernetes command-line tool (`kubectl`) as follows:
 
@@ -71,13 +71,13 @@ For OpenShift and other Kubernetes platforms running without {{site.data.reuse.f
 3. Click **Toolbox** in the primary navigation.
 4. Go to the **{{site.data.reuse.es_name}} command-line interface** section and click **Find out more**.
 5. Download the {{site.data.reuse.es_name}} CLI plug-in for your system by using the appropriate link.
-6. Rename the plugin file to `kubectl-es` and move it into a directory on the user's PATH. For example, on Linux and MacOS, move and rename the plugin file by running the following command:
+6. Rename the plug-in file to `kubectl-es` and move it into a directory on the user's PATH. For example, on Linux and MacOS, move and rename the plug-in file by running the following command:
 
    ```shell
    sudo mv ./kubectl-es-plugin.bin /usr/local/bin/kubectl-es
    ```
 
-For more information about `kubectl` plugins, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/){:target="_blank"}.
+For more information about `kubectl` plug-ins, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/){:target="_blank"}.
 
 To start the {{site.data.reuse.es_name}} CLI and check all available command options in the CLI, use the `kubectl es` command.
 For an exhaustive list of commands, you can run:
@@ -92,7 +92,7 @@ kubectl es <command> --help
 
 To run commands after installing, log in and initialize the CLI as described in [logging in](../../getting-started/logging-in/).
 
-### IBM Cloud Pak CLI plugin (`cloudctl es`)
+### IBM Cloud Pak CLI plug-in (`cloudctl es`)
 
 For {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, install the {{site.data.reuse.es_name}} CLI with the IBM Cloud Pak CLI (`cloudctl`) as follows:
 
@@ -103,7 +103,7 @@ For {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, install 
 3. Click **Toolbox** in the primary navigation.
 4. Go to the **{{site.data.reuse.es_name}} command-line interface** section and click **Find out more**.
 5. Download the {{site.data.reuse.es_name}} CLI plug-in for your system by using the appropriate link.
-6. Install the plugin using the following command:
+6. Install the plug-in using the following command:
 
    ```shell
    cloudctl plugin install <path-to-plugin>

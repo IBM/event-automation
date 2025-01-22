@@ -56,7 +56,7 @@ If the EventStreamsGeoReplicator instance is configured correctly, a KafkaMirror
 #### Using the CLI
 
 To create a new EventStreamsGeoReplicator instance for geo-replication by using the CLI:
-1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
+1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to set the namespace that contains the existing destination cluster:
 
    ```shell
@@ -132,7 +132,7 @@ If you are using {{site.data.reuse.openshift_short}}, to modify the number of wo
 #### Using the CLI
 
 To modify the number of workers by using the CLI:
-1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
+1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to set the namespace that contains the existing destination cluster:
 
    ```shell

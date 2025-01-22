@@ -14,7 +14,7 @@ Use one of the following methods to obtain the bootstrap address for your connec
 
 ### Using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. To find the type and address of the Kafka bootstrap host for each listener, run the following command:
 
    ```shell
@@ -40,7 +40,7 @@ Use one of the following methods to obtain the bootstrap address for your connec
 
 **Note:** You can only use the {{site.data.reuse.es_name}} CLI to retrieve the address if your {{site.data.reuse.es_name}} instance has at least one external listener [configured](../../installing/configuring) in `spec.strimziOverrides.kafka.listeners`.
 
-1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
+1. [Install the {{site.data.reuse.es_name}} CLI plug-in](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 
 2. {{site.data.reuse.es_cli_init_111_samesection}}
    Make note of the **Event Streams bootstrap address** value. This is the Kafka bootstrap address that your application will use.
@@ -101,7 +101,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.es_name}} CLI
 
-1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
+1. [Install the {{site.data.reuse.es_name}} CLI plug-in](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 
 2. {{site.data.reuse.es_cli_init_111_samesection}}
 3. Use the `certificates` command to download the cluster's public certificate in the required format:

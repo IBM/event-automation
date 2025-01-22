@@ -42,8 +42,8 @@ The operator does not have sufficient permissions to do a multizone installation
       apiVersion: rbac.authorization.k8s.io/v1
       metadata:
         name: eventstreams-kafka-broker
-          labels:
-            app: eventstreams
+        labels:
+          app: eventstreams
       rules:
       - verbs:
             - get

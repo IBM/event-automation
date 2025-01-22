@@ -31,7 +31,7 @@ Ensure your environment meets the following prerequisites.
 
 To set up a connection between your {{site.data.reuse.es_name}} and {{site.data.reuse.eem_name}} instances, complete the following steps:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 1. Create a file called `es-eem-configmap.yaml` and copy the following YAML content into the file to create the ConfigMap that has the details for creating a server connection to your {{site.data.reuse.eem_name}} instance:
 
    ```yaml

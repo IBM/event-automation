@@ -18,7 +18,7 @@ Some clusters, typically AWS, will already be zone aware. For clusters that are 
 
 To determine if your cluster is zone aware:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command:
 
    ```shell
@@ -53,8 +53,8 @@ Before applying [Kafka rack awareness](../configuring/#applying-kafka-rack-aware
    apiVersion: rbac.authorization.k8s.io/v1
    metadata:
      name: eventstreams-kafka-broker
-       labels:
-         app: eventstreams
+     labels:
+       app: eventstreams
    rules:
    - verbs:
          - get

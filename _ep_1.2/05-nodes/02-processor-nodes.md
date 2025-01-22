@@ -192,22 +192,22 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 ## Unpack arrays
 
- An unpack array node takes an existing array of elements in a stream of events to unpack it. You can unpack each array element into a new property in separate events, or unpack the array elements into new properties that are all included in the same event. 
+ An unpack arrays node takes an existing array of elements in a stream of events to unpack it. You can unpack each array element into a new property in separate events, or unpack the array elements into new properties that are all included in the same event. 
 
-### Adding an unpack array node
+### Adding an unpack arrays node
 
-To add an unpack array node, complete the following steps:
+To add an unpack arrays node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 1. In the **Palette**, under **Processors**, drag-and-drop the **Unpack arrays** node into the canvas.
-1. Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
+1. Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the unpack arrays node indicating that the node is yet to be configured.
 1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure unpack node** window opens.
 
-### Configuring unpack array node
+### Configuring an unpack arrays node
 
-To configure the unpack array node, complete the following steps:
+To configure the unpack arrays node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
 1. Click **Next** to open the **Array selection** pane.
@@ -240,9 +240,5 @@ To configure the unpack array node, complete the following steps:
  
   1. To complete an unpack node configuration, click **Configure**.
 
-   A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the unpack array node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.               
-
-
-
-
+   A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the unpack arrays node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.
 

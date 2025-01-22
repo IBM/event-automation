@@ -302,7 +302,7 @@ You can retrieve the credentials by using the name of the `KafkaUser`. For examp
    ```
 
 
-2. {{site.data.reuse.cncf_cli_login}}
+2. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 3. Use the following command to retrieve the required `KafkaUser` data, adding the `KafkaUser` name and your chosen namespace: \\
 
    ```shell

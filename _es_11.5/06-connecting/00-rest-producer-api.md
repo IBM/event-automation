@@ -58,7 +58,7 @@ To be able to produce to a topic, ensure you have the following available:
 To retrieve the full URL for the {{site.data.reuse.es_name}} API endpoint, you can use the Kubernetes command-line tool (`kubectl`) or {{site.data.reuse.es_name}} UI.
 
 Using the Kubernetes command-line tool (`kubectl`):
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to list available {{site.data.reuse.es_name}} REST Producer API endpoints:
 
    ```shell

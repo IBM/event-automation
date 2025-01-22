@@ -74,7 +74,7 @@ In addition, when initiating the JMX connection, if the port is secured then cli
 
 #### Using the Kubernetes command-line tool (`kubectl`)
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following commands:
 
    ```shell

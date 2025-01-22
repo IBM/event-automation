@@ -12,7 +12,7 @@ You can remove the {{site.data.reuse.es_name}} from your platform as follows:
 
 You can delete an {{site.data.reuse.es_name}} installation using the Kubernetes command-line tool (`kubectl`):
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Ensure you are using the namespace where your {{site.data.reuse.es_name}} instance is located: 
 
    ```shell
@@ -232,7 +232,7 @@ The {{site.data.reuse.es_name}} Custom Resource Definitions (CRDs) are not delet
 
 To delete an {{site.data.reuse.es_name}} operator:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to select the namespace the operator is installed on:
 
    ```shell

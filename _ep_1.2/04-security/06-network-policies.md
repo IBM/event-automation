@@ -32,13 +32,13 @@ The following tables provide information about the network connections of {{site
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------|
 | TCP      | See details below                                                                                     | 8443     | Operator validating webhook | Always                         |
 
-On {{site.data.reuse.openshift_short}}, a network policy is created which restricts ingress communication by using a namespace `matchLabel` that is set to `policy-group.network.openshift.io/host-network: ''`.  If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
+On {{site.data.reuse.openshift_short}}, a network policy is created which restricts ingress communication by using a namespace `matchLabel` that is set to `policy-group.network.openshift.io/host-network: ''`.  If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
 
 On other Kubernetes platforms, a network policy is created that restricts traffic to the individual ports, but does not restrict where that traffic originates from. For increased security, you can delete this auto-generated network policy, and create a more secure network policy that restricts ingress traffic to the operator pod's port to be only from the Kubernetes API server. 
 
 To delete the auto-generated network policy, specify `--set deployOperatorNetworkPolicy=false` when installing the Helm chart. You can then create your own network policy.
 
-If you are using a CNI plugin that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
+If you are using a CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
 The following is an example network policy that allows access to a CIDR block:
 
@@ -63,7 +63,7 @@ spec:
   - Ingress
 ```
 
-**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plugin.
+**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plug-in.
 
 **Note:** By default a network policy is created that restricts traffic to port 8443, but does not restrict where that traffic originates from. For increased security, you can disable this auto-generated network policy and create a more secure network policy that restricts ingress traffic to the operator pod's port to be only from the Kubernetes API server.
 
@@ -124,7 +124,7 @@ To delete the network policy of the {{site.data.reuse.ep_name}} operator:
 
 
 
-**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses OpenShift software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
+**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses OpenShift software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
 
 The following is an example network policy that provides this increased security:
 
@@ -151,7 +151,7 @@ spec:
     - Ingress
 ```
 
-If you are using a different CNI plugin that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 addresses of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
+If you are using a different CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 addresses of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
 The following is an example network policy that allows access to a CIDR block:
 
@@ -176,7 +176,7 @@ spec:
   - Ingress
 ```
 
-**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plugin.
+**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plug-in.
 
 
 ### Flink operator pod
@@ -289,9 +289,9 @@ network policies for Flink pods need to be deployed following these steps:
           - Ingress
    ```
 
-   **Note**: If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
+   **Note**: If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
    
-  - On Kubernetes platforms using a CNI plugin that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
+  - On Kubernetes platforms using a CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
   The following is an example network policy that allows access to a CIDR block:
 
@@ -317,7 +317,7 @@ network policies for Flink pods need to be deployed following these steps:
         - Ingress
   ```
 
-  - On clusters where network policies are not supported, use an alternative configuration specific to your CNI plugin.
+  - On clusters where network policies are not supported, use an alternative configuration specific to your CNI plug-in.
 
 3. Set the following environment variable to store the namespace of your Flink instance. If you are deploying the network policies before installing your Flink instance, ensure the namespace is already created.
 

@@ -53,8 +53,8 @@ Before applying [Kafka rack awareness](../configuring/#applying-kafka-rack-aware
    apiVersion: rbac.authorization.k8s.io/v1
    metadata:
      name: eventstreams-kafka-broker
-       labels:
-         app: eventstreams
+     labels:
+       app: eventstreams
    rules:
    - verbs:
          - get

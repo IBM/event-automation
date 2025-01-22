@@ -1445,6 +1445,8 @@ latestdocs:
         url: /troubleshooting/error-managing-geo-replicators/
       - title: "Event Streams fails to delete foundational services operand request"
         url: /troubleshooting/cs-not-removed/
+      - title: "Kafka pods fail to start in a FIPS-enabled OpenShift cluster"
+        url: /troubleshooting/fips-enabled-cluster-fails/
 
 # Sidebar navigation for Event Streams 11.4 docs
 

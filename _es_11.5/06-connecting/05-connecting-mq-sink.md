@@ -217,11 +217,7 @@ Use the {{site.data.reuse.es_name}} UI to generate and download the `KafkaConnec
 Use the {{site.data.reuse.es_name}} CLI to generate and download the `KafkaConnector` custom resource YAML file for your IBM MQ sink connector. You can also use the CLI to generate a JSON file for distributed mode.
 
 1. {{site.data.reuse.es_cli_init_111}}
-2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
 
-   ```shell
-   kubectl es init
-   ```
 
 3. Run the `connector-config-mq-sink` command to generate the configuration file for the `MQ Sink` connector.
 

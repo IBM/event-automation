@@ -148,7 +148,10 @@ To configure the API node, ensure you upload an OpenAPI document that meets the 
  - At least one `GET` or `POST` [operation](https://swagger.io/docs/specification/paths-and-operations/){:target="_blank"} is required with the following requirements:
     - The operation uses one of the following [security methods](https://swagger.io/docs/specification/authentication/){:target="_blank"}: basic authentication, API keys (in the header or query parameter), or no authentication (None).
     - Has the [media type](https://swagger.io/docs/specification/media-types/){:target="_blank"} `application/json` for the response (`GET` and `POST`) and the request body (`POST`).
-    - Does not have required parameters of type `array`. However, the operation can still define optional parameters of type `array`, but these parameters are not made available for configuring the API node.
+    - ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4.svg "In Event Processing 1.2.4 and later.") Body parameters of type `array` with primitive types (`string`, `number`, `integer`, and `boolean`) are supported.
+
+      Required body parameters of type `array` with complex types (`array`, `object`) are not supported. However, the operation can still define optional parameters of type `array` with complex types, but these parameters are not made available for configuring the API node.
+    - Required query parameters of type `array` are not supported. However, the operation can still define optional query parameters of type `array`, but these parameters are not made available for configuring the API node.
     - Defines at least one [parameter](https://swagger.io/docs/specification/describing-parameters/){:target="_blank"} of the kind `query` or `path`, or has at least one non-array property defined in the schema of the [request body](https://swagger.io/docs/specification/describing-request-body/){:target="_blank"}.
     - For [parameter serialization](https://swagger.io/docs/specification/serialization/){:target="_blank"} of query parameters, the `style` attribute is either set to the `form` style, or no `style` attribute is specified, and for path parameters, the `style` attribute is either set to the `simple` style, or no `style` attribute is specified.
 

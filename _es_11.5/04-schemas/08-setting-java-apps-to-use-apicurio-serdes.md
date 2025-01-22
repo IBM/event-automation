@@ -59,7 +59,7 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
     </dependency>
     ```
 
-12. If you want to generate specific schema classes from your project Avro schema files, add the following Avro plugin to your project Maven `pom.xml` file, replacing `SCHEMA-FILE-NAME` with the name of your schema file.
+12. If you want to generate specific schema classes from your project Avro schema files, add the following Avro plug-in to your project Maven `pom.xml` file, replacing `SCHEMA-FILE-NAME` with the name of your schema file.
 
     ```xml
     <profile>

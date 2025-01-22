@@ -107,7 +107,7 @@ To configure a `KafkaRebalance` custom resource, use the {{site.data.reuse.opens
 
 #### Using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to select the namespace that contains the existing {{site.data.reuse.es_name}} cluster:
 
    ```shell
@@ -237,7 +237,7 @@ To add annotations to the `KafkaRebalance` custom resource, use the {{site.data.
 
 #### Using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to select the namespace that contains the existing `KafkaRebalance` custom resource:
 
    ```shell

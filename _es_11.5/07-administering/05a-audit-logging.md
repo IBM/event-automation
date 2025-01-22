@@ -30,7 +30,7 @@ As Kafka is a distributed system, the audit events from all brokers must be aggr
 
 To configure {{site.data.reuse.es_name}} to provide audit trail for the Kafka cluster, complete the following steps:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 
 2. Create a file named `es-audit-config.yaml` and copy the following YAML content into the file to create the ConfigMap that has the log4j configuration properties:
 

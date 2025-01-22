@@ -84,7 +84,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
 
 - `spec.build.plugins`: Specify the connectors you want to use in `spec.build.plugins` section.
 
-  Each connector can be specified as a plugin with a name and a list of artifacts that represent the connector and any other dependencies you want to use with that connector.
+  Each connector can be specified as a plug-in with a name and a list of artifacts that represent the connector and any other dependencies you want to use with that connector.
 
   Each artifact has a type, and additional fields that define how the artifact can be downloaded and used. {{site.data. reuse.es_name}} supports the following types of artifacts:
 
@@ -93,7 +93,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
   - Maven artifacts, which uses Maven coordinates
   - Other artifacts, which are downloaded and used directly
 
-  If the artifact is of type `jar`, `tgz`, `zip`, or other, then the plugin can be defined as follows:
+  If the artifact is of type `jar`, `tgz`, `zip`, or other, then the plug-in can be defined as follows:
 
   ```yaml
   plugins:
@@ -110,7 +110,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
   - `<url>` defines the location accessible from your cluster to download the connector from.
   - `<sha512sum>` is the checksum that you use to verify that the downloaded artifact is correct before it adds it to your Kafka Connect environment.
 
-  If the artifact type is `maven`, then the plugin can be defined as follows:
+  If the artifact type is `maven`, then the plug-in can be defined as follows:
 
   ```yaml
   plugins:
@@ -177,9 +177,9 @@ If the build process needs to pull or push images from or to a secured container
 
 Rebuild the Kafka Connect image regularly to ensure that your Kafka Connect environment is up-to-date with changes to Kafka Connect and any new releases of connectors.
 
-When you change the image (`spec.image`) or the connector plugin artifacts configuration (`spec.build.plugins`) in the `KafkaConnect` custom resource, container image is built automatically.
+When you change the image (`spec.image`) or the connector plug-in artifacts configuration (`spec.build.plugins`) in the `KafkaConnect` custom resource, container image is built automatically.
 
-To pull an upgraded base image or to download the latest connector plugin artifacts without changing the `KafkaConnect` resource, you can trigger a rebuild of the container image that is used by your Kafka Connect cluster by applying the following annotation to the `StrimziPodSet` resource named `<kafka-connect-instance-name>-connect`:
+To pull an upgraded base image or to download the latest connector plug-in artifacts without changing the `KafkaConnect` resource, you can trigger a rebuild of the container image that is used by your Kafka Connect cluster by applying the following annotation to the `StrimziPodSet` resource named `<kafka-connect-instance-name>-connect`:
 
 ```shell
 eventstreams.ibm.com/force-rebuild: true

@@ -8,9 +8,30 @@ toc: true
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.2.x.
 
-
-
 ## Release {{site.data.reuse.ep_current_version}}
+
+
+### API enrichment node: support for operations with arrays of primitive types
+
+Body parameters can now be mapped with primitive array properties or primitive array constant values. Supported types for items in the array of a body parameter are `string`, `number`, `integer`, and `boolean`.
+
+### Rename nodes directly from the canvas
+
+In {{site.data.reuse.ep_name}} 1.2.4 and later, you can rename any configured nodes directly from the canvas. Hover over the node or right-click the node in the canvas, click **More options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon when you hover over the node or right-click the node."){:height="30px" width="15px"}, and select **Rename**.
+
+### Duplicate and delete flows from within the canvas
+
+In {{site.data.reuse.ep_name}} 1.2.4 and later, the **Duplicate** and **Delete** features are also available in **More options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} next to **Run flow** in the navigation banner of the canvas.
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.4 compared to 1.2.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4.svg "In Event Processing 1.2.4 and later.")
+
+### Security and bug fixes
+
+{{site.data.reuse.ep_name}} release 1.2.4 and {{site.data.reuse.ibm_flink_operator}} version 1.2.4 contain security and bug fixes.
+
+## Release 1.2.3
 
 ### Deploy flows that are customized for production or test environments
 

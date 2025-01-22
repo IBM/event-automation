@@ -23,7 +23,7 @@ If any of the components are not ready for an extended period of time, see how y
 
 You can check the health of your {{site.data.reuse.es_name}} environment using the Kubernetes command-line tool (`kubectl`).
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. To check the status and readiness of the pods, run the following command, where `<namespace>` is where your {{site.data.reuse.es_name}} instance is installed:
 
    ```shell

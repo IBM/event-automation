@@ -61,7 +61,7 @@ To update an existing `KafkaUser` custom resource by using the {{site.data.reuse
 
 To update an existing `KafkaUser` by using the CLI:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run one of the following commands to add or update one or more quota types:
 
       Setting `producerByteRate`:

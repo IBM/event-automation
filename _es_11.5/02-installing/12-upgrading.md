@@ -63,7 +63,7 @@ If your operator manages more than one instance of {{site.data.reuse.es_name}}, 
 
 #### Pausing reconciliation by using the CLI
 
-  1. {{site.data.reuse.cncf_cli_login}}
+  1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
   2. To apply the annotation first to the `EventStreams` and then to the `Kafka` custom resource, run the following command, where `<type>` is either `EventStreams` or `Kafka`:
 
      ```shell
@@ -240,7 +240,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
 - Check the latest chart version that you can upgrade to:
    
-   1. {{site.data.reuse.cncf_cli_login}}
+   1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
    2. Add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"}:
       
       ```shell

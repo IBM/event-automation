@@ -87,7 +87,7 @@ To delete the network policy of the {{site.data.reuse.eem_name}} operator:
 
 
 
-**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses OpenShift software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods by using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
+**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses OpenShift software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods by using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
 
 The following is an example network policy that provides this increased security:
 
@@ -114,7 +114,7 @@ spec:
     - Ingress
 ```
 
-If you are using a different CNI plugin that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 addresses of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
+If you are using a different CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 addresses of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
 The following is an example network policy that allows access to a CIDR block:
 
@@ -139,7 +139,7 @@ spec:
   - Ingress
 ```
 
-**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plugin.
+**Note:** On clusters where network policies are not supported, use an alternative configuration specific to your CNI plug-in.
 
 
 ### {{site.data.reuse.eem_manager}} pod

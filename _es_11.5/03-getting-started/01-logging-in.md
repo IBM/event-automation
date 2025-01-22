@@ -42,7 +42,7 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.es_
 
 To retrieve the URL for your {{site.data.reuse.es_name}} UI, use the following commands:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Find the URL of your services as follows.
    - If you are running with route endpoint, run the following command:
 
@@ -103,7 +103,7 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.es_
 5. Use your credentials provided to you by your cluster administrator.
    A cluster administrator can manage access rights by following the instructions in [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
    Enter your username and password to access the {{site.data.reuse.es_name}} CLI.
-6. Initialize the {{site.data.reuse.es_name}} plugin by running the following command:
+6. Initialize the {{site.data.reuse.es_name}} plug-in by running the following command:
 
    ```shell
    cloudctl es init -n <namespace>
@@ -129,13 +129,13 @@ When you have the authentication type set to SCRAM, obtain the required credenti
 
    A cluster administrator can retrieve credentials and manage access rights by following the instructions in [managing access](../../security/managing-access/#managing-access-to-kafka-resources).
 
-2. Using the credentials and information you obtained earlier, initialize the {{site.data.reuse.es_name}} plugin by running the following command:
+2. Using the credentials and information you obtained earlier, initialize the {{site.data.reuse.es_name}} plug-in by running the following command:
 
    ```shell
    kubectl es init --auth-type scram-sha-512
    ```
 
-   **Note:** For the {{site.data.reuse.es_name}} CLI plugin to be set up, ensure you add `auth-type` as `scram-sha-512`. If `auth-type` is not present, the cluster will set up IAM as the authentication type by default. For more information, see [configuring UI and CLI security](../../installing/configuring/#configuring-ui-and-cli-security).
+   **Note:** For the {{site.data.reuse.es_name}} CLI plug-in to be set up, ensure you add `auth-type` as `scram-sha-512`. If `auth-type` is not present, the cluster will set up IAM as the authentication type by default. For more information, see [configuring UI and CLI security](../../installing/configuring/#configuring-ui-and-cli-security).
 
 3. Enter the credentials and endpoints when prompted to log in to the {{site.data.reuse.es_name}} CLI.
 
@@ -151,7 +151,7 @@ When you have the authentication type set to SCRAM, obtain the required credenti
 
 When you have the authentication type set to IAM, retrieve the login URL for the {{site.data.reuse.es_name}} CLI, then log in and initialize the CLI as follows:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command:
 
    ```shell
@@ -172,7 +172,7 @@ When you have the authentication type set to IAM, retrieve the login URL for the
 4. Use your credentials provided to you by your cluster administrator.
    A cluster administrator can manage access rights by following the instructions in [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
    Enter your username and password to access the {{site.data.reuse.es_name}} CLI.
-5. Initialize the {{site.data.reuse.es_name}} plugin by running the following command:
+5. Initialize the {{site.data.reuse.es_name}} plug-in by running the following command:
    ```shell
    cloudctl es init -n <namespace>
    ```

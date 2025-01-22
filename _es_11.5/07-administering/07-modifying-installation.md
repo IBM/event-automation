@@ -29,7 +29,7 @@ To modify configuration settings by using the {{site.data.reuse.openshift_short}
 ## Using the Kubernetes command-line tool (`kubectl`)
 
 To modify configuration settings by using the Kubernetes command-line tool (`kubectl`):
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to edit your `EventStreams` custom resource in your default editor:
 
    ```shell

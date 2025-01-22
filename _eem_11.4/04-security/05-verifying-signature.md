@@ -155,7 +155,7 @@ Obtain the required files as follows:
 
     To verify the image signatures for a {{site.data.reuse.eem_name}}-certified container, use the file that is named in the format `ibm-eventendpointmanagement-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.eem_name}} CASE version.
 
-2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plugin will download the CASE archive. Run the following command to list images by tag:
+2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plug-in will download the CASE archive. Run the following command to list images by tag:
 
    ```shell
    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/{{site.data.reuse.eem_current_version}}/ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv \

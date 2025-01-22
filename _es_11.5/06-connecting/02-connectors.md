@@ -17,9 +17,9 @@ When connecting Apache Kafka and other systems, the technology of choice is the 
 
 Use Kafka Connect to reliably move large amounts of data between your Kafka cluster and external systems. For example, it can ingest data from sources such as databases and make the data available for stream processing.
  
-## Kafka Connect plugins
+## Kafka Connect plug-ins
 
-Kafka Connect plugins include connectors, converters, and transformations.
+Kafka Connect plug-ins include connectors, converters, and transformations.
 
 ### Connectors: source and sink
 
@@ -40,24 +40,24 @@ Kafka Connect uses converters to convert data between different formats, such as
 
 Kafka Connect uses transformations to modify data as it is being moved between Kafka and an external system. Transformations are applied to messages before they are written to a Kafka topic if used with a source connector, or before they are sent from Kafka to an external system in case of sink connectors. 
 
-Transformations are optional plugins that can be used to modify data in real-time, for basic modifications such as data filtering, data masking, and data aggregation. For example, the [Cast transformation]({{'connectors/transforms-cast/configuration' | relative_url }}) can be used to change the data type of a field.
+Transformations are optional plug-ins that can be used to modify data in real-time, for basic modifications such as data filtering, data masking, and data aggregation. For example, the [Cast transformation]({{'connectors/transforms-cast/configuration' | relative_url }}) can be used to change the data type of a field.
 
 **Note:** Transformations are best used for basic modifications. For more complex or large-scale data adjustments, use [Event Processing](https://ibm.github.io/event-automation/ep/) for advanced data processing.
 
 ## Workers
 
-Kafka Connect plugins, including connectors, converters, and transformations, run inside a Java process called a worker. Kafka Connect can run in either stand-alone or distributed mode. Stand-alone mode is intended for testing and temporary connections between systems, and all work is performed in a single process. Distributed mode is more appropriate for production use, as it benefits from additional features such as automatic balancing of work, dynamic scaling up or down, and fault tolerance.
+Kafka Connect plug-ins, including connectors, converters, and transformations, run inside a Java process called a worker. Kafka Connect can run in either stand-alone or distributed mode. Stand-alone mode is intended for testing and temporary connections between systems, and all work is performed in a single process. Distributed mode is more appropriate for production use, as it benefits from additional features such as automatic balancing of work, dynamic scaling up or down, and fault tolerance.
 
 ![Kafka Connect: workers]({{ 'images' | relative_url }}/Kafka_Connect_Basics_3.svg "Diagram showing a representation of how workers and tasks are distributed in stand-alone and distributed modes.")
 
 When you run Kafka Connect with a stand-alone worker, there are two configuration files:
 
 * The worker configuration file contains the properties that are required to connect to Kafka. This is where you provide the details for connecting to Kafka.
-* The plugin configuration file contains the properties that are required for the specific plugin (connector, converter, or transformation). This is where you provide the details for connecting to the external systems (for example, IBM MQ), or for configuring the converter or transformation.
+* The plug-in configuration file contains the properties that are required for the specific plug-in (connector, converter, or transformation). This is where you provide the details for connecting to the external systems (for example, IBM MQ), or for configuring the converter or transformation.
 
 When you run Kafka Connect with the distributed worker, you still use a worker configuration file but the connector configuration is supplied by using a REST API. Refer to the [Kafka Connect documentation](https://kafka.apache.org/documentation/#connect){:target="_blank"} for more details about the distributed worker.
 
-For getting started and problem diagnosis, the simplest setup is to run only one plugin in each stand-alone worker. Kafka Connect workers print a lot of information and it is easier to understand if the messages from multiple plugins are not interleaved.
+For getting started and problem diagnosis, the simplest setup is to run only one plug-in in each stand-alone worker. Kafka Connect workers print a lot of information and it is easier to understand if the messages from multiple plug-ins are not interleaved.
 
 
 ## Kafka Connect topics

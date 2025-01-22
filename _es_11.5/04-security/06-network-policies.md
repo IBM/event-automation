@@ -12,7 +12,7 @@ toc: true
 
 When you install an instance of {{site.data.reuse.es_name}}, the required network policies will be automatically created. To review the network policies that have been applied:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to display the installed network policies for a specific namespace:
 
    ```shell

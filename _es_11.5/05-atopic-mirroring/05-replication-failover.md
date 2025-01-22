@@ -27,7 +27,7 @@ Consider using the same certificates for both the origin and destination cluster
 ### Set up the same access to both clusters
 
 Consider providing your applications the same access to both the origin and destination clusters. For example, you can duplicate the application `KafkaUser` credentials from the origin cluster to the destination cluster. This allows applications to use a single set of credentials to access either cluster. Use the following commands to retrieve the `KafkaUser` credentials and custom resource from the origin cluster, and then create a new `KafkaUser` with these credentials on the destination cluster:
-1. Log in to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Log in to your origin cluster. {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 2. Run the following command to retrieve the name of the secret for the `KafkaUser`:
 
    ```shell
@@ -50,7 +50,7 @@ Consider providing your applications the same access to both the origin and dest
    kubectl get kafkauser <name> --namespace <namespace> -o yaml > kafkauser.yaml
    ```
 
-5. Log in to your destination cluster.  {{site.data.reuse.cncf_cli_login}}
+5. Log in to your destination cluster.  {{site.data.reuse.cncf_cli_login}} Then, log in to [{{site.data.reuse.es_name}} CLI](../../getting-started/logging-in/#logging-in-to-event-streams-cli).
 6. Edit both the `kafkauser-secret.yaml` and `kafkauser.yaml` files to set the correct namespace and {{site.data.reuse.es_name}} cluster name for the following properties:
    - `metadata.namespace`: provide the namespace of your destination cluster.
    - `metadata.labels["eventstreams.ibm.com/cluster"]`: provide the name of your destination cluster.

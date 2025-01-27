@@ -210,7 +210,9 @@ latest_eemdocs:
         url: /troubleshooting/unexpected-option-not-publishable/
       - title: "Unable to register an Event Gateway to an existing gateway group" 
         url: /troubleshooting/unable-to-register-gateway/
-
+      - title: "Unable to replace the CA certificate uploaded when an mTLS control was created" 
+        url: /troubleshooting/unable-to-replace-ca-cert/
+        
 113_eemdocs:
   - title: About
     children:

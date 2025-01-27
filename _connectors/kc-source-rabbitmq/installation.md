@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The RabbitMQ source connector for copying data from RabbitMQ into Apache Kafka.
 forID: kc-source-rabbitmq
 categories: [source]
 connectorTitle: "RabbitMQ"

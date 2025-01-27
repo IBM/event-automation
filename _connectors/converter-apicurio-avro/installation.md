@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Apicurio Avro converter helps convert data from Apache Kafka Connect's format to the Avro serialized format.
 forID: converter-apicurio-avro
 categories: [converters]
 ---

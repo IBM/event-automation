@@ -35,7 +35,7 @@ In many cases, organizations do not know how they could document and manage thei
 
 Events also have unique characteristics compared to other systems. For example, an event driven system is asynchronous, meaning clients will receive events as they are produced or consumed. This is different from the immediate request-response mechanism of synchronous APIs, such as REST. 
 
-In addition, once produced, an event is typically immutable and stored in a log style format which is consumable to provide a historical and evolving context of all the events in that stream. This means clients will need to cater for potential data evolution as the log progresses, as well as for events the client may have already processed.
+In addition, after an event is produced, the event is typically immutable and stored in a log style format which is consumable to provide a historical and evolving context of all the events in that stream. This means clients will need to cater for potential data evolution as the log progresses, as well as for events the client might have already processed.
 
 These unique characteristics of events and the data they contain are also attracting [different kind of users](../personas). Having a stable log of historical events, for example, enables business users to discover trends, or allow AI models to be trained and trained again on representative data in a repeatable manner. The needs of these users, the unique capabilities of events, and the challenge of describing and managing an event-driven system require a tailored solution that can address these concerns.
 

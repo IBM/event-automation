@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Debezium is an open source distributed platform for change data capture. Debezium’s MySQL connector can monitor all of the row-level changes in the databases on a MySQL server or HA MySQL cluster and record them in Kafka topics.
 forID: kc-source-mysql
 categories: [source]
 connectorTitle: "MySQL (Debezium)"

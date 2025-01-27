@@ -14,5 +14,4 @@ download:
 categories:
   - Messaging
 ---
-Pulsar source connector for copying data from Pulsar topics to Kafka topics.
-
+The Pulsar source connector for copying data from Pulsar topics to Kafka topics.

@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Splunk sink connector ingests data from Kafka topics into Splunk via the Splunk HTTP Event Collector (HEC) while supporting in-flight data transformation and enrichment.
 forID: kc-sink-splunk
 categories: [sink]
 connectorTitle: "Splunk"

@@ -14,5 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-Zeebe sink connector consumes Kafka records and publishes messages constructed from those records to Zeebe.
-
+The Zeebe sink connector consumes Kafka records and publishes messages constructed from those records to Zeebe.

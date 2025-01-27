@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Pulsar source connector for copying data from Pulsar topics to Kafka topics.
 forID: kc-source-pulsar
 categories: [source]
 connectorTitle: "Pulsar"

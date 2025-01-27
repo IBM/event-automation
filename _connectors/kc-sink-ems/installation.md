@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Celonis EMS sink connector transfers data stored in Apache Kafka to the Celonis Execution Management System (EMS), enabling process mining and execution automation.
 forID: kc-sink-ems
 categories: [sink]
 connectorTitle: "Celonis EMS"

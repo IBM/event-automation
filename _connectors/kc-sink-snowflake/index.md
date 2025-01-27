@@ -15,5 +15,4 @@ categories:
   - AI & Analytics
   - Databases
 ---
-Snowflake sink connector ingests data from Kafka topics to Snowflake tables.
-
+The Snowflake sink connector ingests data from Kafka topics to Snowflake tables.

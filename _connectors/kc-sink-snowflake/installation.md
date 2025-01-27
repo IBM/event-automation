@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Snowflake sink connector ingests data from Kafka topics to Snowflake tables.
 forID: kc-sink-snowflake
 categories: [sink]
 connectorTitle: "Snowflake"

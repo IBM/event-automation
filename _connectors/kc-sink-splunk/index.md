@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Splunk sink connector ingests data from Kafka topics into Splunk via the Splunk HTTP Event Collector (HEC) while supporting in-flight data transformation and enrichment.
-
+The Splunk sink connector ingests data from Kafka topics into Splunk via the Splunk HTTP Event Collector (HEC) while supporting in-flight data transformation and enrichment.

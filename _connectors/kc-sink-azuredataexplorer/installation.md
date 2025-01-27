@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Azure Data Explorer sink connector streams Kafka events to Azure Data Explorer as gzipped files.
 forID: kc-sink-azuredataexplorer
 categories: [sink]
 connectorTitle: "Azure Data Explorer"

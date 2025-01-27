@@ -13,5 +13,4 @@ download:
 categories:
   - Messaging
 ---
-RabbitMQ source connector for copying data from RabbitMQ into Apache Kafka.
-
+The RabbitMQ source connector for copying data from RabbitMQ into Apache Kafka.

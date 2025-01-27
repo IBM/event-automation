@@ -196,7 +196,7 @@ props.put(ApicurioClientConfig.APICURIO_REQUEST_TRUSTSTORE_TYPE, "PKCS12");
   oauth.client.secret="<oauth_password>" \
   oauth.token.endpoint.uri="<oauth_token_endpoint_uri>";";
 //props.put(SaslConfigs.SASL_JAAS_CONFIG, saslJaasConfig);
-// You may need to provide a Callback Handler for OAuth. This example shows the Strimzi OAuth callback handler.
+// You might need to provide a Callback Handler for OAuth. This example shows the Strimzi OAuth callback handler.
 //props.put(SaslConfigs.SASL_LOGIN_CALLBACK_HANDLER_CLASS, "io.strimzi.kafka.oauth.client.JaasClientOauthLoginCallbackHandler")
 
 // Mutual authentication properties - uncomment to connect using Mutual authentication

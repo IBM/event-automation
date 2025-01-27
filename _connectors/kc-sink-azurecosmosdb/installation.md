@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Azure Cosmos DB sink connector sends data from Kafka topics to Azure Cosmos DB(SQL API).
 forID: kc-sink-azurecosmosdb
 categories: [sink]
 connectorTitle: Azure Cosmos DB

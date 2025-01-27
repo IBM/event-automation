@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Humio HEC sink connector reads messages from a Kafka topic and sends them as events to the HTTP event collector endpoint of a running Humio system.
 forID: kc-sink-hec
 categories: [sink]
 connectorTitle: "Humio HEC"

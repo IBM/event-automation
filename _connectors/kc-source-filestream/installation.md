@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The FileStream source connector reads data from a local file and sends it to a Kafka topic.
 forID: kc-source-filestream
 categories: [source]
 connectorTitle: "FileStream"

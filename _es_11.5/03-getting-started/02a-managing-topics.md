@@ -36,7 +36,7 @@ You can edit a Kafka topic by using the CLI as follows:
 
 ## Setting topic partitions
 
-![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.") To optimize data distribution, scalability, and performance, you can configure the number of partitions for a Kafka topic by using the UI or CLI. 
+![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Streams 11.5.1 and later.") To optimize data distribution, scalability, and performance, you can configure the number of partitions for a Kafka topic by using the UI or CLI. 
 
 **Notes:** 
 - If you are a SCRAM user, you require specific access and permissions to set topic partitions. For more information, see [managing access](../../security/managing-access#managing-access-to-the-ui-and-cli-with-scram).
@@ -71,7 +71,7 @@ To set the number of partitions for Kafka topics by using the CLI:
 
 ## Setting topic replicas
 
-![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.") To ensure data durability and high availability, you can update the replication factor for a Kafka topic by using the UI or CLI.
+![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2plus.svg "In Event Streams 11.5.2 and later.") To ensure data durability and high availability, you can update the replication factor for a Kafka topic by using the UI or CLI.
 
 **Notes:** 
 - If you are a SCRAM user, you require specific access and permissions to set topic replicas. For more information, see [managing access](../../security/managing-access#managing-access-to-the-ui-and-cli-with-scram).

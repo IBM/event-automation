@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Batch.sh sink connector streams Kafka events to a remote collector.
 forID: kc-sink-batchsh
 categories: [sink]
 connectorTitle: "Batch.sh"

@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Solr sink connector writes data from Kafka topics to Apache Solr.
 forID: kc-sink-solr
 categories: [sink]
 connectorTitle: "Solr"

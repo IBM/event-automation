@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Flume Avro source connector for transmitting data from Apache Flume to Apache Kafka without utilizing a Flume Receiver.
-
+The Flume Avro source connector for transmitting data from Apache Flume to Apache Kafka without utilizing a Flume Receiver.

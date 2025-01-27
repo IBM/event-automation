@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-MongoDB source connector reads data from MongoDB and writes them into Kafka topics.
-
+The MongoDB source connector reads data from MongoDB and writes them into Kafka topics.

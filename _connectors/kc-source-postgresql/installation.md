@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Debezium is an open source distributed platform for change data capture. Debezium’s PostgreSQL connector can monitor the row-level changes in the schemas of a PostgreSQL database and record them in separate Kafka topics.
 forID: kc-source-postgresql
 categories: [source]
 connectorTitle: "PostgreSQL (Debezium)"

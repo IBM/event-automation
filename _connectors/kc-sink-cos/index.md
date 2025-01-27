@@ -13,4 +13,4 @@ categories:
   - Storage
 ---
 
-IBM&nbsp;Cloud Object&nbsp;Storage sink connector for copying data from a Kafka topic into IBM&nbsp;Cloud Object&nbsp;Storage.
+The IBM Cloud Object Storage sink connector for copying data from a Kafka topic into IBM Cloud Object Storage.

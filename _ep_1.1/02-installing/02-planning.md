@@ -75,7 +75,7 @@ Points to consider for resource requirements:
   
   **Note:** `spec.job.parallelism` is a Flink configuration parameter that enables a single job to be allocated up to as many Task Manager slots as the value of the parallelism parameter. For resource-intensive large jobs, the parallelism typically needs to be greater than 1. For more information about running large jobs, see the [Flink production application cluster sample](#flink-production-application-cluster-sample).
 
-- To determine the right sample to use that meets your requirements, establish if your typical {{site.data.reuse.ep_name}} flows can be handled by the Minimal Production or the Production sample. For this purpose, find out if the CPU requirements of a typical job, along with the CPU requirements of all the other competing jobs that may be running on the same Task Manager, do not exceed the allocated amount of CPU. In addition, the memory required by a job should not exceed 80% of the limit defined in the sample.
+- To determine the right sample to use that meets your requirements, establish if your typical {{site.data.reuse.ep_name}} flows can be handled by the Minimal Production or the Production sample. For this purpose, find out if the CPU requirements of a typical job, along with the CPU requirements of all the other competing jobs that might be running on the same Task Manager, do not exceed the allocated amount of CPU. In addition, the memory required by a job should not exceed 80% of the limit defined in the sample.
 
 - What happens if the resource limits are exceeded?
    * If the CPU limit is exceeded, Kubernetes CPU throttling is activated. When sustained, this can have a significant negative impact on performance. If the memory limit is exceeded, the Kubernetes [out-of-memory condition](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit){:target="_blank"} can terminate the Task Manager container.
@@ -91,10 +91,10 @@ High-level criteria for choosing between Minimal Production and Production sampl
   - If the Flink Job Manager fails, some downtime is expected.
 
 - Production sample (per Task Manager: 2 CPU cores, 4GB memory)
-  - Jobs may have higher CPU and memory requirements.
+  - Jobs might have higher CPU and memory requirements.
   - Message sizes are typically greater than 1KB.
   - Flows consist predominantly of interval joins and aggregations.
-  - Workloads may contain spikes, but not sustained very high event rates.
+  - Workloads might contain spikes, but not sustained very high event rates.
   - You have stricter high availability requirements.
 
 To create a configuration optimized for jobs that have high throughput, low latency requirements, or both, estimate your resource requirements, including network capacity.

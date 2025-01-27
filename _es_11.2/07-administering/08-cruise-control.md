@@ -346,7 +346,7 @@ Use this goal to ensure the total number of partitions leaders are similar among
 
 Attempts to equalize the leader bytes in rate on each host.
 
-This goal may not result in an even distribution of replicas across brokers as it is optimizing the leader bytes on each broker.
+This goal might not result in an even distribution of replicas across brokers as it is optimizing the leader bytes on each broker.
 
 ### TopicReplicaDistributionGoal
 
@@ -364,7 +364,7 @@ Cruise Control does not try to optimize the distribution of replicas. Before usi
 
 Ensures that disk space usage of each disk is below a given threshold.
 
-Use this goal to rebalance the distribution of the partitions on disk space usage under a given threshold. This may not result in the disk space usage being evenly distributed amongst brokers, it only ensures that the disk space usage of each broker is under a given threshold.
+Use this goal to rebalance the distribution of the partitions on disk space usage under a given threshold. This might not result in the disk space usage being evenly distributed amongst brokers, it only ensures that the disk space usage of each broker is under a given threshold.
 
 For even distribution of disk space usage amongst brokers, see [IntraBrokerDiskUsageDistributionGoal](#intrabrokerdiskusagedistributiongoal).
 

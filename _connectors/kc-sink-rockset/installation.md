@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Rockset sink connector loads valid JSON and Avro documents from Kafka Streams into Rockset collections.
 forID: kc-sink-rockset
 categories: [sink]
 connectorTitle: "Rockset"

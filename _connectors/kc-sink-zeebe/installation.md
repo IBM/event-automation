@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Zeebe sink connector consumes Kafka records and publishes messages constructed from those records to Zeebe.
 forID: kc-sink-zeebe
 categories: [sink]
 connectorTitle: "Zeebe"

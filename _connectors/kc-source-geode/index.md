@@ -14,5 +14,4 @@ download:
 categories:
   - Technology
 ---
-Geode source connector enables Geode regions to serve as data sources for Kafka topics.
-
+The Geode source connector enables Geode regions to serve as data sources for Kafka topics.

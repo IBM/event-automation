@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Kafka Connect ArangoDB is a Kafka connector that takes records from Apache Kafka, translates them into database changes and performs them against ArangoDB.
 forID: kc-sink-arangodb
 categories: [sink]
 connectorTitle: "ArangoDB"

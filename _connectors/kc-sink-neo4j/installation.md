@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Neo4j sink connector ingests events from Apache Kafka to Neo4j through templated Cypher statements.
 forID: kc-sink-neo4j
 categories: [sink]
 connectorTitle: "Neo4j"

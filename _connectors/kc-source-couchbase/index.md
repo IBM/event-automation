@@ -15,4 +15,4 @@ categories:
   - Databases
 ---
 
-Kafka Connect source connector publishes document change notifications from Couchbase to a Kafka topic. This plugin also includes the corresponding sink connector for Couchbase.
+The Kafka Connect source connector publishes document change notifications from Couchbase to a Kafka topic. This plug-in also includes the corresponding sink connector for Couchbase.

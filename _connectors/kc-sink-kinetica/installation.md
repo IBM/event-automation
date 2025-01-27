@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kinetica sink connector allows Kafka topics to be accessed by Kinetica, enabling the streaming of data between a Kinetica table and Kafka Connect.
 forID: kc-sink-kinetica
 categories: [sink]
 connectorTitle: "Kinetica"

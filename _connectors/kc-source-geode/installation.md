@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Geode source connector enables Geode regions to serve as data sources for Kafka topics.
 forID: kc-source-geode
 categories: [source]
 connectorTitle: "Geode"

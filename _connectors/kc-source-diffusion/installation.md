@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Diffusion source connector enables streaming of data stored in Kafka to endpoints such as web browsers, mobile apps, and IoT devices, reliably and at scale.
 forID: kc-source-diffusion
 categories: [source]
 connectorTitle: "Diffusion"

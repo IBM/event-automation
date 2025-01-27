@@ -14,5 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-Batch.sh sink connector streams Kafka events to a remote collector.
-
+The Batch.sh sink connector streams Kafka events to a remote collector.

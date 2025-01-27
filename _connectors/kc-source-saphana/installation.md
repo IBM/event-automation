@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The SAP HANA source connector reads data from SAP HANA databases and pushes it to Kafka topics.
 forID: kc-source-saphana
 categories: [source]
 connectorTitle: "SAP HANA"

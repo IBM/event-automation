@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Flume Avro source connector for transmitting data from Apache Flume to Apache Kafka without utilizing a Flume Receiver.
 forID: kc-source-avro
 categories: [source]
 connectorTitle: "Flume Avro"

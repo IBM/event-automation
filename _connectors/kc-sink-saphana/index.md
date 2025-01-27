@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-SAP HANA sink connector reads data from Kafka topics and pushes to SAP HANA databases.
-
+The SAP HANA sink connector reads data from Kafka topics and pushes it to SAP HANA databases.

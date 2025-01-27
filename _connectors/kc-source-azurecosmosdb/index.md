@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Azure Cosmos DB source connector reads data from Azure Cosmos DB(SQL API) and sends the data to Kafka topics.
-
+The Azure Cosmos DB source connector reads data from Azure Cosmos DB (SQL API) and sends the data to Kafka topics.

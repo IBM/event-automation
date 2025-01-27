@@ -38,7 +38,7 @@ To enable the collection of JMX metrics from an {{site.data.reuse.es_name}} inst
           metricsConfig:
             type: jmxPrometheusExporter
             valueFrom:
-              configMapRef:
+              configMapKeyRef:
                 key: kafka-metrics-config.yaml
                 name: metrics-config
         # ...
@@ -46,7 +46,7 @@ To enable the collection of JMX metrics from an {{site.data.reuse.es_name}} inst
             metricsConfig:
                 type: jmxPrometheusExporter
                 valueFrom:
-                    configMapRef:
+                    configMapKeyRef:
                         key: zookeeper-metrics-config.yaml
                         name: metrics-config
         # ...

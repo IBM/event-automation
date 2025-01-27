@@ -14,5 +14,4 @@ download:
 categories:
   - Technology
 ---
-HTTP sink connector sends Kafka records over HTTP POST requests.
-
+The HTTP sink connector sends Kafka records over HTTP POST requests.

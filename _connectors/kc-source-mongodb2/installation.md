@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The MongoDB source connector reads data from MongoDB and writes them into Kafka topics.
 forID: kc-source-mongodb2
 categories: [source]
 connectorTitle: "MongoDB"

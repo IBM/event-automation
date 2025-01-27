@@ -15,4 +15,4 @@ categories:
   - Technology
 ---
 
-Kafka Connect sink connector for Elasticsearch subscribes to one or more Kafka topics and writes the records to Elasticsearch.
+The Kafka Connect sink connector for Elasticsearch subscribes to one or more Kafka topics and writes the records to Elasticsearch.

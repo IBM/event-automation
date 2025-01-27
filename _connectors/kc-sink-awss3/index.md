@@ -14,5 +14,4 @@ download:
 categories:
   - Storage
 ---
-Amazon S3 sink connector stores Apache Kafka messages in an Amazon Simple Storage Service (Amazon S3) bucket.
-
+The Amazon S3 sink connector stores Apache Kafka messages in an Amazon Simple Storage Service (Amazon S3) bucket.

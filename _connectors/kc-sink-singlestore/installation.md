@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The SingleStore sink connector writes data from Kafka topics to a SingleStore (MemSQL) database.
 forID: kc-sink-singlestore
 categories: [sink]
 connectorTitle: "SingleStore"

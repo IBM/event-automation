@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-SAP HANA source connector reads data from SAP HANA databases and pushes it to Kafka topics.
-
+The SAP HANA source connector reads data from SAP HANA databases and pushes it to Kafka topics.

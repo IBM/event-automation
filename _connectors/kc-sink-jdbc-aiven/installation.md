@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The JDBC sink connector for copying data from Apache Kafka into a database.
 forID: kc-sink-jdbc-aiven
 categories: [sink]
 connectorTitle: "JDBC"

@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Kinetica sink connector allows Kafka topics to be accessed by Kinetica, enabling the streaming of data between a Kinetica table and Kafka Connect.
-
+The Kinetica sink connector allows Kafka topics to be accessed by Kinetica, enabling the streaming of data between a Kinetica table and Kafka Connect.

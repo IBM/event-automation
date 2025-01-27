@@ -13,5 +13,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Diffusion source connector enables streaming of data stored in Kafka to endpoints like web browsers, mobile apps, and IoT devices, reliably and at scale.
-
+The Diffusion source connector enables streaming of data stored in Kafka to endpoints such as web browsers, mobile apps, and IoT devices, reliably and at scale.

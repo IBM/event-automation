@@ -74,6 +74,13 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.2.4 - what's new:</h4>
+    <ul>
+      <li>API enrichment node: support for operations with arrays of primitive types</li>
+      <li>Rename nodes directly from the canvas</li>
+      <li>Duplicate and delete flows from within the canvas</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.2.3 - what's new:</h4>
     <ul>
       <li>Deploy flows that are customized for production or test environments</li>

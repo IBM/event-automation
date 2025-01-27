@@ -105,7 +105,7 @@ For instructions about installing geo-replication, see [configuring](../configur
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.17/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.17/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.es_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -113,7 +113,7 @@ If you use a custom SCC (for example, one that is more restrictive), or have an 
 
 ## Kubernetes Pod Security Standards
 
-If used, {{site.data.reuse.es_name}} requires a Pod Security Standard (PSS) to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.es_name}} requires a Pod Security Standard (PSS) to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.es_name}} complies with the following:
 

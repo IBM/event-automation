@@ -14,5 +14,4 @@ download:
 categories:
   - Technology
 ---
-HTTP source connector enables Change Data Capture (CDC) from JSON/HTTP APIs into Apache Kafka.
-
+The HTTP source connector enables Change Data Capture (CDC) from JSON/HTTP APIs into Apache Kafka.

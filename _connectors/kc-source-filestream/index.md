@@ -13,6 +13,6 @@ categories:
   - Technology
 ---
 
-FileStream source connector for reading data from a local file and sending it to a Kafka topic. This connector is meant for use in standalone mode.
+The FileStream source connector reads data from a local file and sends it to a Kafka topic. This connector is meant for use in stand-alone mode.
 
 **Note:** The FileStream source connector is not intended for production use.

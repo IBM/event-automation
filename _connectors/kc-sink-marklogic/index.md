@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-MarkLogic sink connector writes data from a topic to a MarkLogic database.
-
+The MarkLogic sink connector writes data from a topic to a MarkLogic database.

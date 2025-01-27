@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The New Relic sink connector ships records from Kafka topics to several of New Relic's Ingestion API endpoints, for events, metrics, or logs.
 forID: kc-sink-newrelic
 categories: [sink]
 connectorTitle: "New Relic"

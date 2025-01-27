@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The MarkLogic source connector reads data from a MarkLogic database through an Optic query and sends the data to a Kafka topic.
 forID: kc-source-marklogic
 categories: [source]
 connectorTitle: "MarkLogic"

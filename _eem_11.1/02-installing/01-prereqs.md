@@ -70,7 +70,7 @@ In addition to the previous permissions, the {{site.data.reuse.eem_name}} operat
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.15/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 

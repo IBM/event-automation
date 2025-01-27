@@ -14,4 +14,4 @@ categories:
   - Databases
 ---
 
-Kafka Connect sink connector subscribes to one or more Kafka topics and writes the messages to Couchbase. This plugin also includes the corresponding source connector for Couchbase.
+The Kafka Connect sink connector subscribes to one or more Kafka topics and writes the messages to Couchbase. This plugin also includes the corresponding source connector for Couchbase.

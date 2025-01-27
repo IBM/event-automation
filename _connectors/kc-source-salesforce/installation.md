@@ -2,6 +2,7 @@
 order: 1
 forID: kc-source-salesforce
 categories: [source]
+excerpt: Streams Salesforce platform events and Change Data Capture (CDC) events to Kafka topics.
 connectorTitle: "Salesforce"
 ---
 

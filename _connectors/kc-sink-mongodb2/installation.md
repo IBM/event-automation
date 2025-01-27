@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The MongoDB sink connector publishes changes from MongoDB into Kafka topics as a data source.
 forID: kc-sink-mongodb2
 categories: [sink]
 connectorTitle: "MongoDB"

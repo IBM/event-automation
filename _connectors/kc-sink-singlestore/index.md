@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-SingleStore sink connector writes data from Kafka topics to a SingleStore (MemSQL) database.
-
+The SingleStore sink connector writes data from Kafka topics to a SingleStore (MemSQL) database.

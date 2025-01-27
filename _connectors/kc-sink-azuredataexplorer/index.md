@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Azure Data Explorer sink connector streams Kafka events to Azure Data Explorer as gzipped files.
-
+The Azure Data Explorer sink connector streams Kafka events to Azure Data Explorer as gzipped files.

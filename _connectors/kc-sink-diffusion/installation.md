@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Diffusion sink connector publishes messages from Diffusion or Diffusion Cloud to Kafka.
 forID: kc-sink-diffusion
 categories: [sink]
 connectorTitle: "Diffusion"

@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Redis sink connector consumes records from a Kafka topic and writes the data to Redis.
-
+The Redis sink connector consumes records from a Kafka topic and writes the data to Redis.

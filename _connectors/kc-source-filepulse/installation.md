@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The FilePulse source connector parses, transforms, and streams files, in any format, into Kafka topics. You can use this connector to read files from a local-filesystem, Amazon S3, Azure Storage, and Google Cloud Storage.
 forID: kc-source-filepulse
 categories: [source]
 connectorTitle: "FilePulse"

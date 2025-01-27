@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The FileStream sink connector for reading data from a Kafka topic and writing it to a local file.
 forID: kc-sink-filestream
 categories: [sink]
 connectorTitle: "FileStream"

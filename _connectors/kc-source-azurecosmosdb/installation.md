@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Azure Cosmos DB source connector reads data from Azure Cosmos DB (SQL API) and sends the data to Kafka topics.
 forID: kc-source-azurecosmosdb
 categories: [source]
 connectorTitle: "Azure Cosmos DB(SQL API)"

@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Rockset sink connector loads valid JSON and Avro documents from Kafka Streams into Rockset collections.
-
+The Rockset sink connector loads valid JSON and Avro documents from Kafka Streams into Rockset collections.

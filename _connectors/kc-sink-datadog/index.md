@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Datadog Logs sink connector sends records from Kafka topics as logs to the Datadog Logs Intake API.
-
+The Datadog Logs sink connector sends records from Kafka topics as logs to the Datadog Logs Intake API.

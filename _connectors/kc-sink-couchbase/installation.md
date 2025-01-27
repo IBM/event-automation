@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kafka Connect sink connector subscribes to one or more Kafka topics and writes the messages to Couchbase. This plugin also includes the corresponding source connector for Couchbase.
 forID: kc-sink-couchbase
 categories: [sink]
 connectorTitle: "Couchbase"

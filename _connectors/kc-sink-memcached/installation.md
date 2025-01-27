@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Kafka Connect for Memcached provides a sink connector that can write data in real time from Apache Kafka to a Memcached environment.
 forID: kc-sink-memcached
 categories: [sink]
 connectorTitle: "Memcached"

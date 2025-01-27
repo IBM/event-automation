@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The IBM Cloud Object Storage sink connector for copying data from a Kafka topic into IBM Cloud Object Storage.
 forID: kc-sink-cos
 categories: [sink]
 connectorTitle: "IBM Cloud Object Storage"

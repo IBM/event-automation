@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Kafka Connect RSS is a source connector that supports polling multiple URLs and sending output to a single Kafka topic.
 forID: kc-source-rss
 categories: [source]
 connectorTitle: "RSS"

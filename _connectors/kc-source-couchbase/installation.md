@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kafka Connect source connector publishes document change notifications from Couchbase to a Kafka topic. This plug-in also includes the corresponding sink connector for Couchbase.
 forID: kc-source-couchbase
 categories: [source]
 connectorTitle: "Couchbase"

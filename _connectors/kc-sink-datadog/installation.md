@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Datadog Logs sink connector sends records from Kafka topics as logs to the Datadog Logs Intake API.
 forID: kc-sink-datadog
 categories: [sink]
 connectorTitle: "Datadog Logs"

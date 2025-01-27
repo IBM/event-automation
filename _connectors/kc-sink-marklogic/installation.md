@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The MarkLogic sink connector writes data from a topic to a MarkLogic database.
 forID: kc-sink-marklogic
 categories: [sink]
 connectorTitle: "MarkLogic"

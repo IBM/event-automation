@@ -15,5 +15,4 @@ categories:
   - Technology
   - Email
 ---
-Email source connector provides connectors and transformations to use when integrating with email systems.
-
+The Email source connector provides connectors and transformations to use when integrating with email systems.

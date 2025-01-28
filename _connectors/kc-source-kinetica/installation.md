@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kinetica source connector monitors Kinetica tables and publishes inserted rows to separate Kafka topics.
 forID: kc-source-kinetica
 categories: [source]
 connectorTitle: "Kinetica"

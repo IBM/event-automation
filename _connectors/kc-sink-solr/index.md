@@ -14,5 +14,4 @@ download:
 categories:
   - Data
 ---
-Solr sink connector writes data from Kafka topics to Apache Solr.
-
+The Solr sink connector writes data from Kafka topics to Apache Solr.

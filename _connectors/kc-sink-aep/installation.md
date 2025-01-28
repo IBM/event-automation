@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Adobe Experience Platform sink connector seamlessly ingests events from your Kafka topics into the Adobe Experience Platform.
 forID: kc-sink-aep
 categories: [sink]
 connectorTitle: "Adobe Experience Platform"

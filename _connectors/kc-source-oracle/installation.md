@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Oracle (Debezium) source connector monitors Oracle database tables and writes all change events to Kafka topics.
 forID: kc-source-oracle
 categories: [source]
 connectorTitle: "Oracle (Debezium)"

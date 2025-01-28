@@ -14,5 +14,5 @@ download:
 categories:
   - Developer Tools
 ---
-Ably sink connector streams data from one or more Kafka topics to the Ably platform.
 
+The Ably sink connector streams data from one or more Kafka topics to the Ably platform.

@@ -14,4 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-You can cast fields or the entire key or value to a specific type, such as forcing an integer field to a smaller width. Casting is supported from integers, floats, booleans, and strings to any other type, as well as from binary to string (base64 encoded).
+Cast fields or the entire key or value to a specific type, such as forcing an integer field to a smaller width. Casting is supported from integers, floats, booleans, and strings to any other type, as well as from binary to string (Base64-encoded).

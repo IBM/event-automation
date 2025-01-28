@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kafka Connect sink connector for IBM MQ supports connecting to IBM MQ in both bindings and client mode, and offers both exactly-once and at-least-once delivery of data from IBM MQ to Apache Kafka.
 forID: kc-sink-mq
 categories: [sink]
 connectorTitle: "IBM MQ"

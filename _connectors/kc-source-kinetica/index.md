@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Kinetica source connector monitors Kinetica tables and publishes inserted rows to separate Kafka topics.
-
+The Kinetica source connector monitors Kinetica tables and publishes inserted rows to separate Kafka topics.

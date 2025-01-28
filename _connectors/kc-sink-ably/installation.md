@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Ably sink connector streams data from one or more Kafka topics to the Ably platform.
 forID: kc-sink-ably
 categories: [sink]
 connectorTitle: "Ably"

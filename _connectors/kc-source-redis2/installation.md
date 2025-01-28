@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Redis source connector reads messages from a Redis stream and publishes them to a Kafka topic.
 forID: kc-source-redis2
 categories: [source]
 connectorTitle: "Redis"

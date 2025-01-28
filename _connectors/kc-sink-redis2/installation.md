@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Redis sink connector consumes records from a Kafka topic and writes the data to Redis.
 forID: kc-sink-redis2
 categories: [sink]
 connectorTitle: "Redis"

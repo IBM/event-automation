@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-MarkLogic source connector reads data from a MarkLogic database through an Optic query and sends the data to a Kafka topic.
-
+The MarkLogic source connector reads data from a MarkLogic database through an Optic query and sends the data to a Kafka topic.

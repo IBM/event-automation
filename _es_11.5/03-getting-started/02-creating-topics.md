@@ -31,7 +31,7 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
 8. Click **Create topic**. The topic is created and can be viewed from the **Topics** tab located in the primary navigation.
 
-![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes the current state of each topic, and the status icon displays a message providing further information when you hover over the status icon.
+![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes the current state of each topic, and the status icon displays a message providing further information when you hover over the status icon.
 
 **Note:** To view all configuration options you can set for topics, set **Show all available options** to **On**.
 
@@ -57,7 +57,7 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
    **Important:** Do not set `<replication-factor>` to a greater value than the number of available brokers.
 
-![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} CLI, the topic list includes the number of partitions, number of replicas, and the status information for each topic when you run the `kubectl es topics` command.
+![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Streams 11.5.1 and later.") In the {{site.data.reuse.es_name}} CLI, the topic list includes the number of partitions, number of replicas, and the status information for each topic when you run the `kubectl es topics` command.
 
 **Note:** To view all configuration options you can set for topics, use the help option as follows: 
 

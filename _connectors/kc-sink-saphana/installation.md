@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The SAP HANA sink connector reads data from Kafka topics and pushes it to SAP HANA databases.
 forID: kc-sink-saphana
 categories: [sink]
 connectorTitle: "SAP HANA"

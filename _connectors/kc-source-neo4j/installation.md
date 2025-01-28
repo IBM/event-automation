@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Neo4j source connector streams data from a Neo4j database to a Kafka topic.
 forID: kc-source-neo4j
 categories: [source]
 connectorTitle: "Neo4j"

@@ -37,7 +37,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
 1. Obtain a copy of the {{site.data.reuse.apic_short}} CA certificate.
    
-   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. More information about the `ingress-ca` can be found [here](https://www.ibm.com/docs/vi/api-connect/10.0.x?topic=information-api-connect-tls-certificates)
+   The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. For more information about the `ingress-ca`, see the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=information-api-connect-tls-certificates){:target="_blank"}.
    
    **Note:** If installed as a part of a {{site.data.reuse.cp4i}} instance, the name of your secret will be prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`
    

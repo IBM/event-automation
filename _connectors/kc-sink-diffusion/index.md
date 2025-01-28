@@ -13,5 +13,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Diffusion sink connector publishes messages from Diffusion or Diffusion Cloud to Kafka.
-
+The Diffusion sink connector publishes messages from Diffusion or Diffusion Cloud to Kafka.

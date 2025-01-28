@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Email source connector provides connectors and transformations to use when integrating with email systems.
 forID: kc-source-email
 categories: [source]
 connectorTitle: "Email"

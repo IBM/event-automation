@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Neo4j source connector streams data from a Neo4j database to a Kafka topic.
-
+The Neo4j source connector streams data from a Neo4j database to a Kafka topic.

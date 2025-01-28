@@ -14,5 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-Zeebe source connector sends messages to a Kafka topic when a workflow instance reaches a specific activity.
-
+The Zeebe source connector sends messages to a Kafka topic when a workflow instance reaches a specific activity.

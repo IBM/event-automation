@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The HTTP source connector enables Change Data Capture (CDC) from JSON/HTTP APIs into Apache Kafka.
 forID: kc-source-http
 categories: [source]
 connectorTitle: "HTTP"

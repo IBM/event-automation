@@ -14,4 +14,4 @@ categories:
   - Messaging
 ---
 
-{{site.data.reuse.kafka-connect-mq-source}} supports connecting to IBM MQ in both bindings and client mode, and offers both exactly-once and at-least-once delivery of data from IBM MQ to Apache Kafka.
+The {{site.data.reuse.kafka-connect-mq-source}} supports connecting to IBM MQ in both bindings and client mode, and offers both exactly-once and at-least-once delivery of data from IBM MQ to Apache Kafka.

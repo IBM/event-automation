@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Amazon S3 sink connector stores Apache Kafka messages in an Amazon Simple Storage Service (Amazon S3) bucket.
 forID: kc-sink-awss3
 categories: [sink]
 connectorTitle: "Amazon S3"

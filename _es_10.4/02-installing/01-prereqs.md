@@ -114,7 +114,7 @@ For instructions about installing geo-replication, see [configuring](../configur
 
 ## Red Hat OpenShift Security Context Constraints
 
-{{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.8/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+{{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.openshift.com/container-platform/4.8/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.es_name}} uses the default `restricted` SCC that comes with the {{site.data.reuse.openshift_short}}.
 

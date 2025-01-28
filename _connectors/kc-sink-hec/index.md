@@ -14,5 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-Humio HEC sink connector reads messages from a Kafka topic and sends them as events to the HTTP event collector endpoint of a running Humio system.
-
+The Humio HEC sink connector reads messages from a Kafka topic and sends them as events to the HTTP event collector endpoint of a running Humio system.

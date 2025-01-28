@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Kafka Connect sink connector for Elasticsearch subscribes to one or more Kafka topics and writes the records to Elasticsearch.
 forID: kc-sink-elastic
 categories: [sink]
 connectorTitle: "Elasticsearch"

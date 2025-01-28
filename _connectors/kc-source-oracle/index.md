@@ -14,6 +14,6 @@ download:
 categories:
   - Databases
 ---
-Oracle (Debezium) source connector monitors Oracle database tables and writes all change events to Kafka topics.
+The Oracle (Debezium) source connector monitors Oracle database tables and writes all change events to Kafka topics.
 
 **Note:** IBM Support is only available for the connector when it is used with the LogMiner adapter.

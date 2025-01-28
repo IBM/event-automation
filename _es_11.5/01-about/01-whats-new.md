@@ -22,7 +22,7 @@ In {{site.data.reuse.es_name}} 11.5.2 and later, you can set the replication fac
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.5.2 compared to 11.5.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2.svg "In Event Streams 11.5.2 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.5.2 compared to 11.5.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.5.2 icon]({{ 'images' | relative_url }}/11.5.2plus.svg "In Event Streams 11.5.2 and later.")
 
 ### Security and bug fixes
 
@@ -52,7 +52,7 @@ In {{site.data.reuse.es_name}} 11.5.1 and later, you can view the status of your
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.5.1 compared to 11.5.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1.svg "In Event Streams 11.5.1 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 11.5.1 compared to 11.5.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Streams 11.5.1 and later.")
 
 ### Security and bug fixes
 

@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The HTTP sink connector sends Kafka records over HTTP POST requests.
 forID: kc-sink-http
 categories: [sink]
 connectorTitle: "HTTP"

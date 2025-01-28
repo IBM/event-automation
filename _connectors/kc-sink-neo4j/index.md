@@ -14,5 +14,4 @@ download:
 categories:
   - Messaging
 ---
-Neo4j sink connector ingest events from Apache Kafka to Neo4j through templated Cypher statements.
-
+The Neo4j sink connector ingests events from Apache Kafka to Neo4j through templated Cypher statements.

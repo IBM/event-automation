@@ -108,7 +108,7 @@ You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that 
 
 ## Red Hat OpenShift Security context constraints
 
-{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.openshift.com/container-platform/4.12/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace prior to installation.
+{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.openshift.com/container-platform/4.12/authentication/managing-security-context-constraints.html){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 

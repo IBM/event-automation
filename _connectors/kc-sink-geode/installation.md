@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Geode sink connector consumes data from Kafka topics and updates the configured Apache Geode regions.
 forID: kc-sink-geode
 categories: [sink]
 connectorTitle: "Geode"

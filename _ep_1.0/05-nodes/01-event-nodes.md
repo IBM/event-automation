@@ -131,7 +131,7 @@ After you have provided a valid schema or sample message, click **Done**.
 - All message properties are selected by default to define the structure of source events.
 - You can unselect properties that are not relevant.
 
-Once the event source is configured you will be able to rename properties by connecting a transform node to the event source.
+After the event source is configured, you can rename properties by connecting a transform node to the event source.
 
 ##### Type mapping
 

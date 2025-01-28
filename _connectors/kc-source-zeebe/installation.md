@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: The Zeebe source connector sends messages to a Kafka topic when a workflow instance reaches a specific activity.
 forID: kc-source-zeebe
 categories: [source]
 connectorTitle: "Zeebe"

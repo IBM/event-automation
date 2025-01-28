@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-New Relic sink connector ships records from Kafka topics to several of New Relic's Ingestion API endpoints, for events, metrics, or logs.
-
+The New Relic sink connector ships records from Kafka topics to several of New Relic's Ingestion API endpoints, for events, metrics, or logs.

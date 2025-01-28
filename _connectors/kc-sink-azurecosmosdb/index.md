@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-Azure Cosmos DB sink connector sends data from Kafka topics to Azure Cosmos DB(SQL API).
-
+The Azure Cosmos DB sink connector sends data from Kafka topics to Azure Cosmos DB(SQL API).

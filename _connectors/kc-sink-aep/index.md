@@ -14,5 +14,4 @@ download:
 categories:
   - AI & Analytics
 ---
-Adobe Experience Platform sink connector seamlessly ingests events from your Kafka topics into the Adobe Experience Platform.
-
+The Adobe Experience Platform sink connector seamlessly ingests events from your Kafka topics into the Adobe Experience Platform.

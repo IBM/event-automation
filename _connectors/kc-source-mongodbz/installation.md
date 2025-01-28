@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Debezium is an open source distributed platform for change data capture. Debezium’s MongoDB connector can monitor a MongoDB replica set or a MongoDB sharded cluster for document changes in databases and collections, recording those changes as events in Kafka topics.
 forID: kc-source-mongodbz
 connectorTitle: "MongoDB (Debezium)"
 categories: [source]

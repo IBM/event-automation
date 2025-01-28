@@ -1,5 +1,6 @@
 ---
 order: 1
+excerpt: Debezium is an open-source distributed platform for change data capture (CDC). Debezium’s SQL Server Connector can monitor the row-level changes in the schemas of an SQL Server database and record them to separate Kafka topics.
 forID: kc-source-sqlserver
 categories: [source]
 connectorTitle: "SQL Server (Debezium)"

@@ -14,5 +14,4 @@ download:
 categories:
   - Databases
 ---
-MongoDB sink connector publishes changes from MongoDB into Kafka topics as a data source.
-
+The MongoDB sink connector publishes changes from MongoDB into Kafka topics as a data source.

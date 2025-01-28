@@ -14,5 +14,4 @@ download:
 categories:
   - Technology
 ---
-Geode sink connector consumes data from Kafka topics and updates the configured Apache Geode regions.
-
+The Geode sink connector consumes data from Kafka topics and updates the configured Apache Geode regions.

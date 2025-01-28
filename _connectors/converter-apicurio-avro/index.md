@@ -14,4 +14,4 @@ download:
 categories:
   - Developer Tools
 ---
-Apicurio Avro converters help convert data from Apache Kafka Connect's format to the Avro serialized format.
+The Apicurio Avro converter helps convert data from Apache Kafka Connect's format to the Avro serialized format.

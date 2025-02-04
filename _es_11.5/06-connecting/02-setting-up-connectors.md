@@ -74,7 +74,7 @@ Prepare Kafka Connect for connecting to external systems by adding the required 
 
 - [Use the {{site.data.reuse.es_name}} operator](#use-the-sitedatareusees_name-operator) to add the connectors by specifying the connectors within a `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will create a container image with Kafka Connect and all the specified connector artifacts, and use it to start Kafka Connect.
 
-- [Manually add required connectors](#manually-add-required-connectors) and Kafka Connect to a container image and specify the image in `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will use the specified image to start Kafka Connect.
+- [Manually add required connectors](#manually-add-required-plugins) and Kafka Connect to a container image and specify the image in `KafkaConnect` custom resource. The {{site.data.reuse.es_name}} operator will use the specified image to start Kafka Connect.
 
 ### Use the {{site.data.reuse.es_name}} operator
 
@@ -185,11 +185,11 @@ To pull an upgraded base image or to download the latest connector plug-in artif
 eventstreams.ibm.com/force-rebuild: true
 ```
 
-### Manually add required connectors
+### Manually add required plug-ins
 
-You can create a container image with Kafka Connect and all the required connector artifacts yourself and use it to start Kafka Connect. This approach is useful when the required connectors cannot be included using the operator, for example, when authentication is required to access to connector artifacts.
+You can create a container image yourself with Kafka Connect and all the required plug-ins (connectors, converters, and transformations), and use it to start Kafka Connect. This approach is useful when the required plug-ins cannot be included by using the operator, for example, when authentication is required to access the plug-in artifacts.
 
-- {{site.data.reuse.es_name}} Kafka image is a convenient starting point as it includes everything you need to start Kafka Connect. You can prepare a directory containing all the required connectors and use the sample `Dockerfile` to add them to the {{site.data.reuse.es_name}} Kafka image:
+- The {{site.data.reuse.es_name}} Kafka image is a convenient starting point as it includes everything you need to start Kafka Connect. You can prepare a directory containing all the required plug-ins and use the sample `Dockerfile` to add them to the {{site.data.reuse.es_name}} Kafka image:
 
   ```yaml
   FROM cp.icr.io/cp/ibm-eventstreams-kafka:<version>
@@ -199,7 +199,7 @@ You can create a container image with Kafka Connect and all the required connect
 
   Where:
   - `<version>` is the version of {{site.data.reuse.es_name}} that you are using.
-  - `my-plugins` is the folder containing all connector artifacts.
+  - `my-plugins` is the folder containing all the plug-ins.
 
   **Note:** Both components must be in a single directory. For example, the following snippet shows the directory structure:
 
@@ -209,7 +209,7 @@ You can create a container image with Kafka Connect and all the required connect
   |    +--  my-plugins
   ```
 
-- If your connector consists of just a single JAR file, you can copy the JAR file directly into the `my-plugins` directory. If your connector consists of multiple JAR files or requires additional dependencies, create a directory for the connector inside the `my-plugins` directory and copy all the JAR files of your connector into `my-plugins` directory. For example, the following snippet shows the directory structure with three connectors:
+- If your plug-in (connector, converter, or transformation) consists of a single JAR file, you can copy the JAR file directly into the `my-plugins` directory. If it consists of multiple JAR files or requires additional dependencies, create a directory for the plug-in inside the `my-plugins` directory, and copy all the JAR files into that directory. For example, the following snippet shows the directory structure with multiple plug-ins:
 
   ```shell
   +--  my-plugins
@@ -217,7 +217,14 @@ You can create a container image with Kafka Connect and all the required connect
   |    +--  connector2
   |    |    +-- connector2.jar
   |    |    +-- connector2-lib.jar
-  |    +-- connector3.jar
+  |    +--  transformation2.jar
+  |    +--  transformation1
+  |    |    +-- transformation1.jar
+  |    |    +-- transformation1-lib.jar
+  |    +--  converter1.jar
+  |    +--  converter2
+  |    |    +-- converter2.jar
+  |    |    +-- converter2-lib.jar
   ```
 
 - Run the following commands to build the container image and push it to an image registry that is accessible to your {{site.data.reuse.es_name}} instance:
@@ -229,7 +236,7 @@ You can create a container image with Kafka Connect and all the required connect
 
   **Note:** You might need to log in to the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"} before building the image to allow the base image that is specified in the `Dockerfile` to be pulled successfully.
 
-- Specify the image in the `spec.image` field of `KafkaConnect` resource to start Kafka Connect with the image you have built with your connectors.
+- Specify the image in the `spec.image` field of the `KafkaConnect` custom resource to start Kafka Connect with the image you have built, including all your plug-ins.
 
 #### Rebuild the Kafka Connect image
 

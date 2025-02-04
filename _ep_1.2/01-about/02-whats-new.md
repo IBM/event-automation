@@ -25,7 +25,7 @@ In {{site.data.reuse.ep_name}} 1.2.4 and later, the **Duplicate** and **Delete**
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.4 compared to 1.2.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4.svg "In Event Processing 1.2.4 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.4 compared to 1.2.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4plus.svg "In Event Processing 1.2.4 and later.")
 
 ### Security and bug fixes
 
@@ -51,7 +51,7 @@ In {{site.data.reuse.ep_name}} 1.2.3 and later, both the **Edit details** and **
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.3 compared to 1.2.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.3 compared to 1.2.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.")
 
 ### Security and bug fixes
 
@@ -75,7 +75,7 @@ In {{site.data.reuse.ep_name}} 1.2.2 and later, you can now use **Custom** nodes
 
 ### Documentation: Highlighting differences between versions
 
-Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.2 compared to 1.2.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2.svg "In Event Processing 1.2.2 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.2.2 compared to 1.2.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2plus.svg "In Event Processing 1.2.2 and later.")
 
 ### Security and bug fixes
 

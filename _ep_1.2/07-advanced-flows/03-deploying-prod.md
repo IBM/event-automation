@@ -10,9 +10,9 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 
 **Important:**
 
-* ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Event Processing release 1.2.3 introduces a new flow [export format](../exporting-flows/#exporting-flows), that can be used for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
+* ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") Event Processing release 1.2.3 introduces a new flow [export format](../exporting-flows/#exporting-flows), that can be used for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-<!-- pattern node * ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
+<!-- pattern node * ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
 
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
@@ -36,7 +36,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../nodes/eventnodes/#event-source) and [destination](../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. |
   | **JDBC**      | [Database](../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
-  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md#table-api-connector-options){:target="_blank"}.  <br> <br> ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") **Note:** the HTTP connector version for Event Processing versions 1.2.3 and later is 0.16.0. For earlier {{site.data.reuse.ep_name}} 1.2.x releases, see the 0.15.0 connector documentation. |
+  | **HTTP** | [API](../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.16.0/README.md#table-api-connector-options){:target="_blank"}.  <br> <br> ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") **Note:** the HTTP connector version for Event Processing versions 1.2.3 and later is 0.16.0. For earlier {{site.data.reuse.ep_name}} 1.2.x releases, see the 0.15.0 connector documentation. |
 
 - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
   - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
@@ -122,7 +122,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    You can use a Kubernetes `FlinkDeployment` custom resource in application mode to deploy a Flink job for processing and deploying the statements in the `statements.sql` file. 
 
-   a. ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") You can start with the following example of an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink instance:
+   a. ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") You can start with the following example of an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink instance:
 
    ```yaml
    apiVersion: flink.apache.org/v1beta1

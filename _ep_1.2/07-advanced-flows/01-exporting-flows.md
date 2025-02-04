@@ -16,7 +16,7 @@ You can export your flow in the following formats:
 
 | Export format | Exported file | Sensitive credentials | Additional comments |
 | --- | --- | --- |
-| ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") **JSON and configuration YAML** | `<flow-name>.zip` file that contains `flow.json` and `config.yaml` |  Sensitive values are redacted. | For deploying jobs [customized for production or test environments](../deploying-customized), by using the command-line interface, possibly as part of a CI/CD pipeline. |
+| ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") **JSON and configuration YAML** | `<flow-name>.zip` file that contains `flow.json` and `config.yaml` |  Sensitive values are redacted. | For deploying jobs [customized for production or test environments](../deploying-customized), by using the command-line interface, possibly as part of a CI/CD pipeline. |
 | **JSON** | `<flow-name>.json` | Contains credentials | For backing up and sharing flows with others. |
 | **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. |
 
@@ -38,7 +38,7 @@ To export a flow, complete the following steps:
 5. Click **Export**.
 
 
-![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") The **Export** features are also available in **More options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} next to **Run flow** in the navigation banner of the canvas.
+![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") The **Export** features are also available in **More options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} next to **Run flow** in the navigation banner of the canvas.
 
 
 ## Importing flows

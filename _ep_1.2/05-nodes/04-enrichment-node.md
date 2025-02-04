@@ -148,7 +148,7 @@ To configure the API node, ensure you upload an OpenAPI document that meets the 
  - At least one `GET` or `POST` [operation](https://swagger.io/docs/specification/paths-and-operations/){:target="_blank"} is required with the following requirements:
     - The operation uses one of the following [security methods](https://swagger.io/docs/specification/authentication/){:target="_blank"}: basic authentication, API keys (in the header or query parameter), or no authentication (None).
     - Has the [media type](https://swagger.io/docs/specification/media-types/){:target="_blank"} `application/json` for the response (`GET` and `POST`) and the request body (`POST`).
-    - ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4.svg "In Event Processing 1.2.4 and later.") Body parameters of type `array` with primitive types (`string`, `number`, `integer`, and `boolean`) are supported.
+    - ![Event Processing 1.2.4 icon]({{ 'images' | relative_url }}/1.2.4plus.svg "In Event Processing 1.2.4 and later.") Body parameters of type `array` with primitive types (`string`, `number`, `integer`, and `boolean`) are supported.
 
       Required body parameters of type `array` with complex types (`array`, `object`) are not supported. However, the operation can still define optional parameters of type `array` with complex types, but these parameters are not made available for configuring the API node.
     - Required query parameters of type `array` are not supported. However, the operation can still define optional query parameters of type `array`, but these parameters are not made available for configuring the API node.

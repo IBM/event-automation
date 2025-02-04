@@ -62,7 +62,7 @@ The following table provides an overview of the Flink sample configurations and 
 
   It is not suitable when deploying Flink for use with the {{site.data.reuse.ep_name}} UI. For the deployment procedure, see:
   
-  - ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} versions 1.2.3 and later, see [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
+  - ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} versions 1.2.3 and later, see [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
   
   - In earlier releases, see [deploying jobs by using the Apache SQL Runner sample](../../advanced/deploying-production).
 
@@ -130,7 +130,7 @@ The Production – Flink Application Cluster sample is suitable for running a si
 
 This sample configures Flink with High Availability for the Flink Job Manager. Being a Flink application cluster, the Flink jobs are automatically restarted if the Flink cluster restarts.
 
-![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} 1.2.3 and later, this sample changed to support [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
+![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") In {{site.data.reuse.ep_name}} 1.2.3 and later, this sample changed to support [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
 
 If you want to use this sample with an earlier {{site.data.reuse.ep_name}} release than 1.2.3, see [deploying jobs for production by using the Apache SQL Runner sample](../../advanced/deploying-production).
 

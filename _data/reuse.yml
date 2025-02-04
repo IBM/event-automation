@@ -310,7 +310,7 @@ apicurio_note_113: "**Important:**  Support for Apicurio client libraries versio
 iam_note: '**Note:** Identity and Access Management (IAM) authentication is only available on the OpenShift Container Platform with IBM Cloud Pak foundational services 3.x releases. It is not supported on other Kubernetes platforms.'
 
 # {{site.data.reuse.es_cli_kafkauser_note}}
-es_cli_kafkauser_note: "**Note:** The Event Streams CLI `kafka-user` commands can be run only when the Event Streams CLI has access to Kubernetes resources, which can be provided by IAM authentication. If your Event Streams instance uses SCRAM-SHA-512 authentication, you can create a Kafka User by using the OpenShift web console or the Kubernetes CLI."
+es_cli_kafkauser_note: "**Note:** If your Event Streams instance uses SCRAM-SHA-512 authentication, you can create a Kafka User by using the OpenShift web console or the Kubernetes CLI."
 
 # {{site.data.reuse.jmx_deprecated}}
 jmx_deprecated: "**Note:** Support for jmxtrans in Event Streams version 11.1.5 and later is deprecated, as the jmxtrans tool is no longer maintained. For more information, see the [Strimzi proposal](https://github.com/strimzi/proposals/blob/main/043-deprecate-and-remove-jmxtrans.md){:target=\"_blank\"} about deprecating jmxtrans."

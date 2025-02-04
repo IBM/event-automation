@@ -15,5 +15,5 @@ Nodes are categorized into five sections as:
 - [Windowed](../windowednodes)
 - [Joins](../joins)
 - [Enrichment](../enrichmentnode)
-- ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2.svg "In Event Processing 1.2.2 and later.") [Custom](../custom)
+- ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2plus.svg "In Event Processing 1.2.2 and later.") [Custom](../custom)
 

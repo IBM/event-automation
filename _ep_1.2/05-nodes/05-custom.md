@@ -6,7 +6,7 @@ slug: custom
 toc: true
 ---
 
-![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2.svg "In Event Processing 1.2.2 and later.") The following **Custom** nodes are available in {{site.data.reuse.ep_name}}:
+![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2plus.svg "In Event Processing 1.2.2 and later.") The following **Custom** nodes are available in {{site.data.reuse.ep_name}}:
 
 - SQL source
 - SQL processor
@@ -46,7 +46,7 @@ A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconf
 You can convert any existing node on your canvas to a custom node in two ways:
 
 - Click **Preview SQL** in the node configuration window.
-- ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3.svg "In Event Processing 1.2.3 and later.") Hover over the node or right-click the node in the canvas, click **More Options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} , and select **Preview SQL**.
+- ![Event Processing 1.2.3 icon]({{ 'images' | relative_url }}/1.2.3plus.svg "In Event Processing 1.2.3 and later.") Hover over the node or right-click the node in the canvas, click **More Options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} , and select **Preview SQL**.
 
 The SQL code of your node is displayed in read-only mode. To convert the node to a custom node and edit the SQL, click **Edit SQL**.
 

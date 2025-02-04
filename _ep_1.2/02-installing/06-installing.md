@@ -15,7 +15,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
 - Obtain the connection details for your {{site.data.reuse.openshift_short}} cluster from your administrator.
 - To secure the communication between Flink pods, [configure TLS for Flink](../configuring#configuring-tls-to-secure-communication-with-flink-deployments).
-- ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2.svg "In Event Processing 1.2.2 and later.") If you have [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"}, you can install {{site.data.reuse.ep_name}} as an add-on.
+- ![Event Processing 1.2.2 icon]({{ 'images' | relative_url }}/1.2.2plus.svg "In Event Processing 1.2.2 and later.") If you have [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"}, you can install {{site.data.reuse.ep_name}} as an add-on.
 
 
 ## Create a project (namespace)

@@ -20,6 +20,12 @@ sections:
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
     <h3>Event Streams</h3>
+    <h4>11.6.0 - what's new:</h4>
+    <ul>
+      <li>Support for IAM and IBM Cloud Pak CLI (cloudctl) features are removed</li>
+      <li>Support for Kubernetes 1.32</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.5.2 - what's new:</h4>
     <ul>
       <li>Enhanced Kafka topic management</li>

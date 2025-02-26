@@ -82,9 +82,11 @@ A logical grouping of related [APIs](#api) and [Plans](#plan) to access those AP
 
 ### Plan
 
-An attribute of a [Product](#product). Used to offer different levels of service (for example, rate limits and monetization) to the APIs contained within a Product. 
+An attribute of a [Product](#product). Used to offer different levels of service (for example, rate limits and monetization) to the APIs contained within a Product.
 
 **Note:** Currently, there is no direct equivalent concept in {{site.data.reuse.eem_name}} when not integrated with {{site.data.reuse.apic_short}}.
+
+**Important:** Rate limits associated with a Plan in {{site.data.reuse.apic_short}} are **not** [enforced](#enforced-api) by the {{site.data.reuse.egw}}. Instead, you can configure a Quota [policy](#policy) in {{site.data.reuse.eem_name}} to enable event-specific rate limiting capabilities for [producing](../../describe/option-controls#quota-produce) or [consuming](../../describe/option-controls#quota-consume) applications.
 
 ### Lifecycle
 

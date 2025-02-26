@@ -10,7 +10,7 @@ When a Kafka topic is added to {{site.data.reuse.eem_name}}, it is referred to a
 
 As a Kafka administrator you can add new topics by adding cluster connection details from an existing or new cluster. This connection is tested, and if valid, basic topic details are retrieved from the Kafka cluster, such as name, partition, and replica information. All this information is added to the event source.
 
-![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") In {{site.data.reuse.eem_name}} 11.4.1 and later, if your Kafka cluster is outside of the scope of your {{site.data.reuse.eem_name}} instance, you can add it manually and bypass the connection tests. This is particularly useful if your Kafka cluster is located behind a different firewall or is subject to specific network policies that restrict visibility from your {{site.data.reuse.eem_name}} instance. You can add a cluster manually when you [add a topic](#add-topic) or from the [Manage clusters](../managing-clusters#manual-cluster) page. When you add a cluster manually, you can define provisional topics to inform {{site.data.reuse.eem_name}} about their existence.
+![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In {{site.data.reuse.eem_name}} 11.4.1 and later, if your Kafka cluster is outside of the scope of your {{site.data.reuse.eem_name}} instance, you can add it manually and bypass the connection tests. This is particularly useful if your Kafka cluster is located behind a different firewall or is subject to specific network policies that restrict visibility from your {{site.data.reuse.eem_name}} instance. You can add a cluster manually when you [add a topic](#add-topic) or from the [Manage clusters](../managing-clusters#manual-cluster) page. When you add a cluster manually, you can define provisional topics to inform {{site.data.reuse.eem_name}} about their existence.
 
 You can also provide other information, such as a description about the event data available through a topic, tags that help describe the content of the event source through keywords, and schema details if the topic uses schemas to structure the event content.
 
@@ -45,9 +45,9 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
         **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
 
-     d. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Add servers manually** to add a cluster and bypass the connection tests. For more information, see [Adding a cluster manually](../managing-clusters/#manual-cluster).  
+     d. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Add servers manually** to add a cluster and bypass the connection tests. For more information, see [Adding a cluster manually](../managing-clusters/#manual-cluster).  
 
-     e. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
+     e. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
 
      f. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, enter your username and password, and click **Add cluster**.    
 
@@ -56,7 +56,7 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 1. Click **Next**.  
 
 1. Select topics to add from the list of topics available on this cluster.  
-    ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") If no topics are displayed on the **Topic selection** page, you can define provisional topics by updating the **Topic** and **Event source name** fields in the table. To add more provisional topics, click **Define topic**.
+    ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") If no topics are displayed on the **Topic selection** page, you can define provisional topics by updating the **Topic** and **Event source name** fields in the table. To add more provisional topics, click **Define topic**.
 
       **Note**: When you define a topic, it registers the topic with the {{site.data.reuse.eem_manager}} but does not create the topic on the Kafka cluster.
 
@@ -70,6 +70,6 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
 Your new event source appears in the **Manage topics** page with the **Options status** as 0 published. For more information about socializing your options, see [Publishing options](../publishing-options).
 
-![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") After you create an event source, you can not publish any options that you create for it until it and the associated cluster has passed the connection tests against your gateways.
+![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") After you create an event source, you can not publish any options that you create for it until it and the associated cluster has passed the connection tests against your gateways.
 
 

@@ -34,9 +34,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.5.0
-- Event Endpoint Management 11.3.0
-- Event Processing 1.2.0
+- {{site.data.reuse.es_name}} 11.5.0
+- {{site.data.reuse.eem_name}} 11.4.2
+- {{site.data.reuse.ep_name}} 1.2.0
 
 ## Instructions
 
@@ -187,7 +187,7 @@ The next step is to bring this additional stream of events that you discovered i
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-14.png "getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-14.png "getting the credentials to use")
 
-   Click the "Generate access credentials" button at the top of the page, and provide your contact details.
+   Click **Subscribe**, and provide your contact details.
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 

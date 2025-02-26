@@ -382,7 +382,7 @@ Before proceeding to the next step, ensure that these topics are no longer manag
    ```
 
 
-For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.44.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator){:target="_blank"}.
+For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.45.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator){:target="_blank"}.
 
 
 ### Verifying the upgrade

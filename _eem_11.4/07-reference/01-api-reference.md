@@ -169,9 +169,9 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | deleteClaim | boolean | Specifies if the persistent volume claim has to be deleted when the instance is deleted. |
 | existingClaimName | string | The name of a pre-created Persistence Volume Claim (PVC). |
 | root | string | The root storage path where data will be stored. |
-| rotationSecretName | string | The Kubernetes secret used for supplying a new encryption key. |
+| rotationSecretName | string | The Kubernetes secret used for supplying a new encryption key. This field should only be set temporarily during the process of rotating the encryption key. |
 | selectors | object | Labels to be used during PVC bind. |
-| size | string | The storage size limit for the volume. |
+| size | string | The storage size limit for the volume. Default is 500Mi. |
 | storageClassName | string | The storage class name to use on created Persistent Volume Claims (PVCs). |
 | type | string | Type of persistence to use. One of `ephemeral` or `persistent-claim`. |
 

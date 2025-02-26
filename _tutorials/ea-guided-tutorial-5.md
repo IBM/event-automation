@@ -90,7 +90,7 @@ The next step is to define the event destination for your flow.
 1. Hover over the event destination node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} to configure the node.  
 
 
-1. Paste the internal Kafka listener address copied from {{site.data.reuse.es_name}} in [Step 2](#step-2--create-a-destination-kafka-topic) into the **Server** field.
+1. Paste the internal Kafka listener address copied from {{site.data.reuse.es_name}} in [Step 2](#step-2--create-a-destination-kafka-topic) into the **Bootstrap server** field.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5-new.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-5-new.png "connection details for the event source")
 

@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.2.x.
 
-## Release {{site.data.reuse.ep_current_version}}
+## Release 1.2.4
 
 
 ### API enrichment node: support for operations with arrays of primitive types

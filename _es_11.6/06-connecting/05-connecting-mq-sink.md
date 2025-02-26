@@ -320,7 +320,7 @@ Follow the instructions to enable exactly-once delivery in the IBM MQ sink conne
 
 Ensure the following values are set in your environment before you enable the exactly-once behavior:
 
-* Configure the consumer group of the sink connector to ignore records in aborted transactions. You can find detailed instructions in the [Kafka documentation](https://kafka.apache.org/38/documentation/#connect_exactlyoncesink){:target="_blank"}. Notably, this configuration does not have any additional Access Control List (ACL) requirements.
+* Configure the consumer group of the sink connector to ignore records in aborted transactions. You can find detailed instructions in the [Kafka documentation](https://kafka.apache.org/39/documentation/#connect_exactlyoncesink){:target="_blank"}. Notably, this configuration does not have any additional Access Control List (ACL) requirements.
 * The IBM MQ sink connector is only supported on Kafka Connect version 2.6.0 or later.
 * On the server-connection channel (SVRCONN) used for Kafka Connect, set `HBINT` to 30 seconds to allow IBM MQ transaction rollbacks to occur more quickly in failure scenarios.
 * On the [state queue](#creating-a-state-queue-in-ibm-mq-by-using-the-runmqsc-tool) (the queue where the state messages are stored), set `DEFSOPT` to `EXCL` to ensure the state queue share option is exclusive.

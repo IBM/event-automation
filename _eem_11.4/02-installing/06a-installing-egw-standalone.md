@@ -52,10 +52,19 @@ The {{site.data.reuse.egw}} uses a client certificate to register itself with th
 
 The stand-alone {{site.data.reuse.egw}} image is provided as a multi-architecture docker image, with support for Linux 64-bit (x86_64) systems and Linux on IBM z (s390x) architectures. To install a stand-alone {{site.data.reuse.egw}}, download the {{site.data.reuse.egw}} Docker image from the IBM Container software library as follows:
 
-```shell
-docker login cp.icr.io -u cp
-docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:{{site.data.reuse.eem_current_version}}
-```
+- ![Event Endpoint Management 11.4.2 icon]({{ 'images' | relative_url }}/11.4.2plus.svg "In Event Endpoint Management 11.4.2 and later.") If you are using {{site.data.reuse.eem_name}} 11.4.2 or later, download the {{site.data.reuse.egw}} image from the public registry:
+   
+   ```shell
+   docker pull icr.io/cpopen/ibm-eventendpointmanagement/egw:{{site.data.reuse.eem_current_version}}
+   ```
+
+- If you are using {{site.data.reuse.eem_name}} 11.4.1 or earlier, download the {{site.data.reuse.egw}} image from the private registry (requires an [entitlement key](../installing/#create-an-image-pull-secret)):
+   
+   ```shell
+   docker login cp.icr.io -u cp
+   docker pull cp.icr.io/cp/ibm-eventendpointmanagement/egw:11.4.1
+   ```
+
 
 The password to log in to the IBM Container software library is your entitlement key, which you can obtain from the container software library [site](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.
 

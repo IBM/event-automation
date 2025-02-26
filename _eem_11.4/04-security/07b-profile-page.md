@@ -18,6 +18,8 @@ The following features are available by using the Admin API:
 - [Subscriptions](../../subscribe/managing-subscriptions/) (Create, Read, Update, Delete)
 - [Gateways](../../describe/managing-gateways) (Read gateway list)
 
+**Note**: ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In Event Endpoint Management version 11.4.1 and later, you can manually add Kafka topics and clusters. After you create an event source, you must wait for the event source and the associated cluster to pass the connection tests against your gateways. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
+
 ## Prerequisites
 
 If you installed {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}, the {{site.data.reuse.eem_name}} Admin API is enabled by default and is accessible from outside the cluster.

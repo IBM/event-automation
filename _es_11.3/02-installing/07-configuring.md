@@ -1220,37 +1220,65 @@ keytool -list -keystore ca.p12 -storepass <keystore password>
 
 The cluster and client certificates, and keys must be added to secrets in the namespace that the {{site.data.reuse.es_name}} instance is intended to be created in. The naming of the secrets and required labels must follow the conventions detailed in the following command templates.
 
-The following commands can be used to create and label the secrets for custom certificates and keys. The templates demonstrate providing cluster certificates but the same commands can be re-used substituting `cluster` with `clients` in each secret name.
+The following commands can be used to create and label the secrets for custom certificates and keys. The commands for clients secrets follow the same structure as cluster secrets, with `cluster` replaced by `clients` in the secret names.  
 
 For each command, provide the intended name and namespace for the {{site.data.reuse.es_name}} instance.
 
-```shell
-kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key
-```
+- For cluster secrets, use the following commands:
 
-```shell
-kubectl label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
-```
+	```shell
+	kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key
+	```
 
-```shell
-kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=0
-```
+	```shell
+	kubectl label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+	```
 
-```shell
-kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
-```
+	```shell
+	kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=0
+	```
 
-```shell
-kubectl label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
-```
+	```shell
+	kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
+	```
 
-```shell
-kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=0
-```
+	```shell
+	kubectl label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+	```
 
+	```shell
+	kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=0
+	```
+
+- For clients secrets, use the following commands:
+
+  ```shell
+	kubectl create --namespace <namespace> secret generic <instance-name>-clients-ca --from-file=ca.key=CA.key
+	```
+
+	```shell
+	kubectl label --namespace <namespace> secret <instance-name>-clients-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+	```
+
+	```shell
+	kubectl annotate --namespace <namespace> secret <instance-name>-clients-ca eventstreams.ibm.com/ca-key-generation=0
+	```
+
+	```shell
+	kubectl create --namespace <namespace> secret generic <instance-name>-clients-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
+	```
+
+	```shell
+	kubectl label --namespace <namespace> secret <instance-name>-clients-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+	```
+
+	```shell
+	kubectl annotate --namespace <namespace> secret <instance-name>-clients-ca-cert eventstreams.ibm.com/ca-cert-generation=0
+	```
+  
 **Note:** The `eventstreams.ibm.com/ca-cert-generation` and `eventstreams.ibm.com/ca-key-generation` values identify whether certificates are being renewed or not. Only set 0 for these values if you have not installed an instance of {{site.data.reuse.es_name}} yet. For more information about when to amend these annotations, see [renewing certificates](../../security/renewing-certificates/).
 
-To make use of the provided secrets, {{site.data.reuse.es_name}} will require the following overrides to be added to the custom resource.
+To make use of the provided secrets, {{site.data.reuse.es_name}} requires the following overrides to be added to the custom resource.
 
 ```yaml
 spec:

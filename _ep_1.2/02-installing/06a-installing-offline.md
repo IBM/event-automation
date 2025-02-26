@@ -133,7 +133,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+   kubectl ibm-pak get ibm-eventprocessing --version 1.2.4
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -153,7 +153,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
+   Download of CASE: ibm-eventprocessing, version: 1.2.4 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -176,13 +176,13 @@ Before mirroring your images, download the CASE by following these instructions:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── {{site.data.reuse.ep_current_version}}
+   │   │       └── 1.2.4
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
+   │   │           ├── ibm-eventprocessing-1.2.4-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.2.4-charts.csv
+   │   │           ├── ibm-eventprocessing-1.2.4-images.csv
+   │   │           ├── ibm-eventprocessing-1.2.4.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror

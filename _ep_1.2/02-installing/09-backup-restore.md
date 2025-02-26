@@ -31,7 +31,7 @@ The `FlinkDeployment` custom resource that configures your Flink instance must d
 
 ### Backing up
 
-To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
+The backup process captures the latest state of a running flow and its job specification, allowing to re-create the job from the saved state when required. To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
 
 1. Ensure that the `status` section indicates that the Job Manager is in `READY` status and that the Flink job is in `RUNNING` status by checking the `FlinkDeployment` custom resource.
 
@@ -43,6 +43,7 @@ To back up your Flink instance, update each of your deployed instances by editin
    ```
 
 2. Set the following values in the `FlinkDeployment` custom resource:
+
    a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
    b. Set the value of `spec.job.state` to `running`.
@@ -79,22 +80,23 @@ To back up your Flink instance, update each of your deployed instances by editin
            triggerNonce: 1
            triggerType: MANUAL
    ```
+3. Save a copy of `FlinkDeployment` custom resource.
+4. Keep the `FlinkDeployment` custom resource and the PVC containing the savepoint to make them available later for restoring your deployment.
 
-3. Keep the `FlinkDeployment` custom resource and the PVC to make them available later for restoring your deployment.
 
 ### Restoring
 
-To restore a Flink instance that you previously backed up, ensure that your PVC where the savepoint was written to is available, and update your `FlinkDeployment` custom resource as follows.
+To restore a previously backed-up Flink instance, ensure that the PVC bound to a PV containing the snapshot is available, then update your `FlinkDeployment` custom resource as follows.
 
 1. Edit the `FlinkDeployment` custom resource that you saved earlier when [backing up](#backing-up) your instance:
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
+   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Remove `spec.job.savepointTriggerNonce` and its value.
 
-   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported during the backing up operation in step 1.d plus the suffix `/_metadata`.
+   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported during the backing up operation in step 1.d.
 
    For example:
 
@@ -103,7 +105,7 @@ To restore a Flink instance that you previously backed up, ensure that your PVC 
      [...]
      state: running
      upgradeMode: savepoint
-     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
+     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e
      allowNonRestoredState: true
    ```
 

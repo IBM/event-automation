@@ -69,7 +69,7 @@ To configure {{site.data.reuse.es_name}} to provide audit trail for the Kafka cl
 
         - Define an output destination by setting up an [appender](https://logging.apache.org/log4j/1.2/manual.html#Appenders_and_Layouts){:target="_blank"} to direct filtered audit records to a central system for aggregation, retention, and visualization. Ensure access to the audit trail is secured by restricting access only to authorized users.
 
-        - Define a set of filters based on [Kafka API Keys (protocols)](https://kafka.apache.org/38/documentation/#operations_resources_and_protocols){:target="_blank"} to include or exclude specific requests in the audit trail.
+        - Define a set of filters based on [Kafka API Keys (protocols)](https://kafka.apache.org/39/documentation/#operations_resources_and_protocols){:target="_blank"} to include or exclude specific requests in the audit trail.
         
            For sample log4j configurations, see the [example snippets](#example-log4j-configurations) later.
 

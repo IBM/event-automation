@@ -563,19 +563,31 @@ One way to test that the truststore is compatible and contains the correct certi
 
 The cluster and/or clients certificates, and keys must be added to secrets in the namespace that the {{site.data.reuse.es_name}} instance is intended to be created in. The naming of the secrets and required labels must follow the conventions detailed in the following command templates.
 
-The following four commands can be used to create and label the secrets for custom certificates and keys. The templates demonstrate providing cluster certificates but the same commands can be re-used substituting `cluster` with `clients` in each secret name.
+The following commands can be used to create and label the secrets for custom certificates and keys. The commands for clients secrets follow the same structure as cluster secrets, with `cluster` replaced by `clients` in the secret names.  
 
 For each command, provide the intended name and namespace for the {{site.data.reuse.es_name}} instance.
 
-`oc create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key`
+- For cluster secrets, use the following commands:
 
-`oc label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+	`oc create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key`
 
-`oc create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'`
+	`oc label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
 
-`oc label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+	`oc create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'`
 
-To make use of the provided secrets, {{site.data.reuse.es_name}} will require the following overrides to be added to the custom resource.
+	`oc label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+
+- For clients secrets, use the following commands:
+
+	`oc create --namespace <namespace> secret generic <instance-name>-clients-ca --from-file=ca.key=CA.key`
+
+	`oc label --namespace <namespace> secret <instance-name>-clients-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+
+	`oc create --namespace <namespace> secret generic <instance-name>-clients-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'`
+
+	`oc label --namespace <namespace> secret <instance-name>-clients-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>`
+
+To make use of the provided secrets, {{site.data.reuse.es_name}} requires the following overrides to be added to the custom resource.
 
 ```
 spec:

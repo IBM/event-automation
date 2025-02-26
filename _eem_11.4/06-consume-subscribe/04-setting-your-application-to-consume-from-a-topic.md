@@ -6,20 +6,22 @@ slug: configure-your-application-to-connect
 toc: true
 ---
 
-Whether you want your application to produce to or consume from an event endpoint, you need to configure your client applications to connect to the {{site.data.reuse.egw}} through which the application can make use of the selected event endpoints. You can use the [snippets provided](../discovering-event-endpoints#the-catalog) for each event endpoint, and you will need the [access credentials](../subscribing-to-event-endpoints) you requested to the event endpoint.
+Configure your client applications to connect to the {{site.data.reuse.egw}} to access your subscriptions.
 
-![Configuring a client application to connect to an event endpoint.]({{ 'images' | relative_url }}/eem-client-app-connect.png "Diagram that shows what happens when you configure your cleint application to connect to an even endpoint.")
+Use the [code snippets provided](../discovering-event-endpoints#the-catalog) for each event endpoint, along with your subscription details.
+
+![Configuring a client application to connect to an event endpoint.]({{ 'images' | relative_url }}/eem-client-app-connect.png "Diagram that shows what happens when you configure your client application to connect to an even endpoint.")
 
 ## Configuring a client
 
-Access to event endpoints in {{site.data.reuse.eem_name}} is managed by the {{site.data.reuse.egw}}. Configure your client applications to connect to the {{site.data.reuse.egw}} by using standard Kafka client configuration options.
+The {{site.data.reuse.egw}} manages access to event endpoints in {{site.data.reuse.eem_name}}. Configure your client applications to connect to the {{site.data.reuse.egw}} by using standard Kafka client configuration options.
 
-The way you provide the configuration settings to your client varies from client to client. However, configure the following settings for each client:
+The way that you provide the configuration settings to your client varies from client to client. However, the following settings are common for every client:
 
-- `Bootstrap servers`: The set of {{site.data.reuse.egw}} **Server** addresses that provide access to an event endpoint can be found in the **Catalog** page for that event endpoint, in the **Server** table. More than one address can be used, when separated by commas in your client configuration.
-- `Security mechanism`: Set as `SASL_SSL`. This is the only available option.
-- `SSL configuration`: The {{site.data.reuse.egw}} only exposes a TLS endpoint for clients to connect to. Per **Gateway endpoint** address, a `.pem` certificate can be downloaded to allow clients to be configured with the expected client certificate to trust.
-- `SASL` credentials : Update `SASL mechanism`, `SASL username`, and `SASL password` with the values retrieved when [subscribing to the event source](../subscribing-to-event-endpoints#requesting-access).
-- `Topic name`: The name of the event endpoint you want your application to produce to or consume from. The name is displayed in the **Catalog** table under the **Topic name** column and as the heading of the **Catalog** detail page when viewing more information about an event endpoint.
+- `Bootstrap servers`: The set of {{site.data.reuse.egw}} **Server** addresses that provide access to an event endpoint can be found in the **Catalog** page for that event endpoint, in the **Server** table. If multiple addresses are used, separate them with commas.
+- `Security mechanism`: Set as `SASL_SSL` if username and password are used in the subscription. Set as `SSL` if mTLS is used without a username and password.
+- `SSL configuration`: The {{site.data.reuse.egw}} exposes only a TLS-secured endpoint for clients to connect to. For each **Gateway endpoint** address, the server certificate can be downloaded (in PEM format) from the **Catalog** detail page. Configure your client to trust this certificate.
+- `SASL` credentials : If `SASL_SSL` is specified as the `SASL mechanism`, then set `SASL username`, and `SASL password` with the values retrieved when you [subscribed to the event source](../subscribing-to-event-endpoints#requesting-access).
+- `Topic name`: The name of the event endpoint you want your application to use. The name is displayed in the **Catalog** table under the **Topic name** column and as the heading of the **Catalog** detail page when you view more information about an event endpoint.
 
 

@@ -20,6 +20,12 @@ sections:
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
     <h3>Event Streams</h3>
+    <h4>11.6.1 - what's new:</h4>
+    <ul>
+      <li>Kafka version upgraded to 3.9.0</li>
+      <li>Apicurio version updated to 2.6.8.Final</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.6.0 - what's new:</h4>
     <ul>
       <li>Support for IAM and IBM Cloud Pak CLI (cloudctl) features are removed</li>
@@ -49,6 +55,14 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Endpoint Management</h3>
+    <h4>11.4.2 - what's new:</h4>
+    <ul>
+      <li>Updates to the catalog page</li>
+      <li>Download user credential properties file</li>
+      <li>Event Gateway available from the public registry</li>
+      <li>Support for Kubernetes 1.32</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.4.1 - what's new:</h4>
     <ul>
       <li>Add Kafka topics and clusters manually</li>
@@ -80,6 +94,14 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.3.0 - what's new:</h4>
+    <ul>
+      <li>Trigger savepoints with FlinkStateSnapshot custom resource</li>
+      <li>API enrichment node: support for operations with arrays of complex types </li>
+      <li>Apache Flink updated to 1.20</li>
+      <li>Support for Kubernetes 1.32</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.2.4 - what's new:</h4>
     <ul>
       <li>API enrichment node: support for operations with arrays of primitive types</li>

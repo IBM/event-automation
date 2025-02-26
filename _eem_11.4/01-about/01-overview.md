@@ -22,9 +22,9 @@ The following diagram provides an overview of {{site.data.reuse.eem_name}}.
    * The Kafka administrator creates options (with controls, if required) for an event source to define different ways of presenting the event source in the catalog. 
 1. The Kafka administrator publishes an option. The option is then available in the catalog for application developers to discover and use.
 1. In the catalog, the application developer can browse the available entries and discover information about the kind of event data available, based on which they can decide which one to use in their applications.
-1. The application developer chooses an appropriate event endpoint for their application to use. They subscribe to that event endpoint to generate the required credentials to provide their application with access to the event endpoint through the {{site.data.reuse.egw}}. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
-1. The application developer connects their application to the event endpoint using the snippets and credentials provided, and this sets up their application with access to the events through the {{site.data.reuse.egw}}.
-1. The application connects to the E{{site.data.reuse.egw}} for access to the event source's event stream.
+1. The application developer chooses an appropriate event endpoint for their application to use. They subscribe to that event endpoint to provide their application with access to the event endpoint through the {{site.data.reuse.egw}}. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
+1. The application developer connects their application to the event endpoint, and this sets up their application with access to the events through the {{site.data.reuse.egw}}.
+1. The application connects to the {{site.data.reuse.egw}} for access to the event source's event stream.
 1. The {{site.data.reuse.egw}} routes traffic securely to and from the Kafka cluster that holds the topic, providing the access to the application to interact with the event endpoint.
 
 

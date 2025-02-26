@@ -92,7 +92,7 @@ The first thing to do is to make this destination topic available for use in App
 
    **Password**: Password created using the **Generate access credentials** button in the {{site.data.reuse.eem_name}} catalog
 
-   **Kafka brokers list**: Server address copied from the {{site.data.reuse.eem_name}} catalog
+   **Kafka brokers list**: Bootstrap server address copied from the {{site.data.reuse.eem_name}} catalog
 
    **Security mechanism**: `PLAIN`
 

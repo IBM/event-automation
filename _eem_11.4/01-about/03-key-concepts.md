@@ -13,9 +13,9 @@ Read about the key concepts and terms used in {{site.data.reuse.eem_name}}. The 
 
 ## Catalog
 
-The catalog lists all available event endpoints and, if applicable, their available options. Application developers in your organization can use the catalog to browse the available event endpoints, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling access to the stream of events represented by the event source using the published options.
+The catalog lists all available [event endpoints](#event-endpoint). Application developers in your organization can use the catalog to browse the available event endpoints, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling access to the stream of events represented by the event source through the published [options](#option).
 
-Kafka administrators can use the catalog to check what options are published and made available to others in the organization.
+Kafka administrators can use the catalog to check what options are published and made available to others in the organization as event endpoints.
 
 ## Cluster
 
@@ -31,7 +31,7 @@ You can add the following controls to an option on a [consume-enabled](#consume)
    * [Redaction](../../describe/option-controls#redaction): Use a redaction control to hide sensitive data.
    * [Schema filtering](../../describe/option-controls#schema-filter): Use the schema filtering control to manage how the data in your event source is presented to consumers and to ensure consistency.
    * [Quota enforcement](../../describe/option-controls#quota-consume): Use the quota enforcement control to manage the rate at which data is consumed from your event source.
-   * ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") [Mutual TLS](../05-Describe-Publish/02a-option-controls.md#mutual-tls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+   * ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") [Mutual TLS](../05-Describe-Publish/02a-option-controls.md#mutual-tls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
 
 You can add the following controls to an option on a [produce-enabled](#produce) event source:
 
@@ -43,7 +43,7 @@ You can add the following controls to an option on a [produce-enabled](#produce)
 
 ## Consume
 
-An application developer can discover [event endpoints](#event-endpoints) that are published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an [option](#option) on a consume-enabled [event source](#event-source) to get access for a client application to consume Kafka events from the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
+An application developer can discover [event endpoints](#event-endpoint) that are published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an event endpoint on a consume-enabled [event source](#event-source) to get access for a client application to consume Kafka events from the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
 
 ## Event
 
@@ -106,11 +106,11 @@ A Kafka administrator can create an option for an [event source](#event-source) 
 ## Produce
 {: #produce}
 
-An application developer can write events to an [event endpoint](#event-endpoints) that is published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an [option](#option) on a produce-enabled [event source](#event-source) to get access for a client application to produce Kafka events to the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
+An application developer can write events to an [event endpoint](#event-endpoint) that is published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an event endpoint on a produce-enabled [event source](#event-source) to get access for a client application to produce Kafka events to the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
 
 ## Subscription
 
-Application developers configure their applications to subscribe to the stream of events, providing access to the message content from the event stream, and generating the required credentials for their application to consume from the event endpoint. 
+Application developers configure their applications to subscribe to the stream of events, providing access to the message content from the event stream, and configuring the required credentials for their application to consume from the event endpoint. 
 
 Kafka administrators can limit subscriptions by adding the approval control to the options of an event source and they can manage subscriptions that are created for their event sources in the {{site.data.reuse.eem_name}} **Topic Detail** page.
 

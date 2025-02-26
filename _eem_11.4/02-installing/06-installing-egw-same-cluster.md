@@ -61,6 +61,12 @@ When modifying the sample configuration, ensure the following fields are updated
 - `spec.gatewayGroupName` field is updated with the name of a Gateway group to which this Gateway should be added.
 - `spec.gatewayID` field is updated with the ID of a Gateway group to which this Gateway should be added.
 
+To set the hostname for your gateway, you can configure the `spec.endpoints[]` fields:
+
+- `spec.endpoints[]` must contain an endpoint with:
+  - `name` set to `gateway`
+  - `host` set to a DNS resolvable hostname for accessing the service.
+
 To deploy an {{site.data.reuse.egw}} instance, use the following steps:
 
 1. Complete any changes to the sample configuration in the **Create EventGateway** panel.
@@ -122,7 +128,7 @@ When modifying the sample configuration, ensure the following fields are updated
 - `spec.gatewayGroupName` field is updated with the name of a Gateway group to which this Gateway should be added.
 - `spec.gatewayID` field is updated with the ID of a Gateway group to which this Gateway should be added.
 
-On Kubernetes platforms other than the {{site.data.reuse.openshift_short}}, ensure you set the following additional fields:
+To set the hostname for your gateway, you can configure the `spec.endpoints[]` fields. On Kubernetes platforms other than the {{site.data.reuse.openshift_short}}, these are required fields and must be set:
 
 - `spec.endpoints[]` must contain an endpoint with:
   - `name` set to `gateway`

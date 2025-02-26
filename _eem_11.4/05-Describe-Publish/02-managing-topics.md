@@ -45,11 +45,16 @@ Refer to the following sections for more information about the fields that can b
 
 ### Overview information
 
-You can edit the following information in this pane. Restrictions and validation checks ensure each field meets requirements for Kafka event sources.
+You can edit the following information in this pane. Restrictions and validation checks ensure that each field meets the requirements for Kafka event sources.
 
-- **Event source name** is set when the event source is created and cannot be edited. 
+- **Event source name** can be edited and is the name of your event source.
+- **Topic name**:
+    - In Event Endpoint Management 11.4.1 and earlier, the **Topic name** is set when the event source is created and you cannot edit it.
+    - ![Event Endpoint Management 11.4.2 icon]({{ 'images' | relative_url }}/11.4.2.svg "In Event Endpoint Management 11.4.2 and later.") In Event Endpoint Management 11.4.2 and later, the **Topic name** can be edited and is the related Kafka topic for your event source.  
+    
+      **Note:** You can edit the **Topic name** only if your event source has no published options in the catalog.
 - **Description** can be edited to describe your event source.
-- **Tags** can be added in a comma separated list. For example: `Product,Returns,Damage Returns`. You can use tags to make discovering the event endpoint easier to identify in the catalog.
+- **Tags** can be added in a comma-separated list. For example, `Product,Returns,Damage Returns`. You can use tags to make discovering the event endpoint easier to identify in the catalog.
 - **Contact** must follow an email address format. 
 
 ### Event information

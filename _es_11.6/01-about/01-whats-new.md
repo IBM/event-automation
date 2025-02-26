@@ -9,8 +9,23 @@ toc: true
 Find out what is new in {{site.data.reuse.es_name}} version 11.6.x.
 
 
-## Release 11.6.0
+## Release 11.6.1
 
+
+### Apicurio version updated to 2.6.8.Final
+
+{{site.data.reuse.es_name}} 11.6.1 includes Apicurio Registry version 2.6.8.Final for [managing schemas](../../schemas/overview/#schema-registry). Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before [upgrading](../../installing/upgrading/#prerequisites) to {{site.data.reuse.es_name}} 11.6.1. For more information, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Kafka version upgraded to 3.9.0
+
+{{site.data.reuse.es_name}} version 11.6.1 includes Kafka release 3.9.0, and supports the use of all Kafka interfaces.
+
+
+### Security and bug fixes
+
+{{site.data.reuse.es_name}} release 11.6.1 contains security and bug fixes.
+
+## Release 11.6.0
 
 ### Support for IAM and `cloudctl` features are removed
 

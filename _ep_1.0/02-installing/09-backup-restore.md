@@ -31,7 +31,7 @@ The `FlinkDeployment` custom resource that configures your Flink instance must d
 
 ### Backing up
 
-To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
+The backup process captures the latest state of a running flow and its job specification, allowing to re-create the job from the saved state when required. To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
 
 1. Ensure that the status section indicates that a `JobManager` is ready and the Flink job is running by checking the `FlinkDeployment` custom resource.
 
@@ -62,17 +62,19 @@ To back up your Flink instance, update each of your deployed instances by editin
       upgradeMode: savepoint
    ```
 
-3. Save the `FlinkDeployment` custom resource to make it available later for restoring your deployment.
+3. Save a copy of `FlinkDeployment` custom resource.
+4. Keep the `FlinkDeployment` custom resource and the PVC containing the savepoint to make them available later for restoring your deployment.
+
 
 ### Restoring
 
-To restore a Flink instance that you previously backed up, update your `FlinkDeployment` custom resource as follows.
+To restore a previously backed-up Flink instance, ensure that the PVC bound to a PV containing the snapshot is available, then update your `FlinkDeployment` custom resource as follows.
 
 1. Edit the saved `FlinkDeployment` custom resource that you saved when backing up your instance:
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
+   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
 

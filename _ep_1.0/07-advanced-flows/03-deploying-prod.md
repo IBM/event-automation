@@ -184,41 +184,17 @@ hide autoscaler -->
 3. Apply the modified `FlinkDeployment` custom resource.
 hide autoscaler -->
 
-## Trigger a savepoint for a running Flink SQL job
-
-1. Edit the `FlinkDeployment` custom resource.
-
-2. Make the following modifications
-
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
-
-   b. Ensure that the value of `spec.job.state` is `running`.
-
-   c. Ensure that the value of `spec.job.savepointTriggerNonce` is an integer that has never been used before for that option.
-
-   ```yaml
-   spec:
-     job:
-       jarURI: local:///opt/flink/usrlib/sql-runner.jar
-       args: ["/opt/flink/usrlib/sql-scripts/statements.sql"]
-       savepointTriggerNonce: <integer value>
-       state: running
-       upgradeMode: savepoint
-   ```
-
-3. Apply the modified `FlinkDeployment` custom resource.
-
-   A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
-
 ## Stop a Flink SQL with a savepoint
 
+You can temporarily stop a running Flink job while capturing its current state by creating a savepoint, and allowing you to restart the job from the exact point where it stopped by using the savepoint when required.
+
 1. Edit the `FlinkDeployment` custom resource.
 
 2. Make the following modifications
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `suspended` to stop the Flink job.
+   b. Set that the value of `spec.job.state` to `suspended` to stop the Flink job.
 
    ```yaml
    spec:
@@ -233,15 +209,17 @@ hide autoscaler -->
 
    A new savepoint is created in the directory specified in `spec.flinkConfiguration["state.savepoints.dir"]`.
 
-## Resume a Flink SQL with a savepoint
+## Resume a suspended Flink job
 
-1. Edit the `FlinkDeployment` custom resource.
+You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.
+
+1. Edit the `FlinkDeployment` custom resource of a Flink job that you suspended.
 
 2. Make the following modifications:
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
+   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
 

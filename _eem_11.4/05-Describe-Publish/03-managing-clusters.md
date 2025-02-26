@@ -8,7 +8,7 @@ toc: true
 
 The **Manage clusters** page displays all the clusters you have added to {{site.data.reuse.eem_name}}. You can add new clusters, edit the details you provided about the cluster, and delete the cluster.
 
-![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") If you're using {{site.data.reuse.eem_name}} 11.4.1 and later, you can use this page to add a [cluster manually](#manual-cluster). After you have added a cluster you can [check the status](#cluster-states) of the gateway visibility in the table.
+![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") If you're using {{site.data.reuse.eem_name}} 11.4.1 and later, you can use this page to add a [cluster manually](#manual-cluster). After you have added a cluster you can [check the status](#cluster-states) of the gateway visibility in the table.
 
 To access the **Manage clusters** page:
 
@@ -21,7 +21,7 @@ To access the **Manage clusters** page:
 
 To add a cluster, complete the following steps.
 
-1. Click **Create cluster**.
+1. Click **Add cluster**.
 1. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**. 
 1. Enter a bootstrap server URL for the Kafka cluster. 
 1. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
@@ -29,20 +29,20 @@ To add a cluster, complete the following steps.
     **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
 1. Optional: If a **No connection** warning message is displayed, follow the steps to [add your server manually](#manual-cluster).
-1. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Optional: If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
+1. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Optional: If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
 1. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, and enter your username and password.
 1. Click **Add cluster**. 
 
 {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If valid, or if credentials were not required, your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Manage clusters** page, where your new cluster appears, and can be edited.
 
-## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Adding a cluster manually
+## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Adding a cluster manually
 {: #manual-cluster}
 
 You might want to add a Kafka cluster manually when it is located behind a different firewall or is subject to specific network policies that restrict visibility from your {{site.data.reuse.eem_name}} instance.
 
 To add a cluster manually, complete the following steps.
 
-1. Click **Create cluster**.
+1. Click **Add cluster**.
 1. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**.
 1. Enter the bootstrap server URL of your Kafka cluster in `host:port` format. If the {{site.data.reuse.eem_name}} cannot verify the connection, a **No connection** information message is displayed.
 1. Click **Add servers manually**.
@@ -77,7 +77,7 @@ To edit the details of a cluster, complete the following steps.
     **Note**: After clicking **Save**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If the credentials are valid, or credentials were not required, your cluster will be edited and saved accordingly.
 
 
-## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Editing a cluster in {{site.data.reuse.eem_name}} 11.4.1 and later
+## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Editing a cluster in {{site.data.reuse.eem_name}} 11.4.1 and later
 
 If you're using {{site.data.reuse.eem_name}} 11.4.1 and later, complete the following steps to edit the details of a cluster.
 
@@ -105,7 +105,7 @@ To delete a cluster from {{site.data.reuse.eem_name}}, complete the following st
 2. Confirm the cluster that you want to delete by entering the cluster name.
 3. Click **Delete**. This will be visible in the footer if you have entered the cluster name that you want to delete correctly.
 
-## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Cluster validation states
+## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Cluster validation states
 {: #cluster-states}
 
 The table on the **Manage clusters** page displays the status of all the gateways added to {{site.data.reuse.eem_name}}. See the following table for a description of the different validation states.

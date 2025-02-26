@@ -240,69 +240,17 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 -->
 
 
-## Trigger a savepoint for a running Flink job
-
-1. Ensure that the `status` section indicates that the Job Manager is in `READY` status and that the Flink job is in `RUNNING` status by checking the `FlinkDeployment` custom resource.
-
-   ```yaml
-   status:
-     jobManagerDeploymentStatus: READY
-     jobStatus:
-       state: RUNNING
-   ```
-
-2. Set the following values in the `FlinkDeployment` custom resource:
-
-   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
-
-   b. Set the value of `spec.job.state` to `running`.
-
-   c. Set the value of `spec.job.savepointTriggerNonce` to an integer that has never been used before for that option.
-
-   For example:
-
-
-   ```yaml
-   job:
-     jarURI: local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar
-     args: []
-     savepointTriggerNonce: <integer value>
-     state: running
-     upgradeMode: savepoint
-   ```
-
-   d. Save the changes in the `FlinkDeployment` custom resource.
-
-   A savepoint is triggered and written to a location in the PVC, which is indicated in the `status.jobStatus.savepointInfo.lastSavepoint.location` field of the `FlinkDeployment` custom resource.
-
-   For example:
-
-   ```yaml
-   status:
-     [...]
-     jobStatus:
-       [...]
-       savepointInfo:
-         [...]
-         lastSavepoint:
-           formatType: CANONICAL
-           location: 'file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e'
-           timeStamp: 1733957991559
-           triggerNonce: 1
-           triggerType: MANUAL
-   ```
-
-3. Keep the `FlinkDeployment` custom resource and the PVC to make them available later for restoring your deployment.
-
 ## Stop a Flink job with a savepoint
+
+You can temporarily stop a running Flink job while capturing its current state by creating a savepoint, and allowing you to restart the job from the exact point where it stopped by using the savepoint when required.
 
 1. Edit the `FlinkDeployment` custom resource.
 
 2. Make the following modifications:
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `suspended` to stop the Flink job.
+   b. Set that the value of `spec.job.state` to `suspended` to stop the Flink job.
 
    ```yaml
    spec:
@@ -334,18 +282,19 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
            triggerType: UPGRADE
    ```
 
-## Resume a Flink job with a savepoint
+## Resume a suspended Flink job
 
-1. Edit the `FlinkDeployment` custom resource that you saved earlier when you [triggered a savepoint](#trigger-a-savepoint-for-a-running-flink-job) or the custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
+You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.
 
+1. Edit the `FlinkDeployment` custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
 
-   a. Ensure that the value of `spec.job.upgradeMode` is `savepoint`.
+   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Ensure that the value of `spec.job.state` is `running` to resume the Flink job.
+   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Remove `spec.job.savepointTriggerNonce` and its value.
 
-   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location found as described in step 2.d during [savepoint triggering](./#trigger-a-savepoint-for-a-running-flink-job) or in step 3 if you [suspended](./#stop-a-flink-job-with-a-savepoint) the job, plus the suffix `/_metadata`.
+   d. Set the value of `spec.job.initialSavepointPath` to the savepoint location found as described in step 3 of [suspended](./#stop-a-flink-job-with-a-savepoint) the job.
 
    For example:
 
@@ -355,7 +304,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
      args: []
      state: running
      upgradeMode: savepoint
-     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e/_metadata
+     initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-e372fa-9069a1c0563e
      allowNonRestoredState: true
    ```
 

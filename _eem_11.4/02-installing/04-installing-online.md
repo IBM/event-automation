@@ -80,19 +80,69 @@ Before installing an operator, decide whether you want the operator to:
 
   To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances in any other namespace.
 
-## Decide version control and catalog source
+  **Note:** Installing different versions of {{site.data.reuse.eem_name}} in different namespaces on the same cluster is not supported. 
 
-Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Selecting how the catalog source is added will determine the versions you receive.
+## Creating the catalog sources
 
-Consider how you want to control your deployments, whether you want to install specific versions, and how you want to receive updates.
+Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Two options are available for creating your {{site.data.reuse.eem_name}} catalog sources:
 
-- Latest versions: You can install the latest versions of all operators from the IBM Operator Catalog as described in [adding latest versions](#adding-latest-versions). This means that every deployment will always have the latest versions made available, and you cannot specify which version is installed. In addition, upgrades to latest versions are automatic and provided when they become available. This path is more suitable for development or proof of concept deployments.
+1. Specify the {{site.data.reuse.eem_name}} version that you want available in your cluster by downloading the Container Application Software for Enterprises (CASE) files for that version. This option is suitable for production deployments where you want to control what versions are available and when upgrades are applied. See [Add specific version sources for production environments (CASE)](#add-specific-version-sources-for-production-environments-case).
 
-- Specific versions: You can control the version of the operator and instances that are installed by downloading specific Container Application Software for Enterprises (CASE) files as described in [adding specific versions](#adding-specific-versions). This means you can specify the version you deploy, and only receive updates when you take action manually to do so. This is often required in production environments where the deployment of any version might require it to go through a process of validation and verification before it can be pushed to production use.
+2. Add the IBM Operator Catalog to your cluster to make the latest version of {{site.data.reuse.eem_name}} available in your cluster and for updates to be applied automatically. This option is suitable for nonproduction deployments where you always want to be on the latest version and are not concerned about an unexpected outage when {{site.data.reuse.eem_name}} is updated automatically. See [Add auto-updating sources for development or test environments (IBM Operator Catalog)](#add-auto-updating-sources-for-development-or-test-environments-ibm-operator-catalog).
 
-### Adding latest versions
 
-**Important:** Use this method of installation only if you want your deployments to always have the latest version and if you want upgrades to always be automatic.
+### Add specific version sources for production environments (CASE)
+
+Before you can install the required operator versions and use them to create instances of the {{site.data.reuse.eem_manager}}, make their catalog source available in your cluster as described in the following steps.
+
+**Note:** This procedure must be done by using the CLI.
+
+1. Before you begin, ensure that you have the following set up for your environment:
+
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
+   - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After the plug-in is installed, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
+
+   ```shell
+   oc ibm-pak --help
+   ```
+
+2. Run the following command to download, validate, and extract the latest CASE version.
+
+   ```shell
+   oc ibm-pak get ibm-eventendpointmanagement 
+   ```
+
+   **Note:** To install an earlier version of {{site.data.reuse.eem_name}}, add the argument: `--version <case-version>`. See the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) to identify the CASE version that corresponds to your required {{site.data.reuse.eem_name}} version.
+
+3. Generate mirror manifests by running the following command:
+
+   ```shell
+   oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement icr.io 
+   ```
+ 
+   The previous command generates the following files based on the target internal registry provided:
+
+   - catalog-sources.yaml
+   - catalog-sources-linux-`<arch>`.yaml (if there are architecture-specific catalog sources)
+   - image-content-source-policy.yaml
+   - images-mapping.txt
+
+4. Apply the catalog sources for the operator to the cluster by running the following command:
+
+   ```shell
+   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
+   ```
+
+   Where `<case-version>` is the version of the CASE that you want to install. Refer to the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) to identify the CASE version that corresponds to the {{site.data.reuse.eem_name}} version that you want to install.
+
+The above steps add the catalog source for {{site.data.reuse.eem_name}}, making the operator available to install.
+
+Install the operator by using the [OpenShift web console](#installing-by-using-the-web-console) or the [CLI](#installing-by-using-the-command-line).
+
+
+### Add auto-updating sources for development or test environments (IBM Operator Catalog)
+
+**Important:** Use this method of installation only if you want {{site.data.reuse.eem_name}} updates to be applied automatically when they become available.
 
 Before you can install the latest operators and use them to create instances of the {{site.data.reuse.eem_manager}}, make the IBM Operator Catalog available in your cluster.
 
@@ -129,7 +179,7 @@ To add the IBM Operator Catalog:
           interval: 45m
    ```
 
-   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add a specific version](#adding-specific-versions) of the CASE bundle, and install the operator by using the [CLI](#install-the-operator-by-using-the-cli-oc-ibm-pak).
+   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a specific version use a [CASE bundle](#add-specific-version-sources-for-production-environments-case) instead of the IBM Operator catalog.
 
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
@@ -144,66 +194,12 @@ Alternatively, you can add the catalog source through the OpenShift web console 
 2. Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag-and-drop the YAML files into the editor.
 3. Select **Create**.
 
-This adds the catalog source for {{site.data.reuse.eem_name}} to the OperatorHub catalog, making the operator available to install.
+The above steps add the catalog source for {{site.data.reuse.eem_name}} to the OperatorHub catalog, making the operator available to install.
 
-### Adding specific versions
-
-
-**Important:** Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.
-
-Before you can install the required operator versions and use them to create instances of the {{site.data.reuse.eem_manager}}, make their catalog source available in your cluster as described in the following steps.
-
-**Note:** This procedure must be performed by using the CLI.
-
-1. Before you begin, ensure that you have the following set up for your environment:
-
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
-   - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
-
-   ```shell
-   oc ibm-pak --help
-   ```
-
-2. Run the following command to download, validate, and extract the latest CASE version.
-
-   ```shell
-   oc ibm-pak get ibm-eventendpointmanagement 
-   ```
-
-   **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
-
-3. Generate mirror manifests by running the following command:
-
-   ```shell
-   oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement icr.io
-   ```
-
-   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
-
-   The previous command generates the following files based on the target internal registry provided:
-
-   - catalog-sources.yaml
-   - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
-   - image-content-source-policy.yaml
-   - images-mapping.txt
-
-4. Apply the catalog sources for the operator to the cluster by running the following command:
-
-   ```shell
-   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
-   ```
-
-   Where `<case-version>` is the version of the CASE you want to install.
-
-This adds the catalog source for the {{site.data.reuse.eem_name}} making the operator available to install.
-You can install the operator by using the [OpenShift web console](#installing-by-using-the-web-console) or the [CLI](#installing-by-using-the-command-line).
 
 ## Install the {{site.data.reuse.eem_name}} operator
 
 Follow the instructions to install the {{site.data.reuse.eem_name}} operator.
-
-**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific version](#adding-specific-versions) and install the {{site.data.reuse.eem_name}} operator by using the [CLI](#installing-by-using-the-command-line).
-
 
 ### Installing by using the web console
 
@@ -216,7 +212,8 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 5. Click the **Install** button to open the **Install Operator** dashboard.
 6. Select the chosen [installation mode](#choose-the-operator-installation-mode) that suits your requirements.
    If the installation mode is **A specific namespace on the cluster**, select the target namespace you created previously.
-7. Click **Install** to begin the installation.
+7. Set **Update approval** to **Automatic**.
+8. Click **Install** to begin the installation.
 
 The installation can take a few minutes to complete.
 
@@ -263,6 +260,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    ```shell
    oc apply -f operator-group.yaml
    ```
+   <!-- Does user need to do this if installing in openshift-operators? -->
 
 3. Create a `Subscription` for the {{site.data.reuse.eem_name}} operator as follows:
    
@@ -276,7 +274,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
      namespace: <target-namespace>
    spec:
      channel: <current-channel>
-     installPlanApproval: <install-plan-approval>
+     installPlanApproval: Automatic
      name: ibm-eventendpointmanagement
      source: <catalog-source-name>
      sourceNamespace: openshift-marketplace
@@ -285,9 +283,8 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    Where:
 
    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.eem_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
-   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }})).
-   - `<install-plan-approval>` is the user approval policy for an InstallPlan. Value must be either `Automatic` or `Manual`.
-   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventendpointmanagement` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
+   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }})). For example "v11.4".
+   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventendpointmanagement-catalog` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
 
    b. Save the file as `subscription.yaml`.
 

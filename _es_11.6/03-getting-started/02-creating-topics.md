@@ -35,7 +35,7 @@ In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes t
 
 **Note:** To view all configuration options you can set for topics, set **Show all available options** to **On**.
 
-**Note:** Kafka supports additional [topic configuration](https://kafka.apache.org/38/documentation/#topicconfigs){:target="_blank"} settings. Enable **Show all available options** to access more detailed configuration settings if required.
+**Note:** Kafka supports additional [topic configuration](https://kafka.apache.org/39/documentation/#topicconfigs){:target="_blank"} settings. Enable **Show all available options** to access more detailed configuration settings if required.
 
 ## By using the CLI
 
@@ -65,7 +65,7 @@ In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes t
 kubectl es topic-create --help
 ```
 
-Kafka supports additional [topic configuration](https://kafka.apache.org/38/documentation/#topicconfigs){:target="_blank"} settings. Extend the topic creation command with one or more `--config <property>=<value>` properties to apply additional configuration settings. The following additional properties are currently supported:
+Kafka supports additional [topic configuration](https://kafka.apache.org/39/documentation/#topicconfigs){:target="_blank"} settings. Extend the topic creation command with one or more `--config <property>=<value>` properties to apply additional configuration settings. The following additional properties are currently supported:
 
 * cleanup.policy
 * compression.type

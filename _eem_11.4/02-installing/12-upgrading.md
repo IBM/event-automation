@@ -75,12 +75,12 @@ If your existing Subscription is already on the v11.4 channel, your upgrade is a
 
 ### Making new catalog source available
 
-Before you can upgrade, make the catalog source for the target version available in your cluster. The procedure depends on how you set up [version control](../installing/#decide-version-control-and-catalog-source) for your deployment:
+Before you can upgrade, make the catalog source for the target version available in your cluster. The procedure depends on how you created the [catalog sources](../installing/#creating-the-catalog-sources) for your deployment:
 
 - Latest versions: If your catalog source is the IBM Operator Catalog, the latest versions are always available when published, and you do not have to make new catalog sources available.
 
 - Specific versions: If you used the CASE bundle to install the catalog source for a previous version, you must download and use a new CASE bundle for your target version.
-  - If you used the CASE bundle for an online installation, [apply the new catalog source](../installing/#adding-specific-versions) to update the `CatalogSource`.
+  - If you used the CASE bundle for an online installation, [apply the new catalog source](../installing/#add-specific-version-sources-for-production-environments-case) to update the `CatalogSource`.
   - If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
   - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It eventually reflects the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`:
     - In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is displayed under `Installed Operators`. 

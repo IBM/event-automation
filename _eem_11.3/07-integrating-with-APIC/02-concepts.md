@@ -86,6 +86,8 @@ An attribute of a [Product](#product). Used to offer different levels of service
 
 **Note:** Currently, there is no direct equivalent concept in {{site.data.reuse.eem_name}} when not integrated with {{site.data.reuse.apic_short}}.
 
+**Important:** Rate limits associated with a Plan in {{site.data.reuse.apic_short}} are **not** [enforced](#enforced-api) by the {{site.data.reuse.egw}}. Instead, you can configure a Quota [policy](#policy) in {{site.data.reuse.eem_name}} to enable event-specific rate limiting capabilities for [producing](../../describe/option-controls#quota-produce) or [consuming](../../describe/option-controls#quota-consume) applications.
+
 ### Lifecycle
 
 An {{site.data.reuse.apic_short}} [Product](#product), and all the [APIs](#api) it contains, is managed under a single lifecycle. For a full description of the Product lifecycle, including state transitions, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=products-product-lifecycle){:target="_blank"}. Any [exported AsyncAPI document](../generate-asyncapi/) from {{site.data.reuse.eem_name}} representing an [event endpoint](../../about/key-concepts/#event-endpoint) can be included in a Product, and therefore go through the same Product lifecycle.

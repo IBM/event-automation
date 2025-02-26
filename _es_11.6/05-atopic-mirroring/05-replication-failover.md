@@ -123,7 +123,7 @@ When processing messages from the destination cluster, select one of the followi
 * If you are using MirrorMaker 2.0, set the `sync.group.offsets.enabled = true` to have MirrorMaker's `CheckPointConnector` update the consumer offsets table in the target cluster. When switched across to the new cluster, the consumers will then automatically continue from the correct offsets. 
 * If using the geo-replication feature, configure your consumer application to use the checkpoints and start consuming from an offset that is equivalent to the last committed offset on the origin cluster. 
 
-If your application is written in Java, you can use Kafka's [RemoteClusterUtils](https://kafka.apache.org/38/javadoc/org/apache/kafka/connect/mirror/RemoteClusterUtils.html){:target="_blank"} class to provide the `translateOffsets()` utility method and retrieve the destination cluster offsets for a consumer group from the checkpoints topic. You can then use the `KafkaConsumer.seek()` method to override the offsets that the consumer will use on the next `poll`.
+If your application is written in Java, you can use Kafka's [RemoteClusterUtils](https://kafka.apache.org/39/javadoc/org/apache/kafka/connect/mirror/RemoteClusterUtils.html){:target="_blank"} class to provide the `translateOffsets()` utility method and retrieve the destination cluster offsets for a consumer group from the checkpoints topic. You can then use the `KafkaConsumer.seek()` method to override the offsets that the consumer will use on the next `poll`.
 
 For example, the following Java code snippet will update the `example-group` consumer group offset from the `origin-cluster` cluster to the destination cluster equivalent:
 

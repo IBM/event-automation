@@ -55,7 +55,7 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
     <dependency>
         <groupId>io.apicurio</groupId>
         <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
-        <version>2.6.5.Final</version>
+        <version>2.6.8.Final</version>
     </dependency>
     ```
 

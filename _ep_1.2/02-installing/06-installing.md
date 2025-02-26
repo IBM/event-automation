@@ -84,29 +84,102 @@ Before installing an operator, decide whether you want the operator to:
 
   To use this option, select `A specific namespace on the cluster` later. The operator will be deployed into the specified namespace, and will not be able to manage instances in any other namespace.
 
-**Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
+**Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources. Running different versions of {{site.data.reuse.ep_name}} in different namespaces on the same cluster is not supported, except during upgrade where it is necessary to upgrade each namespace sequentially.
 
-## Decide version control and catalog source
+## Creating the catalog sources
 
-Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Selecting how the catalog source is added will determine the versions you receive.
+Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Two options are available for creating your catalog sources:
 
-Consider how you want to control your deployments, whether you want to install specific versions, and how you want to receive updates.
+1. Specify the {{site.data.reuse.ep_name}} version that you want available in your cluster by downloading the Container Application Software for Enterprises (CASE) files for that version. This option is suitable for production deployments where you want to control what versions are available and when upgrades are applied. For more information, see [Add specific version sources for production environments (CASE)](#add-specific-version-sources-for-production-environments-case).
 
-- Latest versions: You can install the latest versions of all operators from the IBM Operator Catalog as described in [adding latest versions](#adding-latest-versions). This means that every deployment will always have the latest versions made available, and you cannot specify which version is installed. In addition, upgrades to latest versions are automatic and provided when they become available. This path is more suitable for development or proof of concept deployments.
+2. Add the IBM Operator Catalog to your cluster to make the latest versions of {{site.data.reuse.ep_name}} and Flink available in your cluster and for updates to be applied automatically. This option is suitable for nonproduction deployments where you always want to be on the latest version and are not concerned about an unexpected outage when {{site.data.reuse.ep_name}} and Flink are updated automatically. For more information, see [Add auto-updating sources for development or test environments (IBM Operator Catalog)](#add-auto-updating-sources-for-development-or-test-environments-ibm-operator-catalog).
 
-- Specific versions: You can control the version of the operator and instances that are installed by downloading specific Container Application Software for Enterprises (CASE) files as described in [adding specific versions](#adding-specific-versions). This means you can specify the version you deploy, and only receive updates when you take action manually to do so. This is often required in production environments where the deployment of any version might require it to go through a process of validation and verification before it can be pushed to production use.
 
-### Adding latest versions
+### Add specific version sources for production environments (CASE)
 
-**Important:** Use this method of installation only if you want your deployments to always have the latest version and if you want upgrades to always be automatic.
+Before you can install the required operator versions, make their catalog source available in your cluster as described in the following steps.
 
-Before you can install the latest operators and use them to create instances of Flink and {{site.data.reuse.ep_name}}, make the IBM Operator Catalog available in your cluster.
+**Note:** This procedure must be done by using the CLI.
 
-If you have other IBM products that are installed in your cluster, then you might already have the IBM Operator Catalog available. If it is configured for automatic updates as described in the following section, it already contains the required operators, and you can skip the deployment of the IBM Operator Catalog.
+1. Install the [IBM Catalog Management plug-in for IBM Cloud Paks](https://github.com/IBM/ibm-pak#readme){:target="_blank"} plug-in. Run the following command to confirm that the plug-in is installed:
 
-If you are installing the {{site.data.reuse.ibm_flink_operator}} or the {{site.data.reuse.ep_name}} operator as the first IBM operator in your cluster, to make the operators available in the OpenShift OperatorHub catalog, create the following YAML file and apply it as follows.
+   ```shell
+   oc ibm-pak --help
+   ```
 
-To add the IBM Operator Catalog:
+2. Run the following command to download, validate, and extract the latest CASE version.
+
+   - For {{site.data.reuse.ibm_flink_operator}}:
+
+     ```shell
+     oc ibm-pak get ibm-eventautomation-flink --version <case-version>
+     ```
+  
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+     ```
+
+   - For {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc ibm-pak get ibm-eventprocessing --version <case-version>
+     ```
+
+     Where `<case-version>` is the version of the CASE you want to install. For example:
+
+     ```shell
+     oc ibm-pak get ibm-eventprocessing --version 1.2.4
+     ```
+
+   **Note:** To install the latest version, omit the `--version <case-version>` argument. See the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}) to identify the CASE version that corresponds to your required {{site.data.reuse.ep_name}} version.
+
+3. Generate mirror manifests by running the following command:
+
+   - For {{site.data.reuse.ibm_flink_operator}}:
+
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink icr.io
+     ```
+
+   - For {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc ibm-pak generate mirror-manifests ibm-eventprocessing icr.io
+     ```
+ 
+   The previous command generates the following files based on the target internal registry provided:
+
+   - catalog-sources.yaml
+   - catalog-sources-linux-`<arch>`.yaml (if there are architecture-specific catalog sources)
+   - image-content-source-policy.yaml
+   - images-mapping.txt
+
+4. Apply the catalog sources for the operators to the cluster by running the following command:
+
+   - For {{site.data.reuse.ibm_flink_operator}}:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources.yaml
+     ```
+
+   - For {{site.data.reuse.ep_name}}:
+
+     ```shell
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources.yaml
+     ```
+
+   Where `<case-version>` is the version of the CASE that you want to install. Refer to the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}) to identify the CASE version that corresponds to the {{site.data.reuse.ep_name}} version that you want to install.
+
+
+### Add auto-updating sources for development or test environments (IBM Operator Catalog)
+
+**Important:** Use this method of installation only if you want {{site.data.reuse.ep_name}} and Flink updates to be applied automatically when they become available.
+
+**Note:** If you have other IBM products installed in your cluster, the IBM Operator Catalog might already be available. If it is configured for automatic updates as described in the following section, it already contains the required operators, and you can skip deploying the IBM Operator Catalog.
+
+If you are installing the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} operator as the first IBM operators in your cluster, then follow these steps to make the operators available in the OpenShift OperatorHub catalog.
 
 1. Create a file for the IBM Operator Catalog source with the following content, and save as `ibm_catalogsource.yaml`:
 
@@ -135,7 +208,7 @@ To add the IBM Operator Catalog:
           interval: 45m
    ```
 
-   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a fixed version, [add specific versions](#adding-specific-versions) of the CASE bundle, and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
+   **Important:** Other factors such as Subscription might enable the automatic updates of your deployments. For tight version control of your operators or to install a specific version, use a [CASE bundle](#add-specific-version-sources-for-production-environments-case) instead of the IBM Operator catalog.
 
 2. {{site.data.reuse.openshift_cli_login}}
 3. Apply the source by using the following command:
@@ -150,99 +223,7 @@ Alternatively, you can add the catalog source through the OpenShift web console 
 2. Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag-and-drop the YAML files into the editor.
 3. Select **Create**.
 
-This adds the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} to the OperatorHub catalog, making these operators available to install.
-
-### Adding specific versions
-
-**Important:** Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.
-
-Before you can install the required operator versions and use them to create instances of Flink and {{site.data.reuse.ep_name}}, make their catalog source available in your cluster as described in the following sections.
-
-**Note:** This procedure must be performed by using the CLI.
-
-1. Before you begin, ensure that you have the following set up for your environment:
-
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}.
-   - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
-
-   ```shell
-   oc ibm-pak --help
-   ```
-
-2. Run the following command to download, validate, and extract the CASE:
-
-   - For {{site.data.reuse.ibm_flink_operator}}:
-
-     ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version <case-version>
-     ```
-  
-     Where `<case-version>` is the version of the CASE you want to install. For example:
-
-     ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
-     ```
-
-   - For {{site.data.reuse.ep_name}}:
-
-     ```shell
-     oc ibm-pak get ibm-eventprocessing --version <case-version>
-     ```
-
-     Where `<case-version>` is the version of the CASE you want to install. For example:
-
-     ```shell
-     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
-     ```
-
-3. Generate mirror manifests by running the following command:
-
-   - For {{site.data.reuse.ibm_flink_operator}}:
-
-     ```shell
-     oc ibm-pak generate mirror-manifests ibm-eventautomation-flink icr.io
-     ```
-
-   - For {{site.data.reuse.ep_name}}:
-
-     ```shell
-     oc ibm-pak generate mirror-manifests ibm-eventprocessing icr.io
-     ```
-
-   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
-
-   The previous command generates the following files based on the target internal registry provided:
-
-   - catalog-sources.yaml
-   - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
-   - image-content-source-policy.yaml
-   - images-mapping.txt
-
-4. Apply the catalog sources for the operator to the cluster by running the following command:
-
-   - For {{site.data.reuse.ibm_flink_operator}}:
-
-     ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/catalog-sources.yaml
-     ```
-     Where `<case-version>` is the version of the CASE you want to install. For example:
-
-     ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources.yaml
-     ```
-
-   - For {{site.data.reuse.ep_name}}:
-
-     ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/catalog-sources.yaml
-     ```
-     Where `<case-version>` is the version of the CASE you want to install. For example:
-
-     ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources.yaml
-     ```
-
-This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.
+These steps add the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} operator to the OperatorHub catalog, making these operators available to install.
 
 ## Install the operators
 
@@ -250,8 +231,6 @@ This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and 
 
 - {{site.data.reuse.ibm_flink_operator}}
 - {{site.data.reuse.ep_name}}
-
-**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 ### Installing the {{site.data.reuse.ibm_flink_operator}}
 
@@ -345,7 +324,8 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
      name: ibm-eventautomation-flink
      namespace: <target-namespace>
    spec:
-     channel: <current_channel>
+     channel: <current-channel>
+     installPlanApproval: Automatic
      name: ibm-eventautomation-flink
      source: <catalog-source-name>
      sourceNamespace: openshift-marketplace
@@ -354,7 +334,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    Where:
 
    - `<target-namespace>` is the namespace where you want to install the {{site.data.reuse.ibm_flink_operator}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
-   - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }})).
+   - `<current-channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }})).
    - `<catalog-source-name>` is the name of the catalog source that was created for this operator. This is `ibm-eventautomation-flink` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
 
    b. Save the file as `subscription.yaml`.

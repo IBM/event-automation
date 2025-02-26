@@ -28,9 +28,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.5.0
-- Event Endpoint Management 11.3.0
-- Event Processing 1.2.0
+- {{site.data.reuse.es_name}} 11.5.0
+- {{site.data.reuse.eem_name}} 11.4.2
+- {{site.data.reuse.ep_name}} 1.2.0
 
 ## Instructions
 
@@ -98,13 +98,13 @@ The next step is to bring the stream of events you discovered in the catalog int
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-configure.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial1-configure.png "connection details for the event source")
     
 
-   In {{site.data.reuse.ep_name}}, paste the server address in the **Server** field that you copied from {{site.data.reuse.eem_name}} in the previous step.
+   In {{site.data.reuse.ep_name}}, paste the server address in the **Bootstrap server** field that you copied from {{site.data.reuse.eem_name}} in the previous step.
 
 1. Generate access credentials for accessing this stream of events from the {{site.data.reuse.eem_name}} page.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-8.png "getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-8.png "getting the credentials to use")
 
-    Click **Generate access credentials** at the top of the page, and provide your contact details.
+    Click **Subscribe**, and provide your contact details.
 
     **Did you know?** Providing your contact details allows the owner of the topic to know who is accessing their stream of events.
 

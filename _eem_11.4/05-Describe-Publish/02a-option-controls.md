@@ -75,7 +75,7 @@ To approve or reject requests, complete the following steps.
 
 When a request is approved, the viewer can make a new subscription.
 
-### ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") Mutual TLS
+### ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Mutual TLS
 {: #mtls}
 
 
@@ -251,7 +251,7 @@ To add the quota enforcement control to an option, complete the following steps.
 
    **Note:** You can set either one or both of the values, and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas.
    
-   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
+   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
     
    The gateway enforces the quota by monitoring the use per connection and enforcing a throttle delay that brings the clients usage under the given quota. This can result in spiky behavior during periods of high load which you should take into consideration when you choose the value for your quotas. 
 
@@ -332,7 +332,7 @@ To add the quota enforcement control to an option, complete the following steps.
 
    **Note:** You can set either one or both of the values and the gateway will pause a client connection for a duration based upon the most restrictive of the two quotas.
 
-   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
+   ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In version 11.4.1 and later, if quotas are enabled on the remote Kafka cluster, any throttling applied by the Kafka broker will be considered when determining the most restrictive quota.
 
    The gateway enforces the quota by monitoring the use per connection and pausing the socket for that connection for a delay that brings the clients usage under the given quota. This can result in spiky behavior during periods of high load which you should take into consideration when you choose the value for your quotas.  
 

@@ -10,6 +10,7 @@ The following enrichment nodes are available in {{site.data.reuse.ep_name}}:
 
 - [Database](#enrichment-from-a-database)
 - [API](#enrichment-from-an-api)
+- ![Event Processing 1.3.1 icon]({{ 'images' | relative_url }}/1.3.1.svg "In Event Processing 1.3.1 and later.") [watsonx.ai](#watsonx-node)
 
 ## Enrichment from a database
 
@@ -226,3 +227,83 @@ To configure an API node, complete the following steps:
    **Note:** To rename properties, hover over a property, and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}.
 
 1. Click **Configure** to complete the configuration.
+
+## Enrichment from watsonx.ai text generation services
+{: #watsonx-node}
+
+![Event Processing 1.3.1 icon]({{ 'images' | relative_url }}/1.3.1.svg "In Event Processing 1.3.1 and later.") In situations where the data in the source table might not offer significant insights on its own, you can use the watsonx.ai node to enrich the events by generating AI-powered responses by using foundation models. It enables dynamic calls to IBM watsonx.ai APIs as part of the event flow, bringing contextual, language-based intelligence into your processing. Currently, the watsonx.ai node supports only watsonx.ai on IBM Cloud and is limited to text generation services.
+
+With the watsonx.ai node, you can perform text generation services such as:
+
+- Summarize unstructured text data for easier analysis.
+- Generate personalized responses in real-time for customer interactions.
+- Extract key insights or categorize events based on their content.
+- Perform sentiment analysis to determine the emotional tone of text data.
+
+**Note:** {{site.data.reuse.ep_name}} can be configured to connect to [watsonx platform](../../installing/configuring#configuring-ssl-for-api-server-database-and-schema-registry). Contact your system administrator if you encounter issues while configuring the watsonx.ai node to communicate with watsonx services.
+
+### Prerequisites
+
+- Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
+
+  1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai.
+
+     **Tip:** A prompt is an input that guides AI models to generate responses. For tips on crafting effective prompts, see [prompt tips](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-tips){:target="_blank"}.
+
+  1. [Configure](https://www.ibm.com/docs/en/watsonx/saas?topic=lab-building-reusable-prompts#creating-prompt-variables){:target="_blank"} prompt variables, select the model and modify model parameters as needed within Prompt Lab.
+
+     **Note:** At least one prompt variable must be configured.
+  1. [Save](https://www.ibm.com/docs/en/watsonx/saas?topic=lab-saving-prompts){:target="_blank"} your prompt as a prompt template.
+  1. [Deploy](https://www.ibm.com/docs/en/watsonx/saas?topic=assets-deploying-prompt-template){:target="_blank"} the prompt template to a [deployment space](https://www.ibm.com/docs/en/watsonx/saas?topic=assets-managing-deployment-spaces){:target="_blank"}.
+  1. After your prompt template is successfully deployed, open the deployed prompt and copy the URL in the **Text endpoint URL** field from the **Public endpoint** section. The text endpoint URL is required later when configuring the watsonx.ai node.
+
+     The watsonx.ai node supports text endpoint URLs with a serving name or a deployment ID.
+
+ 
+     **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}.
+
+- Ensure that you have an API key for your IBM Cloud account. You can create an API key by completing the following steps:
+
+  1. In your IBM Cloud account, go to the [API keys](https://cloud.ibm.com/iam/apikeys){:target="_blank"} page and click **Create**.
+
+  1. Enter a name for the API key and an optional description, then click **Create** again.
+
+  1. Copy the API key that you created as the key is required later when configuring the watsonx.ai node.
+
+  Alternatively, you can create API key for a service ID by following the instructions in the [IBM Cloud documentation](https://cloud.ibm.com/docs/account?topic=account-serviceidapikeys&interface=ui#create_service_key){:target="_blank"}.
+
+
+### Adding a watsonx.ai node
+
+To add a watsonx.ai node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+1. In the **Palette**, under **Enrichment**, drag the **watsonx.ai** node into the canvas.
+1. Connect the node to an event source by dragging the Output Port from a source node into the Input Port of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the node indicating that the node is yet to be configured.
+1. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+The **Configure watsonx.ai** window appears.
+
+### Configuring a watsonx.ai node
+
+To configure a watsonx.ai node, complete the following steps:
+
+1. In the **Details** section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.
+  
+   Click **Next**. The **watsonx.ai access** pane is displayed.
+
+1. Provide the API key you created and the public text endpoint URL of your watsonx.ai deployment.
+
+   Click **Next**. The **Map prompt variables** pane is displayed.
+
+1. You can view the prompt that you created in the watsonx.ai platform. In the **Variable mapping** section, configure the prompt variables by mapping them to input event properties or assigning constant values, and click **Next**.
+
+1. In the **Response properties** pane, properties returned from watsonx.ai text generation services are displayed. Add or remove the fields properties that you do not want to include further.
+
+   **Note:** Properties providing watsonx.ai generated values are marked with an AI tag and ensure not to remove those properties. To rename properties, hover over a property, and click the ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** icon.
+
+1. Click **Next**. The **Output properties** pane is displayed, which contains properties from the preceding node and the watsonx.ai properties that you selected in the previous step. Remove the fields that you do not want to include in the output.
+
+   **Note:** To rename properties, hover over a property, and click the ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** icon.
+
+Click **Configure** to complete the configuration.

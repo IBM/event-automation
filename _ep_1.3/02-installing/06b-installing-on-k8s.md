@@ -255,7 +255,7 @@ To deploy a Flink instance, run the following commands:
        spec:
          flinkConfiguration:
            license.use: <license-use-value>
-           license.license: L-KCVZ-JL5CRM
+           license.license: L-AUKS-FKVXVL
            license.accept: 'true'
       ```
       Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
@@ -275,7 +275,7 @@ To deploy a Flink instance, run the following commands:
         image: "<value-of-IBM_FLINK_IMAGE-env-var>"
         flinkConfiguration:
           license.use: <license-use-value>
-          license.license: L-KCVZ-JL5CRM
+          license.license: L-AUKS-FKVXVL
           license.accept: 'true'
       ```
 

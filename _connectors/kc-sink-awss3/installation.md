@@ -12,10 +12,12 @@ To use the {{page.connectorTitle}} {{page.categories}} connector, complete the f
 
    {{site.data.reuse.kafkaconnectStep1_newcontent}}
 
+   **Note:** The **Releases** page contains JAR files for multiple connectors, so ensure that you download the latest Amazon S3 sink connector JAR file.
+
 2. {{site.data.reuse.kafkaconnectStep3_newcontent}}  
 
 3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
    
-   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://github.com/Aiven-Open/s3-connector-for-apache-kafka?tab=readme-ov-file#configuration){:target="_blank"}.     
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://github.com/Aiven-Open/cloud-storage-connectors-for-apache-kafka/blob/main/s3-sink-connector/README.md#configuration){:target="_blank"}.     
 
 4. {{site.data.reuse.kafkaconnectStep6_newcontent}}

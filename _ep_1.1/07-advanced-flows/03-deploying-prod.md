@@ -240,9 +240,9 @@ You can temporarily stop a running Flink job while capturing its current state b
 
 2. Make the following modifications
 
-   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Set that the value of `spec.job.state` to `suspended` to stop the Flink job.
+   b. Set the value of `spec.job.state` to `suspended` to stop the Flink job.
 
    ```yaml
    spec:
@@ -265,9 +265,9 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Make the following modifications:
 
-   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
+   b. Set the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Ensure that the same directory is set for the parameters `spec.job.initialSavepointPath` and `spec.flinkConfiguration["state.savepoints.dir"]`.
 

@@ -116,7 +116,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    e. Copy the `statements.sql` file to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
 
-   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.17/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
@@ -128,12 +128,12 @@ Some adaptations to this procedure are required to build the Docker image and us
    apiVersion: flink.apache.org/v1beta1
    kind: FlinkDeployment
    metadata:
-   name: application-cluster-prod
+     name: application-cluster-prod
    spec:
      image: <image built FROM icr.io/cpopen/ibm-eventautomation-flink/ibm-eventautomation-flink>
      flinkConfiguration:
        license.use: EventAutomationProduction
-       license.license: 'L-KCVZ-JL5CRM'
+       license.license: 'L-AUKS-FKVXVL'
        license.accept: 'false'
        high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
        high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
@@ -159,12 +159,12 @@ Some adaptations to this procedure are required to build the Docker image and us
        security.ssl.keystore-password: <jks-password>
        security.ssl.key-password: <jks-password>
        kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
-   serviceAccount: flink
-   podTemplate:
-     apiVersion: v1
-     kind: Pod
-     metadata:
-       name: pod-template
+     serviceAccount: flink
+     podTemplate:
+       apiVersion: v1
+       kind: Pod
+       metadata:
+         name: pod-template
        spec:
          affinity:
            podAntiAffinity:
@@ -191,23 +191,23 @@ Some adaptations to this procedure are required to build the Docker image and us
            - name: flink-volume
              persistentVolumeClaim:
                claimName: ibm-flink-pvc
-   jobManager:
-     replicas: 2
-     resource:
-       memory: '4096m'
-       cpu: 0.5
-   taskManager:
-     resource:
-       memory: '4096m'
-       cpu: 2
-   job:
-     jarURI: <insert jar file name here>
-     args: ['<insert path for statements.sql here>']
-     parallelism: 1
-     state: running
-     upgradeMode: savepoint
-     allowNonRestoredState: true
-   mode: native
+     jobManager:
+       replicas: 2
+       resource:
+         memory: '4096m'
+         cpu: 0.5
+     taskManager:
+       resource:
+         memory: '4096m'
+         cpu: 2
+     job:
+       jarURI: <insert jar file name here>
+       args: ['<insert path for statements.sql here>']
+       parallelism: 1
+       state: running
+       upgradeMode: savepoint
+       allowNonRestoredState: true
+     mode: native
    ```
 
    **Note**: The Flink instance must be configured with persistent storage.
@@ -333,9 +333,9 @@ You can temporarily stop a running Flink job while capturing its current state b
 
 2. Make the following modifications:
 
-   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Set that the value of `spec.job.state` to `suspended` to stop the Flink job.
+   b. Set the value of `spec.job.state` to `suspended` to stop the Flink job.
 
    ```yaml
    spec:

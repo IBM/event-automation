@@ -22,6 +22,7 @@ sections:
     <h3>Event Streams</h3>
     <h4>11.6.1 - what's new:</h4>
     <ul>
+      <li>Support for Red Hat OpenShift Container Platform 4.18</li>
       <li>Kafka version upgraded to 3.9.0</li>
       <li>Apicurio version updated to 2.6.8.Final</li>
       <li>Security and bug fixes</li>
@@ -94,6 +95,13 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.3.1 - what's new:</h4>
+    <ul>
+      <li>Enrichment from watsonx.ai text generation services</li>
+      <li>Apache Flink updated to 1.20.1</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.18</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.3.0 - what's new:</h4>
     <ul>
       <li>Trigger savepoints with FlinkStateSnapshot custom resource</li>

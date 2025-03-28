@@ -85,7 +85,7 @@ To change the lifecycle state of an option, complete the following steps:
 1. After you make changes, click **Save**.
 1. To cancel changes, click **Cancel**.
 
-**Note:** **Archived** options automatically return to the **Unpublished** state when all subscribers have their [subscriptions removed](../managing-user-access-to-options#revoking-subscriptions) from using this option.
+**Note:** **Archived** options automatically return to the **Unpublished** state when all subscribers have their [subscriptions removed](../managing-user-access-to-topics#removing-subscriptions) from using this option.
 
 An option can be [edited](#edit_option) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
 

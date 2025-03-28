@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-2
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 2
+order: 3
 ---
 
 ## Transform

@@ -104,7 +104,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    oc patch subscription -n <namespace> ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
 <!-- This step can be commented out from releases that do not require license updates. -->
-4. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
+4. If you are upgrading from 11.3.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
@@ -122,7 +122,7 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
 6. Select the version number link in the **Update channel** section (for example, **v11.3**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v11.4**, and click **Save** on the **Change Subscription update channel** dialog.
 <!-- This step can be commented out from releases that do not require license updates. -->
-8. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
+8. If you are upgrading from 11.3.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
@@ -237,7 +237,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
    ```
 
 <!-- This step can be commented out from releases that do not require license updates. -->
-8. If you are upgrading from 11.3.x, then update the `spec.license.license` ID in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
+8. If you are upgrading from 11.3.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.4.0 and later. The instances will not upgrade until the license ID is updated.
 
 
 Where:

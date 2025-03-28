@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-4
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 4
+order: 5
 ---
 
 ## Interval join

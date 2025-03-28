@@ -14,7 +14,7 @@ You can use the signature to verify that the images came from IBM when they are 
 
 - Ensure that the following command-line tools are installed on your computer. On Linux systems, these images can typically be installed by using the package manager.
 
-  - [The OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.17/cli_reference/openshift_cli/getting-started-cli.html){:target="_blank"}
+  - [The OpenShift Container Platform CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}
   - [The IBM Catalog Management Plug-in for IBM Cloud Paks (ibm-pak)](https://github.com/IBM/ibm-pak-plugin/releases/latest){:target="_blank"}
   - [GNU Privacy Guard (GnuPG) version 2](https://gnupg.org/){:target="_blank"}
   - [Skopeo](https://github.com/containers/skopeo){:target="_blank"}

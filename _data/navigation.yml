@@ -70,7 +70,7 @@ latest_eemdocs:
       - title: "Planning your installation"
         url: /installing/planning/
       - title: "Installation overview"
-        url: "/installing/overview/"
+        url: /installing/overview/
       - title: "Installing the Manager in an online OpenShift environment"
         url: /installing/installing/
       - title: "Installing the Manager in an offline environment"
@@ -947,6 +947,10 @@ latest_epdocs:
         url: /troubleshooting/event-time-property
       - title: "Customized SQL queries with a `TIMESTAMP_LTZ` join condition fail to produce expected results"
         url: /troubleshooting/api-node-exported-sql-flink-120
+      - title: "Recover a Flink application deployment to restore to a specified state"
+        url: /troubleshooting/recover-flink-deployment
+      - title: "Job failure when deploying customized flows that contain API or watsonx.ai enrichment nodes"
+        url: /troubleshooting/error-submitting-job-for-enrichment
 
 120_epdocs:
   - title: About
@@ -1084,6 +1088,9 @@ latest_epdocs:
         url: /troubleshooting/no-main-key-backup/
       - title: "Incorrect event time property format causes Flink job to fail"
         url: /troubleshooting/event-time-property   
+      - title: "Job failure when deploying customized flows that contain API enrichment nodes"
+        url: /troubleshooting/error-submitting-job-for-enrichment
+
 
 110_epdocs:
   - title: About
@@ -1586,6 +1593,8 @@ latestdocs:
         url: /troubleshooting/fips-enabled-cluster-fails/
       - title: "OLM blocks upgrades to 11.6.x due to missing `v1beta1` version in `eventstreams` CRDs"
         url: /troubleshooting/crd-version-update-fails-eventstreams/
+      - title: "Unable to pause or stop geo-replication from the UI on the destination cluster with Keycloak authentication"
+        url: /troubleshooting/unable-to-pause-or-stop-geo-replication/
       
                 
 # Sidebar navigation for Event Streams 11.5 docs
@@ -1833,6 +1842,8 @@ latestdocs:
         url: /troubleshooting/cs-not-removed/
       - title: "Kafka pods fail to start in a FIPS-enabled OpenShift cluster"
         url: /troubleshooting/fips-enabled-cluster-fails/
+      - title: "Unable to pause or stop geo-replication from the UI on the destination cluster with Keycloak authentication"
+        url: /troubleshooting/unable-to-pause-or-stop-geo-replication/
 
 # Sidebar navigation for Event Streams 11.4 docs
 
@@ -2066,6 +2077,8 @@ latestdocs:
         url: /troubleshooting/mq-connector-fails/
       - title: "Upgrading to 11.4.x fails due to `inter.broker.protocol.version`"
         url: /troubleshooting/kafka-protocol-error/
+      - title: "Unable to pause or stop geo-replication from the UI on the destination cluster with Keycloak authentication"
+        url: /troubleshooting/unable-to-pause-or-stop-geo-replication/
 
 # Sidebar navigation for Event Streams 11.3 docs
 
@@ -2291,6 +2304,8 @@ latestdocs:
         url: /troubleshooting/georep-fails/
       - title: "Errors in IBM MQ connectors"
         url: /troubleshooting/mq-connector-fails/
+      - title: "Unable to pause or stop geo-replication from the UI on the destination cluster with Keycloak authentication"
+        url: /troubleshooting/unable-to-pause-or-stop-geo-replication/
 
 # Sidebar navigation for Event Streams 11.2 docs
 112docs:

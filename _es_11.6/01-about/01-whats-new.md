@@ -11,6 +11,9 @@ Find out what is new in {{site.data.reuse.es_name}} version 11.6.x.
 
 ## Release 11.6.1
 
+### Support for {{site.data.reuse.openshift}} 4.18
+
+{{site.data.reuse.es_name}} version 11.6.1 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.18.
 
 ### Apicurio version updated to 2.6.8.Final
 

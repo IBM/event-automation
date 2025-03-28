@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-3
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 3
+order: 4
 ---
 
 ## Aggregate

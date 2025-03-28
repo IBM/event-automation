@@ -128,7 +128,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    apiVersion: flink.apache.org/v1beta1
    kind: FlinkDeployment
    metadata:
-   name: application-cluster-prod
+     name: application-cluster-prod
    spec:
      image: <image built FROM icr.io/cpopen/ibm-eventautomation-flink/ibm-eventautomation-flink>
      flinkConfiguration:
@@ -159,12 +159,12 @@ Some adaptations to this procedure are required to build the Docker image and us
        security.ssl.keystore-password: <jks-password>
        security.ssl.key-password: <jks-password>
        kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
-   serviceAccount: flink
-   podTemplate:
-     apiVersion: v1
-     kind: Pod
-     metadata:
-       name: pod-template
+     serviceAccount: flink
+     podTemplate:
+       apiVersion: v1
+       kind: Pod
+       metadata:
+         name: pod-template
        spec:
          affinity:
            podAntiAffinity:
@@ -191,23 +191,23 @@ Some adaptations to this procedure are required to build the Docker image and us
            - name: flink-volume
              persistentVolumeClaim:
                claimName: ibm-flink-pvc
-   jobManager:
-     replicas: 2
-     resource:
-       memory: '4096m'
-       cpu: 0.5
-   taskManager:
-     resource:
-       memory: '4096m'
-       cpu: 2
-   job:
-     jarURI: <insert jar file name here>
-     args: ['<insert path for statements.sql here>']
-     parallelism: 1
-     state: running
-     upgradeMode: savepoint
-     allowNonRestoredState: true
-   mode: native
+     jobManager:
+       replicas: 2
+       resource:
+         memory: '4096m'
+         cpu: 0.5
+     taskManager:
+       resource:
+         memory: '4096m'
+         cpu: 2
+     job:
+       jarURI: <insert jar file name here>
+       args: ['<insert path for statements.sql here>']
+       parallelism: 1
+       state: running
+       upgradeMode: savepoint
+       allowNonRestoredState: true
+     mode: native
    ```
 
    In {{site.data.reuse.ep_name}} versions earlier than 1.2.3, select the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample.
@@ -334,9 +334,9 @@ You can temporarily stop a running Flink job while capturing its current state b
 
 2. Make the following modifications:
 
-   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Set that the value of `spec.job.state` to `suspended` to stop the Flink job.
+   b. Set the value of `spec.job.state` to `suspended` to stop the Flink job.
 
    ```yaml
    spec:
@@ -374,9 +374,9 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 1. Edit the `FlinkDeployment` custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
 
-   a. Set that the value of `spec.job.upgradeMode` to `savepoint`.
+   a. Set the value of `spec.job.upgradeMode` to `savepoint`.
 
-   b. Set that the value of `spec.job.state` to `running` to resume the Flink job.
+   b. Set the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Remove `spec.job.savepointTriggerNonce` and its value.
 

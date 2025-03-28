@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-1
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 1
+order: 2
 ---
 
 ## Filter

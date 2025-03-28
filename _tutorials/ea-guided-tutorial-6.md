@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-6
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 6
+order: 7
 ---
 
 <!-- **Note:** To follow the step-by-step instructions in this tutorial, you can watch the video or read the instructions on the page.

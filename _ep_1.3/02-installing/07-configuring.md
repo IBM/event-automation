@@ -225,7 +225,7 @@ Ensure that you have sufficient disk space for persistent storage.
 
 ### Dynamic provisioning
 
-If there is a [dynamic storage provisioner](https://docs.openshift.com/container-platform/4.17/storage/dynamic-provisioning.html){:target="_blank"} present on the system, {{site.data.reuse.ep_name}} can use it to dynamically provision the persistence.
+If there is a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/dynamic-provisioning){:target="_blank"} present on the system, {{site.data.reuse.ep_name}} can use it to dynamically provision the persistence.
 To configure this, set `spec.authoring.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml
@@ -650,7 +650,7 @@ spec:
 
 ## Configuring SSL for API server, database, and schema registry
 
-  Databases, such as PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
+Databases, such as PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
 
 Schema registry such as Apicurio registry in {{site.data.reuse.es_name}} can also be configured to SSL in {{site.data.reuse.ep_name}} and Flink.
 
@@ -661,6 +661,8 @@ If an API server, database, or a schema registry exposes a TLS encrypted endpoin
 To enable SSL connections to an API server, database, and a schema registry from {{site.data.reuse.ep_name}} and Flink, complete the following steps:
 
 1. Add the CA certificate used to issue the certificate presented by an API server, database, or a schema registry to a Java truststore.
+
+   Additionally, if you want to trust the recommended public CA certificates, include the public CA certificates to a Java truststore.
 2. Create a secret with the truststore.
 3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
 
@@ -672,9 +674,11 @@ To enable SSL connections to an API server, database, and a schema registry from
    For example, to obtain the certificate from an {{site.data.reuse.es_name}} schema registry, see the [{{site.data.reuse.es_name}} documentation]({{ 'es/schemas/using-with-rest-producer/' | relative_url }}).
 
    To retrieve the certificate from a REST endpoint of an API server, run the following command:
+
    ```shell
    openssl s_client -showcerts -connect <API_HOSTNAME>[:<PORT>] </dev/null 2>/dev/null|openssl x509 -outform PEM > /tmp/restServerCert.pem
    ```
+
 2. Add the certificate for the CA to the truststore by running the following command:
 
    ```shell
@@ -687,6 +691,25 @@ To enable SSL connections to an API server, database, and a schema registry from
    - `<path_to_ca_cert>` is the path to the CA certificate file that you want to import into the keystore.
 
    **Important:** If you use the `p12` format (not `jks`) for the API server, the whole certificate chain must be in the truststore (CA, intermediate CA and certificate).
+
+#### Add the public CA certificate to the truststore
+
+1. To obtain public CA certificates from a Java truststore, run the following command:
+
+
+   ```markdown
+   docker run --platform linux/amd64 --rm -v $(pwd):/temp us.icr.io/ea-dev/stable/base-images/java21:latest-ubi9 \
+   cp /usr/local/openjdk/lib/security/cacerts /temp/cacerts_truststore.jks
+   ```
+
+   **Note:** If you are using macOS, ensure that you do not run the command in the `/tmp` folder, as the docker does not mount `/tmp` folder as a volume by default.
+
+1. Add the obtained CA certificates to your truststore by running the following command:
+
+   ```shell
+   keytool -importkeystore -srckeystore $(pwd)/cacerts_truststore.jks -destkeystore ./truststore.jks --deststorepass <password> -noprompt
+   ``` 
+
 
 ### Create a secret with the truststore
 

@@ -132,11 +132,9 @@ You need an [API access token]({{ '/eem/security/api-tokens#creating-a-token' | 
 You need to be logged in to run `oc` commands to run the script.
 
 
-
 ## Accessing the tutorial environment
 
 Details of how to access the deployed tutorial environment can be found in [Accessing the tutorial environment](./tutorial-access) which includes how to find the URLs and the correct usernames and passwords to use.
-
 
 
 ## Deploying optional components
@@ -144,6 +142,18 @@ Details of how to access the deployed tutorial environment can be found in [Acce
 Some of the tutorials demonstrate how {{ site.data.reuse.ea_long }} can be used with other technologies. These are not deployed by default, so you need to run the following additional playbooks to follow those tutorials.
 
 The options for these are the same as for [deploying the default tutorial environment](#deploy-the-tutorial).
+
+### Monitoring
+
+To set up monitoring for Event Automation capabilities, (including installing the Grafana operator, and by using it to create a new deployment of Grafana):
+
+```sh
+ansible-playbook \
+    -e license_accept=<true if you accept the IBM EA license> \
+    -e ibm_entitlement_key=<your Entitled Registry key> \
+    -e eventautomation_namespace=event-automation \
+    install/supporting-demo-resources/monitoring/install.yaml
+```
 
 ### IBM MQ
 
@@ -182,6 +192,33 @@ ansible-playbook \
     -e eventautomation_namespace=event-automation \
     install/supporting-demo-resources/pgsql/install.yaml
 ```
+
+**Note:** The installation of the PostgreSQL database for the tutorials uses a Persistent Volume Claim (PVC). To create a database successfully by running the previous command, ensure that at least one storage class is installed on the cluster where you want to run the tutorials.
+
+### Kafka workload applications
+
+Follow these steps to create a Kafka topic, generate high-throughput traffic, and remove the associated resources.
+
+1. Run a high-throughput Kafka workload:
+
+	```sh
+	ansible-playbook \
+		-e license_accept=true \
+		-e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
+		-e eventautomation_namespace=event-automation \
+		install/supporting-demo-resources/kafka-workload/run.yaml
+	```
+    This command creates a new Kafka topic (`WORKLOAD`) and starts multiple Kafka producers and consumers by using the `WORKLOAD` topic for high-throughput traffic.
+
+1. After creating the Kafka topic and running the high-throughput Kafka workload, delete the resources used by the Kafka workload applications.
+
+	```sh
+	oc delete job        -n event-automation workload-producer
+	oc delete job        -n event-automation workload-consumer
+	oc delete configmap  -n event-automation workload-credentials
+	oc delete kafkauser  -n event-automation workload-apps
+	oc delete kafkatopic -n event-automation workload-topic
+	```
 
 ## Next step
 

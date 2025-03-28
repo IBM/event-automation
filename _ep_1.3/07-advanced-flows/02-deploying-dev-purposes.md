@@ -30,7 +30,7 @@ pattern node -->
   spec:
     flinkConfiguration:
       license.use: EventAutomationNonProduction
-      license.license: L-KCVZ-JL5CRM
+      license.license: L-AUKS-FKVXVL
       license.accept: 'true'
   ```
 

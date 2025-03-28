@@ -17,10 +17,10 @@ eem_name: "Event Endpoint Management"
 eem_current_version: "11.4.2"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.3.0"
+ep_current_version: "1.3.1"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.3.0"
+flink_operator_current_version: "1.3.1"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -227,7 +227,7 @@ task_openshift_select_instance_ep: "Select the **Event Processing** tab and sear
 ###############
 
 # {{site.data.reuse.node_step1}}
-node_step1: Ensure that a stream of events is available, from an Event Source node or from the output of any previously configured node.
+node_step1: Ensure that a stream of events is available, from an event source node or from the output of any previously configured node.
 
 # {{site.data.reuse.node_details}}
 node_details: In the **Details** section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.

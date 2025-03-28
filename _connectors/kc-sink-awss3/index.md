@@ -7,10 +7,10 @@ support: IBM
 type: kafkaConnect
 iconInitial: S3
 iconGradient: 3
-documentationURL: https://github.com/aiven/s3-connector-for-apache-kafka
+documentationURL: https://github.com/Aiven-Open/cloud-storage-connectors-for-apache-kafka/tree/main/s3-sink-connector
 download:
-  -  { type: 'Download', url: 'https://github.com/aiven/s3-connector-for-apache-kafka/releases' }
-  -  { type: 'GitHub', url: 'https://github.com/aiven/s3-connector-for-apache-kafka' }
+  -  { type: 'Download', url: 'https://github.com/Aiven-Open/cloud-storage-connectors-for-apache-kafka/releases' }
+  -  { type: 'GitHub', url: 'https://github.com/Aiven-Open/cloud-storage-connectors-for-apache-kafka/tree/main/s3-sink-connector' }
 categories:
   - Storage
 ---

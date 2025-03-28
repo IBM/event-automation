@@ -76,7 +76,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 
 | Field       | Type              | Description                                                                                                                |
 |-------------|-------------------|----------------------------------------------------------------------------------------------------------------------------|
-| annotations | map[string]string | The annotations to use in place of the [default ingress annotations](../installing/configuring/#ingress-default-settings). |
+| annotations | map[string]string | The annotations to use in place of the [default ingress annotations](../../installing/configuring/#ingress-default-settings). |
 | class       | string            | The ingress class name to use on the ingress resource, defaults to `nginx`.                                                |
 | host        | string            | The DNS resolvable hostname to set on the ingress endpoint.
 | name        | string            | The name of the endpoint being configured. For valid values, see the following important notes.                            |

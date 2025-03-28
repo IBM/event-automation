@@ -31,14 +31,14 @@ You can add the following controls to an option on a [consume-enabled](#consume)
    * [Redaction](../../describe/option-controls#redaction): Use a redaction control to hide sensitive data.
    * [Schema filtering](../../describe/option-controls#schema-filter): Use the schema filtering control to manage how the data in your event source is presented to consumers and to ensure consistency.
    * [Quota enforcement](../../describe/option-controls#quota-consume): Use the quota enforcement control to manage the rate at which data is consumed from your event source.
-   * ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") [Mutual TLS](../05-Describe-Publish/02a-option-controls.md#mutual-tls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+   * ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") [Mutual TLS](../../describe/option-controls#mtls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
 
 You can add the following controls to an option on a [produce-enabled](#produce) event source:
 
    * [Approval](../../describe/option-controls#approval-controls): Use the approval control to force users to request access to your event endpoint.
    * [Schema enforcement](../../describe/option-controls#schema-enforcement): Use the schema enforcement control to enforce the shape of data that is allowed to be produced to your event endpoint.
    * [Quota enforcement](../../describe/option-controls#quota-produce): Use the quota enforcement control to manage the rate at which data is produced to your event endpoint.
-   * [Mutual TLS](../05-Describe-Publish/02a-option-controls.md#mutual-tls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+   * [Mutual TLS](../../describe/option-controls#mtls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
 
 
 ## Consume
@@ -80,7 +80,7 @@ When {{site.data.reuse.egw}}s start, they join their defined {{site.data.reuse.e
 
 **Note:** A gateway instance can only be a member of one gateway group.
 
-**Important:** When removing a gateway deployment, work with [subscribed users](../../describe/managing-user-access-to-options) to ensure their clients are configured to work with another member of the same gateway group, so they can continue to consume your event source.
+**Important:** When removing a gateway deployment, work with [subscribed users](../../describe/managing-user-access-to-topics) to ensure their clients are configured to work with another member of the same gateway group, so they can continue to consume your event source.
 
 ## {{site.data.reuse.eem_manager}}
 

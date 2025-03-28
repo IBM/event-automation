@@ -94,6 +94,13 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.3.1 - what's new:</h4>
+    <ul>
+      <li>Enrichment from watsonx.ai text generation services</li>
+      <li>Apache Flink updated to 1.20.1</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.18</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.3.0 - what's new:</h4>
     <ul>
       <li>Trigger savepoints with FlinkStateSnapshot custom resource</li>

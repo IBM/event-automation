@@ -198,7 +198,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 
    Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target, and `<path-of-the-udf-jar>` is the path of the UDF jar, for instance `/udfproject/target/udf.jar`.
 
-3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.openshift.com/container-platform/4.17/openshift_images/managing_images/using-image-pull-secrets.html#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 4. Specify this image in the `spec.image` field of the Flink custom resource.
 

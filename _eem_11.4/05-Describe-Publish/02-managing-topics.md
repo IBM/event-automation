@@ -23,7 +23,7 @@ The details of your event source appear in three sections:
 
 - **Information**: This section displays all the event source information presented to a user when an option for this event source is [socialized in the catalog](../publishing-options).
 - **Options**: This section displays all the options created for this event source. Options can be provided or removed by [creating an option](#create_option) or [deleting an option](#deleting-an-option).
-- **Manage**: This section displays the current [lifecycle status](#option-lifecycle-states) of your options for this event source in {{site.data.reuse.eem_name}}, including [the ability for users to discover and subscribe to](../publishing-options) your option and [the current set of subscribed users of your option](../managing-user-access-to-options).
+- **Manage**: This section displays the current [lifecycle status](../managing-options/#option-lifecycle-states) of your options for this event source in {{site.data.reuse.eem_name}}, including [the ability for users to discover and subscribe to](../publishing-options) your option and [the current set of subscribed users of your option](../managing-user-access-to-topics).
 
 You can also [delete](#deleting-an-event-source) your event source from this page, or [import this event source for use with {{site.data.reuse.apic_long}}](../../integrating-with-apic/generate-asyncapi/).
 
@@ -44,6 +44,7 @@ To edit the event source details that represent a topic, complete the following 
 Refer to the following sections for more information about the fields that can be edited in **Overview information** and **Event Information**.
 
 ### Overview information
+{: #overview-information}
 
 You can edit the following information in this pane. Restrictions and validation checks ensure that each field meets the requirements for Kafka event sources.
 

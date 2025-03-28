@@ -133,6 +133,8 @@ For Flink:
 
 4. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying flows in [production environments](../../advanced/deploying-production), complete steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
+**Note:** If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying jobs in production environments by using the [Apache SQL Runner](../../advanced/deploying-production) or [by using customized jobs](../../advanced/deploying-customized), operator will automatically pause or resume a job by using the snapshot during the upgrade. 
+
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
 
 ### Upgrading Subscription by using the web console
@@ -163,6 +165,8 @@ For Flink:
 6. Select the version number in the **Update channel** section (for example, **v1.1**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v1.3**, and click the **Save** button on the **Change Subscription update channel** dialog.
 8. If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying flows in [production environments](../../advanced/deploying-production), complete steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+
+**Note:** If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying jobs in production environments by using the [Apache SQL Runner](../../advanced/deploying-production) or [by using customized jobs](../../advanced/deploying-customized), operator will automatically pause or resume a job by using the snapshot during the upgrade. 
 
 All Flink pods that need to be updated as part of the upgrade will be rolled.
 
@@ -319,6 +323,8 @@ Where:
 - If your Flink instance is a [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} and you disabled the webhook of the Flink operator (`--set webhook.create=false`), you must update the `spec.flinkVersion` and `spec.image` fields of your `FlinkDeployment` custom resource to match the new values of the `IBM_FLINK_IMAGE` and `IBM_FLINK_VERSION` [environment variables](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) on the Flink operator pod.
 
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying flows in [production environments](../../advanced/deploying-production), complete steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
+
+- If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying jobs in production environments by using the [Apache SQL Runner](../../advanced/deploying-production) or [by using customized jobs](../../advanced/deploying-customized), operator will automatically pause or resume a job by using the snapshot during the upgrade.
 
 ## Post-upgrade tasks
 

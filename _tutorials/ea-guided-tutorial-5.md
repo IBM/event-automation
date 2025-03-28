@@ -5,7 +5,7 @@ permalink: /tutorials/guided/tutorial-5
 toc: true
 section: "Guided tutorials for IBM Event Automation"
 cardType: "large"
-order: 5
+order: 6
 ---
 
 ## Event destination

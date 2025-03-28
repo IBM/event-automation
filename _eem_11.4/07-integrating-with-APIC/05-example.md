@@ -53,7 +53,7 @@ Recently, unexpected surges in demand have resulted in not enough stock being av
 **Kevin** logs into the {{site.data.reuse.eem_name}} UI, and begins to describe his new topic:
 
 - Adds the "orders" topic and Cluster information by using the [discovery flow](../../describe/adding-topics).
-- He is guided to add appropriate metadata to [describe his topic](../../describe/managing-topics/#overview-information).
+- He is guided to add appropriate metadata to [describe his topic](../../describe/managing-event-sources/#overview-information).
 - He adds [management capabilities](../../describe/managing-options) to make sure that when socialized, his topic has [controls](../../describe/option-controls) applied to enforce rules of engagement on any clients that use his topic. In this case, he [redacts](../../describe/option-controls/#redaction) sensitive data when clients consume events.
 
 Having worked through these steps, **Kevin** is happy that his order topic can be securely socialized. He responds to **Andre** to let him know, and contacts **Steve** to ask how to offer this topic as an API.

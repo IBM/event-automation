@@ -42,19 +42,32 @@ spec:
 
 ## For the {{site.data.reuse.ibm_flink_operator}} instance
 
-It is possible to configure trace logging for an {{site.data.reuse.ibm_flink_operator}} instance by editing the `FlinkDeployment` custom resource. This enables trace logging that can be observed from the Flink pod logs.
+- ![Event Processing 1.3.1 icon]({{ 'images' | relative_url }}/1.3.1.svg "In Event Processing 1.3.1 and later.") In {{site.data.reuse.ep_name}} version 1.3.1 and later, you can configure trace logging without recreating the `JobManager` or `TaskManager` pods for an {{site.data.reuse.ibm_flink_operator}} instance, which consists of editing the ConfigMap associated with the `FlinkDeployment` custom resource. New Flink deployments introduce a `monitorInterval` log property, which defaults to 30 seconds. This property enables dynamic updates to the log4j configuration.
 
-To enable trace logging, update your `FlinkDeployment` custom resource to include the logging configuration:
+  To enable dynamic trace logging, edit the ConfigMap associated with the `FlinkDeployment` custom resource as follows:
 
-```yaml
-kind: FlinkDeployment
-[...]
-spec:
-  logConfiguration:
-    log4j-console.properties: >
-      <VALUE>
+  1. Locate the ConfigMap associated with your `FlinkDeployment`. It is typically named in the format: `flink-config-<FlinkDeployment-name>`.
+  2. Edit the ConfigMap, specifically the section related to `log4j-console.properties`.
+  3. Within `log4j-console.properties`, change the value of the `rootLogger.level` property to `<VALUE>`.
+  4. Save the changes to the ConfigMap.
+
+
+- In earlier versions, you can manually set this property in the `FlinkDeployment` custom resource to achieve the same dynamic log4j configuration updates.
+
+
+  ```yaml
+  kind: FlinkDeployment
   [...]
-```
-**Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
+  spec:
+    logConfiguration:
+      log4j-console.properties: |
+        monitorInterval=30 # Allows this configuration to be modified at runtime. The file will be checked every 30 seconds.
+        <VALUE>
+    [...]
+  ```
+
+
+After completing this update, the new configuration will be automatically reflected in the Flink deployment and future changes will be reflected within approximately 30 seconds without restarting the `taskManager` or the `JobManager` pods.
+
 
 See also the [FlinkDeployment Logging Configuration](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/operations/metrics-logging/#flinkdeployment-logging-configuration){:target="_blank"} documentation.

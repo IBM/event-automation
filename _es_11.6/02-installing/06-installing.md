@@ -32,7 +32,7 @@ Installing {{site.data.reuse.es_name}} has two phases:
 
 ## Create a project (namespace)
 
-Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.openshift.com/container-platform/4.17/applications/projects/working-with-projects.html){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.es_name}}. This is required because {{site.data.reuse.es_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
@@ -217,6 +217,12 @@ These steps add the catalog source for {{site.data.reuse.es_name}} to the Operat
 ## Install the {{site.data.reuse.es_name}} operator
 
 Ensure you have considered the {{site.data.reuse.es_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
+
+**Important:** When installing {{site.data.reuse.es_name}} operator 3.6.1, you might see the following warning. This warning is harmless and can be safely ignored.
+
+```shell
+Support for ZooKeeper-based Apache Kafka clusters will be removed in the next Strimzi release (0.46.0). Please migrate to KRaft.
+```
 
 ### Installing by using the web console
 

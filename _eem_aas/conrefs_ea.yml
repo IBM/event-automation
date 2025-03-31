@@ -1,0 +1,45 @@
+reuse:
+
+# To formulate a conref, look up the keyword in the list below and add it as the last element in the following formula:
+# {{site.data.reuse.keyword}}
+
+
+eem_name:
+    Event Endpoint Management
+
+ea_long:
+    IBM Event Automation
+
+ea_short:
+    "Event Automation"
+
+
+
+# EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
+
+# {{site.data.reuse.eem_current_version}} 
+eem_current_version: "11.4.1"
+
+# {{site.data.reuse.ep_current_version}}
+ep_current_version: "1.2.3"
+
+# {{site.data.reuse.flink_operator_current_version}}
+flink_operator_current_version: "1.2.3"
+
+# {{site.data.reuse.egw}}
+egw: Event Gateway
+
+# {{site.data.reuse.eem_manager}}
+eem_manager: "Event Manager"
+
+# {{site.data.reuse.eem_ubp_license_id}}
+eem_ubp_license_id: "L-FTGN-WUM5C5"
+
+# {{site.data.reuse.egw_short}}
+egw_short: "Event Gateway"
+
+# {{site.data.reuse.ep_name}}
+ep_name: "Event Processing"
+
+# {{site.data.reuse.es_name}}
+es_name: "Event Streams"

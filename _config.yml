@@ -320,6 +320,12 @@ collections:
     product: eem
     tag: Latest
     order: 5
+  "eem_aas":
+    version: "SaaS"
+    output: true
+    permalink: /eem/:collection/:categories/:slug/
+    product: eem
+    order: 6
   "ep_1.0":
     version: "1.0"
     output: true
@@ -795,6 +801,19 @@ defaults:
       versioned: true
       sidebar:
         nav: "latest_eemdocs"
+    #_eem_aas
+  - scope:
+      path: ""
+      type: "eem_aas"
+    values:
+      collection: "eem_aas"
+      version: "SaaS"
+      product: eem
+      layout: single
+      mastheadNavItem: Event Endpoint Management
+      versioned: true
+      sidebar:
+        nav: "eem_aasdocs"
   #_ep_1.0
   - scope:
       path: ""

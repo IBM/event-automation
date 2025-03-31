@@ -11,6 +11,9 @@ ea_short: Event Automation
 # {{site.data.reuse.eem_name}}
 eem_name: "Event Endpoint Management"
 
+# {{site.data.reuse.ipaas_name}}
+ipaas_name: "IBM Hybrid iPaaS"
+
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.eem_current_version}} 

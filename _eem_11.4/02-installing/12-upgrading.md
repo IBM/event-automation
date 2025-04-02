@@ -179,7 +179,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eem-operator
       ```
       
-      Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
+      Check the `version:` value in the output, for example: `version: 11.4.2`
 
 If the chart version for your existing deployment is earlier than 11.3.x, you must first [upgrade your installation to 11.3.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.4.1 version.
 

@@ -327,4 +327,4 @@ Complete the following steps to install the operator:
 
 ## Install an instance
 
-{{site.data.reuse.es_name}} instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the {{site.data.reuse.es_name}} instances on [OpenShift](../installing/#install-an-event-streams-instance), or on other [Kubernetes platforms](../instaling-on-kubernetes/#install-an-event-streams-instance).
+{{site.data.reuse.es_name}} instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the {{site.data.reuse.es_name}} instances on [OpenShift](../installing/#install-an-event-streams-instance), or on other [Kubernetes platforms](../installing-on-kubernetes/#install-an-event-streams-instance).

@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.4.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.4.2
 
 
 ### Updates to the catalog page

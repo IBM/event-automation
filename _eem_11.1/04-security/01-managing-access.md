@@ -230,16 +230,16 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     endSessionPath: (optional) <path to the end session endpoint of this provider for logging out>
     ```
 
-8. After your instance reports `Ready` in its status field, retrieve the UI URL from the status information in the custom resource, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
+8. After your instance reports `Ready` in its status field, retrieve the UI hostname from the status information in the custom resource, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
     For logging in:
     ```bash
-    https://<ui_url>/callback
+    https://<ui_host>/callback
     ```
 
     For logging out (if supported by your OIDC provider):
     ```bash
-    https://<ui_url>/logout/callback
+    https://<ui_host>/logout/callback
     ```
 
     Users defined in your OIDC provider will now be able to log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
@@ -307,16 +307,16 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     endSessionPath: (optional) <path to the end session endpoint of this provider for logging out>
     ```
 
-6. After your instance reports `Ready` in its status field, retrieve the UI URL from the status information in the custom resource, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
+6. After your instance reports `Ready` in its status field, retrieve the UI hostname from the status information in the custom resource, open the client configuration of your OIDC provider, and update the redirect URLs to include the following addresses:
 
     For logging in:
     ```bash
-    https://<ui_url>/callback
+    https://<ui_host>/callback
     ```
 
     For logging out (if supported by your OIDC provider):
     ```bash
-    https://<ui_url>/logout/callback
+    https://<ui_host>/logout/callback
     ```
 
     Users defined in your OIDC provider will now be able to log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).

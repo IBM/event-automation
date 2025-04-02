@@ -27,7 +27,7 @@ Choosing the best monitoring platform depends on your specific use case and is b
 
 ## Instructions
 
-1. Optional: set up [monitoring](../guided/tutorial-0#monitoring) in the tutorial environment.
+1. Set up [monitoring](../guided/tutorial-0#monitoring) in the tutorial environment.
 
    This installs the Grafana community operator and creates two sample Grafana dashboards to help you get started.
 

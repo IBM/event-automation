@@ -55,7 +55,7 @@ The stand-alone {{site.data.reuse.egw}} image is provided as a multi-architectur
 - ![Event Endpoint Management 11.4.2 icon]({{ 'images' | relative_url }}/11.4.2plus.svg "In Event Endpoint Management 11.4.2 and later.") If you are using {{site.data.reuse.eem_name}} 11.4.2 or later, download the {{site.data.reuse.egw}} image from the public registry:
    
    ```shell
-   docker pull icr.io/cpopen/ibm-eventendpointmanagement/egw:{{site.data.reuse.eem_current_version}}
+   docker pull icr.io/cpopen/ibm-eventendpointmanagement/egw:11.4.2
    ```
 
 - If you are using {{site.data.reuse.eem_name}} 11.4.1 or earlier, download the {{site.data.reuse.egw}} image from the private registry (requires an [entitlement key](../installing/#create-an-image-pull-secret)):

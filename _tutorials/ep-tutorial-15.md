@@ -35,21 +35,21 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ### Step 1: Discover the topics to use
 
- See the earlier filter tutorial to [Discover the topic to use](../guided/tutorial-1/#step-1--discover-the-topic-to-use).
+See the earlier filter tutorial to [Discover the topic to use](../guided/tutorial-1#step-1--discover-the-topic-to-use).
 
 
 ### Step 2: Create a flow
 
-See the earlier filter tutorial to [Create a flow](../guided/tutorial-1/#step-2--create-a-flow).
+See the earlier filter tutorial to [Create a flow](../guided/tutorial-1#step-2--create-a-flow).
 
 
-### Step 3: Provide a source of events   
+### Step 3: Provide a source of events
 
    The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
    
-   **Tip:** You can click **Add new event source**, and follow the steps under [Provide a source of events](../guided/tutorial-1/#event-source) to define a new event source from scratch. 
+   **Tip:** You can click **Add new event source**, and follow the steps under [Provide a source of events](../guided/tutorial-1#event-source) to define a new event source from scratch. 
  
-1. Repeat Steps 1-9 under [Provide a source of events](../guided/tutorial-1/#event-source).
+1. Repeat Steps 1-9 under [Provide a source of events](../guided/tutorial-1#event-source).
 
 1. In the **Key and headers** pane, the headers and key will be automatically populated with the key and the number of headers from the last message. Currently, there are four headers (`priority`, `storeid`, `apicurio.value.globalId`, and `apicurio.value.encoding`) and one key (`key.value`).
 
@@ -77,7 +77,7 @@ See the earlier filter tutorial to [Create a flow](../guided/tutorial-1/#step-2-
 
 The next step is to start processing this stream of events, by creating the filter that will select the custom subset with the events that you are interested in.
 
-1. Repeat Steps 1-4 under [Define the filter](../guided/tutorial-1/#step-4--define-the-filter).
+1. Repeat Steps 1-4 under [Define the filter](../guided/tutorial-1#step-4--define-the-filter).
 
 1. Use the **Filter expression** field to update your filter expression, for example, \`countrycode\` = 'FR' AND \`priority\` = 'urgent'.
 

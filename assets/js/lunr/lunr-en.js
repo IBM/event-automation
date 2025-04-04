@@ -60,7 +60,7 @@ function searchResults(theSearchInput) {
   result.forEach((searchResult) => {
     let documentItem = store[searchResult.ref];
     let documentTitle = documentItem.title;
-    let documentID = documentTitle.replace(/ /g, '_');//searchResult.ref;
+    let documentID = documentTitle ? documentTitle.replace(/ /g, '_') : '';
     let documentationVersion = documentItem.collection;
     let documentIsTutorial = documentationVersion === 'tutorials';
     let documentIsSupport = documentationVersion === 'support';

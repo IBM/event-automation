@@ -165,7 +165,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click **Next**.
 
-1. Get the schema for orders events from {{site.data.reuse.eem_name}}.
+1. Get the schema for **Product reviews** events from {{site.data.reuse.eem_name}}.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx-eem-avro.png "copy schema from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx-eem-avro.png "copy schema from the catalog")
 

@@ -6,13 +6,16 @@ slug: getting-started
 toc: true
 ---
 
-{{site.data.reuse.eem_name}} provides the capability to describe and catalog your Kafka topics as [event sources](../../about/key-concepts#event-source), and to grant access to application developers within your organization. Application developers can discover [event endpoints](../../about/key-concepts#event-endpoint) and configure their applications to access them through the {{site.data.reuse.egw}}. With Event Endpoint Management, you can control access to your event endpoints, and what data they produce or consume.
+{{site.data.reuse.eem_name}} provides the capability to describe and catalog your Kafka topics as [event sources](../../about/key-concepts#event-source), and to grant access to application developers within your organization. Application developers can discover [event endpoints](../../about/key-concepts#event-endpoint) and configure their applications to access them through the {{site.data.reuse.egw}}. With {{site.data.reuse.eem_name}}, you can control access to your event endpoints, and what data they produce or consume.
 
 
 ## Before you begin
 {: #before-you-begin}
 
-To use {{site.data.reuse.eem_name}} on {{site.data.reuse.ipaas_name}} you must have {{site.data.reuse.eem_name}} deployed in the {{site.data.reuse.ipaas_name}} environment, and have a user with access to the {{site.data.keyword.eem_name}} UI. For more information about deploying {{site.data.reuse.eem_name}} in {{site.data.reuse.ipaas_name}} and configuring users, see the [{{site.data.reuse.ipaas_name}} documentation](https://www.ibm.com/docs/SSC74RW_saas/ipaas/ipaas_getting_started_administrators.html) <!--_**DRAFT COMMENT** Verify this link._ -->
+To use {{site.data.reuse.eem_name}} on {{site.data.reuse.ipaas_name}}, you must have {{site.data.reuse.eem_name}} provisioned in the {{site.data.reuse.ipaas_name}} environment, and have a user with access to the {{site.data.keyword.eem_name}} UI. For more information about provisioning {{site.data.reuse.eem_name}} in {{site.data.reuse.ipaas_name}} and configuring users, see the [{{site.data.reuse.ipaas_name}} documentation](https://www.ibm.com/docs/SSC74RW_saas/ipaas/ipaas_getting_started_administrators.html){:target="_blank"}.
+
+**Tip:** For an example of how to get up and running with {{site.data.reuse.eem_name}}, you can follow the [getting started tutorial]({{ 'tutorials/getting-started-eem' | relative_url }}).
+
 
 ## Add {{site.data.reuse.egw}}s
 {: #add-gateways}

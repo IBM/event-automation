@@ -20,7 +20,7 @@ Follow the steps in this guide to get your topics described in {{site.data.reuse
 - Ensure you have the connection details for your Kafka cluster available.
 - Ensure you have at least one Kafka topic.
 
-**Note:** Don't have a Kafka cluster or Docker? We’re working on a trial experience that doesn’t require your own Kafka cluster or Docker platform. [Let us know](https://forms.office.com/r/7rb3www0NF){:target="_blank"} if you want to be notified when this is available.
+**Note:** Don't have a Kafka cluster? We’re working on a trial experience that doesn’t require your own Kafka cluster. [Let us know](https://forms.office.com/r/7rb3www0NF){:target="_blank"} if you want to be notified when this is available.
 
 ## Add an {{site.data.reuse.egw}}
 {: #add-a-gateway}
@@ -156,6 +156,12 @@ Pretend you are now an application developer. To consume events from the topic y
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-topic-information.png "Screenshot of the Topic information page."){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-topic-information.png "Screenshot of the Topic information page.")
 
 3. Click **Request access**, and fill in the form.
+
+As the event source owner, you can approve this request as follows:
+
+1. In the navigation pane, click **Access requests**. All the requests against options that you own are displayed.
+2. Locate the access request in the list and click **View request**.
+3. Click **Approve request**.
 
 After access is granted, you can use the information on this page to configure your client to consume from the topic. The {{site.data.reuse.eem_name}} UI provides help with this on the **Topic information** page by providing useful details such as event endpoint server URLs, and code samples in different languages to add to your client's configuration.
 

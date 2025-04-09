@@ -16,7 +16,28 @@ Different levels of trace logging are permitted, however the most relevant ones 
 
 ### For the Event Endpoint Management instance
 
-Trace logging can be configured for an {{site.data.reuse.eem_manager}} instance by editing the `EventEndpointManagement` custom resource. This enables trace logging that can be observed from the pod logs. To enable trace logging, update `env` in your `EventEndpointManagement` custom resource as follows:
+Trace logging can be configured for an {{site.data.reuse.eem_manager}} instance by editing the `EventEndpointManagement` custom resource. This enables trace logging that can be observed from the pod logs.
+
+#### By using the custom resource traceSpec setting
+
+![Event Endpoint Management 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Endpoint Management 11.5.1 and later.") In {{site.data.reuse.eem_name}} 11.5.1 and later, you can dynamically change the trace setting and the pod will stay running.
+
+To enable trace logging by using the custom resource setting, update the `spec.manager` field in your `EventEndpointManagement` custom resource as follows:
+
+```yaml
+# excerpt from {{site.data.reuse.eem_name}} CRD
+spec:
+  manager:
+    traceSpec: "<VALUE>"
+```
+
+**Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
+
+#### By using the TRACE_SPEC environment variable
+
+**Note:** Enabling trace logging through the environment variable will cause a restart of the pod.
+
+In versions earlier than 11.5.1, to enable trace logging through the environment variable, update `env` in your `EventEndpointManagement` custom resource as follows:
 
 ```yaml
 # excerpt from {{site.data.reuse.eem_name}} CRD
@@ -34,7 +55,7 @@ spec:
 
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
-To add trace logging when you are deploying with an overridden image, update `env` in your `EventEndpointManagement` custom resource as follows:
+To enable trace logging when you are deploying with an overridden image, update the `env` field in your `EventEndpointManagement` custom resource as follows:
 
 ```yaml
 # excerpt from {{site.data.reuse.eem_name}} CRD
@@ -54,7 +75,27 @@ template:
 
 ### For the {{site.data.reuse.egw}} instance
 
-To enable trace logging on an {{site.data.reuse.egw}} instance, set the environment variable `TRACE_SPEC`. For example, on an [operator-managed {{site.data.reuse.egw}}](../../installing/install-gateway#operator-managed-gateways) edit the `EventGateway` custom resource and set TRACE_SPEC as follows:
+Trace logging can be configured for an {{site.data.reuse.egw}} instance by editing the `EventGateway` custom resource. This enables trace logging that can be observed from the pod logs.
+
+#### By using the custom resource traceSpec setting
+
+![Event Endpoint Management 11.5.1 icon]({{ 'images' | relative_url }}/11.5.1plus.svg "In Event Endpoint Management 11.5.1 and later.") In {{site.data.reuse.eem_name}} 11.5.1 and later, you can dynamically change the trace setting and the pod will stay running.
+
+To enable trace logging through the custom resource setting, update the `spec` field in your `EventGateway` custom resource as follows:
+
+```yaml
+# excerpt from {{site.data.reuse.egw}} CRD
+spec:
+  traceSpec: "<VALUE>"
+```
+
+**Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
+
+#### By using the TRACE_SPEC environment variable
+
+**Note:** Enabling trace logging through the environment variable will cause a restart of the pod.
+
+In versions earlier than 11.5.1, To enable trace logging on an {{site.data.reuse.egw}} instance, set the environment variable `TRACE_SPEC`. For example, on an [operator-managed {{site.data.reuse.egw}}](../../installing/install-gateway#operator-managed-gateways) edit the `EventGateway` custom resource and set TRACE_SPEC as follows:
 
 ```yaml
 # excerpt from {{site.data.reuse.egw}} CRD

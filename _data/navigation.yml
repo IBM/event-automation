@@ -263,6 +263,8 @@ latest_eemdocs:
         url: /troubleshooting/no-main-key-backup/
       - title: "Unable to publish an option due to incompatible controls" 
         url: /troubleshooting/unexpected-option-not-publishable/
+      - title: "Additional controls not applied to options with mTLS only control"
+        url: /troubleshooting/controls-with-mtls/
 
 114_eemdocs:
   - title: About
@@ -423,7 +425,9 @@ latest_eemdocs:
         url: /troubleshooting/unable-to-register-gateway/
       - title: "Unable to replace the CA certificate uploaded when an mTLS control was created" 
         url: /troubleshooting/unable-to-replace-ca-cert/
-        
+      - title: "Additional controls not applied to options with mTLS only control"
+        url: /troubleshooting/controls-with-mtls/
+
 113_eemdocs:
   - title: About
     children:

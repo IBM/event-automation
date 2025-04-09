@@ -13,7 +13,7 @@ When an option is configured with a Mutual TLS (mTLS) only control, any addition
 
 ## Causes
 
-This is caused by a bug in {{site.data.reuse.egw}} versions 11.4.2 and 11.5.0. The bug has been fixed in versions 11.5.1 and later.
+This is caused by a bug in {{site.data.reuse.egw}} versions 11.4.1, 11.4.2 and 11.5.0. The bug has been fixed in versions 11.5.1 and later.
 
 ## Resolving the problem
 

@@ -10,6 +10,13 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.5.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.5.1 contains security and bug fixes.
+
+
+
+## Release 11.5.0
 
 ### Admin role
 

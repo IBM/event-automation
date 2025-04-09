@@ -178,7 +178,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| annotations | object | Annotations that will be added to all Kubernetes resources used by the instance. |
+| annotations | object | Annotations that will be added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and subsequently deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
 | labels | object | Labels that will be added to all Kubernetes resources used by the instance. |
 | pod | [pod](#resource-pod) | Object containing pod override configuration. |
 

@@ -65,6 +65,12 @@ function searchResults(theSearchInput) {
     let documentIsTutorial = documentationVersion === 'tutorials';
     let documentIsSupport = documentationVersion === 'support';
 
+
+    //  // Ignore old collections
+    //  if (['es_2018.3.1', 'es_2019.4', 'es_2019.2.1', 'es_2019.1.1', 'es_10.0', 'es_10.1', 'es_10.2', 'es_10.3'].includes(documentationVersion)) {
+    //   return;
+    // }
+
     let obj = {
       id: documentID,
       title: documentTitle,

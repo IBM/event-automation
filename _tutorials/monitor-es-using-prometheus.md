@@ -47,7 +47,7 @@ There is naturally overlap between these two use cases. Some metrics could be he
 
 Monitoring is not a single one-size-fits-all activity. The goal of this tutorial is to encourage you to consider what your objective is, and to select metrics to monitor that support that objective.
 
-**Note:** The focus of this tutorial is on use cases for cluster administrators. Other users also monitor Kafka metrics. For example, users responsible for applications that use an {{site.data.reuse.es_name}} cluster must monitor metrics specific to their application and the Kafka topics that their application uses.
+**Note:** The focus of this tutorial is on use cases for cluster administrators. Other users also monitor Kafka metrics. For example, users responsible for applications that use an {{site.data.reuse.es_name}} cluster can monitor metrics specific to their application and the Kafka topics that their application uses.
 
 ## Monitoring cluster health
 
@@ -59,7 +59,7 @@ View the metrics displayed in this dashboard to assess the status of your cluste
 
 ### Kafka topics
 
-Some metrics indicate the health of the topic partitions within the {{site.data.reuse.es_name}} cluster. The first section of the demo dashboard gives examples of the kinds of values that a cluster administrator must monitor for changes.
+Some metrics indicate the health of the topic partitions within the {{site.data.reuse.es_name}} cluster. The first section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor for changes.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-01.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-01.png "screenshot of a Grafana dashboard")
 
@@ -71,17 +71,17 @@ An "offline" partition is a topic partition that doesn't have an active leader.
 
 Without an active leader, client applications cannot produce to or consume from a topic partition. The partition remains unavailable until a leader is restored.
 
-The number of partitions in this state must normally be zero.
+The number of partitions in this state should normally be zero.
 
 **Unclean leader elections**
 
 Metric: `kafka.controller:type=ControllerStats,name=UncleanLeaderElectionsPerSec`
 
-A leader election is the process for choosing which replica must be used by producer and consumer client applications.
+A leader election is the process for choosing which replica will be used by producer and consumer client applications.
 
 Normally, an in-sync replica is chosen. However, if there are no in-sync replicas to choose from, the last resort is to select an out-of-sync replica as the new leader.
 
-This results in the loss of some events that were missing on the new leader, and so the number of unclean leader elections must be zero.
+This results in the loss of some events that were missing on the new leader, and so the number of unclean leader elections should be zero.
 
 **Under-replicated partitions**
 
@@ -89,7 +89,7 @@ Metric: `kafka.server:type=ReplicaManager,name=UnderReplicatedPartitions`
 
 An under-replicated topic partition is a topic partition where some replicas are not keeping up with the partition leader.
 
-This metric must ideally be zero.
+This metric should ideally be zero.
 
 **Fetcher lag**
 
@@ -97,11 +97,11 @@ Metric: `kafka.server:type=FetcherLagMetrics,name=ConsumerLag`
 
 Fetcher lag measures the number of events follower replicas have yet to retrieve from topic partition leader. It is a measure of whether replication is keeping up and how far behind the topic replicas are falling.
 
-The lag must be less than the maximum batch size used by producer applications, indicating that cluster is able to keep up with the rate of traffic it is handling.
+The lag should be less than the maximum batch size used by producer applications, indicating that cluster is able to keep up with the rate of traffic it is handling.
 
 ### Kafka brokers
 
-Some metrics indicate the health of the Kafka brokers in the {{site.data.reuse.es_name}} cluster. The second section of the demo dashboard provides examples of the kinds of values that a cluster administrator must track for changes.
+Some metrics indicate the health of the Kafka brokers in the {{site.data.reuse.es_name}} cluster. The second section of the demo dashboard provides examples of the kinds of values that a cluster administrator can track for changes.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-02.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-02.png "screenshot of a Grafana dashboard")
 
@@ -109,11 +109,11 @@ Some metrics indicate the health of the Kafka brokers in the {{site.data.reuse.e
 
 Metric: `kafka.controller:type=KafkaController,name=ActiveControllerCount`
 
-A Kafka cluster must always have one broker acting as the controller. Several critical cluster operations depend on the controller, such as partition leadership management and replica assignment. If there is no active controller, the cluster might become unstable.
+A Kafka cluster will always have one broker acting as the controller. Several critical cluster operations depend on the controller, such as partition leadership management and replica assignment. If there is no active controller, the cluster might become unstable.
 
 If there is more than one controller, this is described as a **split brain** and the potential for conflicting decisions by multiple controllers risks data integrity.
 
-The value for this metric must always be one (you might briefly see zero or two while the cluster transfers control to a different broker, but this must quickly return to one).
+The value for this metric should always be one (you might briefly see zero or two while the cluster transfers control to a different broker, but this should quickly return to one).
 
 **Number of online brokers**
 
@@ -121,7 +121,7 @@ Metric: `kafka.controller:type=KafkaController,name=ActiveBrokerCount`
 
 Kafka's high-availability design allows applications to continue to functioning even after a broker fails. As a result, it is important to monitor that all brokers are currently online, as the loss of a broker cannot always be detected by application behavior.
 
-The {{site.data.reuse.es_name}} cluster created by the tutorial playbook must have three brokers.
+The {{site.data.reuse.es_name}} cluster created by the tutorial playbook has three brokers.
 
 ### Kafka pods
 
@@ -139,11 +139,11 @@ If the start time for a Kafka broker is more recent than the last time a Kafka b
 
 Metric: `kube_pod_container_status_restarts_total`
 
-If the Kubernetes probes registered by {{site.data.reuse.es_name}} fail, then Kubernetes will restart the Kafka container. The number of restarts must be zero for a healthy broker.
+If the Kubernetes probes registered by {{site.data.reuse.es_name}} fail, then Kubernetes will restart the Kafka container. The number of restarts will be zero for a healthy broker.
 
 ### Disks
 
-Some metrics indicate the health of the disks used by Kafka brokers. The fourth section of the demo dashboard gives examples of the kinds of values that a cluster administrator must monitor.
+Some metrics indicate the health of the disks used by Kafka brokers. The fourth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-03.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-03.png "screenshot of a Grafana dashboard")
 
@@ -157,7 +157,7 @@ An administrator must take action long before the disk becomes full. Monitoring 
 
 ### Network
 
-Some metrics indicate the network activity by Kafka brokers. The fifth section of the demo dashboard gives examples of the kinds of values that a cluster administrator must monitor.
+Some metrics indicate the network activity by Kafka brokers. The fifth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-03.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-03.png "screenshot of a Grafana dashboard")
 
@@ -165,13 +165,13 @@ Some metrics indicate the network activity by Kafka brokers. The fifth section o
 
 Metric: `kafka.network:type=RequestMetrics,name=ErrorsPerSec`
 
-A healthy Kafka cluster must report zero network errors.
+A healthy Kafka cluster should report zero network errors.
 
 If sustained network errors are reported, this will likely impact consumer and producer applications and needs attention.
 
 ### Using the dashboard
 
-The health dashboard will likely not contain a lot of interesting data for your tutorial cluster. Most of the values displayed must be zero.
+The health dashboard will likely not contain a lot of interesting data for your tutorial cluster. Most of the values displayed will be zero.
 
 To see the dashboard in action, kill the Java process for one of the Kafka brokers and see the impact described by the metrics in the dashboard.
 
@@ -184,7 +184,7 @@ oc exec -it \
   pkill --signal 9 --parent 1 java
 ```
 
-You must see a brief increase in under-replicated partitions, as the replicas hosted on broker 0 fall behind the leader partitions on broker 1 and broker 2. This must quickly return to zero after the replacement broker 0 starts.
+You might see a brief increase in under-replicated partitions, as the replicas hosted on broker 0 fall behind the leader partitions on broker 1 and broker 2. This should quickly return to zero after the replacement broker 0 starts.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-04.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-04.png "screenshot of a Grafana dashboard")
 
@@ -196,7 +196,7 @@ The restart of broker 0 will be shown in Kafka broker 0 gauge.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-06.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-health-06.png "screenshot of a Grafana dashboard")
 
-It is likely that you will see a few network errors as broker 1 and broker 2 report their failures to submit requests to broker 0 as it was killed. This must quickly stop as they successfully retry their requests to the replacement broker 0.
+It is likely that you will see a few network errors as broker 1 and broker 2 report their failures to submit requests to broker 0 as it was killed. This should quickly stop as they successfully retry their requests to the replacement broker 0.
 
 
 ## Monitoring cluster performance
@@ -219,21 +219,21 @@ Metric: `kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec`
 
 This metric tracks the number of messages per second that the cluster is receiving. This is a good summary of the level of traffic that the cluster is handling.
 
-The [data generator in the tutorial environment](https://github.com/IBM/kafka-connect-loosehangerjeans-source) generates a very low level of traffic for the {{site.data.reuse.es_name}} cluster, which must be visible in the graph.
+The [data generator in the tutorial environment](https://github.com/IBM/kafka-connect-loosehangerjeans-source) generates a very low level of traffic for the {{site.data.reuse.es_name}} cluster, which will be visible in the graph.
 
-**Notice:** If you killed one of the Kafka brokers in the previous step, you must see this reflected in the graph as a brief dip in the rate of messages.
+**Notice:** If you killed one of the Kafka brokers in the previous step, you can see this reflected in the graph as a brief dip in the rate of messages.
 
 **Produce requests**
 
 Metric: `kafka.server:type=BrokerTopicMetrics,name=TotalProduceRequestsPerSec`
 
-This metric measures the number of produce requests the cluster receives per second. Efficient applications will use batching to produce multiple messages in a single request, so this must be lower than the number of messages per second.
+This metric measures the number of produce requests the cluster receives per second. Efficient applications will use batching to produce multiple messages in a single request, so this might be lower than the number of messages per second.
 
 This is a good summary of the level of traffic that the cluster is handling.
 
-The [data generator in the tutorial environment](https://github.com/IBM/kafka-connect-loosehangerjeans-source) generates a very low level of traffic for the {{site.data.reuse.es_name}} cluster, which must be visible in the graph.
+The [data generator in the tutorial environment](https://github.com/IBM/kafka-connect-loosehangerjeans-source) generates a very low level of traffic for the {{site.data.reuse.es_name}} cluster, which will be visible in the graph.
 
-**Notice:** If you killed one of the Kafka brokers in the previous step, you must see this reflected in the graph as a brief dip in the rate of produce requests.
+**Notice:** If you killed one of the Kafka brokers in the previous step, you can see this reflected in the graph as a brief dip in the rate of produce requests.
 
 ### Topics
 
@@ -247,16 +247,16 @@ Some metrics indicate the performance of topic replication performed by the Kafk
 
 This metric tracks the number of topic partitions that have a number of in-sync replicas which is under their minimum in-sync replica configuration.
 
-Producer applications cannot produce to these partitions, and will be blocked until the issue is resolved. As a result, the number of partitions in this state must be zero for a healthy cluster.
+Producer applications cannot produce to these partitions, and will be blocked until the issue is resolved. As a result, the number of partitions in this state will be zero for a healthy cluster.
 
 
 **Replicas per broker**
 
 Metric: `kafka.server:type=ReplicaManager,name=PartitionCount`
 
-In a healthy cluster, each of the Kafka brokers must handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of topic partition replicas held on each broker.
+In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of topic partition replicas held on each broker.
 
-It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of topic partition replicas must be avoided.
+It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of topic partition replicas should be avoided.
 
 **Tip:** Instructions for how to re-distribute topic replicas more evenly can be found in [Optimizing Kafka cluster with Cruise Control](../../es/administering/cruise-control/).
 
@@ -270,9 +270,9 @@ Some metrics indicate the amount of work that each of the Kafka brokers is indiv
 
 Metric: `kafka.server:type=BrokerTopicMetrics,name=MessagesInPerSec`
 
-In a healthy cluster, each of the Kafka brokers must handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of messages per second received by each broker.
+In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the number of messages per second received by each broker.
 
-It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of messages for the cluster must be avoided.
+It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of messages for the cluster should be avoided.
 
 **Tip:** Instructions for how to re-distribute topic replicas more evenly can be found in [Optimizing Kafka cluster with Cruise Control](../../es/administering/cruise-control/).
 
@@ -280,9 +280,9 @@ It can never be exactly identical across all brokers, however having one broker 
 
 Metric: `kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec`
 
-In a healthy cluster, each of the Kafka brokers must handle a roughly equal proportion of the work for the cluster. One indicator of this is the amount of data per second received by each broker.
+In a healthy cluster, each of the Kafka brokers should handle a roughly equal proportion of the work for the cluster. One indicator of this is the amount of data per second received by each broker.
 
-It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of data for the cluster must be avoided.
+It can never be exactly identical across all brokers, however having one broker responsible for a disproportionately high level of data for the cluster should be avoided.
 
 **Tip:** Instructions for how to re-distribute topic replicas more evenly can be found in [Optimizing Kafka cluster with Cruise Control](../../es/administering/cruise-control/).
 
@@ -318,7 +318,7 @@ A cluster administrator can monitor these metrics to identify if they need to mo
 
 ### Disks
 
-Some metrics indicate the ability of the disks used by Kafka brokers to support the current workload. The sixth section of the demo dashboard gives examples of the kinds of values that a cluster administrator must monitor.
+Some metrics indicate the ability of the disks used by Kafka brokers to support the current workload. The sixth section of the demo dashboard gives examples of the kinds of values that a cluster administrator can monitor.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-performance-03.png "screenshot of a Grafana dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-performance-03.png "screenshot of a Grafana dashboard")
 
@@ -415,3 +415,7 @@ You can use the Grafana installation provided by the demo playbook to explore an
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-grafana.png "screenshot of a Grafana data source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/monitoring-es-grafana.png "screenshot of a Grafana data source")
 
 After you have identified the metrics you want to collect, you can follow the instructions for [configuring monitoring](../../es/installing/configuring/#configuring-external-monitoring-through-prometheus) to collect these metrics in your (non-demo) {{site.data.reuse.es_name}} clusters.
+
+## Next steps
+
+If you have not yet explored the options for monitoring {{site.data.reuse.eem_name}}, you can follow the [Monitoring Event Endpoint Management](./monitor-eem-using-prometheus) tutorial, which uses the same Grafana instance as this tutorial. This is an example of how you can collect metrics for your whole IBM Event Automation deployment into a single place.

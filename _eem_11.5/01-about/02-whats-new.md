@@ -40,6 +40,9 @@ The {{site.data.reuse.eem_name}} UI can generate {{site.data.reuse.egw}} configu
 
 {{site.data.reuse.eem_name}} release 11.5.0 introduces a feature to upload and manage the CA certificates that are used to secure [Mutual TLS controls](../../describe/option-controls#mtls). For more information, see [Managing CA certificates](../../security/ca-certs).
 
+### Enforcement of certificate manager prerequisite
+
+{{site.data.reuse.eem_name}} release 11.5.0 and later enforces the certificate manager prerequisite for installations of the {{site.data.reuse.eem_manager}}. For more information, see [Certificate management](../../installing/prerequisites/#certificate-management).
 
 ### Security and bug fixes
 

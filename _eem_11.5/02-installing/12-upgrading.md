@@ -13,11 +13,7 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 
 ## Upgrade paths
 
-<!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
-<!-- You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.5.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.5.x or 11.3.x version by using the latest 11.5.x operator. -->
-
-<!-- Below text to be used for .0 releases -->
-You can upgrade {{site.data.reuse.eem_name}} to [11.5.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.4.x by using the latest 11.5.0 operator.
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.5.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.5.x or 11.4.x version by using the latest 11.5.x operator.
 
 If you are upgrading from {{site.data.reuse.eem_name}} version 11.3.x or earlier, you must first [upgrade your installation to 11.4.x]({{ 'eem/eem_11.4' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.5.0.
 
@@ -28,6 +24,8 @@ If you are upgrading from {{site.data.reuse.eem_name}} version 11.3.x or earlier
 ## Prerequisites
 
 - Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+
+- Ensure that you have [installed](../../installing/prerequisites/#certificate-management) the certificate manager.
 
 - If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
@@ -179,7 +177,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       
       Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
 
-If the chart version for your existing deployment is earlier than 11.4.x, you must first [upgrade your installation to 11.4.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.5.0 version.
+If the chart version for your existing deployment is earlier than 11.4.x, you must first [upgrade your installation to 11.4.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.5.x version.
 
 If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before you upgrade. 
 

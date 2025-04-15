@@ -28,21 +28,33 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
-  1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. The following prompt used in this tutorial:
+  1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Structured** tab, enter your prompt in the **Instruction** field. The following prompt is used in this tutorial:
 
      ```plaintext
-     The following are a list of reviews for the {product} product. Read the reviews and then determine which of them was the most positive review and which was the most negative one.
-
-     Reviews: 
-
-     {reviews} 
+     The following are a list of reviews for the product. Read the reviews and then determine which of them was the most positive review and which was the most negative one.
      ```
 
      **Tip:** A prompt is an input that guides AI models to generate responses. For tips on crafting effective prompts, see [prompt tips](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-tips){:target="_blank"}.
 
-  1. [Configure](https://www.ibm.com/docs/en/watsonx/saas?topic=lab-building-reusable-prompts#creating-prompt-variables){:target="_blank"} prompt variables, select the model and modify model parameters as required within the Prompt Lab. The model used here is `granite-3-8b-instruct` from IBM.
+  1. In the **Examples** section, you can add:
+     - **Input**:
+
+       ```plaintext
+       Love at First Wear! I was blown away by the comfort and style of these jeans. The fit is perfect, and the material is so soft. I've worn them nonstop since I got them!,  I was expecting more from these jeans. The material is thin and the style is too casual for my taste., These jeans are okay, but the fit is a bit loose. I'd recommend sizing down if   you're unsure.
+       ```
+
+     - **Output**:
+
+       ```plaintext
+       Most positive review: Love at First Wear! I was blown away by the comfort and style of these jeans. The fit is perfect, and the material is so soft. I've worn them nonstop since I got them!
+       Most negative review: I was expecting more from these jeans. The material is thin and the style is too casual for my taste.
+       ```
+
+  1. [Configure](https://www.ibm.com/docs/en/watsonx/saas?topic=lab-building-reusable-prompts#creating-prompt-variables){:target="_blank"} prompt variables, select the model and modify model parameters as required within the Prompt Lab. You can declare the prompt variables in the **Test your prompt** section under the **Input** field, as shown in the screenshot below. The model used here is `granite-3-8b-instruct` from IBM.
   
-     In this tutorial, the variables used are: `product` and `reviews` and the respective values are `jeans` and `Love at First Wear! I was blown away by the comfort and style of these jeans. The fit is perfect, and the material is so soft. I have worn them nonstop since I got them!`.
+     In this tutorial, the variable used is: `reviews` and its value is `I am impressed with the quality of these jeans, but the price could be a bit lower., I like the color of these jeans, but the style is a bit too trendy for my taste., I was really disappointed with these jeans. The material is thin and the fit is all wrong., These jeans looked amazing online, but the material feels like sandpaper! They are so stiff and uncomfortable, I can not imagine ever wearing them.`
+
+     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-watsonx.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-watsonx.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
 
      **Note:** At least one prompt variable must be configured.
   1. [Save](https://www.ibm.com/docs/en/watsonx/saas?topic=lab-saving-prompts){:target="_blank"} your prompt as a prompt template: `Product review analysis`.
@@ -309,7 +321,7 @@ The next step is to generate text responses by using the watsonx.ai node.
 
    Click **Next**.
 
-1. In the **Map prompt variables** pane, the prompt that you [created earlier](#before-you-begin) is displayed. In the **Variable mapping** section, toggle the values for `product` and `reviews` to take input properties and select `Product` and `Reviews` respectively.
+1. In the **Map prompt variables** pane, the prompt that you [created earlier](#before-you-begin) is displayed. In the **Variable mapping** section, toggle the values for `reviews` to take input properties and select `Reviews`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_3.png "Mapping watsonx.ai prompt variables"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_3.png "Mapping watsonx.ai prompt variables")
 
@@ -330,13 +342,120 @@ The next step is to generate text responses by using the watsonx.ai node.
 
 1. Click **Configure** to finalize the watsonx.ai node configuration.
 
-### Step 7 : Test the flow
+### Step 7 : Extract sentiment from reviews
+
+The AI generated text will include the most positive and the most negative review for a product. We can extract them using regular expressions.
+
+1. Add a **Transform** node and link it to your watsonx.ai node.
+
+     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t1.png "Screen capture of the transform node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t1.png "Screen capture of the transform node configuration")
+
+    Create a transform node by dragging one onto the canvas. You can find this in the **Processors** section of the left panel.
+
+    Click and drag from the small gray dot on the event source to the matching dot on the transform node.
+
+    **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
+
+1. Give the transform node a name that describes what it will do: `Extract sentiment`.
+
+     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t2.png "Screen capture of the transform node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t2.png "Screen capture of the transform node configuration")
+
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+1. Add new property for the most positive review that you will generate with a regular expression.
+
+   Click **Create new property**.
+
+   Name the property `Most positive review`.
+
+   Use the assistant to choose the `REGEXP_EXTRACT` function from the list.
+
+   **Did you know?** The `REGEXP_EXTRACT` function allows you to extract data from a text property using regular expressions.
+
+1. Define the regular expression that extracts the most positive review from the generated AI text.
+
+   Create a regular expression that extracts the value for the most positive review, by filling in the assistant form with the following values:
+
+   **text** :
+
+   ```shell
+   `response_result`.`generated_text`
+   ```
+
+   This identifies which property in the order events that contains the text that you want to apply the regular expression to.
+
+   **regex** :
+
+   ```shell
+   Most positive review:(.*)\n
+   ```
+
+   This can be used to match the most positive review against a product.
+
+   **index** :
+
+   ```shell
+   1
+   ```
+
+   This specifies that you want the new product type property to contain the value in the most positive review.
+
+1. Click **Insert into expression** to complete the assistant.
+
+1. Add another new property for the most negative review that you will generate with a regular expression.
+
+   Click **Create new property**.
+
+   Name the property `Most negative review`.
+
+   Use the assistant to choose the `REGEXP_EXTRACT` function from the list.
+
+   **Did you know?** The `REGEXP_EXTRACT` function allows you to extract data from a text property using regular expressions.
+
+1. Define the regular expression that extracts the most negative review from the generated AI text.
+
+   Create a regular expression that extracts the value for the most negative review, by filling in the assistant form with the following values:
+
+   **text** :
+
+   ```shell
+   `response_result`.`generated_text`
+   ```
+
+   This identifies which property in the order events that contains the text that you want to apply the regular expression to.
+
+   **regex** :
+
+   ```shell
+   Most negative review:(.*)\n?
+   ```
+
+   This can be used to match the most negative review against a product.
+
+   **index** :
+
+   ```shell
+   1
+   ```
+
+   This specifies that you want the new product type property to contain the value in the most negative review.
+
+1. Click **Insert into expression** to complete the assistant.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t3.png "Screen capture of the transform node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-t3.png "Screen capture of the transform node configuration")
+
+1. As you aren't modifying existing properties, click **Next**.
+
+1. Click **Configure** to finalize the transform.
+
+
+### Step 8 : Test the flow
 
 The final step is to run your event processing flow and view the results.
 
-Use the **Run** menu, and select **Include historical** to view the generated summary for the review comments that received in the last 48 hours.
+Use the **Run** menu, and select **Include historical** to view the most positive and the most negative review comments for your product.
 
-[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_6.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_6.png "running the flow")
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-output.png "Screen capture of the flow output."){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-18-output.png "Screen capture of the flow output.")
 
 ## Recap
 

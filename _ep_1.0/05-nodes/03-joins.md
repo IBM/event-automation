@@ -18,7 +18,7 @@ To add an interval join, complete the following steps.
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Joins**, drag the **Interval join** node into the canvas.
-3. Connect the node to two event sources by separately dragging the **Output Port** from each source node into the **Input Port** of this node.
+3. Connect the node to two input streams by separately dragging the **Output Port** from each input node into the **Input Port** of this node.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure Interval join** window is displayed.
@@ -37,8 +37,8 @@ To define your join condition, on the **Join condition** section, in the **Defin
 Alternatively, you can use the assistant to create your expression.
 
 1. Click the **Assistant** drop-down menu to open the assistant.
-2. In the **Specify property from [name of the first event source]** drop-down menu, select the property that you want to match.
-3. In the **Specify property from [name of the second event source]** drop-down menu, select a property to match the one chosen in step 2.
+2. In the **Specify property from [name of the first input stream]** drop-down menu, select the property that you want to match.
+3. In the **Specify property from [name of the second input stream]** drop-down menu, select a property to match the one chosen in step 2.
 4. Click **Add to expression** to insert the expression into the text-box.
 
 **Note:** Ensure that the property you choose for both sides of your expression has the same data type. 

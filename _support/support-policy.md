@@ -9,9 +9,9 @@ order: 4
 layout: pagesInsideCollection
 ---
 
-IBM Event Automation incorporates both IBM proprietary and open source components, including Apache Kafka and Apache Flink. In case of a problem with any of these components, IBM will investigate, identify, and provide a fix when possible. Where the fix applies to an open source component, IBM will work with the open source community to contribute the fix to the open source project as appropriate.
+{{site.data.reuse.ea_long}} incorporates both IBM proprietary and open source components, including Apache Kafka and Apache Flink. In case of a problem with any of these components, IBM will investigate, identify, and provide a fix when possible. Where the fix applies to an open source component, IBM will work with the open source community to contribute the fix to the open source project as appropriate.
 
-If you encounter client-side issues when using Event Streams with clients that are not provided by IBM, IBM can assist you in working with the open source community to resolve those issues.
+The official Apache Kafka Java client libraries are included in {{site.data.reuse.es_name}}. If you encounter client-side issues when using {{site.data.reuse.es_name}} with clients that are not provided by IBM, IBM can assist you in working with the open source community to resolve those issues.
 
 For Apache Flink, support is provided if the following conditions are met:
 - A Flink instance deployed and managed by the IBM Operator for Apache Flink on the Red Hat OpenShift Container Platform or, in Event Processing version 1.0.5 and later, on any other Kubernetes platform that supports the Red Hat Universal Base Images (UBI) containers. Only [session mode](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/overview/#session-mode){:target="_blank"} and [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/deployment/overview/#application-mode){:target="_blank"} deployments are supported. 

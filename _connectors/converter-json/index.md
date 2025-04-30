@@ -13,7 +13,6 @@ download:
       type: "Download",
       url: "https://repo1.maven.org/maven2/org/apache/kafka/connect-json/3.8.0/connect-json-3.8.0.jar",
     }
-  - { type: "GitHub", url: "" }
 categories:
   - Databases
 ---

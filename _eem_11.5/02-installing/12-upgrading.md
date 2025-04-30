@@ -6,16 +6,19 @@ slug: upgrading
 toc: true
 ---
 
-Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}}, and all [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} instances that are on the same cluster. To upgrade a Docker {{site.data.reuse.egw}}, see [Upgrading Docker {{site.data.reuse.egw}}s](../upgrading-gateways).
-<!-- last sentence needs update for 11.5.1 when k8s 11.5.0 gateways will exist-->
+Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}}, and all [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} instances that are on the same cluster. To upgrade a Docker or Kubernetes {{site.data.reuse.egw}}, see [Upgrading Docker and Kubernetes {{site.data.reuse.egw}}s](../upgrading-gateways).
 
 Review the upgrade procedure and decide the right steps to take for your deployment based on your platform, current version, and target version.
 
 ## Upgrade paths
 
+<!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
 You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.5.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.5.x or 11.4.x version by using the latest 11.5.x operator.
 
-If you are upgrading from {{site.data.reuse.eem_name}} version 11.3.x or earlier, you must first [upgrade your installation to 11.4.x]({{ 'eem/eem_11.4' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.5.0.
+<!-- Below text to be used for .0 releases -->
+<!-- You can upgrade {{site.data.reuse.eem_name}} to [11.5.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.4.x by using the latest 11.5.0 operator. -->
+
+If you are upgrading from {{site.data.reuse.eem_name}} version 11.3.x or earlier, you must first [upgrade your installation to 11.4.x]({{ 'eem/eem_11.4' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.5.1.
 
 - On OpenShift, you can upgrade to the latest version by using operator channel v11.5. Review the general upgrade [prerequisites](#prerequisites) before you follow the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
@@ -67,7 +70,7 @@ If your existing Subscription uses a channel earlier than v11.4, you must first 
 
 
 <!-- Below line for non .0 releases only -->
-If your existing Subscription is already on the v11.4 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically.
+If your existing Subscription is already on the v11.5 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically.
 
 
 ### Making new catalog source available

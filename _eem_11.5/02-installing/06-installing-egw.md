@@ -83,7 +83,8 @@ A Kafka client implementation might require that the {{site.data.reuse.egw}} pre
 
    **Note:** Setting the Server URL and uploading the Gateway private key and certificate is optional, but if not done then the generated Docker command or YAML file contains placeholders for these properties. Replace the placeholders with the actual Server URL and certificate file paths when you deploy the gateway.  
 
-5. Use the generated Docker command, Kubernetes Deployment, or custom resource YAML to [install](#installing-from-config) the {{site.data.reuse.egw}} in your environment. 
+5. Use the generated Docker command, Kubernetes Deployment, or custom resource YAML to [install](#installing-from-config) the {{site.data.reuse.egw}} in your environment.  
+**Important:** keep a [backup](../backup-restore) of the generated Docker command or Kubernetes YAML. These contain important data needed to run the gateway, and you will need to edit these later as new versions are released.
 
 6. Return to the **Event Gateways** page to monitor the status of the new {{site.data.reuse.egw}}. When the gateway is registered, the status reports **Running**.
 
@@ -123,7 +124,18 @@ To deploy an operator-managed or Kubernetes Deployment {{site.data.reuse.egw}} i
 
 2. Replace any placeholder values and set `spec.containers.env.ACCEPT_LICENSE` to `"true"`.
 
-3. Apply the file in your Kubernetes environment by using the `kubectl` command. For example:
+3. If you are deploying an operator-managed gateway on other Kubernetes platforms, then add the `spec.endpoints[]` section:
+
+    ```yaml
+    spec:
+      endpoints:
+        - name: gateway
+          host: <gateway endpoint>
+    ```
+
+    For more information about the `endpoints` property, see [Configuring ingresses](../configuring#configuring-ingress).
+
+4. Apply the file in your Kubernetes environment by using the `kubectl` command. For example:
 
     ```shell
     kubectl apply -f EventGateway-eg1.yaml -n my-namespace

@@ -198,7 +198,7 @@ To add an unpack array node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 1. In the **Palette**, under **Processors**, drag-and-drop the **Unpack arrays** node into the canvas.
-1. Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
+1. Connect the node to an input stream by dragging the **Output Port** from an input node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the filter node indicating that the node is yet to be configured.
 1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure unpack node** window opens.

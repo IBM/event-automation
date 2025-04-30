@@ -11,4 +11,4 @@ categories:
   - Messaging
 ---
 
-Streams Salesforce platform events and Change Data Capture (CDC) events to Kafka topics.
+Streams Salesforce platform events, Change Data Capture (CDC) events, and polling events to Kafka topics.

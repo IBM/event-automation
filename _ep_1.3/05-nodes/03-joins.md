@@ -12,19 +12,13 @@ An interval join is available in {{site.data.reuse.ep_name}}.
 
 An interval join is used to merge two event streams based on a join condition that matches events within a time period.
 
-### Output properties
-
- You can manage the properties that come from this node to suit your requirements. When the properties from the events of the two input nodes are merged, you might have to resolve naming conflicts by renaming or removing properties.
-
-The merge of properties is done both at top-level and at nested levels. If both input nodes contain a complex object property with the same name, all the properties from both inputs are merged, and you need to resolve the naming conflicts by renaming or removing properties.
-
 ### Adding an interval join node
 
 To add an interval join, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Joins**, drag the **Interval join** node into the canvas.
-3. Connect the node to two event sources by separately dragging the **Output Port** from each source node into the **Input Port** of this node.
+3. Connect the node to two input streams by separately dragging the **Output Port** from each input node into the **Input Port** of this node.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure Interval join** window is displayed.
@@ -74,8 +68,8 @@ Examples:
 Alternatively, to use the assistant to create your expression, complete the following steps:
 
 1. Click the **Assistant** drop-down menu to open the assistant.
-2. In the **Property from [name of the first event source]** drop-down menu, select the property that you want to match.
-3. In the **Property from [name of the second event source]** drop-down menu, select a property to match the one chosen in step 2.
+2. In the **Property from [name of the first input stream]** drop-down menu, select the property that you want to match.
+3. In the **Property from [name of the second input stream]** drop-down menu, select a property to match the one chosen in step 2.
 4. Click **Add to expression** to insert the expression into the text-box.
 
 **Note:** Ensure that the property you choose for both sides of your expression has the same data type. 
@@ -97,7 +91,10 @@ To define the time window condition, complete the following steps:
 
 #### Output properties
 
-You can manage the properties that come from this node to suit your requirements.
+You can manage the properties that come from this node to suit your requirements. When the properties from the events of the two input nodes are merged, you might have to resolve naming conflicts by renaming or removing properties.
+
+The merge of properties is done both at top-level and at nested levels. If both input nodes contain a complex object property with the same name, all the properties from both inputs are merged, and you need to resolve the naming conflicts by renaming or removing properties.
+
 
 **Rename a property**
 

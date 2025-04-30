@@ -56,6 +56,10 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Endpoint Management</h3>
+    <h4>11.5.1 - what's new:</h4>
+    <ul>
+     <li>Security and bug fixes</li>
+      </ul>
     <h4>11.5.0 - what's new:</h4>
     <ul>
       <li>Admin role</li>
@@ -63,6 +67,7 @@ sections:
      <li>Generate Event Gateway deployment configuration from the Event Endpoint Management UI</li>
      <li>Support for Red Hat OpenShift Container Platform 4.18</li>
      <li>CA certificate management</li>
+     <li>Enforcement of certificate manager prerequisite</li>
      <li>Security and bug fixes</li>
       </ul>
     <h4>11.4.2 - what's new:</h4>

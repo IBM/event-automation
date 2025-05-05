@@ -39,6 +39,8 @@ The `integration-admin` user does not have the required Kafka permissions (READ,
 
 ## Resolving the problem
 
+The issue is resolved in {{site.data.reuse.es_name}} 11.7.0 and later versions.
+
 To manage geo-replication in your destination cluster, you must create a `KafkaUser` on the destination {{site.data.reuse.es_name}} cluster with the same name as the Keycloak user (for example, integration-admin) and assign it admin privileges.
 
 To create a `KafkaUser` in the {{site.data.reuse.openshift_short}} UI, complete the following steps:

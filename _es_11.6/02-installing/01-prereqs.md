@@ -190,7 +190,6 @@ For more information, see sections about [configuring UI security](../configurin
 
 Configuring your access with Keycloak in {{site.data.reuse.es_name}} has the following limitations:
 
-- You cannot access the dashboards that are included in the {{site.data.reuse.es_name}} UI for monitoring [Kafka health](../../administering/cluster-health/#viewing-the-preconfigured-dashboard) and [topic health](../../administering/topic-health/).
 - The {{site.data.reuse.es_name}} [CLI](../post-installation/#installing-the-event-streams-command-line-interface) is not supported.
 
   **Note:** You can authenticate the CLI by using a different mechanism (for example, SCRAM) even if you have other authentication mechanisms configured for your {{site.data.reuse.es_name}} instance (for example, Keycloak).

@@ -12,16 +12,19 @@ Read about the key concepts and terms used in {{site.data.reuse.eem_name}}. The 
 
 
 ## Catalog
+{: #catalog}
 
 The catalog lists all available [event endpoints](#event-endpoint). Application developers in your organization can use the catalog to browse the available event endpoints, and to view more information about each of them, including a description, tags, sample messages, schema details if used, and so on, enabling access to the stream of events represented by the event source through the published [options](#option).
 
 Kafka administrators can use the catalog to check what options are published and made available to others in the organization as event endpoints.
 
 ## Cluster
+{: #cluster}
 
 Kafka runs as a cluster of one or more servers (Kafka brokers). The load is balanced across the cluster by distributing it amongst the servers.
 
 ## Controls
+{: #controls}
 
 You can add [controls to options](../../describe/option-controls) so that you have greater management over how event source data is presented to applications.
 
@@ -42,10 +45,12 @@ You can add the following controls to an option on a [produce-enabled](#produce)
 
 
 ## Consume
+{: #consume}
 
 An application developer can discover [event endpoints](#event-endpoint) that are published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an event endpoint on a consume-enabled [event source](#event-source) to get access for a client application to consume Kafka events from the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
 
 ## Event
+{: #event}
 
 An event represents a meaningful occurrence or change in the state of a system or a value. Find out more about [key concepts]({{ 'es/about/key-concepts/#event' | relative_url }}) related to Apache Kafka.
 
@@ -57,6 +62,7 @@ When a Kafka administrator publishes an [option](#option) to the {{site.data.reu
 For an application developer, the event endpoint is the object that they can discover in the catalog, and behaves like a topic when it is accessed through the {{site.data.reuse.egw}}.
 
 ## {{site.data.reuse.egw}}
+{: #event-gateway}
 
 Access to event sources are managed by the {{site.data.reuse.egw}}. The {{site.data.reuse.egw}} handles the incoming requests from applications to access an event source, routing traffic securely between the Kafka cluster and the application.
 
@@ -70,33 +76,36 @@ The following methods are available for deploying and managing your {{site.data.
 ## {{site.data.reuse.egw}} group
 {: #gateway-group}
 
-An {{site.data.reuse.egw}} group is a group of {{site.data.reuse.egw}} instances that can be logically grouped and scaled together. When [deploying an {{site.data.reuse.egw}}](../../installing/install-gateway), you can define gateway groups by name, and any {{site.data.reuse.egw}} instances with the same group name are considered a member of that group.
+An {{site.data.reuse.egw}} group is a logical group of {{site.data.reuse.egw}} instances, to which [options](#option) are published.
 
-The following are examples of {{site.data.reuse.egw}} groupings:
-
+Example gateway groupings:
 
 - {{site.data.reuse.egw}}s that are deployed to manage Kafka traffic to designated Kafka clusters.
-- {{site.data.reuse.egw}}s that are colocated within the same geography.
-- {{site.data.reuse.egw}}s that represent different Kafka topics and streams at different stages of adoptable maturity, such as development, test, or production.
+- {{site.data.reuse.egw}}s that are colocated within the same geographical area.
+- {{site.data.reuse.egw}}s that manage traffic for different Kafka topics that are at different stages of maturity. For example, development, test, or production.
 
+When [deploying an {{site.data.reuse.egw}}](../../installing/install-gateway), you must specify the gateway group that it belongs to.
 
-When {{site.data.reuse.egw}}s start, they join their defined {{site.data.reuse.egw}} group and pull any configuration that is specified for that group. The configuration for an {{site.data.reuse.egw}} group is determined when [publishing an event source](../../describe/publishing-options), where you can select which group the event source must be accessible through. By publishing an event source to an {{site.data.reuse.egw}} group, you can restrict which gateways have access to an event source without specifying the gateway instances directly. {{site.data.reuse.egw}} instances can be added or removed from a group at any time, providing flexibility as the use of event sources matures.
+When a new {{site.data.reuse.egw}} starts, it contacts the {{site.data.reuse.eem_manager}}, which responds with all the options that are published to the gateway's group. Kafka clients can then access the published options through the new {{site.data.reuse.egw}}.
 
-**Note:** A gateway instance can only be a member of one gateway group.
-
-**Important:** When removing a gateway deployment, work with [subscribed users](../../subscribe/managing-subscriptions) to ensure their clients are configured to work with another member of the same gateway group, so they can continue to consume your event source.
+Key points:
+- You must have at least one gateway group.
+- An {{site.data.reuse.egw}} can be a member of only one gateway group.
 
 ## {{site.data.reuse.eem_manager}}
+{: #event-manager}
 
 The {{site.data.reuse.eem_manager}} component adopts your Kafka topics into a central location after you describe them as event sources, and you can then generate event endpoints for sharing with others. The {{site.data.reuse.eem_manager}} provides features to configure how you want to present the topic data by using event endpoints, which can be accessed through the {{site.data.reuse.egw}}.
 
 {{site.data.reuse.eem_manager}} instances are defined by the `EventEndpointManagement` custom resource type.
 
 ## Event source
+{: #event-source}
 
 An event source is the term used to describe a topic when it has been added to {{site.data.reuse.eem_name}}. A Kafka administrator can make event sources accessible by publishing an [option](#option) to the [catalog](#catalog) where it becomes an [event endpoint](#event-endpoint). Application developers can discover and browse the available event endpoints and decide which ones they want access to. They can then configure their applications to either [consume](#consume) from the event endpoint or [produce](#produce) to it.
 
 ## Message
+{: #message}
 
 The unit of data in Kafka. Each message is represented as a record, which comprises two parts: key and value. The key is commonly used for data about the message and the value is the body of the message. Message is also sometimes referred to as event data and record.
 
@@ -113,11 +122,13 @@ A Kafka administrator can create an option for an [event source](#event-source) 
 An application developer can write events to an [event endpoint](#event-endpoint) that is published to the [catalog](#catalog). The application developer must [subscribe](#subscription) to an event endpoint on a produce-enabled [event source](#event-source) to get access for a client application to produce Kafka events to the related topic through the {{site.data.reuse.egw}}, by using standard Kafka client libraries.
 
 ## Subscription
+{: #subscription}
 
 Application developers configure their applications to subscribe to the stream of events, providing access to the message content from the event stream, and configuring the required credentials for their application to consume from the event endpoint. 
 
 Kafka administrators can limit subscriptions by adding the approval control to the options of an event source and they can manage subscriptions that are created for their event sources in the {{site.data.reuse.eem_name}} **Topic Detail** page.
 
 ## Topic
+{: #topic}
 
 A Kafka topic, which contains a set of related events.

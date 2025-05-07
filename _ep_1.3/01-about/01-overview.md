@@ -15,7 +15,7 @@ toc: true
 
 The event flow is represented as a graph of event sources, processors (actions), and event destinations. You can use the results of the processing to get and share insights on the business data, or to build automations.
 
-The flows are run as [Apache Flink](https://flink.apache.org/){:target="_blank"} jobs. Apache Flink is a framework and a distributed processing engine for stateful computations over event streams. In addition to being the processing engine for {{site.data.reuse.ep_name}}, Flink is also a standalone engine you can run custom Flink SQL workloads with.
+The flows are run as [Apache Flink](https://flink.apache.org/){:target="_blank"} jobs. Apache Flink is a framework and a distributed processing engine for stateful computations over event streams. In addition to being the processing engine for {{site.data.reuse.ep_name}}, Flink is also a standalone engine you can run custom Flink SQL workloads with. 
 
 ## Features
 
@@ -26,4 +26,4 @@ The flows are run as [Apache Flink](https://flink.apache.org/){:target="_blank"}
 - The ability to test your event flow while constructing it.
 - The option to import and export flows in JSON format to reuse across different deployment instances.
 - The option to download the output of the flow processing in a CSV file.
-
+- ![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") You can create and run a Flink session job that is written in Java by using the {{site.data.reuse.ibm_flink_operator}}.

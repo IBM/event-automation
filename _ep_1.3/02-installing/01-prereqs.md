@@ -105,7 +105,7 @@ The {{site.data.reuse.ibm_flink_operator}} has the following minimum resource re
 
 You can only install one version of the {{site.data.reuse.ibm_flink_operator}} on a cluster. Installing multiple versions on a single cluster is not supported.
 
-You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
+You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
 
 ## Red Hat OpenShift Security context constraints
 

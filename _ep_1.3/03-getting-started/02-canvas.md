@@ -82,7 +82,7 @@ The clothing company called their event source `Orders` and used the schema for 
 {: #add-filter}
 
 1. On the **Palette**, in the **Processors** section, drag a **Filter** node onto the canvas.
-1. Drag the output port on the event node to the input port on the filter to join the two nodes together.
+1. Drag the **Output port** on the event node to the **Input port** on the filter to join the two nodes together.
 1. Hover over the source node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. 
 
 The **Configure filter** window is displayed.

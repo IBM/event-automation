@@ -70,4 +70,4 @@ spec:
 After completing this update, the new configuration will be automatically reflected in the Flink deployment and future changes will be reflected within approximately 30 seconds without restarting the `taskManager` or the `JobManager` pods.
 
 
-See also the [FlinkDeployment Logging Configuration](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/operations/metrics-logging/#flinkdeployment-logging-configuration){:target="_blank"} documentation.
+See also the [FlinkDeployment Logging Configuration](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/operations/metrics-logging/#flinkdeployment-logging-configuration){:target="_blank"} documentation.

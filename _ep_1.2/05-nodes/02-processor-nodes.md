@@ -241,4 +241,3 @@ To configure the unpack arrays node, complete the following steps:
   1. To complete an unpack node configuration, click **Configure**.
 
    A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the unpack arrays node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.
-

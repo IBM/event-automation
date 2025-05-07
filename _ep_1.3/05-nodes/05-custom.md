@@ -34,7 +34,8 @@ To add a custom node, complete the following steps:
    - SQL processor
    - SQL destination
 
-1. If the selected node is an SQL processor or an SQL destination, then connect the node to an input stream by dragging the output port from an input node into the input port of this node.
+1. If the selected node is an SQL processor or an SQL destination, then connect the node to an input stream by dragging the **Output port** from an input node into the **Input port** of this node.
+
 
    **Note:** SQL processor nodes support multiple inputs or sources. 
 

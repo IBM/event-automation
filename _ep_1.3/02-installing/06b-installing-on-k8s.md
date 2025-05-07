@@ -90,7 +90,7 @@ Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} an
 **Important:**
 
 * The {{site.data.reuse.ibm_flink_operator}} must not be installed on a cluster where you already have an Apache Flink operator installed. This is because the {{site.data.reuse.ibm_flink_operator}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources cannot be managed by more than one operator at the same time (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
-* Before installing the {{site.data.reuse.ibm_flink_operator}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+* Before installing the {{site.data.reuse.ibm_flink_operator}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
 * Only one version of the {{site.data.reuse.ibm_flink_operator}} must be installed on a cluster. Installing multiple versions is not supported due to potential conflicts between different versions of the `CustomResourceDefinition` resources.
 * Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
 
@@ -244,7 +244,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 To deploy a Flink instance, run the following commands:
 
 1. Prepare a `FlinkDeployment` custom resource in a YAML file, using the information provided in
-   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
+   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
 
    **Notes:** 
  
@@ -258,6 +258,7 @@ To deploy a Flink instance, run the following commands:
            license.license: L-AUKS-FKVXVL
            license.accept: 'true'
       ```
+
       Where `<license-use-value>` must be either `EventAutomationProduction` or `EventAutomationNonProduction`, depending on your deployment.
 
     - If the operator webhook has been disabled (`--set webhook.create=false`), in addition to the licensing parameters you configured in the previous step, you must also include the fields `spec.image` and `spec.flinkVersion`.
@@ -306,6 +307,44 @@ To deploy a Flink instance, run the following commands:
    ```
 
 4. Wait for the installation to complete.
+
+## Install a Flink session job instance
+{: #install-flink-sessionjob-k8s}
+
+Instances of Flink session jobs can be created after the {{site.data.reuse.ibm_flink_operator}} is installed and the Flink instance is deployed. 
+
+An instance of a Flink session job is installed by deploying the `FlinkSessionJob` custom resource to a namespace managed by an instance of {{site.data.reuse.ibm_flink_operator}}.
+
+If the operator is installed into **a specific namespace**, then it can only be used to manage instances of Flink session jobs in that namespace.
+
+If the operator is installed for **all namespaces**, then it can be used to manage instances of Flink session jobs in any namespace, including those created after the operator was deployed.
+
+
+
+### Installing a Flink session job instance by using the CLI
+{: #install-flink-sessionjob-cli-k8s}
+
+To install an instance of Flink `SessionJob` from the command-line, you must first prepare a `FlinkSessionJob` custom resource configuration in a YAML file.
+
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinksessionjob` to access the samples.
+
+To deploy a Flink `SessionJob` instance, run the following commands:
+
+1. [Prepare](../configuring/#configuring-flinksessionjob) a `FlinkSessionJob` custom resource as a YAML file.
+
+1. Apply the configured `FlinkSessionJob` custom resource:
+
+   ```shell
+   kubectl apply -f <custom-resource-file-path>
+   ```
+
+   For example:
+
+   ```shell
+   kubectl apply -f flinksessionjob_demo.yaml
+   ```
+
+1. Wait for the installation to complete.
 
 
 ### Installing an {{site.data.reuse.ep_name}} instance

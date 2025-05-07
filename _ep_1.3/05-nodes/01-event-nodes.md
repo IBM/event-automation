@@ -204,6 +204,7 @@ To configure your event source node, complete the following steps:
    - If you select the option **Use message timestamp provided by Kafka**, or when the event structure does not contain a timestamp property, a new timestamp property with a name defined in the **Event Property name** is generated and added to all events.
 
 1. In the **Event lateness** section, select the event time delay to allow out of order events to be processed by nodes that use time windows. When the [watermark](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/time/#event-time-and-watermarks){:target="_blank"} for a flow progresses past the end of a time window, that window is closed and any events that arrive with an earlier event time are not included in the window output.
+   {: #event-lateness}
 
    The delay is used to ensure the window does not close immediately, but instead waits for the watermark to progress past the delay before closing the window.
 

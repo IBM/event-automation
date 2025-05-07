@@ -20,6 +20,11 @@ sections:
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
     <h3>Event Streams</h3>
+    <h4>11.7.0 - what's new:</h4>
+    <ul>
+      <li>Support for Kafka Node Pools</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.6.1 - what's new:</h4>
     <ul>
       <li>Support for Red Hat OpenShift Container Platform 4.18</li>
@@ -109,6 +114,13 @@ sections:
       <li>Security and bug fixes</li>
     </ul>
     <h3>Event Processing</h3>
+    <h4>1.3.2 - what's new:</h4>
+    <ul>
+      <li>Processor nodes: detect patterns</li>
+      <li>Manage jobs on a Flink session cluster by operating on instances of the FlinkSessionJob custom resource</li>
+      <li>Interval join node: support for inclusive and exclusive left joins</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>1.3.1 - what's new:</h4>
     <ul>
       <li>Enrichment from watsonx.ai text generation services</li>

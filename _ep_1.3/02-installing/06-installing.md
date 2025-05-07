@@ -267,7 +267,7 @@ including resource requirements and, if installing in **any namespace**, the req
 * Before installing {{site.data.reuse.ibm_flink_operator}} on a cluster where Apache Flink operator is already installed, to avoid
   possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
   the Apache Flink CRDs as described in the
-  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
 * Only one version of {{site.data.reuse.ibm_flink_operator}} should be installed in a cluster. Installing multiple versions
   is not supported, due to the possible conflicts between versions of the `CustomResourceDefinition` resources.
 * Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
@@ -656,7 +656,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 To deploy a Flink instance, run the following commands:
 
-1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
+1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
 
    **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included by {{site.data.reuse.ibm_flink_operator}}. 
 
@@ -708,6 +708,114 @@ To deploy a Flink instance, run the following commands:
    ```
 
 4. Wait for the installation to complete.
+
+## Install a Flink session job instance
+{: #install-flink-sessionjob}
+
+Instances of Flink session jobs can be created after the {{site.data.reuse.ibm_flink_operator}} is installed and the Flink instance is deployed.
+
+An instance of Flink session job is installed by deploying the `FlinkSessionJob` custom resource to a namespace managed by an instance of {{site.data.reuse.ibm_flink_operator}}.
+
+- If the operator was installed into **a specific namespace**, then it can only be used to manage instances of Flink session jobs in that namespace.
+
+- If the operator was installed for **all namespaces**, then it can be used to manage instances of Flink session jobs in any namespace,
+including those created after the operator was deployed.
+
+
+### Installing a Flink session job instance by using the web console
+{: #install-flink-sessionjob-webconsole}
+
+
+To install an instance of a Flink session job through the {{site.data.reuse.openshift_short}} web console, do the following:
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+3. Expand the **Project** dropdown and select the project the instance is installed in. Click the operator
+   called **{{site.data.reuse.ibm_flink_operator}}** managing the project.
+
+   **Note:** If the operator is not shown, it is either not installed or not available for the selected namespace.
+
+4. In the **Operator Details** dashboard, click the **Flink Session Job** tab.
+5. Click the **Create FlinkSessionJob** button to open the **Create FlinkSessionJob** panel. You can use this panel
+   to define a `FlinkSessionJob` custom resource.
+
+From here you can install by using the [YAML view](#install-flink-sessionjob-webconsole-yaml) or the [form view](#install-flink-sessionjob-webconsole-form). For advanced configurations or to install one of the samples, see [installing by using the YAML view](install-flink-sessionjob-webconsole-yaml).
+
+#### Installing a Flink session job instance using the YAML view
+{: #install-flink-sessionjob-webconsole-yaml}
+
+You can [configure](../configuring/#configuring-flinksessionjob) the `FlinkSessionJob` custom resource by editing the YAML in the UI. To do this, select **YAML view**.
+
+A number of sample configurations are provided on which you can base your Flink session job. These range from quick start deployments for non-production development to large scale clusters ready to handle a production workload. Alternatively, a pre-configured YAML file containing the custom resource can be dragged and dropped onto this screen to apply the configuration.
+
+To view the samples, complete the following steps:
+
+1. Click the **Samples** tab to view the available sample configurations.
+2. Click the **Try it** link under any of the samples to open the configuration in the **Create FlinkSessionJob** panel.
+
+More information about these samples is available in the [planning](../planning/#flink-session-job-deployments) section.
+You can base your deployment on the sample that most closely reflects your requirements and [configure](../configuring). You can also directly edit the custom resource YAML by clicking on the editor.
+
+After modifying the sample configuration, you can export the updated document from the **Create FlinkSessionJob** panel by clicking the **Download** button and re-imported by dragging the resulting file back into the window.
+
+**Note:** Ensure that an instance of a session cluster is created by using the `FlinkDeployment` custom resource and is running before applying the `FlinkSessionJob`custom resource.
+
+- In `FlinkSessionJob` custom resource samples, set the value of `spec.deploymentName` to the name of the Flink deployment instance deployed by using the `FlinkDeployment` custom resource.
+
+  ```yaml
+  spec:
+    deploymentName: <session-cluster-instance-name>
+  ```
+
+  Where `<session-cluster-instance-name>` must be the instance name of the session cluster deployed by using the `FlinkDeployment` custom resource.
+
+To deploy an instance of a Flink session job, use the following steps:
+
+1. Complete any changes to the sample configuration in the **Create FlinkSessionJob** panel.
+2. Click **Create** to begin the installation process.
+3. Wait for the installation to complete.
+
+#### Installing a Flink session job instance by using the form view
+{: #install-flink-sessionjob-webconsole-form}
+
+
+To configure a `FlinkSessionJob` custom resource in the **Form view**, do the following:
+
+1. Enter a name for the instance in the **Name** field.
+2. Enter a name for the session cluster instance name in the **deployment** field.
+3. Scroll down and click the **Create** button to deploy an instance of a Flink session job.
+4. Wait for the installation to complete.
+
+### Installing a Flink session job instance by using the CLI
+{: #install-flink-sessionjob-webconsole-cli}
+
+To install an instance of a Flink session job from the command-line, you must first prepare a `FlinkSessionJob` custom resource configuration in a YAML file.
+
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your Flink version, and then go to `/cr-examples/flinksessionjob` to access the samples.
+
+To deploy a Flink session job instance, run the following commands:
+
+1. [Prepare](../configuring/#configuring-flinksessionjob) a `FlinkSessionJob` custom resource in a YAML file.
+2. Set the project where your `FlinkSessionJob` custom resource will be deployed in:
+
+   ```shell
+   oc project <project-name>
+   ```
+
+3. Apply the configured `FlinkSessionJob` custom resource:
+
+   ```shell
+   oc apply -f <custom-resource-file-path>
+   ```
+
+   For example:
+
+   ```shell
+   oc apply -f flinksessionjob_demo.yaml
+   ```
+
+4. Wait for the installation to complete.
+
 
 ## Install an {{site.data.reuse.ep_name}} instance
 

@@ -8,13 +8,11 @@ toc: true
 
 Find out how to deploy your flows in a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} for development and testing purposes.
 
-**Important:** You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
-
-<!-- pattern node
 **Important:**
-* EP introduces a new flow export format, that can be used for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with automation in a continuous integration and continuous delivery (CI/CD) process.
-* Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern).
-pattern node -->
+
+- You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
+
+- Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 
 ## Prerequisites
 
@@ -191,13 +189,21 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
    kubectl cp -c flink-main-container /udfproject/target/udf.jar ${FLINK_JOB_MANAGER}:/opt/flink/lib
    ```
 
-4. Submit the Flink SQL job to the Flink cluster:
+4. Submit the Flink SQL job to the Flink cluster.
+
+   ![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") In {{site.data.reuse.ep_name}} 1.3.2 and later, the {{site.data.reuse.ep_name}} dependencies that are used by Flink jobs authored by the {{site.data.reuse.ep_name}} UI are moved to the `ibm-ep-job-dependencies` folder. Update the job submission command to use the `--jar` option available in the Flink SQL Client [configuration](https://nightlies.apache.org/flink/flink-docs-release-2.0/docs/dev/table/sqlclient/#configuration){:target="_blank"} to bring in the dependencies:
+
+   ```shell
+   kubectl exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh --jar /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar -hist /dev/null -f /tmp/statements.sql
+   ```
+
+   In versions earlier than 1.3.2, run the following command:
 
    ```shell
    kubectl exec ${FLINK_JOB_MANAGER} -- /opt/flink/bin/sql-client.sh -hist /dev/null -f /tmp/statements.sql
    ```
 
-
+   
 ## List the deployed Flink SQL jobs
 
 1. Setup the connection to the Flink cluster.

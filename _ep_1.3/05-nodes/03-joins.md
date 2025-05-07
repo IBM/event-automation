@@ -12,13 +12,14 @@ An interval join is available in {{site.data.reuse.ep_name}}.
 
 An interval join is used to merge two event streams based on a join condition that matches events within a time period.
 
+
 ### Adding an interval join node
 
 To add an interval join, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 2. In the **Palette**, under **Joins**, drag the **Interval join** node into the canvas.
-3. Connect the node to two input streams by separately dragging the **Output Port** from each input node into the **Input Port** of this node.
+3. Connect the node to two input streams by separately dragging the **Output port** from each input node into the **Input port** of this node.
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure Interval join** window is displayed.
@@ -34,7 +35,7 @@ To configure an interval join, complete the following steps:
 
 #### Join condition
 
-To define your join condition, on the **Join condition** section, in the **Define events** text box, enter your expression.
+To define your join condition, in the **Join condition** section, in the **Define events** text box, enter your expression. 
 
 Examples:
 - Simple expression:
@@ -83,11 +84,27 @@ Alternatively, to use the assistant to create your expression, complete the foll
 
 To define the time window condition, complete the following steps:
 
-1. In the *Event to detect* drop-down menu, select the property of the event you are interested in.
+1. In the **Event to detect** drop-down menu, select the property of the event you are interested in.
 2. In the **Event to set the time window** drop-down menu, select the property of an event used to define the time window.
-3. In the *Offset from event to start the time window* field, input an integer value and select the corresponding time unit. Then input another integer in the *Offset from event to end the time window* field to define the duration of the time window.
+3. In the **Offset from event to start the time window** field, input an integer value and select the corresponding time unit. Then input another integer in the **Offset from event to end the time window** field to define the duration of the time window.
 
 **Note:** Ensure that the end-time of the time window is later than the start-time.
+
+
+#### ![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") Matching criteria
+{: #join-node-matching-criteria}
+
+**Note:** In versions earlier than 1.3.2, the **Matching criteria** section does not exist as only the inner join is supported and selected by default.
+
+To define how the two input streams are combined, and which events are included in the result, select at least one row in the **Select a join type** table:
+
+- **Inner join:** Select only the row with **Event** for both the input streams. In this case, only merged events from the left and right input streams that match the join condition within the specified time window are returned in the result.
+
+- **Exclusive left join:** Select only the row with **Event** for the left input stream, and **No event** for the right input stream. In this case, only events from the left input stream that do not match the join condition within the specified time window are returned. Event properties of the right input stream are added to the returned events with NULL values.
+
+- **Inclusive left join:** Select both rows. In this case, all merged events from the left and right input streams that match the join condition within the specified time window are returned. Additionally, the events from the left input stream that do not match the join condition are also added with NULL values for the right input stream event properties.
+
+**Note:** Merged events that match the join condition are returned as soon as a match is found. However, events that do not match the join condition are only returned after the time window is closed for both input streams.
 
 #### Output properties
 
@@ -95,6 +112,8 @@ You can manage the properties that come from this node to suit your requirements
 
 The merge of properties is done both at top-level and at nested levels. If both input nodes contain a complex object property with the same name, all the properties from both inputs are merged, and you need to resolve the naming conflicts by renaming or removing properties.
 
+
+![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") When the **exclusive left join** type is selected, all the properties that will always have a NULL value (that are the event properties of the right input stream) are removed by default. You can still add them again, if you want, by clicking the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"} in the **Properties to remove** table.
 
 **Rename a property**
 

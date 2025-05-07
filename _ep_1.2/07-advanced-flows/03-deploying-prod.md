@@ -137,12 +137,12 @@ Some adaptations to this procedure are required to build the Docker image and us
        license.accept: 'false'
        high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
        high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
-       restart-strategy: failure-rate
+       restart-strategy.type: failure-rate
        restart-strategy.failure-rate.max-failures-per-interval: '10'
        restart-strategy.failure-rate.failure-rate-interval: '10 min'
        restart-strategy.failure-rate.delay: '30 s'
        execution.checkpointing.interval: '5000'
-       execution.checkpointing.unaligned: 'false'
+       execution.checkpointing.unaligned.enabled: 'false'
        state.backend.type: rocksdb
        state.backend.rocksdb.thread.num: '10'
        state.backend.incremental: 'true'

@@ -183,6 +183,32 @@ All Flink samples except the Quick Start sample configure Flink to use persisten
 
 **Note:** The name of the PVC, `ibm-flink-pvc`, must match the name of the PVC configured in the `FlinkDeployment` custom resource. The samples which use persistent storage configure this PVC name.
 
+## Flink session job sample deployments
+{: #flink-session-job-samples}
+
+A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinksessionjob/openshift` or `/cr-examples/flinksessionjob/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+
+### Flink session job Quick Start sample
+{: #flink-session-job-quick-start}
+
+The Quick Start sample is a [Flink session cluster](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/custom-resource/overview/#flinksessionjob-spec-overview){:target="_blank"} suitable for deploying very small workloads that have no persistence or reliability requirements.
+
+This sample is not configured with High Availability for the [Flink Job Manager](https://nightlies.apache.org/flink/flink-docs-master/docs/concepts/flink-architecture/#jobmanager){:target="_blank"}, thus Flink jobs are not automatically restarted if the Flink session cluster restarts.
+
+### Flink session job Minimal Production sample
+{: #flink-session-job-minimal-prod}
+
+The Minimal Production sample is suitable for deploying [Flink session jobs](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/custom-resource/overview/#flinksessionjob-spec-overview){:target="_blank"} for small production workloads.
+
+This sample is configured with minimal High Availability for the [Flink Job Manager](https://nightlies.apache.org/flink/flink-docs-master/docs/concepts/flink-architecture/#jobmanager){:target="_blank"}. This means that Flink jobs are restarted automatically if the Flink cluster restarts. However, some downtime is expected as there is only a single Job Manager replica.
+
+### Flink session job Production sample
+{: #flink-session-job-prod}
+
+The Production sample is a Flink session job [Flink session job](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/custom-resource/overview/#flinksessionjob-spec-overview){:target="_blank"} suitable for deploy and manage session job in production session cluster which is suitable for large production workloads. 
+
+This sample is configured with High Availability for the [Flink Job Manager](https://nightlies.apache.org/flink/flink-docs-master/docs/concepts/flink-architecture/#jobmanager){:target="_blank"}, thus Flink jobs are automatically restarted if the Flink cluster restarts.
+
 
 ## Planning for persistent storage
 

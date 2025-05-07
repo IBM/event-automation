@@ -18,9 +18,7 @@ You can export your flow in the following formats:
 | --- | --- | --- |
 | **JSON and configuration YAML** | `<flow-name>.zip` file that contains `flow.json` and `config.yaml` |  Sensitive values are redacted. | For deploying jobs [customized for production or test environments](../deploying-customized), by using the command-line interface, possibly as part of a CI/CD pipeline. |
 | **JSON** | `<flow-name>.json` | Contains credentials | For backing up and sharing flows with others. |
-| **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. |
-
-   <!-- pattern node * Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
+| **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. <br/> <br/> - Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns). |
 
 **Notes:** 
 * The credentials used for the configuration of the [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md){:target="_blank"} connectors are redacted in the **JSON and configuration YAML** and **SQL** export formats, except for the [HTTP](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md){:target="_blank"} connector when used in [SQL processor nodes](../../nodes/custom).

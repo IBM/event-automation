@@ -12,11 +12,10 @@ Benefits of customized Flink jobs include:
 
 * Compatibility when working on an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 * The ability to reuse and easily customize the connector configuration across different targeted environments, such as test, staging, pre-production, and production (with the **JSON and configuration YAML** export option).
+* Can be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 * Support for the automatic upgrade of your {{site.data.reuse.ibm_flink_operator}} version.
   
   **Note:** Automatic upgrade is not supported if the `FlinkDeployment` custom resource uses an extension of the IBM Flink image. In this case, the extension of the image must be rebuilt to use the upgraded IBM Flink image.
-
-<!-- pattern node * Can be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
 
 **Important:** This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
@@ -299,7 +298,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Apply the modified `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/job-management/#manual-recovery).
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery).
 
 ## Enable SSL connection for your database
 

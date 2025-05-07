@@ -115,14 +115,22 @@ active
         </div>
       </a>          
       {% break %}
-    {% else %}
+    {% else if %}
       {% if button.type == 'GitHub' %}
         <a class="button primary" href="{{ url }}" target="_blank" aria-label="{{ connector.title }} quick link ">
           <div class="image">
             <img alt="Github Logo" src="{{ site.url }}{{ site.baseurl }}/assets/images/icons/github_dark.svg" />
           </div>
         </a>
-      {% endif %}            
+      {% endif %}
+      {% else %} 
+    {% if button.type == 'Properties' %}
+    <a class="button primary" href="{{ url }}" target="_blank" aria-label="{{ connector.title }} quick link ">
+      <div class="image">
+        <img alt="Github Logo" src="{{ site.url }}{{ site.baseurl }}/assets/images/icons/github_dark.svg" />
+      </div>
+    </a>
+  {% endif %}                    
     {% endif %}  
 
   {% endfor %}

@@ -6,14 +6,14 @@ slug: configuring
 toc: true
 ---
 
-## Configuring Flink
+Configure your Flink and {{site.data.reuse.ep_name}} deployments as follows.
 
-### Before you begin
+## Configuring Flink
 
 Consider the following resources before configuring your `FlinkDeployment` custom resource:
 
 
-- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
 - [Flink configuration options](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/config/#common-setup-options){:target="_blank"}
 - [Flink Event Time and Watermark](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/time/){:target="_blank"}
 - [Kafka SQL connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}
@@ -101,7 +101,7 @@ RocksDB is an embeddable persistent key-value store for fast storage provided by
 
 Most of the time, Flink operations such as aggregate, rolling aggregate, and interval join involve a large number of interactions with RocksDB for maintaining states.
 
-If the Flink job experiences a fall in throughput due to backpressure, consider enabling the incremental checkpointing Flink capability by setting the deployment option `state.backend.incremental` to `true`. 
+If the Flink job experiences a fall in throughput due to backpressure, consider enabling the incremental checkpointing Flink capability by setting the deployment option `execution.checkpointing.incremental` to `true`. 
 For more information about RocksDB state backend, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/state_backends/#rocksdb-state-backend-details){:target="_blank"}.
 
 You can tune RocksDB operations to optimize the overall performance of your Flink jobs.
@@ -116,14 +116,16 @@ For more information about tuning RocksDB, see the [Flink documentation](https:/
 
 ### Configuring parallelism
 
-A Flink program consists of multiple tasks. A task can be split into several parallel instances for execution and each parallel instance processes a subset of the task’s input data. The number of parallel instances of a task is called its parallelism.
+A Flink program is made up of many tasks. Each task can be broken down into smaller, identical instances that run at the same time. These instances work on different parts of the task's input data. The number of instances a task is split into is called its parallelism.
 
-In order to increase the throughput of your Flink job, you can perform the following actions:
+
+To increase the throughput of your Flink job, perform the following actions:
 
 - Increase the number of partitions in the Kafka ingress topics used by your Flink event sources.
 - Set the Flink job parallelism to a value equal to this number of partitions.
 
 For more information, see the following sections:
+
 - [Deploying jobs customized for production or test environments](../../advanced/deploying-customized)
 - [Deploying jobs in development environments by using the Flink SQL client](../../advanced/deploying-development)
 - [Deploying jobs in production environments by using the Apache SQL Runner sample](../../advanced/deploying-production).
@@ -143,9 +145,9 @@ To configure persistent storage, complete the following steps:
      [...]
      flinkConfiguration:
        [...]
-       state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
-       state.checkpoints.num-retained: '3'
-       state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
+       execution.checkpointing.dir: 'file:///opt/flink/volume/flink-cp'
+       execution.checkpointing.num-retained: '3'
+       execution.checkpointing.savepoint-dir: 'file:///opt/flink/volume/flink-sp'
      podTemplate:
        apiVersion: v1
        kind: Pod
@@ -205,6 +207,48 @@ To configure persistent storage, complete the following steps:
 
 **Important:** To ensure the automatic restart of Flink jobs if the cluster restarts, the Flink instances in [session cluster mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} must be configured with High Availability for the Flink Job Manager.
 
+## Configuring `FlinkSessionJob` custom resource
+{: #configuring-flinksessionjob}
+
+The following resources are valuable to read before configuring your `FlinkSessionJob` custom resource:
+
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinksessionjob){:target="_blank"}
+- [Job and scheduling](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/internals/job_scheduling/){:target="_blank"}
+
+### Configuring session job resource to submit a job to session cluster
+{: #configuring-sessioncluster-flinksessionjob}
+
+
+1. A [Flink session cluster](../installing/#install-a-flink-instance) is deployed and running.
+2. Set the `spec.deploymentName` to the name of the Flink session cluster name in the `FlinkSessionJob` custom resource. For example:
+
+   ```yaml
+   spec:
+     deploymentName: session-cluster-minimal-prod
+     job:
+       jarURI: <URI of the job jar>
+   ```
+
+### Configuring session job resource to submit a job from private registry 
+{: #configuring-privateregistry-flinksessionjob}
+
+If a Flink job JAR file is in a registry which requires basic authentication, you must specify custom HTTP headers with the information about your credentials when downloading artifacts for Flink deployments.
+
+1. A [Flink session cluster](../installing/#install-a-flink-instance) is deployed and running.
+2. Set `spec.deploymentName` to the name of the Flink session cluster instance in the `FlinkSessionJob` custom resource. For example:
+
+3. In the `spec.flinkConfiguration` section, set the value of `kubernetes.operator.user.artifacts.http.header` field to a custom HTTP header with information about credentials for obtaining the session job artifacts. See the [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/operations/configuration/#resourceuser-configuration){:target="_blank"} for more information about custom HTTP headers.
+
+   For example, if you are using a basic authentication, specify the custom HTTP header as follows:
+
+   ```yaml
+   spec:
+     flinkConfiguration:
+       kubernetes.operator.user.artifacts.http.header: 'Authorization: Basic <Base64-encoded credentials>'
+     deploymentName: session-cluster-minimal-prod
+     job:
+       jarURI: <URI of the job jar>
+   ```
 
 ## Configuring {{site.data.reuse.ep_name}}
 

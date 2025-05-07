@@ -1065,7 +1065,8 @@ latest_epdocs:
         url: /getting-started/logging-in/
       - title: "Building a simple flow"
         url: /getting-started/canvas/
-
+      - title: "Deploying a custom Flink session job"
+        url: /getting-started/flink-session-job/
   - title: Security
     children:
       - title: "Managing access"
@@ -1166,7 +1167,8 @@ latest_epdocs:
         url: /troubleshooting/recover-flink-deployment
       - title: "Job failure when deploying customized flows that contain API or watsonx.ai enrichment nodes"
         url: /troubleshooting/error-submitting-job-for-enrichment
-
+      - title: "Flink resources are unexpectedly missing from the cluster"
+        url: /troubleshooting/missing-flink-resources
 120_epdocs:
   - title: About
     children:

@@ -20,10 +20,10 @@ ipaas_name: "IBM Hybrid iPaaS"
 eem_current_version: "11.5.1"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.3.1"
+ep_current_version: "1.3.2"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.3.1"
+flink_operator_current_version: "1.3.2"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -236,7 +236,7 @@ node_step1: Ensure that a stream of events is available, from an event source no
 node_details: In the **Details** section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.
 
 # {{site.data.reuse.node_connect}}
-node_connect: "Connect the node to an event source by dragging the **Output Port** from a source node into the **Input Port** of this node."
+node_connect: "Connect the node to an event source by dragging the **Output port** from a source node into the **Input port** of this node."
 
 ###############
 # Flink Tasks #
@@ -363,7 +363,7 @@ egw_compatibility_note: "Ensure that both your Event Gateway and Event Manager i
 array_expression_note: "**Note:** The **Assistant** drop-down menu does not support array properties. However, you can manually write the expressions by selecting the property from the list that appears when you press Ctrl+Space in the **Expression** field."
 
 # {{site.data.reuse.ep_flink_version_align_note}}
-ep_flink_version_align_note: "Ensure that the Event Processing version and the IBM Operator for Apache Flink version are the same."
+ep_flink_version_align_note: "Ensure that the Event Processing operator version and the IBM Operator for Apache Flink version are the same."
 
 # {{site.data.reuse.ep_treeview_note}}
 ep_treeview_note: "**Note:** A tree view of the event structure is available. To view all the input properties of the current node, click **View input properties** in the upper-right corner of the pane."

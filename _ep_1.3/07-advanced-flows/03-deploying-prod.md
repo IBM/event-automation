@@ -12,7 +12,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 
 * You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-<!-- pattern node * Cannot be used for flows containing the [Detect patterns node](../../nodes/pattern). pattern node -->
+* Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
@@ -108,15 +108,22 @@ Some adaptations to this procedure are required to build the Docker image and us
    ```
 
    For example:
+
    ```shell
    COPY --chown=flink:root /udfproject/target/udf.jar /opt/flink/lib
    ```
 
-   d. Remove the sample SQL statement files from the [sql-scripts directory](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   d. Remove the sample SQL statement files from the [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"} directory.
 
-   e. Copy the `statements.sql` file to the directory [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"}.
+   e. Copy the `statements.sql` file to the [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"} directory.
 
-   f. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   f. ![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") In {{site.data.reuse.ep_name}} 1.3.2 and later, the {{site.data.reuse.ep_name}} dependencies that are used by Flink jobs authored by the {{site.data.reuse.ep_name}} UI are moved to the `ibm-ep-job-dependencies` folder. Copy the `ibm-ep-job-dependencies.jar` from `/opt/flink/ibm-ep-job-dependencies` to `/opt/flink/lib`.
+
+   ```shell
+   RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
+   ```
+
+   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
@@ -137,19 +144,19 @@ Some adaptations to this procedure are required to build the Docker image and us
        license.accept: 'false'
        high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
        high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
-       restart-strategy: failure-rate
+       restart-strategy.type: failure-rate
        restart-strategy.failure-rate.max-failures-per-interval: '10'
        restart-strategy.failure-rate.failure-rate-interval: '10 min'
        restart-strategy.failure-rate.delay: '30 s'
        execution.checkpointing.interval: '5000'
-       execution.checkpointing.unaligned: 'false'
+       execution.checkpointing.unaligned.enabled: 'false'
        state.backend.type: rocksdb
        state.backend.rocksdb.thread.num: '10'
-       state.backend.incremental: 'true'
+       execution.checkpointing.incremental: 'true'
        state.backend.rocksdb.use-bloom-filter: 'true'
-       state.checkpoints.dir: 'file:///opt/flink/volume/flink-cp'
-       state.checkpoints.num-retained: '3'
-       state.savepoints.dir: 'file:///opt/flink/volume/flink-sp'
+       execution.checkpointing.dir: 'file:///opt/flink/volume/flink-cp'
+       execution.checkpointing.num-retained: '3'
+       execution.checkpointing.savepoint-dir: 'file:///opt/flink/volume/flink-sp'
        taskmanager.numberOfTaskSlots: '2'
        table.exec.source.idle-timeout: '30 s'
        security.ssl.enabled: 'true'
@@ -314,9 +321,9 @@ hide autoscaler -->
 
     b. In the `spec.flinkConfiguration`, add the Flink autoscaler parameters to match your workload expectations.
 
-      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/autoscaler/)
+      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/autoscaler/)
 
-      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/operations/configuration/#autoscaler-configuration)
+      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/operations/configuration/#autoscaler-configuration)
 
       **Important:** If you have already defined the `pipeline.max-parallelism` option in `spec.flinkConfiguration` then do not alter the value.
      This would result in an incompatible change when the Job is restarted from an existing savepoint.
@@ -364,7 +371,7 @@ You can temporarily stop a running Flink job while capturing its current state b
 
 You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.
 
-1. Edit the `FlinkDeployment` custom resource of a Flink job that you [suspended](#stop-a-flink-job-with-a-savepoint) earlier:
+1. Edit the `FlinkDeployment` custom resource of a Flink job that you [suspended](#stop-a-flink-sql-job-with-a-savepoint) earlier:
 
    a. Set that the value of `spec.job.upgradeMode` is `savepoint`.
 
@@ -386,7 +393,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Save the changes in the `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.10/docs/custom-resource/job-management/#manual-recovery).
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
 ## Enable SSL connection for your database
 

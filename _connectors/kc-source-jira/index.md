@@ -7,6 +7,8 @@ support: IBM
 type: kafkaConnect
 iconInitial: J
 iconGradient: 1
+download:
+  -  { type: 'Properties', url: 'https://github.com/ibm-messaging/connectivity-pack-kafka-connectors/blob/main/systems/source%20systems/jira.md' }
 categories:
   - Messaging
 ---

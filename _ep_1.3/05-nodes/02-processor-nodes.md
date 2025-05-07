@@ -4,11 +4,13 @@ excerpt: "Event Processing provides a set of nodes to create event stream proces
 categories: nodes
 slug: processornodes
 toc: true
----  
- The following processor nodes are available in {{site.data.reuse.ep_name}}: 
- - [Filter](#filter)
- - [Transform](#transform)
- - [Unpack arrays](#unpack-arrays)
+---
+
+The following processor nodes are available in {{site.data.reuse.ep_name}}: 
+- [Filter](#filter)
+- [Transform](#transform)
+- [Unpack arrays](#unpack-arrays)
+- ![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") [Detect patterns](#detect-patterns)
 
 ## Filter
 
@@ -200,7 +202,8 @@ To add an unpack arrays node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 1. In the **Palette**, under **Processors**, drag-and-drop the **Unpack arrays** node into the canvas.
-1. Connect the node to an input stream by dragging the **Output Port** from an input node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the unpack arrays node indicating that the node is yet to be configured.
+1. Connect the node to an input stream by dragging the **Output port** from an input node into the **Input port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the unpack arrays node indicating that the node is yet to be configured.
+
 1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
    The **Configure unpack node** window opens.
@@ -242,3 +245,155 @@ To configure the unpack arrays node, complete the following steps:
 
    A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the unpack arrays node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.
 
+
+## Detect patterns
+
+![Event Processing 1.3.2 icon]({{ 'images' | relative_url }}/1.3.2.svg "In Event Processing 1.3.2 and later.") The detect patterns node identifies sequences of events across the input streams that match a defined pattern within a time interval.
+
+### Important concepts
+
+- Each input stream must contain a single event type. For example, one stream contains credit card shipped events, another stream contains credit card delivery events, and a third stream contains credit card activation events.
+- The events on the input streams are combined into an ordered sequence of events for each unique context. For example, if the input streams contain events for 100 different credit cards, then there is an ordered sequence for each credit card number.
+- A pattern is matched for each unique context across the input streams. For example, the output pattern match event will identify which credit card it is associated with.
+
+There are two types of patterns:
+
+1. A pattern that can be matched as soon as the final event arrives on the stream within the time interval. For example, a credit card is shipped, delivered, and then activated within a week.
+2. A pattern that specifies the absence of events. The pattern is evaluated at the end of the time interval and is matched if the events have not arrived on the stream within the interval. For example, a customer places three items into their cart, but does not check out within an hour.
+
+### Adding a detect patterns node
+
+To add a detect patterns node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+1. In the **Palette**, under **Processors**, drag-and-drop the **Detect patterns** node into the canvas.
+1. Connect the node to one or more input streams by dragging the **Output Port** from an input node into the **Input Port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the detect patterns node indicating that the node is yet to be configured.
+1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+The **Configure detect patterns** window opens.
+
+**Note**: If an input stream contains two or more different event types (typically differentiated by the enumerated value of an event property), you can split the stream by using [filter](#filter) nodes to create streams containing each specific event type. For example, a stream containing both `activated` and `transaction` events can be split with a filter on `eventType LIKE 'activated'` and another of `eventType LIKE 'transaction'`:
+
+```json
+{
+    "cardNumber": <number>,
+    "eventType": "activated" | "transaction"
+}
+```
+
+The flow that uses this split of the unique input stream can look as follows:
+
+![Create a flow]({{ 'images' | relative_url }}/split-input-stream-for-pattern-node.png "Flow which splits an input stream for detect patterns.")
+
+**Important:** The filters must be mutually exclusive to ensure that an event is directed to only one or none of the subsequent streams.
+
+### Configuring a detect patterns node
+
+To configure the detect patterns node, complete the following steps:
+
+1. {{site.data.reuse.node_details}}
+1. Click **Next** to open the **Define context** pane.
+
+   {{site.data.reuse.ep_treeview_note}}
+1. Select the property for each incoming event that can be used to correlate events into the same context. For example:
+
+   - There are two input streams - `credit card activation` and `credit card transaction`.
+
+     - The `credit card activation` event schema:
+
+     ```json
+     {"creditcardNumber": ..., "activationDate": ...}
+     ```
+
+     - The `credit card transaction` event schema:
+
+     ```json
+     {"credit_card_number": ..., "amount": ...}
+     ```
+
+     - The context is defined using the `creditcardNumber` and `credit_card_number` properties
+
+   **Note:** The properties must all have the same SQL data type. If the required data type is unavailable, consider using a [transform](#transform) node upstream to create a property with the matching data type.
+
+1. Click **Next** to open the **Define pattern** pane.
+1. Define the pattern to detect.
+
+   A pattern is defined using event occurrences and conditions.
+
+   ![Define pattern]({{ 'images' | relative_url }}/detect-patterns-pattern-definition.png "Pattern definition of A and (B OR C) followed by D")
+
+   **Occurrences**
+
+   Occurrences specify the minimum number of occurences of an event to result in a match. The events must occur in a sequence together. For example, `>=3 orders` means the detect pattern node receives at least three order events in a row, within the same context (that is three or more orders by the same customer).
+
+   **Conditions**
+
+   Each condition takes two inputs, where the input can be either an occurrence or another condition. For example, in `>=2 orders and >=1 cancellation` the `and` is a condition that takes two occurrences as input. A more complex pattern could be `>=2 orders and >=1 cancellation or 1 refund`, where the first condition `and` takes an occurrence (`2 orders`) and a condition (`1 cancellation or 1 refund`) as input.
+
+   The pattern is matched when all the conditions evaluate to true. The following table lists all the available conditions:
+
+   Condition | Description | Example (where orders = `O`, cancellations = `C`)
+   --- | --- | ---
+   **And** | There is a sequence of events containing the first input and the second input in either order, but with no events in between. | `>=3 orders AND >=2 cancellations`: the condition matches the sequence of events `O O O C C` or `C C O O O` for a particular context. But `O O O C O C C` would not match because there are two events `O C` between the two inputs of the `and` condition.
+   **Or** | There is a sequence of events containing the first input OR the second input | `>=3 orders OR >=2 cancellation`: the condition matches the sequence of events `O O O` or `C C`.
+   **Followed by** | There is a sequence of events containing the first input. There can be 0 or more unrelated events, then there is a sequence of events containing the second input.| `>=3 orders followed by >=2 cancelations`: the condition matches `O O O C C`. Unlike `and`, the sequence `O O O C O C C` does match because `O O O` is followed by `C C`. Conversely, `C C O O O` does not match because the orders (`O`) must happen first.
+   **Not followed by** | There is a sequence of events containing the first input and there is not a following sequence that contains the second input within the pattern duration. | `>=3 orders not followed by >=1 cancellations`: will match if at the end of the duration there is a sequence of events `O O O` that are not followed by `C`.
+
+   **Nesting groups**
+
+   When building complex patterns, conditions have different levels of precedence. The UI represents this by using visual groups. For example, when building the pattern `>=3 orders AND >=2 cancellations OR >=2 refunds`, the UI will create a group such that the pattern evaluates as `>=3 orders AND (>=2 cancellations OR >=2 refunds)`. To change the precedence, highlight a condition, and click the **Create group** icon ![create group icon]({{ 'images' | relative_url }}/create-group-icon.svg "The create group icon."){: height="32px" width="32px"} to create a group around it.
+
+   **Condition interaction**
+
+   When multiple conditions are combined and nested, their semantics might change. In the following examples, brackets are added to represent the groups in the node configuration UI.
+
+   - `>=2 orders AND ( >=2 refunds OR >=2 cancellations )` - the sequence `O O R R C O O` contains a match because:
+       - There are two orders and two refunds with no events between the. So, the `AND` and the `OR` conditions are satisfied.
+       - The remaining part of the sequence potentially contributes to a later pattern match.
+   - `>=2 orders AND ( >=2 refunds OR >=2 cancellations ) AND >=2 orders` - the sequence `O O R R C O O` does not match because:
+       - There are two orders and two refunds. So, the `AND` and the `OR` conditions are satisfied.
+       - But, then there is a cancellation.
+       - The `... AND >=2 orders` means that after the second refund there is then at least two orders with no other events between them.
+   - `(>=2 orders AND ( >=2 refunds OR >=2 cancellations ) ) followed by >=2 orders` - The sequence `O O R R C C O O` matches because:
+       - There are two orders and two refunds. So, the `AND` and the `OR` conditions are satisfied.
+       - But, then there is a cancellation.
+       - This time, the cancellation is ignored because `... followed by >=2 orders` allows other events to occur before the two orders.
+       - The pattern is then matched by the final two orders.
+
+1. In the **Time window duration** field, set the value and the unit for the pattern time interval. The interval is measured relative to event time, an interval of one hour means that a pattern will match if the event time property of the last event in the pattern is within an hour of the event time for the first event.
+1. Choose a detection mode:
+   As discussed in [step 10 of event nodes](../eventnodes#event-lateness), events can arrive out of order. To perform pattern matching, the events must be sorted into chronological order according to their event time. The watermarks from each input stream are used for the sorting process to handle out of order events. The watermarks are also used for identifying when a pattern match duration has elapsed.
+
+   If an input stream temporarily stops receiving events, the watermark is stalled. When one or more of the watermarks for the inputs to the detect pattern node stall, it might cause pattern matching to pause.
+
+   For example, a pattern ending with `not followed by X in an hour` cannot resolve because the stalled watermark means the elapsed pattern time does not increase past the hour duration.
+
+   Another example is that a pattern of `>=3 orders` cannot resolve when there are three order events on the input streams, but the sorting of events prior to the matching step cannot progress without a newer watermark.
+
+   As such, there are two detection modes available with respect to how the detect pattern node handles a stalled watermark:
+
+   - **Real time** (default): The watermark for an active input stream is progressed by using new events. If an input stream is idle, the detect pattern node will simulate new events to cause the watermark to progress in real time.
+   - **Event time**: The watermark for an active input stream is progressed by using new events. If an input stream is idle, patterns are stalled until the stream is active again.
+
+   **Real time** ensures patterns that are stuck behind a stalled watermark can be detected promptly. In most situations this has no adverse effect, as the next event produced to an idle stream will have an event time newer than the progressed watermark.
+
+   However, if the next event has an event time that is late compared to the progressed watermark, the event will not contribute to pattern matching and patterns that would have otherwise matched will be unable to match. For example, an event producer sends one batch of events per hour where a batch contains the last hour's events. The stream becomes idle after the first batch and the watermark is progressed by an hour. When the next batch is produced, it will contain events with event time spanning that hour. Most of these events will be late because the watermark has been progressed by an hour due to idleness.
+
+   **Event time** is the appropriate mode for that situation because the watermark will not progress without new events, so all the events in the batch can contribute to pattern matching.
+
+   **Important:** Ensure that the events for the same value of the context property have distinct timestamps.
+
+1. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements. By default, the following properties are included:
+   - `contextKey`: contains the value of the property you selected for defining the context.
+   - `patternMatchTime`: the event time for the output event. For use in downstream operations that require an event time property. Contains the timestamp, in event time, of the final event in the detected pattern.
+   - `startPatternMatchTime`: the timestamp, in event time, of the first event in the detected pattern.
+   - `endPatternMatchTime`: the timestamp, in event time, of the final event in the detected pattern.
+
+     **Note:** When a pattern includes a **Not followed by** condition, the final event timestamp is the end of the time interval.
+1. Optional: To remove a property so that it is not included in the output, click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.
+1. Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.
+   - In the text-box, enter a new name for your property.
+   - Click outside the text-box or press Enter on your keyboard to rename the property.
+1. Optional: To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties. For the property you want to add back, click the **Add property** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.  
+1. To complete the configuration, click **Configure**.
+
+   A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the detect patterns node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.

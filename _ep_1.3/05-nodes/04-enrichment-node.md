@@ -279,7 +279,7 @@ To add a watsonx.ai node, complete the following steps:
 
 1. {{site.data.reuse.node_step1}}
 1. In the **Palette**, under **Enrichment**, drag the **watsonx.ai** node into the canvas.
-1. Connect the node to an event source by dragging the Output Port from a source node into the Input Port of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the node indicating that the node is yet to be configured.
+1. Connect the node to an event source by dragging the **Output port** from a source node into the **Input port** of this node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the node indicating that the node is yet to be configured.
 1. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
 The **Configure watsonx.ai** window appears.

@@ -94,7 +94,8 @@ From the relevant table in the sections that follow, choose the value for the fo
 
 | Program   | Included capabilities  | License ID (`spec.license.license`) | License use (`spec.license.use`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|
-{{site.data.reuse.cp4i}} Event Processing Add-on <br> <br> | {{site.data.reuse.ep_name}} 1.2.2 and later <br> <br> | [**L-LZUJ-BAKE2S**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-LZUJ-BAKE2S){:target="_blank"} |  -`CloudPakForIntegrationNonProduction` <br> <br> -`CloudPakForIntegrationProduction`  <br> <br> - `CloudPakForIntegrationDevelopment`  |
+{{site.data.reuse.cp4i}} Event Processing Add-on <br> <br> | {{site.data.reuse.ep_name}} 1.4.0 and later <br> <br> | [**L-XZZF-LG77F4**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-XZZF-LG77F4){:target="_blank"} |  -`CloudPakForIntegrationNonProduction` <br> <br> -`CloudPakForIntegrationProduction`  <br> <br> - `CloudPakForIntegrationDevelopment`  |
+{{site.data.reuse.cp4i}} Event Processing Add-on <br> <br> | {{site.data.reuse.ep_name}} 1.2.2 to 1.3.2 <br> <br> | [**L-LZUJ-BAKE2S**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-LZUJ-BAKE2S){:target="_blank"} |  -`CloudPakForIntegrationNonProduction` <br> <br> -`CloudPakForIntegrationProduction`  <br> <br> - `CloudPakForIntegrationDevelopment`  |
 
 
 ## Chargeable containers

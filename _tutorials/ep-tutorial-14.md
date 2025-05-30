@@ -30,8 +30,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.4.2
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.eem_name}} 11.5.1
+- {{site.data.reuse.ep_name}} 1.3.2
 
 
 ## Instructions
@@ -72,7 +72,7 @@ For this scenario, you need sources of the return requests and product reviews e
 
 1. Create a flow, and give it a name and description to explain that you will use it to have more insight into the reasons for product return.
    
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-20.png "Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-20.png "Event Processing home page")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-1.png "Event Processing home page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-1.png "Event Processing home page")
     
  
     
@@ -85,7 +85,7 @@ To create an event source, complete the following steps:
 
 1. Add an **Event source** node.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-21.png "Adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-21.png "Adding an event source node")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-3a.png "Adding an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-3a.png "Adding an event source node")
 
     When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
 
@@ -98,11 +98,11 @@ To create an event source, complete the following steps:
 
 1. Get the server address for the event source from the {{site.data.reuse.eem_name}} topic page.
     
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-22.png "Getting connection details from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-22.png "Getting connection details from the catalog")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-3.png "Getting connection details from the catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-3.png "Getting connection details from the catalog")
 
     Click the **Copy** icon next to the **Servers** address to copy the address to the clipboard.
 
-1. Go to {{site.data.reuse.ep_name}}, and configure the new event source.    
+1. Go to {{site.data.reuse.ep_name}}, and configure the new event source.
     
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
@@ -115,7 +115,7 @@ To create an event source, complete the following steps:
 
 1. Generate access credentials for accessing this stream of events from the {{site.data.reuse.eem_name}} page.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-27.png "Getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-27.png "Getting the credentials to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-2.png "Getting the credentials to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-2.png "Getting the credentials to use")
 
     Click **Subscribe**, and provide your contact details.
 
@@ -175,21 +175,24 @@ For more information about how to create an unpack array node, see [unpack array
 
 1. Add an unpack array node and link the `Return requests` node to the unpack array node.
    
-1. Hover over the unpack array node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.   
+1. Hover over the unpack array node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4aa.png "Screen capture of the unpack arrays node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4aa.png "Screen capture of the unpack arrays node configuration")
+
 1. In the **Node name** field, enter the name of the unpack array node as `Unpack product returns`, and then click **Next**.
 
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-28.png "Add array name"){:height="60%" width="60%"}
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4a.png "Screen capture of the unpack arrays node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4a.png "Screen capture of the unpack arrays node configuration")
 
     
 1. In the **Array selection** pane, select the **returns** array, and then click **Next**.
 
-   ![Select return array]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-2.png "Select return array"){:height="25%" width="25%"}
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4b.png "Screen capture of the unpack arrays node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4b.png "Screen capture of the unpack arrays node configuration")
 
 
    
 1. In the **Unpack into events** tab, enter `return` in the **Property name** field, and then click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-29.png "Enter property name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-29.png "Enter property name") 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4c.png "Screen capture of the unpack arrays node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-4c.png "Screen capture of the unpack arrays node configuration")
 
    **Note:** By default, the **Unpack the array** pane displays the **Unpack into events** tab.   
    
@@ -221,15 +224,18 @@ For more information about how to create an aggregate node, see [Adding an aggre
 
 
 1. Add an aggregate node and link the `Unpack product returns` node (the unpack array node that you created in step 4) to the aggregate node.
-1. Hover over the aggregate node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.   
+1. Hover over the aggregate node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6aa.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6aa.png "Screen capture of the aggregate node configuration")
+
 2. In the **Node name** field, enter the name of the aggregate node as `Identify trends for return reasons per product`, and then click **Next**.
 
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-10.png "Enter node name"){:height="60%" width="60%"}
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6a.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6a.png "Screen capture of the aggregate node configuration")
 
    
 4. Use the **Time window** pane to define the time window duration, and click **Next**: **1 hour(s)**.  
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-30.png "Time window pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-30.png "Time window pane") 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6b.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6b.png "Screen capture of the aggregate node configuration")
    
    **Note:** If you have set up the tutorial environment more than 1 hour ago, you can increase the size of the time window. It allows you to have more events that are used to run the aggregate functions. Ensure to use the same time window for the `Identify review trends per product` aggregate node that will be created later. 
 
@@ -240,7 +246,7 @@ For more information about how to create an aggregate node, see [Adding an aggre
    - From the **Property to aggregate** drop-down, select **return/reason**.
    - From the **Additional property to group by** drop-down, select **return/product/id**, and then click **Group by another property +**, and select **return/reason** as additional property to group by. 
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-11.png "Configure aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-11.png "Configure aggregate node") 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6c.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-6c.png "Screen capture of the aggregate node configuration")
 
 7. Click **Next**, and then click **Configure** to finalize the aggregate node configuration.
 
@@ -267,25 +273,27 @@ For more information about how to create a top-n node, see [Adding a top-n node]
 
 1. Add a **Top-n** node and link the `Identify trends for return reasons per product` aggregate node (the aggregate node that you created in step 6) to the top-n node.  
 1. Hover over the top-n node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8aa.png "Screen capture of the top-n node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8aa.png "Screen capture of the top-n node configuration")
+
 1. In the **Node name** field, enter the name of the top-n node as `Identify top return reason per product`, and then click **Next**.
    
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-31.png "Configure top-n node"){:height="60%" width="60%"}
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8a.png "Screen capture of the top-n node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8a.png "Screen capture of the top-n node configuration")
 
    
 1. In the **Time window** pane, ensure that the reuse time window switch is set to **Yes**, and click **Next**.
 
    **Note:** The duration for `Identify top return reason per product` node is already defined under [step 6](#step-6-identify-trends-for-return-reasons-per-product) as **1 hour(s)**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-new.png "Screen capture of the top-n node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-new.png "Screen capture of the top-n node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8b.png "Screen capture of the top-n node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8b.png "Screen capture of the top-n node configuration")
 
 1. In the **Condition** pane, enter the values in the following fields, and then click **Next**:
    - **Number of results to keep on each window**: 1
    - **Ordered by**: `COUNT_return_reason, Descending`
    - **Grouped by**: `return_product_id`
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-13.png "Configure top-n"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-13.png "Configure top-n")
-   
-   
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8c.png "Screen capture of the top-n node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8c.png "Screen capture of the top-n node configuration")
+
 1. In the **Output properties** pane, you can choose the output properties that will be useful to return.
 1. Click **Configure** to finalize the top-n node configuration.  
 
@@ -308,7 +316,10 @@ The next step is to bring this additional stream of events that you discovered i
 
 To create an event source node, complete the following steps:
 
-1. Create an event source node for the `Product reviews`. 
+1. Create an event source node for the `Product reviews`.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-10aa.png "Screen capture of the second event source configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-8a.png "Screen capture of the second event source configuration")
+
 1. Repeat steps 1-6 under [step 3](#step-3-add-an-event-source-node-for-the-return-requests-topic).
 
    **Note:** 
@@ -319,12 +330,11 @@ To create an event source node, complete the following steps:
 
 1. Select the `PRODUCT.REVIEWS` topic to process events from, and click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-14.png "Select a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-14.png "Select a topic to use")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-14.png "Screen capture of the second event source configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-14.png "Screen capture of the second event source configuration")
 
-    
-1. Get the schema for product reviews from {{site.data.reuse.eem_name}}.   
+1. Get the schema for product reviews from {{site.data.reuse.eem_name}}.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Product review schema"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Product review schema")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Screen capture of the Event Endpoint Management UI"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-15.png "Screen capture of the Event Endpoint Management UI")
 
    Click the **Copy** icon in the schema section to copy the schema to the clipboard.
 
@@ -333,10 +343,8 @@ To create an event source node, complete the following steps:
 
    **Note:** 
    - Change the type of the `reviewtime` property to `Timestamp (with time zone)`.
-   - The `reviewtime` string is converted to a timestamp to use `reviewtime` as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.   
+   - The `reviewtime` string is converted to a timestamp to use `reviewtime` as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.
    - Configure the event source to use the `reviewtime` property as the source of the event time, and to tolerate lateness of up to **1 minute(s)**.
-
-  
 
 ### Step 11: Unpack the review characteristics into properties
 
@@ -348,18 +356,19 @@ For more information about how to create an unpack array node, see [unpack array
 
 1. Add an **Unpack array** node and link the `Product reviews` node (the event source that you created in step 10) to the unpack array node.
 1. Hover over the unpack array node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
-2. In the **Node name** field, enter the name of the unpack array node as `Unpack review characteristics`, and then click **Next**.
-   
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-32.png "Configure unpack array node"){:height="60%" width="60%"}
+1. In the **Node name** field, enter the name of the unpack array node as `Unpack review characteristics`, and then click **Next**.
 
-   
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-19.png "Screen capture of the unpack node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-19.png "Screen capture of the unpack node configuration")
 
-3. In the **Array selection** pane, select the **review/characteristics** array, and then click **Next**.
+1. In the **Array selection** pane, select the **review.characteristics[]** array, and then click **Next**.
 
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-16.png "Unpack review characteristics array"){:height="25%" width="25%"}
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-20.png "Screen capture of the unpack node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-20.png "Screen capture of the unpack node configuration")
 
-4. In the **Unpack into properties** tab, click **Add next element** to add a second element.
-5. Enter size and length as property names, and click **Next**.
+1. In the **Unpack into properties** tab, click **Add next element** to add a second element.
+1. Enter size and length as property names, and click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-21.png "Screen capture of the unpack node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-21.png "Screen capture of the unpack node configuration")
+
 
    **Note:** In the **Output properties** pane, you can see that each event has a size object and length object in the review object. There is no longer a characteristics array.
 
@@ -376,14 +385,16 @@ For more information about how to create an aggregate node, see [step 6](#step-6
 
 1. Add an aggregate node and link the `Unpack review characteristics` unpack array node (the unpack array node that you created in step 11) to the aggregate node.
 2. Hover over the aggregate node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
-   
+
 3. In the **Node name** field, enter the name of the aggregate node as `Identify review trends per product`, and then click **Next**.
 
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-33.png "Configure aggregate node"){: class="tutorial-screenshot" }{:height="60%" width="60%"}
-   
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-23.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-23.png "Screen capture of the aggregate node configuration")
 
-4. Enter the same time window as defined under [step 6](#step-6-identify-trends-for-return-reasons-per-product), and then click **Next**: **1 hour(s)**.  
-   
+
+4. Enter the same time window as defined under [step 6](#step-6-identify-trends-for-return-reasons-per-product), and then click **Next**: **1 hour(s)**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-24.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-24.png "Screen capture of the aggregate node configuration")
+
    **Note:** If you have set up the tutorial environment more than 1 hour ago, you can increase the size of the time window. It allows you to have more events that are used to run the aggregate functions. But ensure that you enter the same time window in the two aggregate nodes (the one for product returns and the one for product reviews).
      
 
@@ -392,12 +403,11 @@ For more information about how to create an aggregate node, see [step 6](#step-6
 7. From the **Aggregate function** drop-down, select **AVG**, and then from the **Property to aggregate** drop-down, select the **review/size/ranking** options.
 8. Again click **Add another aggregate function +**.
 9. From the **Aggregate function** drop-down, select **AVG**, and then from the **Property to aggregate** drop-down, select the **review/length/ranking** options. 
+1. From the **Additional property to group by** drop-down, select **product**.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-17.png "Aggregate function"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-17.png "Aggregate function")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-25.png "Screen capture of the aggregate node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-25.png "Screen capture of the aggregate node configuration")
 
-10. From the **Additional property to group by** drop-down, select **product**.
-
-7. Click **Next**, and then click **Configure** to finalize the node configuration.
+1. Click **Next**, and then click **Configure** to finalize the node configuration.
 
 ### Step 13: Consolidate information per product
 
@@ -409,19 +419,25 @@ For more information about how to add an interval join node, see [Adding an inte
 
 1. Add an **Interval join** node and link the `Identify top return reason per product` and `Identify review trends per product` nodes to the interval join node.
 1. Hover over the interval join node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-28.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-28.png "Screen capture of the interval join node configuration")
+
 2. In the **Node name** field, enter the name of the interval join node as `Consolidate information per product`, and then click **Next**.
-   
-   ![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-34.png "Interval join node"){:height="60%" width="60%"}
 
-   
-4. In the **Join condition** pane, enter the following join condition in the **Define events** field, and then click **Next**:
-   
- 
-   ```
-  `Identify top return reason per product`.`return_product_id` = `Identify review trends per product`.`product`
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-29.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-29.png "Screen capture of the interval join node configuration")
+
+
+4. In the **Join condition** pane, enter the following join condition in the **Define events** field:
+
+   ```shell
+   `Identify top return reason per product`.`return_product_id` = `Identify review trends per product`.`product`
    ```
 
-   
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-30.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-30.png "Screen capture of the interval join node configuration")
+
+
+   Then click **Next** to go to the **Time window condition** section.
+
 5. To identify review trends that might be related to a given top return reason for a product, in the **Event to detect** drop-down, select `Identify review trends per product (aggregateResultTime)`.
 6. Provide inputs in the following fields, and click **Next**:
    - From the **Event to set the time window** drop-down, select **Identify top return reason per product (aggregateResultTime)**.
@@ -429,25 +445,40 @@ For more information about how to add an interval join node, see [Adding an inte
    - In the **Offset from event to end the time window** field, enter 1.
 
    **Note:** These settings allows to detect the review trend events that occur within 7 days before and 1 day after a top return reason event for a given product.
- 
-   
-7. Rename the `aggregateResultTime property` of `Identify top return reason per product` and `Identify review trends per product properties` to `returnResultTime` and `reviewResultTime` respectively.
-8. Remove the following properties to exclude them from the merged events:
-   - Identify top return reason per product: `aggregateStartTime` 
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-31.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-31.png "Screen capture of the interval join node configuration")
+
+
+7. In the **Matching criteria** section, keep the default selection to use an **inner join** to merge the review trend events and the top return reason events for a given product that match the join condition, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-32.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-32.png "Screen capture of the interval join node configuration")
+
+8. Rename the `aggregateResultTime property` of `Identify top return reason per product` and `Identify review trends per product properties` to `returnResultTime` and `reviewResultTime` respectively.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-33.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-33.png "Screen capture of the interval join node configuration")
+
+9. Remove the following properties to exclude them from the merged events:
+   - Identify top return reason per product: `aggregateStartTime`
    - Identify top return reason per product: `aggregateEndTime`
    - Identify review trends per product: `aggregateStartTime`
    - Identify review trends per product: `aggregateEndTime`
-   - Identify review trends per product: `product`      
-   
-8. Click **Configure** to finalize the interval join node configuration.   
+   - Identify review trends per product: `product`
 
-![screenshot]({{ 'images' | relative_url }}/unpack-array-node.png "Screen capture of the complete flow")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-33a.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-33a.png "Screen capture of the interval join node configuration")
+
+
+1. Click **Configure** to finalize the interval join node configuration.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-34.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-34.png "Screen capture of the interval join node configuration")
 
 ### Step 14: Test the flow
 
 The next step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 
 Use the **Run flow** menu, and select **Include historical** to run the current flow on the history of `Return requests` and `Product reviews` events.
+
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-35.png "Screen capture of the running flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-35.png "Screen capture of the running flow")
+
 
 Verify that the output events now contain both a return reason and a review trend (average rating, average size ranking, and average length ranking) for a given returned product.
 

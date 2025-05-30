@@ -26,8 +26,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
-  1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. The following prompt used in this tutorial:
-
+  1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Freeform** tab, enter your prompt in the text area. The following prompt is used in this tutorial:
      ```plaintext
      The following are a list of reviews for the {product} product. Read the reviews and then write a short paragraph summary.
 

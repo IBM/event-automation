@@ -180,7 +180,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+     oc ibm-pak get ibm-eventautomation-flink --version 1.3.2
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -192,7 +192,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+     oc ibm-pak get ibm-eventprocessing --version 1.3.2
      ```
 
 3. Generate mirror manifests by running the following command:
@@ -228,7 +228,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/{{site.data.reuse.flink_operator_current_version}}/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/1.3.2/catalog-sources.yaml
      ```
 
    - For {{site.data.reuse.ep_name}}:
@@ -239,7 +239,7 @@ Before you can install the required operator versions and use them to create ins
      Where `<case-version>` is the version of the CASE you want to install. For example:
 
      ```shell
-     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/{{site.data.reuse.ep_current_version}}/catalog-sources.yaml
+     oc apply -f ~/.ibm-pak/data/mirror/ibm-eventprocessing/1.3.2/catalog-sources.yaml
      ```
 
 This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.

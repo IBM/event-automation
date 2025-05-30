@@ -36,7 +36,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../../nodes/eventnodes/#event-source) and [destination](../../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. The Kafka connector version for {{site.data.reuse.ep_name}} versions 1.3.0 and later is 3.4.0-1.20. |
   | **JDBC**      | [Database](../../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
-  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md#table-api-connector-options){:target="_blank"}.  <br> <br> **Note:** The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.3.0 and later is 0.18.0. |
+  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.3.1 and later is 0.19.0. For {{site.data.reuse.ep_name}} 1.3.0, the HTTP connector version is 0.18.0. |
 
 - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
   - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
@@ -78,10 +78,10 @@ Some adaptations to this procedure are required to build the Docker image and us
 
 1. Modify the [Dockerfile](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/Dockerfile){:target="_blank"} to use the IBM Flink image:
 
-   a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
+   a. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version 1.3.2:
 
    ```shell
-   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v1.3.2
    ```
    
    Alternatively, you can obtain the image name from the Flink operator pod's environment variable:

@@ -16,7 +16,7 @@ If you are upgrading from {{site.data.reuse.es_name}} version 11.4.x or earlier,
 
 - On OpenShift, you can upgrade to the latest version by using operator channel v3.6. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
 
-  **Note:** If your operator upgrades are set to automatic, patch level upgrades are completed automatically. This means that the {{site.data.reuse.es_name}} operator is upgraded to the latest 3.5.x version when it is available in the catalog, and your {{site.data.reuse.es_name}} instance is then also automatically upgraded, unless you [set a schedule for the upgrade](#scheduling-the-upgrade-of-an-instance) by pausing the reconciliation.
+  **Note:** If your operator upgrades are set to automatic, patch level upgrades are completed automatically. This means that the {{site.data.reuse.es_name}} operator is upgraded to the latest 3.6.x version when it is available in the catalog, and your {{site.data.reuse.es_name}} instance is then also automatically upgraded, unless you [set a schedule for the upgrade](#scheduling-the-upgrade-of-an-instance) by pausing the reconciliation.
 
 - On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
 
@@ -115,7 +115,7 @@ When the annotations are removed, the configuration of your instance is updated,
      # ...
    ```
 
-7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left,  click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
+7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left, click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
 8. From the **Project** list, select the namespace (project) the instance is installed in and click the **Instances** tab.
 9. Select the instance with the name `<instance-name>` (the same as the {{site.data.reuse.es_name}} instance).
 10. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
@@ -152,11 +152,11 @@ Complete the following steps to plan your upgrade on OpenShift.
       oc get subscription
       ```
       
-   2. Check the `CHANNEL` column for the channel you are subscribed to, for example, v3.6 in the following snippet:
+   2. Check the `CHANNEL` column for the channel you are subscribed to, for example, v3.5 in the following snippet:
       
       ```
       NAME                        PACKAGE                     SOURCE                      CHANNEL
-      ibm-eventstreams            ibm-eventstreams            ibm-eventstreams-catalog    v3.6
+      ibm-eventstreams            ibm-eventstreams            ibm-eventstreams-catalog    v3.5
       ```
 
 - If your existing Subscription does not use the v3.6 channel, your upgrade is a change in a minor version. Complete the following steps to upgrade:
@@ -240,11 +240,11 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm list
       ```
       
-   3. Check the version installed in the `CHART` column, for example, `<chart-name>-3.5.0` in the following snippet:
+   3. Check the version installed in the `CHART` column, for example, `<chart-name>-3.5.2` in the following snippet:
       
       ```
       NAME                      NAMESPACE  REVISION  UPDATED                                 STATUS   CHART                            APP VERSION    
-      ibm-eventstreams          es         1         2023-11-20 11:49:27.221411789 +0000 UTC deployed ibm-eventstreams-operator-3.5.0  3.5.0
+      ibm-eventstreams          es         1         2023-11-20 11:49:27.221411789 +0000 UTC deployed ibm-eventstreams-operator-3.5.2  3.5.2
       ```
 
 - Check the latest chart version that you can upgrade to:
@@ -268,7 +268,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eventstreams-operator
       ```
       
-      Check the `version:` value in the output, for example: `version: 3.5.1`
+      Check the `version:` value in the output, for example: `version: 3.6.0`
 
 - If the chart version for your existing deployment is earlier than 3.5.x, you must first [upgrade your installation to 11.5.x]({{ 'es/es_11.5' | relative_url }}/installing/upgrading/) and then follow these instructions to upgrade to chart version 3.6.x.
 

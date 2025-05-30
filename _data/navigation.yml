@@ -1169,6 +1169,151 @@ latest_epdocs:
         url: /troubleshooting/error-submitting-job-for-enrichment
       - title: "Flink resources are unexpectedly missing from the cluster"
         url: /troubleshooting/missing-flink-resources
+130_epdocs:
+  - title: About
+    children:
+      - title: "Introduction"
+        url: /about/overview/
+      - title: "What's new"
+        url: /about/whats-new/
+      - title: "Key concepts"
+        url: /about/key-concepts/
+
+  - title: Installing
+    children:
+      - title: "Prerequisites"
+        url: /installing/prerequisites/
+      - title: "Planning your installation"
+        url: /installing/planning/
+      - title: "Installation overview"
+        url: "/installing/overview/"
+      - title: "Installing in an online OpenShift environment"
+        url: /installing/installing/
+      - title: "Installing in an offline environment"
+        url: /installing/offline/
+      - title: "Installing on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
+      - title: "Configuring"
+        url: /installing/configuring/
+      - title: "Post-installation tasks"
+        url: /installing/post-installation/
+      - title: "Backing up and restoring"
+        url: /installing/backup-restore/
+      - title: "Uninstalling"
+        url: /installing/uninstalling/
+      - title: "Upgrading"
+        url: /installing/upgrading/
+
+  - title: Getting started with Authoring
+    children:
+      - title: "Logging in"
+        url: /getting-started/logging-in/
+      - title: "Building a simple flow"
+        url: /getting-started/canvas/
+      - title: "Deploying a custom Flink session job"
+        url: /getting-started/flink-session-job/
+  - title: Security
+    children:
+      - title: "Managing access"
+        url: /security/managing-access/
+      - title: "Managing user roles"
+        url: /security/user-roles/
+      - title: "Verifying container image signatures"
+        url: /security/verifying-signature/
+      - title: "Network policies"
+        url: /security/network-policies/
+      - title: "Considerations for GDPR"
+        url: /security/gdpr-considerations/
+      - title: "Encrypting your data"
+        url: /security/data-encryption/
+
+  - title: Administering
+    children:
+      - title: "Monitoring Flink health"
+        url: /administering/flink-health/
+
+  - title: Nodes
+    children:
+        - title: "Node overview"
+          url: /nodes/summary/
+        - title: "Events"
+          url: /nodes/eventnodes/
+        - title: "Processors"
+          url: /nodes/processornodes/
+        - title: "Windowed"
+          url: /nodes/windowednodes/
+        - title: "Joins"
+          url: /nodes/joins/
+        - title: "Enrichment"
+          url: /nodes/enrichmentnode/
+        - title: "Custom"
+          url: /nodes/custom/
+  - title: Deploying flows
+    children:
+      - title: "Exporting and importing flows"
+        url: /advanced/exporting-flows/
+      - title: "Deploying customized jobs"
+        url: /advanced/deploying-customized/
+      - title: "Testing jobs by using the Flink SQL client"
+        url: /advanced/deploying-development/
+      - title: "Deploying jobs by using the Apache SQL Runner sample"
+        url: /advanced/deploying-production/
+
+  - title: Reference
+    children:
+      - title: "Event structure definition"
+        url: /reference/event-structure/    
+      - title: "API reference for the CRDs"
+        url: /reference/api-reference/
+      - title: "Supported Flink SQL functions"
+        url: /reference/supported-functions/
+
+  - title: Troubleshooting
+    children:
+      - title: "Troubleshooting overview"
+        url: /troubleshooting/intro/
+      - title: "Gathering logs"
+        url: /troubleshooting/gathering-logs/
+      - title: "Configuring trace logging"
+        url: /troubleshooting/trace-logging/
+      - title: "Error when logging in to UI after changing CA certificate"
+        url: /troubleshooting/changing-ca-certificate/
+      - title: "Results stuck in `Waiting for output events`"
+        url: /troubleshooting/waiting-for-events/
+      - title: "The IBM Operator for Apache Flink not installing due to Security Context Constraint (SCC) issues"
+        url: /troubleshooting/default-scc-issues/
+      - title: "Running flows stop working"
+        url: /troubleshooting/flows-stop-working/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
+      - title: "Flink instances cannot access jobResultStore"
+        url: /troubleshooting/fsgroup-not-set/
+      - title: "Operator watching single namespace has escalated permissions"
+        url: /troubleshooting/rbac/
+      - title: "Error when you connect to a database after modifying a CA certificate"
+        url: /troubleshooting/changing-database-ca-certificate/
+      - title: "Flink pods enter ImagePullBackOff state"
+        url: /troubleshooting/flink-imagepullbackoff/
+      - title: "Flink instances cannot access SQL runner JAR file"
+        url: /troubleshooting/flink-jar-permissions/
+      - title: "Error in flows during upgrade or import"
+        url: /troubleshooting/migration-issue/
+      - title: "Enrichment from API produces no output events"
+        url: /troubleshooting/no-output-event-from-api-node/
+      - title: "Auto-detection message format issues"
+        url: /troubleshooting/bad-output-from-auto-detection/
+      - title: "Event Processing fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
+      - title: "Incorrect event time property format causes Flink job to fail"
+        url: /troubleshooting/event-time-property
+      - title: "Customized SQL queries with a `TIMESTAMP_LTZ` join condition fail to produce expected results"
+        url: /troubleshooting/api-node-exported-sql-flink-120
+      - title: "Recover a Flink application deployment to restore to a specified state"
+        url: /troubleshooting/recover-flink-deployment
+      - title: "Job failure when deploying customized flows that contain API or watsonx.ai enrichment nodes"
+        url: /troubleshooting/error-submitting-job-for-enrichment
+      - title: "Flink resources are unexpectedly missing from the cluster"
+        url: /troubleshooting/missing-flink-resources
 120_epdocs:
   - title: About
     children:

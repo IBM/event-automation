@@ -197,7 +197,7 @@ To detect failed transactions, use the detect patterns node as follows.
 
 1. In the **Define context**, select **id** from each dropdown list, and then click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-20.png "Creating a detect patterns node context"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-20.png "Creating a detect patterns node context")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-21.png "Creating a detect patterns node context"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-21.png "Creating a detect patterns node context")
 
 1. In the **Define pattern**, create the following matching condition:
 

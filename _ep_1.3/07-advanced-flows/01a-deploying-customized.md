@@ -70,7 +70,7 @@ config:
 
 The `config.yaml` file contains information about the nodes, tables, and their connector properties where:
 
-- `config`: Lists the names of the nodes that use [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md){:target="_blank"} connectors. In the example snippet, the `source` and `sink_1` nodes are listed.
+- `config`: Lists the names of the nodes that use [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connectors. In the example snippet, the `source` and `sink_1` nodes are listed.
 - `config.source`: Lists the tables present in the SQL generated for the `source` node. In the example snippet, there is only one table for the `source` node: `source___TABLE`
 - `config.source.source___TABLE`: Lists the connector properties of the `source___TABLE` table.
 - `config.sink_1`: Lists the tables present in the SQL generated for the `sink_1` node.  In the example snippet, there is only one table for the `sink_1` node: `sink_1` (table name is same as the node name).
@@ -96,7 +96,7 @@ See the following table for credentials and connector properties information abo
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../../nodes/eventnodes/#event-source) and [destination](../../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. The Kafka connector version for {{site.data.reuse.ep_name}} versions 1.3.0 and later is 3.4.0-1.20. |
   | **JDBC**      | [Database](../../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc/#connector-options){:target="_blank"} |
-  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.18.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.3.0 and later is 0.18.0. |
+  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md#table-api-connector-options){:target="_blank"}.  <br> <br> **Note:** The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.3.1 and later is 0.19.0. For {{site.data.reuse.ep_name}} 1.3.0, the HTTP connector version is 0.18.0. |
 
 **Important:**
 * The value of the `format` property of the [Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, which allows to select between Avro, Avro (schema registry), and JSON, should not be changed in the `config.yaml`. Instead, change it by editing the flow in the {{site.data.reuse.ep_name}} UI, test the flow, then export the flow again.
@@ -176,10 +176,10 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 For deploying jobs that use UDFs, the JAR file that contains the UDF classes needs to be copied into the Flink image, using the following steps:
 
-1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
+1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version 1.3.2:
 
    ```shell
-   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v1.3.2
    ```
    
    Alternatively, you can obtain the image name from the Flink operator pod's environment variable:

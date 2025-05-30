@@ -101,7 +101,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventautomation-flink --version {{site.data.reuse.flink_operator_current_version}}
+   kubectl ibm-pak get ibm-eventautomation-flink --version 1.3.2
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -121,7 +121,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventautomation-flink, version: {{site.data.reuse.flink_operator_current_version}} is complete
+   Download of CASE: ibm-eventautomation-flink, version: 1.3.2 is complete
    ```
 
 3. Run the following command to download, validate, and extract the {{site.data.reuse.ep_name}} CASE.
@@ -133,7 +133,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Where `<case-version>` is the version of the CASE you want to install. For example:
 
    ```shell
-   kubectl ibm-pak get ibm-eventprocessing --version {{site.data.reuse.ep_current_version}}
+   kubectl ibm-pak get ibm-eventprocessing --version 1.3.2
    ```
 
    The CASE is downloaded in `~/.ibm-pak` and the following output is displayed:
@@ -153,7 +153,7 @@ Before mirroring your images, download the CASE by following these instructions:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventprocessing, version: {{site.data.reuse.ep_current_version}} is complete
+   Download of CASE: ibm-eventprocessing, version: 1.3.2 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -176,13 +176,13 @@ Before mirroring your images, download the CASE by following these instructions:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventprocessing
-   │   │       └── {{site.data.reuse.ep_current_version}}
+   │   │       └── 1.3.2
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-charts.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}-images.csv
-   │   │           ├── ibm-eventprocessing-{{site.data.reuse.ep_current_version}}.tgz
+   │   │           ├── ibm-eventprocessing-1.3.2-airgap-metadata.yaml
+   │   │           ├── ibm-eventprocessing-1.3.2-charts.csv
+   │   │           ├── ibm-eventprocessing-1.3.2-images.csv
+   │   │           ├── ibm-eventprocessing-1.3.2.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventprocessing-resourcesIndex.yaml
    │   └── mirror

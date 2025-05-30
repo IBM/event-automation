@@ -34,9 +34,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.5.0
-- {{site.data.reuse.eem_name}} 11.4.2
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.es_name}} 11.7.0
+- {{site.data.reuse.eem_name}} 11.5.1
+- {{site.data.reuse.ep_name}} 1.3.2
 
 ## Instructions
 
@@ -255,6 +255,10 @@ The next step is to specify how to correlate the large orders with the cancellat
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-22.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-22.png "joining the streams")
 
+1. Specify how you want to join the small orders and cancelled large orders. Several types of joins exist, however in this tutorial, select an inner join to merge the large orders events and the cancellations orders events that match the join condition (that is, with the same order ID).
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-22a.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-22a.png "joining the streams")
+
 1. Remove the properties that we do not need to simplify the output. We only need to know when it happened, and what product was cancelled.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-23.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-23.png "joining the streams")
@@ -308,11 +312,11 @@ The next step is identify small orders that occur within a short time of cancell
 
 1. Give the join node a name that describes the events it should identify: `Suspicious orders`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28.png "joining the streams")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28a.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28a.png "joining the streams")
 
 1. Join the two streams based on the `description` of the product that was ordered.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-29.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-29.png "joining the streams")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-28.png "joining the streams")
 
    This will identify small orders of the same product that a large order has been cancelled for.
 
@@ -320,9 +324,14 @@ The next step is identify small orders that occur within a short time of cancell
 
 1. Specify `30 minutes` the time window that you want to use for the join.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-30.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-30.png "joining the streams")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-29.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-29.png "joining the streams")
 
    This will identify a small order, when it occurs within thirty minutes of a large order that is soon cancelled.
+
+1. Specify how you want to join the small orders and cancelled large orders. Several types of joins exist, however in this tutorial, select an inner join to merge the small orders events and the cancelled large orders events that match the join condition (that is, with the same order ID).
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-30.png "joining the streams"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-30.png "joining the streams")
+
 
 1. Choose the output properties that will be useful to return.
 

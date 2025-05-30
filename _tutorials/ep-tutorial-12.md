@@ -20,8 +20,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.4.2
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.eem_name}} 11.5.1
+- {{site.data.reuse.ep_name}} 1.3.2
 
 ## Instructions
 
@@ -87,7 +87,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Configure the new event source.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-6-new1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example-12-6-new.png "connection details for the event source")
     
 
     In the **Bootstrap server** field, paste the server address that you copied from {{site.data.reuse.eem_name}} in the previous step.
@@ -102,7 +102,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Copy the username and password from {{site.data.reuse.eem_name}} and paste into {{site.data.reuse.ep_name}} to allow access to the topic.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-9-new1.png "specifying credentials for event source")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "specifying credentials for event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-7.png "specifying credentials for event source")
 
     The username starts with `eem-`.
 
@@ -110,7 +110,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Select the `ORDERS.ONLINE` topic to process events from, and click Next.
 
-    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-8-new.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-8-new.png "selecting a topic to use")
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-8.png "selecting a topic to use"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-8.png "selecting a topic to use")
 
     Click **Next**.
 
@@ -128,25 +128,23 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. In the **Key and headers** pane, click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/key-headers-new.png "key and headers pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/key-headers-new.png "key and headers pane")       
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13.png "key and headers pane"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13.png "key and headers pane")
 
    **Note:** The key and headers are displayed automatically if they are available in the selected topic message. 
 
 1. In the **Event details** pane, enter the node a name that describes this stream of events: `Orders`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/enter-node-name.png "enter a node name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/enter-node-name.png "enter a node name") 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13.1.png "enter a node name"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13.1.png "enter a node name") 
    
 
 1. Change the type of the `ordertime` property to `Timestamp (with time zone)`. 
 
    **Note:** The `ordertime` string is converted to a timestamp to use `ordertime` as event time. Only properties with a timestamp type can be used as event time to perform time-based processing.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/timestamp.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/timestamp.png "creating an event source node")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13.2.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13.2.png "creating an event source node")
 
 
 1. Configure the event source to use the `ordertime` property as the source of the event time, and to tolerate lateness of up to **1 minute**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-13-new.png "creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-13-new.png "creating an event source node")
 
 1. Click **Configure** to finalize the event source.
 
@@ -190,6 +188,12 @@ The next step is to define a join node to merge the two event streams to identif
 1. To identify products that have run out of stock within one hour of being ordered, use the `Out-of-stock(outofstocktime)` event as the event to detect and `Orders(ordertime)` event as the event to set the time window with a one hour time window.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-17.png "setting time window condition"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-17.png "setting time window condition")
+
+   Click **Next**.
+
+1. Keep the default selection to use an **inner join**, and merge the product descriptions in order events and the product in out-of-stock events that match the join condition.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-17a.png "setting time window condition"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-17a.png "setting time window condition")
 
    Click **Next**.
 

@@ -315,7 +315,7 @@ The next step is to generate text responses by using the watsonx.ai node.
 
     Click **Next**.
 
-1. Provide the API key and the public text endpoint URL for the `Product reviews summary` prompt that you [created earlier](#before-you-begin).
+1. Provide the API key and the public text endpoint URL for the `Product review analysis` prompt that you [created earlier](#before-you-begin).
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_2.png "connecting to watsonx.ai"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_wx_2.png "connecting to watsonx.ai")
 

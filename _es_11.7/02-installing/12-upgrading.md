@@ -106,7 +106,7 @@ When the annotations are removed, the configuration of your instance is updated,
      # ...
    ```
 
-7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left,  click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
+7. This annotation also needs to be applied to the corresponding `Kafka` custom resource. Expand **Home** in the navigation on the left, click **API Explorer**, and type `Kafka` in the `Filter by kind...` field. Select `Kafka`.
 8. From the **Project** list, select the namespace (project) the instance is installed in and click the **Instances** tab.
 9. Select the instance with the name `<instance-name>` (the same as the {{site.data.reuse.es_name}} instance).
 10. In the `YAML` for the custom resource, add `eventstreams.ibm.com/pause-reconciliation: 'true'` to the `metadata.annotations` field as follows:
@@ -150,11 +150,11 @@ Complete the following steps to plan your upgrade on OpenShift.
       ibm-eventstreams            ibm-eventstreams            ibm-eventstreams-catalog    v3.6
       ```
 
-- If your existing Subscription does not use the v3.6 channel, your upgrade is a change in a minor version. Complete the following steps to upgrade:
+- If your existing Subscription does not use the v3.7 channel, your upgrade is a change in a minor version. Complete the following steps to upgrade:
   1. Ensure the [catalog source for new version is available](#making-new-catalog-source-available).
-  2. Change your Subscription to the `v3.6` channel by using [the CLI](#upgrading-subscription-by-using-the-cli) or [the web console](#upgrading-subscription-ui). The channel change will upgrade your operator, and then the operator will upgrade your {{site.data.reuse.es_name}} instance automatically.
+  2. Change your Subscription to the `v3.7` channel by using [the CLI](#upgrading-subscription-by-using-the-cli) or [the web console](#upgrading-subscription-ui). The channel change will upgrade your operator, and then the operator will upgrade your {{site.data.reuse.es_name}} instance automatically.
 
-- If your existing Subscription is already on the v3.6 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.es_name}} instance automatically.
+- If your existing Subscription is already on the v3.7 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.es_name}} instance automatically.
 
 ### Making new catalog source available
 
@@ -200,8 +200,8 @@ If you are using the {{site.data.reuse.openshift_es_name}} web console, complete
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.es_name}} instance in the namespace. It is called **{{site.data.reuse.es_name}}** in the **Name** column. Click the **{{site.data.reuse.es_name}}** link in the row.
 4. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.es_name}} operator.
-5. Click the version number link in the **Update channel** section (for example, **v3.5**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-6. Select **v3.6** and click the **Save** button on the **Change Subscription Update Channel** dialog.
+5. Click the version number link in the **Update channel** section (for example, **v3.6**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+6. Select **v3.7** and click the **Save** button on the **Change Subscription Update Channel** dialog.
 
 All {{site.data.reuse.es_name}} pods that need to be updated as part of the upgrade will be gracefully rolled. Where required, ZooKeeper pods will roll one at a time, followed by Kafka brokers rolling one at a time.
 

@@ -15,6 +15,34 @@ sections:
 <div class = h2_landing><h2>What's new in IBM Event Automation</h2>
 
 <details class="details">
+  <summary><b>Release 1.2.0.0</b></summary>
+  <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
+  <div class="release-info">
+  <!-- Assisted by WCA@IBM -->
+    <!-- <h3>Event Streams</h3>
+    <h4>11.8.0 - what's new:</h4>
+    <ul>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h3>Event Endpoint Management</h3>
+      <h4>11.6.0 - what's new:</h4>
+      <ul>
+        <li>Admin role CA certificate management</li>
+        <li>Asset management</li>
+        <li>Collection of usage metrics</li>
+        <li>Kafka record tracing through the Event Gateway</li>
+        <li>Security and bug fixes</li>
+      </ul> -->
+    <h3>Event Processing</h3>
+      <h4>1.4.0 - what's new:</h4>
+      <ul>
+      <li>New tutorial: nudge customers with abandoned cart by using the watsonx.ai node</li>
+        <li>Security and bug fixes</li>
+      </ul>
+  </div>
+</details>
+
+<details class="details">
   <summary><b>Release 1.1.0.0</b></summary>
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">

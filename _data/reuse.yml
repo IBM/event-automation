@@ -20,10 +20,10 @@ ipaas_name: "IBM Hybrid iPaaS"
 eem_current_version: "11.5.1"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.3.2"
+ep_current_version: "1.4.0"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.3.2"
+flink_operator_current_version: "1.4.0"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"

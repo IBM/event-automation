@@ -221,7 +221,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
       helm show chart ibm-helm/ibm-eventautomation-flink-operator
       ```
 
-      Check the `version:` value in the output, for example: `version: {{site.data.reuse.flink_operator_current_version}}`
+      Check the `version:` value in the output, for example: `version: 1.3.2`
 
 - If your existing installation is in an offline environment, you must carry out the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) for the new version you want to upgrade to, before completing the steps below.
 

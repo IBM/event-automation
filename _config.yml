@@ -353,18 +353,23 @@ collections:
   "ep_1.2":
     version: "1.2"
     output: true
-    latest: true
     permalink: /ep/:collection/:categories/:slug/
     product: ep
     order: 3
   "ep_1.3":
     version: "1.3"
     output: true
+    permalink: /ep/:collection/:categories/:slug/
+    product: ep
+    order: 4
+  "ep_1.4":
+    version: "1.4"
+    output: true
     latest: true
     permalink: /ep/:categories/:slug/
     product: ep
     tag: Latest
-    order: 4
+    order: 5
   "tutorials":
     output: true
     permalink: /:collection/:path/
@@ -891,7 +896,6 @@ defaults:
       version: "1.2"
       product: ep
       layout: single
-      latest: true
       mastheadNavItem: Event Processing
       versioned: true
       sidebar:
@@ -903,6 +907,19 @@ defaults:
     values:
       collection: "ep_1.3"
       version: "1.3"
+      product: ep
+      layout: single
+      mastheadNavItem: Event Processing
+      versioned: true
+      sidebar:
+        nav: "130_epdocs"
+  #_ep_1.4
+  - scope:
+      path: ""
+      type: "ep_1.4"
+    values:
+      collection: "ep_1.4"
+      version: "1.4"
       product: ep
       layout: single
       latest: true

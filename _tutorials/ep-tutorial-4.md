@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 11.7.0
+- Event Endpoint Management 11.5.1
+- Event Processing 1.3.2
 
 ## Instructions
 
@@ -74,12 +74,13 @@ In this scenario, you suspect that people may be attempting to manipulate prices
 
 1. Call the filter node `Large orders`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node")
-
    Suggested value for the filter expression:
+
    ```sql
    `quantity` > 5
    ```
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node")
 
 ### Step 4 : Identify large cancelled orders
 
@@ -100,6 +101,10 @@ The next step is find large cancelled orders, by joining our "large orders" stre
 1. Specify that you are interested in detecting cancellations that are made within 30 minutes of the (large) order.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-7.png "add a join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-7.png "add a join node")
+
+1. Keep the default selection to use an **inner join** to merge the large orders events and the cancellations orders events that match the join condition (that is, with the same order ID).
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-7-1.png "add a join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-7-1.png "add a join node")
 
 1. Remove the properties that we do not need to simplify the output.
 
@@ -199,6 +204,10 @@ The next step is to identify small orders of the same product as the repeated ca
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-21.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-21.png "filter node")
 
+1. Keep the default selection to use an **inner join** to merge the large orders events and the cancellations orders events that match the join condition (that is, with the same order ID).
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-21-1.png "add a join node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-21-1.png "add a join node")
+
 1. Choose the output properties that will be useful to return.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node")
@@ -259,7 +268,7 @@ The final step is to run the flow and confirm that the notifications about suspi
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-30.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-30.png "running the flow")
 
-   There may still be a few false positives: innocent customers who coincidentally made a small order for the same product that a suspicious person was currently manipulating the price of - maybe because they noticed that the price had dropped!
+   There might still be a few false positives: innocent customers who coincidentally made a small order for the same product that a suspicious person was currently manipulating the price of - maybe because they noticed that the price had dropped!
 
    However, you should notice that most of the events on the `ORDERS.SUSPICIOUS` topic are for orders that are made by customers such as "Suspicious Bob", "Naughty Nigel", "Criminal Clive", and "Dastardly Derek".
 

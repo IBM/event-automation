@@ -26,28 +26,32 @@ From the relevant table in the sections that follow, choose the value for the fo
 - The license acceptance (`spec.license.accept`) field must be set to `true` to indicate the acceptance of the license agreement and to proceed with installation.
 - The license metric (`spec.license.metric`) field is the charging metric for the license that you purchased.
   
-  **Note:** `spec.license.metric` field is an available option only in {{site.data.reuse.eem_name}}. You can deploy {{site.data.reuse.eem_name}} with a usage-based license, where usage is tracked and charged by the number of API calls handled by {{site.data.reuse.eem_name}}. Usage is reported automatically to the [IBM License Service](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-deploying-license-service){:target="_blank"}, where usage can be tracked, monitored, and audited. Setting license metric (`spec.license.metric`) to `MONTHLY_API_CALL` and License ID (`spec.license.license`) to `{{site.data.reuse.eem_ubp_license_id}}` configures the usage-based license, and sets {{site.data.reuse.eem_name}} to automatically track API usage.
+**Note:** 
 
-  
-  **Note:** For {{site.data.reuse.ibm_flink_operator}}, the license configuration parameters to include in the `FlinkDeployment` custom resource are the following:
+- `spec.license.metric` field is an available option only in {{site.data.reuse.eem_name}}. You can deploy {{site.data.reuse.eem_name}} with a usage-based license, where usage is tracked and charged by the number of API calls handled by {{site.data.reuse.eem_name}}. Usage is reported automatically to the [IBM License Service](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-deploying-license-service){:target="_blank"}, where usage can be tracked, monitored, and audited. Setting license metric (`spec.license.metric`) to `MONTHLY_API_CALL` and License ID (`spec.license.license`) to `{{site.data.reuse.eem_ubp_license_id}}` configures the usage-based license, and sets {{site.data.reuse.eem_name}} to automatically track API usage.
 
-   ```yaml
-   spec:
-     flinkConfiguration:
-       license.use: <license-use-value>
-       license.license: L-KCVZ-JL5CRM
-       license.accept: 'true'
-   ```
+- For {{site.data.reuse.ibm_flink_operator}}, the license configuration parameters to include in the `FlinkDeployment` custom resource are the following:
 
-Where `<license-use-value>` must match the intended product usage that you purchased.
+  ```yaml
+  spec:
+    flinkConfiguration:
+      license.use: <license-use-value>
+      license.license: <license-id>
+      license.accept: 'true'
+  ```
 
+  Where:
+
+  - `<license-use-value>` must match the intended product usage that you purchased.
+  - `<license-id>` is the [license identifier]({{ 'support/licensing/#available-licenses' | relative_url }}) (ID) for the program that you purchased.
 
 ### {{site.data.reuse.ea_long}} license information
 
 | Program   | License ID (`spec.license.license`)  | Included capabilities | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
-| {{site.data.reuse.ea_long}} 1.1.0.0 | [**L-AUKS-FKVXVL**](https://www.ibm.com/support/customer/csol/terms/?id=L-AUKS-FKVXVL&lc=en){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.2, 11.6.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.4.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.2.3, 1.2.4, 1.3.0, and later | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** <br> The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1, {{site.data.reuse.eem_name}} 11.4.0, and {{site.data.reuse.ep_name}} 1.2.2, and all later versions. |  N/A |
-| &nbsp; | [**L-KCVZ-JL5CRM**](https://www.ibm.com/support/customer/csol/terms/?id=L-KCVZ-JL5CRM&lc=en#detail-document){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.3.0 to 11.3.2 <br><br> - {{site.data.reuse.ep_name}} 1.2.0 to 1.2.4 | &nbsp; |  &nbsp; |
+| {{site.data.reuse.ea_long}} 1.2.0.0 | [**L-CYBH-K48BZQ**](https://www.ibm.com/support/customer/csol/terms/?id=L-CYBH-K48BZQ&lc=en){:target="_blank"} | - {{site.data.reuse.es_name}} 11.8.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.6.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.4.0 and later <br><br>| - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` |  N/A |
+| {{site.data.reuse.ea_long}} 1.1.0.0 | [**L-AUKS-FKVXVL**](https://www.ibm.com/support/customer/csol/terms/?id=L-AUKS-FKVXVL&lc=en){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.2 to 11.7.0 <br><br> - {{site.data.reuse.eem_name}} 11.4.0 to 11.5.1 <br><br> - {{site.data.reuse.ep_name}} 1.2.3 to 1.3.2 | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** <br> The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1, {{site.data.reuse.eem_name}} 11.4.0, and {{site.data.reuse.ep_name}} 1.2.2, and all later versions. |  N/A |
+| &nbsp; | [**L-KCVZ-JL5CRM**](https://www.ibm.com/support/customer/csol/terms/?id=L-KCVZ-JL5CRM&lc=en#detail-document){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.0 to 11.7.0 <br><br> - {{site.data.reuse.eem_name}} 11.3.0 to 11.3.2 <br><br> - {{site.data.reuse.ep_name}} 1.2.0 to 1.2.4 | &nbsp; |  &nbsp; |
 | {{site.data.reuse.ea_long}} 1.0.0.0 | [**L-HRZF-DWHH7A**](https://www.ibm.com/support/customer/csol/terms/?id=L-HRZF-DWHH7A&lc=en#detail-document){:target="_blank"}  | - {{site.data.reuse.es_name}} 11.2.0 to 11.4.0 <br><br> - {{site.data.reuse.eem_name}} 11.0.0 to 11.2.3 <br><br> - {{site.data.reuse.ep_name}} 1.0.0 to 1.1.9  | - `EventAutomationNonProduction` <br> <br> - `EventAutomationProduction` |  N/A |
 
 <!-- 

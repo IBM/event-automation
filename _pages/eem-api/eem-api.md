@@ -77,7 +77,8 @@ h2.ex1 {
   </svg>
 </button>
   <div id="myDropdown" class="dropdown-content">
-      <a href="../eem-api-115/">11.5.x</a>
+    <a href="../eem-api-116/">11.6.x</a>
+    <a href="../eem-api-115/">11.5.x</a>
     <a href="../eem-api-114/">11.4.x</a>
     <a href="../eem-api-113/">11.3.x</a>
   </div>

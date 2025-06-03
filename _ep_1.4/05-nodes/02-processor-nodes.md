@@ -361,7 +361,10 @@ To configure the detect patterns node, complete the following steps:
        - The pattern is then matched by the final two orders.
 
 1. In the **Time window duration** field, set the value and the unit for the pattern time interval. The interval is measured relative to event time, an interval of one hour means that a pattern will match if the event time property of the last event in the pattern is within an hour of the event time for the first event.
+
 1. Choose a detection mode:
+   {: #ep-pattern-detection-mode}
+
    As discussed in [step 10 of event nodes](../eventnodes#event-lateness), events can arrive out of order. To perform pattern matching, the events must be sorted into chronological order according to their event time. The watermarks from each input stream are used for the sorting process to handle out of order events. The watermarks are also used for identifying when a pattern match duration has elapsed.
 
    If an input stream temporarily stops receiving events, the watermark is stalled. When one or more of the watermarks for the inputs to the detect pattern node stall, it might cause pattern matching to pause.

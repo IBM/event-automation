@@ -234,3 +234,29 @@ See the planning sections for information about chargeable cores for each sample
 - [Flink samples]({{ '/ep/installing/planning/#flink-sample-deployments' | relative_url }})
 
 **Note:** The chargeable cores for your deployment will depend on the configuration you specify. If you change the chargeable core values, you will require additional licenses.
+
+## Usage metrics
+{: #usage-metrics}
+
+To improve product features and performance, {{site.data.reuse.ea_long}} collects data about the usage of deployments by default.
+
+Data collection starts when you deploy any of the {{site.data.reuse.ea_short}} capabilities with one of the following licenses out of all [available licenses](#available-licenses):
+- {{site.data.reuse.ea_short}} 1.2.0.0 and later
+- {{site.data.reuse.cp4i}} 16.1.2 and later
+
+The data collected is sent from your Kubernetes cluster to `https://api.segment.io/`, and includes configuration details of instances and product usage information.
+
+### Disabling usage metrics
+
+You can disable usage metrics by creating a ConfigMap in the namespace where the operator for your {{site.data.reuse.ea_short}} capability is installed.
+
+In the target namespace, create the following ConfigMap:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ibm-integration-usage-metrics
+data:
+  reportUsageMetrics: "false"
+```

@@ -377,6 +377,35 @@ See the following example for using the OpenSSL tool to generate a CA and certif
     - You are planning to create additional routes or ingress.
     - You are not running on {{site.data.reuse.openshift_short}}.
 
+    You can use wildcard SAN entries in certificates. You must include a SAN entry for the local cluster network when you use [LOCAL](../../security/managing-access#setting-up-local-authentication) authentication.
+
+    When you use [LOCAL](../../security/managing-access#setting-up-local-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
+
+    ```yaml
+    spec:
+      dnsNames:
+        - '*.<NAMESPACE>.svc.cluster.local'
+        - '*.<CLUSTER_API>'
+        - eem.*.<CLUSTER_API>'
+    ```
+
+    When you use [OIDC](../../security/managing-access#setting-up-openid-connect-oidc-based-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
+
+    ```yaml
+    spec:
+      dnsNames:
+        - '*.<CLUSTER_API>'
+        - eem.*.<CLUSTER_API>'
+    ```
+
+    The required SAN entries for the {{site.data.reuse.egw}} are as follows:
+
+    ```yaml
+    spec:
+      dnsNames:
+        - '*.<CLUSTER_API>'
+    ```
+
 
 5. Generate the required certificates by running the following commands:
 

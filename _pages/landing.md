@@ -23,7 +23,7 @@ sections:
     <h4>11.8.0 - what's new:</h4>
     <ul>
       <li>Security and bug fixes</li>
-    </ul>
+    </ul> -->
     <h3>Event Endpoint Management</h3>
       <h4>11.6.0 - what's new:</h4>
       <ul>
@@ -32,7 +32,7 @@ sections:
         <li>Collection of usage metrics</li>
         <li>Kafka record tracing through the Event Gateway</li>
         <li>Security and bug fixes</li>
-      </ul> -->
+      </ul>
     <h3>Event Processing</h3>
       <h4>1.4.0 - what's new:</h4>
       <ul>

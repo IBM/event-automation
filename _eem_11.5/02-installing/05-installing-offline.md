@@ -111,7 +111,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
+   Download of CASE: ibm-eventendpointmanagement, version: 11.5.1 is complete
    ```
 
    **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
@@ -128,16 +128,16 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventendpointmanagement
-   │   │       └── {{site.data.reuse.eem_current_version}}
+   │   │       └── 11.5.1
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   |   |           |   ├── ibm-eem-operator-{{site.data.reuse.eem_current_version}}.tgz
-   |   |           |   └── ibm-eem-operator-crd-{{site.data.reuse.eem_current_version}}.tgz
+   |   |           |   ├── ibm-eem-operator-11.5.1.tgz
+   |   |           |   └── ibm-eem-operator-crd-11.5.1.tgz
    │   │           ├── component-set-config.yaml
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-charts.csv
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv
-   │   │           ├── ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}.tgz
+   │   │           ├── ibm-eventendpointmanagement-11.5.1-airgap-metadata.yaml
+   │   │           ├── ibm-eventendpointmanagement-11.5.1-charts.csv
+   │   │           ├── ibm-eventendpointmanagement-11.5.1-images.csv
+   │   │           ├── ibm-eventendpointmanagement-11.5.1.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventendpointmanagement-resourcesIndex.yaml
    │   └── mirror

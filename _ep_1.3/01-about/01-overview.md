@@ -11,7 +11,7 @@ toc: true
 
 {{site.data.reuse.ep_name}} transforms event streaming data in real time, helping you turn events into insights. You can define flows that connect to event sources which bring event data (messages) from Apache Kafka into your flow, combined with processing actions you want to take on your events.
 
-![Event Processing architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-processing.svg "Diagram showing the Event Processing architecture as part of IBM Event Automation.")
+![Event Processing architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-event-processing.svg "Diagram showing the Event Processing architecture as part of IBM Event Automation.")
 
 The event flow is represented as a graph of event sources, processors (actions), and event destinations. You can use the results of the processing to get and share insights on the business data, or to build automations.
 

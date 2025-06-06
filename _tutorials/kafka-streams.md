@@ -43,17 +43,17 @@ To set up permissions:
 1. Click the **Topics** tab.
 1. Select your input topic you created earlier from the list, for example `streams-plaintext-input`.
 1. Click **Connect to this topic** on the right.
-1. On the **Connect a client** tab, copy the address from the **Bootstrap server** section. This gives the bootstrap address for Kafka clients.
-1. From the **Certificates** section, download the server certificate from the **PKCS12 certificate** section, and make a note of the password.
+1. From the **Certificates** section, download the server certificate from the **PEM certificate** section.
 1. To generate SCRAM credentials, click the **Generate SCRAM credentials** button, and follow the instructions. Ensure you select **Produce messages**. In the **A specific topic** field, enter the name of the input topic `streams-plaintext-input`.
-1. Click the **Sample code** tab, and copy the snippet from the **Sample configuration properties** section into a new file called `streams-demo-input.properties`. This creates a new properties file for your Kafka Streams application.
-1. Replace `<certs.PKCS12_file_location>` with the path to your truststore file, `<truststore_password>` with the password for the PKCS12 file, and `<scram_username>` and `<scram_password>` with the SCRAM username and password generated for the output topic. For example:
+1. Click the **Sample code** tab, in the **Sample configuration properties** section, from the **Select the bootstrap server** drop-down, select a server. You can either copy the snippet or click the **Download properties** button to download the properties file for your Kafka Streams application.
+1. Replace `<path-to-truststore>` with the path to your truststore file, `<scram_username>` and `<scram_password>` with the SCRAM username and password generated for the output topic. For example:
 
    ```conf
    security.protocol=SASL_SSL
-   ssl.protocol=TLSv1.2
-   ssl.truststore.location=/Users/john.smith/Downloads/es-cert.p12
-   ssl.truststore.password=password
+   ssl.protocol=TLSv1.3
+   ssl.truststore.type=PEM
+   ssl.keystore.type=PEM
+   ssl.truststore.location=/Users/john.smith/Downloads/es-cert.pem
    sasl.mechanism=SCRAM-SHA-512
    sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required required username="<scram_username>" password="<scram_password>";
    ```
@@ -62,7 +62,7 @@ To send messages to the input topic, use the bootstrap address, the input topic 
 
 - `--broker-list <broker_url>`: where `<broker_url>` is your cluster's broker URL copied earlier from the **Bootstrap server** section.
 - `--topic <topic_name>`: where `<topic_name>` is the name of your input topic, in this example, `streams-plaintext-input`.
-- `--producer.config <properties_file>`: where `<properties_file>` is the new properties file including full path to it, in this example, `streams-demo-input.properties`.
+- `--producer.config <properties_file>`: where `<properties_file>` is the new properties file including full path to it.
 
 Enter the following text in the producer shell.
 
@@ -79,7 +79,7 @@ For example:
 ./bin/kafka-console-producer.sh \
             --broker-list 192.0.2.24:31248 \
             --topic streams-plaintext-input \
-            --producer.config streams-demo-input.properties
+            --producer.config <properties_file_name>
 
 >This is a test message
 >This will be used to demo the Streams sample app
@@ -153,17 +153,16 @@ To set up permissions:
 1. Click the **Topics** tab.
 1. Select your output topic you created earlier from the list, for example `streams-wordcount-output`.
 1. Click **Connect to this topic** on the right.
-1. On the **Connect a client** tab, copy the address from the **Bootstrap server** section. This gives the bootstrap address for Kafka clients.
-1. From the **Certificates** section, download the server certificate from the **PKCS12 certificate** section, and make a note of the password.
+1. From the **Certificates** section, download the server certificate from the **PEM certificate** section.
 1. To generate SCRAM credentials, click the **Generate SCRAM credentials** button, and follow the instructions. Ensure you select **Consume only**. The name of the output topic is filled in automatically, for example `streams-wordcount-output`.
-1. Click the **Sample code** tab, and copy the snippet from the **Sample configuration properties** section into a new file called `streams-demo-output.properties`. This creates a new properties file for your Kafka Streams application.
-1. Replace `<certs.PKCS12_file_location>` with the path to your truststore file, `<truststore_password>` with the password for the PKCS12 file, and `<scram_username>` and `<scram_password>` with the SCRAM username and password generated for the input topic.
+1. Click the **Sample code** tab, in the **Sample configuration properties** section, from the **Select the bootstrap server** drop-down, select a server. You can either copy the snippet or click the **Download properties** button to download the properties file for your Kafka Streams application.
+1. Replace `<path-to-truststore>` with the path to your truststore file, `<scram_username>` and `<scram_password>` with the SCRAM username and password generated for the input topic.
 
 To view messages on the output topic, use the bootstrap address, the output topic name, and the new properties file you created. For example, run [kafka-console-consumer.sh](https://github.com/apache/kafka/blob/3.3/bin/kafka-console-consumer.sh){:target="_blank"} with the following options:
 
 - `--bootstrap-server <broker_url>`: where `<broker_url>` is your cluster's broker URL copied earlier from the **Bootstrap server** section.
 - `--topic <topic_name>`: where `<topic_name>` is the name of your output topic, in this example, `streams-wordcount-output`.
-- `--consumer.config <properties_file>`: where `<properties_file>` is the new properties file including full path to it, in this example, `streams-demo-output.properties`.
+- `--consumer.config <properties_file>`: where `<properties_file>` is the new properties file including full path to it.
 
 For example:
 
@@ -171,7 +170,7 @@ For example:
 ./bin/kafka-console-consumer.sh \
    --bootstrap-server <bootstrap-host:port> \
    --topic streams-wordcount-output \
-   --consumer.config streams-demo-output.properties \
+   --consumer.config <properties_file_name> \
    --from-beginning \
    --group streams-demo-group-consumer \
    --formatter kafka.tools.DefaultMessageFormatter \
@@ -224,7 +223,7 @@ If the `kafka-console-consumer` command is stuck, consider adding a partition op
 ./bin/kafka-console-consumer.sh \
    --bootstrap-server <bootstrap-host:port> \
    --topic streams-wordcount-output \
-   --consumer.config streams-demo-output.properties \
+   --consumer.config <properties_file_name>\
    --partition <partition-number> \
    --from-beginning \
    --group streams-demo-group-consumer \

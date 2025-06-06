@@ -238,7 +238,7 @@ For more information about PodSecurityPolicy definitions, see the [{{site.data.r
 
 ## Red Hat OpenShift SecurityContextConstraints Requirements
 
-If you  are installing on the {{site.data.reuse.openshift_short}}, the {{site.data.reuse.es_name}} chart requires a custom SecurityContextConstraints to be bound to the target namespace prior to installation. The custom SecurityContextConstraints controls the permissions and capabilities required to deploy this chart.
+If you  are installing on the {{site.data.reuse.openshift_short}}, the {{site.data.reuse.es_name}} chart requires a custom SecurityContextConstraints to be bound to the target namespace before installation. The custom SecurityContextConstraints controls the permissions and capabilities required to deploy this chart.
 
 You can enable this custom SecurityContextConstraints resource using the supplied pre-installation [setup script](../installing-openshift/#run-the-setup-script).
 

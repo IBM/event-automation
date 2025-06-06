@@ -8,7 +8,7 @@ toc: true
 
 You can deploy multiple instances of {{site.data.reuse.es_name}} and use the included geo-replication feature to synchronize data between your clusters that are typically located in different geographical locations. The geo-replication feature creates copies of your selected topics to help with [disaster recovery](../disaster-recovery).
 
-![Event Streams geo-replication architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-georep.svg "Diagram showing the architecture of the Event Streams geo-replication as part of IBM Event Automation.")
+![Event Streams geo-replication architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-diagrams-es-georep.svg "Diagram showing the architecture of the Event Streams geo-replication as part of IBM Event Automation.")
 
 Geo-replication can help with various service availability scenarios, for example:
 

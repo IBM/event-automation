@@ -10,7 +10,7 @@ toc: true
 
 Cruise Control is an open-source system for optimizing your Kafka cluster by monitoring cluster workload, rebalancing a cluster based on predefined constraints, and detecting and fixing anomalies.
 
-![Event Streams cruise control architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-cruisecontrol.svg "Diagram showing the architecture of the Event Streams Cruise Control as part of IBM Event Automation.")
+![Event Streams cruise control architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-diagrams-es-cruisecontrol.svg "Diagram showing the architecture of the Event Streams Cruise Control as part of IBM Event Automation.")
 
 You can set up {{site.data.reuse.es_name}} to use the following Cruise Control features:
 

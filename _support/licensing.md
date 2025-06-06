@@ -25,10 +25,10 @@ From the relevant table in the sections that follow, choose the value for the fo
 - The license use (`spec.license.use`) field must match the intended product usage that you purchased.
 - The license acceptance (`spec.license.accept`) field must be set to `true` to indicate the acceptance of the license agreement and to proceed with installation.
 - The license metric (`spec.license.metric`) field is the charging metric for the license that you purchased.
-  
+
 **Note:** 
 
-- `spec.license.metric` field is an available option only in {{site.data.reuse.eem_name}}. You can deploy {{site.data.reuse.eem_name}} with a usage-based license, where usage is tracked and charged by the number of API calls handled by {{site.data.reuse.eem_name}}. Usage is reported automatically to the [IBM License Service](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-deploying-license-service){:target="_blank"}, where usage can be tracked, monitored, and audited. Setting license metric (`spec.license.metric`) to `MONTHLY_API_CALL` and License ID (`spec.license.license`) to `{{site.data.reuse.eem_ubp_license_id}}` configures the usage-based license, and sets {{site.data.reuse.eem_name}} to automatically track API usage.
+- The `spec.license.metric` field is an available option only in {{site.data.reuse.eem_name}}. You can deploy {{site.data.reuse.eem_name}} with a usage-based license, where usage is tracked and charged by the number of API calls handled by {{site.data.reuse.eem_name}}. Usage is reported automatically to the [IBM License Service](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-deploying-license-service){:target="_blank"}, where usage can be tracked, monitored, and audited. Setting license metric (`spec.license.metric`) to `MONTHLY_API_CALL` and License ID (`spec.license.license`) to `{{site.data.reuse.eem_ubp_license_id}}` configures the usage-based license, and sets {{site.data.reuse.eem_name}} to automatically track API usage.
 
 - For {{site.data.reuse.ibm_flink_operator}}, the license configuration parameters to include in the `FlinkDeployment` custom resource are the following:
 

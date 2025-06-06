@@ -13,7 +13,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#certificate-management) a supported version of a certificate manager.
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
 - Obtain the connection details for your {{site.data.reuse.openshift_short}} cluster from your administrator.
-- If you want to authenticate with Keycloak, ensure you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"}, including the required dependencies.
+- If you want to authenticate with Keycloak, ensure you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"}, including the required dependencies.
 
 ## Create a project (namespace)
 

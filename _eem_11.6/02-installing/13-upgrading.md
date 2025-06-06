@@ -30,7 +30,7 @@ If you are upgrading from {{site.data.reuse.eem_name}} version 11.4.x or earlier
 
 - Ensure that you have [installed](../../installing/prerequisites/#certificate-management) the certificate manager.
 
-- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
 - To upgrade successfully, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data is lost.
 

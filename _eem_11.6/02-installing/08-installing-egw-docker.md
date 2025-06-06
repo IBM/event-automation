@@ -26,7 +26,7 @@ For example, if your Kafka cluster has 3 brokers, then use the following hostnam
 ### Licensing
 {: #licensing}
 
-If your {{site.data.reuse.eem_manager}} is not using a usage-based license, then first install the [IBM License Management Tool](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"}) in the same environment as your {{site.data.reuse.egw}}. Also, review the additional Docker-specific License Metric Tool [considerations](https://www.ibm.com/docs/en/license-metric-tool?topic=concepts-discovering-software-in-containers){:target="_blank"}.
+If your {{site.data.reuse.eem_manager}} is not using a usage-based license, then first install the [IBM License Management Tool](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} in the same environment as your {{site.data.reuse.egw}}. Also, review the additional Docker-specific License Metric Tool [considerations](https://www.ibm.com/docs/en/license-metric-tool?topic=concepts-discovering-software-in-containers){:target="_blank"}.
 
 ## Create TLS certificates
 {: #create-certs}

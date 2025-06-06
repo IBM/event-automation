@@ -244,7 +244,7 @@ Complete the following steps to assign access:
 ## Assigning roles to your Keycloak users and groups
 {: #assign-roles-keycloak}
 
-If you want to authenticate with Keycloak, ensure that you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"}, including the required dependencies.
+If you want to authenticate with Keycloak, ensure that you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"}, including the required dependencies.
 
 When you configure an {{site.data.reuse.eem_name}} instance with the `INTEGRATION_KEYCLOAK` authentication type, to integrate with a {{site.data.reuse.cp4i}} installation, you must configure the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles` with the following contents:
 
@@ -317,7 +317,7 @@ For your user or group to have author privileges in the UI, assign the `eem-auth
 1. Expand the **Networking** drop-down, and select **Routes** to open the **Routes** page. 
 1. Select the project where the Keycloak operator is installed.
 1. In the row for **Keycloak**, select the link provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
-1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. See how to [retrieve](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=management-getting-initial-administrator-password){:target="_blank"} your credentials.
+1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. See how to [retrieve](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-getting-initial-administrator-password){:target="_blank"} your credentials.
 1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
 1. Select either **Users** or **Groups**.
 1. Click the name of the user or group that you want to work with.

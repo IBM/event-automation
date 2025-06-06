@@ -167,9 +167,9 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 ## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i}}
 {: #prereqs-keycloak}
 
-If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=administering-identity-access-management){:target="_blank"}.
+If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-identity-access-management){:target="_blank"}.
 
-Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.0?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
+Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
 
 For more information, see sections about [configuring UI security](../configuring/#configuring-authentication) and [managing access with Keycloak](../../security/managing-access/#setting-up-integration-keycloak-authentication).
 

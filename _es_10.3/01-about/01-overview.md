@@ -47,7 +47,7 @@ Strimzi uses Operators in this manner to facilitate the deployment of Kafka clus
 
 The following diagram shows the operators involved in an {{site.data.reuse.es_name}} deployment along with the resources they manage. {{site.data.reuse.es_name}} builds on the Strimzi core, and adds additional components to extend the base capabilities.
 
-![EventStreams Operator diagram.]({{ 'images' | relative_url }}/operator_structure.png "Diagram that shows the operators involved in an {{site.data.reuse.es_name}} deployment.")
+![EventStreams Operator diagram.]({{ 'images' | relative_url }}/previous/operator_structure.png "Diagram that shows the operators involved in an {{site.data.reuse.es_name}} deployment.")
 
 ### The EventStreams Cluster Operator
 

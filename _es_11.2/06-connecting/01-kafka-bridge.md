@@ -12,7 +12,7 @@ Connect client applications to your {{site.data.reuse.es_name}} Kafka cluster ov
 
 With [Kafka Bridge](https://strimzi.io/docs/bridge/0.26.1/){:target="_blank"}, you can connect client applications to your {{site.data.reuse.es_name}} Kafka cluster over HTTP, providing a standard web API connection to {{site.data.reuse.es_name}} rather than the custom Kafka protocol.
 
-![Event Streams - Kafka Bridge architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-bridge.svg "Diagram showing the architecture of the Kafka bridge in Event Streams as part of IBM Event Automation.")
+![Event Streams - Kafka Bridge architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-diagrams-es-bridge.svg "Diagram showing the architecture of the Kafka bridge in Event Streams as part of IBM Event Automation.")
 
 Apache Kafka uses a custom protocol on top of TCP/IP for communication between applications and the Kafka cluster. With Kafka Bridge, clients can communicate with your {{site.data.reuse.es_name}} Kafka cluster over the HTTP/1.1 protocol. You can manage consumers and send and receive records over HTTP.
 

@@ -91,7 +91,7 @@ Where optional values are not specified:
 - If no storage class is specified and no default storage class has been defined in the {{site.data.reuse.openshift_short}} settings, the deployment will use any [persistent volume claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) that have at least the set size value.
 - If no retention setting is provided, the storage will be retained when the cluster is deleted.
 
-The following example YAML document shows an example `EventStreams` custom resource with dynamically allocated storage provided using CephFS for Kafka and ZooKeeper. To try this deployment, set the required `namespace` and accept the license by changing the `spec.license.accept` value to `"true"`.
+The following example YAML document shows an example `EventStreams` custom resource with dynamically allocated storage provided using CephFS for Kafka and ZooKeeper. To try this deployment, set the required `namespace` and accept the license by changing the `spec.license.accept` value to `true`.
 
 ```
 apiVersion: eventstreams.ibm.com/v1beta1

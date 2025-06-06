@@ -12,7 +12,7 @@ toc: true
 
 {{site.data.reuse.es_name}} uses Strimzi to deploy Apache Kafka in a resilient and manageable way, and provides a range of additional capabilities to extend the core functionality.
 
-![Event Streams architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-streams.svg "Diagram showing the Event Streams architecture as part of IBM Event Automation.")
+![Event Streams architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-event-streams.svg "Diagram showing the Event Streams architecture as part of IBM Event Automation.")
 
 {{site.data.reuse.es_name}} features include:
 
@@ -46,7 +46,7 @@ Strimzi uses Operators in this manner to facilitate the deployment of Kafka clus
 
 The following diagram shows the operators involved in an {{site.data.reuse.es_name}} deployment along with the resources they manage. {{site.data.reuse.es_name}} builds on the Strimzi core, and adds additional components to extend the base capabilities.
 
-![EventStreams Operator diagram.]({{ 'images' | relative_url }}/operator_structure.png "Diagram that shows the operators involved in an {{site.data.reuse.es_name}} deployment.")
+![EventStreams Operator diagram.]({{ 'images' | relative_url }}/previous/operator_structure.png "Diagram that shows the operators involved in an {{site.data.reuse.es_name}} deployment.")
 
 ### The EventStreams Cluster Operator
 

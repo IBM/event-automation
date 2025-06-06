@@ -6,9 +6,14 @@ slug: whats-new
 toc: true
 ---
 
-Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
+## Update to Flink support policy
+
+IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has been expanded. For more information, see the [support policy statement]({{ '/support/support-policy/' | relative_url}}).
 
 ## Release {{site.data.reuse.ep_current_version}}
+
+Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
+
 
 ### New tutorial: nudge customers with abandoned cart by using the watsonx.ai node
 

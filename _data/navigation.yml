@@ -1877,7 +1877,7 @@ latest_epdocs:
       - title: "Event Processing fails with `Unable to find main key backup` error"
         url: /troubleshooting/no-main-key-backup/
 
-# Event Streams 11.7 docs
+# Event Streams 11.8 docs
 
 latestdocs:
   - title: About
@@ -2106,8 +2106,243 @@ latestdocs:
         url: /troubleshooting/kafkarebalance-pendingproposal/
       - title: "Errors in IBM MQ connectors"
         url: /troubleshooting/mq-connector-fails/
-      - title: "Upgrading to 11.7.x fails due to `inter.broker.protocol.version`"
+      - title: "Upgrading Event Streams fails due to `inter.broker.protocol.version` mismatch"
         url: /troubleshooting/kafka-protocol-error/
+
+# Event Streams 11.7 docs
+
+117docs:
+  - title: About
+    children:
+      - title: "Introduction"
+        url: /about/overview/
+      - title: "What's new"
+        url: /about/whats-new/
+      - title: "Key concepts"
+        url: /about/key-concepts/
+      - title: "Producing messages"
+        url: /about/producing-messages/
+      - title: "Consuming messages"
+        url: /about/consuming-messages/
+      - title: "Partition leadership"
+        url: /about/partition-leadership/
+
+  - title: Installing and upgrading
+    children:
+      - title: "Trying out Event Streams"
+        url: /installing/trying-out/
+      - title: "Prerequisites"
+        url: /installing/prerequisites/
+      - title: "Planning your installation"
+        url: /installing/planning/
+      - title: "Considerations for multizone deployments"
+        url: /installing/multizone-considerations/
+      - title: "Performance and capacity planning"
+        url: /installing/capacity-planning/
+      - title: "Preparing for multizone clusters"
+        url: /installing/preparing-multizone/
+      - title: "Installing on OpenShift Container Platform"
+        url: /installing/installing/
+      - title: "Installing in an offline environment"
+        url: /installing/offline/
+      - title: "Installing on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
+      - title: "Configuring"
+        url: /installing/configuring/
+      - title: "Integrating with Event Endpoint Management"
+        url: /installing/integrating-eem/
+      - title: "Post-installation tasks"
+        url: /installing/post-installation/
+      - title: "Backing up and restoring on OpenShift"
+        url: /installing/backup-restore/
+      - title: "Configuring disaster recovery topologies"
+        url: /installing/disaster-recovery/
+      - title: "Migrating from open-source Kafka"
+        url: /installing/moving-from-oss-kafka/
+      - title: "Uninstalling"
+        url: /installing/uninstalling/
+      - title: "Upgrading"
+        url: /installing/upgrading/
+  - title: Getting started
+    children:
+      - title: "Logging in"
+        url: /getting-started/logging-in/
+      - title: "Creating a Kafka topic"
+        url: /getting-started/creating-topics/
+      - title: "Managing Kafka topics"
+        url: /getting-started/managing-topics/
+      - title: "Running a starter application"
+        url: /getting-started/generating-starter-app/
+      - title: "Creating and testing message loads"
+        url: /getting-started/testing-loads/
+      - title: "Creating Kafka client applications"
+        url: /getting-started/client/
+      - title: "Connecting clients"
+        url: /getting-started/connecting/
+      - title: "Using Apache Kafka console tools"
+        url: /getting-started/using-kafka-console-tools/
+      - title: "Sharing topic with Event Endpoint Management"
+        url: /getting-started/sharing-topic/
+  - title: Schemas
+    children:
+      - title: "Schemas overview"
+        url: /schemas/overview/
+      - title: "Creating and adding schemas"
+        url: /schemas/creating/
+      - title: "Managing schema lifecycle"
+        url: /schemas/manage-lifecycle/
+      - title: "Setting Java applications to use schemas"
+        url: /schemas/setting-java-apps/
+      - title: "Setting non-Java applications to use schemas"
+        url: /schemas/setting-nonjava-apps/
+      - title: "Migrating to Event Streams schema registry"
+        url: /schemas/migrating/
+      - title: "Using schemas with the REST producer API"
+        url: /schemas/using-with-rest-producer/
+      - title: "Setting Java applications to use schemas with the Apicurio Registry serdes library"
+        url: /schemas/setting-java-apps-apicurio-serdes/
+  - title: Security
+    children:
+      - title: "Managing access"
+        url: /security/managing-access/
+      - title: "Encrypting your data"
+        url: /security/encrypting-data/
+      - title: "Configuring secure JMX connections"
+        url: /security/secure-jmx-connections/
+      - title: "Renewing certificates"
+        url: /security/renewing-certificates/
+      - title: "Verifying container image signatures"
+        url: /security/verifying-signature/
+      - title: "Network policies"
+        url: /security/network-policies/
+      - title: "Considerations for GDPR"
+        url: /security/gdpr-considerations/
+      - title: "Enabling FIPS"
+        url: /security/fips/
+  - title: Topic mirroring
+    children:
+      - title: "About topic mirroring"
+        url: /mirroring/about/
+      - title: "About MirrorMaker"
+        url: /mirroring/mirrormaker/
+      - title: "Switching clusters"
+        url: /mirroring/failover/
+  - title: Geo-replication
+    children:
+      - title: "About geo-replication"
+        url: /georeplication/about/
+      - title: "Planning for geo-replication"
+        url: /georeplication/planning/
+      - title: "Setting up geo-replication"
+        url: /georeplication/setting-up/
+      - title: "Monitoring and managing geo-replication"
+        url: /georeplication/health/
+  - title: Connecting external systems
+    children:
+      - title: "Event Streams producer API"
+        url: /connecting/rest-api/
+      - title: "Exposing services for external access"
+        url: /connecting/expose-service/
+      - title: "Kafka Bridge"
+        url: /connecting/kafka-bridge/
+      - title: "Kafka Connect"
+        url: /connecting/connectors/
+      - title: "Setting up and running connectors"
+        url: /connecting/setting-up-connectors/
+      - title: "Connecting to IBM MQ"
+        url: /connecting/mq/
+      - title: "Running the MQ source connector"
+        url: /connecting/mq/source/
+      - title: "Running the MQ sink connector"
+        url: /connecting/mq/sink/
+      - title: "Running connectors on IBM z/OS"
+        url: /connecting/mq/zos/
+  - title: Administering
+    children:
+      - title: "Monitoring deployment health"
+        url: /administering/deployment-health/
+      - title: "Monitoring Kafka cluster health"
+        url: /administering/cluster-health/
+      - title: "Monitoring topic health"
+        url: /administering/topic-health/
+      - title: "Monitoring consumer group lag"
+        url: /administering/consumer-lag/
+      - title: "Monitoring applications with distributed tracing"
+        url: /administering/tracing/
+      - title: "Auditing Kafka"
+        url: /administering/auditing-kafka/
+      - title: "Monitoring with external tools"
+        url: /administering/external-monitoring/
+      - title: "Modifying installation settings"
+        url: /administering/modifying-installation/
+      - title: "Optimizing Kafka cluster with Cruise Control"
+        url: /administering/cruise-control/
+      - title: "Scaling"
+        url: /administering/scaling/
+      - title: "Setting client quotas"
+        url: /administering/quotas/
+      - title: "Managing a multizone setup"
+        url: /administering/managing-multizone/
+      - title: "Stopping and starting Event Streams"
+        url: /administering/stopping-starting/
+  - title: Reference
+    children:
+      - title: "API reference for the Event Streams CRDs"
+        url: /reference/api-reference-es/
+      - title: "API reference for the geo-replicator CRDs"
+        url: /reference/api-reference-esgr/
+      - title: "Internal topics used in Event Streams"
+        url: /reference/internal-topics/
+      - title: REST Producer API
+        url: /../api/ 
+      - title: Schema registry API
+        url: /../schema-api/ 
+
+  - title: Troubleshooting
+    children:
+      - title: "Troubleshooting overview"
+        url: /troubleshooting/intro/
+      - title: "Gathering logs"
+        url: /troubleshooting/gathering-logs/
+      - title: "Resources not available"
+        url: /troubleshooting/resources-not-available/
+      - title: "Event Streams installation reports Blocked status"
+        url: /troubleshooting/es-install-fails/
+      - title: "Error when creating multiple geo-replicators"
+        url: /troubleshooting/georeplication-error/
+      - title: "TimeoutException when using standard Kafka producer"
+        url: /troubleshooting/kafka-producer-error/
+      - title: "Standard Kafka consumer hangs"
+        url: /troubleshooting/kafka-consumer-hangs/
+      - title: "Command 'kubectl es' fails with 'not a registered command' error"
+        url: /troubleshooting/kubectl-es-not-registered/
+      - title: "Command 'kubectl es' produces 'FAILED' message"
+        url: /troubleshooting/kubectl-es-fails/
+      - title: "UI does not open when using Chrome on Ubuntu"
+        url: /troubleshooting/chrome-ubuntu-issue/
+      - title: "Unable to remove destination cluster"
+        url: /troubleshooting/error-removing-destination/
+      - title: "403 error when signing in"
+        url: /troubleshooting/ui-403-error/
+      - title: "Event Streams not installing due to Security Context Constraint (SCC) issues"
+        url: /troubleshooting/default-scc-issues/
+      - title: "Client receives AuthorizationException when communicating with brokers"
+        url: /troubleshooting/authorization-failed-exceptions/
+      - title: "Client receives 'Failed to load SSL keystore' message when communicating with brokers"
+        url: /troubleshooting/pkcs12-keystore-java-client/
+      - title: "OpenShift upgrade: fixing scheduling on node and node degraded errors"
+        url: /troubleshooting/ocp-upgrade-fail/
+      - title: "Apicurio authentication errors due to User Operator watchedNamespace"
+        url: /troubleshooting/watched-namespace/
+      - title: "KafkaRebalance custom resource remains in PendingProposal state"
+        url: /troubleshooting/kafkarebalance-pendingproposal/
+      - title: "Errors in IBM MQ connectors"
+        url: /troubleshooting/mq-connector-fails/
+      - title: "Upgrading Event Streams fails due to `inter.broker.protocol.version` mismatch"
+        url: /troubleshooting/kafka-protocol-error/
+      - title: "Node pool validation fails due to `app.kubernetes.io/instance` label mismatch"
+        url: /troubleshooting/node-pool-validation-label-mismatch/
+
 
         
 # Sidebar navigation for Event Streams 11.6 docs

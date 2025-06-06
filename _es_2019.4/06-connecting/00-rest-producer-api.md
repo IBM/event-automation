@@ -101,7 +101,7 @@ Where:
 - `<api_endpoint>` is the full URL copied from the `Event Streams API endpoint` field earlier (format `https://<host>:<port>`).
 - `<topic_name>` is the name of the topic you want to produce messages to.
 
-For full details of the API, see the [API reference]({{ 'api' | relative_url }}){:target="_blank"}.
+For full details of the API, see the [API reference]({{ 'api' | relative_url }}).
 
 ## Producing messages using REST with SSL client authentication
 
@@ -158,7 +158,7 @@ Some systems require the client certificate and private key to be combined into 
 
 `my-client-cert` is an arbitrary name or alias given to the client certificate in the PKCS12 file. You will be asked to specify a password to protect the certificate in the file. You will need to provide this, as well as the alias, when configuring your system.
 
-For full details of the API, see the [API reference]({{ 'api' | relative_url }}){:target="_blank"}.
+For full details of the API, see the [API reference]({{ 'api' | relative_url }}).
 
 <!--
 To create a topic and API key with produce permissions by using the UI:

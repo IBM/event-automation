@@ -8,7 +8,7 @@ toc: true
 
 Understand the health of your {{site.data.reuse.es_name}} deployment at a glance, and learn how to find information about problems.
 
-![Event Streams metrics architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-metrics.svg "Diagram showing the architecture of the Event Streams metrics as part of IBM Event Automation.")
+![Event Streams metrics architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-diagrams-es-metrics.svg "Diagram showing the architecture of the Event Streams metrics as part of IBM Event Automation.")
 
 ## Checking {{site.data.reuse.es_name}} health
 

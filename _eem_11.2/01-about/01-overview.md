@@ -10,7 +10,7 @@ As part of your event-driven architecture solution, {{site.data.reuse.eem_name}}
 
 Access to the event endpoints is managed by the {{site.data.reuse.egw}}. The {{site.data.reuse.egw}} handles the incoming requests from applications to produce (write) events to a topic or to consume from a topic’s stream of events. The {{site.data.reuse.egw}} is independent of your Kafka clusters, making access control to topics possible without requiring any changes to your Kafka cluster configuration.
 
-![Event Endpoint Management architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-event-endpoint-management.svg "Diagram showing the Event Endpoint Management architecture as part of IBM Event Automation.")
+![Event Endpoint Management architecture]({{ 'images' | relative_url }}/architectures/previous/ibm-event-automation-event-endpoint-management.svg "Diagram showing the Event Endpoint Management architecture as part of IBM Event Automation.")
 
 {{site.data.reuse.eem_name}} can be deployed as a standalone installation, or it can be deployed as part of Cloud Pak For Integration. You can also integrate {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} by importing the AsyncAPI document that defines the event source. This integration provides the option to use events as part of your overall API management solution.
 

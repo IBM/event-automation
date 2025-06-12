@@ -10,105 +10,163 @@ Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.da
 
 Review the upgrade procedure and decide the right steps to take for your deployment based on your platform, current version, and target version.
 
-## Upgrade paths
+## Planning your upgrade
+{: #planning-upgrade}
+
+### Upgrade paths
+{: #upgrade-paths}
 
 <!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
-<!-- You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.6.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.6.x or 11.5.x version by using the latest 11.6.x operator. -->
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.6.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.6.x or 11.5.x version by using the latest 11.6.x operator.
 
 <!-- Below text to be used for .0 releases -->
-You can upgrade {{site.data.reuse.eem_name}} to [11.6.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.5.x by using the latest 11.6.0 operator.
+<!-- You can upgrade {{site.data.reuse.eem_name}} to [11.6.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.5.x by using the 11.6.0 operator. -->
 
-If you are upgrading from {{site.data.reuse.eem_name}} version 11.4.x or earlier, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/), and then follow these instructions to upgrade to 11.6.0.
+If you are upgrading from {{site.data.reuse.eem_name}} version 11.4.x or earlier, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/), and then return to these instructions to upgrade to 11.6.x.
 
-- On OpenShift, you can upgrade to the latest version by using operator channel v11.6. Review the general upgrade [prerequisites](#prerequisites) before you follow the instructions to [upgrade on OpenShift](#upgrading-on-the-openshift-container-platform).
+On OpenShift, you can upgrade to the latest version by using operator channel v11.6. 
 
-- On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before you follow the instructions to [upgrade on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
+On other Kubernetes platforms, you must update the Helm repository and then upgrade {{site.data.reuse.eem_name}} by using the Helm chart. 
 
-## Prerequisites
+### Prerequisites
+{: #upgrade-prereqs}
 
 - Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- Ensure that you have [installed](../../installing/prerequisites/#certificate-management) the certificate manager.
-
 - If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
-- To upgrade successfully, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, all data is lost.
+- To keep your data, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, then all data is lost.
 
 - {{site.data.reuse.egw_compatibility_note}}
 
 - Upgrade Docker or Kubernetes Deployment {{site.data.reuse.egw}} instances after you upgrade your {{site.data.reuse.eem_manager}}.
 
+- Rolling back an upgrade is not supported. If your upgrade fails, then reinstall {{site.data.reuse.eem_name}} and restore your data from your [backup](../backup-restore).
+
 **Important:** The upgrade process requires some downtime as {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} pods are restarted.
 
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
+{: #upgrading-openshift}
 
 Find out how to upgrade your deployment on an {{site.data.reuse.openshift_short}}.
 
-### Planning your upgrade
+### Pre-upgrade checks and preparation
+{: #pre-upgrade-checks-and-preparation-openshift}
 
-Complete the following steps to plan your upgrade on OpenShift.
+The pre-upgrade checks and preparation ensure that your {{site.data.reuse.eem_name}} installation is ready to upgrade. These steps do not commit you to completing the upgrade, so you can do them before your upgrade window.
 
-1. Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel that you are subscribed to in the [web console](#upgrading-subscription-by-using-the-openshift-web-console) (see **Update channel** section), or by using the CLI as follows:
+1. Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel that you are subscribed to in the OpenShift web console, or by using the CLI as follows:
    
    a. Run the following command to check your subscription details:
    
-      ```shell
-      oc get subscription
-      ```
+   ```shell
+   oc -n <namespace> get subscription
+   ```
+
+   `<namespace>` is the {{site.data.reuse.eem_name}} operator namespace.
       
    b. Check the `CHANNEL` column for the channel you are subscribed to, for example, v11.5 in the following snippet:
       
-      ```
-      NAME                                      PACKAGE                          SOURCE                                     CHANNEL
-      ibm-eventendpointmanagement               ibm-eventendpointmanagement      ibm-eventendpointmanagement-catalog        v11.5
-      ```
+   ```
+   NAME                                      PACKAGE                          SOURCE                                     CHANNEL
+   ibm-eventendpointmanagement               ibm-eventendpointmanagement      ibm-eventendpointmanagement-catalog        v11.5
+   ```
 
-    This is the [subscription created during installation](../installing/#install-the-event-endpoint-management-operator).
+   This is the subscription that is created during [installation](../installing/#install-the-event-endpoint-management-operator).
 
-If your existing Subscription uses a channel earlier than v11.5, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/) before you can upgrade to 11.6.x.
+   If your existing Subscription uses a channel earlier than v11.5, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/) before you can upgrade to 11.6.x.
+
+2. [Back up](../backup-restore) your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
+
+3. If you are managing your [catalog sources](../installing/#creating-the-catalog-sources) with a CASE bundle, then download the CASE bundle for your target version.
+
+   a. Download and extract the latest {{site.data.reuse.eem_name}} CASE version:
+
+   ```shell
+   oc ibm-pak get ibm-eventendpointmanagement 
+   ```
+
+    **Note:** You can specify an earlier version of the CASE by using `--version <case version>`.
+
+   b. Generate mirror manifests:
+
+   ```shell
+   oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement icr.io
+   ```
+
+<!-- ### Upgrading from v11.6.0 to v11.6.1 -->
+
+If you installed by using the IBM Operator Catalog with the `latest` label, then the latest {{site.data.reuse.eem_name}} release for your update channel is always available and updates are applied automatically. Proceed directly to [verify your upgrade](#verify-upgrade). 
 
 
-<!-- Below line for non .0 releases only -->
-<!-- If your existing Subscription is already on the v11.6 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available. The operator will upgrade your {{site.data.reuse.eem_name}} instance automatically. -->
+### Upgrading by using the OpenShift CLI
+{: #ocp-cli-upgrade}
 
-
-### Making new catalog source available
-
-Before you can upgrade, make the catalog source for the target version available in your cluster. The procedure depends on how you created the [catalog sources](../installing/#creating-the-catalog-sources) for your deployment:
-
-- Latest versions: If your catalog source is the IBM Operator Catalog, the latest versions are always available when published, and you do not have to make new catalog sources available.
-
-- Specific versions: If you used the CASE bundle to install the catalog source for a previous version, you must download and use a new CASE bundle for your target version.
-  - If you used the CASE bundle for an online installation, [apply the new catalog source](../installing/#add-specific-version-sources-for-production-environments-case) to update the `CatalogSource`.
-  - If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
-  - In both cases, wait for the `status.installedCSV` field in the `Subscription` to update. It eventually reflects the latest version available in the new `CatalogSource` image for the currently selected channel in the `Subscription`:
-    - In the {{site.data.reuse.openshift_short}} web console, the current version of the operator is displayed under `Installed Operators`. 
-    - If you are using the CLI, check the status of the `Subscription` custom resource, the `status.installedCSV` field shows the current operator version.  
-
-
-### Upgrading Subscription by using the OpenShift CLI
-
-If you are using the OpenShift command-line interface (CLI), complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
+If you are using the OpenShift command-line interface (CLI), complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation. Set `<namespace>` to the namespace of your {{site.data.reuse.eem_name}} operator.
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Ensure the required {{site.data.reuse.eem_name}} Operator Upgrade Channel is available:
+
+2. If you are managing your [catalog sources](../installing/#creating-the-catalog-sources) with a CASE bundle, then apply the CASE bundle: <!-- this is the point of no return for patch updates, they get applied automatically -->
+    
+   ```shell
+   oc -n <namespace> apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case version>/catalog-sources.yaml
+   ```
+   
+   <!-- Below line for non .0 releases only -->
+   If your existing subscription is already on the v11.6 channel, then the upgrade to 11.6.x is applied automatically. Skip the remaining steps and proceed to [verify your upgrade](#verify-upgrade).
+   
+   If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
+
+3. Verify that the target version {{site.data.reuse.eem_name}} Operator Upgrade Channel is available:
 
    ```shell
-   oc get packagemanifest ibm-eventendpointmanagement -o=jsonpath='{.status.channels[*].name}'
+   oc -n <namespace> get packagemanifest ibm-eventendpointmanagement -o=jsonpath='{.status.channels[*].name}'
    ```
 
-3. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v11.6`):
+4. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v11.6`):
+
+   <!-- this step is the point-of-no-return for minor version upgrades -->
 
    ```shell
-   oc patch subscription -n <namespace> ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
+   oc -n <namespace> patch subscription ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
-<!-- This step can be commented out from releases that do not require license updates. -->
-4. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
+<!-- Below step can be commented out from releases that do not require license updates. -->
+5. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated. Set `<namespace>` to the namespace of your {{site.data.reuse.eem_name}} instance.
+
+    a. Get the names of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
+
+   ```shell
+   oc -n <namespace> get eventendpointmanagements.events.ibm.com
+   ```
+
+   ```shell
+   oc -n <namespace> get eventgateways.events.ibm.com
+   ```
+
+   b. For each instance, update the license:
+
+   ```shell
+   oc -n <namespace> patch eventendpointmanagements.events.ibm.com <manager instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
+   ```
+
+   ```shell
+   oc -n <namespace> patch eventgateway.events.ibm.com <gateway instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
+   ```
+
+6. Check the status of the `Subscription` custom resource to confirm that your {{site.data.reuse.eem_name}} operator was updated to your target version.
+
+   ```shell
+   oc -n <namespace> get -o yaml subscription
+   ```
+
+   `<namespace>` is the {{site.data.reuse.eem_name}} operator namespace. The `status.installedCSV` field in the output shows the current operator version.
+
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
 ### Upgrading Subscription by using the OpenShift web console
+{: #ocp-console-upgrade}
 
 If you are using the {{site.data.reuse.openshift_eem_name}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
 
@@ -120,157 +178,145 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
 4. Locate the operator that manages your {{site.data.reuse.eem_manager}} instance in the project. It is called **{{site.data.reuse.eem_name}}** in the **Name** column. Click the **{{site.data.reuse.eem_name}}** link in the row.
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.eem_name}} operator.
 6. Select the version number link in the **Update channel** section (for example, **v11.5**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
-7. Select the required channel, for example **v11.5**, and click **Save** on the **Change Subscription update channel** dialog.<!-- This step can be commented out from releases that do not require license updates. -->
-8. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
-
+7. Select the required channel, for example **v11.6**, and click **Save** on the **Change Subscription update channel** dialog.<!-- This step can be commented out from releases that do not require license updates. -->
+8. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
+9. Monitor your {{site.data.reuse.eem_name}} operator and instance in the web console to confirm that the upgrade completes.
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
 
 ## Upgrading on other Kubernetes platforms by using Helm
+{: #helm-upgrade}
 
 If you are running {{site.data.reuse.eem_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers, you can upgrade {{site.data.reuse.eem_name}} by using the Helm chart.
 
-### Planning your upgrade
+### Pre-upgrade checks and preparation on other Kubernetes platforms
+{: #pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms}
 
 Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
-1. Determine the chart version for your existing deployment:
-   
-   a. Change to the namespace where your {{site.data.reuse.eem_manager}} instance is installed:
-      
-      ```shell
-      kubectl config set-context --current --namespace=<namespace>
-      ```
-   
-   b. Run the following command to check what version is installed:
-      
-      ```shell
-      helm list
-      ```
-      
-   c. Check the version installed in the `CHART` column, for example, `<chart-name>-11.5.0` in the following snippet:
-      
-      ```
-      NAME                  NAMESPACE  REVISION  UPDATED                                 STATUS   CHART                        APP VERSION    
-      ibm-eem-operator      eem        1         2023-11-22 12:27:03.6018574 +0000 UTC   deployed ibm-eem-operator-11.5.0      7133459-483976d  
-      ```
+1. Ensure that you have a recent [backup](../backup-restore) of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
+2. Identify the name, namespace, and chart of your {{site.data.reuse.eem_name}} operators:
 
-2. Check the latest chart version that you can upgrade to:
+   a. {{site.data.reuse.cncf_cli_login}}
+
+   b. Run the following command:
+
+   ```shell
+   helm list --all-namespaces
+   ```
+
+   If you have several Helm releases installed, you can filter for `eem`, for example: 
+
+   ```shell
+   helm list --all-namespaces | grep eem
+   ```
+   <!-- we could use `-o json | jq ...` instead of grep, but we can't always assume jq is installed on users system -->
+      
+   c. Take note of the `NAME`, `NAMESPACE`, and `CHART` values for `ibm-eem-operator` and `ibm-eem-operator-crd`:
+   
+   ```shell
+   NAME     NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART                                   	APP VERSION     
+   eem-crd  eemns   	1       	2024-12-04 02:10:55.343886423 -0800 PST	deployed	ibm-eem-operator-crd-11.6.0             	26955880-704cca1
+   eem-op   eemns  	1         	2024-12-04 02:11:08.814270035 -0800 PST	deployed	ibm-eem-operator-11.6.0                 	26955880-704cca1
+   ```
+
+           
+3. Check the latest chart version that you can upgrade to:
    
    a. {{site.data.reuse.cncf_cli_login}}
    
    b. Add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"}:
       
-      ```shell
-      helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
-      ```
+   ```shell
+   helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
+   ```
       
    c. Update the Helm repository:
       
-      ```shell
-      helm repo update ibm-helm
-      ```
+   ```shell
+   helm repo update ibm-helm
+   ```
       
    d. Confirm the version of the chart that you are upgrading to:
       
-      ```shell
-      helm show chart ibm-helm/ibm-eem-operator
-      ```
+   ```shell
+   helm show chart ibm-helm/ibm-eem-operator
+   ```
       
-      Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
+   Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
 
-If the chart version for your existing deployment is earlier than 11.5.x, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.3' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.6.x version.
+If the chart version for your existing deployment is earlier than 11.5.x, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.6.x version.
 
-If your existing installation is in an offline environment, you must repeat the steps in the offline installation instructions to [Download the CASE bundle](../offline/#download-the-case-bundle) and [mirror the images](../offline/#mirror-the-images) before you upgrade. 
-
-If the chart version for your existing deployment is 11.5.x, then proceed to [helm upgrade](#upgrading-by-using-helm).
+If the chart version for your existing deployment is 11.5.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
 <!-- Below line applies to non .0 releases only -->
-<!-- If the chart version for your existing deployment is 11.6.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically. -->
+If the chart version for your existing deployment is 11.6.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#helm-upgrade-steps) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically.
 
 ### Upgrading by using Helm
+{: #helm-upgrade-steps}
 
 You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms by using Helm.
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Identify the namespace where the installation is located and the Helm release that is managing the CRDs:
+
+2. Upgrade the Helm release that manages your {{site.data.reuse.eem_name}} Custom Resource Definitions (CRDs):
 
    ```shell
-   kubectl get crd eventendpointmanagements.events.ibm.com -o jsonpath='{.metadata.annotations}'
-   ```
-   
-   Example output that shows CRDs managed by Helm release `eem-crds` in namespace `my-eem`:
-   
-   ```shell
-   {"meta.helm.sh/release-name": "eem-crds", "meta.helm.sh/release-namespace": "eem"}
-   ```
-   
-3. Set your current namespace to the namespace that you identified in step 2.
-   ```shell
-   kubectl config set-context --current --namespace=<namespace>
+   helm -n <EEM CRD namespace> upgrade <EEM CRD name> ibm-helm/ibm-eem-operator-crd
    ```
 
-4. Add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"}:
+   Replace `<EEM CRD namespace>` and `<EEM CRD name>` with the NAMESPACE and NAME values that you identified in the [pre-upgrade checks](#pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms).
+
+
+3. Upgrade the Helm release of your operator installation. 
 
    ```shell
-   helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
+   helm -n <EEM operator namespace> upgrade <EEM operator name> ibm-helm/ibm-eem-operator 
    ```
 
-5. Update the Helm repository:
-
-   ```shell
-   helm repo update ibm-helm
-   ```
-
-6. Upgrade the Helm release that manages your {{site.data.reuse.eem_name}} CRDs (as identified in step 2):
-
-   ```shell
-   helm upgrade <crd_release_name> ibm-helm/ibm-eem-operator-crd
-   ```
-
-7. Upgrade the Helm release of your operator installation. 
-
-   ```shell
-   helm -n <ibm-eem-operator namespace> upgrade <eem_release_name> ibm-helm/ibm-eem-operator <install_flags>
-   ```
+   Replace `<EEM operator namespace>` and `<EEM operator name>` with the NAMESPACE and NAME values that you identified in the [pre-upgrade checks](#pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms). 
  
-8. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
-<!-- Above step can be commented out from releases that do not require license updates. -->
+4. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
 
+   a. Retrieve the names of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
 
-Where:
-- `<crd_release_name>` is the Helm release name of the Helm installation that manages the {{site.data.reuse.eem_name}} CRDs.
-- `<eem_release_name>` is the Helm release name of the Helm installation of the operator.
-- `<install_flags>` are any optional installation property settings, such as `--set watchAnyNamespace=true`
-- `<ibm-eem-operator namespace>` is the namespace where your {{site.data.reuse.eem_name}} is installed.
+   ```shell
+   kubectl -n <namespace> get eventendpointmanagements.events.ibm.com
+   ```
+
+   ```shell
+   kubectl -n <namespace> get eventgateways.events.ibm.com
+   ```
+
+   b. For each instance, update the license:
+
+   ```shell
+   kubectl -n <namespace> patch eventendpointmanagements.events.ibm.com <manager instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
+   ```
+
+   ```shell
+   kubectl -n <namespace> patch eventgateways.events.ibm.com <gateway instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
+   ```
+
+   <!-- Above step can be commented out from releases that do not require license updates. -->
+
+5. Verify that your upgrade completed:
+
+   ```shell
+   helm list -n <namespace>
+   ```
+
+   Confirm that the CHART column shows your target version for your {{site.data.reuse.eem_name}} CRDs and operator.
+
 
 ## Post-upgrade tasks
+{: #post-upgrade}
 
 ### Verifying the upgrade
+{: #verify-upgrade}
 
 After the upgrade, verify the status of the {{site.data.reuse.eem_name}}, by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
 
-### Update the service endpoints to define the `server` endpoint
-
-**Note:** Only required when you configure ingress on Kubernetes platforms other than OpenShift.
-
-<!-- The version number in the following sentence should always be 11.5.0 -->
-In {{site.data.reuse.eem_name}} 11.5.0 and later, any existing `EventEndpointManagement` custom resources require a `server` endpoint in array `spec.manager.endpoints[]`. If that is not present, the custom resource shows an error in the status field. Patch your instances by adding a new element called `server` to `spec.manager.endpoints[]`. The hostname that you specify must start with `eem.`.
-
-For example, using the `kubectl` CLI, the following command adds the element to an existing instance `eem-manager-instance` in namespace `my-namespace`:
-
-```shell
-kubectl patch EventEndpointManagement eem-manager-instance -n my-namespace --type json -p='[{"op": "add", "path": "/spec/manager/endpoints/0", "value": {"name": "server", "host": "eem.manager.mycluster.example.com"} }]'
-```
-
-If you are using an alternative system to manage your custom resources (such as ArgoCD or Ansible), then update your `EventEndpointManagement` definitions accordingly.
-
-<!-- The version number in the following sentence should always be 11.5.0 -->
-**Important:** In {{site.data.reuse.eem_name}} 11.5.0 and later, the `admin` service endpoint no longer includes a `type` option to set the network exposure and availability of the Admin API (`disabled`, `internal`, or `external`). The service endpoint is always available externally, making the API available from outside the cluster.
-
-### Update user roles
-
-In {{site.data.reuse.eem_name}} 11.5.0 and later, the author role no longer has the permissions to manage {{site.data.reuse.egw}}s. You must assign the [admin role](../../security/user-roles/) to any user who requires permissions to [deploy](../../installing/install-gateway/#remote-gateways) or [manage](../../security/managing-gateways/) {{site.data.reuse.egw}}s.
 
 

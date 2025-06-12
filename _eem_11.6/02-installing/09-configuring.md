@@ -572,7 +572,7 @@ For the {{site.data.reuse.eem_manager}} instance, the `spec.manager.endpoints[]`
    **Note**:
    - The `server` service endpoint is required to [deploy](../../installing/install-gateway/#remote-gateways) an {{site.data.reuse.egw}} by using the {{site.data.reuse.eem_name}} UI.
    - The `server` service endpoint also exposes the {{site.data.reuse.eem_name}} [Admin API](../../security/api-tokens/) on path `/admin`, and can be used for making API requests to {{site.data.reuse.eem_name}} programmatically. The Admin API URL is displayed on the [**Profile** page](../../security/api-tokens/#api-access-tokens).
-   - The value that supplied in `host` for `name: server` must start with `eem.`
+   - The value that is supplied in `endpoints[server].host` must start with `eem.`
    
 For each service endpoint, set the following values:
   - `name` is the name of the service: `ui`, `gateway`, `admin`, or `server` as applicable.

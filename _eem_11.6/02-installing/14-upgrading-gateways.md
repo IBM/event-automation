@@ -30,7 +30,7 @@ To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway 
     -p 8443:8443 \
     -e LICENSE_ID="<new license ID>" \
     -e ACCEPT_LICENSE="true" \
-    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.0
+    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.1
     ```
 
    Set the properties as follows:
@@ -45,10 +45,10 @@ To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway 
 2. Uninstall the previous gateway as described in [uninstalling a Docker {{site.data.reuse.egw}}](../uninstalling/#uninstall-docker-gateway).
 3. Run the Docker command that you prepared in step 1. 
 
-### Upgrading Docker gateways from 11.6.0 or later
+### Upgrading Docker gateways from 11.5.0 or later
 {: #upgrading-post115docker-gateways}
 
-These steps apply to all gateways from {{site.data.reuse.eem_name}} version 11.6.0 or later. If your gateway was originally deployed from an earlier version, see the steps for [upgrading gateways from 11.4.2 or earlier](#upgrading-pre115-docker-gateways).
+These steps apply to all gateways from {{site.data.reuse.eem_name}} version 11.5.0 or later. If your gateway was originally deployed from an earlier version, see the steps for [upgrading gateways from 11.4.2 or earlier](#upgrading-pre115-docker-gateways).
 
 To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway and replace it with one that uses the Docker image of your target {{site.data.reuse.eem_name}} version. 
 
@@ -57,7 +57,7 @@ To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway 
     a. The image reference. Set the image reference to your target version. For example:
 
     ```shell
-    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.0
+    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.1
     ```
     
     b. If the new version requires an updated licence ID, then update `LICENCE_ID`.
@@ -76,7 +76,7 @@ To upgrade a Kubernetes Deployment {{site.data.reuse.egw}}, edit the Kubernetes 
 - The Docker image name that is specified in `spec.template.spec.containers.egw.image`.  Set the image name to the target {{site.data.reuse.eem_name}} version. For example: 
 
     ```
-    icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.0
+    icr.io/cpopen/ibm-eventendpointmanagement/egw:11.6.1
     ```
 
 - If the target version requires a new license ID, update `spec.template.spec.containers.egw.LICENSE_ID`.

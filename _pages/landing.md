@@ -19,12 +19,19 @@ sections:
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-    <!-- <h3>Event Streams</h3>
+    <h3>Event Streams</h3>
     <h4>11.8.0 - what's new:</h4>
     <ul>
+      <li>Support for KRaft</li>
+      <li>Download Kafka connection properties from UI</li>
       <li>Security and bug fixes</li>
-    </ul> -->
+    </ul>
     <h3>Event Endpoint Management</h3>
+      <h4>11.6.1 - what's new:</h4>
+      <ul>
+        <li>Upgrade documentation restructure</li>
+        <li>Security and bug fixes</li>
+      </ul>
       <h4>11.6.0 - what's new:</h4>
       <ul>
         <li>Admin role CA certificate management</li>

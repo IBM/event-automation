@@ -10,6 +10,15 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
 
+### Documentation enhancements
+
+{{site.data.reuse.eem_name}} release 11.6.1 introduces a restructured {{site.data.reuse.eem_manager}} [upgrade](../../installing/upgrading/) procedure. 
+
+### Security and bug fixes
+
+{{site.data.reuse.eem_name}} release 11.6.1 contains security and bug fixes.
+
+## Release 11.6.0
 
 ### Admin role CA certificate management
 

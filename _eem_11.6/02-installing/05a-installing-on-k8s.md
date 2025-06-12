@@ -179,7 +179,7 @@ When modifying the sample configuration, ensure that the following fields are up
 - The correct values are selected for the `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields before deploying an {{site.data.reuse.eem_manager}} instance. For information about the right values for your deployment, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 - The `manager.storageSpec.type` field is updated as `ephemeral` or `persistent-claim` based on your requirements. See [configuring](../configuring#enabling-persistent-storage) to select the correct storage type and other optional specifications such as storage size, root storage path, and secrets.
 - The `manager.tls.caSecretName` or `manager.tls.secretName` field is updated based on your requirements. If neither is specified, self-signed certificates are used. See the [configuring](../configuring#configuring-tls) section for more information.
-- The `spec.manager.endpoints[]` section must contain entries for the [service endpoints](../configuring/#configuring-ingress).
+- The `spec.manager.endpoints[]` section must contain entries for the [service endpoints](../configuring/#configuring-ingress). 
   
   For example:
     
@@ -196,8 +196,10 @@ When modifying the sample configuration, ensure that the following fields are up
           host: my-eem-gateway.mycluster.com
         - name: admin
           host: my-eem-admin.mycluster.com
-          type: external
+        - name: server
+          host: eem.my-eem-server.mycluster.com
   ```
+  The value that is supplied in `endpoints[server].host` must start with `eem.`
   
 To deploy an {{site.data.reuse.eem_manager}} instance, run the following command:
 

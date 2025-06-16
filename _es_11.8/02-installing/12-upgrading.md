@@ -411,62 +411,9 @@ To display metrics in the monitoring dashboards of the {{site.data.reuse.es_name
 
 - If you are running {{site.data.reuse.es_name}} on other Kubernetes platforms, you can use any monitoring solution compatible with Prometheus and JMX formats to collect, store, visualize, and set up alerts based on metrics provided by Event Streams.
 
-### Upgrade the Kafka broker protocol version
-
-After successfully upgrading to {{site.data.reuse.es_name}} by completing all previous steps and verifying the cluster’s behavior and performance, if your {{site.data.reuse.es_name}} instance is configured with a specific version in the `inter.broker.protocol.version`, complete the following steps to upgrade the Kafka brokers to your Kafka version:
-
-1. In the `spec.strimziOverrides.kafka.config` section of your `EventStreams` custom resource, change the `inter.broker.protocol.version` value to the Kafka version that is supported in your {{site.data.reuse.es_name}} version. For example, if you are running on {{site.data.reuse.es_name}} 11.8.0, set the value to `3.9`.
-1. Wait for the Kafka pods to roll.
-
-### Remove the `apicurio-registry-version` annotation
-
-Remove the `eventstreams.ibm.com/apicurio-registry-version='>=2.4'` annotation from your {{site.data.reuse.es_name}} custom resource with the following command:
-
-```shell
-oc annotate --namespace <namespace> EventStreams <instance-name> eventstreams.ibm.com/apicurio-registry-version-
-```
-
 ### Update SCRAM Kafka User permissions
 
-{{site.data.reuse.es_name}} 11.5.0 and later uses `KafkaTopic` custom resources (CRs) and topic operator for managing topics through {{site.data.reuse.es_name}} UI and CLI. If access to the {{site.data.reuse.es_name}} UI and CLI has been configured with [SCRAM authentication](../../installing/configuring/#configuring-ui-and-cli-security), see the [managing access](../../security/managing-access/#managing-access-to-ui-and-cli-with-scram) to update the `KafkaUser` permissions accordingly.  
-
-### Upgrading an {{site.data.reuse.es_name}} instance that uses Topic Operator
-
-After upgrading to {{site.data.reuse.es_name}} 11.8.0, perform the following tasks if the {{site.data.reuse.es_name}} instance was configured to use the Topic Operator before upgrading.
-
-#### Delete the internal topics that are not used anymore
-
-You can delete the custom resources of the internal topics `strimzi-store-topic` and `strimzi-topic-operator` as they are no longer used.
-
-```shell
-kubectl delete $(kubectl get kt -n <namespace> -o name | grep strimzi-store-topic) -n <namespace> \
-  && kubectl delete $(kubectl get kt -n <namespace> -o name | grep strimzi-topic-operator) -n <namespace>
-```
-#### Discontinue management of other internal topics by the Topic Operator
-
-[Internal topics](../../reference/internal-topics) such as `consumer-offsets` and `transaction-state` are used in Kafka but do not need to be managed by the Topic Operator.
-In these cases, you can discontinue their management through the Topic Operator first, and then delete their custom resources without deleting the topics.
-
-For example:
-
-1. To discontinue management of the internal topics `consumer-offsets` and `transaction-state`, use the following command:
-
-   ```shell
-   kubectl annotate $(kubectl get kt -n <namespace> -o name | grep consumer-offsets) strimzi.io/managed="false" -n <namespace> \
-   && kubectl annotate $(kubectl get kt -n <namespace> -o name | grep transaction-state) strimzi.io/managed="false" -n <namespace>
-   ```
-Before proceeding to the next step, ensure that these topics are no longer managed by their custom resource after reconciliation. You can verify this by confirming that the `kafkaTopic` resource is in the `ready` status and the `metadata.generation` value matches the `status.observedGeneration` in the custom resource.
-
-2. Optionally, after these topics are no longer managed by their `kafkaTopic` resource, delete the corresponding custom resources using the following command:
-
-   ```shell
-   kubectl delete $(kubectl get kt -n <namespace> -o name | grep consumer-offsets) -n <namespace> \
-   && kubectl delete $(kubectl get kt -n <namespace> -o name | grep transaction-state) -n <namespace>
-   ```
-
-
-For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.45.0/deploying#upgrading_from_a_strimzi_version_using_the_bidirectional_topic_operator){:target="_blank"}.
-
+{{site.data.reuse.es_name}} 11.5.0 and later uses `KafkaTopic` custom resources (CRs) and topic operator for managing topics through {{site.data.reuse.es_name}} UI and CLI. If access to the {{site.data.reuse.es_name}} UI and CLI has been configured with [SCRAM authentication](../../installing/configuring/#configuring-ui-and-cli-security), see the [managing access](../../security/managing-access/#managing-access-to-ui-and-cli-with-scram) to update the `KafkaUser` permissions accordingly. 
 
 ### Verifying the upgrade
 

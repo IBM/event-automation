@@ -190,7 +190,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
 JSON Web Token (JWT) authentication is used by default to verify messages that are received from {{site.data.reuse.apic_short}} and cannot be disabled. All communications the {{site.data.reuse.egw}} Service receive from {{site.data.reuse.apic_short}} contain a JWT, and the JWKS endpoint you provided earlier is used to validate this token to ensure the authenticity of each message. 
 
-Based on your security requirements, you can optionally choose to also enable mutual TLS (MTLS), which uses certificates for authentication:
+Based on your security requirements, you can optionally choose to also enable mutual TLS (mTLS), which uses certificates for authentication:
 
 ### On {{site.data.reuse.openshift_short}} web console
 
@@ -207,7 +207,7 @@ Based on your security requirements, you can optionally choose to also enable mu
       clientSubjectDN: CN=<commonname>
       ```
 
-       Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#obtain-certificates-for-a-tls-client-profile).
+       Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile).
    7. Click **Save** to apply your changes.
 
 ### On other Kubernetes platforms
@@ -227,7 +227,7 @@ Based on your security requirements, you can optionally choose to also enable mu
       clientSubjectDN: CN=<commonname>
       ```
 
-      Where <commonname> is the Common Name on the certificates that are used when making the TLS client profile.
+      Where <commonname> is the Common Name on the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile).
 
    4. Apply the YAML to the Kubernetes cluster:
 
@@ -283,12 +283,15 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 
 Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}} Service through the management endpoint.
 
-1. Create a client TLS keystore. Go to **Home > Resources > TLS > Keystore** and click **Create**.
-2. Upload the `manager-client-key.pem` into Step 1.
-3. Upload the `manager-client.pem` into Step 2.
-4. Click **Save**.
-5. Create a client TLS truststore. Go to **Truststore** and click **Create**.
-6. Upload the `cluster-ca.pem`.
+1. Create a client TLS truststore. Go to **Truststore** and click **Create**.
+2. Upload the `cluster-ca.pem`.
+3. Click **Save**.
+4. If you have [enabled mTLS](#enabling-mutual-tls) you must create a client TLS keystore. Go to **Home > Resources > TLS > Keystore** and click **Create**.
+
+    **Note**: If you have not enabled mTLS, go to step 8 to create the TLS Client Profile.
+
+5. Upload the `manager-client-key.pem` into `Step 1: Upload private key`.
+6. Upload the `manager-client.pem` into `Step 2: Upload public key`.
 7. Click **Save**.
 8. Create a TLS client profile. Go to **TLS client profile** and click **Create**.
 9. Choose the keystore and truststore you created.

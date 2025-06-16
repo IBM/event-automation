@@ -110,7 +110,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
 2. If you are managing your [catalog sources](../installing/#creating-the-catalog-sources) with a CASE bundle, then apply the CASE bundle: <!-- this is the point of no return for patch updates, they get applied automatically -->
     
    ```shell
-   oc -n <namespace> apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case version>/catalog-sources.yaml
+   oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case version>/catalog-sources.yaml
    ```
    
    <!-- Below line for non .0 releases only -->

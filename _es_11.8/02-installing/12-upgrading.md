@@ -392,24 +392,7 @@ In {{site.data.reuse.es_name}} version 11.0.0 and later, a Kafka Proxy handles g
 
 ### Enable metrics for monitoring
 
-To display metrics in the monitoring dashboards of the {{site.data.reuse.es_name}} UI:
-
-
-- If you are running {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}, complete the following steps to enable the [dashboard](../../administering/cluster-health#viewing-the-preconfigured-dashboard):
-
-  1. Ensure that you [enable](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-enabling-openshift-container-platform-monitoring){:target="_blank"} the monitoring stack.
-
-  1. To create a `ClusterRoleBinding` in the next step, obtain the ServiceAccount name for your instance. The ServiceAccount is named `<es-instance-name>-ibm-es-admapi`. For example, `authorized-instance-ibm-es-admapi`
-  
-  1. Run the following command:
-
-     ```shell
-     oc adm policy add-cluster-role-to-user cluster-monitoring-view -z <serviceaccount-name> -n <namespace-name>
-     ```
-
-     Where `<serviceaccount-name>` is the ServiceAccount name for your instance that you obtained in the previous step.
-
-- If you are running {{site.data.reuse.es_name}} on other Kubernetes platforms, you can use any monitoring solution compatible with Prometheus and JMX formats to collect, store, visualize, and set up alerts based on metrics provided by Event Streams.
+To display metrics in the monitoring dashboards of the {{site.data.reuse.es_name}} UI, ensure that you [enable the **Monitoring** dashboard](../post-installation/#enabling-metrics).
 
 ### Update SCRAM Kafka User permissions
 

@@ -76,7 +76,7 @@ You can also use [external monitoring tools](../external-monitoring/) to monitor
 
 To get an overview of the cluster health, you can view a selection of metrics on the {{site.data.reuse.es_name}} **Monitoring** dashboard.
 
-**Important:** Ensure that you enable the **Monitoring** dashboard by following the instructions in the [post-upgrade tasks](../../installing/upgrading/#enable-metrics-for-monitoring) before accessing the dashboard.
+**Important:** Ensure that you [enable the **Monitoring** dashboard](../../installing/post-installation/#enabling-metrics) before accessing the dashboard.
 
 1. {{site.data.reuse.es_ui_login}}
 2. Click **Monitoring** in the primary navigation. A dashboard is displayed with overview charts for messages, partitions, and replicas.

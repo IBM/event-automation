@@ -195,8 +195,6 @@ latest_eemdocs:
         url: /describe/publishing-options/
       - title: "Managing user access to options"
         url: /describe/managing-user-access-to-topics/
-      - title: "Managing gateways"
-        url: /describe/managing-gateways/
       
   - title: Subscribe
     children:

@@ -345,7 +345,9 @@ Run the [patch command](#initiate-kraft-migration) to add a controller node pool
 
 ### Initiate KRaft migration
 
-When upgrading to {{site.data.reuse.es_name}} version 11.8.x and later, the upgrade will be blocked if your instance does not include a Kafka node pool with the `controller` role. To proceed, you must define a controller-only node pool.
+When upgrading to {{site.data.reuse.es_name}} version 11.8.x and later, the upgrade will be blocked if your instance does not include a Kafka node pool with the `controller` role. To proceed, you must define a controller-only node pool. 
+
+It is recommended to configure a dedicated node pool for the `controller` role, separate from any broker node pools.
 
 Run the following command to add a controller node pool by copying configuration properties from the existing ZooKeeper specification. This step initiates the migration to KRaft mode.
 
@@ -385,6 +387,24 @@ During KRaft migration, the {{site.data.reuse.es_name}} operator updates the sta
 | ZooKeeper cleanup | `PreKRaft`        | ZooKeeper is no longer used and all ZooKeeper-related resources are deleted.|
 | Final               | `KRaft`             | Kafka cluster operates fully in KRaft mode.|
 
+### Clean up ZooKeeper PVCs after KRaft migration
+
+After migrating to KRaft mode, ZooKeeper is no longer used and the associated persistent volume claims (PVCs) are removed automatically. Ensure that no ZooKeeper PVCs remain in the cluster. If any PVCs remain, delete them manually.
+
+- To check for leftover ZooKeeper PVCs, run the following command:
+
+   ```bash
+   oc get pvc -n <namespace> | grep zookeeper
+   ```
+- If any ZooKeeper PVCs are still present, delete them manually by running the following command for each PVC:
+
+   ```bash
+   oc delete pvc <zookeeper-pvc-name>
+   ```
+
+   Where:
+   - `<namespace>` is the namespace of your {{site.data.reuse.es_name}} instance.
+   - `<zookeeper-pvc-name>` is the name of the ZooKeeper PVC to delete.
 
 ### Enable collection of producer metrics
 

@@ -47,7 +47,7 @@ Alternatively, you can also use the following steps:
 
 ### Using the CLI
 
-1. Go to your destination cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your destination cluster.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Run the following command to display the connection details for your destination cluster:
 
@@ -56,7 +56,7 @@ Alternatively, you can also use the following steps:
    ```
 
    The command returns a base64 encoded string consisting of the API URL and the security credentials required for creating a destination cluster that should be used to configure geo-replication using the CLI.  If the connection details are to be used to configure geo-replication using the UI, add the `--json` option to return a JSON-formatted string.
-4. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+4. Go to your origin cluster. {{site.data.reuse.es_cli_init_111}}
 5. {{site.data.reuse.es_cli_init_111}}
 6. Run the following command to add the cluster as a destination to where you can replicate your topics to:
 
@@ -93,7 +93,7 @@ For each topic that has geo-replication set up, a visual indicator is shown in t
 
 To set up replication by using the CLI:
 
-1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your origin cluster.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Choose a destination cluster to replicate to by listing all available destination clusters, making the ID of the clusters available to select and copy:
 
@@ -144,7 +144,7 @@ It is not possible to override the value of these properties using MirrorMaker 2
 
 To query the current values set on the destination cluster:
 
-1. Go to your destination cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your destination cluster.
 2. {{site.data.reuse.es_cli_init_111}}
 3. List the broker configuration by using the following command:
 

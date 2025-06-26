@@ -22,13 +22,14 @@ When Kafka authentication is enabled, the {{site.data.reuse.es_name}} UI and CLI
 
 **Note:** You can create a Kafka user for authentication by applying a `KafkaUser` [custom resource](#creating-a-kafkauser-by-using-yaml).
 
-### Managing access to the UI with Keycloak
+### Managing access to the UI and CLI with Keycloak
+{: #managing-access-with-keycloak}
 
-When access to the {{site.data.reuse.es_name}} UI is set up with [Keycloak authentication](../../installing/configuring/#configuring-ui-and-cli-security), access for groups and users is managed through Keycloak groups. If you have not previously created any group, you can use the administrative user credentials to [set up a group](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=groups-managing-users-in-keycloak){:target="_blank"}.
+When access to the {{site.data.reuse.es_name}} UI and CLI is set up with [Keycloak authentication](../../installing/configuring/#configuring-ui-and-cli-security), access for groups and users is managed through Keycloak groups. If you have not previously created any group, you can use the administrative user credentials to [set up a group](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=groups-managing-users-in-keycloak){:target="_blank"}.
 
 When a Keycloak instance is set up, the Keycloak instance can be shared with the other capabilities in {{site.data.reuse.cp4i}}, allowing for a single identity management system within {{site.data.reuse.cp4i}}.
 
-Access to the {{site.data.reuse.es_name}} UI requires a Keycloak user with a [role](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-cloud-pak-roles-permissions){:target="_blank"} of `eventstreams-admin` or `admin`. The role can be set for the user, or for the group the user is part of.
+Access to the {{site.data.reuse.es_name}} UI and CLI requires a Keycloak user with a [role](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-cloud-pak-roles-permissions){:target="_blank"} of `eventstreams-admin` or `admin`. The role can be set for the user, or for the group the user is part of. The role gives the user access to all panels and functionalities in the {{site.data.reuse.es_name}} UI and CLI.
 
 Follow the instructions in the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-getting-initial-administrator-password){:target="_blank"} to retrieve the default initial administrator (`admin`) user credentials.
 

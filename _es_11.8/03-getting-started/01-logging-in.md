@@ -76,12 +76,13 @@ To retrieve the URL for your {{site.data.reuse.es_name}} UI, use the following c
 
 You can retrieve the URL for accessing the {{site.data.reuse.es_name}} CLI by using the Kubernetes command-line tool (`kubectl`).
 
-**Note:** Authentication through Keycloak is not supported in the {{site.data.reuse.es_name}} CLI. You can authenticate the {{site.data.reuse.es_name}} CLI with the SCRAM authentication and then proceed to use an {{site.data.reuse.es_name}} instance that is configured with Keycloak.
+Depending on your configured authentication type, follow the appropriate steps to log in to the CLI.
 
+### Logging in with SCRAM
 
+**Note:** Before using the {{site.data.reuse.es_name}} CLI, ensure that you log in to your Kubernetes cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"}.
 
-
-When you have the authentication type set to SCRAM, obtain the required credentials and endpoints, and then initialize and log in to the {{site.data.reuse.es_name}} CLI as follows:
+When you have the [authentication type set to SCRAM](../../installing/configuring/#configuring-ui-and-cli-security), obtain the required credentials and endpoints, and then initialize and log in to the {{site.data.reuse.es_name}} CLI as follows:
 
 1. Obtain the following credentials and endpoints from your cluster administrator:
    - Username
@@ -106,6 +107,44 @@ When you have the authentication type set to SCRAM, obtain the required credenti
    ```shell
    kubectl es init --auth-type scram-sha-512 --username <USERNAME> --password <PASSWORD> --api-url <ADMIN_API_URL> --schema-reg-url <SCHEMA_REGISTRY_URL>
    ```
+
+### ![Event Streams 11.8.1 icon]({{ 'images' | relative_url }}/11.8.1plus.svg "In Event Streams 11.8.1 and later.") Logging in with Keycloak
+{: #logging-in-with-Keycloak}
+
+If your {{site.data.reuse.es_name}} instance is [configured with Keycloak](../../installing/configuring/#configuring-ui-and-cli-security), you can log in to the {{site.data.reuse.es_name}} CLI as follows:
+
+1. Initialize the {{site.data.reuse.es_name}} plug-in by running the following command:
+
+   ```shell
+   kubectl es init
+   ```
+1. From the list of authentication mechanisms, enter the number corresponding to `device-oidc`.
+   
+1. When prompted, enter the Admin API URL and schema registry URL.
+
+1. If the {{site.data.reuse.es_name}} CLI is unable to determine the authenticity of the Keycloak server's certificate, select one of the following options:
+
+   - **Continue with insecure connection** to disable SSL certificate verification and establish an unencrypted connection with the server.
+   
+   - **Add new certificate or bundle to trusted store** to provide a CA certificate which can be used to verify the authenticity of the server certificate.
+      
+      By default, Keycloak uses the CA certificate stored in the `router-ca` secret in the `openshift-ingress-operator` namespace.
+      
+      **Note:** While specifying the location of the CA certificate, auto-complete for filepaths might not work. Either type the complete filepath or specify it while running the `init` command by using the `--device-oidc-ca-cert` flag if you want to use auto-complete.
+      
+   - **Terminate command** if you do not want to continue further.
+
+1. Enter **y** when your consent is requested to open the login page in your default browser.
+
+1. In the login page, enter your credentials to log in, and grant the requested access privileges for the {{site.data.reuse.es_name}} CLI. After successfully logging in, close the browser window and return to the CLI.
+
+   Wait until the CLI completes the login process.
+
+**Tip:** You can skip prompts by specifying endpoints and the certificate directly in the `kubectl es init` command as follows:
+
+```shell
+kubectl es init --auth-type device-oidc --api-url <ADMIN_API_URL> --schema-reg-url <SCHEMA_REGISTRY_URL> --device-oidc-ca-cert <CA_CERT FILEPATH>
+```
 
 ## Logging out
 

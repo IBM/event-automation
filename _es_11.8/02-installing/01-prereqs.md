@@ -188,10 +188,4 @@ For more information, see sections about [configuring UI security](../configurin
 
 ### Limitations
 
-Configuring your access with Keycloak in {{site.data.reuse.es_name}} has the following limitations:
-
-- The {{site.data.reuse.es_name}} [CLI](../post-installation/#installing-the-event-streams-command-line-interface) is not supported.
-
-  **Note:** You can authenticate the CLI by using a different mechanism (for example, SCRAM) even if you have other authentication mechanisms configured for your {{site.data.reuse.es_name}} instance (for example, Keycloak).
-
-- Authentication with Keycloak is not supported for [REST endpoints](../configuring/#rest-services-access) (REST Producer, Admin API, Apicurio Registry).
+Authentication with Keycloak is not supported for [REST endpoints](../configuring/#rest-services-access) (REST Producer, Admin API, Apicurio Registry).

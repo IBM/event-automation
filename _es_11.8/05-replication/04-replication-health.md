@@ -82,7 +82,7 @@ To stop an individual topic from being replicated and remove it from the geo-rep
 ### Using the CLI
 
 To view this information on the origin cluster by using the CLI:
-1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your origin cluster. {{site.data.reuse.es_cli_init_111}}
 2. {{site.data.reuse.es_cli_init_111}}
 3. Retrieve destination cluster IDs by using the following command:
 
@@ -123,7 +123,7 @@ To view this information on the origin cluster by using the CLI:
 Each geo-replicator creates a MirrorSource connector and a MirrorCheckpoint connector. The MirrorSource connector replicates data from the origin to the destination cluster. You can use the MirrorCheckpoint connector during [failover](../../mirroring/failover/#updating-consumer-group-offsets-by-using-checkpoints) from the origin to the destination cluster.
 
 To manage geo-replication on the origin cluster by using the CLI:
-1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your origin cluster.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Run the following commands as required:
 
@@ -251,7 +251,7 @@ Enable export of metrics in {{site.data.reuse.es_name}} geo-replication by editi
 #### Using the CLI
 
 To modify the number of geo-replicator workers run the following using the CLI:
-1. Go to where your destination cluster is installed. {{site.data.reuse.cncf_cli_login}}
+1. Go to where your destination cluster is installed. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to select the namespace that contains the existing destination cluster:
 
    ```shell

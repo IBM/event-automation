@@ -106,7 +106,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: 3.5.0 is complete
+   Download of CASE: ibm-eventstreams, version: 3.8.1 is complete
    ```
 
 4. Verify that the CASE archive and images `.csv` files have been generated for the {{site.data.reuse.es_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.es_name}} CASE.
@@ -119,13 +119,13 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── 3.5.0
+   │   │       └── 3.8.1
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-3.5.0-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-3.5.0-charts.csv
-   │   │           ├── ibm-eventstreams-3.5.0-images.csv
-   │   │           ├── ibm-eventstreams-3.5.0.tgz
+   │   │           ├── ibm-eventstreams-3.8.1-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-3.8.1-charts.csv
+   │   │           ├── ibm-eventstreams-3.8.1-images.csv
+   │   │           ├── ibm-eventstreams-3.8.1.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror

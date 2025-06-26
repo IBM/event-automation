@@ -226,7 +226,7 @@ Secure instances of {{site.data.reuse.es_name}} will make use of TLS to protect 
 
 ### {{site.data.reuse.es_name}} UI and CLI access
 
-You can [configure secure access](../../installing/configuring/#configuring-ui-and-cli-security) to the {{site.data.reuse.es_name}} UI and CLI. Depending on the authentication type set, you can log in to the UI by using a Kafka user configured with SCRAM-SHA-512 authentication, or by using Keycloak as part of {{site.data.reuse.cp4i}}. However, CLI access is only supported with a Kafka user configured with SCRAM-SHA-512 authentication. For more information about accessing the UI and CLI securely, see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
+You can [configure secure access](../../installing/configuring/#configuring-ui-and-cli-security) to the {{site.data.reuse.es_name}} UI and CLI. You can log in to the UI or CLI by using a Kafka user configured with SCRAM-SHA-512 authentication, or by using Keycloak as part of {{site.data.reuse.cp4i}}. For more information about accessing the UI and CLI securely, see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
 
 #### SCRAM
 
@@ -239,8 +239,6 @@ Whilst it is highly recommended to always configure {{site.data.reuse.es_name}} 
 By default, in Keycloak, the secure {{site.data.reuse.es_name}} instance will require an `eventstreams-admin` or `admin` [role](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-cloud-pak-roles-permissions){:target="_blank"} to authorize access.
 
 You can add users and groups directly to Keycloak, connect Keycloak to an LDAP user registry to import users and groups, or connect Keycloak to an OpenID Connect (OIDC) or Security Assertion Markup Language (SAML) identity provider to manage users and groups. See how to [add users and groups](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=groups-managing-users-in-keycloak){:target="_blank"} based on your preference.
-
-**Note:** Authentication through Keycloak is not supported in the {{site.data.reuse.es_name}} CLI. You can authenticate the {{site.data.reuse.es_name}} CLI with the SCRAM authentication and then proceed to use an {{site.data.reuse.es_name}} instance that is configured with Keycloak.
 
 ### REST endpoint security
 

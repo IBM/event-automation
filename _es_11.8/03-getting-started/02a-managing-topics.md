@@ -14,7 +14,7 @@ You can modify the configuration of a Kafka topic by using the CLI to customize 
 
 You can edit a Kafka topic by using the CLI as follows:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
 
    ```shell
@@ -59,7 +59,7 @@ To set the number of partitions for Kafka topics by using the UI:
 
 To set the number of partitions for Kafka topics by using the CLI:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
 
    ```shell
@@ -105,7 +105,7 @@ To set the replication factor for Kafka topics by using the UI:
 
 To set the replication factor for Kafka topics by using the CLI:
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
 
    ```shell
@@ -135,7 +135,7 @@ To delete a Kafka topic, complete the following steps:
 
 ### By using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to initialize the {{site.data.reuse.es_name}} CLI on the cluster:
 
    ```shell

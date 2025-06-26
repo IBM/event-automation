@@ -39,11 +39,9 @@ In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes t
 
 ## By using the CLI
 
-1. {{site.data.reuse.cncf_cli_login}}
+1. {{site.data.reuse.es_cli_init_111_samesection}}
 
-2. {{site.data.reuse.es_cli_init_111_samesection}}
-
-3. Run the following command to create a topic:
+2. Run the following command to create a topic:
 
    ```shell
    kubectl es topic-create --name <topic-name> --partitions <number-of-partitions> --replication-factor <replication-factor>

@@ -244,7 +244,7 @@ If you are using the {{site.data.reuse.openshift_es_name}} web console, complete
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.es_name}} instance in the namespace. It is called **{{site.data.reuse.es_name}}** in the **Name** column. Click the **{{site.data.reuse.es_name}}** link in the row.
 4. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.es_name}} operator.
-5. Click the version number link in the **Update channel** section (for example, **v3.5**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+5. Click the version number link in the **Update channel** section (for example, **v3.7**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 6. Select **v3.8** and click the **Save** button on the **Change Subscription Update Channel** dialog.
 7. Add a controller node pool by running the [patch command](#initiate-kraft-migration). The upgrade will be blocked until a controller node pool is added.
 

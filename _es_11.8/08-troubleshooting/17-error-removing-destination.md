@@ -20,7 +20,7 @@ There could be several reasons, for example, the cluster might be offline, or th
 
 ## Resolving the problem
 
-1. Go to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Go to your origin cluster.
 2. {{site.data.reuse.es_cli_init_111}}
 3. Retrieve destination cluster IDs by using the following command:
 

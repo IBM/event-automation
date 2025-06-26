@@ -242,12 +242,13 @@ spec:
 ```
 
 ## Configuring UI and CLI security
+{: #configuring-ui-and-cli-security}
 
 By default, accessing the {{site.data.reuse.es_name}} UI and CLI requires a user that has been assigned access to {{site.data.reuse.es_name}} (see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli) for details).
 
-For accessing both the UI and CLI, {{site.data.reuse.es_name}} supports the Salted Challenge Response Authentication Mechanism (SCRAM). Additionally, {{site.data.reuse.es_name}} also supports Keycloak for accessing the UI.
+For accessing both the UI and CLI, {{site.data.reuse.es_name}} supports the Salted Challenge Response Authentication Mechanism (SCRAM) and Keycloak.
 
-Set the UI authentication type by configuring the `EventStreams` custom resource as follows:
+Set the authentication type for the UI and CLI by configuring the `EventStreams` custom resource as follows:
 
 - To enable SCRAM authentication, set the `adminUI` authentication type to `scram-sha-512` in the `EventStreams` custom resource as follows:
 
@@ -263,8 +264,8 @@ Set the UI authentication type by configuring the `EventStreams` custom resource
   This allows a Kafka user that has been configured for SCRAM authentication to log in to the {{site.data.reuse.es_name}} UI and CLI by using the username and password of that Kafka user. For more information about configuring Kafka users, see [managing access to Kafka resources](../../security/managing-access/#managing-access-to-kafka-resources).
 
   When using SCRAM, the Access Control List (ACL) that is configured for the user will determine which parts of the UI are available to the user to access and what CLI commands the user can run. For more information, see [permission mappings](../../security/managing-access/#managing-access-to-the-ui-and-cli-with-scram).
-
-- To change the authentication type to Keycloak, set the `adminUI` authentication type to `integrationKeycloak` in the `EventStreams` custom resource as follows:
+  
+- To change the authentication type to Keycloak, set the `adminUI` authentication type to `integrationKeycloak` in the `EventStreams` custom resource as follows: 
 
    ```yaml
    # ...
@@ -275,15 +276,14 @@ Set the UI authentication type by configuring the `EventStreams` custom resource
          - type: integrationKeycloak
    ```
 
-  **Note:** Authentication through Keycloak is not supported in the {{site.data.reuse.es_name}} CLI. You can authenticate the {{site.data.reuse.es_name}} CLI with the SCRAM authentication and then proceed to use an {{site.data.reuse.es_name}} instance that is configured with Keycloak. For Keycloak requirements and limitations, see the [prerequisites](../../installing/prerequisites/#prereqs-keycloak).
-
+  When this authentication type is set, you can log in to the {{site.data.reuse.es_name}} UI and CLI by using your Keycloak credentials after the required roles are assigned. For more information, see [managing access with Keycloak](../../security/managing-access/#managing-access-with-keycloak).
+  
 - The login requirement for the UI is disabled when all Kafka authentication and authorization is disabled. This is demonstrated by the proof-of-concept [**lightweight without security**](../planning/#example-deployment-lightweight-without-security) sample.
   
   **Important:** When security is not configured, the **[Producers](../../administering/topic-health/)** and the **[Monitoring](../../administering/cluster-health/#viewing-the-preconfigured-dashboard)** dashboards are not available in the UI.
 
 
 **Note:** The {{site.data.reuse.es_name}} UI and CLI only support the use of one authentication type for a single {{site.data.reuse.es_name}} instance. This means that you can only set one authentication type at the same time. The operator will issue an error message if more than one type is provided.
-
 
 ## Applying Kafka broker configuration settings
 

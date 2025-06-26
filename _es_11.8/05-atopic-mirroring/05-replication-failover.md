@@ -27,7 +27,7 @@ Consider using the same certificates for both the origin and destination cluster
 ### Set up the same access to both clusters
 
 Consider providing your applications the same access to both the origin and destination clusters. For example, you can duplicate the application `KafkaUser` credentials from the origin cluster to the destination cluster. This allows applications to use a single set of credentials to access either cluster. Use the following commands to retrieve the `KafkaUser` credentials and custom resource from the origin cluster, and then create a new `KafkaUser` with these credentials on the destination cluster:
-1. Log in to your origin cluster. {{site.data.reuse.cncf_cli_login}}
+1. Log in to your origin cluster. {{site.data.reuse.es_cli_init_111}}
 2. Run the following command to retrieve the name of the secret for the `KafkaUser`:
 
    ```shell

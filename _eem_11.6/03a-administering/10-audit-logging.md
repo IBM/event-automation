@@ -1,7 +1,7 @@
 ---
 title: "Audit logging"
 excerpt: "Find out how to configure audit logging for Event Endpoint Management."
-categories: security
+categories: administering
 slug: audit-logging
 toc: true
 ---

@@ -71,79 +71,10 @@ The typical scenario for using Kubernetes Deployment or Docker gateways is when 
 - A supported container host environment as defined in the [Red Hat Enterprise Linux Container Compatibility Matrix](https://access.redhat.com/support/policy/rhel-container-compatibility){:target="_blank"} is required.
 
 
-<!-- ### Limitations
-
-DRAFT COMMENT: I've commented out this section for now because I don't think it's worth including in this already lengthy page, and gateways needing a working network path to kafka cluster is not an EEM limitation - see my comment in https://jsw.ibm.com/browse/EVI-13421. We can cover diagnosing network connectivity problems between gateway and kafka in the troubleshooting section.
-
-{: #limitations}
-
-Endpoints that need to be shared between a mixture of remote gateways and those in a Kubernetes cluster must use a host address that is resolvable by all gateways. For example, if the cluster that is associated with a Kafka topic uses an internal service address for a Kafka cluster, then a remote gateway is not be able to resolve that address outside of the cluster. In such cases, separate event source aliases must be created and deployed to different gateways. -->
-
-
-## Configuring and installing an operator-managed {{site.data.reuse.egw}}
+## Installing an operator-managed {{site.data.reuse.egw}}
 {: #operator-managed-install}
 
-1. In the navigation pane, click **Administration > Event Gateways**.
-2. Click **Add gateway**.
-3. Select the  **Operator-managed deployment** tile, then click **Next**.
-1. Provide the configuration details for your gateway, then click **Next**. 
-
-   - **Gateway group**: Create or specify an existing [gateway group](../../about/key-concepts#gateway-group) for your new gateway.
-   - **Gateway ID**: Provide an ID for your new gateway that is unique within the gateway group.
-   - **Replicas**: The number of Kubernetes replicas of the gateway pod to create.
-
-5. Copy the generated custom resource YAML to two separate files:
-    - `gateway_cr_original.yaml`
-    - `gateway_cr.yaml`
-
-    **Important:** Keep `gateway_cr_original.yaml` in a safe location and do not edit it. To remove write permissions to avoid accidental updates to this file you can run `chmod a-w gateway_cr_original.yaml`.
-
-6. Create a Kubernetes secret that contains the TLS CA certificate and key that is used to create the gateway server certificate. Name the secret as follows: `<gateway group>-<gateway ID>-certs`. <!-- It is recommended to use [cert-manager](../install-k8s-egw#self-signed) to manage your TLS certificates. TO BE UNCOMMENTED WHEN WE CAN PROVIDE A SAMPLE YAML FOR CR GATEWAY CERT--> Alternatively, you can supply the CA certificate and key in the generated YAML.
-
-7. Update the `gateway_cr.yaml` file as follows:
-
-   a. Set `spec.license.accept` to `true`.
-
-   b. If in step 6 you created a `<gateway group>-<gateway ID>-certs` Kubernetes secret, then delete the `<gateway group>-<gateway ID>-certs` section from the YAML. If you did not create a secret, then replace `<tls-certificate>` and `<tls-key>` in the YAML with the CA certificate and key that you want to use for generating your gateway server certificate.
-
-   c. Replace any other placeholder variables in the YAML, and set other properties as required. For more information about properties that you can configure in the {{site.data.reuse.egw}} YAML file, see [configuring](../configuring).
-
-   d. Create a backup of the updated `gateway_cr.yaml` file, in addition to the `gateway_cr_original.yaml` file.
-
-7. To install the {{site.data.reuse.egw}} through the {{site.data.reuse.openshift_short}} web console, complete the following steps:
-
-      a. {{site.data.reuse.openshift_ui_login}}
-
-      b. Click the **+** (Quick create) icon in the upper-right.
-
-      c. Select **Import YAML**.
-
-      d. Set **Project** to the namespace where you want to install the {{site.data.reuse.egw}}.
-
-      e. Paste in the contents of your updated `gateway_cr.yaml` file. 
-
-      h. Click **Create** to start the {{site.data.reuse.egw}} installation process.
-
-8. To install the {{site.data.reuse.egw}} by using the CLI, run the following commands:
-
-   a. If you are deploying an operator-managed gateway on other Kubernetes platforms, then add the `spec.endpoints[]` section to your `gateway_cr.yaml` file:
-
-   ```yaml
-   spec:
-     endpoints:
-       - name: gateway
-         host: <gateway endpoint>
-   ```
-   
-   For more information about the `endpoints` property, see [Configuring ingresses](../configuring#configuring-ingress).
-
-   b. Apply the `gateway_cr.yaml` file in your Kubernetes environment by using the `kubectl` command. For example:
-
-   ```shell
-   kubectl -n <gateway namespace> apply -f gateway_cr.yaml
-   ```  
-
-9. Return to the **Event Gateways** page to monitor the status of the new {{site.data.reuse.egw}}. When the gateway is registered, the status reports **Running**.
+Follow the steps in [installing an operator-managed {{site.data.reuse.egw}}](../install-opman-egw).
 
 ## Installing the {{site.data.reuse.egw}} as a Kubernetes Deployment
 {: #install-k8s-deploy}

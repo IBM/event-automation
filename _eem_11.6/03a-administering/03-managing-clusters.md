@@ -1,7 +1,7 @@
 ---
 title: "Managing clusters"
 excerpt: "Add a new cluster and edit existing cluster information to use for retrieving topic details."
-categories: describe
+categories: administering
 slug: managing-clusters
 toc: true
 ---
@@ -29,7 +29,7 @@ To add a cluster, complete the following steps.
     **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
 5. Optional: If a **No connection** warning message is displayed, follow the steps to [add your server manually](#manual-cluster).
-6. Optional: If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that ere provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
+6. If the Kafka endpoint is configured to require mutual TLS authentication, then upload the private and public keys that your {{site.data.reuse.egw}}s must present to the Kafka cluster. These keys are provided to you by your Kafka Cluster Administrator. The keys must be in PEM format.
 7. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, and set the required SASL credential fields.
 8. Click **Add cluster**. 
 
@@ -43,14 +43,14 @@ You might want to add a Kafka cluster manually when it is located behind a diffe
 To add a cluster manually, complete the following steps.
 
 1. Click **Add cluster**.
-1. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**.
-1. Enter the bootstrap server URL of your Kafka cluster in `host:port` format. If the {{site.data.reuse.eem_name}} cannot verify the connection, a **No connection** information message is displayed.
-1. Click **Add servers manually**.
-1. Optional: Upload associated certificates. The table is populated with the relevant details. Click **Next**.
-1. If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.
-1. Click **Next**.
-1. Update the **Credentials** page as required. 
-1. Click **Add cluster**. 
+2. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**.
+3. Enter the bootstrap server URL of your Kafka cluster in `host:port` format. If the {{site.data.reuse.eem_name}} cannot verify the connection, a **No connection** information message is displayed.
+4. Click **Add servers manually**.
+5. If you want the communication between your {{site.data.reuse.egw}} and Kafka cluster to be secured with TLS, then set **Enable TLS** to **Yes**. If your Kafka cluster is secured with custom or self-signed CA certificates, then upload the Kafka cluster's CA certificate. The table is populated with the certificate details.
+6. If the Kafka endpoint is configured to require mutual TLS authentication, then upload the private and public keys that your {{site.data.reuse.egw}}s must present to the Kafka cluster. These keys are provided to you by your Kafka Cluster Administrator. The keys must be in PEM format.
+7. Click **Next**.
+8. Update the **Credentials** page as required. 
+9. Click **Add cluster**. 
 
 Your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Manage clusters** page, where your new cluster is displayed with the **Gateway visibility** state as `Pending validation`.
 
@@ -73,7 +73,7 @@ To edit the details of a cluster, complete the following steps.
 
 ## Deleting a cluster
 
-Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer in use. You can only delete a cluster if all previously added topics from this cluster have been [deleted](../managing-event-sources/#deleting-an-event-source).
+Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer in use. You can only delete a cluster if all previously added topics from this cluster have been [deleted](../../describe/managing-event-sources/#deleting-an-event-source).
 
 To delete a cluster from {{site.data.reuse.eem_name}}, complete the following steps. 
 

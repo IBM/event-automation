@@ -132,6 +132,8 @@ latest_eemdocs:
         url: /installing/installing-on-kubernetes/
       - title: "Installing the Event Gateway"
         url: /installing/install-gateway/
+      - title: "Installing an operator-managed Event Gateway"
+        url: /installing/install-opman-egw/
       - title: "Installing the Event Gateway as a Kubernetes Deployment"
         url: /installing/install-k8s-egw/
       - title: "Installing the Event Gateway as a Docker container"
@@ -152,12 +154,25 @@ latest_eemdocs:
     children:
       - title: "Logging in"
         url: /getting-started/logging-in/
+  - title: Administering
+    children:
+      - title: "Managing clusters"
+        url: /administering/managing-clusters/
+      - title: "Managing gateways"
+        url: /administering/managing-gateways/
+      - title: "Managing assets"
+        url: /administering/managing-assets/
+      - title: "Audit logging"
+        url: /administering/audit-logging/
+        
   - title: Security
     children:
       - title: "Managing access"
         url: /security/managing-access/
       - title: "Managing user roles"
         url: /security/user-roles/
+      - title: "Configuring TLS"
+        url: /security/config-tls/
       - title: "Verifying container image signatures"
         url: /security/verifying-signature/
       - title: "Network policies"
@@ -168,16 +183,10 @@ latest_eemdocs:
         url: /security/data-encryption/
       - title: "Managing access to the Admin API"
         url: /security/api-tokens/
-      - title: "Managing CA certificates"
+      - title: "Managing mTLS control certificates"
         url: /security/ca-certs/
-      - title: "Managing gateways"
-        url: /security/managing-gateways/
-      - title: "Managing assets"
-        url: /security/managing-assets/
       - title: "Enabling FIPS"
         url: /security/fips/
-      - title: "Audit logging"
-        url: /security/audit-logging/
 
   - title: Describe and publish
     children:
@@ -189,8 +198,6 @@ latest_eemdocs:
         url: /describe/managing-options/
       - title: "Adding controls to options"
         url: /describe/option-controls/
-      - title: "Managing clusters"
-        url: /describe/managing-clusters/
       - title: "Publishing options"
         url: /describe/publishing-options/
       - title: "Managing user access to options"
@@ -269,6 +276,8 @@ latest_eemdocs:
         url: /troubleshooting/no-main-key-backup/
       - title: "Unable to publish an option due to incompatible controls" 
         url: /troubleshooting/unexpected-option-not-publishable/    
+      - title: "Event Gateway loses connection to OAuth-authenticated Kafka cluster after upgrading to 11.6.2"
+        url: /troubleshooting/v2-gateways-oauth/
 
 115_eemdocs:
   - title: About

@@ -316,7 +316,44 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 ### Verifying the upgrade
 {: #verify-upgrade}
 
-After the upgrade, verify the status of the {{site.data.reuse.eem_name}}, by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
+Confirm that your upgrade completed successfully. 
+
+### Verifying the upgrade in the {{site.data.reuse.openshift_short}} UI
+{: #verify-ui}
+
+1. {{site.data.reuse.openshift_ui_login}}
+2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
+3. {{site.data.reuse.task_openshift_select_operator_eem}}
+
+   Verify that the {{site.data.reuse.eem_name}} operator version shown is your target version.
+
+4. Select the **{{site.data.reuse.eem_name}}** tab.
+5. The **Status** column displays the current state of the `EventEndpointManagement` custom resource. When the 
+{{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
+6. Click your {{site.data.reuse.eem_manager}} instance to view more details.
+7. Switch to the **YAML** tab and confirm that `status.versions.reconciled` is your target version.
+
+### Verifying the upgrade with the CLI
+{: #verify-cli}
+
+After all the components of an {{site.data.reuse.eem_manager}} instance are upgraded, the `EventEndPointManagement`
+custom resource will have a `Running` phase in the status.
+
+To verify the status:
+
+Run the `kubectl get` command as follows:
+
+```shell
+kubectl -n <namespace> get eventendpointmanagement
+```
+
+Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target version. For example:
+
+```
+NAME                  PHASE     RECONCILED VERSION   
+eem-manager           Running   11.6.2               
+```
+
 
 
 

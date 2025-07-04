@@ -1,7 +1,7 @@
 ---
 title: "Managing gateways"
 excerpt: "Find out how you can monitor deployed Event Gateway instances in the Event Endpoint Management UI."
-categories: security
+categories: administering
 slug: managing-gateways
 toc: true
 ---

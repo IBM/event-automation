@@ -6,9 +6,12 @@ slug: changing-ca-certificate
 toc: true
 ---
 
+<!-- DRAFT COMMENT: Won't this problem also manifest with all the other manager endpoints, like admin api? -->
+<!-- FUTURE: I'd like to update this page, and perhaps move it to a dedicated TLS troubleshooting section - this isn't the only difficulty users could get into with TLS config -->
+
 ## Symptoms
 
-After the [CA certificate](../../installing/configuring#config-tls) is changed, when attempting to log in to the UI, the following error is presented.
+After the [CA certificate](../../security/config-tls#custom-ca-certificate-manager) is changed, when attempting to log in to the UI, the following error is presented.
 
 ```json
 {
@@ -25,7 +28,7 @@ This failure occurs when the referenced CA certificate secret is changed or adde
 
 The {{site.data.reuse.eem_name}} operator will pick up on the change to the configuration. It will mount the new CA certificate secret into the instance. It will change the Issuer custom resource used by the certificate manager to generate the leaf certificates.
 
-However, due to the way Cert Manager works, the leaf certificates are not regenerated with the Issuer change. This means the new CA does not trust the previous leaf certificate, both of which are mounted into the {{site.data.reuse.eem_manager}} pod. This failure in trust causes the SSLHandshakeException.
+However, due to the way cert-manager works, the leaf certificates are not regenerated with the Issuer change. This means the new CA does not trust the previous leaf certificate, both of which are mounted into the {{site.data.reuse.eem_manager}} pod. This failure in trust causes the SSLHandshakeException.
 
 ## Resolving the problem
 

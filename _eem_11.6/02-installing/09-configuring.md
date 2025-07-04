@@ -152,356 +152,6 @@ spec:
 # ...
 ```
 
-## Configuring TLS
-{: #config-tls}
-
-TLS can be configured for the `EventEndpointManagement` instance in one of the following ways:
-
-- [Operator configured CA certificate](#operator-configured-ca-certificate)
-- [User provided CA certificate](#user-provided-ca-certificate)
-- [User provided certificates](#user-provided-certificates)
-- [User provided UI certificates](#user-provided-ui-certificates)
-
-### Operator configured CA certificate
-{: #operator-configured-ca-certifcate}
-
-By default, the operator configures TLS if no value is provided for CA certificate when creating the instance. The operator uses the Cert Manager that is installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self-signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.eem_manager}} instance. Cert Manager puts the CA certificate into a secret named `<my-instance>-ibm-eem-manager-ca`. This secret can be used for configuring the `EventGateway` TLS communications.
-
-Cert Manager and {{site.data.reuse.eem_name}} creates the following objects:
-
-
-- Cert Manager Issuers:
-
-  - `<my-instance>-ibm-eem-manager`
-  - `<my-instance>-ibm-eem-manager-selfsigned`
-
-- Cert Manager Certificates:
-
-  - `<my-instance>-ibm-eem-manager-ca`
-  - `<my-instance>-ibm-eem-manager`
-
-The following code snippet is an example of a configuration where Cert Manager creates all certificates and {{site.data.reuse.eem_name}}:
-
-```yaml
-apiVersion: events.ibm.com/v1beta1
-kind: EventEndpointManagement
-# ...
-spec:
-  license:
-    # ...
-  manager:
-# ...
-```
-
-### User-provided CA certificate
-{: #user-provided-ca-certificate}
-
-You can provide a custom CA certificate to the {{site.data.reuse.eem_manager}} instance.
-
-
-The operator uses the Cert Manager that is installed on the system to create the certificates that are used to secure all endpoints on the {{site.data.reuse.eem_manager}} instance. The certificates are signed by using the provided CA certificate.
-
-The CA secret that is created and referenced in the certificate manager must contain the keys `ca.crt`, `tls.crt`, `tls.key`. The `ca.crt` key and the `tls.crt` key can have the same value.
-
-See the following example to use the user provided certificate files (`ca.crt`, `tls.crt`, and `tls.key`):
-
-1. Set a variable for the `NAMESPACE` by running the following command:
-
-   ```shell
-   export NAMESPACE=<instance namespace>
-   ```
-
-2. Create the CA secret by running the following command:
-
-   ```shell
-   kubectl create secret generic ca-secret-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key -n ${NAMESPACE}
-   ```
-
-3. To provide a custom CA certificate secret, set `spec.manager.tls.caSecretName` key to be the name of the CA certificate secret that contains the CA certificate.
-
-The following code snippet is an example of a configuration that uses the CA certificate secret that is created in the previous steps:
-
-```yaml
-apiVersion: events.ibm.com/v1beta1
-kind: EventEndpointManagement
-# ...
-spec:
-  license:
-    # ...
-  manager:
-    tls:
-      caSecretName: ca-secret-cert
-# ...
-```
-
-#### Create a certificate with openssl
-{: #create-a-certificate-with-openssl}
-
-You can generate a certificate externally that can be used when you configure a [custom CA certificate](#user-provided-ca-certificate). 
-
-For example, the following steps describe how to generate a self-signed CA certificate by using openssl, store that certificate as a Kubernetes secret and use that secret in an {{site.data.reuse.eem_name}} instance.
-
-1. Generate a certificate key file by using `openssl`:
-`openssl genrsa --out ca.key 4096`
-1. Generate a CA certificate by using the key file:
-`openssl req -new -x509 -sha256 -days 10950 -key ca.key -out ca.crt`
-1. {{site.data.reuse.cncf_cli_login}}
-1. Ensure that you are in the namespace where your {{site.data.reuse.eem_name}} instance is installed:
-
-   ```shell
-   kubectl config set-context --current --namespace=<namespace>
-   ```
-1. Encode your externally generated certificates to Base64 format, and make a note of the values:
-
-    `base64 -i ca.crt`
-
-    `base64 -i ca.key`
-1. Create a YAML file called `secret.yaml` with the following content:
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: ibm-ca-secret
-      namespace: <eem namespace>
-    type: Opaque
-    data:
-      ca.crt: <Base64 value for ca.crt>
-      tls.crt: <Base64 value for ca.crt>
-      tls.key: <Base64 value for ca.key>
-    ```
-1. Apply the secret by running the following command:
-
-   ```shell
-   kubectl apply -f secret.yaml
-   ```
-1. To use this secret in your {{site.data.reuse.eem_name}} instance, set `spec.manager.tls.caSecretName` key to be the name of the CA certificate secret that contains the CA certificate.
-
-**Note:** If you are updating an existing instance and cannot log in to the {{site.data.reuse.eem_name}} UI after you changed your CA certificates, see [troubleshooting](../../troubleshooting/changing-ca-certificate/) to resolve the error.
-
-### User-provided certificates
-
-You can use a custom certificate for secure communication by the {{site.data.reuse.eem_manager}} instance. You can use the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.eem_manager}} instance.
-
-**Note:** The `envsubst` utility is available on Linux and can be installed by default as part of the `gettext` package.
-
-See the following example for using the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.eem_manager}} instance:
-
-1. If you are using a MAC, the following packages are required and can be installed by using `HomeBrew`:
-
-   - gettext
-   - openssl@3
-
-   ```shell
-   brew install gettext openssl@3
-   ```
-
-   Then run `alias openssl=$(brew --prefix)/opt/openssl@3/bin/openssl` to use Openssl3.
-
-2. Set the following variables on your workstation:
-
-   ```shell
-   EMAIL=<email-address>
-   MANAGER_NAME=<name-of-the-event-manager-instance>
-   CLUSTER_API=<cluster-api>
-   NAMESPACE=<event-endpoint-management-installation-namespace>
-   ```
-
-   Where:
-
-   - MANAGER_NAME is the name of the {{site.data.reuse.eem_manager}} instance.
-   - CLUSTER_API is the cluster URL that can be obtained from the cluster. If the URL is `https://console-openshift-console.apps.clusterapi.com/` then the CLUSTER_API must be set to `apps.clusterapi.com`.
-
-3. Create a file called `csr_ca.txt` with the following data:
-
-   ```shell
-   [req]
-   prompt = no
-   default_bits = 4096
-   default_md = sha256
-   distinguished_name = dn
-   x509_extensions = usr_cert
-
-   [dn]
-   C=US
-   ST=New York
-   L=New York
-   O=MyOrg
-   OU=MyOU
-   emailAddress=me@working.me
-   CN = server.example.com
-
-   [usr_cert]
-   basicConstraints=CA:TRUE
-   subjectKeyIdentifier=hash
-   authorityKeyIdentifier=keyid,issuer
-   ```
-
-4. Create a file called `my-eem-manager_answer.txt` with the following data:
-
-   ```shell
-   [req]
-   default_bits = 4096
-   prompt = no
-   default_md = sha256
-   x509_extensions = req_ext
-   req_extensions = req_ext
-   distinguished_name = dn
-
-   [dn]
-   C=US
-   ST=New York
-   L=New York
-   O=MyOrg
-   OU=MyOrgUnit
-   emailAddress=${EMAIL}
-   CN = ${MANAGER_NAME}-ibm-eem-manager
-
-   [req_ext]
-   subjectAltName = @alt_names
-
-   [alt_names]
-   DNS.1 = ${MANAGER_NAME}-ibm-eem-manager
-   DNS.2 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}
-   DNS.3 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc
-   DNS.4 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc.cluster.local
-   DNS.5 = ${MANAGER_NAME}-ibm-eem-apic-${NAMESPACE}.${CLUSTER_API}
-   DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-${NAMESPACE}.${CLUSTER_API}
-   DNS.7 = ${MANAGER_NAME}-ibm-eem-manager-${NAMESPACE}.${CLUSTER_API}
-   DNS.8 = ${MANAGER_NAME}-ibm-eem-admin-${NAMESPACE}.${CLUSTER_API}
-   DNS.9 = eem.${MANAGER_NAME}-ibm-eem-server-${NAMESPACE}.${CLUSTER_API}
-   ```
-
-    **Important:** If you are planning to do any of the following for your deployment, ensure that you modify the `[alt_names]` section in the previous example to include the {{site.data.reuse.eem_manager}} `ui`, `gateway`, `admin` (for the Admin API), and, if integration with {{site.data.reuse.apic_long}} is required, the `apic` endpoint hostnames:
-    - You are planning to specify hostnames in the `EventEndpointManagement` custom resource under `spec.manager.endpoints`.
-    - You are planning to create additional routes or ingress.
-    - You are not running on {{site.data.reuse.openshift_short}}.
-
-    You can use wildcard SAN entries in certificates. You must include a SAN entry for the local cluster network when you use [LOCAL](../../security/managing-access#setting-up-local-authentication) authentication.
-
-    When you use [LOCAL](../../security/managing-access#setting-up-local-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
-
-    ```yaml
-    spec:
-      dnsNames:
-        - '*.<NAMESPACE>.svc.cluster.local'
-        - '*.<CLUSTER_API>'
-        - eem.*.<CLUSTER_API>'
-    ```
-
-    When you use [OIDC](../../security/managing-access#setting-up-openid-connect-oidc-based-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
-
-    ```yaml
-    spec:
-      dnsNames:
-        - '*.<CLUSTER_API>'
-        - eem.*.<CLUSTER_API>'
-    ```
-
-    The required SAN entries for the {{site.data.reuse.egw}} are as follows:
-
-    ```yaml
-    spec:
-      dnsNames:
-        - '*.<CLUSTER_API>'
-    ```
-
-5. Generate the required certificates by running the following commands:
-
-   - `ca.key`:
-
-     ```shell
-     openssl genrsa -out ca.key 4096
-     ```
-
-   - `ca.crt`:
-
-     ```shell
-     openssl req -new -x509 -key ca.key -days 730 -out ca.crt -config <( envsubst <csr_ca.txt )
-     ```
-
-   - `manager` key:
-
-     ```shell
-     openssl genrsa -out ${MANAGER_NAME}.key 4096
-     ```
-
-   - `manager csr`:
-
-     ```shell
-     openssl req -new -key ${MANAGER_NAME}.key -out ${MANAGER_NAME}.csr -config <(envsubst < my-eem-manager_answer.txt )
-     ```
-
-6. Sign the `csr` to create the `manager crt` by running the following command:
-
-   ```shell
-   openssl x509 -req -in ${MANAGER_NAME}.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ${MANAGER_NAME}.crt -days 730 -extensions 'req_ext' -extfile <(envsubst < my-eem-manager_answer.txt)
-   ```
-
-7. Verify the certificate by running the following command:
-
-   ```shell
-   openssl verify -CAfile ca.crt ${MANAGER_NAME}.crt
-   ```
-
-8. Create a secret on the cluster by running the following command:
-
-   **Note:** The secret must be added to the namespace where the {{site.data.reuse.eem_manager}} instance is to be deployed in.
-
-   ```shell
-   kubectl create secret generic ${MANAGER_NAME}-cert --from-file=ca.crt=ca.crt --from-file=tls.crt=${MANAGER_NAME}.crt --from-file=tls.key=${MANAGER_NAME}.key -n ${NAMESPACE}
-   ```
-
-9. Create an {{site.data.reuse.eem_manager}} instance called `${MANAGER_NAME}` in the same namespace where you generated the secret in step 8. Ensure the `spec.manager.tls.secretName` field is set to the name of the secret from step 8. For example:
-
-   ```yaml
-   apiVersion: events.ibm.com/v1beta1
-   kind: EventEndpointManagement
-   metadata:
-     name: my-eem
-     namespace: eem
-   spec:
-     license:
-       # ...
-     manager:
-       tls:
-         secretName: my-eem-manager-cert
-   # ...
-   ```
-
-### User-provided UI certificates
-{: #user-provided-ui-certs}
-
-A separate custom certificate can be configured for the UI endpoint. This certificate is presented to the browser when a user accesses the {{site.data.reuse.eem_name}} UI.
-To supply a custom certificate to the UI:
-- Set `spec.manager.tls.ui.secretName` to be the name of the secret that contains the certificate.
-- Add the CA certificate that is used to sign your custom certificate to the list of trusted certificates under `spec.manager.tls.trustedCertificates`.
-
-The following snippet is an example of a configuration that uses a user-provided certificate in a secret, which also contains the signing CA certificate as a trusted certificate:
-
-```yaml
-apiVersion: events.ibm.com/v1beta1
-kind: EventEndpointManagement
-# ...
-spec:
-  license:
-    # ...
-  manager:
-    tls:
-      ui:
-        secretName: myUiSecret
-      trustedCertificates:
-        - secretName: myUiSecret
-          certificate: ca.crt
-# ...
-```
-
-Optionally, if you are running on the {{site.data.reuse.openshift}}:
-
-- Specify the key in the secret that is pointing to the CA certificate `ui.caCertificate` (default, `ca.crt`).
-- Specify the key in the secret that is pointing to the server certificate `ui.serverCertificate` (default, `tls.crt`).
-- Specify the key in the secret that is pointing to the private key `ui.key` (default, `tls.key`).
-
 
 ## Configuring authentication
 {: #configuring-authentication}
@@ -790,9 +440,9 @@ To configure an {{site.data.reuse.eem_manager}} or {{site.data.reuse.egw}} insta
 
     `instrumentations`: Here you can define additional instrumentations to enable. {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} metrics are enabled by default when OpenTelemetry is enabled.
 
-      - `name`: An instrumentation name. This name is then added into an environment variable of the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`, for a list of instrumentation names, see [Suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}.  You do not need to specify the environment variable, only the instrumentation name.
+    - `name`: An instrumentation name. This name is then added into an environment variable of the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`, for a list of instrumentation names, see [Suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}.  You do not need to specify the environment variable, only the instrumentation name.
 
-      - `enabled`: A boolean indicating whether to enable or disable the specified instrumentation.
+    - `enabled`: A boolean indicating whether to enable or disable the specified instrumentation.
 
 If you want to add additional configuration for the OpenTelemetry agent, then you can [add environment variables](#setting-environment-variables) to the custom resource.
 
@@ -803,24 +453,24 @@ The following additional OpenTelemetry environment variables are set by default:
 
 - For [Docker](../install-gateway#remote-gateways) gateways, the OpenTelemetry properties are defined in `-e` arguments to the Docker `run` command: 
 
-     ```
-     OTEL_EXPORTER_OTLP_PROTOCOL
-     OTEL_EXPORTER_OTLP_ENDPOINT
-     OTEL_METRIC_EXPORT_INTERVAL
-     OTEL_EXPORTER_OTLP_HEADERS
-     OTEL_INSTRUMENTATION_[NAME]_ENABLED
-     OTEL_EXPORTER_OTLP_CLIENT_KEY
-     OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE
-     OTEL_EXPORTER_OTLP_CERTIFICATE
-     OTEL_SERVICE_NAME
-     ```
+  ```
+  OTEL_EXPORTER_OTLP_PROTOCOL
+  OTEL_EXPORTER_OTLP_ENDPOINT
+  OTEL_METRIC_EXPORT_INTERVAL
+  OTEL_EXPORTER_OTLP_HEADERS
+  OTEL_INSTRUMENTATION_[NAME]_ENABLED
+  OTEL_EXPORTER_OTLP_CLIENT_KEY
+  OTEL_EXPORTER_OTLP_CLIENT_CERTIFICATE
+  OTEL_EXPORTER_OTLP_CERTIFICATE
+  OTEL_SERVICE_NAME
+  ```
 
-     To enable OpenTelemetry on the Docker gateway, you must also set these arguments:
+  To enable OpenTelemetry on the Docker gateway, you must also set these arguments:
 
-     ```
-     OTEL_LOGS_EXPORTER="none"
-     IBM_JAVA_OPTIONS="-javaagent:/opt/ibm/eim-backend/lib/opentelemetry-javaagent.jar"
-     ```
+  ```
+  OTEL_LOGS_EXPORTER="none"
+  IBM_JAVA_OPTIONS="-javaagent:/opt/ibm/eim-backend/lib/opentelemetry-javaagent.jar"
+  ```
 
 <!-- might be better to combine these properties and their definitions in a single table that covers k8s, cr, and docker. As it stands the docker gateway user has to figure out what the equivalent cr property is to see the definition. -->
 
@@ -831,9 +481,11 @@ See [the metrics reference](../../reference/metrics-reference) to find out more 
 ### Exporting traces with OpenTelemetry 
 {: #exporting-traces-with-opentelemetry}
 
+#### Tracing Kafka records in the {{site.data.reuse.egw}} 
+
 Kafka record tracing can be enabled from the {{site.data.reuse.egw}}. This provides visibility of the gateway's interaction with your Kafka records in your distributed tracing tool such as [Jaeger](https://www.jaegertracing.io/){:target="_blank"}.
 
-To enable traces from the {{site.data.reuse.egw}}, first configure OpenTelemetry. Enable record tracing by adding the `tracesEnablement` configuration to the `spec.openTelemetry` section of the EventGateway custom resource:
+To enable traces from the {{site.data.reuse.egw}}, first configure OpenTelemetry. Enable record tracing by adding the `tracesEnablement` configuration to the `spec.openTelemetry` section of the `EventGateway` custom resource:
 
 ```yaml
   openTelemetry:
@@ -863,6 +515,37 @@ On Kubernetes Deployment or Docker gateways, use the following environment varia
 ```
 EGW_ENABLE_OTEL_METRICS="false"
 OTEL_METRICS_EXPORTER="none"
+```
+#### Tracing API calls in the {{site.data.reuse.eem_manager}}
+
+![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") From {{site.data.reuse.eem_name}} release 11.6.2 and later, API call tracing can be enabled in the manager. 
+
+To enable traces from the {{site.data.reuse.eem_manager}}, first configure OpenTelemetry. Enable record tracing by adding the `tracesEnablement` configuration to the `spec.manager.openTelemetry` section of the `EventGateway` custom resource:
+
+```yaml
+  openTelemetry:
+    tracesEnablement:
+      - name: <trace.name>
+        enabled: true
+```
+
+Where `trace.name` can be one of the following: 
+
+- `httpInfo`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 100-199
+- `httpSuccess`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 200-299
+- `httpRedirect`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 300-399
+- `httpClientError`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 400-499
+- `httpServerError`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 500-599
+
+You can put multiple entries in to the `tracesEnablement` array to see multiple ranges of status code in your distributed tracing tool such as [Jaeger](https://www.jaegertracing.io/){:target="_blank"}.
+
+If you want only traces from the {{site.data.reuse.eem_manager}}, but not metrics, then disable metrics as follows:
+
+```yaml
+  openTelemetry:
+    metricsEnablement:
+      - name: manager
+        enabled: false
 ```
 
 ### Example: Exporting metrics from an {{site.data.reuse.eem_manager}}

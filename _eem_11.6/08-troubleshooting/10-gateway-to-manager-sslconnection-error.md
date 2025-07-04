@@ -8,6 +8,8 @@ toc: true
 
 ## Symptoms
 
+<!-- DRAFT COMMENT: This topic needs updating to consider users with custom manager certs. -->
+
 The {{site.data.reuse.egw}} fails to connect to the {{site.data.reuse.eem_manager}}, and throws the following exception:
 
 ```java

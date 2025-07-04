@@ -1292,6 +1292,8 @@ The following commands can be used to create and label the secrets for custom ce
 
 For each command, provide the intended name and namespace for the {{site.data.reuse.es_name}} instance.
 
+**Note:** Ensure that the `CA.key` file is in PKCS8 format (starting with `-----BEGIN PRIVATE KEY-----`). Keys in PKCS1 format (starting with `-----BEGIN RSA PRIVATE KEY-----`) are not supported and might cause the {{site.data.reuse.es_name}} instance to fail during installation.
+
 - For cluster secrets, use the following commands:
 
 	```shell

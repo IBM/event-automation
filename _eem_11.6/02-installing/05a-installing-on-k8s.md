@@ -178,7 +178,7 @@ When modifying the sample configuration, ensure that the following fields are up
 - The `spec.license.accept` field in the custom resource YAML is set to `true`.
 - The correct values are selected for the `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields before deploying an {{site.data.reuse.eem_manager}} instance. For information about the right values for your deployment, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 - The `manager.storageSpec.type` field is updated as `ephemeral` or `persistent-claim` based on your requirements. See [configuring](../configuring#enabling-persistent-storage) to select the correct storage type and other optional specifications such as storage size, root storage path, and secrets.
-- The `manager.tls.caSecretName` or `manager.tls.secretName` field is updated based on your requirements. If neither is specified, self-signed certificates are used. See the [configuring](../configuring#configuring-tls) section for more information.
+- The `manager.tls.caSecretName` or `manager.tls.secretName` field is updated based on your requirements. If neither is specified, self-signed certificates are used. See [configuring TLS](../../security/config-tls).
 - The `spec.manager.endpoints[]` section must contain entries for the [service endpoints](../configuring/#configuring-ingress). 
   
   For example:

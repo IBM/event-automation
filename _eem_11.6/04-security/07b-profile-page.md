@@ -12,11 +12,11 @@ To make API requests to {{site.data.reuse.eem_name}}, you require an [access tok
 
 The following features are available by using the Admin API:
 
-- [Clusters](../../describe/managing-clusters) (Create, Read, Update, Delete)
+- [Clusters](../../administering/managing-clusters) (Create, Read, Update, Delete)
 - [Event sources](../../describe/adding-topics) (Create, Read, Update, Delete)
 - [Option lifecycle states](../../describe/managing-options#option-lifecycle-states) (Publish, Unpublish, Archive)
 - [Subscriptions](../../subscribe/managing-subscriptions/) (Create, Read, Update, Delete)
-- [Gateways](../../security/managing-gateways) (Read gateway list)
+- [Gateways](../../administering/managing-gateways) (Read gateway list)
 
 **Note**: If you are working with Kafka topics and clusters that you add manually, you must wait for the event source and the associated cluster to pass the connection tests against your gateways after creating an event source. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
 

@@ -1,5 +1,5 @@
 ---
-title: "Managing CA certificates"
+title: "Managing mTLS control certificates"
 excerpt: "If access to your event endpoints use mTLS controls, then the CA certificates for your clients must be uploaded to Event Endpoint Manager."
 categories: security
 slug: ca-certs

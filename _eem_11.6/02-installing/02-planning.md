@@ -119,28 +119,40 @@ To use persistent storage, [configure the storage properties](../configuring/#en
 ## Planning for security
 {: #planning-for-security}
 
-There are two main areas of security to consider when installing {{site.data.reuse.eem_name}}:
+Before you install {{site.data.reuse.eem_name}}, decide how to authenticate users and how to secure the {{site.data.reuse.eem_name}} network endpoints.  
 
-1. The type of authentication the UI uses. You can choose LOCAL, OIDC, or INTEGRATION_KEYCLOAK, depending on your needs.
-   - Choose LOCAL to define a list of users and passwords locally on the cluster.
-   - Choose OIDC to use an existing OIDC-compatible security provider elsewhere in your environment.
-   - Choose INTEGRATION_KEYCLOAK to use an {{site.data.reuse.cp4i}} installation on the same cluster, to manage users and roles.
-2. The certificates you provide when configuring the {{site.data.reuse.eem_manager}} instance and {{site.data.reuse.egw}} instance. Both use mutual TLS.
-   - For an {{site.data.reuse.eem_manager}} instance, use **one** of the following configurations:
-     - **User-provided CA certificate**: Provide a secret containing a certificate authority (CA) certificate, which is used to generate other certificates.
-     - **User-provided certificate**: Provide a secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the {{site.data.reuse.eem_manager}}.
-     - **Operator-configured CA**: The operator creates a self-signed CA certificate and you can use it to generate all the other required certificates.
-   - For an [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} instance, to secure communication between client applications and your gateway, provide the following items: 
-     - A secret containing the CA certificate.
-     - A secret with the CA certificate, a server certificate, and a key correctly configured for the {{site.data.reuse.egw}}.
-   - For [Docker or Kubernetes Deployment {{site.data.reuse.egw}}](../install-gateway#remote-gateways) instances, to secure communication between client applications and your gateway, provide the following items as separate PEM files: 
-     - Private key.
-     - Public certificate.
-     - CA certificate.
+<!-- FUTURE: we don't mention network policies here, we probably should. -->
 
-To modify authentication, see [configuring authentication](../configuring/#configuring-authentication).
+### User authentication
+{: #user-security}
 
-To modify TLS, see [configuring TLS](../configuring/#configuring-tls).
+To authenticate users of the {{site.data.reuse.eem_name}} UI, you can choose from the following options:
+
+   - LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
+   - OIDC: Use an existing OIDC-compatible security provider that is available in your environment.
+   - INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
+
+To modify your authentication configuration, see [configuring authentication](../configuring/#configuring-authentication).
+
+<!-- FUTURE: we should cover Admin API too -->
+
+### Endpoint TLS configuration
+{: #endpoint-tls-security}
+
+TLS is used to secure your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} endpoints. The {{site.data.reuse.eem_name}} operator and cert-manager can generate default self-signed TLS certificates for you, or you can configure your own custom certificates to secure the endpoints.
+
+To secure {{site.data.reuse.eem_manager}} endpoints, use one of the following configurations, which are listed in order of complexity to configure (from simplest to most complex):
+
+- **Operator-configured CA**: The operator creates a self-signed CA certificate that is used to generate all the other required certificates. This configuration is the default.
+- **Custom UI certificate**: Provide a secret that contains the TLS certificate that you want {{site.data.reuse.eem_name}} UI users to see when they log in to the UI. For more information, see [custom UI certificates](../../security/config-tls#custom-ui-certs).
+- **Custom CA certificate**: Provide a secret that contains a certificate authority (CA) certificate, which is used to generate the {{site.data.reuse.eem_manager}} server certificate. See [Custom CA certificate](../../security/config-tls#custom-ca-certificate-manager).
+- **Custom certificate**: Provide a secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the {{site.data.reuse.eem_manager}}. See [Custom CA and leaf certificates](../../security/config-tls#custom-ca-and-leaf).
+
+To secure your {{site.data.reuse.egw}} endpoint on Kubernetes and OpenShift platforms, you must either create a Kubernetes secret that contains your CA certificate, server certificate, and key, or provide these as separate PEM files. <!-- CONTEXT: I know you don't actually need the server cert for operator-managed gway, but I don't think it's vital user knows this at this point and it would only complicate this section. -->
+
+To secure a Docker {{site.data.reuse.egw}} endpoint, you must provide a CA certificate, server certificate, and key as separate PEM files.
+
+For more information about configuring and managing endpoint security, see [configuring TLS](../../security/config-tls).
 
 
 ## Deciding which gateway deployment type to use

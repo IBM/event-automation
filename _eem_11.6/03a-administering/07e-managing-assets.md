@@ -1,7 +1,7 @@
 ---
 title: "Managing assets"
 excerpt: "Find out how a user with the admin role can transfer assets between users."
-categories: security
+categories: administering
 slug: managing-assets
 toc: true
 ---

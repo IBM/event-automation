@@ -221,32 +221,23 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
    eem-op   eemns  	1         	2024-12-04 02:11:08.814270035 -0800 PST	deployed	ibm-eem-operator-11.6.0                 	26955880-704cca1
    ```
 
+   If the chart version for your existing deployment is earlier than 11.5.x, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.6.x version.
            
 3. Check the latest chart version that you can upgrade to:
-   
-   a. {{site.data.reuse.cncf_cli_login}}
-   
-   b. Add the [IBM Helm repository](https://github.com/IBM/charts/tree/master/repo/ibm-helm){:target="_blank"}:
-      
-   ```shell
-   helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm
-   ```
-      
-   c. Update the Helm repository:
+    
+   a. Update the Helm repository:
       
    ```shell
    helm repo update ibm-helm
    ```
       
-   d. Confirm the version of the chart that you are upgrading to:
+   b. Confirm the version of the chart that you are upgrading to:
       
    ```shell
    helm show chart ibm-helm/ibm-eem-operator
    ```
       
    Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
-
-If the chart version for your existing deployment is earlier than 11.5.x, you must first [upgrade your installation to 11.5.x]({{ 'eem/eem_11.5' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.6.x version.
 
 If the chart version for your existing deployment is 11.5.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
@@ -258,9 +249,7 @@ If the chart version for your existing deployment is 11.6.x, your upgrade is a c
 
 You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms by using Helm.
 
-1. {{site.data.reuse.cncf_cli_login}}
-
-2. Upgrade the Helm release that manages your {{site.data.reuse.eem_name}} Custom Resource Definitions (CRDs):
+1. Upgrade the Helm release that manages your {{site.data.reuse.eem_name}} Custom Resource Definitions (CRDs):
 
    ```shell
    helm -n <EEM CRD namespace> upgrade <EEM CRD name> ibm-helm/ibm-eem-operator-crd
@@ -269,7 +258,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
    Replace `<EEM CRD namespace>` and `<EEM CRD name>` with the NAMESPACE and NAME values that you identified in the [pre-upgrade checks](#pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms).
 
 
-3. Upgrade the Helm release of your operator installation. 
+2. Upgrade the Helm release of your operator installation. 
 
    ```shell
    helm -n <EEM operator namespace> upgrade <EEM operator name> ibm-helm/ibm-eem-operator 
@@ -277,7 +266,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 
    Replace `<EEM operator namespace>` and `<EEM operator name>` with the NAMESPACE and NAME values that you identified in the [pre-upgrade checks](#pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms). 
  
-4. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
+3. If you are upgrading from 11.5.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.6.0 and later. The instances will not upgrade until the license ID is updated.
 
    a. Retrieve the names of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
 
@@ -301,7 +290,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 
    <!-- Above step can be commented out from releases that do not require license updates. -->
 
-5. Verify that your upgrade completed:
+4. Verify that your upgrade completed:
 
    ```shell
    helm list -n <namespace>
@@ -318,6 +307,9 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 
 Confirm that your upgrade completed successfully. 
 
+After all the components of an {{site.data.reuse.eem_manager}} instance are upgraded, the status of the `EventEndPointManagement`
+custom resource reports `Running`, and the `reconciled` version is your target version.
+
 ### Verifying the upgrade in the {{site.data.reuse.openshift_short}} UI
 {: #verify-ui}
 
@@ -333,13 +325,8 @@ Confirm that your upgrade completed successfully.
 6. Click your {{site.data.reuse.eem_manager}} instance to view more details.
 7. Switch to the **YAML** tab and confirm that `status.versions.reconciled` is your target version.
 
-### Verifying the upgrade with the CLI
+### Verifying the upgrade with the CLI on {{site.data.reuse.openshift_short}}
 {: #verify-cli}
-
-After all the components of an {{site.data.reuse.eem_manager}} instance are upgraded, the `EventEndPointManagement`
-custom resource will have a `Running` phase in the status.
-
-To verify the status:
 
 Run the `kubectl get` command as follows:
 
@@ -353,6 +340,18 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 NAME                  PHASE     RECONCILED VERSION   
 eem-manager           Running   11.6.2               
 ```
+
+### Verifying the upgrade on other Kubernetes platforms
+{: #verify-k8s}
+
+Describe the `EventEndpointManagement` custom resource:
+
+`kubectl -n <namespace> get -o yaml eventendpointmanagement`
+
+Review the output and confirm that `status.phase=Running` and `status.versions.reconciled=<target version>`.
+
+
+
 
 
 

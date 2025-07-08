@@ -54,58 +54,6 @@ connectorQuickLinks:
 
 # Event Endpoint Management
 
-eem_aasdocs:
-  - title: About
-    children:
-      - title: "Introduction"
-        url: /about/overview/
-      - title: "Key concepts"
-        url: /about/key-concepts/
-  - title: Getting started
-    children:
-      - title: "Getting started"
-        url: /getting-started/getting-started/
-  - title: Administering your deployment
-    children:
-      - title: "Installing Event Gateways"
-        url: /admin/event-gateways/
-      - title: "Managing Event Gateways"
-        url: /admin/managing-gateways/     
-      - title: Connecting to Kafka clusters
-        url: /admin/managing-clusters/
-      - title: "Managing user access"
-        url: /admin/managing-access/  
-      - title: "Managing access to the Admin API"
-        url: /admin/api-tokens/ 
-      - title: "Managing CA certificates"
-        url: /admin/ca-certs/ 
-      - title: "Advanced Event Gateway configuration"
-        url: /admin/configuring/
-  - title: Describe and publish
-    children:
-      - title: "Describing event sources"
-        url: /describe/adding-topics/
-      - title: "Managing event sources"
-        url: /describe/managing-event-sources/
-      - title: "Managing options"
-        url: /describe/managing-options/       
-      - title: "Adding controls to options"
-        url: /describe/option-controls/
-      - title: "Publishing options"
-        url: /describe/publishing-options/   
-      - title: "Managing user access to options"
-        url: /describe/managing-user-access-to-topics/
-  - title: Working with event endpoints
-    children:
-      - title: "Subscribe"
-        url: /subscribe/discovering-event-endpoints/
-      - title: "Subscribing to event endpoints"
-        url: /subscribe/subscribing-to-event-endpoints/
-      - title: "Managing subscriptions"
-        url: /subscribe/managing-subscriptions/
-      - title: "Configuring a client application to connect to an event endpoint"
-        url: /subscribe/configure-your-application-to-connect/    
-
 latest_eemdocs:
   - title: About
     children:

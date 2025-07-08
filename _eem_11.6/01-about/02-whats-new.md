@@ -21,7 +21,7 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
 ### API call tracing through the {{site.data.reuse.eem_manager}}
 
-![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") In {{site.data.reuse.eem_name}} release 11.6.2 and later, you can configure the {{site.data.reuse.egw}} to export OpenTelemetry trace information about records processed. For more information, see [how to export trace data with OpenTelemetry](../../installing/configuring/#exporting-traces-with-opentelemetry).
+In {{site.data.reuse.eem_name}} release 11.6.2 and later, you can configure the {{site.data.reuse.eem_manager}} to export OpenTelemetry trace information about records processed. For more information, see [Tracing API calls in the {{site.data.reuse.eem_manager}}](../../installing/configuring/#tracing-api-calls-in-the-event-manager).
 
 ### Security and bug fixes
 

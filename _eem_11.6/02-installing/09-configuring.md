@@ -518,9 +518,9 @@ OTEL_METRICS_EXPORTER="none"
 ```
 #### Tracing API calls in the {{site.data.reuse.eem_manager}}
 
-![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") From {{site.data.reuse.eem_name}} release 11.6.2 and later, API call tracing can be enabled in the manager. 
+![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") In {{site.data.reuse.eem_name}} release 11.6.2 and later, you can enable API call tracing in the {{site.data.reuse.eem_manager}}. 
 
-To enable traces from the {{site.data.reuse.eem_manager}}, first configure OpenTelemetry. Enable record tracing by adding the `tracesEnablement` configuration to the `spec.manager.openTelemetry` section of the `EventGateway` custom resource:
+To enable traces from the {{site.data.reuse.eem_manager}}, first configure OpenTelemetry. Enable record tracing by adding the `tracesEnablement` configuration to the `spec.manager.openTelemetry` section of the `EventManager` custom resource:
 
 ```yaml
   openTelemetry:

@@ -6,7 +6,7 @@ slug: disaster-recovery
 toc: true
 ---
 
-You cam use MirrorMaker 2.0 to mirror topics from one {{site.data.reuse.es_name}} cluster to another.
+You can use MirrorMaker 2.0 to mirror topics from one {{site.data.reuse.es_name}} cluster to another.
 
 You can configure {{site.data.reuse.es_name}} for disaster recovery (DR) by using multiple {{site.data.reuse.es_name}} instances in different locations. Two key topologies to consider as starting points for planning a DR solution suitable for your business are:
 

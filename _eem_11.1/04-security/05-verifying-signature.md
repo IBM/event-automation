@@ -66,7 +66,7 @@ Ensure you meet the following prerequisites before downloading the CASE archive 
 
 If the cluster has a bastion host which has access to the public internet, then the following steps can be performed from the bastion host.
 
-**Note**: In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
 
 ### Download the CASE archive
 
@@ -175,7 +175,7 @@ Obtain the required files as follows:
    done
    ```
 
-  **Note**: You can also copy the output to a file for ease of reference while verifying the image signatures.
+  **Note:** You can also copy the output to a file for ease of reference while verifying the image signatures.
 
 ## Verifying the signature
 
@@ -189,7 +189,7 @@ To verify the image signatures, complete the following steps:
        gpg --import event-integration.pub.asc
        ```
 
-   **Note**: This step needs to be done only once on each computer that you use for signature verification.
+   **Note:** This step needs to be done only once on each computer that you use for signature verification.
 
 2. Retrieve the fingerprint of the public GPG key.
 

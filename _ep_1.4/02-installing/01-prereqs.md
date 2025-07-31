@@ -16,8 +16,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -56,8 +56,9 @@ Flink resource requirements:
 
 **Note:** {{site.data.reuse.ep_name}} provides sample configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.ep_name}} installation on your system yet, always ensure that you include the resource requirements for the operator together with the intended {{site.data.reuse.ep_name}} instance requirements (quick start or production).
 
-**Note:** {{site.data.reuse.ibm_flink_operator}} When deploying a `FlinkDeployment` custom resource, the initial number of Flink Job Manager (JM) and Task Manager (TM) pods is equal to the number of replicas indicated for each in the custom resource. All the provided samples configure 1 replica for both JM and TM, except the “Production” sample which has 2 replicas for JM.
-Additional Task Manager pods are created if the number of deployed Flink jobs exceeds the TM “slot capacity”, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the FlinkDeployment. When running {{site.data.reuse.ep_name}} flows, each flow generates 2 Flink jobs; each job is allocated its own Task Manager slot.
+**Note:** In {{site.data.reuse.ibm_flink_operator}}, when deploying a `FlinkDeployment` custom resource, the initial number of Flink Job Manager (JM) pods is equal to the number of JM replicas indicated in the custom resource. All the provided samples configure 1 replica for the JM, except the [Production](../planning/#event-processing-sample-deployments) sample which has 2 replicas for JM.
+
+Task Manager (TM) pods are scaled up and down horizontally on demand. A new TM replica is created when a job is deployed that exceeds the current slot capacity across all the currently running TMs, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the `FlinkDeployment` custom resource.
 
 {{site.data.reuse.ep_name}} is a [Kubernetes operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.ep_name}} configurations.
 The {{site.data.reuse.ep_name}} operator uses the declared required state of your {{site.data.reuse.ep_name}} in the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventProcessing` custom resource type.
@@ -109,7 +110,7 @@ You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that 
 
 ## Red Hat OpenShift Security context constraints
 
-{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
+{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -158,7 +159,7 @@ The Flink instances deployed by {{site.data.reuse.ibm_flink_operator}} store the
 
 Apache Flink requires the use of a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
 - `volumeMode`: `Filesystem`. See [Volume Mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode){:target="_blank"}.
-- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
+- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
 
 
 For example, you can use Rook Ceph for your storage.
@@ -210,7 +211,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 

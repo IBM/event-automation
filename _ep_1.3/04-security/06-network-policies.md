@@ -289,7 +289,7 @@ network policies for Flink pods need to be deployed following these steps:
           - Ingress
    ```
 
-   **Note**: If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
+   **Note:** If the cluster uses OpenShift SDN in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, then this network policy restricts ingress to the operator port. This means the operator is only accessible from the host network where the Kubernetes API server (`kube-apiserver`) traffic originates.
    
   - On Kubernetes platforms using a CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 address of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
@@ -443,7 +443,7 @@ network policies for Flink pods need to be deployed following these steps:
    EOF
    ```
 
-**Note**: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
+**Note:** The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
 ensure the ports used in the network policies match the custom ports.
 
 If you configure Flink to [export](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/metric_reporters){:target="_blank"} the [Flink Metrics](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/metrics){:target="_blank"}, the port

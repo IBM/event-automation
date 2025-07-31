@@ -206,8 +206,8 @@ latest_eemdocs:
         url: /troubleshooting/no-such-algorithm-log/
       - title: "Event Gateway in 'Evicted' state"
         url: /troubleshooting/evicted-gateway/
-      - title: "Error when logging in to UI after changing CA certificate"
-        url: /troubleshooting/changing-ca-certificate/
+      - title: "Unable to access Event Manager endpoints"
+        url: /troubleshooting/mgr-endpoints/
       - title: "Kafka application fails with SSLHandshakeException"
         url: /troubleshooting/ssl-protocol-failure/
       - title: "Configuring usage-based reporting"

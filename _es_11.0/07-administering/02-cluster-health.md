@@ -82,7 +82,7 @@ For information about installing and configuring an Instana host agent on the {{
 
 After installing, Instana can monitor all aspects of an {{site.data.reuse.es_name}} instance with no extra configuration required.
 
-**Note**: You might receive the following error message in the Instana dashboards when you check monitoring metrics for the {{site.data.reuse.es_name}} UI container:
+**Note:** You might receive the following error message in the Instana dashboards when you check monitoring metrics for the {{site.data.reuse.es_name}} UI container:
 
 ```
 Monitoring issue: nodejs_collector_not_installed

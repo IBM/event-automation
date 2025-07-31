@@ -110,7 +110,7 @@ To configure a database node, complete the following steps.
    | `TIMESTAMP`         | ✓          | ✓     | ✓      |
    | `VARCHAR`           | ✓          |       | ✓      |
 
-1. In the **Match Criteria** pane, define your expression by using the property from the source, and the table field.
+1. In the **Match criteria** pane, define your expression by using the property from the source, and the table field.
 
    For example, the incoming event has a field `country_code` with values such as `866, 453, 123` and you wish to lookup a human readable name from a database table.
 

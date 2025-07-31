@@ -24,11 +24,11 @@ To import the AsyncAPI document into {{site.data.reuse.apic_long}}, complete the
 
 1. In the navigation pane, click **Develop**, select the APIs tab, then click **Add > API**.
 2. From the toggle menu at the top of the screen, select **AsyncAPI**.
-   **Note** If you do not see the **AsyncAPI** option, register your {{site.data.reuse.egw}} Service in the sandbox catalog settings by using the API Manager **Catalog** page.
+   **Note:** If you do not see the **AsyncAPI** option, register your {{site.data.reuse.egw}} Service in the sandbox catalog settings by using the API Manager **Catalog** page.
 3. Select the AsyncAPI from your {{site.data.reuse.egw}} Service that you want to import, and click **Next**.
 4. The AsyncAPI definition is generated and created in {{site.data.reuse.apic_short}}. Click **Done** to complete the flow.
 
-**Note**: You cannot import AsyncAPI documents into {{site.data.reuse.apic_short}} from {{site.data.reuse.eem_name}} where the published event endpoint has an [approval control](../apic-eem-concepts/#policy) applied. 
+**Note:** You cannot import AsyncAPI documents into {{site.data.reuse.apic_short}} from {{site.data.reuse.eem_name}} where the published event endpoint has an [approval control](../apic-eem-concepts/#policy) applied. 
 
 ### Publish the API and Product
 
@@ -58,7 +58,7 @@ To export an AsyncAPI for your topic, complete the following steps.
 1. Click **Export AsyncAPI**. A dialog is displayed. 
 1. Select **For IBM API Connect (contains credentials)** as the export format, then click **Export**.
 
-**Note**: You cannot export options that contain approval control to {{site.data.reuse.apic_short}}. 
+**Note:** You cannot export options that contain approval control to {{site.data.reuse.apic_short}}. 
 
 An AsyncAPI document that describes the topic is downloaded as a YAML file.
 
@@ -72,7 +72,7 @@ To import the AsyncAPI document, complete the following steps in the API Manager
 
 1. In the navigation pane, click **Develop**, select the APIs tab, then click **Add > API**.
 2. From the toggle menu at the top of the screen, select **AsyncAPI**.
-   **Note** If you do not see the AsyncAPI option, register your {{site.data.reuse.egw}} Service in the sandbox catalog settings by using the API Manager **Catalog** page.
+   **Note:** If you do not see the AsyncAPI option, register your {{site.data.reuse.egw}} Service in the sandbox catalog settings by using the API Manager **Catalog** page.
 3. Select **AsyncAPI from Event Endpoint Management** and click **Next**.
 4. Upload the AsyncAPI you downloaded from {{site.data.reuse.eem_name}}. Leave the **Username** and **Password** fields empty, and then click **Next**.
 5. Select the **Gateway** tab. Enter the bootstrap server address for your cluster under **Bootstrap Servers**, and then click **Next**. 

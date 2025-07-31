@@ -10,7 +10,7 @@ toc: true
 
 You can configure the {{site.data.reuse.eem_manager}} or the {{site.data.reuse.egw}} by setting environment variables. On [operator-managed](../install-gateway#operator-managed-gateways) and [Kubernetes Deployment](../install-gateway#remote-gateways) {{site.data.reuse.egw}}s you specify the environment variables in a template override (`env`) which specifies one or more name-value pairs. On [Docker](../install-gateway#remote-gateways) gateways, add the environment variable to your Docker `run` command, for example: `-e <variable name>`.
 
-**Important** Remember to [backup](../backup-restore) your gateway configuration after you make updates. 
+**Important:** Remember to [backup](../backup-restore) your gateway configuration after you make updates. 
 
 The format for {{site.data.reuse.eem_manager}} instances is:
 
@@ -570,7 +570,7 @@ For the {{site.data.reuse.eem_manager}} instance, the `spec.manager.endpoints[]`
 - The {{site.data.reuse.eem_name}} Admin API (service name: `admin`)
 - The {{site.data.reuse.eem_name}} server for deploying gateways and exposing the Admin API (service name: `server`)  
 
-   **Note**:
+   **Note:**
    - The `server` service endpoint is required to [deploy](../../installing/install-gateway/#remote-gateways) an {{site.data.reuse.egw}} by using the {{site.data.reuse.eem_name}} UI.
    - The `server` service endpoint also exposes the {{site.data.reuse.eem_name}} [Admin API](../../security/api-tokens/) on path `/admin`, and can be used for making API requests to {{site.data.reuse.eem_name}} programmatically. The Admin API URL is displayed on the [**Profile** page](../../security/api-tokens/#api-access-tokens).
    - The value that supplied in `host` for `name: server` must start with `eem.`

@@ -19,14 +19,30 @@ sections:
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-    <h3>Event Streams</h3>
+  <details class="details">
+  <summary><b>Event Streams</b></summary>
+  <h4>11.8.1 - what's new:</h4>
+    <ul>
+      <li>Event Streams CLI authentication with Keycloak</li>
+      <li>Security and bug fixes</li>
+    </ul>
     <h4>11.8.0 - what's new:</h4>
     <ul>
       <li>Support for KRaft</li>
       <li>Download Kafka connection properties from UI</li>
       <li>Security and bug fixes</li>
     </ul>
-    <h3>Event Endpoint Management</h3>
+    </details>
+  <details class="details">
+    <summary><b>Event Endpoint Management</b></summary>
+    <h4>11.6.2 - what's new:</h4>
+    <ul>
+      <li>Wildcard redaction in an array of objects or simple types</li>
+      <li>OAuth Kafka cluster support</li>
+      <li>API call tracing through the Event Manager</li>
+      <li>Documentation enhancements</li>
+      <li>Security and bug fixes</li>
+    </ul>
       <h4>11.6.1 - what's new:</h4>
       <ul>
         <li>Upgrade documentation restructure</li>
@@ -40,21 +56,42 @@ sections:
         <li>Kafka record tracing through the Event Gateway</li>
         <li>Security and bug fixes</li>
       </ul>
-    <h3>Event Processing</h3>
+    </details>
+    <details class="details">
+    <summary><b>Event Processing</b></summary>
+     <h4>1.4.2 - what's new:</h4>
+    <ul>
+      <li>Optimized Flink jobs when running flows containing sink nodes in the Event Processing UI</li>
+      <li>Enhancements for better insights of a running flow</li>
+      <li>Temporal join: Support for multiple join conditions in the primary key</li>
+      <li>Collection of usage metrics</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.19</li>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h4>1.4.1 - what's new:</h4>
+    <ul>
+      <li>Join: window join</li>
+      <li>Join: temporal join</li>
+      <li>Security and bug fixes</li>
+    </ul>
       <h4>1.4.0 - what's new:</h4>
       <ul>
       <li>New tutorial: nudge customers with abandoned cart by using the watsonx.ai node</li>
         <li>Security and bug fixes</li>
       </ul>
+    </details>
   </div>
-</details>
+  </details>
+
+
 
 <details class="details">
   <summary><b>Release 1.1.0.0</b></summary>
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-    <h3>Event Streams</h3>
+    <details class="details">
+  <summary><b>Event Streams</b></summary> 
     <h4>11.7.0 - what's new:</h4>
     <ul>
       <li>Support for Kafka Node Pools</li>
@@ -94,8 +131,10 @@ sections:
       <li>Apicurio version updated to 2.6.2.Final</li>
       <li>Kafka version upgraded to 3.7.1</li>
       <li>Security and bug fixes</li>
-    </ul>
-    <h3>Event Endpoint Management</h3>
+       </ul> 
+  </details>
+  <details class="details">
+    <summary><b>Event Endpoint Management</b></summary>
     <h4>11.5.1 - what's new:</h4>
     <ul>
      <li>Security and bug fixes</li>
@@ -148,7 +187,9 @@ sections:
       <li>Support for IBM z13 (s390x) is removed</li>
       <li>Security and bug fixes</li>
     </ul>
-    <h3>Event Processing</h3>
+      </details>
+  <details class="details">
+    <summary><b>Event Processing</b></summary>
     <h4>1.3.2 - what's new:</h4>
     <ul>
       <li>Processor nodes: detect patterns</li>
@@ -204,6 +245,7 @@ sections:
       <li>Support for IBM z13 (s390x) is removed</li>
       <li>Security and bug fixes</li>
     </ul>
+    </details>
   </div>
 </details>
 
@@ -212,7 +254,8 @@ sections:
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-    <h3>Event Streams</h3>
+    <details class="details">
+  <summary><b>Event Streams</b></summary> 
     <h4>11.4.0 - what's new:</h4>
     <ul>
       <li>IBM support for MongoDB source and the MongoDB sink connector</li>
@@ -298,7 +341,9 @@ sections:
       <li>Security and bug fixes</li>
       <li>CASE bundle version is 3.2.0</li>
     </ul>
-    <h3>Event Endpoint Management</h3>
+    </details>
+  <details class="details">
+    <summary><b>Event Endpoint Management</b></summary>
     <h4>11.2.3 - what's new:</h4>
     <ul>
       <li>New security controls for the Event Gateway</li>
@@ -391,7 +436,9 @@ sections:
       <li>Simpler installation</li>
       <li>Gateway groups</li>
     </ul>
-    <h3>Event Processing</h3>
+    </details>
+    <details class="details">
+    <summary><b>Event Processing</b></summary>
     <h4>1.1.9 - what's new:</h4>
     <ul>
       <li>Tree view for event properties</li>

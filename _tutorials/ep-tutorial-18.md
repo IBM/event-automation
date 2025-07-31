@@ -28,6 +28,8 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
+  **Note:** The free plan quota for watsonx.ai is limited. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} to a different plan because the following tutorial consumes a large volume of events with watsonx.ai.
+
   1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Structured** tab, enter your prompt in the **Instruction** field. The following prompt is used in this tutorial:
 
      ```plaintext

@@ -128,6 +128,103 @@ function connectorCard(card, url) {
   setActiveCategory(sessionStorage.connectorCategory);
 }
 
+// Function to filter cards based on main filters and search input
+function filterCards() {
+  const cardsContainer = document.getElementById("cardsContainer");
+  const searchInput = document.getElementById("catalog-search-input");
+  const noResultsMessage = document.getElementById("no-results-message");
+  const searchedConnectorsExistInfo = document.getElementById("searchedConnectorsExistInfo");
+  const connectorsEmptyState = document.getElementById("connectorsEmptyState");
+  const connectorsExistInfo = document.getElementById("connectorsExistInfo");
+  let visibleMatchCount = 0;
+  const allCards = cardsContainer.querySelectorAll(".connector-card");
+  addClassToCollection(allCards, 'hide');
+  //Reset error messages
+  addClassTo(noResultsMessage, 'hide');
+  addClassTo(searchedConnectorsExistInfo, 'hide');
+  addClassTo(connectorsExistInfo, 'hide');
+  addClassTo(connectorsEmptyState, 'hide');
+  
+  const isFilterActive = document.querySelector(".connectorsCards .filterContent.filterActive")
+  let filteredCards = isFilterActive ? getFilteredCards() : Array.from(allCards)
+  removeClassFromCollection(filteredCards, 'hide');
+  const query = searchInput.value.trim().toLowerCase();
+
+  // If search is active
+  if(query!==""){
+      addClassTo(cardsContainer, 'search-active');
+      filterCardsByText(filteredCards)
+  } else { 
+    // If search is inactive
+    removeClassFrom(cardsContainer, 'search-active');
+    filteredCards.forEach(card => {
+      const isInCurrentTab = card.offsetParent !== null;
+      if (isInCurrentTab) {
+        visibleMatchCount++;
+      } else  {
+        addClassTo(card, 'hide');
+      }
+    });
+    // If available is some tab and filter is active
+    if(filteredCards?.length===0 && isFilterActive){
+      removeClassFrom(connectorsEmptyState, 'hide');
+    }
+    // If available is some tab and card not in active tab
+    else if(filteredCards?.length>0 && visibleMatchCount === 0){
+      removeClassFrom(connectorsExistInfo, 'hide');
+    } 
+    // If NOT available in any of the tabs
+    else if(filteredCards?.length===0 && !isFilterActive) {
+      removeClassFrom(noResultsMessage, 'hide');
+    }
+  }
+}
+
+function filterCardsByText(filteredCards) {
+  const searchInput = document.getElementById("catalog-search-input");
+  const noResultsMessage = document.getElementById("no-results-message");
+  const searchedConnectorsExistInfo = document.getElementById("searchedConnectorsExistInfo");
+  const connectorsEmptyState = document.getElementById("connectorsEmptyState");
+  let visibleMatchCount = 0;
+  let textExistsInSomeCard = false
+  const query = searchInput.value.trim().toLowerCase();
+  const isFilterActive = document.querySelector(".connectorsCards .filterContent.filterActive")
+  filteredCards.forEach(card => {
+    const isInCurrentTab = card.offsetParent !== null;
+    const cardTitle = card.querySelector('.content .cardconnectorTitle').textContent.toLowerCase();
+    const cardDescription = card.querySelector('.content .cardConnectorDescription').textContent.toLowerCase();
+    const cardText = cardTitle+cardDescription;
+    if(cardText.includes(query)){
+      textExistsInSomeCard = true
+    }
+    if (isInCurrentTab && cardText.includes(query)) {
+      visibleMatchCount++;
+    } else  {
+      addClassTo(card, 'hide');
+    }
+  });
+  // If available is some tab and filter is active
+  if(!textExistsInSomeCard && isFilterActive){
+    removeClassFrom(connectorsEmptyState, 'hide');
+  }
+  // If available is some tab and card not in active tab
+  else if(textExistsInSomeCard && visibleMatchCount === 0 && query!==""){
+    removeClassFrom(searchedConnectorsExistInfo, 'hide');
+    document.getElementById("search-term").innerHTML = `"${query}"`
+    const slug = sessionStorage.getItem('connectorCategory')
+    //to get the tab name, query all tabs and find the one that includes the slug stored in session storage
+    const tabElements = document.querySelectorAll('.connectorsCategories .visible-links .menuItem')
+    const currentTabIndex = Array.from(tabElements).findIndex(el => el.classList.contains(slug))
+    const tabTitle = tabElements[currentTabIndex].querySelector('p').textContent
+    //sliced to remove the count of cards and "s" from tab heading
+    document.getElementById("tab-name").textContent = tabTitle.slice(0,tabTitle.lastIndexOf(' ')-1).toLowerCase();
+  } 
+  // If NOT available in any of the tabs
+  else if(!textExistsInSomeCard && query!=="") {
+    removeClassFrom(noResultsMessage, 'hide');
+  }
+}
+
 function testFixHeight() {
   if (getWidth() <= 1024) {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -195,11 +292,30 @@ function fixSplashHeight(set) {
   }
 }
 
+  function updatePlaceholder() {
+  const slug = sessionStorage.connectorCategory;
+
+    const inputField = document.getElementById('catalog-search-input');
+    if (slug == "sink" || slug == "source") {
+    inputField.placeholder = `Search for ${slug} connectors`;
+    }  
+    else if (slug == "converters" ){
+      inputField.placeholder = `Search for converters`;
+    }
+    else if (slug == "transformations"  ){
+      inputField.placeholder = `Search for transformations`;
+    }
+    else {
+      inputField.placeholder = `Search Connect catalog`;
+    }
+}
+
 function filterCategories(slug, connectorsHomeURL) {
   setActiveCategory(slug);
 
   sessionStorage.connectorCategory = slug;
   sessionStorage.categoryURL = connectorsHomeURL;
+  updatePlaceholder();
 }
 
 function setActiveCategory(slug) {
@@ -211,7 +327,7 @@ function setActiveCategory(slug) {
   addClassTo(getById('connectorsCategories'), 'connectorsCategories');
   addClassTo(getById('connectorsCategories'), slug);
 
-  countVisibleCards();
+  // countVisibleCards();
 }
 
 function toggleTag(object, group, tagID) {
@@ -229,8 +345,9 @@ function toggleTag(object, group, tagID) {
 
 function calculateFilters() {
   calculateFilterTags();
-  calculateFilterCards();
-  countVisibleCards();
+  // calculateFilterCards();
+  filterCards();
+  // countVisibleCards();
 }
 
 function filterPageLoadCheck() {
@@ -289,8 +406,32 @@ function calculateFilterCards() {
       removeClassFromCollection(queriedCards, 'hide');
     }
 
-    countVisibleCards();
+    // countVisibleCards();
   }
+}
+
+//Get cards filtered by active filters
+function getFilteredCards() {
+  let supportFilter = sessionStorage.supportLevelFilter
+  let typeFilter = sessionStorage.typeFilter
+  let supportFilterQuery = ''
+  let typeFilterQuery = '';
+
+  if (supportFilter) {
+    supportFilterQuery = '.' + sessionStorage.supportLevelFilter
+  }
+
+  if (typeFilter) {
+    typeFilterQuery = '.' + sessionStorage.typeFilter
+  }
+
+  let query = supportFilterQuery + typeFilterQuery;
+  if (query) {
+    const queriedCards = document.querySelectorAll(query);
+    return queriedCards
+  } 
+  const cardsContainer = document.getElementById("cardsContainer");
+  return cardsContainer.querySelectorAll(".connector-card")
 }
 
 function countVisibleCards() {

@@ -21,7 +21,7 @@
   {% endunless %}
 {%- endfor -%}
 
-<div class="buttonContainer all 
+<div class="connector-card buttonContainer all 
 {% assign connectorTagLowerCase = include.connectorType | downcase %}
 {% if connectorTagLowerCase == "kafkaconnect" %}
   kafkaConnectTag
@@ -82,7 +82,8 @@ active
               {% endif %}   Output format is Source connector | Other -->
             {% endfor %}
           </p>
-          <h3 class="cardconnectorTitle" id="heading{{ connectorID }}">{{ connector.title }}</h3>
+          <h3 class="cardconnectorTitle" id="heading{{ connectorID }}">{{ connector.title }} </h3>
+          <div style="display: none" class = "cardConnectorDescription" id="heading{{ connectorID }}">{{ connector.excerpt }}</div>
         </div>
         {% if include.connectorSupport == "IBM" %}
           <div class="pill supportLevel ibm">

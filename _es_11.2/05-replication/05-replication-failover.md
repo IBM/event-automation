@@ -22,9 +22,9 @@ Set up your applications so that reconfiguring them to switch clusters is as eas
 
 Consider using the same certificates for both the origin and destination clusters, by [providing your own certificates at installation](../../installing/configuring/#using-your-own-certificates). This allows applications to use a single certificate to access either cluster.
 
-**Note**: You must complete the process of providing your own certificates before installing an instance of Event Streams.
+**Note:** You must complete the process of providing your own certificates before installing an instance of Event Streams.
 
-**Note**: When providing your own certificates, ensure that certificate renewal processes are followed at both the origin and destination clusters, so that both clusters continue to use the same certificates.
+**Note:** When providing your own certificates, ensure that certificate renewal processes are followed at both the origin and destination clusters, so that both clusters continue to use the same certificates.
 
 ### Set up the same access to both clusters
 
@@ -62,16 +62,16 @@ Consider providing your applications the same access to both the origin and dest
    kubectl apply -f kafkauser-secret.yaml
    ```
 
-   **Note**: You must run this command before the creation of the `KafkaUser` to ensure the same credentials are available on both the origin and destination clusters.
+   **Note:** You must run this command before the creation of the `KafkaUser` to ensure the same credentials are available on both the origin and destination clusters.
 8. Run the following command to create the `KafkaUser` on the destination cluster:
 
    ```shell
    kubectl apply -f kafkauser.yaml
    ```
 
-**Note**: To duplicate `KafkaUser` credentials that use Mutual TLS authentication, the origin and destination cluster must be [configured with the same certificates for the client CA at installation](../../installing/configuring/#using-your-own-certificates).
+**Note:** To duplicate `KafkaUser` credentials that use Mutual TLS authentication, the origin and destination cluster must be [configured with the same certificates for the client CA at installation](../../installing/configuring/#using-your-own-certificates).
 
-**Note**: When `KafkaUser` credentials or Access Control Lists (ACLs) are modified on the origin cluster, the changes will need to be duplicated to the destination cluster to ensure that you can still switch clusters.
+**Note:** When `KafkaUser` credentials or Access Control Lists (ACLs) are modified on the origin cluster, the changes will need to be duplicated to the destination cluster to ensure that you can still switch clusters.
 
 ### Use regular expressions for consumer topic subscriptions
 
@@ -115,7 +115,7 @@ The topic on the origin cluster and the geo-replicated topic on the destination 
 
 Geo-replication uses the Kafka Mirror Maker 2.0 `MirrorCheckpointConnector` to automatically store consumer group offset checkpoints for all origin cluster consumer groups. Each checkpoint maps the last committed offset for each consumer group in the origin cluster to the equivalent offset in the destination cluster. The checkpoints are stored in the `<origin_cluster_name>.checkpoints.internal` topic on the destination cluster.
 
-**Note**: Consumer offset checkpoint topics are internal topics that are not displayed in the UI and CLI. Run the following CLI command to include internal topics in the topic listing:
+**Note:** Consumer offset checkpoint topics are internal topics that are not displayed in the UI and CLI. Run the following CLI command to include internal topics in the topic listing:
 
 ```shell
 kubectl es topics --internal
@@ -137,7 +137,7 @@ destinationOffsetsMap.forEach((topicPartition, offsetAndMetadata) -> kafkaConsum
 ConsumerRecords<byte[], byte[]> records = kafkaConsumer.poll(Duration.ofMillis(10000))
 ```
 
-**Note**: To configure how often checkpoints are stored and which consumer groups are stored in the checkpoints topic, you can edit the following properties in your Kafka Mirror Maker 2 custom resource:
+**Note:** To configure how often checkpoints are stored and which consumer groups are stored in the checkpoints topic, you can edit the following properties in your Kafka Mirror Maker 2 custom resource:
  - `spec.mirror.checkpointConnector.config`
  - `spec.mirror.groupsPattern`
 
@@ -176,7 +176,7 @@ When the origin {{site.data.reuse.es_name}} cluster becomes available again, you
  - The geo-replicated topic named `<origin-cluster>.<topic>` on the destination cluster will not have new geo-replicated messages arriving, as the producing applications have been switched to produce messages directly to the topic without a prefix on the destination cluster. Ensure that the geo-replicated topic on the destination cluster is not geo-replicated back to the origin cluster as this will result in duplicate data on the origin cluster.
  - Switch the producing and consuming applications back to the origin cluster again by following the [previous instructions](#preparing-clusters-and-applications-for-switching). Producing applications will continue to produce messages to the original topic name on the origin cluster, and consuming applications will read from both the geo-replicated topics and the original topics on the origin cluster. Consuming applications will need their [consumer group offsets to be correctly updated](#updating-consumer-group-offsets) for the offset positions on the origin cluster.
 
-**Note**: Due to the asynchronous nature of geo-replication, there might be messages in the original topics on the origin cluster that had not been geo-replicated over to the destination cluster when the origin cluster became unavailable. You will need to decide how to handle these messages. Consider setting consumer group offsets so that the messages are processed, or ignore the messages by setting consumer group offsets to the latest offset positions in the topic.
+**Note:** Due to the asynchronous nature of geo-replication, there might be messages in the original topics on the origin cluster that had not been geo-replicated over to the destination cluster when the origin cluster became unavailable. You will need to decide how to handle these messages. Consider setting consumer group offsets so that the messages are processed, or ignore the messages by setting consumer group offsets to the latest offset positions in the topic.
 
 For example, if the origin cluster is named `my_origin`, the destination cluster is named `my_destination`, and the topic on the `my_origin` cluster is named `my_topic`, then the geo-replicated topic on the `my_destination` cluster will be named `my_origin.my_topic`.
 

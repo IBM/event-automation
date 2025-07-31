@@ -71,13 +71,17 @@ Complete the following steps to plan your upgrade on OpenShift.
 
 ### Stopping flows for major and minor upgrades
 
-If you are upgrading to a new major or minor release (first and second digit change), stop the flows before upgrading. This is not required for patch level (third digit) upgrades.
+When upgrading to a new major or minor release (first and second digit change), stop any running flows in the {{site.data.reuse.ep_name}} UI before upgrading. This is because running flows may contain artifacts built using the previous release that are not compatible with the newer version. If flows are not stopped, they may enter into an error state following the upgrade. You can run those flows again after the upgrade.
 
- Stop all the running flows in the {{site.data.reuse.ep_name}} UI as follows to avoid errors:
+This step is not required for patch level (third digit) upgrades.
 
- 1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
- 2. In the flow that you want to stop, select **View flow**.
- 3. In the navigation banner, click **Stop flow** to stop the flow.
+To stop all the running flows in the {{site.data.reuse.ep_name}} UI, complete the following steps:
+
+1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
+2. In the flow that you want to stop, select **View flow**.
+3. In the navigation banner, click **Stop flow** to stop the flow.
+
+![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") Exception to the previous statement when upgrading to {{site.data.reuse.ep_name}} 1.4.2: running flows will automatically stop after the upgrade as {{site.data.reuse.ep_name}} 1.4.2 has improved the mechanism for rendering results in the UI. You can [run those flows](#restart-your-flows) again after the upgrade completes.
 
 **Note:** When upgrading to a new major or minor version (such as upgrading from v1.3 to v1.4), ensure you upgrade both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} operator, then complete the [post-upgrade tasks](#post-upgrade-tasks), before using your flows again.
 
@@ -348,4 +352,7 @@ This only applies if you stopped flows before upgrade. After the successful upgr
 
 1. [Log in](../../getting-started/logging-in) to your {{site.data.reuse.ep_name}} UI.
 2. In the flow that you want to run, select **Edit flow**.
-3. In the navigation banner, expand **Run flow**, and select either **Events from now** or **Include historical** to run your flow.
+3. In the navigation banner, complete one of the following steps:
+
+   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow uses SQL sources only, click **Run flow** to start the flow.

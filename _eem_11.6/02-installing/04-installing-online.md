@@ -17,7 +17,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Create a project (namespace)
 
-Create a namespace into which {{site.data.reuse.eem_name}} will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/building_applications/projects#working-with-projects){:target="_blank"}.
+Create a namespace into which {{site.data.reuse.eem_name}} will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 Ensure that you use a namespace that is dedicated to a single deployment of {{site.data.reuse.eem_name}}. This is required because {{site.data.reuse.eem_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
 
@@ -99,7 +99,7 @@ Before you can install the required operator versions and use them to create ins
 
 1. Before you begin, ensure that you have the following set up for your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After the plug-in is installed, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
@@ -345,7 +345,7 @@ To install an {{site.data.reuse.eem_manager}} instance through the {{site.data.r
 
 From here, you can install by using the [YAML view](#installing-an-event-endpoint-management-instance-by-using-the-yaml-view) or the [form view](#installing-an-event-endpoint-management-instance-by-using-the-form-view). For advanced configurations or to install one of the samples, see [installing by using the YAML view](#installing-an-event-endpoint-management-instance-by-using-the-yaml-view).
 
-**IMPORTANT**: If you want to customize the TLS certificates that secure your {{site.data.reuse.eem_manager}} endpoints, then you must configure the certificates before you install the custom resource. See [configuring TLS](../../security/config-tls).
+**Important:** If you want to customize the TLS certificates that secure your {{site.data.reuse.eem_manager}} endpoints, then you must configure the certificates before you install the custom resource. See [configuring TLS](../../security/config-tls).
 <!-- DRAFT COMMENT: Anything else user must configure before installing? -->
 
 For additional configuration options that you can set in the Custom Resource Definition, see [Configuring](../configuring).

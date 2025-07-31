@@ -155,7 +155,7 @@ You can use local authentication to define users explicitly with usernames and p
    kubectl edit secret/<custom-resource-name>-ibm-eem-user-credentials -o json
    ```
 
-8. **Important:** For security reasons, delete the local file you created.
+8. For security reasons, delete the local file you created.
 
 9. Similarly, edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure the roles and permissions of your users. For more information, see [managing roles](../user-roles).
    

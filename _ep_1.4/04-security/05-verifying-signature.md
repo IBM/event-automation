@@ -14,7 +14,7 @@ You can use the signature to verify that the images came from IBM when they are 
 
 - Ensure that the following command-line tools are installed on your computer. On Linux systems, these images can typically be installed by using the package manager.
 
-  - [The OpenShift Container Platform CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}
+  - [The OpenShift Container Platform CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}
   - [The IBM Catalog Management Plug-in for IBM Cloud Paks (ibm-pak)](https://github.com/IBM/ibm-pak-plugin/releases/latest){:target="_blank"}
   - [GNU Privacy Guard (GnuPG) version 2](https://gnupg.org/){:target="_blank"}
   - [Skopeo](https://github.com/containers/skopeo){:target="_blank"}
@@ -66,7 +66,7 @@ Ensure you meet the following prerequisites before downloading the CASE archive 
 
 If the cluster has a bastion host which has access to the public internet, then the following steps can be performed from the bastion host.
 
-**Note**: In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
 
 ### Download the CASE archive
 
@@ -246,7 +246,7 @@ Obtain the required files as follows:
    ```
      
 
-  **Note**: You can also copy the output to a file for ease of reference while verifying the image signatures.
+  **Note:** You can also copy the output to a file for ease of reference while verifying the image signatures.
 
 ## Verifying the signature
 
@@ -260,7 +260,7 @@ To verify the image signatures, complete the following steps:
    gpg --import event-integration.pub.asc
    ```
 
-   **Note**: This step needs to be done only once on each computer that you use for signature verification.
+   **Note:** This step needs to be done only once on each computer that you use for signature verification.
 
 2. Retrieve the fingerprint of the public GPG key.
 

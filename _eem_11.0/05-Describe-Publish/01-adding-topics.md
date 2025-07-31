@@ -26,19 +26,19 @@ To describe an event source by adding a topic, complete the following steps:
      
         Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
 
-        **Note**: After clicking **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you will be asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
+        **Note:** After clicking **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you will be asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
      3. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you will be prompted to provide credential details. If required, select the **Security protocol**, enter your username and password, and click **Add cluster**.
 
-         **Note**: After clicking **Add cluster**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If everything is valid, or if credentials were not required, your cluster will be added to {{site.data.reuse.eem_name}}, and you will be returned to the **Cluster connection** step, where your newly added cluster will appear, and can be selected.
+         **Note:** After clicking **Add cluster**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If everything is valid, or if credentials were not required, your cluster will be added to {{site.data.reuse.eem_name}}, and you will be returned to the **Cluster connection** step, where your newly added cluster will appear, and can be selected.
 
 4. Select some topics to add from the list of topics available on this cluster.
 5. Enter a unique alias for the topics selected.
 
-   **Note**: The topic alias name is the unique ID that identifies your topics.
+   **Note:** The topic alias name is the unique ID that identifies your topics.
 
 6. Click **Add Topic**.
 
-   **Note**: If any of the topic aliases you entered are already in use, you will be prompted to enter a different alias. Otherwise, your newly added topics will be added to {{site.data.reuse.eem_name}}.
+   **Note:** If any of the topic aliases you entered are already in use, you will be prompted to enter a different alias. Otherwise, your newly added topics will be added to {{site.data.reuse.eem_name}}.
 
 7. Your newly added topics will appear in the **Topics** page as an **Unpublished** topic. See [topic lifestyle state](../managing-topics#topic-lifecycle-state) for information about socializing your topics.

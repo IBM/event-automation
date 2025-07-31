@@ -62,6 +62,111 @@ function createCheckmarkSVG() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+
+document.querySelectorAll("p").forEach(function (p) {
+
+  const text = p.textContent.trim();
+  const isNoteOrTip = (text.startsWith("Note:") || text.startsWith("Tip:")) && !p.querySelector(".cds--inline-notification__icon");
+
+  if (isNoteOrTip) {
+    const svgIcon = `
+      <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="cds--inline-notification__icon" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true" fill="#0043CB">
+        <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,16,7Zm4,17.12H12V21.88h2.88V15.12H13V12.88h4.13v9H20Z"></path>
+      </svg>`;
+
+    const noteBlock = document.createElement("div");
+    noteBlock.classList.add("note-block");
+
+    const noteContent = document.createElement("div");
+    noteContent.classList.add("note-content");
+
+    const iconSpan = document.createElement("span");
+    iconSpan.classList.add("note-icon");
+    iconSpan.innerHTML = svgIcon;
+
+    const textSpan = document.createElement("span");
+    textSpan.classList.add("note-text");
+    textSpan.innerHTML = p.innerHTML;
+
+    noteContent.appendChild(iconSpan);
+    noteContent.appendChild(textSpan);
+    noteBlock.appendChild(noteContent);
+
+    p.parentNode.replaceChild(noteBlock, p);
+
+    // Check for code block or list immediately after
+    let next = noteBlock.nextElementSibling;
+    while (next) {
+      if (
+        next.tagName === "UL" ||
+        next.tagName === "CODE" ||
+        (next.tagName === "DIV" && next.className.startsWith("language-"))
+      ) {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("note-code");
+        wrapper.appendChild(next.cloneNode(true));
+        noteBlock.appendChild(wrapper);
+        next.remove(); // Remove original node
+        next = noteBlock.nextElementSibling;
+      } else {
+        break;
+      }
+    }
+  }
+  
+  
+  if ((p.textContent.trim().startsWith("Important:") || p.textContent.trim().startsWith("Warning:")) &&  !p.querySelector(".cds--inline-notification__icon")) {
+    const svgIcon = `<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="cds--inline-notification__icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="#f1c21b"><path d="M10,1c-5,0-9,4-9,9s4,9,9,9s9-4,9-9S15,1,10,1z M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1	s1,0.4,1,1S10.6,16,10,16z"></path><path d="M9.2,5h1.5v7H9.2V5z M10,16c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S10.6,16,10,16z" data-icon-path="inner-path" opacity="0"></path></svg>`;
+
+    const importantBlock = document.createElement("div");
+    importantBlock.classList.add("important-block");
+
+    const importantContent = document.createElement("div");
+    importantContent.classList.add("important-content");
+
+    const iconSpan = document.createElement("span");
+    iconSpan.classList.add("important-icon");
+    iconSpan.innerHTML = svgIcon;
+
+    const textSpan = document.createElement("span");
+    textSpan.classList.add("important-text");
+    textSpan.innerHTML = p.innerHTML;
+
+    importantContent.appendChild(iconSpan);
+    importantContent.appendChild(textSpan);
+    importantBlock.appendChild(importantContent);
+
+    p.parentNode.replaceChild(importantBlock, p);
+
+
+
+    if (importantBlock.textContent.trim().endsWith(":")) {
+        let currentNode = importantBlock.nextElementSibling;
+        let next = importantBlock.nextElementSibling;
+    while (next) {
+      if (
+        next.tagName === "UL" ||
+        next.tagName === "CODE" ||
+        (next.tagName === "DIV" && next.className.startsWith("language-"))
+      ) {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("important-code");
+        wrapper.appendChild(next.cloneNode(true));
+        importantBlock.appendChild(wrapper);
+        next.remove(); // Remove original node
+        next = importantBlock.nextElementSibling;
+      } else {
+        break;
+      }
+    }
+    }
+  }
+});
+
+
+
   if (!document.body) throw new ReferenceError();
   copyCode();
 });

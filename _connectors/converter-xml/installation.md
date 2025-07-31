@@ -2,6 +2,7 @@
 order: 1
 forID: converter-xml
 categories: [converters]
+connectorTitle: "Kafka Connect XML converter"
 ---
 
 A Kafka Connect plug-in to make it easier to work with XML data in Kafka Connect.

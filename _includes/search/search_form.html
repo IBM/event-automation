@@ -4,12 +4,54 @@
 
   {%- when "lunr" -%}
   <label for="search"><h1>Search Documentation</h1></label>
-    <div data-search="" role="search" class="bx--search bx--search--lg">
-      <input name="search input" class="bx--search-input" type="text" id="search" tabindex="0" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}">
-        <svg class="bx--search-magnifier" width="16" height="16" viewBox="0 0 16 16">
-          <path d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z" fill-rule="nonzero"></path>
-        </svg>
+  
+  
+
+
+   <div data-search="" role="search" class="bx--search bx--search--lg">
+  <input name="search input" class="bx--search-input" type="text" id="search" tabindex="0" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}">
+  <svg class="bx--search-magnifier" width="16" height="16" viewBox="0 0 16 16">
+    <path d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z" fill-rule="nonzero"></path>
+  </svg>
+  
+      <button class="filter-button">
+                    Filter by
+
+        <svg class="filter-icon" focusable="false" preserveAspectRatio="xMidYMid meet" fill="currentColor" name="chevron--down" aria-label="Close menu" width="16" height="16" viewBox="0 0 16 16" role="img" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
+        <title>Close menu</title>
+      </svg>
+
+       <svg class="filter-icon-hidden" style="display: none;" focusable="false" preserveAspectRatio="xMidYMid meet" fill="currentColor" width="16" height="16" viewBox="0 0 16 16" 
+       aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M8 5L13 10 12.3 10.7 8 6.4 3.7 10.7 3 10z"></path><title>Chevron up</title></svg>
+      <svg class="clear-icon" width="16" height="16" viewBox="0 0 16 16">
+        <path d="M12 4L4 12h2v2h6v-2h2L12 4z" fill="#fff" />
+      </svg>
+
+
+      
+    </button>
+
+  <div class="filter-dropdown">
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="connectors" name="version" value="connectors">
+      <label for="connectors">Connectors</label>
     </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="eem" name="version" value="eem">
+      <label for="eem">Event Endpoint Management</label>
+    </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="ep" name="version" value="ep">
+      <label for="ep">Event Processing</label>
+    </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="es" name="version" value="es">
+      <label for="es">Event Streams</label>
+    </div>
+  </div>
+</div>
+
 
     <div id="results" class="results"></div>
   {%- when "google" -%}

@@ -35,13 +35,13 @@ To configure an aggregate node, complete the following steps:
 1. If a time window is already defined in a previous node, the time window is already prefilled with this time window, and the time window edition is disabled by default.
 For example, a top-n node followed by an aggregate node to "Calculate the total of the 3 highest orders by customer per hour".
 
-      **Note**: You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
+      **Note:** You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
 
 1. To define a new time window:
    1. In the **Property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
    1. In the **Time window duration** field, specify the duration of each time window.
 
-      **Note**: A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
+      **Note:** A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
       The start time and the end time values are timestamps. An event is assigned to a time window if its event time is between the start time and the end time of this time window. The aggregate calculation is performed for all events contained in every time window. The closure of a time window triggers the top number calculation when either of the following conditions are met:
       - An event having an event time value greater than the end of the windows that is processed by the node.
       - A timeout period elapses after an event source becomes idle. For more information about the source idleness time, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#source-per-partition-watermarks){:target="_blank"}.
@@ -60,7 +60,7 @@ For example, a top-n node followed by an aggregate node to "Calculate the total 
 3. Click **Next** to open the **Output properties** pane. You can manage the properties that are displayed in the output when you view the results after running the flow.
 4. Optional: To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.
 
-   **Note**: The following properties are added by default in the output:
+   **Note:** The following properties are added by default in the output:
    - Start time of the time window.
    - End time of the time window.
    - Result time of the time window: The end of the time window minus one millisecond. This is an event time.
@@ -105,13 +105,13 @@ To configure a top-n node, complete the following steps:
 1. If a time window is already defined in a previous node, the time window is already prefilled with this time window, and the time window edition is disabled by default.
 For example, an aggregate node followed by a top-n node to "Calculate the 3 product types with the highest total sales per hour".
 
-   **Note**: You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
+   **Note:** You can still edit the time window by switching the toggle to **No**, but defining a new time window different from the one that is already defined in a previous node can cause unexpected side effects.
 
 1. To define a new time window:
    1. In the **Property to use for the start of the time window** field, select the property of the event that corresponds to an event time. This property is used internally to define the start of the first time window.
    1. In the **Time window duration** field, specify the duration of each time window.
 
-      **Note**: A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
+      **Note:** A time window is defined by a start time and an end time based on the event time of the event, not the wall-clock time.
       The start time and the end time values are timestamps. An event is assigned to a time window if its event time is between the start time and the end time of this time window. The top number calculation is performed for all events contained in every time window. The closure of a time window triggers the top number calculation when either of the following conditions are met:
       - An event having an event time value greater than the end of the windows that is processed by the node.
       - A timeout period elapses after an event source becomes idle. For more information about the source idleness time, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/connectors/table/kafka/#source-per-partition-watermarks){:target="_blank"}.
@@ -131,12 +131,12 @@ For example, an aggregate node followed by a top-n node to "Calculate the 3 prod
    - If you select **Descending**, you get the events with the top number of highest values of the selected property, for instance from 9 to 1. For strings, it would sort in the order Z to A.
 1. Optional: To group events by one or more properties over each time window, in the **Grouped by** field, select the property that you want to group by.  
 
-   **Note**: When you do this, the top-n condition is applied in each time window on a group of events that have the same property value. For example, "Get the 5 most valuable orders placed every day, grouped by customer identifier".
+   **Note:** When you do this, the top-n condition is applied in each time window on a group of events that have the same property value. For example, "Get the 5 most valuable orders placed every day, grouped by customer identifier".
 1. Optional: To select an additional group to group by, click **Group by another property**.
 1. Click **Next** to open the **Output properties** pane. You can manage the properties that are displayed in the output when you view the results after running the flow.
 1. Optional: To remove a property so that it is not displayed in the output, click the **Remove property** icon ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"}.
 
-   **Note**: The following properties are added by default in the output:
+   **Note:** The following properties are added by default in the output:
      - `topN`: A sequential number between 1 and N according to the ordering of the events within the time window.
      - Start time of the time window.
      - End time of the time window.

@@ -40,7 +40,7 @@ To manage geo-replication on the destination cluster by using the UI:
     - ![More options icon]({{ 'images' | relative_url }}/more_options.png "Three vertical dots for the more options icon at end of each row."){:height="30px" width="15px"} **More options > Stop replication**: To stop geo-replication from the origin cluster.\\
       **Important:** Stopping replication also removes the origin cluster from the list.
 
-**Note**: You cannot perform these actions on the destination cluster by using the CLI.
+**Note:** You cannot perform these actions on the destination cluster by using the CLI.
 
 ## From an origin cluster
 

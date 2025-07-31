@@ -196,7 +196,7 @@ Complete the following steps to mirror the images from your host to your offline
 
    Where `target-registry` is the internal container image registry.
 
-   **Note**: If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
+   **Note:** If you need to filter for a specific image group, add the parameter `--filter <image_group>` to this command.
 
    This generates the following files based on the target (internal) registry provided:
 
@@ -252,8 +252,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 4. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
 
-   **Important:**
-   Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
+   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
 
 5. Verify that the `ImageContentSourcePolicy` resource is created:
 
@@ -261,7 +260,7 @@ Ensure that all the images have been mirrored to the target registry by checking
    oc get imageContentSourcePolicy
    ```
 
-   **Important**: After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+   **Important:** After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
 
 6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
 

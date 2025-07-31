@@ -32,7 +32,7 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
     * [Consume](../../about/key-concepts/#consume) events
     * [Produce](../../about/key-concepts/#produce) events 
       
-    **Note**: An event source can be either a produce-enabled event source or a consume-enabled event source, not both. To make the same topic accessible for both produce and consume usage, you must add the topic as 2 separate event sources. For example, you can describe the topic as separate event sources, one for each type of interaction.  
+    **Note:** An event source can be either a produce-enabled event source or a consume-enabled event source, not both. To make the same topic accessible for both produce and consume usage, you must add the topic as 2 separate event sources. For example, you can describe the topic as separate event sources, one for each type of interaction.  
 1. Either select an existing cluster or create a new cluster from the **Cluster connection** step.
    - To select an existing cluster, locate and select the required cluster from the list of clusters.
    - To create a new cluster, click **Add new cluster**, and complete the following steps:  
@@ -43,7 +43,7 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
      c. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.  
 
-        **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
+        **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
 
      d. If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Add servers manually** to add a cluster and bypass the connection tests. For more information, see [Adding a cluster manually](../../administering/managing-clusters/#manual-cluster).  
 
@@ -51,21 +51,21 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
      f. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, enter your username and password, and click **Add cluster**.    
 
-      **Note**: After you click **Add cluster**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If everything is valid, or if credentials were not required, your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Cluster connection** step, where your new cluster appears, and can be selected.
+      **Note:** After you click **Add cluster**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If everything is valid, or if credentials were not required, your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Cluster connection** step, where your new cluster appears, and can be selected.
 
 1. Click **Next**.  
 
 1. Select topics to add from the list of topics available on this cluster. If no topics are displayed on the **Topic selection** page, you can define provisional topics by updating the **Topic** and **Event source name** fields in the table. To add more provisional topics, click **Define topic**.
 
-      **Note**: When you define a topic, it registers the topic with the {{site.data.reuse.eem_manager}} but does not create the topic on the Kafka cluster.
+      **Note:** When you define a topic, it registers the topic with the {{site.data.reuse.eem_manager}} but does not create the topic on the Kafka cluster.
 
 1. Optional: If a name is not added by default, enter a unique event source name for the topics selected.
 
-   **Note**: The event source name is the unique ID that identifies your topics.
+   **Note:** The event source name is the unique ID that identifies your topics.
       
 1. Click **Add Topic**.
 
-**Note**: If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
+**Note:** If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
 
 Your new event source appears in the **Manage topics** page with the **Options status** as 0 published. For more information about socializing your options, see [Publishing options](../publishing-options).
 

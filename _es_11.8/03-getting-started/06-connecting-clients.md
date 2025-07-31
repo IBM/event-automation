@@ -140,13 +140,7 @@ Where:
 - `<path-to-p12-keystore>` is the path to your PKCS12 keystore certificate.
 - `<p12-password>` is the PKCS12 certificate password.
 
-**Important:**
-
-If you are using a PEM certificate as the keystore type for a TLS connection, you will need to combine the `user.key` and `user.crt` files that were extracted from the downloaded .zip file when generating TLS credentials.
-
-The `user.key` and `user.crt` files need to be combined into a single file because the TLS connection requires a single certificate file that contains both the private key and the certificate.
-
-To combine the files, navigate to the location where you extracted the contents of the .zip file and run the following command in your terminal:
+**Important:** If you are using a PEM certificate as the keystore type for a TLS connection, you will need to combine the `user.key` and `user.crt` files that were extracted from the downloaded ZIP file when generating TLS credentials. The `user.key` and `user.crt` files need to be combined into a single file because the TLS connection requires a single certificate file that contains both the private key and the certificate. To combine the files, navigate to the location where you extracted the contents of the ZIP file and run the following command in your terminal:
 
 ```bash
 cat user.key user.crt > keystore.pem
@@ -232,7 +226,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 2. Click **Connect to this cluster** on the right.
 3. From the **Certificates** section, download the server certificate. If you are using a Java client, use the **PKCS12 certificate**, remembering to copy the truststore password presented during download. Otherwise, use the **PEM certificate**.
 
-**Note**: If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
+**Note:** If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.es_name}} CLI
 
@@ -257,7 +251,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 
    **Note:** You can optionally change the format to download a `PEM` Certificate if required.
 
-**Note**: If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
+**Note:** If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.openshift_short}} web console
 

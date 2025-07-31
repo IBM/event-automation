@@ -8,7 +8,7 @@ toc: true
 
 As part of your event-driven architecture solution, {{site.data.reuse.eem_name}} provides the capability to describe and catalog your Kafka topics as [event sources](../key-concepts/#event-source), and to grant access to application developers within the organization. Application developers can discover [event endpoints]((../key-concepts/#event-endpoint)) and configure their applications to access them through the {{site.data.reuse.egw}}. With {{site.data.reuse.eem_name}}, you can control access to any of your event endpoints, and also control what data can be produced to them or consumed from them.
 
-**Note**: ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later") The ability to produce events is only available in {{site.data.reuse.eem_name}} version 11.1.5 and later.
+**Note:** ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later") The ability to produce events is only available in {{site.data.reuse.eem_name}} version 11.1.5 and later.
 
 Access to the event endpoints is managed by the {{site.data.reuse.egw}}. The {{site.data.reuse.egw}} handles the incoming requests from applications to produce (write) events to a topic or to consume from a topic’s stream of events. The {{site.data.reuse.egw}} is independent of your Kafka clusters, making access control to topics possible without requiring any changes to your Kafka cluster configuration.
 

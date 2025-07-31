@@ -25,7 +25,7 @@ The following details are available for each configured gateway instance:
 
 The status of a gateway is derived through the last connection time. To provide access to event sources, gateways frequently contact the {{site.data.reuse.eem_manager}} instance they are registered with. If a gateway has not been active within this scan interval, it is moved to a warning state.  
 
-**Note**:
+**Note:**
 
 - ![Event Endpoint Management 11.4.2 icon]({{ 'images' | relative_url }}/11.4.2plus.svg "In Event Endpoint Management 11.4.2 and later.") If you are using {{site.data.reuse.eem_name}} version 11.4.2 or later, the following rules apply. 
     - For new gateways, the scan interval defaults to 30 seconds.

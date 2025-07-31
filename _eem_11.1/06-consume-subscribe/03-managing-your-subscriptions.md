@@ -20,7 +20,7 @@ The **Subscriptions** page displays all of your subscriptions, listing the name 
 
 Credentials are removed when the associated subscription is deleted. You can delete a subscription and remove its credentials by clicking **Delete** ![Delete icon]({{ 'images' | relative_url }}/trashcan.svg "Remove subscription icon."){:height="30px" width="15px"} in the row of the subscription.
 
-**Note**: After removing a subscription, the username and password for that subscription becomes invalid, and cannot be used again. You can create new subscriptions to the same event endpoint, but any new subscription to the same event endpoint is generated with a different username and password.
+**Note:** After removing a subscription, the username and password for that subscription becomes invalid, and cannot be used again. You can create new subscriptions to the same event endpoint, but any new subscription to the same event endpoint is generated with a different username and password.
 
 ### To remove a subscription
 

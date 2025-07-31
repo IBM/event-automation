@@ -164,7 +164,7 @@ To install a Docker {{site.data.reuse.egw}}, run the Docker command that you [ge
 
 ## Installing the IBM License Metric Tool for Docker gateways
 
-**Important**: This licensing tool is required for all {{site.data.reuse.eem_name}} deployments except usage-based ones.
+**Important:** This licensing tool is required for all {{site.data.reuse.eem_name}} deployments except usage-based ones.
 
 The IBM License Metric Tool checks usage and entitlement to the Docker {{site.data.reuse.egw}}. The operator-managed and Kubernetes Deployment {{site.data.reuse.egw}}s do not require this additional installation.
 

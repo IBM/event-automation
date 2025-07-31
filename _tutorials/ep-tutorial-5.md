@@ -10,7 +10,7 @@ order: 5
 
 ## Scenario
 
-The operations team needs to remove duplicate events from the stock movements topic, for processing by systems that cannot behave idempotently. 
+The operations team needs to remove duplicate events from the stock movements topic, for processing by systems that cannot behave idempotently.
 
 You can remove duplicate events by writing your Flink SQL with [custom nodes]({{ 'ep/nodes/custom' | relative_url}}).
 
@@ -28,9 +28,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.5.1
-- Event Endpoint Management 11.3.2
-- Event Processing 1.2.2
+- Event Streams 11.8.1
+- Event Endpoint Management 11.6.2
+- Event Processing 1.4.2
 
 ## Instructions
 
@@ -40,7 +40,7 @@ For this scenario, you are processing an existing stream of events. You will sta
 
 1. Go to the **{{site.data.reuse.eem_name}}** catalog.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-catalog.png "screenshot of the Event Endpoint Management catalog")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-1a.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-1a.png "screenshot of the Event Endpoint Management catalog")
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
@@ -191,7 +191,7 @@ The SQL that you [added](#step-5--deduplicate-events-with-sql-processor-node) in
        `product`                      STRING,
        `quantity`                     BIGINT,
        `updatetime`                   TIMESTAMP(9),
-       `event_time`                   TIMESTAMP(6)
+       `event_time`                   TIMESTAMP_LTZ(6)
      )
      ```
 
@@ -207,7 +207,7 @@ The SQL that you [added](#step-5--deduplicate-events-with-sql-processor-node) in
         `product`                      STRING,
         `quantity`                     BIGINT,
         `updatetime`                   TIMESTAMP(9),
-        `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp'
+        `event_time`                   TIMESTAMP_LTZ(6) METADATA FROM 'timestamp'
      )
      ```
 
@@ -223,7 +223,7 @@ The SQL that you [added](#step-5--deduplicate-events-with-sql-processor-node) in
         `product`                      STRING,
         `quantity`                     BIGINT,
         `updatetime`                   TIMESTAMP(9),
-        `event_time`                   TIMESTAMP(6) METADATA FROM 'timestamp',
+        `event_time`                   TIMESTAMP_LTZ(6) METADATA FROM 'timestamp',
         PRIMARY KEY (`movementid`) NOT ENFORCED
      )
      ```

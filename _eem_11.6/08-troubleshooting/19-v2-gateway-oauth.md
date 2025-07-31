@@ -8,7 +8,7 @@ toc: true
 
 ## Symptoms
 
-After upgrading to {{site.data.reuse.eem_name}} 11.6.2, some or all {{site.data.reuse.egw}}s fail to forward events to and from your Kafka clusters. The {{{site.data.reuse.eem_name}} UI displays a warning message.
+After upgrading to {{site.data.reuse.eem_name}} 11.6.2, some or all {{site.data.reuse.egw}}s fail to forward events to and from your Kafka clusters. The {{site.data.reuse.eem_name}} UI displays a warning message.
 
 <!-- DRAFT COMMENT: Can we get exact text of the warning and error messages UI users and kafka clients would see? So that a search on this text would return this page. -->
 

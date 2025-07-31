@@ -97,7 +97,7 @@ The following table describes the UI panels and the permissions required to acce
 | `cloudctl es broker-config` <br/>`cloudctl es cluster` <br/>`cloudctl es cluster-config` | `cluster.describeConfigs` |
 | `cloudctl es certificates`| No permissions required |
 
-**Note** The `cloudctl es kafka-user` commands can only be run when the CLI has access to Kubernetes resources, which can be provided by running `cloudctl login` and does not require specific SCRAM authentication permissions.
+**Note:** The `cloudctl es kafka-user` commands can only be run when the CLI has access to Kubernetes resources, which can be provided by running `cloudctl login` and does not require specific SCRAM authentication permissions.
 
 
 The following table describes the mapping of these permissions to the Kafka user ACL definitions.

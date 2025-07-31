@@ -27,7 +27,7 @@ The following details are available for each configured gateway instance:
 
 The status of a gateway is derived through the last connection time. To provide access to event sources, gateways frequently contact the {{site.data.reuse.eem_manager}} instance that they are registered with. If a gateway does not contact the {{site.data.reuse.eem_manager}} instance within the scan interval, a potential problem might exist with the gateway or the network.  
 
-**Note**:
+**Note:**
 - For gateways created in {{site.data.reuse.eem_name}} 11.4.2 and later, the scan interval is 30 seconds and after three missed contact attempts, the gateway is moved to a warning state.
 - For gateways created in {{site.data.reuse.eem_name}} 11.4.1 and earlier, the gateway shows a warning state if it has not contacted the {{site.data.reuse.eem_name}} instance within the last 15 minutes.
 

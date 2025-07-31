@@ -207,7 +207,7 @@ Before you can install the required operator versions and use them to create ins
      oc ibm-pak generate mirror-manifests ibm-eventprocessing icr.io
      ```
 
-   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+   **Note:** To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
    The previous command generates the following files based on the target internal registry provided:
 

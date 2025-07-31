@@ -151,7 +151,7 @@ Use the {{site.data.reuse.es_name}} CLI to generate and download the `KafkaConne
    ```
    cloudctl es connector-config-mq-source --mq-queue-manager="QM1" --mq-connection-name-list="localhost(1414)" --mq-channel="MYSVRCONN" --mq-queue="MYQSOURCE" --topic="TSOURCE" --file="mq-source" --format yaml
    ```
-   **Note**: Omitting the `--format yaml` flag will generate a `mq-source.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-source.json` file which can be used for distributed mode outside the {{site.data.reuse.openshift_short}}.
+   **Note:** Omitting the `--format yaml` flag will generate a `mq-source.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-source.json` file which can be used for distributed mode outside the {{site.data.reuse.openshift_short}}.
 
 3. Change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 

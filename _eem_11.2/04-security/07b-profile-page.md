@@ -26,7 +26,7 @@ If you installed {{site.data.reuse.eem_name}} on a Kubernetes platform other tha
 
 By default, the type of exposure for the `admin` endpoint  is `external`, which makes the Admin API available from outside the cluster. If you want to limit access to the API only from within the cluster's internal network, set type as `internal`.
 
-**Note**: To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
+**Note:** To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
 - If your OIDC provider supports the [offline access scope](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess){:target="_blank"}, you can retrieve authorizations for a user when the user is not logged into the UI. To use this feature, ensure `offline_access` is added to the  [additional scopes configuration](../../reference/api-reference/#resource-oidcconfig).
 - If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you add the user to the role mappings file. For information about adding the `offline_access` scope, see [setting up authorization with a custom role identifier](../managing-access/#setting-up-oidc-based-authorization-with-a-custom-role-identifier).
 

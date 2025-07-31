@@ -51,9 +51,9 @@ The following table provides an overview of the Flink sample configurations and 
 
 | Sample | CPU limit per Task Manager | Memory per Task Manager | Slots per Task Manager | Parallelism | Max. number of flows per Task Manager | Job Manager High Availability | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
 |--------|---------------------------|-------------------------|------------------------|-------------|---------------------------------------|-------------------------------|-----|
-| Quick Start | 0.5 | 2GB | 4 | 1 | 2 | No | 1 |
-| Minimal Production | 1 | 2GB | 10 | 1 | 5 | Yes (but with 1 replica) | 2 |
-| Production | 2 | 4GB | 10 | 1 | 5 | Yes | 3 |
+| Quick Start | 0.5 | 2GB | 4 | 1 | ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") 4 <br> <br> 2 | No | 1 |
+| Minimal Production | 1 | 2GB | 10 | 1 | ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") 10 <br> <br> 5 | Yes (but with 1 replica) | 2 |
+| Production | 2 | 4GB | 10 | 1 | ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") 10 <br> <br> 5 | Yes | 3 |
 | Production - Flink Application Cluster | 2 | 4GB | 2 | Typically > 1 but set to 1 in the sample | 1 | Yes | 3 |
 
 **Important:**
@@ -68,8 +68,12 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 
 Points to consider for resource requirements:
 
-- Both the Minimal Production and Production [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples are preconfigured with 10 Task Manager slots, allowing for a maximum of 5 {{site.data.reuse.ep_name}}-authored flows to run at the same time on one Task Manager (one Java Virtual Machine). 
+- ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") In Event Processing 1.4.2 and later, both the Minimal Production and Production [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples are preconfigured with 10 Task Manager slots, allowing up to 10 Event Processing-authored flows to run at the same time on one Task Manager (one Java Virtual Machine).
   
+  **Note:** Each flow generates a new Flink job, which requires at least one Task Manager slot. Task Manager (TM) pods are scaled up and down horizontally on demand. A new TM replica is created when a job is deployed that exceeds the current slot capacity across all the currently running TMs, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the `FlinkDeployment` custom resource.
+
+- In {{site.data.reuse.ep_name}} versions 1.4.1 and earlier, each flow generates 2 Flink jobs, instead of 1 Flink job in 1.4.2 and later. Both the Minimal Production and Production [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} samples are preconfigured with 10 Task Manager slots, allowing for a maximum of 5 {{site.data.reuse.ep_name}}-authored flows to run at the same time on one Task Manager (one Java Virtual Machine).
+
   **Note:** Each flow generates 2 Flink jobs, and each job is allocated its own Task Manager slot. If you have 6 or more flows, a new Task Manager will be automatically provisioned. With all session cluster configurations, horizontal scaling can happen, constrained only by resource availability. A Task Manager is terminated when all its flows are stopped in the {{site.data.reuse.ep_name}} flow authoring UI, preventing unnecessary allocation of resources.
 
 - All jobs in the same Task Manager compete for the CPU capacity of the Task Manager as defined in the sample. The amount of memory defined for a Task Manager is equally pre-allocated to each Task Manager slot. 
@@ -218,14 +222,14 @@ You either need to create a [persistent volume](https://kubernetes.io/docs/conce
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
-- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/understanding-persistent-storage){:target="_blank"}.
+- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/understanding-persistent-storage){:target="_blank"}.
 
 - For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the Cluster Administrator role for creating persistent volumes or a storage class.
 
 - If these persistent volumes are to be created manually, this must be done by the system administrator before installing {{site.data.reuse.ep_name}}. These will then be claimed from a central pool when the {{site.data.reuse.ep_name}} instance is deployed. The installation will then claim a volume from this pool.
-- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.ep_name}}.
+- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.ep_name}}.
 
 **Important:**
 

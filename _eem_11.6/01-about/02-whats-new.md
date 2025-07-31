@@ -23,6 +23,10 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
 In {{site.data.reuse.eem_name}} release 11.6.2 and later, you can configure the {{site.data.reuse.eem_manager}} to export OpenTelemetry trace information about records processed. For more information, see [Tracing API calls in the {{site.data.reuse.eem_manager}}](../../installing/configuring/#tracing-api-calls-in-the-event-manager).
 
+### Support for {{site.data.reuse.openshift}} 4.19
+
+{{site.data.reuse.eem_name}} release 11.6.2 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.19.
+
 ### Security and bug fixes
 
 {{site.data.reuse.eem_name}} release 11.6.2 contains security and bug fixes.

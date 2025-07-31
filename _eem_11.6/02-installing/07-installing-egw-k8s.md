@@ -40,7 +40,7 @@ Decide on hostnames for your {{site.data.reuse.egw}}, identify the DNS domain of
     - `grp1-gwy1-3.mydomain.com`
 
 - **External access:**  How is your gateway to be exposed externally? The URL and configuration of the TLS certificate of your gateway endpoint depend on how the gateway endpoint is exposed. On OpenShift you must configure [OpenShift Routes]( 
-https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/networking/configuring-routes#nw-creating-a-route_route-configuration) for external access.
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/networking/configuring-routes#nw-creating-a-route_route-configuration) for external access.
 
 
 ## Creating TLS certificates for the {{site.data.reuse.egw}}
@@ -48,7 +48,7 @@ https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/
 
 The best way to create the TLS certificates to secure your {{site.data.reuse.egw}} endpoint is to use cert-manager. Cert-manager creates TLS certificates based on a YAML definition, stores them in Kubernetes secrets, and automatically renews them before they expire. Cert-manager supports integration with external public signers, and can also create self-signed certificates.
 
-On Kubernetes, install the cert-manager [community operator](https://cert-manager.io/docs/){:target="_blank"}. Cert-manager is included on Red Hat OpenShift: [Red Hat OpenShift cert-manager](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-securing-routes){:target="_blank"}. 
+On Kubernetes, install the cert-manager [community operator](https://cert-manager.io/docs/){:target="_blank"}. Cert-manager is included on Red Hat OpenShift: [Red Hat OpenShift cert-manager](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-securing-routes){:target="_blank"}. 
 
 
 ### Creating a self-signed certificate

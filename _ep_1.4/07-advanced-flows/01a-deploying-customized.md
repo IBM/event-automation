@@ -15,7 +15,6 @@ Benefits of customized Flink jobs include:
 * Can be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 * Support for the automatic upgrade of your {{site.data.reuse.ibm_flink_operator}} version.
   
-  **Note:** Automatic upgrade is not supported if the `FlinkDeployment` custom resource uses an extension of the IBM Flink image. In this case, the extension of the image must be rebuilt to use the upgraded IBM Flink image.
 
 **Important:** This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
@@ -140,31 +139,85 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
      --from-file=config.yaml=./config.yaml
    ```
 
-   Where `<k8s_secret_name` must match the name specified for the secret in the `FlinkDeployment`, for instance:
+   For example, to create a secret named `application-cluster-prod`:
 
-   ```yaml
-   volumes:
-     - name: flow-volume
-       secret:
-         secretName: application-cluster-prod
+   ```shell
+   kubectl create secret generic application-cluster-prod \
+     --from-file=flow.json=./flow.json \
+     --from-file=config.yaml=./config.yaml
    ```
+
+   Ensure that you make a note of the secret name that you provide in the `<k8s_secret_name>` field to use in the next step.
 
    A simple way for allowing the coexistence of multiple Flink instances in the same namespace is to use for the Kubernetes secret the same name as for the Flink instance. This way, the mapping between Flink instances and Kubernetes secrets is clear, and there is no clash.
 
 1. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
-   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a Flink custom resource in [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"}, configured with persistent storage. If you prefer to not use a provided sample, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
+   a. Choose the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample, or a Flink custom resource in [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"}, configured with persistent storage. 
 
-   ```yaml
-   spec:
-     flinkConfiguration:
-       table.exec.source.idle-timeout: '30 s'
-   ```
+
+   If you prefer to not use a provided sample, add the following parameters:
+
+   - Set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all the provided samples.
+
+     ```yaml
+     spec:
+       flinkConfiguration:
+         table.exec.source.idle-timeout: '30 s'
+     ```
   
-   For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
+      For more information about `table.exec.source.idle-timeout`, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/config/#table-exec-source-idle-timeout){:target="_blank"}.
+
+   - Add the following `volume` declaration, setting the `secret.secretName` field to the secret name that you created in step 3 earlier, for example:
+
+     ```yaml
+     volumes:
+       - name: flow-volume
+         secret:
+           secretName: application-cluster-prod
+     ```
+
+   - Add the volume mount declaration:
+
+     ```yaml
+     spec:
+       # [...]
+       podTemplate:
+        # [...]
+         spec:
+           # [...]
+           containers:
+             - name: flink-main-container
+               volumeMounts:
+                 # [...]
+                 - name: flow-volume
+                   mountPath: /opt/flink/ibm-flow/flow.json
+                   subPath: flow.json
+                   readOnly: true
+                 - name: flow-volume
+                   mountPath: /opt/flink/ibm-flow/config.yaml
+                   subPath: config.yaml
+                   readOnly: true
+     ```
+
+   - Configure the `spec.job` field:
+
+     ```yaml
+     spec:
+       # [...]
+       job:
+         jarURI: 'local:///opt/flink/ibm-flow/ibm-ep-flow-deployer.jar'
+         args: []
+         parallelism: 1
+         state: running
+         upgradeMode: savepoint
+         allowNonRestoredState: true
+     ```
 
    b. Prepare the `FlinkDeployment` custom resource as described in step 1 of [installing a Flink instance](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
 
+
+1. Optional: If your flow connects to databases or API servers, ensure that you have [configured the SSL connection](#enable-ssl-connection-for-your-database-and-api-server).
 
 1. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#Installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#Installing-a-flink-instance-by-using-the-cli).
 
@@ -198,7 +251,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 
    Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target, and `<path-of-the-udf-jar>` is the path of the UDF jar, for instance `/udfproject/target/udf.jar`.
 
-3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 4. Specify this image in the `spec.image` field of the Flink custom resource.
 
@@ -301,11 +354,11 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery).
 
-## Enable SSL connection for your database
+## Enable SSL connection for your database and API server
 
-To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection with the database as follows:
+To securely connect Flink jobs to an API server or a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection as follows:
 
-1. Ensure you [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database to the truststore and then [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) with the truststore.
+1. Ensure that you have [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database or API server to the truststore, and [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) that includes the truststore.
 
 2. Edit the `FlinkDeployment` custom resource.
 
@@ -357,7 +410,7 @@ To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracl
    kubectl apply -f flinkdeployment_demo.yaml
    ```
 
-A secure SSL connection is enabled between Flink and the database.
+A secure SSL connection is enabled between Flink and your API server or the database.
 
 
 ## Troubleshooting

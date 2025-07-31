@@ -26,7 +26,7 @@ To add a cluster, complete the following steps.
 1. Enter a bootstrap server URL for the Kafka cluster. 
 1. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
 
-    **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
+    **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
 1. Optional: If a **No connection** warning message is displayed, follow the steps to [add your server manually](#manual-cluster).
 1. ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Optional: If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
@@ -64,17 +64,17 @@ To edit the details of a cluster, complete the following steps.
 
    The **Cluster information** screen is displayed with your existing cluster name. You can edit the cluster name and provide a new name, or leave it as it is.
 
-   **Note**: The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
+   **Note:** The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
 
 2. Click **Next**. The existing bootstrap servers for your cluster are displayed. Amend the bootstrap server URLs for the Kafka cluster. 
  
    Optional: You can click **Add URL** to add one or more additional bootstrap servers, then click **Next**.
 
-    **Note**: When you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you will be asked to confirm if you accept the certificates found. If you do, select the **Accept all certificates** checkbox. Even if you have previously accepted these certificates, you will need to accept them again, and click **Next**.
+    **Note:** When you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you will be asked to confirm if you accept the certificates found. If you do, select the **Accept all certificates** checkbox. Even if you have previously accepted these certificates, you will need to accept them again, and click **Next**.
 
 3. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you will be prompted to provide the credential details. If required, select the **Security protocol** to enter your username and password, and click **Save**.
 
-    **Note**: After clicking **Save**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If the credentials are valid, or credentials were not required, your cluster will be edited and saved accordingly.
+    **Note:** After clicking **Save**, {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If the credentials are valid, or credentials were not required, your cluster will be edited and saved accordingly.
 
 
 ## ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") Editing a cluster in {{site.data.reuse.eem_name}} 11.4.1 and later
@@ -85,7 +85,7 @@ If you're using {{site.data.reuse.eem_name}} 11.4.1 and later, complete the foll
 1. Locate the cluster to be edited in the **Manage clusters** page table and click the edit icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Edit the cluster name icon."){:height="30px" width="15px"}
 1. The **Cluster information** screen is displayed with your existing cluster name. You can edit the cluster name and provide a new name, or leave it as it is.
 
-   **Note**: The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
+   **Note:** The cluster name must not be the same as the name of another cluster. The maximum length of a cluster name is 200 characters.
 
 1. Click **Save** to exit the dialog or click **Server** to edit the server details. 
 1. If you clicked **Server**, the existing bootstrap servers for your cluster are displayed. If required, amend the bootstrap server URLs for the Kafka cluster. 

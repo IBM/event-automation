@@ -151,7 +151,7 @@ To configure {{site.data.reuse.eem_manager}} to use your custom CA certificate, 
 <!-- COMMENT: No, 'tls.crt=ca.crt' is not a mistake: "cert-manager will create CA certs with both ca.crt and tls.crt and they will have the same value. It they have different values then that will not be a CA cert." -->
 
 3. Edit your {{site.data.reuse.eem_manager}} custom resource and set `spec.manager.tls.caSecretName` to `custom-ca-secret`.
-4. If you are updating an existing {{site.data.reuse.eem_name}} instance, then follow these extra steps:
+4. {: #custom-ca-recreate-leaf}If you are updating an existing {{site.data.reuse.eem_name}} instance, then follow these extra steps: <!-- IMPORTANT: This step is referenced in troubleshooting -->
 
    a. Regenerate the endpoint server certificate so that it is re-created as signed-by `custom-ca-secret`:
 
@@ -164,7 +164,11 @@ To configure {{site.data.reuse.eem_manager}} to use your custom CA certificate, 
    kubectl -n <namespace> delete <manager pod name>
    ```
 
-   c. If your {{site.data.reuse.eem_manager}} instance has any registered {{site.data.reuse.egw}}s that are in a different namespace or environment, then update the {{site.data.reuse.egw}} custom resource with the new {{site.data.reuse.eem_manager}} CA certificate. <!-- DRAFT COMMENT: precise steps to be tested before adding here. -->
+   c. If your {{site.data.reuse.eem_manager}} instance has any registered {{site.data.reuse.egw}}s, then update the {{site.data.reuse.egw}} with the new {{site.data.reuse.eem_manager}} CA certificate. The {{site.data.reuse.eem_manager}} CA certificate is stored in the gateway's `BACKEND_CA_CERTIFICATES` environment variable. Where `BACKEND_CA_CERTIFICATES` is set depends on your gateway deployment type:
+   
+   - Operator-managed gateway: `spec.template.pod.spec.containers.env[BACKEND_CA_CERTIFICATES]`.
+   - Kubernetes Deployment gateway: `spec.template.spec.containers.env[BACKEND_CA_CERTIFICATES]`.
+   - Docker gateway: `-e BACKEND_CA_CERTIFICATES`.
 
 
 ## Custom server certificates for {{site.data.reuse.eem_manager}}
@@ -220,67 +224,19 @@ To configure a custom {{site.data.reuse.eem_manager}} server certificate, follow
    kubectl -n <namespace> create secret generic custom-cert-secret --from-file=ca.crt=ca.crt --from-file=tls.crt=tls.crt --from-file=tls.key=tls.key
    ```
 
-3. Edit your {{site.data.reuse.eem_manager}} custom resource and set `spec.manager.tls.secretName` to `custom-cert-secret`. If you are updating an existing deployment, then the {{site.data.reuse.eem_manager}} pod restarts. If your {{site.data.reuse.eem_manager}} instance has any registered {{site.data.reuse.egw}}s, then update the {{site.data.reuse.egw}} custom resource with the new {{site.data.reuse.eem_manager}} CA certificate. 
+3. Edit your {{site.data.reuse.eem_manager}} custom resource and set `spec.manager.tls.secretName` to `custom-cert-secret`. If you are updating an existing deployment, then the {{site.data.reuse.eem_manager}} pod restarts. 
 
-<!-- DRAFT COMMENT: precise steps to be tested before adding here. I think these is where mgr CA is set:
-
-k8s: spec.template.spec.containers[egw].env[BACKEND_CA_CERTIFICATES].value: "-----BEGIN CERTIFICATE-----\nMIIDbDCCAlSgAw..."
-
-Op-man: spec.template.pod.spec.containers[egw].env[BACKEND_CA_CERTIFICATES].value: "-----BEGIN CERTIFICATE-----\nMIIDbDCCAlSgAw..."
-
-Docker:   -e BACKEND_CA_CERTIFICATES="-----BEGIN CERTIFICATE-----\nMIIDbDCCAlSgAwIBAgI..."
-
--->
+4. If your {{site.data.reuse.eem_manager}} instance has any registered {{site.data.reuse.egw}}s, then update the {{site.data.reuse.egw}} with the new {{site.data.reuse.eem_manager}} CA certificate. The {{site.data.reuse.eem_manager}} CA certificate is stored in the gateway's `BACKEND_CA_CERTIFICATES` environment variable. Where `BACKEND_CA_CERTIFICATES` is set depends on your gateway deployment type:
+   
+   - Operator-managed gateway: `spec.template.pod.spec.containers.env[BACKEND_CA_CERTIFICATES]`.
+   - Kubernetes Deployment gateway: `spec.template.spec.containers.env[BACKEND_CA_CERTIFICATES]`.
+   - Docker gateway: `-e BACKEND_CA_CERTIFICATES`. 
 
 
 ## Renewing certificates
 {: #renew-certs}
 
 The cert-manager automatically renews the certificates that it manages when they are approaching their expiration. Any custom certificates that you create you must monitor and renew manually. 
-
-<!-- DRAFT COMMENT: Removing this section on gateway certs temporarily. I think it needs updating to specifically talk about about manager CA cert, as this is the cert that the gateway will care about. 
-
-### Renewing {{site.data.reuse.egw}} certificates
-{: #renew-gateway-certs}
-
-If you update your {{site.data.reuse.eem_manager}} endpoint certificate, then you must also update the {{site.data.reuse.egw}} certificates for all gateways that are registered with the {{site.data.reuse.eem_manager}} instance. Communication between the {{site.data.reuse.egw}} and Manager fails if the certificates are mismatched.
-
-
-#### Renewing operator-managed and Kubernetes Deployment {{site.data.reuse.egw}} certificates
-{: #renew-gateway-k8s}
-
-If your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} use the same cert-manager instance, then the {{site.data.reuse.egw}} picks up the updated certificate automatically.
-
-If your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} use different cert-manager instances, then you must copy the updated certificate to the {{site.data.reuse.egw}} environment. Copy the contents of the updated secret that contains your new certificate:
-
-1. In the {{site.data.reuse.eem_manager}} environment, export the secret that contains the certificate to a YAML file: 
-
-   ```shell
-   kubectl -n <namespace> get secret <secret-name> -o yaml > <secret-name>.yaml
-   ```
-
-2. Edit the `<secret-name>.yaml` file to remove `labels`, `annotations`, `creationTimestamp`, `resourceVersion`, `uid`, and `selfLink`.
-3. Copy the `<secret-name>.yaml` file to your {{site.data.reuse.egw}} environment.
-4. Apply the `<secret-name>.yaml` on your {{site.data.reuse.egw}} environment:
-
-   ```shell
-   kubectl -n <namespace> apply -f <secret-name>.yaml
-   ```
-
-If you changed the secret names, then you must update the `EventGateway` custom resource or Kubernetes Deployment with the new names in the `spec.tls` section.
-
-#### Renewing Docker {{site.data.reuse.egw}} certificates
-{: #renew-docker}
-
-For each secret that you updated, you must update the corresponding certificate PEM files in your Docker environment.
-
-If you change the file name or path of your PEM files, then you must restart the Docker gateway with the updated file name in the Docker `run` arguments, for example: 
-
-```shell
-docker run -v "path:/certs/certname.pem" -v "path:/certs/keyname.key"
-```
-
--->
 
 ## Example OpenSSL commands to create TLS certificate files
 {: #example-openssl}

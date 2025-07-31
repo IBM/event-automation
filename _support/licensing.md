@@ -160,9 +160,9 @@ By default, every License Service audit report presents data from the previous 9
 ### Installing the service
 
 You must install and run the License Service on all clusters where you install {{site.data.reuse.ea_short}} capabilities. Ensure you install the License Service as follows depending on your environment and license:
-- If you are running {{site.data.reuse.ea_short}} capabilties as stand-alone containerized software, see the information about [installing the service for stand-alone software](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=service-installing-license){:target="_blank"}.
+- If you are running {{site.data.reuse.ea_short}} capabilties as stand-alone containerized software, see the information about [installing the service for stand-alone software](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.13.0?topic=service-installing-license){:target="_blank"}.
 - If you are running {{site.data.reuse.ea_short}} capabilties as part of {{site.data.reuse.cp4i}} on {{site.data.reuse.openshift_short}} with {{site.data.reuse.icpfs}}, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.4?topic=administering-deploying-license-service){:target="_blank"}.
-- If you are not on OpenShift and do not have {{site.data.reuse.fs}}, see the [{{site.data.reuse.icpfs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=service-installing-license-kubernetes-cluster){:target="_blank"}.
+- If you are not on OpenShift and do not have {{site.data.reuse.fs}}, see the [{{site.data.reuse.icpfs}} documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.13.0?topic=registry-installing-license-service-kubernetes-cluster){:target="_blank"}.
 
 #### Additional steps for usage-based license
 
@@ -193,14 +193,14 @@ To copy the secrets:
 
 ### Generating audit reports
 
-License usage reports can be generated on a per cluster basis as described in the [foundational services documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=service-license-usage-metering-reporting){:target="_blank"}.
+License usage reports can be generated on a per cluster basis as described in the [foundational services documentation](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.13.0?topic=service-license-usage-metering-reporting){:target="_blank"}.
 
 It is recommended to generate reports on a monthly basis and adhere to the requirements for container licensing as described on [passport advantage](https://www.ibm.com/software/passportadvantage/containerlicenses.html){:target="_blank"}.
 
 For more information about container licensing, see the [container licensing FAQs](https://www.ibm.com/software/passportadvantage/containerfaqov.html){:target="_blank"}.
 
 
-The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=authentication-license-service-api-token#obtaining){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.3?topic=pcfls-apis){:target="_blank"} for retrieving the license usage data.
+The license usage information can be viewed by [obtaining an API token](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.13.0?topic=authentication-license-service-api-token#obtaining){:target="_blank"} that is required to make the API calls to retrieve license usage data, and then accessing provided [APIs](https://www.ibm.com/docs/en/cloud-paks/foundational-services/4.13.0?topic=pcfls-apis){:target="_blank"} for retrieving the license usage data.
 
 There are 3 APIs that can be viewed:
 1. **Snapshot (last 30 days)** This provides audit level information in a .zip file and is a superset of the other reports.

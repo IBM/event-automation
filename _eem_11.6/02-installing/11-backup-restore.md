@@ -6,9 +6,9 @@ slug: backup-restore
 toc: true
 ---
 
-To back up and restore your {{site.data.reuse.eem_manager}} and operator-managed {{site.data.reuse.egw}} instances, you can use a backup tool such as [Velero](https://velero.io/){:target="_blank"}. In addition, consider using a [storage class](../prerequisites#data-storage-requirements) that supports the [Container Storage Interface (CSI) snapshotting](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/using-container-storage-interface-csi#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots){:target="_blank"} (for example, the [Ceph File System](https://docs.ceph.com/en/latest/cephfs/){:target="_blank"}).
+To back up and restore your {{site.data.reuse.eem_manager}} and operator-managed {{site.data.reuse.egw}} instances, you can use a backup tool such as [Velero](https://velero.io/){:target="_blank"}. In addition, consider using a [storage class](../prerequisites#data-storage-requirements) that supports the [Container Storage Interface (CSI) snapshotting](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/using-container-storage-interface-csi#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots){:target="_blank"} (for example, the [Ceph File System](https://docs.ceph.com/en/latest/cephfs/){:target="_blank"}).
 
-If you are running on {{site.data.reuse.openshift}}, the [OADP operator](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/backup_and_restore/backup-restore-overview#application-backup-restore-operations-overview){:target="_blank"} uses Velero and simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.  
+If you are running on {{site.data.reuse.openshift}}, the [OADP operator](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/backup_and_restore/backup-restore-overview#application-backup-restore-operations-overview){:target="_blank"} uses Velero and simplifies the installation of the backup software on your cluster, and the management of your backups and restorations.  
 
 On other Kubernetes platforms, Velero provides a Helm chart that you can use to install the software or a command-line tool.
 
@@ -25,11 +25,11 @@ To back up and restore the {{site.data.reuse.eem_manager}} and operator-managed 
   - Secrets containing certificates that are associated with the related instances.
   - The {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} resource configurations.
 
-This means that your backup storage location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions available to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/backup_and_restore/oadp-application-backup-and-restore#oadp-features-plugins){:target="_blank"} or [Velero](https://velero.io/plugins/){:target="_blank"} documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
+This means that your backup storage location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions available to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/backup_and_restore/oadp-application-backup-and-restore#oadp-features-plugins){:target="_blank"} or [Velero](https://velero.io/plugins/){:target="_blank"} documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
 
 In your CSI-supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured.
 
-If you are on the {{site.data.reuse.openshift_short}} and use the OADP operator to back up your instances, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing the OADP operator, see the [installing OADP documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/backup_and_restore/oadp-application-backup-and-restore#about-installing-oadp){:target="_blank"}. You can also find more links about configuring the `DataProtectionApplication` custom resource for different backup locations in the installing OADP documentation. An example `DataProtectionApplication` configured against a [quickstart minio instance](https://velero.io/docs/main/contributions/minio/#set-up-server){:target="_blank"} would look as follows:
+If you are on the {{site.data.reuse.openshift_short}} and use the OADP operator to back up your instances, you must specify backup and snapshot configurations in the `DataProtectionApplication` custom resource. For more information about installing the OADP operator, see the [installing OADP documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/backup_and_restore/oadp-application-backup-and-restore#about-installing-oadp){:target="_blank"}. You can also find more links about configuring the `DataProtectionApplication` custom resource for different backup locations in the installing OADP documentation. An example `DataProtectionApplication` configured against a [quickstart minio instance](https://velero.io/docs/main/contributions/minio/#set-up-server){:target="_blank"} would look as follows:
 ```yaml
 apiVersion: oadp.openshift.io/v1alpha1
 kind: DataProtectionApplication
@@ -138,7 +138,7 @@ When you have configured the Velero instance, complete the following steps to cr
 
 5. If you have gateways that are not managed by your {{site.data.reuse.eem_name}} operator, such as Docker container or Kubernetes Deployment gateways, your backup for them is the configuration that you [downloaded](../installing/install-gateway) from the {{site.data.reuse.eem_name}} UI.
 
-If you have problems creating a backup, see the [troubleshooting information for OADP](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/backup_and_restore/oadp-application-backup-and-restore#troubleshooting){:target="_blank"}.
+If you have problems creating a backup, see the [troubleshooting information for OADP](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/backup_and_restore/oadp-application-backup-and-restore#troubleshooting){:target="_blank"}.
 
 
 ### Backing up Docker {{site.data.reuse.egw}} instances

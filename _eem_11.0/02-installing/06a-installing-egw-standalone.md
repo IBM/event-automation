@@ -97,7 +97,7 @@ When the {{site.data.reuse.egw}} starts, it connects to the specified {{site.dat
 
 ## Installing the IBM License Metric Tool
 
-**Important**: This licensing tool is required for all Event Endpoint Management deployments except usage-based ones.
+**Important:** This licensing tool is required for all Event Endpoint Management deployments except usage-based ones.
 
 The IBM License Metric Tool checks usage and entitlement to the stand-alone {{site.data.reuse.egw}}.
 

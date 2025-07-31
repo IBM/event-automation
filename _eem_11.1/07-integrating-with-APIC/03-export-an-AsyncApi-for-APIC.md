@@ -18,7 +18,7 @@ To export an AsyncAPI for your topic, complete the following steps.
 2. Click the **Options** tab, then click ![Export icon]({{ 'images' | relative_url }}/export.svg "The export icon."){:height="30px" width="15px"} **Export**. A dialog is displayed.
 3. Select **For {{site.data.reuse.apic_long}} (contains credentials)** as the export format, then click **Export**.
 
-**Note**: You cannot export options that contain approval control to {{site.data.reuse.apic_short}}. 
+**Note:** You cannot export options that contain approval control to {{site.data.reuse.apic_short}}. 
 
 An AsyncAPI document that describes the topic is downloaded as a YAML file.
 

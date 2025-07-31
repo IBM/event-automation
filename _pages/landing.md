@@ -40,6 +40,7 @@ sections:
       <li>Wildcard redaction in an array of objects or simple types</li>
       <li>OAuth Kafka cluster support</li>
       <li>API call tracing through the Event Manager</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.19</li>
       <li>Documentation enhancements</li>
       <li>Security and bug fixes</li>
     </ul>

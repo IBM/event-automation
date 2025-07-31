@@ -3,6 +3,7 @@ order: 1
 excerpt: The Apicurio Avro converter helps convert data from Apache Kafka Connect's format to the Avro serialized format.
 forID: converter-apicurio-avro
 categories: [converters]
+connectorTitle: "Apicurio Avro"
 ---
 
 The Apicurio Avro converter is a tool that enables serialization and deserialization of data in Avro format, specifically designed for use with Kafka and Kafka Connect. Avro is a widely used data serialization system that helps ensure data is structured and validated properly when working with Kafka and Kafka Connect, where Avro schemas are commonly used.

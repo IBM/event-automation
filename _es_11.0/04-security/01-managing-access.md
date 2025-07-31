@@ -43,7 +43,7 @@ Any groups or users added to an IAM team with the `Cluster Administrator` role c
 
 If Kafka authorization is enabled by setting `spec.strimziOverrides.kafka.authorization` to `type: runas`, operations by IAM users are are automatically mapped to a Kafka principal with authorization for the required Kafka resources.
 
-**Note** If you are using OAuth authorization in Kafka, ensure you add all admin user IDs to the `superUsers` property in the Kafka authorization configuration within the `EventStreams` custom resource, as described in [enabling OAuth authorization](../../installing/configuring/#enable-oauth-authorization).
+**Note:** If you are using OAuth authorization in Kafka, ensure you add all admin user IDs to the `superUsers` property in the Kafka authorization configuration within the `EventStreams` custom resource, as described in [enabling OAuth authorization](../../installing/configuring/#enable-oauth-authorization).
 
 ## Managing access to Kafka resources
 

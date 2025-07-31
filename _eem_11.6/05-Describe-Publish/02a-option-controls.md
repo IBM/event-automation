@@ -85,26 +85,26 @@ If you want to control access to your event endpoint with mTLS, you can add the 
 To add the mTLS control to an option, complete the following steps:
 
 1. If you want to use a self-signed CA certificate for your control, then verify it is [uploaded](../../security/ca-certs).
-2. In the navigation panel, click **Manage topics**.
-3. Click the name of the event source that you want to work with.
-4. Click the **Options** tab.
-5. If you are creating a new option, click **Create option**. The details pane is displayed. 
+1. In the navigation panel, click **Manage topics**.
+1. Click the name of the event source that you want to work with.
+1. Click the **Options** tab.
+1. If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
-6. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+1. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the left panel, click **Controls**. The **Controls** pane is displayed.
-7. Click **Add control**.
-8. Click the **mTLS** tile.
-9. Click **Next**. The **mTLS configuration** window is displayed.
-10. Complete the **mTLS requirements** fields to define the certificate requirements for clients. 
+1. Click **Add control**.
+1. Click the **mTLS** tile.
+1. Click **Next**. The **mTLS configuration** window is displayed.
+1. Complete the **mTLS requirements** fields to define the certificate requirements for clients. 
    - **Trusted CA certificates:** Check the box to indicate which CA certificates the mTLS control trusts: certificates that you uploaded, certificates uploaded to your organization by admin users, or both. If you do not check either box, then the control trusts only certificates that are signed by well-known external certificate authorities.
    - **Common name** is mandatory. All other fields are optional.
    - Values can contain a single wildcard `*` at any position. For example, if **Common name** is set to `*-domainname`, then the control accepts client certificates with the common names of `c-domainname` or `andre-domainname`.
-11. When the **mTLS requirements** fields are set, click **Next**. The **Identifying Factors** window is displayed.
-12. Select how clients are identified.
-- To use a SASL username and password, select **Generate Username and Password**.
-- To use the client certificate subject fields, select **Identifying mTLS Fields** and select the fields that you want to use for client identification. **Common name** is mandatory and cannot be unchecked.
+1. When the **mTLS requirements** fields are set, click **Next**. The **Identifying Factors** window is displayed.
+1. Select how clients are identified.
+   - To use a SASL username and password, select **Generate Username and Password**.
+   - To use the client certificate subject fields, select **Identifying mTLS Fields** and select the fields that you want to use for client identification. **Common name** is mandatory and cannot be unchecked.
 
-  **Important:** When **Identifying mTLS Fields** is specified, every subscriber must present a unique common name. If the common name you specify in step 10 does not contain a wildcard character, then only a single client can subscribe to your mTLS control.
+   **Important:** When **Identifying mTLS Fields** is specified, every subscriber must present a unique common name. If the common name you specify in step 10 does not contain a wildcard character, then only a single client can subscribe to your mTLS control.
 13. Click **Add control**. The mTLS control is added to the table.
 14. To save the new control for this option, click **Save**.
 
@@ -177,7 +177,7 @@ To add a redaction control to an option, complete the following steps.
 1. Optional: If a schema is not associated with the event source and you select **Replace value**, in the **Replace value with** field, select the type of the value you wish to replace with from **String**, **Int** or **Double**.  
 
 
-   **Important**: If a schema is not associated with the event source, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the information window of the event source](../managing-event-sources#edit-topic).
+   **Important:** If a schema is not associated with the event source, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the information window of the event source](../managing-event-sources#edit-topic).
 
 1. Optional: If a schema is associated with the event source and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.  
     * ![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") To redact specific fields, you can use a wildcard in an array of objects or all values in an array of simple types. For example:  
@@ -187,7 +187,7 @@ To add a redaction control to an option, complete the following steps.
        **Note:** Wildcard redaction of array types in Avro unions is not supported.  
 1. If you select **Hash value**, select the hash algorithm that you want to use.
    
-   **Note**: If the property that you select has a maximum length value associated with it as defined in the schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
+   **Note:** If the property that you select has a maximum length value associated with it as defined in the schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
       * `SHA-256` produces a string of 64 characters.
       * `SHA-512` produces a string of 128 characters.
 1. Click **Add control**. A redaction control is added to the table.

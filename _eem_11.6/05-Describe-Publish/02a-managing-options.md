@@ -25,7 +25,7 @@ To create an option, complete the following steps:
 1. In the **Option** field, provide a name for your option.
 1. In the **Alias** field, provide a unique name that will be used to identify the Kafka topic.
 
-   **Note**: The alias you provide is the name displayed for the event endpoint in the catalog, which users can then subscribe to. The alias must meet the following conditions:
+   **Note:** The alias you provide is the name displayed for the event endpoint in the catalog, which users can then subscribe to. The alias must meet the following conditions:
       - Be less than 200 characters in length, 
       - Have no white space included,
       - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
@@ -48,7 +48,7 @@ To edit an option's details, complete the following steps:
 1. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "The more options icon."){:height="30px" width="15px"} **More options**, and select **Edit**. The **Edit option** window is displayed. 
 1. In the **Details** pane, edit the fields that you want to change. 
 
-    **Note**: 
+    **Note:** 
     - Restrictions and validation checks ensure each field meets requirements for options.
     - The **Alias** is only editable when the option is in an [unpublished state](#option-lifecycle-states).
 1. On the **Controls** pane, edit the controls as required.

@@ -92,7 +92,7 @@ To add a topic:
    
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-add-cluster-server.png "Screenshot of the Server pane in the Add cluster page in Event Endpoint Management."){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-add-cluster-server.png "Screenshot of the Server pane in the Add cluster page in Event Endpoint Management.")
 
-   **Note**: After you click **Next**, {{site.data.reuse.eem_name}} validates the entered server URL. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
+   **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered server URL. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
 6. Optional: If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys (ask your Kafka cluster administrator if you do not have them). Upload the private and public keys in PEM format.
 7. Optional: If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, and enter your username and password.
@@ -102,15 +102,15 @@ To add a topic:
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/eem-add-topic-selection.png "Screenshot of the Topic selection pane in the Add topic page in Event Endpoint Management."){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/eem-add-topic-selection.png "Screenshot of the Topic selection pane in the Add topic page in Event Endpoint Management.")
 
    <!--If no topics are displayed on the **Topic selection** page, you can define provisional topics by updating the **Topic** and **Event source name** fields in the table. To add more provisional topics, click **Define topic**.
-   **Note**: When you define a topic, it registers the topic with the {{site.data.reuse.eem_manager}} but does not create the topic on the Kafka cluster.-->
+   **Note:** When you define a topic, it registers the topic with the {{site.data.reuse.eem_manager}} but does not create the topic on the Kafka cluster.-->
 
 1. Optional: If a name is not added by default, enter a unique event source name for the topic selected.
 
-   **Note**: The event source name is the unique ID that identifies your topics.
+   **Note:** The event source name is the unique ID that identifies your topics.
       
 1. Click **Add Topic**.
 
-**Note**: If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
+**Note:** If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
 
 Your new event source appears in the **Manage topics** page with the **Options status** as 0 published. You can now [create an option for your event source](#create-and-publish-an-option).
 

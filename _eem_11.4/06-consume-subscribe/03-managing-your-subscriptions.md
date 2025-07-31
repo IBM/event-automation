@@ -20,7 +20,7 @@ The **Subscriptions** page displays all of your subscriptions, listing the name 
 
 You can delete a subscription and remove its credentials by clicking **Delete** ![Delete icon]({{ 'images' | relative_url }}/trashcan.svg "Remove subscription icon."){:height="30px" width="15px"} in the row of the subscription.
 
-**Note**: After you remove a subscription, the subscription credentials become invalid and cannot be reused. You can create new subscriptions to the same event endpoint, but any new subscription to the same event endpoint must use a different username and TLS client certificate (if mTLS is used).
+**Note:** After you remove a subscription, the subscription credentials become invalid and cannot be reused. You can create new subscriptions to the same event endpoint, but any new subscription to the same event endpoint must use a different username and TLS client certificate (if mTLS is used).
 
 ### To remove a subscription
 

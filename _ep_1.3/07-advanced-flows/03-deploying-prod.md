@@ -217,7 +217,7 @@ Some adaptations to this procedure are required to build the Docker image and us
      mode: native
    ```
 
-   **Note**: The Flink instance must be configured with persistent storage.
+   **Note:** The Flink instance must be configured with persistent storage.
 
    If you do not want to use the examples provided earlier, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all Flink samples:
 

@@ -18,7 +18,7 @@ The following features are available by using the Admin API:
 - [Subscriptions](../../subscribe/managing-subscriptions/) (Create, Read, Update, Delete)
 - [Gateways](../../describe/managing-gateways) (Read gateway list)
 
-**Note**: ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In Event Endpoint Management version 11.4.1 and later, you can manually add Kafka topics and clusters. After you create an event source, you must wait for the event source and the associated cluster to pass the connection tests against your gateways. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
+**Note:** ![Event Endpoint Management 11.4.1 icon]({{ 'images' | relative_url }}/11.4.1plus.svg "In Event Endpoint Management 11.4.1 and later.") In Event Endpoint Management version 11.4.1 and later, you can manually add Kafka topics and clusters. After you create an event source, you must wait for the event source and the associated cluster to pass the connection tests against your gateways. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ If you installed {{site.data.reuse.eem_name}} on a Kubernetes platform other tha
 
 By default, the type of exposure for the `admin` endpoint  is `external`, which makes the Admin API available from outside the cluster. If you want to limit access to the API only from within the cluster's internal network, set type as `internal`.
 
-**Note**: To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
+**Note:** To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
 - If your OIDC provider supports the [offline access scope](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess){:target="_blank"}, you can retrieve authorizations for a user when the user is not logged into the UI. To use this feature, ensure `offline_access` is added to the  [additional scopes configuration](../../reference/api-reference/#resource-oidcconfig).
 - If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you add the user to the role mappings file. For information about adding the `offline_access` scope, see [setting up authorization with a custom role identifier](../managing-access/#setting-up-oidc-based-authorization-with-a-custom-role-identifier).
 

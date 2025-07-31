@@ -29,13 +29,13 @@ You can transfer the following assets from one user to another:
   - You can transfer assets that are owned by an author (such as clusters, event sources, options, or subscriptions) to another author only.
   - You can transfer assets that are owned by a viewer (such as subscriptions) to another viewer or an author because authors have viewer permissions.
 
-  **Note**: A user is not restricted to one role. For example, a user can be an author and an admin. This means that a user can own assets that are exclusive across the two roles. In this case, you must transfer assets from such a user to another user with the same roles.
+  **Note:** A user is not restricted to one role. For example, a user can be an author and an admin. This means that a user can own assets that are exclusive across the two roles. In this case, you must transfer assets from such a user to another user with the same roles.
 
 ## Transferring assets
 
 1. In the navigation pane, click **Administration** > **Asset management**. 
 1. In the table that is displayed, find the user that you want to transfer assets from and click **Transfer assets**. 
-  **Note**: If no users with the correct permission to own the assets are available then **Asset transfer unavailable** is displayed and you cannot transfer any assets.  
+  **Note:** If no users with the correct permission to own the assets are available then **Asset transfer unavailable** is displayed and you cannot transfer any assets.  
 
 1. In the **Transfer assets** panel, click the **Select user** dropdown menu to select a user. Only users that the assets can be transferred to is displayed. 
 1. (Optional) You can also search for a user by typing their name into the textbox.

@@ -2,6 +2,7 @@
 order: 1
 forID: transforms-xml
 categories: [transformations]
+connectorTitle: "Kafka Connect XML transformation"
 ---
 
 The Kafka Connect XML transformation is a Single Message Transform (SMT) that takes a Kafka Connect record containing an XML string and transforms it into a structured connect record.

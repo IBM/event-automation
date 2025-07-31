@@ -103,7 +103,7 @@ Verify that your {{site.data.reuse.egw}} endpoint is accessible to your Kafka cl
    **Note:** Instead of a browser you can use command line tools such as OpenSSL to view the certificate, for example:
 
    ```shell
-   openssl s_client -connect <gateway endpoint>:443 -showcerts
+   openssl s_client -connect <gateway endpoint>:443 -servername <gateway endpoint> -showcerts
    ```
 2. View the certificate, and confirm that it matches the certificate that you configured for your {{site.data.reuse.egw}} endpoint.
 3. Exit from the browser. 

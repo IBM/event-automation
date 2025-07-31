@@ -272,7 +272,7 @@ To add a detect patterns node, complete the following steps:
 1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 The **Configure detect patterns** window opens.
 
-**Note**: If an input stream contains two or more different event types (typically differentiated by the enumerated value of an event property), you can split the stream by using [filter](#filter) nodes to create streams containing each specific event type. For example, a stream containing both `activated` and `transaction` events can be split with a filter on `eventType LIKE 'activated'` and another of `eventType LIKE 'transaction'`:
+**Note:** If an input stream contains two or more different event types (typically differentiated by the enumerated value of an event property), you can split the stream by using [filter](#filter) nodes to create streams containing each specific event type. For example, a stream containing both `activated` and `transaction` events can be split with a filter on `eventType LIKE 'activated'` and another of `eventType LIKE 'transaction'`:
 
 ```json
 {

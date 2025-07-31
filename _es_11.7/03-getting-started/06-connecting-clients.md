@@ -97,7 +97,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 2. Click **Connect to this cluster** on the right.
 3. From the **Certificates** section, download the server certificate. If you are using a Java client, use the **PKCS12 certificate**, remembering to copy the truststore password presented during download. Otherwise, use the **PEM certificate**.
 
-**Note**: If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
+**Note:** If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.es_name}} CLI
 
@@ -122,7 +122,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 
    **Note:** You can optionally change the format to download a `PEM` Certificate if required.
 
-**Note**: If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
+**Note:** If you have configured [external CA certificates](../../installing/configuring/#providing-external-ca-certificates) in the `externalCACertificates` secret, these will be included in the downloaded server certificate.
 
 ### Obtaining the server-side public certificate from the {{site.data.reuse.openshift_short}} web console
 

@@ -191,7 +191,7 @@ Complete the following steps to mirror the images from your host to your offline
 
      Where`target-registry` is the internal container image registry.
 
-    **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+    **Note:** To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
     The previous command generates the following files based on the target internal registry provided:
 
@@ -261,7 +261,7 @@ Verify that the `ImageContentSourcePolicy` resource is created:
 oc get imageContentSourcePolicy
 ```
 
-**Important**: After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+**Important:** After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
 
 Verify your cluster node status and wait for all nodes to be updated before proceeding:
 

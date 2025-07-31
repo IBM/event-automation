@@ -139,7 +139,10 @@ By understanding these implications, you can design and implement {{site.data.re
 
 ## Running your flows
 
-In the navigation banner, expand **Run flow** and select either **Events from now** or **Include historical** to run your flow.
+In the navigation banner, complete one of the following steps:
+
+- If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+- If your flow uses SQL sources only, click **Run flow** to start the flow.
 
 **Important:** 
 

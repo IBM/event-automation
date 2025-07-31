@@ -126,7 +126,7 @@ To configure your event source node, complete the following steps:
 
 1. In the **Event details** section, enter a name for your node. The output stream of events from this node will be referred with the name you entered.
 
-   **Note**: To save the event source for later reuse, set the **Save for re-use** to **Yes**.
+   **Note:** To save the event source for later reuse, set the **Save for re-use** to **Yes**.
 
 1. In the **Event structure** section, a table with names of all message properties and its data types is displayed. All properties are selected by default to define the structure of source events. You can clear the properties that are not relevant.
 

@@ -57,8 +57,8 @@ Ensure you have the following set up for your environment:
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -268,7 +268,7 @@ Run the following command to generate mirror manifests:
 
 Where `<target-registry>` is the internal container image registry.
 
-**Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+**Note:** To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
 The previous command generates the following files based on the target internal registry provided:
 
@@ -336,7 +336,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 **Note:** Only applicable when installing {{site.data.reuse.ep_name}} and the Flink on the {{site.data.reuse.openshift_short}}.
 
 1. {{site.data.reuse.openshift_cli_login}}
-2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
+2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
 3. Apply `ImageContentSourcePolicy` YAML by running the following command:
 
    For {{site.data.reuse.ibm_flink_operator}}:
@@ -355,8 +355,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 4. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
 
-   **Important:**
-   Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
+   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
 
 5. Verify that the `ImageContentSourcePolicy` resource is created:
 
@@ -364,7 +363,7 @@ Ensure that all the images have been mirrored to the target registry by checking
    oc get imageContentSourcePolicy
    ```
 
-   **Important**: After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+   **Important:** After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
 
 6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
 

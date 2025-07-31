@@ -8,7 +8,7 @@ toc: true
 
 Whether you want your application to produce to or consume from an event endpoint, you need to configure your client applications to connect to the {{site.data.reuse.egw}} through which the application can make use of the selected event endpoints. You can use the [snippets provided](../discovering-topics#the-catalog) for each event endpoint, and you will need the [access credentials](../subscribing-to-topics) you requested to the event endpoint.
 
-**Note**: ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later") The ability to produce events is only available in {{site.data.reuse.eem_name}} version 11.1.5 and later.
+**Note:** ![Event Endpoint Management 11.1.5 icon]({{ 'images' | relative_url }}/11.1.5.svg "In Event Endpoint Management 11.1.5 and later") The ability to produce events is only available in {{site.data.reuse.eem_name}} version 11.1.5 and later.
 
 ## Configuring a client
 

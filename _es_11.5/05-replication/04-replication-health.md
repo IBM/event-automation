@@ -41,7 +41,7 @@ To manage geo-replication on the destination cluster by using the UI:
     
       **Important:** Stopping replication also removes the origin cluster from the list.
 
-**Note**: You cannot perform these actions on the destination cluster by using the CLI.
+**Note:** You cannot perform these actions on the destination cluster by using the CLI.
 
 ## From an origin cluster
 

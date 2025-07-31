@@ -37,7 +37,7 @@ The `jwksUrl` is defined as the platform API hostname with the following subpath
 1. {{site.data.reuse.cncf_cli_login}}
 2. Get the list of endpoints from your {{site.data.reuse.apic_short}} pod by using the following command `kubectl describe pod <apic-pod>`.
 3. Look for the **APIC_PLATFORM_API_ENDPOINT**.    
-   **Note**: The **APIC_PLATFORM_API_ENDPOINT** is a URL with `/api` at the end. 
+   **Note:** The **APIC_PLATFORM_API_ENDPOINT** is a URL with `/api` at the end. 
 4. To obtain the `jwksUrl`, append `/cloud/oauth2/certs` to the end of the **APIC_PLATFORM_API_ENDPOINT** URL.
 
 ## Configure {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}

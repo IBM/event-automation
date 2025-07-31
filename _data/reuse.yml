@@ -20,10 +20,10 @@ ipaas_name: "IBM webMethods Hybrid Integration"
 eem_current_version: "11.6.2"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.4.1"
+ep_current_version: "1.4.2"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.4.1"
+flink_operator_current_version: "1.4.2"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"

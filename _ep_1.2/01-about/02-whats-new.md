@@ -39,7 +39,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 
 In most cases, this new deployment mechanism provides a better user experience and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-**Note**: The [Production - Flink Application cluster sample](../../installing/planning/#flink-production-application-cluster-sample) has been modified, and can only be used with the new deployment mechanism.
+**Note:** The [Production - Flink Application cluster sample](../../installing/planning/#flink-production-application-cluster-sample) has been modified, and can only be used with the new deployment mechanism.
 
 ### You can now edit flow details and export flows from within the canvas
 

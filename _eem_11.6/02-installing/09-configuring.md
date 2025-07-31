@@ -10,7 +10,7 @@ toc: true
 
 You can configure the {{site.data.reuse.eem_manager}} or the {{site.data.reuse.egw}} by setting environment variables. On [operator-managed](../install-gateway#operator-managed-gateways) and [Kubernetes Deployment](../install-gateway#remote-gateways) {{site.data.reuse.egw}}s you specify the environment variables in a template override (`env`) which specifies one or more name-value pairs. On [Docker](../install-gateway#remote-gateways) gateways, add the environment variable to your Docker `run` command, for example: `-e <variable name>`.
 
-**Important** Remember to [backup](../backup-restore) your gateway configuration after you make updates. 
+**Important:** Remember to [backup](../backup-restore) your gateway configuration after you make updates. 
 
 The format for {{site.data.reuse.eem_manager}} instances is:
 
@@ -80,7 +80,7 @@ Ensure that you have sufficient disk space for persistent storage.
 
 ### Dynamic provisioning
 
-If there is a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/storage/dynamic-provisioning) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
+If there is a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/dynamic-provisioning) present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
 To configure this, set `spec.manager.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml
@@ -208,6 +208,7 @@ spec:
 {: #configuring-ingress}
 
 If you are running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
+
 Optional: You can set a host for each exposed route on your {{site.data.reuse.eem_manager}} and operator-managed {{site.data.reuse.egw}} instances by setting values under `spec.manager.endpoints[]` in your `EventEndpointManagement` custom resource, and under `spec.endpoints[]` in your `EventGateway` custom resource.
 
 If you are running on other Kubernetes platforms, the {{site.data.reuse.eem_name}} operator creates ingress resources to provide external access. No default hostnames are assigned to the ingress resource, and you must set hostnames for each exposed endpoint that is defined for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
@@ -219,7 +220,7 @@ For the {{site.data.reuse.eem_manager}} instance, the `spec.manager.endpoints[]`
 - The {{site.data.reuse.eem_name}} Admin API (service name: `admin`)
 - The {{site.data.reuse.eem_name}} server for deploying gateways and exposing the Admin API (service name: `server`)  
 
-   **Note**:
+   **Note:**
    - The `server` service endpoint is required to [deploy](../../installing/install-gateway/#remote-gateways) an {{site.data.reuse.egw}} by using the {{site.data.reuse.eem_name}} UI.
    - The `server` service endpoint also exposes the {{site.data.reuse.eem_name}} [Admin API](../../security/api-tokens/) on path `/admin`, and can be used for making API requests to {{site.data.reuse.eem_name}} programmatically. The Admin API URL is displayed on the [**Profile** page](../../security/api-tokens/#api-access-tokens).
    - The value that is supplied in `endpoints[server].host` must start with `eem.`

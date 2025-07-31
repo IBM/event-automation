@@ -12,11 +12,13 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 
 * You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-* Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
+* You cannot deploy jobs by using the Apache SQL Runner sample for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
-**Note:** The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the release branches.
+* Automatic upgrade is not supported if the `FlinkDeployment` custom resource uses an extension of the IBM Flink image. In such cases, the extension of the image must be rebuilt to use the upgraded IBM Flink image.
+
+* The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the release branches.
 
 ## Prerequisites
 
@@ -123,7 +125,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
    ```
 
-   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
@@ -141,7 +143,7 @@ Some adaptations to this procedure are required to build the Docker image and us
      flinkConfiguration:
        license.use: EventAutomationProduction
        license.license: '<license-id>'
-       license.accept: 'false'
+       license.accept: 'true'
        high-availability.type: org.apache.flink.kubernetes.highavailability.KubernetesHaServicesFactory
        high-availability.storageDir: 'file:///opt/flink/volume/flink-ha'
        restart-strategy.type: failure-rate
@@ -217,9 +219,14 @@ Some adaptations to this procedure are required to build the Docker image and us
      mode: native
    ```
 
-   Where `<license-id>` is the [license identifier]({{ 'support/licensing/#available-licenses' | relative_url }}) (ID) for the program that you purchased.
+   Where:
+   
+   - `<license-id>` is the [license identifier]({{ 'support/licensing/#available-licenses' | relative_url }}) (ID) for the program that you purchased.
 
-   **Note**: The Flink instance must be configured with persistent storage.
+   - `<jks-secret>` is the secret containing the keystores and truststores for your deployment, and `<jks-password>` is the password for those stores. For more information, see [configuring TLS for Flink](../../installing/configuring/#configuring-tls-to-secure-communication-with-flink-deployments).
+
+
+   **Note:** The Flink instance must be [configured](../../installing/planning/#deploying-the-flink-pvc) with persistent storage.
 
    If you do not want to use the examples provided earlier, add the following parameter to set a timeout period for event sources when they are marked idle. This allows downstream tasks to advance their watermark. Idleness is not detected by default. The parameter is included in all Flink samples:
 
@@ -247,7 +254,7 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    ```yaml
    spec:
-     image: <image built at step 1.e>
+     image: <image built earlier from IBM Flink image in step 1 >
    ```
 
    d. Set the Flink version (only required if the `--set webhook.create` is set to `false` during the operator installation).  
@@ -262,11 +269,11 @@ Some adaptations to this procedure are required to build the Docker image and us
 
       ```yaml
       spec:
-        flinkVersion: "v1_19"
+        flinkVersion: "v1_20"
       ```
 
-3. Apply the modified `FlinkDeployment` custom resource.
-
+3. Optional: If your flow connects to databases or API servers, ensure that you have [configured the SSL connection](#enable-ssl-connection-for-your-database-and-api-server).
+4. Apply the modified `FlinkDeployment` custom resource.
 
 ## Changing the parallelism of a Flink SQL runner
 
@@ -397,11 +404,11 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
-## Enable SSL connection for your database
+## Enable SSL connection for your database and API server
 
-To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection with the database as follows:
+To securely connect Flink jobs to an API server or a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection as follows:
 
-1. Ensure you [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database to the truststore and then [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) with the truststore.
+1. Ensure that you have [added the CA certificate](../../installing/configuring/#add-the-ca-certificate-to-the-truststore) for your database or API server to the truststore, and [created a secret](../../installing/configuring/#create-a-secret-with-the-truststore) that includes the truststore.
 
 2. Edit the `FlinkDeployment` custom resource.
 
@@ -453,4 +460,4 @@ To securely connect Flink jobs to a database such as PostgreSQL, MySQL, or Oracl
    kubectl apply -f flinkdeployment_demo.yaml
    ```
 
-A secure SSL connection is enabled between Flink and the database.
+A secure SSL connection is enabled between Flink and your API server or the database.

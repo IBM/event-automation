@@ -25,7 +25,7 @@ To create an option, complete the following steps:
 1. In the **Option** field, provide a name for your option.
 1. In the **Alias** field, provide a valid Kafka topic name.  
 
-   **Note**: The alias must meet the following conditions:
+   **Note:** The alias must meet the following conditions:
       - Be less than 200 characters in length, 
       - Have no white space included,
       - Must not use invalid characters: `'/', '\\', ',', '\u0000', ':', '"', '\'', ';', '*', '?', ' ', '\t', '\r', '\n', '='`
@@ -33,7 +33,7 @@ To create an option, complete the following steps:
 1. Click **Next**. The **Controls** pane is displayed.
 1. Optional: If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
 
-   ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") **Note**: If you are using {{site.data.reuse.eem_name}} 11.1.4 and later, click **Save**. The **Options** tab in the **Topic detail** page is displayed. You can publish the option from this page when you are ready.
+   ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") **Note:** If you are using {{site.data.reuse.eem_name}} 11.1.4 and later, click **Save**. The **Options** tab in the **Topic detail** page is displayed. You can publish the option from this page when you are ready.
 
    
 1. Click **Next**. The **Publish option** pane is displayed.
@@ -54,7 +54,7 @@ To edit an option's details, complete the following steps:
    - ![Event Endpoint Management 11.1.4 icon]({{ 'images' | relative_url }}/11.1.4.svg "In Event Endpoint Management 11.1.4 and later") If you are using {{site.data.reuse.eem_name}} version 11.1.4 and later, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "The more options icon."){:height="30px" width="15px"} **More options**, and select **Edit**. The **Edit option** window is displayed. 
 1. In the **Details** pane, edit the fields that you want to change. 
 
-    **Note**: 
+    **Note:** 
     - Restrictions and validation checks ensure each field meets requirements for options.
     - The **Alias** is only editable when the option is in an [unpublished state](#option-lifecycle-states).
 1. On the **Controls** pane, edit the controls as required.

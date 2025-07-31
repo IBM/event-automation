@@ -16,8 +16,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/about/welcome-index){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/about/welcome-index){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -75,7 +75,7 @@ The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped 
 
 ## Red Hat OpenShift Security Context Constraints
 
-If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace before installation.
+If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -160,7 +160,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 

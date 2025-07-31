@@ -100,11 +100,16 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 
 ![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2.png "Image to show the clothing company using the assistant to define a filter")
 
-## Step 5: Run the flow
+## Step 5: Run the flow 
 {: #run-flow}
 
 1. The last step is to run your {{site.data.reuse.ep_name}} flow and view the results.
-1. In the navigation banner, expand **Run flow** and select either **Events from now** or **Include historical** to run your flow.
+2. In the navigation banner, complete one of the following steps:
+
+   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow uses SQL sources only, click **Run flow** to start the flow.
+
+**Note**: ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later") In Event Processing 1.4.2 and later, the options to run your flow either **Events from now** or **Include historical** are shown only when the flow includes event sources. These options are not shown when all sources are SQL, because the start position is defined in the SQL query itself. If your flow includes only SQL sources (that is, no event source nodes), a single **Run flow** button is displayed instead.
 
 A live view of results from your running flow automatically opens. The results view is showing the output from your flow - the result of processing any events that have been produced to your chosen {{site.data.reuse.eem_name}} topic.
 
@@ -116,6 +121,14 @@ In the navigation banner, click **Stop flow** to stop the flow when you finish r
 The clothing company selected **Include historical** to run the filter on the history of order events available on their `Order events` topic. All the orders from the EMEA region are displayed. This provides the company real-time information about orders placed in the region, and helps them review orders as they occur.
 
 ![Viewing results]({{ 'images' | relative_url }}/ep-lab1-results-updated.png "Image to show the clothing company viewing the results of their flow.")
+
+![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") In {{site.data.reuse.ep_name}} 1.4.2 and later, you can view the output events of any particular node by selecting the radio button ![Checked radio button icon]({{ 'images' | relative_url }}/radio-button--checked.svg "Checked radio button icon.") within a node after you run the flow. You can also filter rows by searching a particular text in the **Search for events** field located on top of the **Output events** table. Spaces are included and the text that you enter is case-insensitive. Matching texts in rows are highlighted.
+
+To view the output events of a complete flow, you can select the radio button of the last node in your flow. By default, the last node in the flow is selected.
+
+In {{site.data.reuse.ep_name}} 1.4.2 and later, while running a flow, you can check the number of output events represented by the icon ![Number of events icon]({{ 'images' | relative_url }}/number-of-events.svg "Number of events icon.") next to each node in the canvas. The number of output events is updated even while the refresh of the output events table is paused.
+
+**Note:** If you leave the page without stopping the flow by navigating to the home page or by closing the browser tab, when you return to the flow, the number of events and the output events are those that occur after you returned to the flow.
 
 ## Flow statuses
 

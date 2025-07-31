@@ -92,7 +92,7 @@ To configure an interval join, complete the following steps:
 
    **Note:** Ensure that the end-time of the time window is later than the start-time.
 
-1. In the **Matching criteria** section, select at least one row in the **Select a join type** table to define how the two input streams are combined and which events are included in the result.
+1. In the **Match criteria** section, select at least one row in the **Select a join type** table to define how the two input streams are combined and which events are included in the result.
    {: #join-node-matching-criteria}
 
 
@@ -246,7 +246,7 @@ To configure a window join, complete the following steps:
 
 1. In the **Offset from the start of the time window**, specify a time offset to every time window start time, thereby defining additional overlapping time windows.
 
-1. In the **Matching criteria** section, select at least one row in the **Select a join type** table to define how the two input streams are combined and which events are included in the result. See the following table for the available join types:
+1. In the **Match criteria** section, select at least one row in the **Select a join type** table to define how the two input streams are combined and which events are included in the result. See the following table for the available join types:
 
    **Note:** Merged events that match the join condition within the specified time window are returned as soon as a match is found. However, events that do not match the join condition are only returned after the time window is closed for both input streams.
 
@@ -321,9 +321,11 @@ To configure a temporal join, complete the following steps:
 
    **Note:** The supplementary event property is a [primary key](https://nightlies.apache.org/flink/flink-docs-release-2.0/docs/dev/table/sql/create/#primary-key){:target="_blank"}, which means that the property must not contain NULL values.
 
-   Click **Next**.
+1. ![Event Processing 1.4.2 icon]({{ 'images' | relative_url }}/1.4.2.svg "In Event Processing 1.4.2 and later.") Optional: You can add multiple join conditions on the primary key. To add another join condition on the primary key, click **Add another join condition**. Then, click **Next**.
 
-1. In the **Matching criteria** pane, define how the two input streams are combined, and which events are included in the result by selecting at least one row in the **Event matches to keep** table.
+   **Note:** If you have two join conditions, it is considered a match only if both the join conditions result to true.
+
+1. In the **Match criteria** pane, define how the two input streams are combined, and which events are included in the result by selecting at least one row in the **Event matches to keep** table.
 
    - **Inner join:** Select only the row with **Event** for both input streams. In this case, only merged events from the left and right input streams that match the join condition are returned in the result.
 

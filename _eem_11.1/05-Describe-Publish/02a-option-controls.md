@@ -131,11 +131,11 @@ To add a redaction control to an option, complete the following steps.
    **Note:** The replace value options are different depending on whether the option has a schema added to the associated topic.
 1. Optional: If a schema is NOT associated with the topic and you select **Replace value**, in the **Replace value with** field, select the type of the value you wish to replace with from **String**, **Int** or **Double**.  
 
-   **Important**: If a schema is NOT associated with the topic, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the topic information window](../managing-topics#edit-topic).
+   **Important:** If a schema is NOT associated with the topic, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the topic information window](../managing-topics#edit-topic).
 1. Optional: If a schema is associated with the topic and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.
 1. If you select **Hash value**, select the hash algorithm that you want to use.
    
-   **Note**: If the property that you select has a maximum length value associated with it as defined in the Avro schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
+   **Note:** If the property that you select has a maximum length value associated with it as defined in the Avro schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
       * `SHA-256` produces a string of 64 characters.
       * `SHA-512` produces a string of 128 characters.
 1. Click **Add control**. A redaction control is added to the table.

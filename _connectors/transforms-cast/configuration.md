@@ -3,6 +3,7 @@ order: 1
 forID: transforms-cast
 categories: [transformations]
 excerpt: Cast fields or the entire key or value to a specific type, such as forcing an integer field to a smaller width. Casting is supported from integers, floats, booleans, and strings to any other type, as well as from binary to string (Base64-encoded).
+connectorTitle: "Cast"
 ---
 
 The Cast transformation is a Single Message Transform (SMT) for Kafka Connect that you can use to modify the data type of a field in your data. This transformation is useful when adapting data types to meet the requirements of your sink system or rectifying inconsistencies in your source data.

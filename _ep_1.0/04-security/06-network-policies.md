@@ -264,7 +264,7 @@ network policies for Flink pods need to be deployed following these steps:
        - Ingress
    EOF
    ```
-**Note**: The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
+**Note:** The ports that are used in the previous YAML are the default ones. If you customize Flink ports in the `FlinkDeployment` custom resource,
 ensure the ports used in the network policies match the custom ports.
 
 If you configure Flink to [export](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/metric_reporters){:target="_blank"}

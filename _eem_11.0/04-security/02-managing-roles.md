@@ -120,7 +120,7 @@ Where the `id` is the username specified for the user.
    oc edit secret/<custom-resource-name>-ibm-eem-user-roles -o json
    ```
 
-5. **Important:** For security reasons, delete the local file you created.
+5. For security reasons, delete the local file you created.
 
 ## Setting up roles for OIDC based authorization
 

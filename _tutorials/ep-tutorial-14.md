@@ -448,7 +448,6 @@ For more information about how to add an interval join node, see [Adding an inte
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-31.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-31.png "Screen capture of the interval join node configuration")
 
-
 7. In the **Matching criteria** section, keep the default selection to use an **inner join** to merge the review trend events and the top return reason events for a given product that match the join condition, and then click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-32.png "Screen capture of the interval join node configuration"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-14-32.png "Screen capture of the interval join node configuration")

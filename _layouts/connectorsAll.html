@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
+<style>
+  .hide-card {
+    display: none !important;
+  }
+</style>
 
 {%- assign connectorOpen = false -%}
 {%- assign connectorPanelIsOpen = false -%}
@@ -38,6 +43,56 @@ layout: default
           {% if page.url == "/connectors" %}
           {% assign isAllConnectors = true %}
           {% endif %}
+<!-- Search bar for Connect Catalog -->
+
+<div class = "catalog-search" id="catalog-search" style="left: 1rem;  margin: 1rem 0; position: relative; border-bottom: 1px solid #5a6872; padding: 0.6rem; width: 100%; max-width: 400px; background-color: #ffffff;">
+  <input
+    type="text"
+    id="catalog-search-input"
+    placeholder="Search Connect catalog"
+    style="position: relative; width: 100%; border:none; padding-left: 1.5rem; font-size: 1rem; background-color: #ffffff; outline: none;box-shadow: none; "
+    onfocus="updatePlaceholder()"
+  />
+  <svg 
+    focusable="false" 
+    preserveAspectRatio="xMidYMid meet" 
+    fill="currentColor" 
+    description="Open search" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 32 32" 
+    aria-hidden="true" 
+    xmlns="http://www.w3.org/2000/svg"
+    style="position: absolute; left: 0.6rem; top: 0.7rem;"
+  >
+    <path d="M29,27.5859l-7.5521-7.5521a11.0177,11.0177,0,1,0-1.4141,1.4141L27.5859,29ZM4,13a9,9,0,1,1,9,9A9.01,9.01,0,0,1,4,13Z"></path>
+  </svg>
+  <svg 
+    focusable="true" 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="#5a6872" 
+    aria-hidden="true" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 32 32"
+    style="position: absolute; right: 0.6rem; top: 0.7rem; cursor: pointer;"
+    onclick="clearSearch()"
+  >
+    <path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
+  </svg>
+</div>
+
+
+
+<!-- Message when no matches found -->
+<div id="no-results-message" class="noResultsMessage hide">
+  <p><strong>Didn't find what you were looking for?</strong><br />
+  Let us know by sending an email to 
+  <a href="mailto:eventstreams@uk.ibm.com">eventstreams@uk.ibm.com</a>  
+  or by submitting your request on the  
+  <a href="https://integration-development.ideas.ibm.com/" target="_blank">IBM Ideas portal</a>.
+  </p>
+</div>
           <div class="cards">
             <div id="cardsContainer" class="cardsContainer vertical">
               {% assign sortedConnectors = "" | split: ',' %}
@@ -60,13 +115,24 @@ layout: default
                 {% capture connectorURL %}{{ site.url }}{{ site.baseurl }}{{ connector.url }}{% endcapture %}
                 {%- comment -%}index.md is used to prevent subpages appearing as tiles{%- endcomment -%}
                 {% if connector.path contains "index.md" %}
-                  {% include connectorCard.html countInc=count connectorID=connectorID gradientID=connectorGradient connectorInitialString=connectorInitial pageConnectorID=pageConnectorID connectorTags=connectorTags connectorURL=connectorURL connectorSupport=connectorSupport connectorType=connectorType %}
+                  {% include connectorCard.html countInc=count connectorID=connectorID gradientID=connectorGradient connectorInitialString=connectorInitial pageConnectorID=pageConnectorID connectorTags=connectorTags connectorURL=connectorURL connectorSupport=connectorSupport connectorType=connectorType className="connector-card" %}
                 {% endif %}
               {% endfor %}
+               <!-- Message when filter is active and no card found -->
               <div id="connectorsEmptyState" class="connectorsEmptyState hide">
-                <p class="secondary">No connectors can be found matching your filters</p>
-                <button onclick="clearFilterArea();calculateFilters();toggleFilterArea('close')"> Clear Filters
+                <p class="secondary">No connectors can be found that match your filters.</p></p>
+                <button class="btn btn-primary" onclick="clearFilterArea();calculateFilters();toggleFilterArea('close')"> Clear filters
                 </button>
+              </div>
+               <!-- Message when searched card is found in a different tab -->
+              <div id="searchedConnectorsExistInfo" class="searchedConnectorsExistInfo hide">
+                <p class="secondary">No <span id="tab-name"></span> matches <span id="search-term"></span>. Clear the search or click a different tab to search.</p>
+                <button class="btn btn-primary" onclick="clearSearch();"> Clear search
+                </button>
+              </div>
+               <!-- Message when filtered card is found in a different tab -->
+              <div id="connectorsExistInfo" class="connectorsExistInfo hide">
+                <p class="secondary">Filtered item is available on a different tab. Switch tabs to view it.</p>
               </div>
             </div>
           </div>
@@ -97,7 +163,28 @@ layout: default
   </div>
 </div>
 <script>
-  calculateFilters();
+  // calculateFilters();
+  calculateFilterTags();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("catalog-search-input");
+     // Calls filterCard on search input change
+    searchInput.addEventListener("input", filterCards);
+    const tabButtons = document.querySelectorAll(
+      "#connectorsCategories .menuItems .visible-links button"
+    );
+     // Calls filterCard on tab changes
+    tabButtons.forEach(button => {
+      button.addEventListener("click", filterCards);
+    });
+  });
+  
+  // Function to clear search input on button click
+  function clearSearch(){
+     const searchInput = document.getElementById("catalog-search-input");
+     searchInput.value = ""
+     filterCards();
+  }
 
   // var fadeContainer = document.getElementById("fadeContainer");
   // console.log(fadeContainer)

@@ -84,7 +84,7 @@ The following example shows a user mappings file:
    kubectl edit secret/<custom-resource-name>-ibm-eem-user-roles -o json
    ```
 
-5. **Important:** For security reasons, delete the local file you created.
+5. For security reasons, delete the local file you created.
 
 **Note:** The changed configuration file is automatically picked up by the {{site.data.reuse.eem_manager}} instance after a few minutes.
 

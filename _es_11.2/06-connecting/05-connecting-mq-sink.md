@@ -163,7 +163,7 @@ Use the {{site.data.reuse.es_name}} CLI to generate and download the `KafkaConne
    kubectl es connector-config-mq-sink --mq-queue-manager="QM1" --mq-connection-name-list="localhost(1414)" --mq-channel="MYSVRCONN" --mq-queue="MYQSINK" --topics="TSINK" --file="mq-sink" --format yaml
    ```
 
-   **Note**: Omitting the `--format yaml` flag will generate a `mq-sink.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-sink.json` file which can be used for distributed mode outside {{site.data.reuse.openshift_short}}.
+   **Note:** Omitting the `--format yaml` flag will generate a `mq-sink.properties` file which can be used for standalone mode. Specifying `--format json` will generate a `mq-sink.json` file which can be used for distributed mode outside {{site.data.reuse.openshift_short}}.
 4. Change the values of `mq.user.name` and `mq.password` to the username and password that you used to configure your instance of MQ. Also set the label `eventstreams.ibm.com/cluster` to the name of your Kafka Connect instance.
 
 The final configuration file will resemble the following:
@@ -282,7 +282,7 @@ IBM MQ sink connector v2 offers exactly-once message delivery semantics. An addi
 
 Follow the instructions to enable exactly-once delivery in the IBM MQ sink connector v2.
 
-**Important**: Exactly-once support for sink connectors is only available in distributed mode.
+**Important:** Exactly-once support for sink connectors is only available in distributed mode.
 
 ### Prerequisites
 

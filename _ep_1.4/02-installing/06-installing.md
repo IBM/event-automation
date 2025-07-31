@@ -20,7 +20,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 ## Create a project (namespace)
 
-Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/building_applications/projects#working-with-projects){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.ep_name}}. This is required because {{site.data.reuse.ep_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
@@ -162,7 +162,7 @@ Before you can install the required operator versions and use them to create ins
 
 1. Before you begin, ensure that you have the following set up for your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
@@ -209,7 +209,7 @@ Before you can install the required operator versions and use them to create ins
      oc ibm-pak generate mirror-manifests ibm-eventprocessing icr.io
      ```
 
-   **Note**: To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
+   **Note:** To filter for a specific image group, add the parameter `--filter <image_group>` to the previous command.
 
    The previous command generates the following files based on the target internal registry provided:
 

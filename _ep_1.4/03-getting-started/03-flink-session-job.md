@@ -16,6 +16,7 @@ The `FlinkSessionJob` custom resource is used to create and manage Flink jobs in
 The Flink job is deployed to the target session cluster mentioned in the `spec`. You can then manage the job running in the session cluster.
 
 ## Prerequisites
+{: #prerequisites}
 
 Ensure your environment meets the following prerequisites before running a Flink session job:
 
@@ -24,6 +25,7 @@ Ensure your environment meets the following prerequisites before running a Flink
 - A Flink job written in Java. For examples, see [GitHub](https://github.com/apache/flink/tree/release-1.20.1/flink-examples/flink-examples-streaming/){:target="_blank"}.
 
 ## Procedure
+{: #procedure}
 
 1. [Install](../../installing/installing/#install-flink-sessionjob) a `FlinkSessionJob` instance with your [configurations](../../installing/configuring/#configuring-flinksessionjob).
 

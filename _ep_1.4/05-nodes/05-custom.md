@@ -25,6 +25,7 @@ One key benefit of the custom nodes in {{site.data.reuse.ep_name}} is the abilit
 - The SQL destination node functions similarly to the existing [event destination node](../eventnodes/#event-destination), and allows customization of the properties of the sink connector used.
 
 ## Adding a custom node
+{: #adding-a-custom-node}
 
 To add a custom node, complete the following steps:
 
@@ -43,6 +44,7 @@ A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconf
 
 
 ### Converting any node to a custom node
+{: #converting-any-node-to-a-custom-node}
 
 You can convert any existing node on your canvas to a custom node in two ways:
 
@@ -54,6 +56,7 @@ The SQL code of your node is displayed in read-only mode. To convert the node to
 **Important:** After converting the node to a custom node, the node cannot be reverted.
 
 ## Configuring a custom node
+{: #configuring-a-custom-node}
 
 Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node. The **Configure SQL** window with a text editor opens.
 
@@ -74,6 +77,7 @@ A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.
 
 
 ### Validation rules for Flink SQL code
+{: #validation-rules-for-flink-sql-code}
 
 - SQL source node:
   - The SQL must contain exactly one `CREATE [TEMPORARY] TABLE` statement.
@@ -103,6 +107,7 @@ The following statements are not supported in all the three custom nodes:
 **Important:** You can write any supported SQL statements, but be aware of the risks, such as deleting or renaming an input table or view.
 
 ### Changelog stream
+{: #changelog-stream}
 
 In event streaming, there are two key patterns for how data passes through a stream processing flow: append-only (also known as insert-only) and changelog stream. Previously, {{site.data.reuse.ep_name}} consumed and generated append-only stream, where events are continuously appended to a stream - each event is considered idempotent. With the introduction of custom nodes, it is now possible to consume and create changelog stream, where an event can capture a change to a previous event - such as an update, or deletion.
 
@@ -128,6 +133,7 @@ When you run a flow, the **Changelog stream detected** popup appears indicating 
 These operations facilitate the management of real-time stateful applications, where the current state takes precedence over historical data.
 
 ### Implications for Kafka topics and consumers
+{: #implications-for-kafka-topics-and-consumers}
 
 If your flow produces a changelog stream, the events in the Kafka topic differ from those in an append-only stream. This behavior has several implications, including:
 
@@ -138,6 +144,7 @@ If your flow produces a changelog stream, the events in the Kafka topic differ f
 By understanding these implications, you can design and implement {{site.data.reuse.ep_name}} flows that use the strengths of each stream type to fit specific use cases effectively.
 
 ## Running your flows
+{: #running-your-flows}
 
 In the navigation banner, complete one of the following steps:
 

@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptom
+{: #symptom}
 
 {{site.data.reuse.ep_name}} flows that consume from TLS-secured endpoints stop working with the following error:
 
@@ -16,10 +17,12 @@ Caused by: javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.s
 ```
 
 ## Causes
+{: #causes}
 
 The certificates that are on the endpoint might change compared to the certificates stored in {{site.data.reuse.ep_name}}, which causes issues when running the flow.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 Use the Event Source wizard to replace the certificate stored in {{site.data.reuse.ep_name}} and restart the flow as follows:
 

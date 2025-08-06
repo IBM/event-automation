@@ -23,14 +23,13 @@ Complete the following steps to share your topic with {{site.data.reuse.eem_name
      **Note:** Ensure that you review the sample message in case sensitive information is displayed, as the sample will be available in the {{site.data.reuse.eem_name}} catalog for other users to view.
    - Optional: To select a schema from the schema registry, click **Select**.
 
-     **Important:** In {{site.data.reuse.es_name}} 11.3.1 and earlier, if you select a nested Avro schema with custom record type, you must replace the custom record type name in it with the entire schema definition before publishing the topic as an option in {{site.data.reuse.eem_name}}. You can find the schema with the required definition in your schema registry. For more information about editing nested Avro schemas, see [Event Endpoint Management documentation]({{ 'eem/describe/managing-topics/#editing-nested-avro-schemas' | relative_url }}).  
-
+     **Important:** In {{site.data.reuse.es_name}} 11.3.1 and earlier, if you select a nested Avro schema with custom record type, you must replace the custom record type name in it with the entire schema definition before publishing the topic as an option in {{site.data.reuse.eem_name}}. You can find the schema with the required definition in your schema registry. For more information about editing nested Avro schemas, see [Event Endpoint Management documentation]({{ 'eem/describe/managing-event-sources/#editing-nested-avro-schemas' | relative_url }}).  
 
      **Note:** If the schema registry is empty, the **Select** option is unavailable.
      
 6. Click **Share for reuse** to share your topic with {{site.data.reuse.eem_name}}.
 
-You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create]({{ 'eem/describe/managing-topics#create_option' | relative_url}}) and [publish]({{ 'eem/describe/publishing-topics' | relative_url}}) the topic data as an option. After you have published the option, consumers can [subscribe]({{ 'eem/consume-subscribe/approval-requests' | relative_url}}) to an option as required.
+You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create]({{ 'eem/describe/managing-options/#create_option' | relative_url}}) and [publish]({{ 'eem/describe/publishing-options' | relative_url}}) the topic data as an option. After you have published the option, consumers can [subscribe]({{ 'eem/describe/managing-user-access-to-topics' | relative_url}}) to an option as required.
 
 **Note:** When you create an event source in {{site.data.reuse.eem_name}}, the following items are also created:
 

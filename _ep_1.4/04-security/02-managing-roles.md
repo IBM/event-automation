@@ -17,6 +17,7 @@ You can set up authorization in one of the following ways:
 2. If using an OIDC provider for authentication, [define mappings to custom roles in your OIDC provider](#setting-up-roles-by-using-a-custom-identifier).
 
 ## Assigning roles to users
+{: #assigning-roles-to-users}
 
 Users are assigned roles in {{site.data.reuse.ep_name}} through user mapping, where an identifier for the user or a group of users is mapped to a role or set of roles. The mappings are defined in a configuration file that is exposed through the Kubernetes secret `<custom-resource-name>-ibm-ep-user-roles`. By default, this file requires separate mapping information for each user.
 
@@ -36,6 +37,7 @@ The following example shows a user mappings file:
 ```
 
 ### Using {{site.data.reuse.openshift_short}} web console
+{: #using-openshift-container-platform-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
@@ -44,6 +46,7 @@ The following example shows a user mappings file:
 5. Click **Save**.
 
 ### Using the CLI
+{: #using-the-cli}
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Create a JSON file called `myroles.json` that contains the user role mappings for your {{site.data.reuse.ep_name}} instance as described in the [setting up roles per user](#setting-up-roles-per-user) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
@@ -81,6 +84,7 @@ The following example shows a user mappings file:
 **Note:** The changed configuration file is automatically picked up by the {{site.data.reuse.ep_name}} instance after a few minutes.
 
 ## Setting up roles per user
+{: #setting-up-roles-per-user}
 
 This is the default set up, where the `id` in the mappings file is the unique identifier of the user:
 
@@ -104,6 +108,7 @@ The following example shows a user mappings file:
 ```
 
 ## Setting up roles by using a custom identifier
+{: #setting-up-roles-by-using-a-custom-identifier}
 
 Using a custom identifier is a more advanced configuration only available with OIDC-based authentication. It means you can map users to their roles through a custom property (claim) associated with the user in the configured OIDC provider.
 
@@ -136,6 +141,7 @@ spec:
 **Note:** The property being mapped must either be a string or a list of strings.
 
 ### Example configuration
+{: #example-configuration}
 
 The following example describes how to set up roles for a custom identifier called `developer`.
 

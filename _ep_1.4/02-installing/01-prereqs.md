@@ -11,6 +11,7 @@ Ensure your environment meets the following prerequisites before installing {{si
 **Note:** {{site.data.reuse.ep_flink_version_align_note}}
 
 ## Container environment
+{: #container-environment}
 
 {{site.data.reuse.ep_name}} 1.4.x is supported on the {{site.data.reuse.openshift}} and the other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
@@ -25,10 +26,12 @@ If you are using other Kubernetes platforms, ensure you have the following set u
 - The Kubernetes command-line tool (`kubectl`) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 ## Hardware requirements
+{: #hardware-requirements}
 
 Ensure that your hardware can accommodate the [resource requirements](#resource-requirements) for your planned deployment.
 
 ## Resource requirements
+{: #resource-requirements}
 
 {{site.data.reuse.ep_name}} resource requirements depend on several factors. The following sections provide guidance about minimum requirements for a starter deployment, and options for initial production configurations.
 
@@ -71,10 +74,12 @@ The provided samples define typical configuration settings for your {{site.data.
 Ensure that you have sufficient CPU capacity and physical memory in your environment to service these requirements. Your {{site.data.reuse.ep_name}} instance can be updated dynamically through the configuration options that are provided in the custom resource.
 
 ### Operator requirements
+{: #operator-requirements}
 
 The {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} have the following requirements.
 
 #### Requirements for the {{site.data.reuse.ep_name}} operator
+{: #requirements-for-the-event-processing-operator}
 
 The {{site.data.reuse.ep_name}} operator has the following minimum resource requirements. Ensure that you always include sufficient CPU capacity and physical memory in your environment to service the operator requirements.
 
@@ -97,6 +102,7 @@ In addition to the previous permissions, the {{site.data.reuse.ep_name}} operato
 - **Permission to list ClusterRoles and ClusterRoleBindings**: The {{site.data.reuse.ep_name}} operator uses ClusterRoles created by the Operator Lifecycle Manager (OLM) as parents for supporting resources that the {{site.data.reuse.ep_name}} operator creates. This is needed so that the supporting resources are correctly cleaned up when {{site.data.reuse.ep_name}} is uninstalled. The permission to list ClusterRoles is required to allow the operator to identify the appropriate cluster role to use for this purpose.
 
 #### Operator requirements for the {{site.data.reuse.ibm_flink_operator}}
+{: #operator-requirements-for-the-ibm-operator-for-apache-flink}
 
 The {{site.data.reuse.ibm_flink_operator}} has the following minimum resource requirements.
 
@@ -109,16 +115,19 @@ You can only install one version of the {{site.data.reuse.ibm_flink_operator}} o
 You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
 
 ## Red Hat OpenShift Security context constraints
+{: #red-hat-openshift-security-context-constraints}
 
 {{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
 ## Network requirements
+{: #network-requirements}
 
 {{site.data.reuse.ep_name}} is supported for use with IPv4 networks only.
 
 ### Ingress controllers
+{: #ingress-controllers}
 
 To expose {{site.data.reuse.ep_name}} services externally outside your cluster, the {{site.data.reuse.ep_name}} operator will create:
 - OpenShift routes when installing on {{site.data.reuse.openshift}}.
@@ -129,10 +138,12 @@ To expose {{site.data.reuse.ep_name}} services externally outside your cluster, 
 To use ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.ep_name}} services to work. Refer to your ingress controller documentation for more information.
 
 ## Data storage requirements
+{: #data-storage-requirements}
 
 If you want to set up persistent storage, see the [planning section](../planning/#planning-for-persistent-storage).
 
 ### Storage requirements for {{site.data.reuse.ep_name}}
+{: #storage-requirements-for-event-processing}
 
 Ensure that the cluster administrator creates one or more storage class that supports `ReadWriteOnce` and allows read and write access to non-root users.
 
@@ -151,6 +162,7 @@ If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you ca
 
 
 ### Storage requirements for Flink
+{: #storage-requirements-for-flink}
 
 The Flink instances deployed by {{site.data.reuse.ibm_flink_operator}} store the following data if persistent storage is configured:
 
@@ -177,6 +189,7 @@ If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you ca
 
 
 ## {{site.data.reuse.ep_name}} UI
+{: #event-processing-ui}
 
 
 The {{site.data.reuse.ep_name}} user interface (UI) is supported on the following web browsers:
@@ -187,6 +200,7 @@ The {{site.data.reuse.ep_name}} user interface (UI) is supported on the followin
 
 
 ## Certificate management
+{: #certificate-management}
 
 By default, all certificates that are required by {{site.data.reuse.eem_name}} are managed by a certificate manager. A certificate manager simplifies the process of creating, renewing, and using those certificates.
 
@@ -194,6 +208,7 @@ By default, all certificates that are required by {{site.data.reuse.eem_name}} a
 - On other Kubernetes platforms, use a certificate manager installation, for example [cert-manager](https://cert-manager.io/docs/), that supports `Issuer.cert-manager.io/v1` and `Certificate.cert-manager.io/v1` GroupVersionKind (GVK), or create certificates manually and provide them to {{site.data.reuse.ep_name}} by using Kubernetes secrets.
 
 ### The cert-manager Operator for {{site.data.reuse.openshift}}
+{: #the-cert-manager-operator-for-red-hat-openshift-container-platform}
 
 If you already have the cert-manager Operator for Red Hat OpenShift installed on your cluster, you can skip this section.
 
@@ -217,6 +232,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
 
 ## Schema registry requirements
+{: #schema-registry-requirements}
 
 You can define the event structure and consume encoded messages that use an Avro schema that is stored in a schema registry.
 

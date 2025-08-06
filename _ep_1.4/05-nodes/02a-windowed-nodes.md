@@ -12,10 +12,12 @@ The following windowed nodes are available in {{site.data.reuse.ep_name}}:
 - [Top-n](#top-n)
 
 ## Aggregate
+{: #aggregate}
 
 Use an aggregate node to divide the stream of events into time-based chunks and then run an aggregate function on each of these chunks.
 
 ### Adding an aggregate node
+{: #adding-an-aggregate-node}
 
 To add an aggregate node, complete the following steps:
 
@@ -27,6 +29,7 @@ To add an aggregate node, complete the following steps:
    The **Configure aggregate** window appears.
 
 ### Configuring an aggregate node
+{: #configuring-an-aggregate-node}
 
 To configure an aggregate node, complete the following steps:
 
@@ -82,10 +85,12 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 
 ## Top-n
+{: #top-n}
 
 A top-n node is a filter for the highest or lowest values of a particular property within a specified time window. It divides a stream of events into time-based chunks and then selects the events with the top number (top-n) of highest or lowest values on each chunk. You specify the top number and then decide whether to sort the top number of rows into ascending or descending order so that the highest or lowest values of a particular property are returned.
 
 ### Adding a top-n node
+{: #adding-a-top-n-node}
 
 To add a top-n node, complete the following steps:
 
@@ -97,6 +102,7 @@ To add a top-n node, complete the following steps:
    The **Configure top-n** window appears.
 
 ### Configuring a top-n node
+{: #configuring-a-top-n-node}
 
 To configure a top-n node, complete the following steps:
 

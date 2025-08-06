@@ -295,10 +295,16 @@ collections:
   "es_11.8":
     output: true
     version: "11.8"
+    permalink: /es/:collection/:categories/:slug/
+    order: 19
+    product: es  
+  "es_12.0":
+    output: true
+    version: "12.0"
     tag: Latest
     latest: true
     permalink: /es/:categories/:slug/
-    order: 19
+    order: 20
     product: es  
   "eem_11.0":
     version: "11.0"
@@ -781,6 +787,23 @@ defaults:
     values:
       collection: "es_11.8"
       version: "11.8"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "118docs"
+  # _12.0
+  - scope:
+      path: ""
+      type: "es_12.0"
+    values:
+      collection: "es_12.0"
+      version: "12.0"
       product: es
       layout: single
       read_time: false

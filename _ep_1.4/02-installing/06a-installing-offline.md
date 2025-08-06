@@ -21,6 +21,7 @@ Follow the instructions to download the {{site.data.reuse.ibm_flink_operator}} a
 
 
 ## Prerequisites
+{: #prerequisites}
 
 Ensure you have the following set up for your environment:
 
@@ -69,6 +70,7 @@ If you are using other Kubernetes platforms, ensure you have the following set u
 
 
 ## Prepare your host
+{: #prepare-your-host}
 
 You must be able to connect your bastion host to the internet and to the restricted network environment (with access to the {{site.data.reuse.openshift_short}} cluster and the local registry) at the same time.
 
@@ -83,6 +85,7 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 **Important:** Ensure you have access to the Kubernetes cluster by running the `kubectl get namespaces` command which lists all the available namespaces.
 
 ## Download the CASE bundle
+{: #download-the-case-bundle}
 
 Before mirroring your images, download the CASE by following these instructions:
 
@@ -194,6 +197,7 @@ Before mirroring your images, download the CASE by following these instructions:
 
 
 ## Configure registry authentication
+{: #configure-registry-authentication}
 
 To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
@@ -202,6 +206,7 @@ A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms ot
 For {{site.data.reuse.ep_name}}, all images are either present in the IBM Entitled Registry (`cp.icr.io`), which requires authentication, or in the IBM Container Registry (`icr.io/cpopen`), which does not.
 
 ### Creating an authentication secret for the source registry
+{: #creating-an-authentication-secret-for-the-source-registry}
 
 Run the following command to create an authentication secret for the source registry:
 
@@ -223,6 +228,7 @@ skopeo login <source-registry> -u <source-registry-user> -p <source-registry-pas
 ```
 
 ### Creating an authentication secret for the target registry
+{: #creating-an-authentication-secret-for-the-target-registry}
 
 Run the following command to create an authentication secret for the target registry:
 
@@ -245,12 +251,14 @@ Where:
 **Note:** You can configure with separate target registry for {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}. The following documentation instructions consider one target registry for both {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}.
 
 ## Mirror the images
+{: #mirror-the-images}
 
 The process of mirroring images pulls the image from the internet and pushes it to your local registry. After mirroring your images, you can configure your cluster and complete the offline installation.
 
 Follow the instructions to mirror the images from your host to your offline environment.
 
 ### Generate mirror manifests
+{: #generate-mirror-manifests}
 
 Run the following command to generate mirror manifests:
 
@@ -278,6 +286,7 @@ The previous command generates the following files based on the target internal 
 - images-mapping.txt
 
 ### Copy the images to local registry
+{: #copy-the-images-to-local-registry}
 
 Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
 
@@ -332,6 +341,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 
 ## Create `ImageContentSourcePolicy` on OpenShift platform
+{: #create-imagecontentsourcepolicy-on-openshift-platform}
 
 **Note:** Only applicable when installing {{site.data.reuse.ep_name}} and the Flink on the {{site.data.reuse.openshift_short}}.
 
@@ -372,6 +382,7 @@ Ensure that all the images have been mirrored to the target registry by checking
    ```
 
 ## Apply catalog sources to your cluster on OpenShift platform
+{: #apply-catalog-sources-to-your-cluster-on-openshift-platform}
 
 **Note:** Only applicable when you install {{site.data.reuse.ep_name}} on the {{site.data.reuse.openshift_short}}.
 
@@ -394,6 +405,7 @@ Where `<case-version>` is the version of the CASE file.
 
 
 ## Install the operator
+{: #install-the-operator}
 
 If you are installing the operator for the first time, complete the instructions in the following sections to install it on the platform that you are using.
 
@@ -401,10 +413,12 @@ If you are upgrading an existing offline installation, follow the [upgrading](..
 
 
 ### Installing on OpenShift
+{: #installing-on-openshift}
  
 After you consider the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operators by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing [{{site.data.reuse.ibm_flink_operator}}](../installing/#installing-the-ibm-operator-for-apache-flink) and the [{{site.data.reuse.ep_name}} operator](../installing/#installing-the-event-processing-operator).
 
 ### Installing on other Kubernetes platforms by using the `kubectl`
+{: #installing-on-other-kubernetes-platforms-by-using-the-kubectl}
 
 Complete the following steps to install the operator:
 
@@ -483,6 +497,7 @@ Complete the following steps to install the operator:
 Wait for the installation to complete.
 
 ## Install an instance
+{: #install-an-instance}
 
 {{site.data.reuse.ep_name}} and Flink Deployment instances can be created after the operators are installed. You can install the instances by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the [Flink Deployment instances](../installing/#install-a-flink-instance) and the [{{site.data.reuse.ep_name}} instances](../installing/#install-an-event-processing-instance).
 

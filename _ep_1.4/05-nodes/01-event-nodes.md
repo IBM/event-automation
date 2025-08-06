@@ -12,6 +12,7 @@ The following event nodes are available in {{site.data.reuse.ep_name}}:
 - [Event destination](#event-destination)
 
 ## Time-based calculations
+{: #time-based-calculations}
 
 [Event time](../../about/key-concepts#event-time) is essential to measure the progress of time and perform time-based calculations. 
 **Aggregate**, **Window top-n**, and **Interval Join** use event time to partition the events into results based on time windows.
@@ -32,10 +33,12 @@ To use these windowed nodes, you need to configure the event source to include e
 - If a partition is idle for a period of time (messages are not currently being produced to a partition), the partition will not be included in watermark progression until new messages arrive. This stops the idle partition from blocking watermark progression.
 
 ## Event source
+{: #event-source}
 
 A source node consumes messages from a Kafka topic to produce a stream of events temporally ordered by event time.
 
 ### Adding a source node
+{: #adding-a-source-node}
 
 When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
 
@@ -43,6 +46,7 @@ To add additional event source nodes, in the **Palette**, under **Events**, drag
 
 
 ### Configuring a source node
+{: #configuring-a-source-node}
 
 To configure an event source, hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}. The **Configure event source** window appears.
 
@@ -219,6 +223,7 @@ If there is any error in your configuration, a red checkbox ![red checkbox]({{ '
 
 
 ## Event destination
+{: #event-destination}
 
 The event destination node delivers the processed stream of events to a Kafka topic for further processing or storage.
 
@@ -226,6 +231,7 @@ The event destination node delivers the processed stream of events to a Kafka to
 
 
 ### Adding an event destination node
+{: #adding-an-event-destination-node}
 
 To add an event destination node, complete the following steps:
 
@@ -236,6 +242,7 @@ To add an event destination node, complete the following steps:
 The **Configure event destination** window appears.
 
 ### Configuring an event destination node 
+{: #configuring-an-event-destination-node}
 
 To configure an event destination, complete the following steps:
 

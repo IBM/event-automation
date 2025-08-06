@@ -11,6 +11,7 @@ Upgrade your {{site.data.reuse.ep_name}} deployment as follows. Review the upgra
 **Note:** {{site.data.reuse.ep_flink_version_align_note}}
 
 ## Upgrade paths
+{: #upgrade-paths}
 
 You can upgrade {{site.data.reuse.ep_name}} and the associated {{site.data.reuse.ibm_flink_operator}} to the [latest 1.4.x version]({{ 'support/matrix/#event-processing' | relative_url }}) directly from any earlier 1.4.x or any 1.3.x version by using the latest 1.4.x operators. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
 
@@ -21,6 +22,7 @@ If you are upgrading from {{site.data.reuse.ep_name}} version 1.2.x or earlier, 
 - On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before following the instructions for [upgrading on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
 
 ## Prerequisites
+{: #prerequisites}
 
 - Ensure you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
@@ -33,10 +35,12 @@ If you are upgrading from {{site.data.reuse.ep_name}} version 1.2.x or earlier, 
 **Important:** You will experience some downtime during the {{site.data.reuse.ep_name}} upgrade while the pods for the relevant components are recycled.
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}
+{: #upgrading-on-the-openshift-container-platform}
 
 You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on the {{site.data.reuse.openshift_short}} by using the CLI or the web console.
 
 ### Planning your upgrade
+{: #planning-your-upgrade}
 
 Complete the following steps to plan your upgrade on OpenShift.
 
@@ -70,6 +74,7 @@ Complete the following steps to plan your upgrade on OpenShift.
   The {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} operators will be automatically upgrade to the latest 1.4.x when they are available in the catalog, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
 
 ### Stopping flows for major and minor upgrades
+{: #stopping-flows-for-major-and-minor-upgrades}
 
 When upgrading to a new major or minor release (first and second digit change), stop any running flows in the {{site.data.reuse.ep_name}} UI before upgrading. This is because running flows may contain artifacts built using the previous release that are not compatible with the newer version. If flows are not stopped, they may enter into an error state following the upgrade. You can run those flows again after the upgrade.
 
@@ -86,6 +91,7 @@ To stop all the running flows in the {{site.data.reuse.ep_name}} UI, complete th
 **Note:** When upgrading to a new major or minor version (such as upgrading from v1.3 to v1.4), ensure you upgrade both the {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} operator, then complete the [post-upgrade tasks](#post-upgrade-tasks), before using your flows again.
 
 ### Making new catalog source available
+{: #making-new-catalog-source-available}
 
 Before you can upgrade to the latest version, the catalog source for the new version must be available on your cluster. Whether you have to take action depends on how you set up [version control](../installing/#decide-version-control-and-catalog-source) for your deployment.
 
@@ -102,6 +108,7 @@ Before you can upgrade to the latest version, the catalog source for the new ver
 
 
 ### Upgrading Subscription by using the CLI
+{: #upgrading-subscription-by-using-the-cli}
 
 If you are using the OpenShift command-line interface (CLI), the `oc` command, complete the steps in the following sections to upgrade your {{site.data.reuse.ep_name}} and Flink installations.
 
@@ -142,6 +149,7 @@ For Flink:
 All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part of the upgrade will be rolled.
 
 ### Upgrading Subscription by using the web console
+{: #upgrading-subscription-by-using-the-web-console}
 
 If you are using the {{site.data.reuse.openshift_short}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.ep_name}} installation.
 
@@ -175,10 +183,12 @@ For Flink:
 All Flink pods that need to be updated as part of the upgrade will be rolled.
 
 ## Upgrading on other Kubernetes platforms by using Helm
+{: #upgrading-on-other-kubernetes-platforms-by-using-helm}
 
 If you are running {{site.data.reuse.ep_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers, you can upgrade {{site.data.reuse.ep_name}} by using the Helm chart.
 
 ### Planning your upgrade
+{: #planning-your-upgrade}
 
 Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
@@ -241,6 +251,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 - If your existing chart version is 1.4.x, your upgrade is a change in the patch level version only, and you only need to follow the steps in [upgrading by using Helm](#upgrading-by-using-helm) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operators will then upgrade your instances automatically.
 
 ### Upgrading by using Helm
+{: #upgrading-by-using-helm}
 
 You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on other Kubernetes platforms by using Helm.
 
@@ -333,12 +344,15 @@ Where:
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying jobs in production environments by using the [Apache SQL Runner](../../advanced/deploying-production) or [by using customized jobs](../../advanced/deploying-customized), operator will automatically pause or resume a job by using the snapshot during the upgrade.
 
 ## Post-upgrade tasks
+{: #post-upgrade-tasks}
 
 ### Verifying the upgrade
+{: #verifying-the-upgrade}
 
 After the upgrade, verify the status of the {{site.data.reuse.ep_name}} and Flink instances, by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
 
 ### Update license IDs
+{: #update-license-ids}
 
 After upgrading your operators to {{site.data.reuse.ep_name}} 1.4.x from version 1.3.x, you must update [the license ID]({{ '/support/licensing/#ibm-event-automation-license-information' | relative_url }}) value in the `spec.license.license` field of your custom resources, depending on the program that you purchased.
 
@@ -347,6 +361,7 @@ You can make this change by using the web console or the CLI, and it is required
 The components will show errors and will not work with the new version until you update the license ID. After you change the license IDs, check the custom resource status to confirm they are successfully running the new version.
 
 ### Restart your flows
+{: #restart-your-flows}
 
 This only applies if you stopped flows before upgrade. After the successful upgrade of both the {{site.data.reuse.ep_name}} and the Flink operators, you can restart the flows that you stopped earlier.
 

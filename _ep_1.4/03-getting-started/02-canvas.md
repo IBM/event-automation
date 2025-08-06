@@ -13,6 +13,7 @@ For demonstration purposes, we use the scenario of a clothing company who want t
 The steps in this getting started tutorial should take you about 10 minutes to complete.
 
 ## Before you begin
+{: #before-you-begin}
 
 1. This getting started scenario assumes that all the capabilities in {{site.data.reuse.ea_short}} are installed.
 1. Connect with your cluster administrator and get the server address for the topic you have to access.
@@ -131,6 +132,7 @@ In {{site.data.reuse.ep_name}} 1.4.2 and later, while running a flow, you can ch
 **Note:** If you leave the page without stopping the flow by navigating to the home page or by closing the browser tab, when you return to the flow, the number of events and the output events are those that occur after you returned to the flow.
 
 ## Flow statuses
+{: #flow-statuses}
 
 A flow status indicates the current state of the flow. To view the status of a flow, navigate to the **Flows** section on the homepage of the {{site.data.reuse.ep_name}} UI. Each flow tile displays the current status of the flow.
 

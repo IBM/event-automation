@@ -8,6 +8,7 @@ toc: true
 
 
 ## Symptoms
+{: #symptoms}
 
 The Flink job fails with a `NullPointerException` error while attempting to use the `sink.StreamRecordTimestampInserter` object:
 
@@ -20,6 +21,7 @@ at org.apache.flink.table.runtime.operators.sink.StreamRecordTimestampInserter.p
 ```
 
 ## Causes
+{: #causes}
 
 
 This error typically occurs when the event source node is not properly configured, or when there is a mismatch between the expected and actual types of the event time property of the events being processed.
@@ -29,6 +31,7 @@ When you configure the event time in your [event source node](../../nodes/eventn
 
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem: 
 

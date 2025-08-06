@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 The `FlinkDeployment` custom resource is not able to reconcile and have the following error in the `FlinkDeployment` custom resource:
 
@@ -16,6 +17,7 @@ It is possible that the job has finished or terminally failed, or the configmaps
 ```
 
 ## Causes
+{: #causes}
 
 The default configuration `kubernetes.operator.jm-deployment.shutdown-ttl` in the Flink operator is to clean up the `Jobmanager` deployment 1 day after the Flink job reached the terminal state. When a Flink job reaches a terminal state of `Failed` or `Cancelled`, the Flink operator does the following actions, leading to error:
 
@@ -23,6 +25,7 @@ The default configuration `kubernetes.operator.jm-deployment.shutdown-ttl` in th
 - The `Jobmanager` deployment is deleted.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, set the `spec.job.savepointRedeployNonce` to an integer value that was not used before and set the `spec.job.initialSavepointPath` to value of savepoint. For example:
 

@@ -13,6 +13,7 @@ The following enrichment nodes are available in {{site.data.reuse.ep_name}}:
 - [watsonx.ai](#watsonx-node)
 
 ## Enrichment from a database
+{: #enrichment-from-a-database}
 
 In situations where the data in the source table might not offer significant insights on its own, establishing connections with external databases and integrating their data can yield a more comprehensive result.
 
@@ -21,6 +22,7 @@ With the database node, you can retrieve data from external databases (PostgreSQ
 **Note:** {{site.data.reuse.ep_name}} can be configured to connect to a [secure PostgreSQL or MySQL database or Oracle](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry). Contact your system administrator if you encounter issues while configuring the database node to communicate with a secure PostgreSQL, MySQL, or an Oracle database.
 
 ### Adding a database node
+{: #adding-a-database-node}
 
 To add a database node, complete the following steps.
 
@@ -33,6 +35,7 @@ To add a database node, complete the following steps.
 The **Configure database enrichment** window appears.
 
 ### Configuring a database node
+{: #configuring-a-database-node}
 
 To configure a database node, complete the following steps.
 
@@ -137,10 +140,12 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 
 ## Enrichment from an API
+{: #enrichment-from-an-api}
 
 In situations where the data in the source table might not offer significant insights on its own, making calls to external APIs and integrating data from the API responses can yield a more comprehensive result.
 
 ### Prerequisites and limitations
+{: #prerequisites-and-limitations}
 
 To configure the API node, ensure you upload an OpenAPI document that meets the following requirements:
 
@@ -180,6 +185,7 @@ The API enrichment in {{site.data.reuse.ep_name}} has the following limitations:
 - The parameter names and fields in the nested request body and response payloads do not support the slash (`/`) character.
 
 ### Adding an API node
+{: #adding-an-api-node}
 
 To add an API node, complete the following steps:
 
@@ -189,6 +195,7 @@ To add an API node, complete the following steps:
 4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node. The **Enrichment from API** window appears.
 
 ### Configuring an API node
+{: #configuring-an-api-node}
 
 To configure an API node, complete the following steps:
 
@@ -243,6 +250,7 @@ With the watsonx.ai node, you can perform text generation services such as:
 **Note:** {{site.data.reuse.ep_name}} can be configured to connect to [watsonx platform](../../installing/configuring#configuring-ssl-for-api-server-database-and-schema-registry). Contact your system administrator if you encounter issues while configuring the watsonx.ai node to communicate with watsonx services.
 
 ### Prerequisites
+{: #prerequisites}
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
@@ -274,6 +282,7 @@ With the watsonx.ai node, you can perform text generation services such as:
 
 
 ### Adding a watsonx.ai node
+{: #adding-a-watsonxai-node}
 
 To add a watsonx.ai node, complete the following steps:
 
@@ -285,6 +294,7 @@ To add a watsonx.ai node, complete the following steps:
 The **Configure watsonx.ai** window appears.
 
 ### Configuring a watsonx.ai node
+{: #configuring-a-watsonxai-node}
 
 To configure a watsonx.ai node, complete the following steps:
 

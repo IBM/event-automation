@@ -7,14 +7,17 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 When creating an instance of a `FlinkDeployment` in an offline Kubernetes environment, some pods might display an `ImagePullBackOff` error status after the instance is created.
 
 ## Causes
+{: #causes}
 
 The service account that is created to run the Flink instance does not reference the secret containing credentials to the private registry that is used to store the component images.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the error, add the `ibm-entitlement-key` to the service account:
 

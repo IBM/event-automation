@@ -14,10 +14,12 @@ The following processor nodes are available in {{site.data.reuse.ep_name}}:
 - [Detect patterns](#detect-patterns)
 
 ## Filter
+{: #filter}
 
 A filter node takes in a stream of events and applies an expression to determine which events to allow to pass and which to block. The output of the filter node is a single stream of events that can be used for analysis or other processing. This node helps to reduce the amount of data by allowing events that match the expression.
 
 ### Adding a filter node
+{: #adding-a-filter-node}
 
 To add a filter node, complete the following steps:
 
@@ -29,6 +31,7 @@ To add a filter node, complete the following steps:
 The **Configure a Filter** window opens.
 
 ### Configuring a filter node
+{: #configuring-a-filter-node}
 
 To configure a filter node, complete the following steps:
 
@@ -86,6 +89,7 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 
 ## Transform
+{: #transform}
 
 A transform node takes in a stream of events to modify your existing properties or create new properties. Existing properties can be removed or renamed, and new properties can be added. The value of a new property is determined by the expression you create.
 
@@ -93,6 +97,7 @@ Transform node supports various functions to create an expression. For more info
 
 
 ### Adding a transform node
+{: #adding-a-transform-node}
 
 To add a transform node, complete the following steps:
 
@@ -104,6 +109,7 @@ To add a transform node, complete the following steps:
    The **Configure Transform** window appears.
 
 ### Configuring a transform node
+{: #configuring-a-transform-node}
 
 To configure a transform node, complete the following steps:
 
@@ -194,10 +200,12 @@ A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
 ## Unpack arrays
+{: #unpack-arrays}
 
  An unpack arrays node takes an existing array of elements in a stream of events to unpack it. You can unpack each array element into a new property in separate events, or unpack the array elements into new properties that are all included in the same event. 
 
 ### Adding an unpack arrays node
+{: #adding-an-unpack-arrays-node}
 
 To add an unpack arrays node, complete the following steps:
 
@@ -210,6 +218,7 @@ To add an unpack arrays node, complete the following steps:
    The **Configure unpack node** window opens.
 
 ### Configuring an unpack arrays node
+{: #configuring-an-unpack-arrays-node}
 
 To configure the unpack arrays node, complete the following steps:
 
@@ -248,10 +257,12 @@ To configure the unpack arrays node, complete the following steps:
 
 
 ## Detect patterns
+{: #detect-patterns}
 
 The detect patterns node identifies sequences of events across the input streams that match a defined pattern within a time interval.
 
 ### Important concepts
+{: #important-concepts}
 
 - Each input stream must contain a single event type. For example, one stream contains credit card shipped events, another stream contains credit card delivery events, and a third stream contains credit card activation events.
 - The events on the input streams are combined into an ordered sequence of events for each unique context. For example, if the input streams contain events for 100 different credit cards, then there is an ordered sequence for each credit card number.
@@ -263,6 +274,7 @@ There are two types of patterns:
 2. A pattern that specifies the absence of events. The pattern is evaluated at the end of the time interval and is matched if the events have not arrived on the stream within the interval. For example, a customer places three items into their cart, but does not check out within an hour.
 
 ### Adding a detect patterns node
+{: #adding-a-detect-patterns-node}
 
 To add a detect patterns node, complete the following steps:
 
@@ -288,6 +300,7 @@ The flow that uses this split of the unique input stream can look as follows:
 **Important:** The filters must be mutually exclusive to ensure that an event is directed to only one or none of the subsequent streams.
 
 ### Configuring a detect patterns node
+{: #configuring-a-detect-patterns-node}
 
 To configure the detect patterns node, complete the following steps:
 

@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 When a Flink deployment is created to [deploy a job](../../advanced/deploying-customized/), the job manager pod fails with the following error in the log:
 
@@ -15,6 +16,7 @@ ERROR com.ibm.ei.streamproc.model.jobgraph.apinode.connector.ResponseJsonRowData
 ```
 
 ## Causes
+{: #causes}
 
 The error might occur because of one of the following reasons:
 
@@ -22,6 +24,7 @@ The error might occur because of one of the following reasons:
 - Your flow contains an [API](../../nodes/enrichmentnode/#enrichment-from-an-api) node, and you mapped an input parameter with a constant value.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, complete any one of the following steps:
 

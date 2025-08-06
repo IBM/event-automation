@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 Flink resources such as Service, Deployment, ReplicaSet, Pod, and ConfigMap are not found in the cluster, and the following status is displayed in the `FlinkDeployment` custom resource:
 
@@ -16,10 +17,12 @@ status:
 ```
 
 ## Causes
+{: #causes}
 
 This error might occur because the Flink Kubernetes Operator is configured to clean up Flink resources one day after a job reaches its terminal state. This behavior is controlled by the `kubernetes.operator.jm-deployment.shutdown-ttl` [configuration](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/operations/configuration/){:target="_blank"}.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, ensure you follow the steps provided in the [recover Flink deployment troubleshooting](../recover-flink-deployment/#resolving-the-problem). Additionally, complete any one of the following steps to help prevent this issue in the future:
 

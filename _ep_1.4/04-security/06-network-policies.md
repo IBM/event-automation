@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Inbound network connections (ingress)
+{: #inbound-network-connections-ingress}
 
 [Network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"} are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.
 
@@ -27,6 +28,7 @@ The following tables provide information about the network connections of {{site
 
 
 ### {{site.data.reuse.ep_name}} operator pod
+{: #event-processing-operator-pod}
 
 | **Type** | **Origin**                                                                                   | **Port** | **Reason**                  | **Enabled in policy**          |
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------|
@@ -180,6 +182,7 @@ spec:
 
 
 ### Flink operator pod
+{: #flink-operator-pod}
 
 | **Type** | **Origin**                                                                                   | **Port** | **Reason**                  |
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|
@@ -188,6 +191,7 @@ spec:
 **Note:** The [network policies for Flink](#flink-network-policies) pods are not deployed automatically. They can be manually deployed.
 
 ### {{site.data.reuse.ep_name}} pod
+{: #event-processing-pod}
 
 | **Type** | **Origin**                           | **Port** | **Reason**            | **Enabled in policy**                                                                                  |
 |----------|--------------------------------------|----------|-----------------------|--------------------------------------------------------------------------------------------------------|
@@ -200,6 +204,7 @@ spec:
 
 
 ### Flink operand pods (job and task managers)
+{: #flink-operand-pods-job-and-task-managers}
 
 | **Type** | **Origin**                           | **Port** | **Reason** |
 |----------|--------------------------------------|----------|------------|
@@ -210,6 +215,7 @@ spec:
 **Note:** The [network policies for Flink](#flink-network-policies) pods are not deployed automatically. They can be manually deployed.
 
 ### Considerations for ingress
+{: #considerations-for-ingress}
 
 Consider the use of a deny-all-ingress network policy to limit communication with all pods in a namespace to only those communications specifically allowed in network policies.  A deny-all network policy is not created by default as it would interfere with other applications
 installed in the namespace that do not have the required network policies set to allow inbound communications.
@@ -233,6 +239,7 @@ The network policies for Flink are not automatically deployed and can be deploye
 
 
 ## Outbound network connections (egress)
+{: #outbound-network-connections-egress}
 
 The following tables provide information about the outbound network connections (egress) initiated by pods in an {{site.data.reuse.ep_name}} installation.
 
@@ -240,6 +247,7 @@ The following tables provide information about the outbound network connections 
 
 
 ### {{site.data.reuse.ep_name}} pod
+{: #event-processing-pod}
 
 | **Type** | **Destination** | **Port**      | **Reason**                                   |
 |----------|-----------------|---------------|----------------------------------------------|
@@ -248,6 +256,7 @@ The following tables provide information about the outbound network connections 
 
 
 ### Flink pods
+{: #flink-pods}
 
 | **Type** | **Destination**    | **Port** | **Reason**                |
 |----------|--------------------|----------|---------------------------|
@@ -256,6 +265,7 @@ The following tables provide information about the outbound network connections 
 
 
 ## Flink network policies
+{: #flink-network-policies}
 
 Network policies are not deployed automatically when installing {{site.data.reuse.ibm_flink_operator}}. For increased security, you can
 deploy the deny-all-ingress policy as described in [considerations for ingress](#considerations-for-ingress). In this case,

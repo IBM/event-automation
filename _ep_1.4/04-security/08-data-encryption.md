@@ -17,6 +17,7 @@ The master key is responsible for encrypting the data encryption key, which encr
 The separation of the master key and the data encryption key means that there is usually no reason to rotate the data encryption key. The rotation of the master key, which is used to protect the data encryption key, can be done efficiently without the need to decrypt and reencrypt the data itself.
 
 ## Rotating the encryption key
+{: #rotating-the-encryption-key}
 
 Instead of the master key provided by {{site.data.reuse.ep_name}}, you can encrypt the data encryption key with a custom key you create. The value of the custom key must be a Base64-encoded string, and use the Advanced Encryption Standard (AES) algorithm.
 

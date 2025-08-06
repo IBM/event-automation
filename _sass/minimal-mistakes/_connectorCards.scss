@@ -13,15 +13,22 @@ $cardSpacing: 1.5rem;
 }
 
 #catalog-search {
-  left: 1rem;
-  outline: none;
-  margin: 1rem 0; 
-  position: relative; 
-  border-bottom: 1px solid #5a6872; 
-  padding: 0.6rem; 
-  width: 100%; 
-  max-width: 400px; 
-  background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    z-index: 4;
+    position: relative;
+    transition: 0.4s cubic-bezier(0.43, 0.01, 0.01, 0.99);
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-left: 3rem;
+    border-bottom: 1px solid #5a6872; 
+    /* padding: 1rem; */
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem; 
+    margin: 1rem; 
+    background-color: #ffffff;
+
+
 }
   #catalog-search:active{
     border: 1px solid #0f62fe;
@@ -410,7 +417,10 @@ $cardSpacing: 1.5rem;
   .buttonContainer {
     flex-basis: 33.333333333%;
   }
+  
 }
+
+
 
 @media only screen and (max-width: 2000px) {
   .buttonContainer {

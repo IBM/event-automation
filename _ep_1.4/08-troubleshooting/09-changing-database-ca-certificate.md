@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 - If the CA certificate of a secure database server is modified, any running flows that are connected to the database stop processing events.
 
@@ -19,11 +20,13 @@ toc: true
   ```
 
 ## Causes
+{: #causes}
 
 The certificates that are used to validate the identity of the database server might be modified. {{site.data.reuse.ep_name}} fails to recognize the certificate secret that was updated and causes the error.
 
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the error, the system administrator must complete the following steps:
 

@@ -9,14 +9,17 @@ toc: true
 You can backup and restore your {{site.data.reuse.ep_name}} flows and Flink instances as follows.
 
 ## {{site.data.reuse.ep_name}} flows
+{: #event-processing-flows}
 
 You can export your existing {{site.data.reuse.ep_name}} flows to save them, making them available to import later, as described in [exporting flows](../../advanced/exporting-flows/).
 
 ## Flink instances
+{: #flink-instances}
 
 You can back up your Flink instances by using [savepoints](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/savepoints/#what-is-a-savepoint){:target="_blank"}. A Flink savepoint is a consistent image of a Flink job's execution state. This document is intended for Flink jobs running in an [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} Flink cluster, and Flink jobs managed by the `FlinkSessionJob` custom resource.
 
 ### Prerequisites
+{: #prerequisites}
 
 This procedure assumes that you have the following deployed:
 
@@ -33,6 +36,7 @@ The `FlinkDeployment` custom resource that configures your Flink instance must d
 **Note:** These directories are automatically created by Flink if they do not exist.
 
 ### Backing up
+{: #backing-up}
 
 The backup process captures the latest state of a running Flink job and its specification, allowing to re-create the job from the saved state when required. To back up your Flink instance, update each of your deployed instances by editing their respective `FlinkDeployment` custom resources as follows:
 
@@ -80,6 +84,7 @@ The backup process captures the latest state of a running Flink job and its spec
 5. Keep the `FlinkSessionJob` custom resource and `FlinkDeployment` custom resource where the `FlinkSessionJob` was deployed. 
 
 ### Restoring
+{: #restoring}
 
 To restore a previously backed-up Flink instance, ensure that the PVC bound to a PV containing the snapshot is available, then update your `FlinkDeployment` custom resource as follows.
 

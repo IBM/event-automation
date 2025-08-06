@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 After upgrading from {{site.data.reuse.ep_name}} 1.3.x to any 1.4.x version, customized SQL queries containing an API enrichment node `JOIN` condition on a root property of type `TIMESTAMP_LTZ` no longer produce the expected results.
 
@@ -27,10 +28,12 @@ AND `lookup_table`.`request_param` = `source_view`.`timestamp_ltz_param`;
 **Note:** If the SQL query does not include this join condition and the API node fails to produce expected events, refer to [Enrichment from API produces no output events](../no-output-event-from-api-node/).
 
 ## Causes
+{: #causes}
 
 After upgrading to {{site.data.reuse.ep_name}} 1.4.x, the lookup join condition involving a root property of type `TIMESTAMP_LTZ` fails to make accurate comparisons due to a discrepancy in timestamp precision. This results in the SQL statement not returning the expected results.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, add an explicit `CAST` as `TIMESTAMP_LTZ(6)` to the join condition. For example:
 

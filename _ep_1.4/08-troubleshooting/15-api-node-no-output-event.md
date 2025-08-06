@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptom
+{: #symptom}
 
 {{site.data.reuse.ep_name}} flows that include the [API node](../../nodes/enrichmentnode/#enrichment-from-an-api) do not produce output events.
 
@@ -14,15 +15,18 @@ toc: true
 
 
 ## Causes
+{: #causes}
 
 The following sections describe possible causes for not receiving the events.
 
 
 ### API server down or unreachable
+{: #api-server-down-or-unreachable}
 
 The Flink job does not fail, but no output events are generated.
 
 #### To verify
+{: #to-verify}
 
 Check the Flink Task Manager log for the following error:
 
@@ -32,16 +36,19 @@ java.net.ConnectException
 ```
 
 #### Resolving the problem
+{: #resolving-the-problem}
 
 * Verify the URL of the API server used in the [configuration](../../nodes/enrichmentnode/#configuring-an-api-node) of the API node.
 * Verify the health of the API server, or ask the administrator of the API server to do so.
 
 
 ### TLS/SSL misconfiguration
+{: #tlsssl-misconfiguration}
 
 The API node can be configured to call the API using an `https` URL while the certificate for TLS/SSL has not been configured, or is no longer valid.
 
 #### To verify
+{: #to-verify}
 
 Check the Flink Task Manager log for any one of the following errors:
 
@@ -56,6 +63,7 @@ java.lang.RuntimeException: Unable to create KeyStore for Http Connector Securit
 ```
 
 #### Resolving the problem
+{: #resolving-the-problem}
 
 * Check the [SSL configuration for the API server](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry).
 * If it is not configured, or the configured certificate has expired, or a certificate in its certificate chain has expired, the system administrator must complete the following steps:
@@ -69,10 +77,12 @@ java.lang.RuntimeException: Unable to create KeyStore for Http Connector Securit
      - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
 ### API credentials misconfiguration
+{: #api-credentials-misconfiguration}
 
 The API node can be configured to use basic authentication or API key authentication when calling the API. If the credentials are wrong, are expired or have been revoked, the API calls cannot succeed.
 
 #### To verify
+{: #to-verify}
 
 Check the Flink Task Manager log for the following warning, indicating the 401 (Unauthorized) or 403 (Forbidden) status code:
 
@@ -81,6 +91,7 @@ WARN  com.getindata.connectors.http.internal.table.lookup.JavaNetHttpPollingClie
 ```
 
 #### Resolving the problem
+{: #resolving-the-problem}
 
 Complete the following steps:
 1. Stop the flow.
@@ -92,6 +103,7 @@ Complete the following steps:
 
 
 ### No usable response from the API server
+{: #no-usable-response-from-the-api-server}
 
 If the URL of the API server is reachable, TLS/SSL is properly configured and the API credentials are correct, the absence of output events can be due to the passed values of the API parameters, which can lead to unsuccessful responses from the API server.
 
@@ -99,6 +111,7 @@ If the URL of the API server is reachable, TLS/SSL is properly configured and th
 
 
 #### To verify
+{: #to-verify}
 
 Check the Flink Task Manager log for the following warning:
 
@@ -109,6 +122,7 @@ WARN  com.getindata.connectors.http.internal.table.lookup.JavaNetHttpPollingClie
 In the earlier example, the status code is 404, but it can be any code other than the 2xx success code.
 
 #### Resolving the problem
+{: #resolving-the-problem}
 
 If possible, check the log of the API server, which might provide useful information about why the API calls do not succeed.
 

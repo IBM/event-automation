@@ -9,6 +9,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.ep_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 ## Before you begin
+{: #before-you-begin}
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites).
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, and considering security options.
@@ -17,6 +18,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 
 ## Create a namespace
+{: #create-a-namespace}
 
 Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
 
@@ -26,6 +28,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 
 
 ## Add the Helm repository
+{: #add-the-helm-repository}
 
 Before you can install the {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}}, add the IBM Helm repository to your local repository list. This will provide access to the Helm chart packages that will install the operators on your cluster.
 
@@ -36,6 +39,7 @@ helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/
 ```
 
 ## Choose the operator installation mode
+{: #choose-the-operator-installation-mode}
 
 Before installing an operator, decide whether you want the operator to:
 
@@ -50,6 +54,7 @@ Before installing an operator, decide whether you want the operator to:
 **Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
 
 ## Install the CRDs
+{: #install-the-crds}
 
 Before installing the operator, the Custom Resource Definitions (CRDs) for {{site.data.reuse.ep_name}} and Flink must be installed. To install the CRDs, run the following commands:
 
@@ -82,10 +87,12 @@ helm install ibm-flink-crds ibm-helm/ibm-eventautomation-flink-operator-crd -n e
 ```
 
 ## Install operators
+{: #install-operators}
 
 Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} operator.
 
 ### Installing the {{site.data.reuse.ibm_flink_operator}} operator
+{: #installing-the-ibm-operator-for-apache-flink-operator}
 
 **Important:**
 
@@ -139,6 +146,7 @@ helm install flink ibm-helm/ibm-eventautomation-flink-operator -n "my-flink" --s
 
 
 ### Installing the {{site.data.reuse.ep_name}} operator
+{: #installing-the-event-processing-operator}
 
 Ensure you have considered the {{site.data.reuse.ep_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
@@ -186,6 +194,7 @@ helm install eventprocesssing ibm-helm/ibm-ep-operator -n "my-eventprocesssing"
 ```
 
 ### Checking the operator status
+{: #checking-the-operator-status}
 
 To check the status of the installed operator, run the following command:
 
@@ -222,10 +231,12 @@ flink-kubernetes-operator       1/1     1            1           7d4h
 ```
 
 ## Install instances
+{: #install-instances}
 
 Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} instances.
 
 ### Installing a Flink instance
+{: #installing-a-flink-instance}
 
 Instances of Flink can be created after the {{site.data.reuse.ibm_flink_operator}} is installed. If the operator was installed into **a specific namespace**, then it can only be used to manage instances of Flink in that namespace.
 
@@ -234,6 +245,7 @@ If the operator was installed for **all namespaces**, then it can be used to man
 When installing an instance of Flink, ensure you are using a namespace that the Flink operator is managing.
 
 #### Installing a Flink instance by using the CLI
+{: #installing-a-flink-instance-by-using-the-cli}
 
 To install an instance of Flink from the command-line, you must first prepare a `FlinkDeployment` custom resource configuration in a YAML file.
 
@@ -351,12 +363,14 @@ To deploy a Flink `SessionJob` instance, run the following commands:
 
 
 ### Installing an {{site.data.reuse.ep_name}} instance
+{: #installing-an-event-processing-instance}
 
 Instances of {{site.data.reuse.ep_name}} can be created after the {{site.data.reuse.ep_name}} operator is installed. If the operator was installed to manage **a specific namespace**, then it can only be used to manage instances of {{site.data.reuse.ep_name}} in that namespace. If the operator was installed to manage **all namespaces**, then it can be used to manage instances of {{site.data.reuse.ep_name}} in any namespace, including those created after the operator was deployed.
 
 When installing an instance of {{site.data.reuse.ep_name}}, ensure you are using a namespace that an operator is managing.
 
 #### Creating an image pull secret
+{: #creating-an-image-pull-secret}
 
 Before installing an {{site.data.reuse.ep_name}} instance, create an image pull secret called `ibm-entitlement-key` in the namespace where you want to create an instance of {{site.data.reuse.ep_name}}. The secret enables container images to be pulled from the registry.
 
@@ -373,6 +387,7 @@ Before installing an {{site.data.reuse.ep_name}} instance, create an image pull 
 **Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
 
 #### Installing an {{site.data.reuse.ep_name}} instance by using the CLI
+{: #installing-an-event-processing-instance-by-using-the-cli}
 
 To install an instance of {{site.data.reuse.ep_name}} from the command line, you must first prepare an `eventprocesssing` custom resource configuration in a YAML file.
 

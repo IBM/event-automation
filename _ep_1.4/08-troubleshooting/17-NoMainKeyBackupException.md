@@ -8,6 +8,7 @@ toc: true
 
 
 ## Symptoms
+{: #symptoms}
 
 When an {{site.data.reuse.ep_name}} instance is created, {{site.data.reuse.ep_name}} pods fail to reconcile with the following error in the operator logs:
 
@@ -30,10 +31,12 @@ status:
 ```
 
 ## Causes
+{: #causes}
 
 When the {{site.data.reuse.ep_name}} pod is started, a handshake takes place between the pod and the operator to initialize storage encryption. If the {{site.data.reuse.ep_name}} pod restarts while initializing the encryption, the handshake might not complete successfully, leaving the {{site.data.reuse.ep_name}} instance and the operator out-of-sync. As a result, the {{site.data.reuse.ep_name}} pod never goes into a `Ready` state.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, recreate the instance as follows: 
 

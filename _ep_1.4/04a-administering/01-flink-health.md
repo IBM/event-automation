@@ -13,6 +13,7 @@ Monitoring the health of your Flink jobs helps to verify that your operations ar
 You can use any monitoring solution compatible with Prometheus to collect, store, visualize, and set up alerts based on metrics provided by {{site.data.reuse.ibm_flink_operator}}.
 
 ## Grafana
+{: #grafana}
 
 You can use dashboards in the [Grafana service](https://github.com/grafana-operator/grafana-operator#installation-options){:target="_blank"} to monitor your Flink instance for health and performance of your Flink jobs.
 

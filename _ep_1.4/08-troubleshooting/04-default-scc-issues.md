@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 The installation of the {{site.data.reuse.ibm_flink_operator}} instance is unsuccessful, and the instance reports a `Failed` [status](../../installing/post-installation/).
 
@@ -26,12 +27,14 @@ The installation of the {{site.data.reuse.ibm_flink_operator}} instance is unsuc
   ```
 
 ## Causes
+{: #causes}
 
 {{site.data.reuse.ibm_flink_operator}} has been tested with the default `restricted-v2` Security Context Constraint (SCC) provided by the {{site.data.reuse.openshift_short}}.
 
 If a user or any other operator applies a custom SCC that removes permissions required by {{site.data.reuse.ibm_flink_operator}}, then this will cause issues.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 Apply the custom [Security Context Constraint](https://github.com/IBM/ibm-event-automation/blob/main/support/event-automation-scc.yaml){:target="_blank"} (SCC) provided by {{site.data.reuse.ea_long}} to enable permissions required by the product.
 

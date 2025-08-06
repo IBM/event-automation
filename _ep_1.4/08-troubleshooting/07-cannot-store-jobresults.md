@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 When installed on a non-OpenShift Kubernetes environment, the Flink (`FlinkDeployment`) pod goes into `CrashLoopBackoff` state when trying to access the `JobResultStore`.
 
@@ -33,10 +34,12 @@ Caused by: java.lang.IllegalStateException: The base directory of the JobResultS
 ```
 
 ## Causes
+{: #causes}
 
 The Flink instance (`FlinkDeployment`) is trying to access the FileSystem within the container, but the Flink instance (`FlinkDeployment`) does not have the permission to access the FileSystem.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, configure the `podTemplate` section in the `FlinkDeployment` custom resource with: `spec.securityContext.fsGroup: 1001`.
 

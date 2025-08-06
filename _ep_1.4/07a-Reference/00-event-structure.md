@@ -9,6 +9,7 @@ toc: true
 To define the [event](../../about/key-concepts#event) structure, you must provide the structure of messages consumed from the Kafka topic. Depending on the expected format of incoming Kafka messages, see the following sections.
 
 ## Avro
+{: #avro}
 
 If the topic contains Apache Avro binary-encoded messages, the incoming event structure must be provided as an Avro schema.
 
@@ -156,6 +157,7 @@ For example, the following schema describes the supported Avro schema structure 
 ```
 
 ## JSON
+{: #json}
 
 If the topic contains JSON formatted messages, the incoming event structure must be provided as a sample JSON message. 
 

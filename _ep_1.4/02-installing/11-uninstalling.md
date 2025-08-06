@@ -9,8 +9,10 @@ toc: true
 Find out how to remove your {{site.data.reuse.ep_name}} and related Flink deployments.
 
 ## Uninstalling instances
+{: #uninstalling-instances}
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 To delete a Flink instance:
 
@@ -33,6 +35,7 @@ To delete an {{site.data.reuse.ep_name}} instance:
 7. Check the namespace and instance name and click **Delete** to shutdown the associated pods and delete the instance.
 
 #### Check uninstallation progress
+{: #check-uninstallation-progress}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Workloads** dropdown and select **Pods** to open the **Pods** dashboard.
@@ -41,6 +44,7 @@ To delete an {{site.data.reuse.ep_name}} instance:
 5. Wait for all the {{site.data.reuse.ep_name}} or the Flink instance pods to be displayed as **Terminating** and then be removed from the list.
 
 #### Removing persistence resources
+{: #removing-persistence-resources}
 
 If you had enabled persistence for the {{site.data.reuse.ep_name}} and the Flink instance, but set the `deleteClaim` storage property to `false`, you need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.
 
@@ -72,6 +76,7 @@ Delete remaining Persistent Volumes (PVs) related to {{site.data.reuse.ep_name}}
 6. Check the PV name and click **Delete** to remove the PV.
 
 ### By using the CLI
+{: #by-using-the-cli}
 
 You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the `kubectl` command-line tool:
 
@@ -90,6 +95,7 @@ You can delete your Flink and {{site.data.reuse.ep_name}} instances by using the
    ```
 
 #### Check uninstallation progress
+{: #check-uninstallation-progress}
 
 Run the following command to check the progress:
 
@@ -109,6 +115,7 @@ quick-start-flink-ep-operator-578556d4cc-p5w58    0/1       Terminating   0     
 ```
 
 #### Removing persistence resources
+{: #removing-persistence-resources}
 
 If you had enabled persistence for the {{site.data.reuse.ep_name}} and the Flink instance, but set the `deleteClaim` storage property to `false`, you must manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.
 
@@ -151,8 +158,10 @@ Delete remaining PVs:
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
 ## Uninstalling operators
+{: #uninstalling-operators}
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 To delete the {{site.data.reuse.ibm_flink_operator}}:
 
@@ -173,6 +182,7 @@ To delete the {{site.data.reuse.ep_name}} operator:
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
 ### By using the OpenShift CLI (`oc`)
+{: #by-using-the-openshift-cli-oc}
 
 Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} from the namespace:
 
@@ -199,6 +209,7 @@ oc get subscription ibm-eventautomation-flink -o yaml | grep currentCSV
 ```
 
 ### By using the Helm CLI (`helm`)
+{: #by-using-the-helm-cli-helm}
 
 Run the following commands to uninstall your {{site.data.reuse.ep_name}} operator and the {{site.data.reuse.ibm_flink_operator}} from the namespace:
 
@@ -223,6 +234,7 @@ Run the following commands to uninstall your {{site.data.reuse.ep_name}} operato
    ```
 
 ## Uninstalling a certificate manager on {{site.data.reuse.openshift_short}}
+{: #uninstalling-a-certificate-manager-on-openshift-container-platform}
 
 To delete a certificate manager operator by using the OpenShift web console:
 
@@ -235,10 +247,12 @@ To delete a certificate manager operator by using the OpenShift web console:
 
 
 ## Removing the secrets
+{: #removing-the-secrets}
 
 Secrets that are created by the Cert Manager are not deleted automatically. You must manually delete any secrets that you do not want.
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} secrets by using the web console:
 
@@ -250,6 +264,7 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}
 6. Check the name of the secret and click **Delete** to remove the secret.
 
 ### By using the CLI
+{: #by-using-the-cli}
 
 To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} secrets by using the CLI:
 
@@ -273,10 +288,12 @@ To delete {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}}
    ```
 
 ## Removing {{site.data.reuse.ep_name}} Custom Resource Definitions
+{: #removing-event-processing-custom-resource-definitions}
 
 The {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want.
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 To delete Flink CRDs:
 
@@ -297,6 +314,7 @@ To delete {{site.data.reuse.ep_name}} CRDs:
 6. Check the name of the CRD and click **Delete** to remove the CRD.
 
 ### By using the Helm CLI
+{: #by-using-the-helm-cli}
 
 If you are running on other Kubernetes platforms, you can simply uninstall the Helm releases that are managing the {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} CRDs. Run the following commands to delete the CRDs:
 

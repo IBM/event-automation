@@ -15,6 +15,7 @@ Find out how to deploy your flows in a Flink [session cluster](https://nightlies
 - You cannot deploy Flink jobs by using the Flink SQL client for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
 
 ## Prerequisites
+{: #prerequisites}
 
 - Ensure you have configured [persistent storage](../../installing/configuring#configuring-persistent-storage) before you trigger a savepoint.
 
@@ -61,6 +62,7 @@ Find out how to deploy your flows in a Flink [session cluster](https://nightlies
 
 
 ## Set deployment options
+{: #set-deployment-options}
 
 You can specify deployment options in the file `statements.sql`.
 
@@ -123,12 +125,14 @@ SET 'key' = 'value';
   ```
 
 ## Use Flink user-defined functions
+{: #use-flink-user-defined-functions}
 
 Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
 
 For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
 
 ## Setup a connection to the Flink cluster
+{: #setup-a-connection-to-the-flink-cluster}
 
 1. {{site.data.reuse.cncf_cli_login}}
 
@@ -171,6 +175,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
    ```
 
 ## Submit a Flink SQL job
+{: #submit-a-flink-sql-job}
 
 1. Setup the connection to the Flink cluster.
 
@@ -201,6 +206,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
    ```
 
 ## List the deployed Flink SQL jobs
+{: #list-the-deployed-flink-sql-jobs}
 
 1. Setup the connection to the Flink cluster.
 
@@ -225,6 +231,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 
 ## Trigger a savepoint for a running Flink SQL job
+{: #trigger-a-savepoint-for-a-running-flink-sql-job}
 
 1. After meeting the required [prerequisites](#prerequisites), [list](#list-the-deployed-flink-sql-jobs) the deployed Flink SQL jobs.
 
@@ -256,6 +263,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 
 ## Stop a Flink SQL job with a savepoint
+{: #stop-a-flink-sql-job-with-a-savepoint}
 
 1. After meeting the required [prerequisites](#prerequisites), [list](#list-the-deployed-flink-sql-jobs) the deployed Flink SQL jobs.
 

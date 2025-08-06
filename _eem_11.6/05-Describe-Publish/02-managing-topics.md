@@ -66,6 +66,7 @@ The event information provides details to help use the events from the topic.
 - **Sample messages:** You can provide examples of the messages that are emitted by the event source. The sample messages do not follow a required format. You can use this to document to check how the sample messages are structured.
 
 ### Editing nested Avro schemas
+{: #editing-nested-avro-schemas}
 
 When sharing a topic from {{site.data.reuse.es_name}} that contains nested Avro schemas with custom record types, ensure you replace the record type with the entire schema definition. You must do this after sharing the topic with {{site.data.reuse.eem_name}}, but before publishing the topic. You can find the required schema definitions in your schema registry.
 
@@ -81,6 +82,7 @@ For example, if you are using the {{site.data.reuse.es_name}} schema registry, c
 4. Copy the schema definition and paste it into a text editor. When you edit the nested Avro schema later, you can replace the custom record type with this definition.
 
 #### Editing a nested Avro schema
+
 
 To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow these steps:
 

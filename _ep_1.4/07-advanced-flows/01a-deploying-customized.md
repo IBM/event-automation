@@ -20,6 +20,7 @@ Benefits of customized Flink jobs include:
 
 
 ## Prerequisites
+{: #prerequisites}
 
 - You [exported](../exporting-flows) your flow from the {{site.data.reuse.ep_name}} UI in the **JSON and configuration YAML** format, and saved it to a file, for example, `flow.zip`. 
 
@@ -27,6 +28,7 @@ Benefits of customized Flink jobs include:
 
 
 ## Preparing the `config.yaml` file to match the target environment
+{: #preparing-the-configyaml-file-to-match-the-target-environment}
 
 Before deploying the Flink job, edit the `config.yaml` file. The following is an example `config.yaml` file exported from the {{site.data.reuse.ep_name}} UI:
 
@@ -104,6 +106,7 @@ See the following table for credentials and connector properties information abo
 
 
 ## Use of templating
+{: #use-of-templating}
 
 The values of the connector properties in the `config.yaml` file can be turned into template variables by manually editing the `config.yaml` file.
 
@@ -119,6 +122,7 @@ properties.sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginMo
 
 
 ## Deploy the Flink job
+{: #deploy-the-flink-job}
 
 You can use a Kubernetes `FlinkDeployment` custom resource in [application mode](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} to deploy a Flink job.
 
@@ -223,6 +227,7 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
 
 <!-- HIDE UDF until supported at authoring time
 ## Use Flink user-defined functions
+{: #use-flink-user-defined-functions}
 
 Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}. UDFs can be used in the SQL of [SQL processor nodes](../../nodes/custom) authored in the {{site.data.reuse.ep_name}} UI.
 
@@ -261,6 +266,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
    ```
 
 ## Changing the parallelism
+{: #changing-the-parallelism}
 
 1. Edit the `FlinkDeployment` custom resource.
 
@@ -293,6 +299,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 -->
 
 ## Stop a Flink job with a savepoint
+{: #stop-a-flink-job-with-a-savepoint}
 
 You can temporarily stop a running Flink job while capturing its current state by creating a savepoint, and allowing you to restart the job from the exact point where it stopped by using the savepoint when required.
 
@@ -327,6 +334,7 @@ You can temporarily stop a running Flink job while capturing its current state b
    ```
 
 ## Resume a suspended Flink job
+{: #resume-a-suspended-flink-job}
 
 You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.
 
@@ -355,6 +363,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery).
 
 ## Enable SSL connection for your database and API server
+{: #enable-ssl-connection-for-your-database-and-api-server}
 
 To securely connect Flink jobs to an API server or a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection as follows:
 
@@ -414,6 +423,7 @@ A secure SSL connection is enabled between Flink and your API server or the data
 
 
 ## Troubleshooting
+{: #troubleshooting}
 
 The successful execution of the Flink job when deploying depends on the correctness of the actual connector configuration.
 

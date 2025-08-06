@@ -21,12 +21,14 @@ For more information these options, see [managing roles](../user-roles).
 **Important:** Before you begin, ensure you have [installed the {{site.data.reuse.ep_name}} operator](../../installing/installing).
 
 ## Setting up local authentication
+{: #setting-up-local-authentication}
 
 You can use local authentication to define users explicitly with usernames and passwords in a Kubernetes secret on the cluster. Local authentication is best suited for testing, prototyping, and demonstration purposes.
 
 **Important:** Despite local authentication being a valid internal OIDC provider with secure network traffic, the local authentication provider stores user credentials in a single JSON file as unencrypted strings. This makes local authentication simpler to set up than OIDC-based authentication, but passwords are at a higher risk of being exposed.
 
 ### Using {{site.data.reuse.openshift_short}} UI
+{: #using-openshift-container-platform-ui}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. In the **Installed Operators** view, switch to the namespace where you installed your existing {{site.data.reuse.ep_name}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-processing-instance) to create an instance.
@@ -76,6 +78,7 @@ You can use local authentication to define users explicitly with usernames and p
 
 
 ### Using the CLI
+{: #using-the-cli}
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Find the existing {{site.data.reuse.ep_name}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-processing-instance), or on other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-processing-instance).
@@ -164,6 +167,7 @@ You can use local authentication to define users explicitly with usernames and p
 
 
 ## Setting up OpenID Connect (OIDC)-based authentication
+{: #setting-up-openid-connect-oidc-based-authentication}
 
 You can authenticate users from an OIDC Identification Provider as follows. By using OIDC authentication, you can centralize authentication across all your applications, providing a more secure setup than local authentication.
 
@@ -182,6 +186,7 @@ If your OIDC provider does not implement the Open ID Connect Discovery standard,
 When creating an OIDC client in your provider, it will ask for redirect URLs for logging in to the UI, and potentially for logging out as well. Ensure you set these URLs to the appropriate {{site.data.reuse.ep_name}} UI URLs. If you have already installed {{site.data.reuse.ep_name}}, then see step 8 in [the UI steps](#using-openshift-container-platform-ui-1) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 
 ### Using {{site.data.reuse.openshift_short}} UI
+{: #using-openshift-container-platform-ui}
 
 1. If you do not already have one, access your OIDC provider and create a client.
 2. Retrieve the following required configuration values from your client:
@@ -255,6 +260,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance after a few minutes, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.ep_name}}](../../getting-started/logging-in).
 
 ### Using the CLI
+{: #using-the-cli}
 
 1. If you do not already have one, access your OIDC provider and create a client.
 2. Retrieve the following required configuration values from your client:
@@ -335,6 +341,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    The changed configuration files are automatically picked up by the {{site.data.reuse.ep_name}} instance after a few minutes, and you can then log in with these users. For more information, see [logging in](../../getting-started/logging-in) to {{site.data.reuse.ep_name}}.
 
 ### Setting up OIDC-based authentication with custom certificates
+{: #setting-up-oidc-based-authentication-with-custom-certificates}
 
 If your OIDC provider uses TLS certificates that are not publicly trusted, you can extend the `EventProcessing` custom resource to include references to certificates that the {{site.data.reuse.ep_name}} instance can use to trust the OIDC provider.
 

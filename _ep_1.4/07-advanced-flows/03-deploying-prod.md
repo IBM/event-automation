@@ -21,6 +21,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 * The [Apache operator sample](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} that is referenced in the following sections points to the version of the sample in the `main` branch, which is up-to-date, and might include fixes that are absent in the release branches.
 
 ## Prerequisites
+{: #prerequisites}
 
 - The SQL statements are exported from the {{site.data.reuse.ep_name}} UI and saved to a file, for example, `statements.sql`.
 
@@ -48,12 +49,14 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 
 
 ## Use Flink user-defined functions
+{: #use-flink-user-defined-functions}
 
 Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
 
 For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
 
 ## Setup a connection to the Flink cluster
+{: #setup-a-connection-to-the-flink-cluster}
 
 1. {{site.data.reuse.cncf_cli_login}}
 
@@ -65,6 +68,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
    ```
 
 ## Build and deploy a Flink SQL runner
+{: #build-and-deploy-a-flink-sql-runner}
 
 You can use a Kubernetes `FlinkDeployment` custom resource in application mode to deploy a Flink job for processing and deploying the statements in the file `statements.sql`.
 
@@ -276,9 +280,11 @@ Some adaptations to this procedure are required to build the Docker image and us
 4. Apply the modified `FlinkDeployment` custom resource.
 
 ## Changing the parallelism of a Flink SQL runner
+{: #changing-the-parallelism-of-a-flink-sql-runner}
 
 <!-- hide autoscaler
 #### Using explicit configuration
+{: #using-explicit-configuration}
 hide autoscaler -->
 
 1. Edit the `FlinkDeployment` custom resource.
@@ -312,6 +318,7 @@ hide autoscaler -->
 
 <!-- hide autoscaler
 #### Using the Flink autoscaler
+{: #using-the-flink-autoscaler}
 
 1. Ensure that the Kafka topics for the sources and the destination are defined with more than one partition.
 
@@ -342,6 +349,7 @@ hide autoscaler -->
 
 
 ## Stop a Flink SQL job with a savepoint
+{: #stop-a-flink-sql-job-with-a-savepoint}
 
 You can temporarily stop a running Flink job while capturing its current state by creating a savepoint, and allowing you to restart the job from the exact point where it stopped by using the savepoint when required.
 
@@ -377,6 +385,7 @@ You can temporarily stop a running Flink job while capturing its current state b
    ```
 
 ## Resume a suspended Flink job
+{: #resume-a-suspended-flink-job}
 
 You can resume a suspended job from the exact point where it stopped by using the savepoint created during its suspension.
 
@@ -405,6 +414,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
 ## Enable SSL connection for your database and API server
+{: #enable-ssl-connection-for-your-database-and-api-server}
 
 To securely connect Flink jobs to an API server or a database such as PostgreSQL, MySQL, or Oracle, enable an SSL connection as follows:
 

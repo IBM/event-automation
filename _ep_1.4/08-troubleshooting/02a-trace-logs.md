@@ -14,6 +14,7 @@ Configure trace logging for the {{site.data.reuse.ep_name}} or {{site.data.reuse
 
 
 ## For the {{site.data.reuse.ep_name}} instance
+{: #for-the-event-processing-instance}
 
 Trace logging can be configured for an {{site.data.reuse.ep_name}} instance by editing the `EventProcessing` custom resource. This enables trace logging that can be observed from the pod logs. To enable trace logging, update your `EventProcessing` custom resource to set the `TRACE_LEVEL` and `TRACE_SPEC` environment variables:
 
@@ -41,6 +42,7 @@ spec:
 
 
 ## For the {{site.data.reuse.ibm_flink_operator}} instance
+{: #for-the-ibm-operator-for-apache-flink-instance}
 
 You can configure trace logging without recreating the `JobManager` or `TaskManager` pods for an {{site.data.reuse.ibm_flink_operator}} instance, which consists of editing the ConfigMap associated with the `FlinkDeployment` custom resource. New Flink deployments introduce a `monitorInterval` log property, which defaults to 30 seconds. This property enables dynamic updates to the log4j configuration.
 

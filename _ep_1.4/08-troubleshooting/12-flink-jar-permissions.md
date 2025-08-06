@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 When creating an instance of a `FlinkDeployment` to [deploy jobs in production environments by using the Apache SQL Runner sample](../../advanced/deploying-production) environment, the Flink Job Manager pods go into `CrashLoopBackOff` state and an error similar to the following is displayed in the logs:
 
@@ -15,10 +16,12 @@ Caused by: java.io.IOException: JAR file can't be read '/opt/flink/usrlib/sql-ru
 ```
 
 ## Causes
+{: #causes}
 
 The non-root user running the Flink instance is unable to read the SQL runner JAR file as the non-root user does not have the required permissions.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, complete the following steps:
 

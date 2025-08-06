@@ -11,6 +11,7 @@ The following lists the Flink built-in SQL functions supported by {{site.data.re
 Additionally, [user-defined SQL functions](#user-defined-functions-in-the-exported-sql) can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when deploying jobs in a [development](../../advanced/deploying-development) or [production](../../advanced/deploying-production) environment.
 
 ## Temporal functions
+{: #temporal-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -47,6 +48,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `YEAR(date)`                                          | This function returns the year from SQL date. For example, YEAR(DATE `1994-09-27`) returns 1994. |
 
 ## Comparison functions
+{: #comparison-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -60,6 +62,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `value1 NOT BETWEEN [ ASYMMETRIC | SYMMETRIC ] value2 AND value3` |  By default (or using the ASYMMETRIC keyword), returns TRUE if Value1 is less than Value2 or greater than Value3. The SYMMETRIC keyword returns TRUE if Value1 is not between Value2 and Value3. Returns TRUE or UNKNOWN if either Value2 or Value3 is NULL. For example, 12 NOT BETWEEN 15 AND 12 returns TRUE; 12 NOT BETWEEN SYMMETRIC 15 AND 12 returns FALSE; 12 NOT BETWEEN NULL AND 15 returns UNKNOWN; 12 NOT BETWEEN 15 AND NULL returns TRUE; 12 NOT BETWEEN SYMMETRIC 12 AND NULL returns UNKNOWN.|
 
 ## Arithmetic functions
+{: #arithmetic-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -77,6 +80,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `TRUNCATE(numeric1, integer2)`                        | This function returns a numeric truncated to integer2 decimal places. NULL is returned if numeric1 or integer2 is NULL. If integer2 is 0, the result does not contain a decimal point or fraction. When integer2 is negative, the digits left of the decimal point will become zero. The function can accept just one numeric1 parameter and not use the Integer2 parameter. For example, 42.324.truncate(2) returns 42.32 and 42.324.truncate() returns 42.0.|
 
 ## String functions
+{: #string-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -109,6 +113,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `UPPER(string)`                                       | This function returns string in uppercase.|
 
 ## Conditional functions
+{: #conditional-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -119,6 +124,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `IS_DIGIT(string)`   | This function returns true if all characters in string are digit, otherwise false. |
 
 ## Type conversion functions
+{: #type-conversion-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -126,6 +132,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `TRY_CAST(value AS type)` | This function is similar to CAST, but returns NULL instead of failing the job in case of error. For example, TRY_CAST(‘42’ AS INT) returns 42; TRY_CAST(NULL AS STRING) returns NULL of type STRING; TRY_CAST(’non-number’ AS INT) returns NULL of type INT; COALESCE(TRY_CAST(’non-number’ AS INT), 0) returns 0 of type INT. |
 
 ## Collection functions
+{: #collection-functions}
 
 | SQL function                                          | Description                                                                                                             |
 |------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------|
@@ -143,6 +150,7 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 
 
 ## User-defined functions in the exported SQL
+{: #user-defined-functions-in-the-exported-sql}
 
 User-defined functions (UDFs) are extension points allowing to implement a custom logic. For more information about UDFs, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"}.
 

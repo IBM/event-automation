@@ -19,9 +19,16 @@ sections:
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-  <details class="details">
-  <summary><b>Event Streams</b></summary>
-  <h4>11.8.1 - what's new:</h4>
+    <h3>Event Streams</h3>
+    <h4>12.0.0 - what's new:</h4>
+    <ul>
+      <li>Kafka version upgraded to 4.0.0</li>
+      <li>Java version and Kafka client updates</li>
+      <li>Collection of usage metrics</li>
+      <li>Support for Red Hat OpenShift Container Platform 4.19</li>
+      <li>Security and bug fixes</li>
+    </ul>
+    <h4>11.8.1 - what's new:</h4>
     <ul>
       <li>Event Streams CLI authentication with Keycloak</li>
       <li>Security and bug fixes</li>

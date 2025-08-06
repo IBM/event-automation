@@ -17,6 +17,7 @@ Decide the purpose of your deployment, for example, whether you want a starter d
 - Customize the [configuration](../configuring) to suit your needs.
 
 ## {{site.data.reuse.ep_name}} sample deployments
+{: #event-processing-sample-deployments}
 
 A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-ep-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ep_name}} version, and then go to `/cr-examples/eventprocessing/openshift` or `/cr-examples/eventprocessing/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
@@ -44,6 +45,7 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
 ## Flink sample deployments
+{: #flink-sample-deployments}
 
 A number of sample configuration files are available in [GitHub](https://ibm.biz/ea-flink-samples){:target="_blank"}, where you can select the GitHub tag for your {{site.data.reuse.ibm_flink_operator}} version, and then go to `/cr-examples/flinkdeployment/openshift` or `/cr-examples/flinkdeployment/kubernetes` to access the samples. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
 
@@ -107,12 +109,14 @@ High-level criteria for choosing between Minimal Production and Production sampl
 To create a configuration optimized for jobs that have high throughput, low latency requirements, or both, estimate your resource requirements, including network capacity.
 
 ### Flink Quick Start sample
+{: #flink-quick-start-sample}
 
 The Quick Start sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable only for very small workloads that have no persistence or reliability requirements. It is capable of running in a single Flink Task Manager a maximum of 2 parallel flows submitted from the {{site.data.reuse.ep_name}} flow authoring tool. If you need to run more than 2 flows, a new Task Manager will be automatically created.
 
 This sample does not configure Flink with High Availability for the Flink Job Manager, thus Flink jobs are not automatically restarted if the Flink cluster restarts.
 
 ### Flink Minimal Production sample
+{: #flink-minimal-production-sample}
 
 The Minimal Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for small production workloads.
 
@@ -121,10 +125,12 @@ This sample configures Flink with minimal High Availability for the Flink Job Ma
 
 
 ### Flink Production sample
+{: #flink-production-sample}
 
 The Production sample is a Flink [session cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-session-cluster){:target="_blank"} suitable for large production workloads. This sample configures Flink with High Availability for the Flink Job Manager, thus Flink jobs are automatically restarted if the Flink cluster restarts.
 
 ### Flink Production Application Cluster sample
+{: #flink-production-application-cluster-sample}
 
 The Production – Flink Application Cluster sample is suitable for running a single large Flink job in [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} mode. You can configure the job parallelism (`spec.job.parallelism`) and the number of slots (`spec.flinkConfiguration["taskmanager.numberOfTaskSlots"]`) to suit the characteristics of your flow and your workload. As this sample configures 2 slots, assuming your job is consuming events from a Kafka topic with 10 partitions, to run a large job you can select a parallelism of 10, which requires 5 Task Managers.
 
@@ -133,6 +139,7 @@ This sample configures Flink with High Availability for the Flink Job Manager. B
 This sample supports [deploying jobs customized for production or test environments](../../advanced/deploying-customized).
 
 ### Deploying the Flink PVC
+{: #deploying-the-flink-pvc}
 
 All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims){:target="_blank"} must be deployed as follows.
 
@@ -215,6 +222,7 @@ This sample is configured with High Availability for the [Flink Job Manager](htt
 
 
 ## Planning for persistent storage
+{: #planning-for-persistent-storage}
 
 If you plan to have persistent volumes, consider the disk space required for storage.
 
@@ -237,6 +245,7 @@ You must have the Cluster Administrator role for creating persistent volumes or 
 - **For {{site.data.reuse.ep_name}}**, when creating persistent volumes, ensure the **Access mode** is set to `ReadWriteOnce`. To use persistent storage, [configure the storage properties](../configuring/#enabling-persistent-storage) in your `EventProcessing` custom resource.
 
 ## Planning for security
+{: #planning-for-security}
 
 There are two areas of security to consider when installing {{site.data.reuse.ep_name}}:
 
@@ -253,6 +262,7 @@ To configure authentication, see [managing access](../../security/managing-acces
 To configure the certificates, see [configuring TLS](../configuring/#configuring-tls).
 
 ### Securing communication with Flink deployments
+{: #securing-communication-with-flink-deployments}
 
 When you install {{site.data.reuse.ibm_flink_operator}} in a production environment, enable TLS in your `FlinkDeployment` instance, so that all communication between Flink pods, such as Flink Job Manager (JM) and Task Manager (TM) pods, use mutual TLS, and the REST endpoint is encrypted. To secure the communication between {{site.data.reuse.ep_name}} and Flink pods:
 
@@ -263,6 +273,7 @@ When you install {{site.data.reuse.ibm_flink_operator}} in a production environm
 For more information, see [configuring TLS for Flink](../configuring/#configuring-tls-to-secure-communication-with-flink-deployments).
 
 ## Licensing
+{: #licensing}
 
 Licensing is typically based on Virtual Processing Cores (VPC).
 

@@ -19,6 +19,7 @@ The following join nodes are available in {{site.data.reuse.ep_name}}:
 An interval join is used to merge two event streams based on a join condition that matches events within a time interval.
 
 ### Adding an interval join node
+{: #adding-an-interval-join-node}
 
 To add an interval join, complete the following steps:
 
@@ -31,6 +32,7 @@ The **Configure Interval join** window is displayed.
 
 
 ### Configuring an interval join node
+{: #configuring-an-interval-join-node}
 
 To configure an interval join, complete the following steps:
 

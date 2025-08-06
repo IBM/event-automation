@@ -8,8 +8,10 @@ toc: true
 Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.reuse.ep_name}}.
 
 ## `eventprocessing.events.ibm.com/v1beta1`
+{: #eventprocessingeventsibmcomv1beta1}
 
 ### Resource: `spec`
+{: #resource-spec}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -19,6 +21,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | license | [license](#resource-license) | Object containing product licensing details. |
 
 ### Resource: `license`
+{: #resource-license}
 
 For more information about licensing, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 
@@ -31,12 +34,14 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 
 ### Resource: `flink`
+{: #resource-flink}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | endpoint | string | The address of the Flink cluster's REST endpoint. |
 
 ### Resource: `authoring`
+{: #resource-authoring}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -46,6 +51,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | tls | [tls](#resource-tls) | Object containing TLS configuration. |
 
 ### Resource: `authConfig`
+{: #resource-authconfig}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -53,6 +59,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
 
 ### Resource: `oidcConfig`
+{: #resource-oidcconfig}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -68,6 +75,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | tokenPath | string | The path to the token endpoint of this provider. |
 
 ### Resource: `storage`
+{: #resource-storage}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -81,6 +89,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | type | string | Type of persistence to use. Either `ephemeral` or `persistent-claim`. |
 
 ### Resource: `template`
+{: #resource-template}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -89,12 +98,14 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | pod | [pod](#resource-pod) | Object containing pod override configuration. |
 
 ### Resource: `pod`
+{: #resource-pod}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
 ### Resource: `tls`
+{: #resource-tls}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -107,6 +118,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | ui | [ui](#resource-ui) | Object containing TLS configuration explicitly for the UI (not present in eventgateway.events.ibm.com/v1beta1). |
 
 ### Resource: `ui`
+{: #resource-ui}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -117,12 +129,14 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 
 ## Status
+{: #status}
 
 Find the CRDs supported by `status`.
 
 **Important:** Status field is used to display specific information about the instance. Do not edit the status field manually.
 
 ### Resource: `status`
+{: #resource-status}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -132,6 +146,7 @@ Find the CRDs supported by `status`.
 | phase | string | A value representing the phase in which the instance is operating. Either `Running`, `Failed` or `Pending`. |
 
 ### Resource: `condition`
+{: #resource-condition}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -142,6 +157,7 @@ Find the CRDs supported by `status`.
 | type | string | The identifier of the condition. |
 
 ### Resource: endpoint
+{: #resource-endpoint}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -151,6 +167,7 @@ Find the CRDs supported by `status`.
 | uri | string | The URI of the endpoint. |
 
 ### Resource: `versions`
+{: #resource-versions}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -158,6 +175,7 @@ Find the CRDs supported by `status`.
 | available | [available](#resource-available) | Object containing available versions. |
 
 ### Resource: `available`
+{: #resource-available}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -165,6 +183,7 @@ Find the CRDs supported by `status`.
 | channels | array[[channel](#resource-channel)]  | A list of the available channels. |
 
 ### Resource: `version`
+{: #resource-version}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -172,6 +191,7 @@ Find the CRDs supported by `status`.
 | licenses | array[[availableLicense](#resource-availablelicense)] | A list of available licenses. |
 
 ### Resource: `channel`
+{: #resource-channel}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -180,6 +200,7 @@ Find the CRDs supported by `status`.
 
 
 ### Resource: `availableLicense`
+{: #resource-availablelicense}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |

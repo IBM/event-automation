@@ -9,6 +9,7 @@ toc: true
 Follow the instructions to export and import your flows in {{site.data.reuse.ep_name}}.
 
 ## Exporting flows
+{: #exporting-flows}
 
 Export your flow to the format that you require. Exported flows can be used as a backup of your work items you created in {{site.data.reuse.ep_name}}, and they can be imported later to reuse in other {{site.data.reuse.ep_name}} instances, as a starting point for authoring new flows, or for running the flows in Flink instances.
 
@@ -39,6 +40,7 @@ To export a flow, complete the following steps:
 
 
 ## Importing flows
+{: #importing-flows}
 
 Flows that are exported in JSON format can be imported in the {{site.data.reuse.ep_name}} UI to reuse any number of times.
 

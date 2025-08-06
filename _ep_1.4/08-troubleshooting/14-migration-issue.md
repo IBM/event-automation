@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 The flow encounters unexpected errors during the following scenarios:
 
@@ -20,10 +21,12 @@ The flow encounters unexpected errors during the following scenarios:
   ```The flow cannot be imported```
 
 ## Causes
+{: #causes}
 
 If you manually modify the flow after exporting from an earlier version and then import them in the latest {{site.data.reuse.ep_name}} version, or if there is an issue in the migration framework during an upgrade, the flow becomes invalid and incompatible with the current {{site.data.reuse.ep_name}} version, resulting in an error. 
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, complete the following steps:
 

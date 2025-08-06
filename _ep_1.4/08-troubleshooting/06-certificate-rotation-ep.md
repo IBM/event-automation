@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 When using a certificate manager for certificate generation, attempting to log in to the {{site.data.reuse.ep_name}} UI fails with the following error:
 
@@ -18,9 +19,11 @@ When using a certificate manager for certificate generation, attempting to log i
 ```
 
 ## Causes
+{: #causes}
 
 The certificate manager automatically rotates certificates after approximately 60 days. {{site.data.reuse.ep_name}} does not pick up the updated certificate secret, resulting in an SSL handshake failure.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 If you see this error, delete the {{site.data.reuse.ep_name}} pod.

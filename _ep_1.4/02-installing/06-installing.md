@@ -10,6 +10,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.ep_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
 ## Before you begin
+{: #before-you-begin}
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#certificate-management) a supported version of a certificate manager.
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
@@ -19,6 +20,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 
 
 ## Create a project (namespace)
+{: #create-a-project-namespace}
 
 Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
@@ -28,6 +30,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 **Important:** Do not use any of the default or system namespaces to install an instance of {{site.data.reuse.ep_name}} (some examples of these are: `default`, `kube-system`, `kube-public`, and `openshift-operators`).
 
 ### Creating a project by using the web console
+{: #creating-a-project-by-using-the-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Home** dropdown and select **Projects** to open the **Projects** panel.
@@ -36,6 +39,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
 5. Click **Create**.
 
 ### Creating a project by using the CLI
+{: #creating-a-project-by-using-the-cli}
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Run the following command to create a new project:
@@ -58,6 +62,7 @@ Ensure you use a namespace that is dedicated to a single instance of {{site.data
    ```
 
 ## Create an image pull secret
+{: #create-an-image-pull-secret}
 
 Before installing an instance, create an image pull secret called `ibm-entitlement-key` in the namespace where you want to create an instance of Flink. The secret enables container images to be pulled from the registry.
 
@@ -73,6 +78,7 @@ Before installing an instance, create an image pull secret called `ibm-entitleme
 **Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
 
 ## Choose the operator installation mode
+{: #choose-the-operator-installation-mode}
 
 Before installing an operator, decide whether you want the operator to:
 
@@ -87,6 +93,7 @@ Before installing an operator, decide whether you want the operator to:
 **Important:** Choose only one mode when installing the operator. Mixing installation modes is not supported due to possible conflicts. If an operator is installed to manage all namespaces and a single namespace at the same time, it can result in conflicts and attempts to control the same `CustomResourceDefinition` resources.
 
 ## Decide version control and catalog source
+{: #decide-version-control-and-catalog-source}
 
 Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Selecting how the catalog source is added will determine the versions you receive.
 
@@ -97,6 +104,7 @@ Consider how you want to control your deployments, whether you want to install s
 - Specific versions: You can control the version of the operator and instances that are installed by downloading specific Container Application Software for Enterprises (CASE) files as described in [adding specific versions](#adding-specific-versions). This means you can specify the version you deploy, and only receive updates when you take action manually to do so. This is often required in production environments where the deployment of any version might require it to go through a process of validation and verification before it can be pushed to production use.
 
 ### Adding latest versions
+{: #adding-latest-versions}
 
 **Important:** Use this method of installation only if you want your deployments to always have the latest version and if you want upgrades to always be automatic.
 
@@ -153,6 +161,7 @@ Alternatively, you can add the catalog source through the OpenShift web console 
 This adds the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} to the OperatorHub catalog, making these operators available to install.
 
 ### Adding specific versions
+{: #adding-specific-versions}
 
 **Important:** Use this method if you want to install specific versions and do not want to automatically receive upgrades or have the latest versions made available immediately.
 
@@ -245,6 +254,7 @@ Before you can install the required operator versions and use them to create ins
 This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.ep_name}} making the operators available to install.
 
 ## Install the operators
+{: #install-the-operators}
 
 {{site.data.reuse.ep_name}} consists of two operators that must be installed in the {{site.data.reuse.openshift}}:
 
@@ -254,6 +264,7 @@ This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and 
 **Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 ### Installing the {{site.data.reuse.ibm_flink_operator}}
+{: #installing-the-ibm-operator-for-apache-flink}
 
 Ensure you have considered the {{site.data.reuse.ibm_flink_operator}} [requirements](../prerequisites/#operator-requirements),
 including resource requirements and, if installing in **any namespace**, the required cluster-scoped permissions.
@@ -275,6 +286,7 @@ including resource requirements and, if installing in **any namespace**, the req
 
 
 #### Installing the {{site.data.reuse.ibm_flink_operator}} by using the web console
+{: #installing-the-ibm-operator-for-apache-flink-by-using-the-web-console}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -291,6 +303,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 The installation can take a few minutes to complete.
 
 #### Installing the {{site.data.reuse.ibm_flink_operator}} by using the command line
+{: #installing-the-ibm-operator-for-apache-flink-by-using-the-command-line}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
 
@@ -366,6 +379,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    ```
 
 #### Checking the operator status
+{: #checking-the-operator-status}
 
 - To see the installed operator and check its status by using the web console, complete the following steps:
 
@@ -394,12 +408,14 @@ When the {{site.data.reuse.ibm_flink_operator}} is installed, the following addi
 
 
 ### Installing the {{site.data.reuse.ep_name}} operator
+{: #installing-the-event-processing-operator}
 
 Ensure you have considered the {{site.data.reuse.ep_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
 **Important:** You can only install one version of the {{site.data.reuse.ep_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 #### Installing the {{site.data.reuse.ep_name}} operator by using the web console
+{: #installing-the-event-processing-operator-by-using-the-web-console}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -416,6 +432,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 The installation can take a few minutes to complete.
 
 #### Installing the {{site.data.reuse.ep_name}} operator by using the command line
+{: #installing-the-event-processing-operator-by-using-the-command-line}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
 
@@ -491,6 +508,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    ```
 
 #### Checking the operator status
+{: #checking-the-operator-status}
 
 - To see the installed operator and check its status by using the web console, complete the following steps:
 
@@ -519,6 +537,7 @@ When the {{site.data.reuse.ep_name}} is installed, the following additional oper
 - IBM Common Service Operator.
 
 ## Install a Flink instance
+{: #install-a-flink-instance}
 
 Instances of Flink can be created after the {{site.data.reuse.ibm_flink_operator}} is installed. If the operator
 was installed into **a specific namespace**, then it can only be used to manage instances of Flink in that namespace.
@@ -531,6 +550,7 @@ A Flink instance is installed by deploying the `FlinkDeployment` custom resource
 
 
 ### Installing a Flink instance by using the web console
+{: #installing-a-flink-instance-by-using-the-web-console}
 
 To install a Flink instance through the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -548,6 +568,7 @@ To install a Flink instance through the {{site.data.reuse.openshift_short}} web 
 From here you can install by using the [YAML view](#installing-a-flink-instance-using-the-yaml-view) or the [form view](#installing-a-flink-instance-by-using-the-form-view). For advanced configurations or to install one of the samples, see [installing by using the YAML view](#installing-a-flink-instance-using-the-yaml-view).
 
 #### Installing a Flink instance using the YAML view
+{: #installing-a-flink-instance-using-the-yaml-view}
 
 Alternatively, you can configure the `FlinkDeployment` custom resource by editing YAML documents. To do this, select **YAML view**.
 
@@ -606,6 +627,7 @@ To deploy a Flink instance, use the following steps:
 3. Wait for the installation to complete.
 
 #### Installing a Flink instance by using the form view
+{: #installing-a-flink-instance-by-using-the-form-view}
 
 **Note:** For advanced configurations, such as configuring parameters under `spec.flinkConfiguration`, see [installing by using the YAML view](#installing-a-flink-instance-using-the-yaml-view).
 
@@ -651,6 +673,7 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
 6. Wait for the installation to complete.
 
 ### Installing a Flink instance by using the CLI
+{: #installing-a-flink-instance-by-using-the-cli}
 
 To install an instance of Flink from the command-line, you must first prepare a `FlinkDeployment` custom resource configuration in a YAML file.
 
@@ -825,12 +848,14 @@ To deploy a Flink session job instance, run the following commands:
 
 
 ## Install an {{site.data.reuse.ep_name}} instance
+{: #install-an-event-processing-instance}
 
 Instances of {{site.data.reuse.ep_name}} can be created after the {{site.data.reuse.ep_name}} operator is installed. If the operator was installed into **a specific namespace**, then it can only be used to manage instances of {{site.data.reuse.ep_name}} in that namespace. If the operator was installed for **all namespaces**, then it can be used to manage instances of {{site.data.reuse.ep_name}} in any namespace, including those created after the operator was deployed.
 
 When installing an instance of {{site.data.reuse.ep_name}}, ensure you are using a namespace that an operator is managing.
 
 ### Retrieving the Flink REST endpoint
+{: #retrieving-the-flink-rest-endpoint}
 
 To retrieve the REST endpoint URL, do the following:
 
@@ -839,6 +864,7 @@ To retrieve the REST endpoint URL, do the following:
 3. Your endpoint URL is hostname and port separated by colon(:). For example, if your hostname is `my-flink-rest.namespace.svc.cluster.local` and the port is `8081`, your REST endpoint URL is `my-flink-rest.namespace.svc.cluster.local:8081`.
 
 ### Installing an {{site.data.reuse.ep_name}} instance by using the web console
+{: #installing-an-event-processing-instance-by-using-the-web-console}
 
 To install an {{site.data.reuse.ep_name}} instance through the {{site.data.reuse.openshift_short}} web console, do the following:
 
@@ -854,6 +880,7 @@ To install an {{site.data.reuse.ep_name}} instance through the {{site.data.reuse
 From here you can install by using the [YAML view](#installing-an-event-processing-instance-by-using-the-yaml-view) or the [form view](#installing-an-event-processing-instance-by-using-the-form-view). For advanced configurations or to install one of the samples, see [installing by using the YAML view](#installing-an-event-processing-instance-by-using-the-yaml-view).
 
 #### Installing an {{site.data.reuse.ep_name}} instance by using the YAML view
+{: #installing-an-event-processing-instance-by-using-the-yaml-view}
 
 You can configure the `EventProcessing` custom resource by editing YAML documents. To do this, select **YAML view**.
 
@@ -896,6 +923,7 @@ To deploy an {{site.data.reuse.ep_name}} instance, use the following steps:
 4. You can now verify your installation and consider other [post-installation tasks](../post-installation/).
 
 #### Installing an {{site.data.reuse.ep_name}} instance by using the form view
+{: #installing-an-event-processing-instance-by-using-the-form-view}
 
 Alternatively, you can configure an `EventProcessing` custom resource using the interactive form.  You can load
 samples into the form and then edit as required.
@@ -924,6 +952,7 @@ To configure an `EventProcessing` custom resource, complete the following steps:
 8. You can now verify your installation and consider other [post-installation tasks](../post-installation/).
 
 ### Installing an {{site.data.reuse.ep_name}} instance by using the CLI
+{: #installing-an-event-processing-instance-by-using-the-cli}
 
 To install an instance of {{site.data.reuse.ep_name}} from the command-line, you must first prepare an `EventProcessing` custom resource configuration in a YAML file.
 

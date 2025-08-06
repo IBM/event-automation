@@ -12,7 +12,7 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 ## Container environment
 
-{{site.data.reuse.es_name}} 11.7.x is supported on the {{site.data.reuse.openshift}} and other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
+{{site.data.reuse.es_name}} is supported on the {{site.data.reuse.openshift}} and other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 

@@ -7,11 +7,13 @@ toc: true
 ---
 
 ## Symptom
+{: #symptom}
 
 {{site.data.reuse.ep_name}} tries to automatically determine the message format by analyzing the most recent message in the topic. However, this auto-detection might sometimes result in incorrect message format, resulting in flow failures.
 
 
 ## Causes
+{: #causes}
 
 The following are some of the causes when {{site.data.reuse.ep_name}} is unable to detect the correct message format:
 
@@ -20,6 +22,7 @@ The following are some of the causes when {{site.data.reuse.ep_name}} is unable 
 - **Auto-detected format is Avro (schema registry) but the encoding of the message is not compatible with the Avro confluent format:** Messages are not produced to use a compatible schema registry.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 - If the auto-detected format does not match the actual expected format of the messages of your topic, you can manually set the message format.
 - When you produce messages to the topic, ensure that following requirements are followed:

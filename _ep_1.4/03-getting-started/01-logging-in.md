@@ -9,6 +9,7 @@ toc: true
 Follow the instructions to log in and log out of the {{site.data.reuse.ep_name}} UI.
 
 ## Logging in
+{: #logging-in}
 
 To log in to the {{site.data.reuse.ep_name}} UI, complete the following steps:
 
@@ -18,12 +19,14 @@ To log in to the {{site.data.reuse.ep_name}} UI, complete the following steps:
 As a cluster administrator, you can retrieve the URLs and log in to {{site.data.reuse.ep_name}} UI as follows.
 
 ## Retrieving the URLs
+{: #retrieving-the-urls}
 
 {{site.data.reuse.ep_name}} uses OpenShift routes or Kubernetes ingress resources for access to its UI. Find out how to retrieve the URLs for your {{site.data.reuse.ep_name}} UI as a cluster administrator.
 
 You can use the {{site.data.reuse.openshift_short}} web console or CLI to retrieve the login URLs.
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.ep_name}} UI as follows:
 
@@ -35,6 +38,7 @@ Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.ep_
    A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ### By using the CLI
+{: #by-using-the-cli}
 
 To retrieve the URL for your {{site.data.reuse.ep_name}} UI, use the following commands:
 
@@ -71,6 +75,7 @@ To retrieve the URL for your {{site.data.reuse.ep_name}} UI, use the following c
 A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ## Logging out
+{: #logging-out}
 
 To log out of {{site.data.reuse.ep_name}}:
 

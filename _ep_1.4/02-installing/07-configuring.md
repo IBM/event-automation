@@ -9,6 +9,7 @@ toc: true
 Configure your Flink and {{site.data.reuse.ep_name}} deployments as follows.
 
 ## Configuring Flink
+{: #configuring-flink}
 
 Consider the following resources before configuring your `FlinkDeployment` custom resource:
 
@@ -21,6 +22,7 @@ Consider the following resources before configuring your `FlinkDeployment` custo
 - [Job and scheduling](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/internals/job_scheduling/){:target="_blank"}
 
 ### Configuring TLS to secure communication with Flink deployments
+{: #configuring-tls-to-secure-communication-with-flink-deployments}
 
 You can configure TLS to secure communication with Flink deployments.
 
@@ -69,6 +71,7 @@ To create truststores and keystores, complete any one of the following methods:
 After you created the truststore and keystore secrets, update the `FlinkDeployment`custom resource and `EventProcessing` custom resource as described in [installing](../installing#install-a-flink-instance).
 
 ### Configuring Flink checkpointing
+{: #configuring-flink-checkpointing}
 
 When Flink can't complete writing a checkpoint during the checkpointing time interval, the throughput of Flink jobs decreases.
 This might happen when Flink jobs experience backpressure, meaning that they can't process events as fast as they are ingested.
@@ -96,6 +99,7 @@ For more information about tuning checkpointing, see the [Flink documentation](h
 For more information about checkpointing options, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/config/#checkpointing){:target="_blank"}.
 
 ### Configuring RocksDB
+{: #configuring-rocksdb}
 
 RocksDB is an embeddable persistent key-value store for fast storage provided by Flink.
 
@@ -115,6 +119,7 @@ A good starting point is to adjust the way RocksDB keeps states in memory and tr
 For more information about tuning RocksDB, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/large_state_tuning/#tuning-rocksdb){:target="_blank"}.
 
 ### Configuring parallelism
+{: #configuring-parallelism}
 
 A Flink program is made up of many tasks. Each task can be broken down into smaller, identical instances that run at the same time. These instances work on different parts of the task's input data. The number of instances a task is split into is called its parallelism.
 
@@ -131,6 +136,7 @@ For more information, see the following sections:
 - [Deploying jobs in production environments by using the Apache SQL Runner sample](../../advanced/deploying-production).
 
 ### Configuring persistent storage
+{: #configuring-persistent-storage}
 
 Persistent storage is required for Flink to be able to recover from transient failures, to create savepoints and to be restored from savepoints, and for configuring High Availability for Flink Job Managers.
 
@@ -168,6 +174,7 @@ To configure persistent storage, complete the following steps:
 **Note:** All the [Flink sample deployments](../planning/#flink-sample-deployments) are configured with persistent storage, except the Quick Start sample.
 
 ### Configuring High Availability for Job Manager
+{: #configuring-high-availability-for-job-manager}
 
 1. [Configure persistent storage](#configuring-persistent-storage). Persistent storage is required to configure High Availability for the Flink Job Manager.
 
@@ -251,8 +258,10 @@ If a Flink job JAR file is in a registry which requires basic authentication, yo
    ```
 
 ## Configuring {{site.data.reuse.ep_name}}
+{: #configuring-event-processing}
 
 ### Enabling persistent storage
+{: #enabling-persistent-storage}
 
 In order to persist the data input into a {{site.data.reuse.ep_name}} instance, configure persistent storage in your `EventProcessing` configuration.
 
@@ -268,6 +277,7 @@ Ensure that you have sufficient disk space for persistent storage.
 **Note:** `spec.authoring.storage.type` can also be set to `ephemeral`, although no persistence is provisioned with this configuration. This is not recommended for production usage because it results in lost data.
 
 ### Dynamic provisioning
+{: #dynamic-provisioning}
 
 If there is a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/dynamic-provisioning){:target="_blank"} present on the system, {{site.data.reuse.ep_name}} can use it to dynamically provision the persistence.
 To configure this, set `spec.authoring.storage.storageClassName` to the name of the storage class provided by the provisioner.
@@ -293,6 +303,7 @@ spec:
 
 
 ### Providing persistent volumes
+{: #providing-persistent-volumes}
 
 Before installing {{site.data.reuse.ep_name}}, you can create a persistent volume for it to use as storage.
 To use a persistent volume that you created earlier, set the `spec.authoring.storage.selectors` to match the labels on the persistent volume and set the `spec.authoring.storage.storageClassName` to match the `storageClassName` on the persistent volume.
@@ -321,6 +332,7 @@ spec:
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
 ### Providing persistent volume and persistent volume claim
+{: #providing-persistent-volume-and-persistent-volume-claim}
 
 A persistent volume and persistent volume claim can be precreated for {{site.data.reuse.ep_name}} to use as storage.
 To use this method set `spec.authoring.storage.existingClaimName` to match the name of the precreated persistent volume claim.
@@ -341,6 +353,7 @@ spec:
 ```
 
 ### Configuring TLS
+{: #configuring-tls}
 
 TLS can be configured for the `EventProcessing` instance in one of the following ways:
 
@@ -350,6 +363,7 @@ TLS can be configured for the `EventProcessing` instance in one of the following
 - [User-provided UI certificates](#user-provided-ui-certificates)
 
 #### Operator configured CA certificate
+{: #operator-configured-ca-certificate}
 
 By default, the operator configures its own TLS.
 The operator uses the Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.
@@ -378,6 +392,7 @@ spec:
 ```
 
 #### User-provided CA certificate
+{: #user-provided-ca-certificate}
 
 You can provide a custom CA certificate to the {{site.data.reuse.ep_name}} instance.
 The operator uses the Cert Manager installed on the system to create the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance. The certificates are signed by using the provided CA certificate.
@@ -418,6 +433,7 @@ spec:
 **Note:** The secret that is referenced here must contain the keys `ca.crt`, `tls.crt`, `tls.key`. The `ca.crt` key and the `tls.crt` key can have the same value.
 
 #### User-provided certificates
+{: #user-provided-certificates}
 
 You can use a custom certificate for secure communication by the {{site.data.reuse.ep_name}} instance. You can use the OpenSSL tool to generate a CA and certificates that are required for an {{site.data.reuse.ep_name}} instance.
 
@@ -570,6 +586,7 @@ See the following example for setting up OpenSSL tool to generate a CA and Certi
 
 
 #### User-provided UI certificates
+{: #user-provided-ui-certificates}
 
 A separate custom certificate can be used for the UI. This certificate is presented to the browser when the {{site.data.reuse.ep_name}} user interface is navigated.
 To supply a custom certificate to the UI:
@@ -603,6 +620,7 @@ If running on the {{site.data.reuse.openshift}}:
 
 
 ### Deploy NetworkPolicies
+{: #deploy-networkpolicies}
 
 By default, the operator will deploy an instance specific NetworkPolicy when an instance of `EventProcessing` is created.
 The deployment of these network policies can be turned off with the property `spec.deployNetworkPolicies`
@@ -624,6 +642,7 @@ For information, see [network policies](../../security/network-policies).
 
 
 ## Configuring ingress
+{: #configuring-ingress}
 
 If running on the {{site.data.reuse.openshift}}, routes are automatically configured to provide external access.
 You can optionally set a host for each exposed route on `EventProcessing` instance by setting values under `spec.authoring.endpoints[]`.
@@ -649,6 +668,7 @@ spec:
 ```
 
 ### Ingress default settings
+{: #ingress-default-settings}
 
 If you are not running on the {{site.data.reuse.openshift}}, the following ingress defaults are set unless overriden:
 
@@ -693,6 +713,7 @@ spec:
 
 
 ## Configuring SSL for API server, database, and schema registry
+{: #configuring-ssl-for-api-server-database-and-schema-registry}
 
 Databases, such as PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
 
@@ -712,6 +733,7 @@ To enable SSL connections to an API server, database, and a schema registry from
 
 
 ### Add the CA certificate to the truststore
+{: #add-the-ca-certificate-to-the-truststore}
 
 1. Obtain a CA certificate of an API server, database, or schema registry from your administrator.
 
@@ -737,6 +759,7 @@ To enable SSL connections to an API server, database, and a schema registry from
    **Important:** If you use the `p12` format (not `jks`) for the API server, the whole certificate chain must be in the truststore (CA, intermediate CA and certificate).
 
 #### Add the public CA certificate to the truststore
+{: #add-the-public-ca-certificate-to-the-truststore}
 
 1. To obtain public CA certificates from a Java truststore, run the following command:
 
@@ -756,6 +779,7 @@ To enable SSL connections to an API server, database, and a schema registry from
 
 
 ### Create a secret with the truststore
+{: #create-a-secret-with-the-truststore}
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Ensure you are in the project where your {{site.data.reuse.ep_name}} instance is installed:
@@ -774,6 +798,7 @@ To enable SSL connections to an API server, database, and a schema registry from
     - `<keystore-extension>` is the extension for your keystore format. For example, `jks` for Java Keystore and `p12` for Public-Key Cryptography Standards.
 
 ### Mount the secret
+{: #mount-the-secret}
 
 Complete the following steps to mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}} by using the OpenShift web console:
 
@@ -852,10 +877,12 @@ The capability to create SSL connections between an API server, registered datab
 
 
 ## Configuring multiple databases with SSL
+{: #configuring-multiple-databases-with-ssl}
 
 If you have an existing secured SSL connection with a database and want to add a secured SSL connection to another database, follow the instructions to add the certificate of the new database to the existing truststore and update the secret. 
 
 ### Configuring the existing truststore
+{: #configuring-the-existing-truststore}
 
 To add the certificate of the new database to your existing truststore, complete the following steps:
 
@@ -877,6 +904,7 @@ To add the certificate of the new database to your existing truststore, complete
    - `<path_to_ca_cert>` is the path to the CA certificate file that you want to import into the keystore.
 
 ### Updating the secret with the new truststore
+{: #updating-the-secret-with-the-new-truststore}
 
 To update the secret with the truststore that you configured earlier, complete the following steps:
 

@@ -19,7 +19,8 @@ sections:
   <p><a href="support/licensing/#ibm-event-automation-license-information">See license information.</a></p>
   <div class="release-info">
   <!-- Assisted by WCA@IBM -->
-    <h3>Event Streams</h3>
+  <details class="details">
+    <summary><b>Event Streams</b></summary>
     <h4>12.0.0 - what's new:</h4>
     <ul>
       <li>Kafka version upgraded to 4.0.0</li>

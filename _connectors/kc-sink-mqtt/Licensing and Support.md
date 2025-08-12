@@ -6,7 +6,7 @@ sections:
     title: "Get help"
     description: "For more information about configuring and using the connector, see the documentation."
     buttons:
-      - { text: 'View the documentation', url: 'https://docs.lenses.io/latest/connectors/kafka-connectors/sources/mqtt' }
+      - { text: 'View the documentation', url: 'https://docs.lenses.io/latest/connectors/kafka-connectors/sinks/mqtt' }
   - section:
     title: "Licensing"
     type: "Apache License 2.0"

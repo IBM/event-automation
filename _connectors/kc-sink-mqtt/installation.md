@@ -18,6 +18,6 @@ To use the {{page.connectorTitle}} {{page.categories}} connector, complete the f
 
 3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
    
-   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://github.com/camunda-community-hub/kafka-connect-zeebe?tab=readme-ov-file#configuration){:target="_blank"}.
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://docs.lenses.io/latest/connectors/kafka-connectors/sinks/mqtt){:target="_blank"}.
     
 4. {{site.data.reuse.kafkaconnectStep6_newcontent}}

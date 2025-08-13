@@ -42,7 +42,7 @@ Minimum resource requirements for an {{site.data.reuse.eem_name}} deployment wit
 | -------------------------------------------------------------------------------------------- | ----------- | ----------- | ---------------------------------------------- |
 | [{{site.data.reuse.eem_name}} operator](#operator-requirements)                              | 0.2         | 0.5        | N/A                                            |
 | [{{site.data.reuse.eem_manager}} instance](../planning#example-deployment-quick-start)          | 0.5         | 0.5         | 1                                            |
-| [{{site.data.reuse.egw}} instance](../planning#example-deployment-event-gateway-quick-start) | 1.0         | 1.0         | 1                                            |
+| [{{site.data.reuse.egw}} instance](../planning#deciding-gateway-type) | 1.0         | 1.0         | 1                                            |
 
 **Note:** {{site.data.reuse.eem_name}} provides sample {{site.data.reuse.eem_manager}} configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.eem_name}} installation on your system yet, always ensure you include the resource requirements for the operator together with the intended {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instance requirements (quick start or production).
 
@@ -74,6 +74,7 @@ The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped 
 - **Permission to list specific CustomResourceDefinitions**: This allows {{site.data.reuse.eem_name}} to identify whether other optional dependencies have been installed into the cluster.
 
 ## Red Hat OpenShift Security Context Constraints
+{: #red-hat-openshift-security-context-constraints}
 
 If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace before installation.
 
@@ -143,6 +144,7 @@ A certificate manager is required to automatically manage the process of creatin
 
 
 ### The cert-manager Operator for {{site.data.reuse.openshift}}
+{: #the-cert-manager-operator-for-openshift}
 
 If you already have the cert-manager Operator for Red Hat OpenShift installed on your cluster, you can skip this section.
 
@@ -171,6 +173,6 @@ If you are installing on the {{site.data.reuse.openshift_short}} as part of {{si
 
 Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
 
-For more information, see sections about [configuring UI security](../configuring/#configuring-authentication) and [managing access with Keycloak](../../security/managing-access/#setting-up-integration-keycloak-authentication).
+For more information, see [managing access with Keycloak](../../security/managing-access#keycloak-authentication).
 
 

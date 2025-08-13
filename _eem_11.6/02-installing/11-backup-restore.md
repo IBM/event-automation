@@ -17,6 +17,7 @@ On other Kubernetes platforms, Velero provides a Helm chart that you can use to 
 Follow these instructions to back up and restore your Event Endpoint Management and operator-managed {{site.data.reuse.egw}} instances.
 
 ## Before you begin
+{: #before-you-begin}
 
 To back up and restore the {{site.data.reuse.eem_manager}} and operator-managed {{site.data.reuse.egw}} instances, you must back up the following resources:
 
@@ -70,7 +71,7 @@ Optionally, to ensure that the correct items are backed up and restored properly
 ## Backing up
 {: #backing-up}
 
-**Note:** If you have gateways that are not managed by your {{site.data.reuse.eem_name}} operator, then back up their configurations separately following the steps in [backing up Docker gateways](#backup-docker-gateway) or [backing up Kubernetes Deployment gateways](#backup-k8s-gateway), depending on your deployment.
+**Note:** If you have gateways that are not managed by your {{site.data.reuse.eem_name}} operator, then back up their configurations separately following the steps in [backing up gateways](#backup-gateway).
 
 The label used to identify resources to back up is: 
 
@@ -140,22 +141,42 @@ When you have configured the Velero instance, complete the following steps to cr
 
 If you have problems creating a backup, see the [troubleshooting information for OADP](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/backup_and_restore/oadp-application-backup-and-restore#troubleshooting){:target="_blank"}.
 
+### Backing up your {{site.data.reuse.egw}} instances
+{: #backup-gateway}
 
-### Backing up Docker {{site.data.reuse.egw}} instances
-{: #backup-docker-gateway}
+Take a backup of your {{site.data.reuse.egw}} instance deployment specification, and also of the running configuration.
 
-Keep a copy of the Docker command that you [generated](../install-gateway#generating-gateway-configs) to deploy the gateway, along with details of any extra [gateway configuration](../configuring) that you set.
+1. To back up the gateway configuration that is stored by the {{site.data.reuse.eem_manager}}, download the configuration from the [manage gateways](../../administering/managing-gateways) page. 
 
-### Backing up Kubernetes Deployment {{site.data.reuse.egw}} instances
-{: #backup-k8s-gateway}
+   Ensure that you download the configuration for the [gateway deployment](../install-gateway) type that you installed (Docker, Kubernetes Deployment, or Operator-managed).
 
-Export your Kubernetes Deployment to a YAML file. For example:
+2. To back up the additional gateway configuration that the {{site.data.reuse.eem_manager}} does not store, capture the properties of your running gateway instance:
 
-```shell
-kubectl -n <namespace> get -o yaml <gateway deployment> > gatewaybackup.YAML
-```
+   - Operator-managed {{site.data.reuse.egw}} instances:
+     
+     ```shell
+     kubectl -n <namespace> get -o yaml eventgateway <gateway instance name> > gatewayInstanceBackup.yaml
+     ```
+
+   - Kubernetes Deployment {{site.data.reuse.egw}} instances:
+
+      ```shell
+      kubectl -n <namespace> get -o yaml <gateway deployment> > gatewayInstanceBackup.yaml
+      ```
+
+   - Docker {{site.data.reuse.egw}} instances:
+
+     ```shell
+     docker inspect <container id or name> > gatewayInstanceBackup.json
+     ```
+
+
+3. Backup your gateway endpoint certificate secret or PEM files.
+
+
 
 ## Restoring
+{: #restoring}
 
 Restoring your instance might be required for a number of reasons:
 
@@ -207,13 +228,14 @@ To restore your {{site.data.reuse.eem_manager}} and operator-managed {{site.data
 
 2. After the `Restore` custom resource is applied and in `Completed` state, check that both the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances are created, and are in `Running` state.
 
-3. Restore any Docker or Kubernetes Deployment gateways, using the backups taken in [backup Docker gateways](#backup-docker-gateway) and [backup Kubernetes Deployment gateways](#backup-k8s-gateway).
+3. Restore your gateways by using the backups taken when [backing up gateways](#backup-gateway).
 
 4. Secure your access again by following guidance in the [managing access](../../security/managing-access) and [managing roles](../../security/user-roles) topics.
 
 You can access the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances again with the same configuration and data that you used when you backed up the data.
 
 ## Handling multiple instances
+{: #handling-multiple-instances}
 
 You can customize the label `backup.events.ibm.com/component: eventendpointmanagement` to differentiate between different instances of {{site.data.reuse.eem_name}} that might exist in the same namespace. 
 

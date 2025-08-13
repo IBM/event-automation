@@ -18,10 +18,12 @@ To register an {{site.data.reuse.eem_manager}} instance as an {{site.data.reuse.
 Follow the steps to configure your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ## Retrieve the {{site.data.reuse.apic_short}} JSON Web Key Set (JWKS) endpoint
+{: #retrieve-the-apiconnect-json-web-key-set-jwks-endpoint}
 
 Before you begin, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl` endpoint. The value that you retrieve is required to configure trust between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}.
 
 ### By using the OpenShift web console
+{: #by-using-the-openshift-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -32,6 +34,7 @@ Before you begin, you must retrieve the {{site.data.reuse.apic_short}} `jwksUrl`
 7. Retrieve the value in the `jwksUrl` field.
 
 ### By using other Kubernetes platforms
+{: #by-using-other-kubernetes-platforms}
 
 The `jwksUrl` is defined as the platform API hostname with the following subpath: `api/cloud/oauth2/certs`. To obtain the `jwksUrl` from your {{site.data.reuse.apic_short}} custom resource, complete the following steps:
 1. {{site.data.reuse.cncf_cli_login}}
@@ -41,6 +44,7 @@ The `jwksUrl` is defined as the platform API hostname with the following subpath
 4. To obtain the `jwksUrl`, append `/cloud/oauth2/certs` to the end of the **APIC_PLATFORM_API_ENDPOINT** URL.
 
 ## Configure {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}
+{: #configure-event-endpoint-management-to-trust-apiconnect}
 
 To allow communication between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}, your {{site.data.reuse.eem_name}} configuration requires the CA certificate that is used to issue the certificates presented by {{site.data.reuse.apic_short}}'s API endpoints.
 
@@ -195,12 +199,14 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
          ```
 
 ## Enabling mutual TLS
+{: #enabling-mutual-tls}
 
 JSON Web Token (JWT) authentication is used by default to verify messages that are received from {{site.data.reuse.apic_short}} and cannot be disabled. All communications the {{site.data.reuse.egw}} Service receive from {{site.data.reuse.apic_short}} contain a JWT, and the JWKS endpoint you provided earlier is used to validate this token to ensure the authenticity of each message.
 
 Based on your security requirements, you can optionally choose to also enable mutual TLS (mTLS), which uses certificates for authentication:
 
 ### On {{site.data.reuse.openshift_short}} web console
+{: #on-openshift-web-console}
 
    Use the web console to modify the `EventEndpointManagement` instance's configuration:
 
@@ -212,13 +218,14 @@ Based on your security requirements, you can optionally choose to also enable mu
    6. In the `spec.manager.apic` field, add the following snippet:
 
       ```yaml
-      clientSubjectDN: CN=<commonname>
+      clientSubjectDN: <distinguished name>
       ```
 
-       Where `<commonname>` is the Common Name on the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile).
+      Where `<distinguished name>` is the DN of the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile). For example: `CN=<common name>>,OU=<organizational unit>,O=<organization>,L=<locality>>,ST=<state>,C=<country>`.
    7. Click **Save** to apply your changes.
 
 ### On other Kubernetes platforms
+{: #on-other-kubernetes-platforms}
 
   On other Kubernetes platforms you can either edit the configuration of your `EventEndpointManagement` instance by using the `kubectl edit` command, or modify your original configuration file as follows.
 
@@ -232,10 +239,10 @@ Based on your security requirements, you can optionally choose to also enable mu
    3. Update your `EventEndpointManagement` instance's YAML file on your local system. In the `spec.manager.apic` field, add the following snippet:
 
       ```yaml
-      clientSubjectDN: CN=<commonname>
+      clientSubjectDN: <full DN>
       ```
 
-      Where <commonname> is the Common Name on the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile).
+      Where `<distinguished name>` is the DN of the certificates that are used when making the [TLS client profile](#create-a-tls-client-profile). For example: `CN=<common name>>,OU=<organizational unit>,O=<organization>,L=<locality>>,ST=<state>,C=<country>`.
 
    4. Apply the YAML to the Kubernetes cluster:
 
@@ -244,22 +251,30 @@ Based on your security requirements, you can optionally choose to also enable mu
       ```
 
 ## Registering the {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service in {{site.data.reuse.apic_short}}
+{: #registering-the-manager-as-an-gateway-service-in-apiconnect}
 
 After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_short}}, register the {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service as follows:
 
 ### Obtain certificates for a TLS client profile on OpenShift
+{: #obtain-certificates-for-a-tls-client-profile-on-openshift}
 
 1. Expand the **Workloads** drop-down menu and select **Secrets**.
 2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_manager}} instance is installed in.
 3. Use the search bar to locate the secret named `<event-manager-instance-name>-ibm-eem-manager` and click the secret.
+<<<<<<< HEAD
+ 
+   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../security/config-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
+=======
 
    **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../installing/configuring#configuring-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
+>>>>>>> main
 4. Scroll down to the `Data` section.
 5. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
 6. Copy the **tls.crt** and save it in a file called `manager-client.pem`
 7. Copy the **tls.key** and save it in a file called `manager-client-key.pem`
 
 ### Obtain certificates for a TLS client profile on other Kubernetes platforms
+{: #obtain-certificates-for-a-tls-client-profile-on-other-kubernetes-platforms}
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are in the namespace where your {{site.data.reuse.eem_manager}} instance is installed:
@@ -269,8 +284,8 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
    ```
 
 3. Display the secret for your `EventEndpointManagement` instance, it will have the name `<instance-name>-ibm-eem-manager`.
-
-   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../installing/configuring#configuring-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
+ 
+   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../security/config-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
 
     ```shell
     kubectl get secret <instance-name>-ibm-eem-manager -o yaml
@@ -282,12 +297,14 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 
 
 ### Navigate to Cloud Manager
+{: #navigate-to-cloud-manager}
 
 1. {{site.data.reuse.task_openshift_select_routes}}
 2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.apic_short}} instance is installed in.
 3. Use the search bar to find the route with the **Name** ending in `admin`. Click the URL in the **Location** column. This takes you to the Cloud Manager UI.
 
 ### Create a TLS Client Profile
+{: #create-a-tls-client-profile}
 
 Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}} Service through the management endpoint.
 
@@ -307,10 +324,12 @@ Create the TLS Client profile to use when contacting the {{site.data.reuse.egw}}
 11. Click **Save**.
 
 ### Retrieving the {{site.data.reuse.egw}} management endpoint
+{: #retrieving-the-event-gateway-management-endpoint}
 
 To register an {{site.data.reuse.eem_manager}} instance with {{site.data.reuse.apic_short}}, you must provide an endpoint which defines where configuration updates from {{site.data.reuse.apic_short}} are sent. This is referred to as the **Service Endpoint** when registering an {{site.data.reuse.egw}} Service in the Cloud Manager. This endpoint can be retrieved from {{site.data.reuse.eem_name}} as follows:
 
 #### Using the OpenShift web console
+{: #using-the-openshift-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_select_routes}}
@@ -318,6 +337,7 @@ To register an {{site.data.reuse.eem_manager}} instance with {{site.data.reuse.a
 4. Use the search bar to find the route with the **Name** ending in `apic`. The URL in the **Location** column is the management endpoint.
 
 #### Using the CLI
+{: #using-the-cli}
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Ensure you are in the namespace where your {{site.data.reuse.eem_manager}} instance is installed:
@@ -333,6 +353,7 @@ To register an {{site.data.reuse.eem_manager}} instance with {{site.data.reuse.a
 4. Obtain the URL for the ingress resource from the **Host** column.
 
 ## Retrieving the {{site.data.reuse.egw}} client endpoint
+{: #retrieving-the-event-gateway-client-endpoint}
 
 To register an {{site.data.reuse.eem_manager}} instance with {{site.data.reuse.apic_short}}, you must provide an endpoint which defines where clients should connect to in order to consume events. Depending where you have [deployed your {{site.data.reuse.egw}}](../../installing/install-gateway), the steps to retrieve the client endpoint will differ:
 
@@ -363,6 +384,7 @@ To register an {{site.data.reuse.eem_manager}} instance with {{site.data.reuse.a
 
 
 ### Register the {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service
+{: #register-the-manager-as-an-gateway-service}
 
 To socialize the {{site.data.reuse.egw}} client endpoint, register the {{site.data.reuse.egw}} through the Cloud Manager as follows.
 

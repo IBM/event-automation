@@ -164,6 +164,11 @@
                   </li>
                 
                   <li>
+                    <a href="#readeventsourcesubscriptions" class="toc-h2 toc-link" data-title="">readEventSourceSubscriptions</a>
+                    
+                  </li>
+                
+                  <li>
                     <a href="#readalloptions" class="toc-h2 toc-link" data-title="">readAllOptions</a>
                     
                   </li>
@@ -195,6 +200,11 @@
                 
                   <li>
                     <a href="#exportasyncapi" class="toc-h2 toc-link" data-title="">exportAsyncAPI</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#addgroupvisibility" class="toc-h2 toc-link" data-title="">addGroupVisibility</a>
                     
                   </li>
                 
@@ -255,6 +265,31 @@
                 
                   <li>
                     <a href="#readalluserassets" class="toc-h2 toc-link" data-title="">readAllUserAssets</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#createeventendpointapprovalrequest" class="toc-h2 toc-link" data-title="">createEventEndpointApprovalRequest</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#updateeventendpointapprovalrequest" class="toc-h2 toc-link" data-title="">updateEventEndpointApprovalRequest</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#deleteeventendpointapprovalrequest" class="toc-h2 toc-link" data-title="">deleteEventEndpointApprovalRequest</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eventendpointapprovalrequestviewerlist" class="toc-h2 toc-link" data-title="">eventEndpointApprovalRequestViewerList</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eventendpointapprovalrequestadminlist" class="toc-h2 toc-link" data-title="">eventEndpointApprovalRequestAdminList</a>
                     
                   </li>
                 
@@ -4639,6 +4674,216 @@ Note - This will not include the subscription credentials</p>
     This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
     <!--eemAccessToken-->
 </aside>
+<h2 id="readeventsourcesubscriptions">readEventSourceSubscriptions</h2>
+<p><a id="opIdreadEventSourceSubscriptions"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> GET /admin/eventsources/<span class="token punctuation">{</span>eventSourceId<span class="token punctuation">}</span>/subscriptions <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>GET /eventsources/{eventSourceId}/subscriptions</code></p>
+<p>Read a list of Subscriptions to this Event Source</p>
+<h3 id="readeventsourcesubscriptions-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventSourceId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the Event Source to read Subscriptions for.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>The page number of results to retrieve. If this number exceeds the available data, then the last page is returned.</td>
+</tr>
+<tr>
+<td>maxPageSize</td>
+<td>query</td>
+<td>integer</td>
+<td>false</td>
+<td>The maximum number of entries to return for a given page. If not specified, all data items will be returned.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"eventSource"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token property">"option"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token property">"apicSubscription"</span><span class="token operator">:</span> <span class="token boolean">true</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
+<h3 id="readeventsourcesubscriptions-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Event Source subscriptions read successfully</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorised, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>This Event Source does not exist</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="readeventsourcesubscriptions-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Subscription ID.</td>
+</tr>
+<tr>
+<td>» username</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Username created for this Subscription.</td>
+</tr>
+<tr>
+<td>» contact</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The contact details of the owner of this Subscription.</td>
+</tr>
+<tr>
+<td>» eventSource</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the Event Source this Subscription is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Event Source ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Event Source name.</td>
+</tr>
+<tr>
+<td>» option</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the option this Subscription is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Option ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Option name.</td>
+</tr>
+<tr>
+<td>» apicSubscription</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>Subscription added by API Connect</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-headers-4">Response Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Header</th>
+<th>Type</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>ei-pagination-total</td>
+<td>integer</td>
+<td></td>
+<td>Total number of items available for retrieval (including current page).</td>
+</tr>
+<tr>
+<td>200</td>
+<td>etag</td>
+<td>string</td>
+<td></td>
+<td>An identifier which can be supplied with the If-None-Match header to indicate that unchanged results should return 304 with no data.</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
 <h2 id="readalloptions">readAllOptions</h2>
 <p><a id="opIdreadAllOptions"></a></p>
 <blockquote>
@@ -4681,7 +4926,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>200 Response</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">"string"</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>        <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>          <span class="token punctuation">{</span><br>            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>            <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>            <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>          <span class="token punctuation">}</span><br>        <span class="token punctuation">]</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">"string"</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>    <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>        <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>          <span class="token punctuation">{</span><br>            <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>            <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>            <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>            <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>          <span class="token punctuation">}</span><br>        <span class="token punctuation">]</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"groupVisibility"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token string">"string"</span><br>    <span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
 <h3 id="readalloptions-responses">Responses</h3>
 <table>
 <thead>
@@ -5698,6 +5943,27 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
+<p><em>continued</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» groupVisibility</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>List of groups this option should be visible to in the catalog</td>
+</tr>
+</tbody>
+</table>
 <h4 id="enumerated-values-11">Enumerated Values</h4>
 <table>
 <thead>
@@ -5777,7 +6043,7 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
-<h3 id="response-headers-4">Response Headers</h3>
+<h3 id="response-headers-5">Response Headers</h3>
 <table>
 <thead>
 <tr>
@@ -5820,7 +6086,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"groupVisibility"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="createoption-parameters">Parameters</h3>
 <table>
 <thead>
@@ -6435,6 +6701,13 @@ Note - This will not include the subscription credentials</p>
 <td>false</td>
 <td>Certificate not valid after time.</td>
 </tr>
+<tr>
+<td>» groupVisibility</td>
+<td>body</td>
+<td>[string]</td>
+<td>false</td>
+<td>List of groups this option should be visible to in the catalog</td>
+</tr>
 </tbody>
 </table>
 <h4 id="enumerated-values-12">Enumerated Values</h4>
@@ -6653,7 +6926,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>200 Response</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"groupVisibility"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="readoption-responses">Responses</h3>
 <table>
 <thead>
@@ -7664,6 +7937,27 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
+<p><em>continued</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» groupVisibility</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>List of groups this option should be visible to in the catalog</td>
+</tr>
+</tbody>
+</table>
 <h4 id="enumerated-values-13">Enumerated Values</h4>
 <table>
 <thead>
@@ -7758,7 +8052,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"eventSourceId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"gatewayGroups"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"allowSubscriptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>  <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"approval"</span><span class="token punctuation">,</span><br>      <span class="token property">"requests"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token punctuation">{</span><br>          <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>          <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"outcome"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>          <span class="token property">"subscriptionId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>        <span class="token punctuation">}</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"groupVisibility"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="updateoption-parameters">Parameters</h3>
 <table>
 <thead>
@@ -8380,6 +8674,13 @@ Note - This will not include the subscription credentials</p>
 <td>false</td>
 <td>Certificate not valid after time.</td>
 </tr>
+<tr>
+<td>» groupVisibility</td>
+<td>body</td>
+<td>[string]</td>
+<td>false</td>
+<td>List of groups this option should be visible to in the catalog</td>
+</tr>
 </tbody>
 </table>
 <h4 id="enumerated-values-14">Enumerated Values</h4>
@@ -8805,6 +9106,185 @@ Note - This will not include the subscription credentials</p>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
 <td>Internal error</td>
 <td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="addgroupvisibility">addGroupVisibility</h2>
+<p><a id="opIdaddGroupVisibility"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> POST /admin/groupvisibility <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>POST /groupvisibility</code></p>
+<p>Add options to the provided group visibility</p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"group"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token string">"string"</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="addgroupvisibility-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>Group Visibility data</td>
+</tr>
+<tr>
+<td>» group</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Group to associate these options with</td>
+</tr>
+<tr>
+<td>» options</td>
+<td>body</td>
+<td>[string]</td>
+<td>true</td>
+<td>List of options visible to this group</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"group"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"controls"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token string">"approval"</span><br>      <span class="token punctuation">]</span><span class="token punctuation">,</span><br>      <span class="token property">"eventSourceName"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"topicName"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"capabilities"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>        <span class="token string">"consume"</span><br>      <span class="token punctuation">]</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="addgroupvisibility-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Options that have had their group visibility added</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid request, request data does not match schema or provided Option ID does not exist.</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorised, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="addgroupvisibility-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» group</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Group associated with these options</td>
+</tr>
+<tr>
+<td>» options</td>
+<td>[object]</td>
+<td>true</td>
+<td>none</td>
+<td>List of options visible to this group</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The ID for this option</td>
+</tr>
+<tr>
+<td>»» alias</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The alias for this option</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The name for this option</td>
+</tr>
+<tr>
+<td>»» controls</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» eventSourceName</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The Event Source name for this Option</td>
+</tr>
+<tr>
+<td>»» topicName</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The Kafka Topic for this Option</td>
+</tr>
+<tr>
+<td>»» capabilities</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
 </tr>
 </tbody>
 </table>
@@ -10359,7 +10839,7 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
-<h3 id="response-headers-5">Response Headers</h3>
+<h3 id="response-headers-6">Response Headers</h3>
 <table>
 <thead>
 <tr>
@@ -12045,7 +12525,7 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
-<h3 id="response-headers-6">Response Headers</h3>
+<h3 id="response-headers-7">Response Headers</h3>
 <table>
 <thead>
 <tr>
@@ -12590,7 +13070,7 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
-<h3 id="response-headers-7">Response Headers</h3>
+<h3 id="response-headers-8">Response Headers</h3>
 <table>
 <thead>
 <tr>
@@ -13288,6 +13768,805 @@ Note - This will not include the subscription credentials</p>
 <td>true</td>
 <td>none</td>
 <td>none</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="createeventendpointapprovalrequest">createEventEndpointApprovalRequest</h2>
+<p><a id="opIdcreateEventEndpointApprovalRequest"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> POST /admin/eventendpoints/<span class="token punctuation">{</span>eventEndpointId<span class="token punctuation">}</span>/requests <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>POST /eventendpoints/{eventEndpointId}/requests</code></p>
+<p>Create a new approval request against this event endpoint.</p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="createeventendpointapprovalrequest-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventEndpointId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the Event Endpoint to create an approval request against.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» description</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Description of why the request was created.</td>
+</tr>
+<tr>
+<td>» contact</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Contact details of the person making the request.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="createeventendpointapprovalrequest-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Event Endpoint Approval successfully requested.</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorised, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>This Event Endpoint does not exist</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="createeventendpointapprovalrequest-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>approval request Id.</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="updateeventendpointapprovalrequest">updateEventEndpointApprovalRequest</h2>
+<p><a id="opIdupdateEventEndpointApprovalRequest"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> PUT /admin/eventendpoints/<span class="token punctuation">{</span>eventEndpointId<span class="token punctuation">}</span>/requests/<span class="token punctuation">{</span>requestId<span class="token punctuation">}</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>PUT /eventendpoints/{eventEndpointId}/requests/{requestId}</code></p>
+<p>Update the status of the chosen request.</p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="updateeventendpointapprovalrequest-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventEndpointId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the EventEndpoint this request is for.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the Approval Request.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>Status of the request [pending, approved, rejected, fulfilled].</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values-18">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>approved</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>fulfilled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="updateeventendpointapprovalrequest-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Request updated</td>
+<td>None</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad input</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorized, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="deleteeventendpointapprovalrequest">deleteEventEndpointApprovalRequest</h2>
+<p><a id="opIddeleteEventEndpointApprovalRequest"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> DELETE /admin/eventendpoints/<span class="token punctuation">{</span>eventEndpointId<span class="token punctuation">}</span>/requests/<span class="token punctuation">{</span>requestId<span class="token punctuation">}</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>DELETE /eventendpoints/{eventEndpointId}/requests/{requestId}</code></p>
+<p>Delete the chosen approval request.</p>
+<h3 id="deleteeventendpointapprovalrequest-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventEndpointId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the Event Endpoint this delete request is for.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The ID of the Approval Request this delete request is for.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deleteeventendpointapprovalrequest-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>Approval Request deleted</td>
+<td>None</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad input</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorized, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="eventendpointapprovalrequestviewerlist">eventEndpointApprovalRequestViewerList</h2>
+<p><a id="opIdeventEndpointApprovalRequestViewerList"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> GET /admin/requests/user <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>GET /requests/user</code></p>
+<p>Get all approval requests created by this user.</p>
+<h3 id="eventendpointapprovalrequestviewerlist-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filterByStatus</td>
+<td>query</td>
+<td>string</td>
+<td>false</td>
+<td>approval status to filterBy</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values-19">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filterByStatus</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>filterByStatus</td>
+<td>approved</td>
+</tr>
+<tr>
+<td>filterByStatus</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>filterByStatus</td>
+<td>fulfilled</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>  <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"justification"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>  <span class="token property">"eventSource"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"eventEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="eventendpointapprovalrequestviewerlist-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List with entries containing information about approval requests created by this user.</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad input</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorized, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Option does not exist.</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eventendpointapprovalrequestviewerlist-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique approval Request ID.</td>
+</tr>
+<tr>
+<td>» lastUpdated</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>Unix Epoch timestamp of when this approval Request was last updated</td>
+</tr>
+<tr>
+<td>» contact</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The contact details of the raiser of this approval Request.</td>
+</tr>
+<tr>
+<td>» justification</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The justification for this approval Request.</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The status of this approval request.</td>
+</tr>
+<tr>
+<td>» eventSource</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the Event Source this Request is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Event Source ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Event Source name.</td>
+</tr>
+<tr>
+<td>» eventEndpoint</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the event endpoint this approval Request is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Event Endpoint ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Event Endpoint name.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values-20">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>approved</td>
+</tr>
+<tr>
+<td>status</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>status</td>
+<td>fulfilled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-headers-9">Response Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Header</th>
+<th>Type</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>etag</td>
+<td>string</td>
+<td></td>
+<td>An identifier which can be supplied with the If-None-Match header to indicate that unchanged results should return 304 with no data.</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+    This operation requires authentication by using an <a href="../../../eem/security/api-tokens/">access token</a>.
+    <!--eemAccessToken-->
+</aside>
+<h2 id="eventendpointapprovalrequestadminlist">eventEndpointApprovalRequestAdminList</h2>
+<p><a id="opIdeventEndpointApprovalRequestAdminList"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="language-shell"><code class="language-shell"><span class="token comment"># You can also use wget</span><br><span class="token function">curl</span> <span class="token parameter variable">-X</span> GET /admin/requests/admin <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span><br>  <span class="token parameter variable">-H</span> <span class="token string">'Authorization: Bearer {access-token}'</span><br></code></pre>
+<p><code>GET /requests/admin</code></p>
+<p>Get all the requests created against options that this author owns.</p>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"lastUpdated"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>  <span class="token property">"contact"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"justification"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"pending"</span><span class="token punctuation">,</span><br>  <span class="token property">"eventSource"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"eventEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+<h3 id="eventendpointapprovalrequestadminlist-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>List with entries containing information about requests this owner needs to respond to.</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad input</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Not authorized, successful login required</td>
+<td>None</td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>Access denied for this user and/or role</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Internal error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eventendpointapprovalrequestadminlist-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique approval Request ID.</td>
+</tr>
+<tr>
+<td>» lastUpdated</td>
+<td>integer</td>
+<td>false</td>
+<td>none</td>
+<td>Unix Epoch timestamp of when this approval Request was last updated</td>
+</tr>
+<tr>
+<td>» contact</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The contact details of the raiser of this approval Request.</td>
+</tr>
+<tr>
+<td>» justification</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The justification for this approval Request.</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>The status of this approval request.</td>
+</tr>
+<tr>
+<td>» eventSource</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the Event Source this Request is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Event Source ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Event Source name.</td>
+</tr>
+<tr>
+<td>» eventEndpoint</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Information about the event endpoint this approval Request is for.</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Unique Event Endpoint ID.</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>Event Endpoint name.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values-21">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>approved</td>
+</tr>
+<tr>
+<td>status</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>status</td>
+<td>fulfilled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-headers-10">Response Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Header</th>
+<th>Type</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>etag</td>
+<td>string</td>
+<td></td>
+<td>An identifier which can be supplied with the If-None-Match header to indicate that unchanged results should return 304 with no data.</td>
 </tr>
 </tbody>
 </table>

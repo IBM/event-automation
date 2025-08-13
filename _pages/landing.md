@@ -40,23 +40,28 @@ sections:
       <li>Download Kafka connection properties from UI</li>
       <li>Security and bug fixes</li>
     </ul>
-    </details>
-  <details class="details">
-    <summary><b>Event Endpoint Management</b></summary>
-    <h4>11.6.2 - what's new:</h4>
-    <ul>
-      <li>Wildcard redaction in an array of objects or simple types</li>
-      <li>OAuth Kafka cluster support</li>
-      <li>API call tracing through the Event Manager</li>
-      <li>Support for Red Hat OpenShift Container Platform 4.19</li>
-      <li>Documentation enhancements</li>
-      <li>Security and bug fixes</li>
-    </ul>
+    <h3>Event Endpoint Management</h3>
+      <h4>11.6.3 - what's new:</h4>
+      <ul>
+        <li>Support for Red Hat OpenShift Container Platform 4.19</li>
+        <li>Group-based visibility to options</li>
+        <li>Gateway configuration details accessible from UI</li>
+        <li>New metric to identify deprecated Kakfa clients</li>
+        <li>Security and bug fixes </li>
+        </ul> 
+      <h4>11.6.2 - what's new:</h4>
+      <ul>
+        <li>Wildcard redaction in an array of objects or simple types</li>
+        <li>OAuth Kafka cluster support</li>
+        <li>API call tracing through the Event Manager</li>
+        <li>Security and bug fixes</li>
+        <li>Documentation enhancements </li>
+      </ul> 
       <h4>11.6.1 - what's new:</h4>
       <ul>
         <li>Upgrade documentation restructure</li>
         <li>Security and bug fixes</li>
-      </ul>
+      </ul> 
       <h4>11.6.0 - what's new:</h4>
       <ul>
         <li>Admin role CA certificate management</li>

@@ -13,6 +13,7 @@ Client certificates that are signed by well-known certificate authorities do not
 To prevent interruption of service, CA certificates must be replaced before they expire. Upload your replacement CA certificate before you delete the previous one.
 
 ## Certificate sharing and user roles
+{: #certificate-sharing-and-user-roles}
 
 How CA certificates are used and shared depends on your user [role](../user-roles):
 
@@ -21,6 +22,7 @@ How CA certificates are used and shared depends on your user [role](../user-role
 - Users that have both **author** and **admin** roles can choose to share the certificates they upload.
 
 ## Adding and updating CA certificates
+{: #adding-and-updating-ca-certificates}
 
 To review the CA certificates and upload new ones, follow these steps:
 

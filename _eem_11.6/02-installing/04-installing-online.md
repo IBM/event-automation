@@ -9,6 +9,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
 ## Before you begin
+{: #before-you-begin}
 
 - Ensure that you set up your environment [according to the prerequisites](../prerequisites), including setting up your {{site.data.reuse.openshift_short}} and [installing](../prerequisites#certificate-management) a supported version of a certificate manager.
 - Ensure that you [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
@@ -16,6 +17,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 - If you want to authenticate with Keycloak, ensure that you have {{site.data.reuse.cp4i}} 16.1.0 (operator version 7.3.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"}, including the required dependencies.
 
 ## Create a project (namespace)
+{: #create-a-project-namespace}
 
 Create a namespace into which {{site.data.reuse.eem_name}} will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
@@ -24,6 +26,7 @@ Ensure that you use a namespace that is dedicated to a single deployment of {{si
 **Important:** Do not use any of the default or system namespaces to install {{site.data.reuse.eem_name}}. For example: `default`, `kube-system`, `kube-public`, and `openshift-operators`.
 
 ### Creating a project by using the web console
+{: #creating-a-project-by-using-the-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Home** dropdown and select **Projects** to open the **Projects** panel.
@@ -32,6 +35,7 @@ Ensure that you use a namespace that is dedicated to a single deployment of {{si
 5. Click **Create**.
 
 ### Creating a project by using the CLI
+{: #creating-a-project-by-using-the-cli}
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Run the following command to create a new project:
@@ -54,6 +58,7 @@ Ensure that you use a namespace that is dedicated to a single deployment of {{si
    ```
 
 ## Create an image pull secret
+{: #create-an-image-pull-secret}
 
 Before you install an instance, create an image pull secret that is called `ibm-entitlement-key` in the namespace where you want to create an instance of the {{site.data.reuse.eem_manager}}. The secret enables container images to be pulled from the registry.
 
@@ -69,6 +74,7 @@ Before you install an instance, create an image pull secret that is called `ibm-
 **Note:** If you do not create the required secret, pods fail to start with `ImagePullBackOff` errors. In this case, ensure that the secret is created and allow the pod to restart.
 
 ## Choose the operator installation mode
+{: #choose-the-operator-installation-mode}
 
 Before you install an operator, decide whether you want the operator to:
 
@@ -83,6 +89,7 @@ Before you install an operator, decide whether you want the operator to:
   **Note:** Installing different versions of {{site.data.reuse.eem_name}} in different namespaces on the same cluster is not supported. 
 
 ## Creating the catalog sources
+{: #creating-the-catalog-sources}
 
 Before you can install the required IBM operators, make them available for installation by adding the catalog sources to your cluster. Two options are available for creating your {{site.data.reuse.eem_name}} catalog sources:
 
@@ -92,6 +99,7 @@ Before you can install the required IBM operators, make them available for insta
 
 
 ### Add specific version sources for production environments (CASE)
+{: #add-specific-version-sources-for-production-environments-case}
 
 Before you can install the required operator versions and use them to create instances of the {{site.data.reuse.eem_manager}}, make their catalog source available in your cluster as described in the following steps.
 
@@ -141,6 +149,7 @@ Install the operator by using the [OpenShift web console](#installing-by-using-t
 
 
 ### Add auto-updating sources for development or test environments (IBM Operator Catalog)
+{: #add-auto-updating-sources-for-development-or-test-environments-ibm-operator-catalog}
 
 **Important:** Use this method of installation only if you want {{site.data.reuse.eem_name}} updates to be applied automatically when they become available.
 
@@ -198,10 +207,12 @@ The preceding steps add the catalog source for {{site.data.reuse.eem_name}} to t
 
 
 ## Install the {{site.data.reuse.eem_name}} operator
+{: #install-the-event-endpoint-management-operator}
 
 Follow the instructions to install the {{site.data.reuse.eem_name}} operator.
 
 ### Installing by using the web console
+{: #installing-by-using-the-web-console}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
@@ -218,6 +229,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 The installation can take a few minutes to complete.
 
 ### Installing by using the command line
+{: #installing-by-using-the-command-line}
 
 To install the operator by using the {{site.data.reuse.openshift_short}} command line, complete the following steps:
 
@@ -295,10 +307,12 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
       ```
 
 ### Checking the operator status
+{: #checking-the-operator-status}
 
 You can view the status of the installed operator as follows.
 
 #### By using the web console
+{: #checking-operator-status-by-using-the-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -310,12 +324,9 @@ In addition to the status, information about key events that occur can be viewed
 
 **Note:** If the operator is installed into a specific namespace, then it appears only under the associated project. If the operator is installed for all namespaces, then it appears under any selected project. If the operator is installed for all namespaces, and you select **all projects** from the **Project** drop down, the operator is shown multiple times in the resulting list (once for each project).
 
-When the {{site.data.reuse.eem_name}} operator is installed, the following additional operators appear in the installed operator list:
-
-- Operand Deployment Lifecycle Manager.
-- IBM Common Service Operator.
 
 #### By using the CLI
+{: #checking-operator-status-by-using-the-cli}
 
 To check the status of the installed operator by using the command line:
 
@@ -326,12 +337,14 @@ oc get csv
 The command returns a list of installed operators. The installation is successful if the value in the `PHASE` column for your {{site.data.reuse.eem_name}} operator is `Succeeded`.
 
 ## Install an {{site.data.reuse.eem_manager}} instance
+{: #install-an-event-manager-instance}
 
 Instances of the {{site.data.reuse.eem_manager}} can be created after the {{site.data.reuse.eem_name}} operator is installed. If the operator was installed into **a specific namespace**, then it can be used only to manage instances of the {{site.data.reuse.eem_manager}} in that namespace. If the operator was installed for **all namespaces**, then it can be used to manage instances of the {{site.data.reuse.eem_manager}} in any namespace, including those instances created after the operator was deployed.
 
 When you install an instance of the {{site.data.reuse.eem_manager}}, ensure that you are using a namespace that an operator is managing.
 
 ### Installing an {{site.data.reuse.eem_manager}} instance by using the web console
+{: #installing-an-manager-instance-by-using-the-web-console}
 
 To install an {{site.data.reuse.eem_manager}} instance through the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
@@ -348,13 +361,12 @@ From here, you can install by using the [YAML view](#installing-an-event-endpoin
 **Important:** If you want to customize the TLS certificates that secure your {{site.data.reuse.eem_manager}} endpoints, then you must configure the certificates before you install the custom resource. See [configuring TLS](../../security/config-tls).
 <!-- DRAFT COMMENT: Anything else user must configure before installing? -->
 
-For additional configuration options that you can set in the Custom Resource Definition, see [Configuring](../configuring).
-
 #### Installing an {{site.data.reuse.eem_manager}} instance by using the YAML view
+{: #installing-an-event-endpoint-management-instance-by-using-the-yaml-view}
 
 You can configure the `EventEndpointManagement` custom resource by editing YAML documents. Select **YAML view**.
 
-Several sample configurations are provided on which you can base your deployment. These samples range from quick start deployments for non-production development to large scale clusters ready to handle a production workload. Alternatively, a pre-configured YAML file that contains the custom resource can be dragged and dropped onto this screen to apply the configuration.
+Several sample configurations are provided on which you can base your deployment. These samples range from quick start deployments for non-production development to large-scale clusters ready to handle a production workload. Alternatively, replace the entire contents in the YAML view with your own pre-configured custom resource YAML.
 
 To view the samples, complete the following steps:
 
@@ -363,7 +375,7 @@ To view the samples, complete the following steps:
 
 **Note:** If you are experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
-More information about these samples is available in the [planning](../planning/#sample-deployments-for-event-endpoint-management) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
+More information about these samples is available in the [planning](../planning#sample-deployments-for-event-manager) section. You can base your deployment on the sample that most closely reflects your requirements and make customizations as required.
 
 When you modify the sample configuration, the updated document can be exported from the **Create EventEndpointManagement** panel by clicking the **Download** button and re-imported by dragging the resulting file back into the window. You can also directly edit the custom resource YAML by clicking the editor.
 
@@ -419,6 +431,7 @@ To deploy an {{site.data.reuse.eem_manager}} instance, use the following steps:
 3. Wait for the installation to complete.
 
 #### Installing an {{site.data.reuse.eem_manager}} instance by using the form view
+{: #installing-an-event-endpoint-management-instance-by-using-the-form-view}
 
 Alternatively, you can configure an `EventEndpointManagement` custom resource by using the interactive form. You can load
 samples into the form and then edit as required.
@@ -438,8 +451,8 @@ To configure an `EventEndpointManagement` custom resource, complete the followin
 
 1. Enter a name for the instance in the **Name** field.
 2. In **License > License Acceptance**, select the **accept** checkbox, enter the [correct values]({{ 'support/licensing' | relative_url }}#available-licenses) for **License**, **Metric**, and **Use**.
-3. In **Manager > storage > type**, select `ephemeral` or `persistent-claim` based on your requirements. See [configuring persistence](../configuring/#enabling-peristent-storage) for information about storage types, and other optional specifications such as storage size, root storage path, and secrets.
-4. In **Manager > tls**, use one of the following configurations:
+3. In **Manager > storage > type**, select `ephemeral` or `persistent-claim` based on your requirements. See [configuring persistence](../configuring/#enabling-persistent-storage) for information about storage types, and other optional specifications such as storage size, root storage path, and secrets.
+4. In **Manager > Advanced Configuration > TLS**, use one of the following configurations:
 
    - User-provided CA certificate: In **caSecretName**, choose the name of the secret that contains the root CA certificate to be used by the operator in generating other certificates.
    - User-provided certificate: In **secretName**, choose the name of the secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the Manager.
@@ -447,7 +460,7 @@ To configure an `EventEndpointManagement` custom resource, complete the followin
 
    For more information, see [configuring TLS](../../security/config-tls).
 
-5. Optional: You can configure other components in **Manager**, such as **Extension Service** and **Auth Config** to suit your [requirements](../configuring).
+5. Optional: You can configure other components in **Manager**, such as **Extension Service** and **Auth Config** to suit your requirements.
 
    - If you are installing with a usage-based license, ensure that you [copy the secrets]({{ 'support/licensing#additional-steps-for-usage-based-license' | relative_url }}) created by the IBM License Service before you install the {{site.data.reuse.eem_manager}} instance, and then complete the following steps to provide details of your License Service:
 
@@ -478,6 +491,7 @@ To configure an `EventEndpointManagement` custom resource, complete the followin
 7. Wait for the installation to complete.
 
 ### Installing an {{site.data.reuse.eem_manager}} instance by using the CLI
+{: #installing-an-manager-instance-by-using-the-cli}
 
 To install an instance of the {{site.data.reuse.eem_manager}} from the command-line, you must first prepare an `EventEndpointManagement` custom resource configuration in a YAML file.
 
@@ -485,7 +499,7 @@ Several sample configuration files are available in [GitHub](https://ibm.biz/ea-
 
 **Note:** If you are experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
-More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
+More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and make customizations as required.
 
 When you modify the sample configuration, ensure that the following fields are updated based on your requirements:
 

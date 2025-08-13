@@ -11,6 +11,7 @@ When requested by IBM support, usage-based reporting can be configured in {{site
 Usage-based deployments support the following configuration overrides of the default values.
 
 ## `submitInterval`
+{: #submitinterval}
 
 `submitInterval` is the interval in seconds for reporting usage metrics to the License Service. The following YAML is an example of configuring `submitInterval`:
 

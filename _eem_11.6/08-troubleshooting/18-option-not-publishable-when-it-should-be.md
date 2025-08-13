@@ -8,6 +8,7 @@ toc: true
 
 
 ## Symptoms
+{: #symptoms}
 
 When you attempt to publish an option with controls, the option is not published. A notification is displayed stating that no acceptable gateways are available, even though all gateways in the group are at a compatible version for the control.
 
@@ -18,19 +19,24 @@ Contact from {{site.data.reuse.egw}}: <group>/<id>, received via legacy registra
 ```
 
 ## Causes
+{: #causes}
 
 ### 1. Old registration method with SAN URI
+{: #1-old-registration-method-with-san-uri}
 
 In {{site.data.reuse.eem_name}} 11.2.1, a [new registration process for gateways](../../eem_11.2/installing/standalone-gateways/#prerequisites) was introduced which eliminated the need to specify the subject alternative name (SAN) URI in the gateway certificates. For details about the old configuration, see [{{site.data.reuse.egw}} client certificate in the 11.1 documentation](../../eem_11.1/installing/standalone-gateways/#event-gateway-client-certificate). Gateways that have this URI in their certificates still use the old registration even if they are on newer versions. The old registration did not pass their version information to the {{site.data.reuse.eem_manager}}, and the {{site.data.reuse.eem_manager}} cannot determine whether it is allowed to publish certain controls to that gateway so it prevents publishing.
 
 ### 2. Race condition in gateway registration
+{: #2-race-condition-in-gateway-registration}
 
 A potential race condition might arise during the simultaneous updating and registration process of the {{site.data.reuse.eem_manager}} and gateways. In this scenario, an updated gateway might still be perceived as an older version by the {{site.data.reuse.eem_manager}} because it registered after the {{site.data.reuse.eem_manager}} update but before the gateway itself updated. To differentiate this cause from cause 1, there are no error logs in the {{site.data.reuse.eem_manager}} stating that "Contact was received via legacy registration".
 
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 ### Cause 1
+{: #cause-1}
 
 To resolve the problem, update the certificates to remove the URI.
 
@@ -38,5 +44,6 @@ To resolve the problem, update the certificates to remove the URI.
 - If you are using a stand-alone gateway or you supplied custom certificates to the {{site.data.reuse.egw}}, check whether those certificates contain the URI and if they do, regenerate the certificates without it.
 
 ### Cause 2
+{: #cause-2}
 
 Restart the {{site.data.reuse.eem_manager}} pod.

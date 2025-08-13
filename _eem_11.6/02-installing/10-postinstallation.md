@@ -9,11 +9,13 @@ toc: true
 Consider the following tasks after installing {{site.data.reuse.eem_name}}.
  
 ## Verifying an installation
+{: #verifying-an-installation}
 
 To verify that your {{site.data.reuse.eem_name}} installation deployed successfully, you can check the status of your
 instance either by using the command line (CLI), or if you are running on {{site.data.reuse.openshift_short}}, by using the web console (UI).
 
 ### Using the {{site.data.reuse.openshift_short}} UI
+{: #using-the-openshift-ui}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
@@ -23,6 +25,7 @@ instance either by using the command line (CLI), or if you are running on {{site
 {{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
 
 ### Using the CLI
+{: #using-the-cli}
 
 After all the components of an {{site.data.reuse.eem_manager}} instance are active and ready, the `EventEndPointManagement`
 custom resource will have a `Running` phase in the status.
@@ -46,16 +49,38 @@ To verify the status:
 
 
 ## Setting up access
+{: #setting-up-access}
 
-After the {{site.data.reuse.eem_manager}} instance is successfully created, set up user authentication and authorization
-for your chosen implementation. {{site.data.reuse.eem_name}} supports locally defined authentication for testing
-purposes and [OpenID Connect (OIDC) authentication](https://openid.net/connect/){:target="_blank"} for production purposes.
+After the {{site.data.reuse.eem_manager}} instance is successfully created, set up user authentication, authorization, and roles
+for your chosen implementation.
 
-- If you selected `LOCAL` authentication, ensure that you create user credentials before you access the
-{{site.data.reuse.eem_manager}} instance. For more information, see [managing access](../../security/managing-access).
-- After you set up `LOCAL` or `OIDC` authentication, assign users to roles. For more information, see [managing roles](../../security/user-roles).
+- LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
+- OIDC: Use an existing [OIDC-compatible](https://openid.net/connect/){:target="_blank"} security provider that is available in your environment.
+- INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
+
+Authentication is configured in the `EventEndpointManagement` custom resource.
+
+The following code snippet is an example of a configuration that has authentication set to LOCAL.
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventEndpointManagement
+   ...
+   spec:
+     ...
+     manager:
+       authConfig:
+          authType: LOCAL
+     ...
+   ```
+
+Edit the `spec.manager.authConfig` section to include `authType` as `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK` as required.
+
+For more information, see [managing access](../../security/managing-access) and [managing roles](../../security/user-roles).
+
 
 ## Backup the data encryption key
+{: #backup-the-data-encryption-key}
 
 The secret `<instance-name>-ibm-eem-mek` contains an important key for decrypting the data that is stored by {{site.data.reuse.eem_name}}. Ensure you back up and store the key safely outside your cluster.
 
@@ -78,6 +103,7 @@ To save the key to a file, complete the following steps.
 3. Ensure that the backup file (`encryption-secret.yaml`) is stored in a secure location outside the cluster.
 
 ## Validating a usage-based deployment
+{: #validating-a-usage-based-deployment}
 
 You can confirm if a usage-based deployment is operating as expected by checking the logs and the `/ready` endpoint of a running {{site.data.reuse.eem_manager}} instance.
 

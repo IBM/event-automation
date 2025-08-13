@@ -56,6 +56,7 @@ Your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to t
 
 
 ## Editing a cluster
+{: #editing-a-cluster}
 
 To edit the details of a cluster, complete the following steps.
 
@@ -72,6 +73,7 @@ To edit the details of a cluster, complete the following steps.
 1. Click **Save**.
 
 ## Deleting a cluster
+{: #deleting-a-cluster}
 
 Clusters can be deleted from {{site.data.reuse.eem_name}} if they are no longer in use. You can only delete a cluster if all previously added topics from this cluster have been [deleted](../../describe/managing-event-sources/#deleting-an-event-source).
 

@@ -10,11 +10,15 @@ Options enable you to socialize one event source multiple times and in different
 
 An option can have a variety of [controls](../../describe/option-controls/) that enable you to have greater control over how the events are used. One event source can have many options and each option can contain numerous controls as demonstrated in the following diagram. For example, one event source can have 3 options. One of those options has the schema filtering and redaction control set; the other option has no controls; and the other option has all 3 controls (schema filtering, redaction and approval). So each option is providing a different control set for a subscriber to interact with. In each case, the original event source remains untouched and all the controls that you add are enforced as it passes through the {{site.data.reuse.egw_short}}. 
 
+![Event Endpoint Management 11.6.3 icon]({{ 'images' | relative_url }}/11.6.3.svg "In Event Endpoint Management 11.6.3 and later.") In {{site.data.reuse.eem_name}} 11.6.3 and later, you can control visibility to options by assigning specific user groups to have access to selected options only. When {{site.data.reuse.eem_name}} is connected to your external identity provider, it provides an automatically populated list of groups that will be discoverable when you add options to user groups. When you create an option, you can decide which user groups will be able to access and use the option in the catalog after you have published it. You can assign user groups when you [create an option](#create-option) or through the [**User groups**](../../describe/user-groups) page. 
+
+**Note**: Options that do not have any user groups are considered public and are visible to all users with the viewer role.
+
 ![Options and controls]({{ 'images' | relative_url }}/options-controls.png "Diagram showing the relationship between options and controls."){:height="60%" width="60%"}
 
 
 ## Creating an option
-{: #create_option}
+{: #create-option}
 
 To create an option, complete the following steps: 
 
@@ -32,7 +36,18 @@ To create an option, complete the following steps:
 1. Optional: In the **Description** field, provide a description of your option.
 1. Click **Next**. The **Controls** pane is displayed.
 1. Optional: If you want to add controls, click **Add control**. For more information about controls, see [adding controls to options](../option-controls).
-1. Click **Save**. Your new option is displayed.  
+1. If you're using {{site.data.reuse.eem_name}} 11.6.2 and earlier, click **Save**. Your new option is displayed.  
+1. ![Event Endpoint Management 11.6.3 icon]({{ 'images' | relative_url }}/11.6.3.svg "In Event Endpoint Management 11.6.3 and later.") If you're using 11.6.3 and later, click **Next**. The **Visibility** pane is displayed.
+1. Select the visibility type for the option from one of the following options:
+   - **Public**. If you select **Public**, the option is visible to all users with the viewer role.
+   - **Custom**. If you select **Custom**, you are prompted to select the user groups that you want to make the option available to.
+
+   a. (Optional) If the group you want is not displayed, Click **Add group** to add a new group.  
+   b. Enter the name of your group.  
+
+   **Important:** Any user groups that you add manually must exist within the organization provided by your external identity provider.   
+   c. Click **Save**.  
+1. Click **Create option**. Your new option is displayed.
 
 You can [publish the option](../publishing-options) from this page when you are ready.
 
@@ -52,6 +67,10 @@ To edit an option's details, complete the following steps:
     - Restrictions and validation checks ensure each field meets requirements for options.
     - The **Alias** is only editable when the option is in an [unpublished state](#option-lifecycle-states).
 1. On the **Controls** pane, edit the controls as required.
+1. ![Event Endpoint Management 11.6.3 icon]({{ 'images' | relative_url }}/11.6.3.svg "In Event Endpoint Management 11.6.3 and later.") If you're using 11.6.3 and later, on the **Visibility** pane, select or add the user groups that you want to make the option available to.  
+
+    **Note**:
+    - You cannot edit the visibility of published or archived options.
 1. After you make changes, click **Save**.
 1. To cancel changes, click **Cancel**.
 
@@ -89,10 +108,11 @@ To change the lifecycle state of an option, complete the following steps:
 
 An option can be [edited](#edit_option) in any lifecycle state. However, the set of fields that can be edited is restricted when in **Published** or **Archived** states to prevent changes that cause runtime issues for subscribed users.
 
-**Note:** Only **Unpublished** options can [be deleted from {{site.data.reuse.eem_name}}](#deleting-an-option).
+**Note:** Only **Unpublished** options can [be deleted from {{site.data.reuse.eem_name}}](#delete-option).
 
 
 ## Deleting an option
+{: #delete-option}
 
 An option can be deleted from an event source if it's in an **Unpublished** state. Deleting an option removes all the details and controls about the option but the event source will remain. To move your option into a state so that you can delete it, refer to the different [lifecycle states](#option-lifecycle-states) of an option.
 

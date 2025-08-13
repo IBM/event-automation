@@ -198,6 +198,7 @@ Open the `gateway_k8s.yaml` file that you [generated](#generating-gateway-config
 - The generated YAML includes a Kubernetes service definition for your gateway. A Kubernetes service is required for client access to your gateway. If the generated service configuration does not suit your requirements then you can either update it in the generated YAML, or delete the definition from the YAML and [create the Kubernetes](#create-kube-service) service later.
 
 ## Install your Kubernetes Deployment {{site.data.reuse.egw}}
+{: #install-your-kubernetes-deployment-gateway}
 
 1. Apply the `gateway_k8s.yaml` file in your Kubernetes environment by using the `kubectl` command. For example:
 
@@ -206,8 +207,7 @@ Open the `gateway_k8s.yaml` file that you [generated](#generating-gateway-config
    ```   
 
 2. To monitor the deployment of the {{site.data.reuse.egw}} in the {{site.data.reuse.eem_name}} UI navigation pane, click **Administration > Event Gateways**. When the gateway is registered, the status reports **Running**.
-3. If you need to customize the gateway for your environment or enable extra gateway features, see [advanced gateway configuration](../configuring).
-4. [Enable client network access](#enable-client-access) to your gateway.
+3. [Enable client network access](#enable-client-access) to your gateway.
 
 ## Enabling client network access
 {: #enable-client-access}

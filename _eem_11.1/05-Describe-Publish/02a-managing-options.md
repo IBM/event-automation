@@ -97,7 +97,6 @@ An option can be [edited](#edit_option) in any lifecycle state. However, the set
 
 **Note:** Only **Unpublished** options can [be deleted from {{site.data.reuse.eem_name}}](#deleting-an-option).
 
-
 ## Deleting an option
 
 An option can be deleted from a topic if it's in an **Unpublished** state. Deleting an option removes all the details and controls about the option but the topic will remain. To move your option into a state so that you can delete it, refer to the different [lifecycle states](#option-lifecycle-states) of an option.

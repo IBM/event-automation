@@ -153,7 +153,6 @@ After completing these steps, you should have the three PEM files that you need 
     If you see the error message `java.nio.file.AccessDeniedException` then check the file permissions of your certificate files, the Docker process must have read access to the certificate files that you specified.
 
 8. Return to the **Event Gateways** page to monitor the status of the new {{site.data.reuse.egw}}. When the gateway is registered, the status reports **Running**.
-9. If you need to customize the gateway for your environment or enable extra gateway features, see [Advanced gateway configuration](../configuring).
 
 
 ## Docker configuration properties reference

@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Inbound network connections (ingress)
+{: #inbound-network-connections-ingress}
 
 [Network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"} are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.
 
@@ -25,6 +26,7 @@ The following tables provide information about the network policies that are app
 
 
 ### {{site.data.reuse.eem_name}} operator pod
+{: #inbound-event-endpoint-management-operator-pod}
 
 | **Type** | **Origin**                                                                                   | **Port** | **Reason**                  | **Enabled in policy**                                                                                  |
 |----------|----------------------------------------------------------------------------------------------|----------|-----------------------------|--------------------------------------------------------------------------------------------------------|
@@ -143,6 +145,7 @@ spec:
 
 
 ### {{site.data.reuse.eem_manager}} pod
+{: #inbound-manager-pod}
 
 | **Type** | **Origin**           | **Port** | **Reason**            | **Enabled in policy**                                                                                  |
 |----------|----------------------|----------|-----------------------|--------------------------------------------------------------------------------------------------------|
@@ -153,6 +156,7 @@ spec:
 
 
 ### {{site.data.reuse.egw}} pod
+{: #inbound-gateway-pod}
 
 | **Type** | **Origin**           | **Port** | **Reason**                 | **Enabled in policy**                                                                                  |
 |----------|----------------------|----------|----------------------------|--------------------------------------------------------------------------------------------------------|
@@ -162,6 +166,7 @@ spec:
 
 
 ### Considerations for ingress
+{: #inbound-considerations-for-ingress}
 
 Consider the use of a deny-all-ingress network policy to limit communication with all pods in a namespace to only those communications specifically allowed in network policies. A deny-all network policy is not created by default as it would interfere with other applications installed in the namespace that do not have the required network policies set to allow inbound communications. 
 
@@ -181,6 +186,7 @@ spec:
 
 
 ## Outbound network connections (egress)
+{: #outbound-network-connections-egress}
 
 The following tables provide information about the outbound network connections (egress) initiated by pods in an {{site.data.reuse.eem_name}} installation.
 
@@ -188,18 +194,21 @@ The following tables provide information about the outbound network connections 
 
 
 ### {{site.data.reuse.eem_name}} operator pod
+{: #outbound-event-endpoint-management-operator-pod}
 
 | **Type** | **Destination**                    | **Pod Label**                            | **Port** | **Reason**      |
 |----------|------------------------------------|------------------------------------------|----------|-----------------|
 | TCP      | {{site.data.reuse.eem_manager}} instance | eem.ei.ibm.com/component=<INSTANCE_NAME> | 8081     | Readiness check |
 
 ### {{site.data.reuse.eem_manager}} pod
+{: #outbound-manager-pod}
 
 | **Type** | **Destination**   | **Pod Label**                               | **Port**      | **Reason**                                            |
 |----------|-------------------|---------------------------------------------|---------------|-------------------------------------------------------|
 | TCP      | Licensing Service |             | User Supplied | Licensing metrics in usage-based licensing mode |
 
 ### {{site.data.reuse.egw}} pod
+{: #outbound-gateway-pod}
 
 | **Type** | **Destination**           | **Pod Label**                               | **Port**      | **Reason**                              |
 |----------|---------------------------|---------------------------------------------|---------------|-----------------------------------------|

@@ -9,8 +9,10 @@ toc: true
 Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.reuse.eem_name}}.
 
 ## `eventendpointmanagement.events.ibm.com/v1beta1`
+{: #eventendpointmanagementeventsibmcomv1beta1}
 
 ### Resource: `spec`
+{: #resource-spec}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -19,8 +21,10 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | manager | [manager](#resource-manager) | Object containing {{site.data.reuse.eem_manager}} configuration. |
 
 ## `eventgateway.events.ibm.com/v1beta1`
+{: #eventgatewayeventsibmcomv1beta1}
 
 ### Resource: `spec`
+{: #gwy-resource-spec}
 
 | Field                 | Type                             | Description                                                                 |
 |-----------------------|----------------------------------|-----------------------------------------------------------------------------|
@@ -41,8 +45,10 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | traceSpec             | string | Dynamically configurable trace specification.                      |
 
 ## API reference of objects used in the CRDs
+{: #api-reference-of-objects-used-in-the-crds}
 
 ### Resource: `apic`
+{: #resource-apic}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -51,6 +57,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | tls | boolean | Enable/Disable mTLS with {{site.data.reuse.apic_short}}. |
 
 ### Resource: `authConfig`
+{: #resource-authconfig}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -58,6 +65,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | oidcConfig | [oidcConfig](#resource-oidcconfig) | Object containing OIDC configuration. |
 
 ### Resource: `authentication`
+{: #resource-authentication}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -66,6 +74,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | lockoutPeriod | integer | The duration in seconds while the account is locked after an unsuccessful authentication attempt. Default is 0. |
 
 ### Resource: `connection`
+{: #resource-connection}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -74,6 +83,7 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
 | perSubLimit | integer | The maximum allowed TCP connections for each subscription. Default is -1 (no limit). |
 
 ### Resource: `endpoint`
+{: #resource-endpoint}
 
 | Field       | Type              | Description                                                                                                                |
 |-------------|-------------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -90,18 +100,21 @@ Find out more abut the Custom Resource Definitions (CRDs) used by {{site.data.re
   - For `EventGateway` resources: `gateway`. 
 
 ### Resource: `fips`
+{: #resource-fips}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. |
 
 ### Resource: `jwks`
+{: #resource-jwks}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | endpoint | string | Service endpoint to provide JWKS URL. |
 
 ### Resource: `license`
+{: #resource-license}
 
 For more information about licensing, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 
@@ -113,6 +126,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | use | string | The usage of the license with which you are installing the product. |
 
 ### Resource: `manager`
+{: #resource-manager}
 
 | Field             | Type                               | Description                                             |
 |-------------------|------------------------------------|---------------------------------------------------------|
@@ -129,6 +143,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 
 ### Resource: `oidcConfig`
+{: #resource-oidcconfig}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -145,18 +160,21 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 
 ### Resource: `pod`
+{: #resource-pod}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
 ### Resource: `request`
+{: #resource-request}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | maxSizeBytes | integer | The maximum size allowed for the request payload in bytes. Default is -1 (no limit). |
 
 ### Resource: `security`
+{: #resource-security}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -165,6 +183,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | request | [request](#resource-request) | Object containing request options.  |
 
 ### Resource: `storage`
+{: #resource-storage}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -178,6 +197,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | type | string | Type of persistence to use. One of `ephemeral` or `persistent-claim`. |
 
 ### Resource: `template`
+{: #resource-template}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -186,6 +206,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | pod | [pod](#resource-pod) | Object containing pod override configuration. |
 
 ### Resource: `tls`
+{: #resource-tls}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -198,6 +219,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | ui | [ui](#resource-ui) | Object containing TLS configuration explicitly for the UI. (Not present in eventgateway.events.ibm.com/v1beta1) |
 
 ### Resource: `otelTLS`
+{: #resource-oteltls}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -207,6 +229,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | trustedCertificate | [trustedCertificate](#resource-trustedcertificate) | Configuration of a secret containing a TLS certificate to trust to validate the endpoint servers identity. |
 
 ### Resource: `trustedCertificate`
+{: #resource-trustedcertificate}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -214,6 +237,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | secretName | string | The name of a Kubernetes secret containing a CA certificate to add to the truststore. |
 
 ### Resource: `ui`
+{: #resource-ui}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -223,6 +247,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | serverCertificate | string | The key in the secret that holds the value of the server certificate. |
 
 ### Resource: `openTelemetry` 
+{: #resource-opentelemetry}
 
 | Field            | Type    | Description |
 | ---------------- | --------| ----------- |
@@ -241,6 +266,7 @@ The following `openTelemetry` spec is only available on the EventGateway Custom 
 | tracesEnablement | [][instrumentation](#resource-instrumentation) | Configure {{site.data.reuse.egw}} OpenTelemetry trace enablement. |
 
 ### Resource: `instrumentation`
+{: #resource-instrumentation}
 
 | Field        | Type    | Description |
 | ------------ | --------| ----------- |
@@ -251,28 +277,32 @@ The following `openTelemetry` spec is only available on the EventGateway Custom 
 - The instrumentation name should be the instrumentation shortname. The supplied shortname is then configured as an env var against the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>` automatically.
 
 ## status
+{: #status}
 
 Find the CRDs supported by `status`.
 
 **Important:** Status field is used to display specific information about the instance. Do not edit the status field manually.
 
 ### Resource: `status`
+{: #resource-status}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| conditions | array[[condition](#resource-condition)] | A list of conditions representing the state of the custom resource. |
-| versions | [versions](#resource-versions) | Object containing versioning information. |
-| endpoints | array[[endpoint](#resource-endpoint)] | A list of endpoints exposed by the instance. |
+| conditions | array[[condition](#status-resource-condition)] | A list of conditions representing the state of the custom resource. |
+| versions | [versions](#status-resource-versions) | Object containing versioning information. |
+| endpoints | array[[endpoint](#status-resource-endpoint)] | A list of endpoints exposed by the instance. |
 | phase | string | A value representing the phase in which the instance is operating. One of `Running`, `Failed` or `Pending`. |
 
 ### Resource: `available`
+{: #status-resource-available}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| versions | array[[version](#resource-version)] | A list of the available versions. |
-| channels | array[[channel](#resource-channel)]  | A list of the available channels. |
+| versions | array[[version](#status-resource-version)] | A list of the available versions. |
+| channels | array[[channel](#status-resource-channel)]  | A list of the available channels. |
 
 ### Resource: `availableLicense`
+{: #status-resource-availablelicense}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -284,6 +314,7 @@ Find the CRDs supported by `status`.
 | availableMetrics | array[string] | A list of available licenses metrics. |
 
 ### Resource: `condition`
+{: #status-resource-condition}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -293,6 +324,7 @@ Find the CRDs supported by `status`.
 | status | string | Indicates whether that condition is applicable. One of `True`, `False` or `Unknown`. |
 
 ### Resource: endpoint
+{: #status-resource-endpoint}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
@@ -302,24 +334,27 @@ Find the CRDs supported by `status`.
 | uri | string | The URI of the endpoint. |
 
 ### Resource: `channel`
+{: #status-resource-channel}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | name | string | The semantic version number. |
-| licenses | array[[availableLicense](#resource-availablelicense)] | A list of available licenses. |
+| licenses | array[[availableLicense](#status-resource-availablelicense)] | A list of available licenses. |
 | type | string | The identifier of the condition. |  
 
 ### Resource: `version`
+{: #status-resource-version}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | name | string | The semantic version number. |
-| licenses | array[[availableLicense](#resource-availablelicense)] | A list of available licenses. |
+| licenses | array[[availableLicense](#status-resource-availablelicense)] | A list of available licenses. |
 
 ### Resource: `versions`
+{: #status-resource-versions}
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | reconciled | string | The reconciled version of the instance |
-| available | [available](#resource-available) | Object containing available versions. |
+| available | [available](#status-resource-available) | Object containing available versions. |
 

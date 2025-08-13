@@ -21,6 +21,7 @@ The following features are available by using the Admin API:
 **Note:** If you are working with Kafka topics and clusters that you add manually, you must wait for the event source and the associated cluster to pass the connection tests against your gateways after creating an event source. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
 
 ## Prerequisites
+{: #prerequisites}
 
 If you installed {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}, the {{site.data.reuse.eem_name}} Admin API is enabled by default and is accessible from outside the cluster.
 
@@ -32,10 +33,11 @@ The Admin API is available from outside the cluster.
 
 **Note:** To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
 - If your OIDC provider supports the [offline access scope](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess){:target="_blank"}, you can retrieve authorizations for a user when the user is not logged into the UI. To use this feature, ensure `offline_access` is added to the  [additional scopes configuration](../../reference/api-reference/#resource-oidcconfig).
-- If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you add the user to the role mappings file. For information about adding the `offline_access` scope, see [setting up authorization with a custom role identifier](../managing-access/#setting-up-oidc-based-authorization-with-a-custom-role-identifier).
+- If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you [add the user to the role mappings file](../user-roles#assigning-individual-roles-to-users). 
 
-  **Important:** When using `offline_access`, your provider might control how long the offline session can last before expiring. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (90 days), then the user might receive unauthorized error responses when trying to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
-
+  **Important:** 
+  - When using `offline_access`, your provider might control how long the offline session can last before expiring. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (90 days), then the user might receive unauthorized error responses when trying to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
+ 
 ## API access tokens
 {: #api-access-tokens}
 
@@ -52,6 +54,7 @@ You can also use access tokens to [set up integration]({{'es/installing/integrat
 **Note:** The access token is only displayed in the {{site.data.reuse.eem_name}} UI when it is generated, and it cannot be retrieved later in the UI or through any API. If you forget the token, you need to delete it from the list of tokens and create a new one.
 
 ### Creating a token
+{: #creating-a-token}
 
 To create an access token, complete the following steps:
 
@@ -73,6 +76,7 @@ To create an access token, complete the following steps:
 The created token is added to the **Tokens** table.
 
 ### Removing a token
+{: #removing-an-api-token}
 
 Token entries are displayed in the **Tokens** table on the **Profile** page until they are deleted. You can delete expired tokens or tokens that are no longer required. 
 

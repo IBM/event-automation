@@ -86,12 +86,14 @@ latest_eemdocs:
         url: /installing/install-k8s-egw/
       - title: "Installing the Event Gateway as a Docker container"
         url: /installing/install-docker-egw/
-      - title: "Configuring"
+      - title: "Configuring initial installation"
         url: /installing/configuring/
       - title: "Post-installation tasks"
         url: /installing/post-installation/
       - title: "Backing up and restoring"
         url: /installing/backup-restore/
+      - title: "Exporting metrics with OpenTelemetry"
+        url: /installing/export-metrics/
       - title: "Uninstalling"
         url: /installing/uninstalling/
       - title: "Upgrading Event Manager and operator-managed Event Gateways"
@@ -119,6 +121,8 @@ latest_eemdocs:
         url: /security/managing-access/
       - title: "Managing user roles"
         url: /security/user-roles/
+      - title: "Managing user groups"
+        url: /security/groups/
       - title: "Configuring TLS"
         url: /security/config-tls/
       - title: "Verifying container image signatures"
@@ -150,6 +154,10 @@ latest_eemdocs:
         url: /describe/publishing-options/
       - title: "Managing user access to options"
         url: /describe/managing-user-access-to-topics/
+      - title: "Managing user group visibility to options"
+        url: /describe/user-groups/
+      - title: "Managing gateways"
+        url: /describe/managing-gateways/
       
   - title: Subscribe
     children:

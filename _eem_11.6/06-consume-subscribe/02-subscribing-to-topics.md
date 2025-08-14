@@ -9,6 +9,7 @@ toc: true
 After you discover an event endpoint that is suitable for use with your application, you can subscribe to it in a self-service manner in the [Catalog](../discovering-event-endpoints#the-catalog).
 
 ## Creating a subscription
+{: #creating-a-subscription}
 
 To subscribe to an event endpoint that is not configured with approval controls, complete the following steps.
 
@@ -42,7 +43,7 @@ To subscribe to an event endpoint that is not configured with approval controls,
       <!-- cert validation is also done, but not mentioning it here since it's secondary and not available to mTLS control with SASL creds. We're also implying uniqueness and not mentioning here that it's possible that multiple users could have matching identifying fields if Kevin configures it so. -->  
 
 ## Requesting access to an event endpoint
-{: #requesting_access}
+{: #requesting-access}
 
 If an event endpoint is configured with approval controls, you need to create a request for permission to subscribe to that event endpoint.
 
@@ -74,6 +75,7 @@ If your request is rejected, then **Request access** is reset and you can submit
 
 
 ## Next steps
+{: #next-steps}
 
 After you create a subscription, you can access the event endpoint that you subscribed to through the {{site.data.reuse.egw}}. [The Catalog](../discovering-event-endpoints#the-catalog) contains sample code and connection information to help you [configure your application to connect to an event endpoint](../configure-your-application-to-connect).
 

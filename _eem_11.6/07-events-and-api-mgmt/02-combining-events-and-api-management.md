@@ -11,6 +11,7 @@ Most APIs that are managed and exposed by API management solutions have been syn
 The following sections describe the value and opportunities available when combining API and event management solutions. In addition, key differences in the considerations required when describing, managing, socializing and using each type of APIs are also described, and why separate capabilities are therefore used to manage them.
 
 ## Benefits of combining API and event management
+{: #benefits-of-combining-api-and-event-management}
 
 APIs, and API management, are not new concepts. The ability to have governed interfaces which can be socialized broadly allows developers to discover and use APIs to deliver new applications quickly, while the providers of those APIs can manage usage of the APIs as required. API management offerings such as {{site.data.reuse.apic_long}} provide a full set of capabilities which provide the following features to manage your APIs:
 
@@ -28,6 +29,7 @@ The ability to describe, bundle, govern, and socialize these different styles of
 To achieve multi-form API management, your API and event management capabilities need to be composable so they can work together, while still providing the specific capabilities required for their particular style of endpoint. You can [set up an integration](../../integrating-with-apic/overview) between {{site.data.reuse.apic_long}} and {{site.data.reuse.eem_name}} to provide a complete solution to managing and socializing synchronous and asynchronous APIs together.
 
 ## Differences between API and event management solutions
+{: #differences-between-api-and-event-management-solutions}
 
 Event-driven architecture adoption has been accelerating as organizations around the world realize the potential and value of events in their respective businesses. With adoption comes the challenge of management: understanding what systems have been deployed, understanding what events are available, and understanding who can use events at any one time.
 

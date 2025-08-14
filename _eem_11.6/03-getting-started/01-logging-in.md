@@ -11,32 +11,36 @@ Follow the instructions to log in and log out of the {{site.data.reuse.eem_name}
 **Important:** To log into the {{site.data.reuse.eem_name}} UI, a cluster administrator must configure access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ## Logging in
+{: #logging-in}
 
 To log in to the {{site.data.reuse.eem_name}} UI, complete the following steps:
 
-1. Enter the URL provided by your cluster administrator in a supported [web browser](../../installing/prerequisites/#event-endpoint-management-ui).
+1. Enter the URL provided by your cluster administrator in a supported [web browser](../../installing/prerequisites/#event-manager-ui).
 2. Log in to your {{site.data.reuse.eem_name}} UI. Use your credentials provided by your cluster administrator.
 
 As a cluster administrator, you can retrieve the URLs and log in to {{site.data.reuse.eem_name}} UI as follows.
 
 ## Retrieving the URLs
+{: #retrieving-the-urls}
 
 {{site.data.reuse.eem_name}} uses OpenShift routes for access to its UI. Find out how to retrieve the URL for your {{site.data.reuse.eem_name}} UI to log in to your {{site.data.reuse.eem_manager}} instance.
 
 You can use the {{site.data.reuse.openshift_short}} UI (web console) and CLI to retrieve the login URLs as follows:
 
 ### Using {{site.data.reuse.openshift_short}} UI
+{: #using-openshift-ui}
 
 Use the OpenShift web console to retrieve the URL for your {{site.data.reuse.eem_name}} UI as follows:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Networking** in the navigation on the left, and click **Routes**.
 3. Locate the route with the name matching your {{site.data.reuse.eem_manager}} instance name. It should look something like: `<event-manager-instance-name>-ibm-eem-manager`. Click into this route and find the server or host address. This is your UI route that you can access to login into {{site.data.reuse.eem_name}}.
-4. Log in to your {{site.data.reuse.eem_name}} UI from a supported [web browser](../../installing/prerequisites/#event-processing-ui) and enter the credentials to go to the {{site.data.reuse.eem_name}} homepage.
+4. Log in to your {{site.data.reuse.eem_name}} UI from a supported [web browser](../../installing/prerequisites/#event-manager-ui) and enter the credentials to go to the {{site.data.reuse.eem_name}} homepage.
 
    A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ### Using the CLI
+{: #using-the-cli}
 
 To retrieve the URL for your {{site.data.reuse.eem_name}} UI, use the following commands:
 
@@ -59,11 +63,12 @@ To retrieve the URL for your {{site.data.reuse.eem_name}} UI, use the following 
    https://qs-eem-ui.apps.my-cluster.company.com
    ```
 
-4. Log in to your {{site.data.reuse.eem_name}} UI from a supported [web browser](../../installing/prerequisites/#event-processing-ui) and enter the credentials to go to the {{site.data.reuse.eem_name}} homepage.
+4. Log in to your {{site.data.reuse.eem_name}} UI from a supported [web browser](../../installing/prerequisites/#event-manager-ui) and enter the credentials to go to the {{site.data.reuse.eem_name}} homepage.
 
 A cluster administrator can manage access and role rights by following the instructions in [managing access](../../security/managing-access/) and [managing roles](../../security/user-roles/).
 
 ## Logging out
+{: #logging-out}
 
 To log out of {{site.data.reuse.ep_name}}:
 

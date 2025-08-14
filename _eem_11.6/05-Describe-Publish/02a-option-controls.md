@@ -32,7 +32,7 @@ To add the approval control to an option, complete the following steps.
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Approval** tile.
 1. Click **Add control**. The approval control is added to the table of controls.
@@ -81,16 +81,26 @@ When a request is approved, the viewer can make a new subscription.
 If you want to control access to your event endpoint with mTLS, you can add the mTLS control. When an option is set up with an mTLS control, a producer or consumer can connect to the gateway only if they present a valid client certificate. If the certificate is invalid, the gateway refuses the connection request.
 
 #### Steps:
+{: #mtls-steps}
 
 To add the mTLS control to an option, complete the following steps:
 
 1. If you want to use a self-signed CA certificate for your control, then verify it is [uploaded](../../security/ca-certs).
+<<<<<<< HEAD
+2. In the navigation panel, click **Manage topics**.
+3. Click the name of the event source that you want to work with.
+4. Click the **Options** tab.
+5. If you are creating a new option, click **Create option**. The details pane is displayed. 
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
+6. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+=======
 1. In the navigation panel, click **Manage topics**.
 1. Click the name of the event source that you want to work with.
 1. Click the **Options** tab.
 1. If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
 1. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
+>>>>>>> main
     * In the left panel, click **Controls**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **mTLS** tile.
@@ -114,6 +124,7 @@ If you are editing an existing option, then the option tile is updated to show t
 If you want to edit or delete an mTLS control, return to the **Edit option** window and use the **Edit** or **Delete** icons.
 
 #### Updating CA certificates
+{: #mtls-updating-ca-certificates}
 
 It is your responsibility to update the CA certificates before they expire. Follow the instructions in [Managing CA certificates](../../security/ca-certs) to update your CA certificates.
 
@@ -124,13 +135,14 @@ It is your responsibility to update the CA certificates before they expire. Foll
 You can apply the following controls to options for consume-enabled event sources only.
 
 ### Redaction
-{: #redaction}
+{: #consume-redaction}
 
 If you want to control what data from your event source can be viewed, you can add a redaction control. When an option is set up with redaction control, a subscriber will have certain field values hidden as configured in the control. This means that users can consume event data without the fear of leaking sensitive data. 
 
 You can add multiple redaction controls to one option.
 
 #### Before you begin:
+{: #consume-before-you-begin}
 
 Redaction control is supported for any event source that uses an Avro or a JSON schema, or for any event source that does not have a schema, but has JSON-formatted messages. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded.
 
@@ -150,6 +162,7 @@ For this reason, you must ensure that:
 To add a schema or provide the encoding, [edit the information window of the event source](../managing-event-sources#edit-event-source).
 
 #### Steps:
+{: #consume-steps}
 
 To add a redaction control to an option, complete the following steps.
 
@@ -159,7 +172,7 @@ To add a redaction control to an option, complete the following steps.
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Redaction** tile.
 1. Click **Next**. The **Add redaction control** window is displayed.
@@ -177,14 +190,16 @@ To add a redaction control to an option, complete the following steps.
 1. Optional: If a schema is not associated with the event source and you select **Replace value**, in the **Replace value with** field, select the type of the value you wish to replace with from **String**, **Int** or **Double**.  
 
 
-   **Important:** If a schema is not associated with the event source, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the information window of the event source](../managing-event-sources#edit-topic).
+   **Important**: If a schema is not associated with the event source, {{site.data.reuse.eem_name}} cannot verify that the input for the value at the JSON path matches the type. If these do not match then the whole message will be redacted. If you want to add a schema now, [edit the information window of the event source](../managing-event-sources#edit-event-source).
 
-1. Optional: If a schema is associated with the event source and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed to indicate what the problem is so that you can resolve it in order to proceed.  
+
+1. Optional: If a schema is associated with the event source and you select **Replace value**, in the **Replace value with** field, enter a valid value. If you enter an invalid value, an error message is displayed. Enter a valid value to proceed.  
     * ![Event Endpoint Management 11.6.2 icon]({{ 'images' | relative_url }}/11.6.2.svg "In Event Endpoint Management 11.6.2 and later.") To redact specific fields, you can use a wildcard in an array of objects or all values in an array of simple types. For example:  
        * To redact all of the strings in `myArrayOfStrings`, use `$.myObject.myArrayOfStrings[*]` 
        * To redact the `ssn` field in the `employees` array, use `$.myObject.employees[*].ssn` 
 
        **Note:** Wildcard redaction of array types in Avro unions is not supported.  
+
 1. If you select **Hash value**, select the hash algorithm that you want to use.
    
    **Note:** If the property that you select has a maximum length value associated with it as defined in the schema, the **Hash value** option is disabled if it would produce a string that would be longer than the maximum field length. 
@@ -203,6 +218,7 @@ You can add the schema filtering control to manage how the data in your event so
 When an option is set up with schema filtering enabled, a subscriber only has access to the fields determined by the schema that you add to the event source's event information window.
 
 #### Before you begin:
+{: #schema-filter-before-you-begin}
 
 If a schema is not associated with the event source, the option to add the schema filtering control is disabled. You can apply schema filtering control to events that use an Avro or a JSON schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded.
 
@@ -219,6 +235,7 @@ For this reason, you must ensure that:
 To add a schema or provide the encoding, [edit the information window of the event source](../managing-event-sources#edit-event-source).
 
 #### Steps:
+{: #schema-filter-steps}
 
 To add the schema filtering control to an option, complete the following steps.
 
@@ -228,7 +245,7 @@ To add the schema filtering control to an option, complete the following steps.
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Schema Filtering** tile.
 1. Click **Add control**. The schema filtering control is added to the table.
@@ -242,6 +259,7 @@ The option tile is updated to show that the schema filtering control is added. I
 If you want to control the rate at which data is consumed from your event source, you can add the quota enforcement control. When an option is set up with the quota enforcement control, a subscriber can consume data until the quota is exceeded. At this point, the {{site.data.reuse.egw}} stops the consumer from getting more messages until the usage by this consumer falls below the specified quota.
 
 #### Steps:
+{: #quota-steps}
 
 To add the quota enforcement control to an option, complete the following steps.
 
@@ -251,7 +269,7 @@ To add the quota enforcement control to an option, complete the following steps.
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Quota enforcement** tile.
 1. Click **Next**. The **Set a quota** window is displayed.
@@ -277,13 +295,14 @@ The option tile is updated to show that the quota enforcement control is added. 
 You can apply the following control to options for produce-enabled event sources only.
 
 ### Schema enforcement
-{: #schema-enforcement}
+{: #produce-controls-schema-enforcement}
 
 You can add the schema enforcement control to manage the kind of data that a client can write to an event endpoint. When an option is set up with schema enforcement enabled, a subscriber can only produce events to the event endpoint that comply with the schema that you add to the event source's event information. 
 
 **Note:** When sending messages to an event endpoint, the Kafka protocol might group multiple messages together into a single batch. This means that if a single message in the batch does not conform to the schema, the entire batch is rejected and none of the messages are written to the event endpoint. 
 
 #### Before you begin:
+{: #produce-controls-before-you-begin}
 
 If a schema is not associated with the event source, the option to add the schema enforcement control is disabled. You can apply schema enforcement control to events that use an Avro or a JSON schema. In addition to the schema, the {{site.data.reuse.egw}} also requires information about how the data in the event source is encoded.
 
@@ -300,6 +319,7 @@ For this reason, you must ensure that:
 To add a schema or provide the encoding, [edit the event source information](../managing-event-sources#edit-event-source).
 
 #### Steps:
+{: #produce-controls-steps}
 
 To add the schema enforcement control to an option, complete the following steps.
 
@@ -309,7 +329,7 @@ To add the schema enforcement control to an option, complete the following steps
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Schema Enforcement** tile.
 1. Click **Add control**. The schema enforcement control is added to the table.
@@ -323,6 +343,7 @@ The option tile is updated to show that the schema enforcement control is added.
 If you want to control the rate at which data is produced to your event endpoint, you can add the quota enforcement control. When an option is set up with the quota enforcement control, a producer will be able to send messages until the quota is exceeded. At this point, the {{site.data.reuse.egw}} stops the producer from sending more messages until the producers activity falls below the specified quota.
 
 #### Steps:
+{: #qouta-produce-steps}
 
 To add the quota enforcement control to an option, complete the following steps.
 
@@ -332,7 +353,7 @@ To add the quota enforcement control to an option, complete the following steps.
 1. Optional: If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
     * In the side bar, click **Controls**. The **Controls** pane is displayed.
 1. Optional: If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
+    * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **Quota enforcement** tile.
 1. Click **Next**. The **Add quota control** window is displayed.

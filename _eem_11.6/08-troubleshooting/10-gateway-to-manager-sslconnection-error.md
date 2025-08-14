@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 <!-- DRAFT COMMENT: This topic needs updating to consider users with custom manager certs. -->
 
@@ -18,6 +19,7 @@ javax.net.ssl.SSLHandshakeException: PKIX path validation failed: java.security.
 ```
 
 ## Causes
+{: #causes}
 
 Certificates are automatically renewed by the Cert Manager if you are using it to generate TLS certificates. The {{site.data.reuse.eem_manager}} and the [operator-managed {{site.data.reuse.egw}}](../../installing/install-gateway#operator-managed-gateways) pick up the renewed CA certificate. If the {{site.data.reuse.eem_manager}} or the {{site.data.reuse.egw}} renews at a different time, the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}} get a different CA certificate. 
 
@@ -25,8 +27,10 @@ To confirm this issue, examine the `ca.crt` in the {{site.data.reuse.eem_manager
 
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 ### [Operator-managed](../../installing/install-gateway#operator-managed-gateways) and [Kubernetes Deployment {{site.data.reuse.egw}}](../../installing/install-gateway#remote-gateways) {{site.data.reuse.egw}}s
+{: #operator-managedinstallinginstall-gatewayoperator-managed-gateways-and-kubernetes-deployment-gatewayinstallinginstall-gatewayremote-gateways-gateways}
 
 Delete both the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}} secrets to allow the certificates to be renewed by the Cert Manager.
 
@@ -40,6 +44,7 @@ javax.net.ssl.SSLHandshakeException: Received fatal alert: certificate_unknown
 If you see this error, delete the {{site.data.reuse.eem_manager}} pod. After the {{site.data.reuse.eem_manager}} becomes `Ready` again, the {{site.data.reuse.egw}} will reconnect to the {{site.data.reuse.eem_manager}}.
 
 ### [Docker](../../installing/install-gateway#remote-gateways) {{site.data.reuse.egw}}s
+{: #dockerinstallinginstall-gatewayremote-gateways-gateways}
 
 Update the contents of the certificate files supplied in your Docker `run` command. For example:   `-v "path:/certs/client.pem" -v "path:/certs/client.key"`.
 

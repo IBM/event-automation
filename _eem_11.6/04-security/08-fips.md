@@ -10,6 +10,7 @@ Find out how to set up {{site.data.reuse.eem_name}} to be FIPS-compliant by usin
 
 
 ## Requirements
+{: #requirements}
 
 To run a FIPS-compliant {{site.data.reuse.eem_name}} deployment, you need a [FIPS-enabled OpenShift Container Platform cluster](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/installation_overview/installing-fips){:target="_blank"} available with the {{site.data.reuse.eem_name}} operator that is installed with a version of 11.1.0 or later.
 
@@ -19,6 +20,7 @@ Ensure that you run both the {{site.data.reuse.eem_manager}} and the {{site.data
 - `TLS_AES_256_GCM_SHA384`
 
 ### Installation instructions
+{: #installation-instructions}
 
 Both the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}} applications pick up the `FIPS_MODE` environment variable and sets FIPS-compliant ciphers on secure endpoints if the value of this environment variable is `wall`. The {{site.data.reuse.eem_name}} operator allows you to handle the installation entirely in the corresponding custom resource. 
 

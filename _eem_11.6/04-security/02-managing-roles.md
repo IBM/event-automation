@@ -18,9 +18,10 @@ After [configuring access](../managing-access) to your {{site.data.reuse.eem_man
 You can set up authorization in one of the following ways:
 1. [Assign individual roles to users](#assigning-individual-roles-to-users) with local or OIDC authentication.
 2. Optional: If using an OIDC provider for authentication, you can [set up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier), where the custom identifier maps to fields in your external security manager.
-3. If using the {{site.data.reuse.cp4i}} identity provider, you must [assign roles to specific Keycloak groups](#assigning-roles-to-your-keycloak-users-and-groups) to match your {{site.data.reuse.cp4i}} installation, then manage authorization though its Keycloak instance.
+3. If using the {{site.data.reuse.cp4i}} identity provider, you must [assign roles to specific Keycloak groups](#assign-roles-keycloak) to match your {{site.data.reuse.cp4i}} installation, then manage authorization though its Keycloak instance.
 
 ## Assigning individual roles to users
+{: #assigning-individual-roles-to-users}
 
 Users are assigned roles in {{site.data.reuse.eem_name}} through user mapping, where an identifier for the user or a group of users is mapped to a role or set of roles. The mappings are defined in a configuration file that is exposed through the Kubernetes secret `<custom-resource-name>-ibm-eem-user-roles`.
 
@@ -59,6 +60,7 @@ The following example shows a user mappings file:
 ```
 
 ### Using {{site.data.reuse.openshift_short}} web console
+{: #using-openshift-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Workloads** in the navigation on the left and click **Secrets**. This lists the secrets available in this project (namespace).
@@ -67,6 +69,7 @@ The following example shows a user mappings file:
 5. Click **Save**.
 
 ### Using the CLI
+{: #using-the-cli}
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Create a `myroles.json` JSON file that contains the user role mappings for your {{site.data.reuse.eem_manager}} instance as described in the [setting up roles per user](#assigning-individual-roles-to-users) or [setting up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier) sections depending on your use case.
@@ -109,6 +112,7 @@ The following example shows a user mappings file:
 
 
 ## Setting up roles by using a custom identifier
+{: #setting-up-roles-by-using-a-custom-identifier}
 
 Using a custom identifier is a more advanced configuration only available with OIDC-based authentication. It means you can map users to their roles through a custom property (claim) associated with the user in the configured OIDC provider.
 
@@ -169,6 +173,7 @@ If you want to map roles from the ID token, set the `authorizationClaimPointer` 
 **Note:** This data includes your PII and you must not share it with others or IBM support. 
 
 ### Example configuration
+{: #example-configuration}
 
 The following example describes how to set up roles for a custom identifier called `developer`.
 
@@ -337,6 +342,7 @@ For your user or group to have author privileges in the UI, assign the `eem-auth
 
 
 ## Retrieving roles for the Admin API
+{: #retrieving-roles-for-the-admin-api}
 
 When using the {{site.data.reuse.eem_name}} Admin API, the [access token for the API](../api-tokens) has the same permissions as the user who created it. 
 

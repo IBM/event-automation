@@ -11,6 +11,7 @@ You can locate the event endpoints that you are [subscribed](../subscribing-to-e
 The **Subscriptions** page displays all of your subscriptions, listing the name of each event endpoint that you are subscribed to, with their related tags, and associated usernames. You can create more than one subscription to a single event endpoint.
 
 ## Accessing the subscription page
+{: #accessing-the-subscription-page}
 
 1. {{site.data.reuse.eem_ui_login}}
 2. In the navigation pane, click **Subscriptions**.
@@ -24,6 +25,7 @@ You can delete a subscription and remove its credentials by clicking **Delete** 
 **Note:** After you remove a subscription, the subscription credentials become invalid and cannot be reused. You can create new subscriptions to the same event endpoint, but any new subscription to the same event endpoint must use a different username and TLS client certificate (if mTLS is used).
 
 ### To remove a subscription
+{: #to-remove-a-subscription}
 
 1. {{site.data.reuse.eem_ui_login}}
 2. In the navigation pane, click **Subscriptions**.

@@ -210,6 +210,36 @@ Additional points to consider:
 - Wildcard SAN entries are supported. 
 - If you use [LOCAL](../../security/managing-access#setting-up-local-authentication) authentication, then include a SAN entry for the local cluster network.
 
+#### Example SAN entries for {{site.data.reuse.openshift_short}}
+{: #ocp-example-sans}
+
+When you use [LOCAL](../managing-access#setting-up-local-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
+
+```yaml
+spec:
+  dnsNames:
+    - '*.<NAMESPACE>.svc.cluster.local'
+    - '*.<CLUSTER_API>'
+    - eem.*.<CLUSTER_API>'
+```
+
+When you use [OIDC](../managing-access#setting-up-openid-connect-oidc-based-authentication) authentication with the {{site.data.reuse.eem_manager}}, the required SAN entries are as follows:
+
+```yaml
+spec:
+  dnsNames:
+    - '*.<CLUSTER_API>'
+    - eem.*.<CLUSTER_API>'
+```
+
+The required SAN entries for the {{site.data.reuse.egw}} are as follows:
+
+```yaml
+spec:
+  dnsNames:
+    - '*.<CLUSTER_API>'
+```
+
 
 ### Configuring a custom {{site.data.reuse.eem_manager}} certificate
 {: #config-custom-cert}

@@ -67,7 +67,7 @@ The typical scenario for using Kubernetes Deployment or Docker gateways is when 
 
 - The Docker {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. 
 
-- Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Metric Tool](#installing-the-ibm-license-metric-tool) for any other deployments. <!--_DRAFT COMMENT: Update based on outcome of https://jsw.ibm.com/browse/EVI-13487_ -->
+- Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Management Tool](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} for any other deployments. <!--_DRAFT COMMENT: Update based on outcome of https://jsw.ibm.com/browse/EVI-13487_ -->
 - A supported container host environment as defined in the [Red Hat Enterprise Linux Container Compatibility Matrix](https://access.redhat.com/support/policy/rhel-container-compatibility){:target="_blank"} is required.
 
 
@@ -121,6 +121,7 @@ To verify the connection between the gateway and your Kafka clusters, complete t
 
 
 ## {{site.data.reuse.egw}} license requirements
+{: #gateway-license-requirements}
 
 The {{site.data.reuse.egw}} must use the same license as the {{site.data.reuse.eem_manager}}. You accept the license by setting `ACCEPT_LICENSE` to `"true"` in the gateway configuration.
 

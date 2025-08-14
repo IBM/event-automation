@@ -7,6 +7,7 @@ toc: true
 ---
 
 ## Symptoms
+{: #symptoms}
 
 Logging in to the {{site.data.reuse.eem_name}} UI through the exposed ingress fails with a `502 Bad Gateway` error message.
 
@@ -24,10 +25,12 @@ javax.net.ssl.SSLHandshakeException: Received fatal alert: protocol_version
 ```
 
 ## Causes
+{: #causes}
 
 The default deployment of {{site.data.reuse.eem_name}} allows only `TLS v1.3` connections but the incoming connection is `TLS v1.2`, which might be due to configuration of the ingress controller or the client.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
 To resolve the problem, configure the {{site.data.reuse.eem_manager}} deployment to support earlier versions of the TLS protocol by setting an [environment variable](../../installing/configuring#setting-environment-variables) for `TLS_VERSIONS` on the `containers.manager` section of the `EventEndpointManagement` custom resource. For example:
 

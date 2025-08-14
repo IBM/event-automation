@@ -32,6 +32,7 @@ You can transfer the following assets from one user to another:
   **Note:** A user is not restricted to one role. For example, a user can be an author and an admin. This means that a user can own assets that are exclusive across the two roles. In this case, you must transfer assets from such a user to another user with the same roles.
 
 ## Transferring assets
+{: #transferring-assets}
 
 1. In the navigation pane, click **Administration** > **Asset management**. 
 1. In the table that is displayed, find the user that you want to transfer assets from and click **Transfer assets**. 

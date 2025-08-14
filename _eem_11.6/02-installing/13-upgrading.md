@@ -79,7 +79,7 @@ The pre-upgrade checks and preparation ensure that your {{site.data.reuse.eem_na
 
 2. [Back up](../backup-restore) your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
 
-3. If you are managing your [catalog sources](../installing/#creating-the-catalog-sources) with a CASE bundle, then download the CASE bundle for your target version.
+3. If you are managing your [catalog sources](../installing#creating-the-catalog-sources) with a CASE bundle, then download the CASE bundle for your target version.
 
    a. Download and extract the latest {{site.data.reuse.eem_name}} CASE version:
 
@@ -338,7 +338,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.6.2               
+eem-manager           Running   11.6.3               
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms

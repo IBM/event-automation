@@ -10,6 +10,7 @@ Find out how to configure {{site.data.reuse.eem_name}} to log audit data that pe
 
 
 ## Event model
+{: #event-model}
 
 {{site.data.reuse.eem_name}} uses the event model defined by the [Cloud Auditing Data Federation](https://www.dmtf.org/standards/cadf) (CADF) to record auditable events arising from interaction with users and other systems. In this model, events are recorded against *resources*, which can be infrastructure components such as servers, applications or databases, or business entities, such as users, accounts and roles. In general terms, the CADF model creates audit records that follow a basic pattern: 
 
@@ -24,6 +25,7 @@ In {{site.data.reuse.eem_name}}, the observer is the {{site.data.reuse.eem_manag
 The observer also attaches more contextual information to the event record, such as a timestamp, severity, and descriptive message.
 
 ### Examples
+{: #examples}
 
 The following are examples of audit events logged by the {{site.data.reuse.eem_manager}} that show the event model in use:
 
@@ -79,6 +81,7 @@ The following are examples of audit events logged by the {{site.data.reuse.eem_m
 ```
 
 ## Configuring audit logging
+{: #configuring-audit-logging}
 
 {{site.data.reuse.eem_name}} can be configured to produce audit logging in one of three formats:
 
@@ -92,6 +95,7 @@ Additionally, {{site.data.reuse.eem_name}} can be configured to write audit logg
 2. `STDOUT`: Audit logging is included in the standard output logs.
 
 ### Environment Variables
+{: #environment-variables}
 
 The following environment variables can be used to control audit logging:
 

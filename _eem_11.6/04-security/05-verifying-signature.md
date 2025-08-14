@@ -11,6 +11,7 @@ Digital signatures provide a way for consumers of content to ensure that what th
 You can use the signature to verify that the images came from IBM when they are pulled onto the system.
 
 ## Before you begin
+{: #before-you-begin}
 
 - Ensure that the following command-line tools are installed on your computer. On Linux systems, these images can typically be installed by using the package manager.
 
@@ -53,10 +54,12 @@ You can use the signature to verify that the images came from IBM when they are 
   ```
 
 ## Obtaining the container images
+{: #obtaining-the-container-images}
 
 Obtain the list of {{site.data.reuse.eem_name}}-certified container images to verify as described in the following sections.
 
 ### Prepare your bastion host
+{: #prepare-your-bastion-host}
 
 Ensure you meet the following prerequisites before downloading the CASE archive and obtaining the images:
 
@@ -69,6 +72,7 @@ If the cluster has a bastion host which has access to the public internet, then 
 **Note:** In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
 
 ### Download the CASE archive
+{: #download-the-case-archive}
 
 Download the Container Application Software for Enterprises (CASE) archive. This archive, which is typically provided for installing within a restricted network, includes metadata and files that you will require later.
 
@@ -144,6 +148,7 @@ Complete the following steps to download the CASE archive:
    ```
 
 ### Obtain the files
+{: #obtain-the-files}
 
 Obtain the required files as follows: 
 
@@ -169,6 +174,7 @@ Obtain the required files as follows:
   **Note:** You can also copy the output to a file for ease of reference while verifying the image signatures.
 
 ## Verifying the signature
+{: #verifying-the-signature}
 
 To verify the image signatures, complete the following steps:
 

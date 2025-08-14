@@ -11,14 +11,17 @@ You can generate an AsyncAPI document from your published [event endpoints](../a
 Before you begin, ensure that you [configure](../configure-eem-for-apic) your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ## Generating an AsyncAPI document for use in {{site.data.reuse.apic_long}} 10.0.8 and later
+{: #generating-an-asyncapi-document-for-use-in-ibm-api-connect-1008-and-later}
 
 In {{site.data.reuse.apic_long}} 10.0.8 or later, you can generate and import a new AsyncAPI document from a configured {{site.data.reuse.eem_name}} instance into {{site.data.reuse.apic_short}} in a single step. Each AsyncAPI maps to a [published event endpoint](../apic-eem-concepts/#api) in {{site.data.reuse.eem_name}}.
 
 ### Configure a Catalog in {{site.data.reuse.apic_short}}
+{: #configure-a-catalog-in-api-connect}
 
 See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=catalogs-creating-configuring){:target="_blank"} for steps about how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured](../configure-eem-for-apic) {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ### Generate and import a new AsyncAPI from {{site.data.reuse.eem_name}} into {{site.data.reuse.apic_long}}
+{: #generate-and-import-a-new-asyncapi-from-event-endpoint-management-into-sitedatareuseapic_long}
 
 To import the AsyncAPI document into {{site.data.reuse.apic_long}}, complete the following steps in the API Manager UI.
 
@@ -31,24 +34,30 @@ To import the AsyncAPI document into {{site.data.reuse.apic_long}}, complete the
 **Note:** You cannot import AsyncAPI documents into {{site.data.reuse.apic_short}} from {{site.data.reuse.eem_name}} where the published event endpoint has an [approval control](../apic-eem-concepts/#policy) applied. 
 
 ### Publish the API and Product
+{: #publish-the-api-and-product}
 
 See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=definitions-publishing-api){:target="_blank"} for information about how to publish an API and a Product. When publishing the Product, select the Catalog you [configured](#configure-a-catalog-in-api-connect) earlier.
 
 ### Create a subscription to the Product
+{: #create-a-subscription-to-the-product}
 
 In the [Developer Portal](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=developer-portal-socialize-your-apis){:target="_blank"} for the Catalog you created, [subscribe to the Product](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=portal-exploring-apis-products-in-developer){:target="_blank"}.
 
 ### Use subscription credentials to consume through the {{site.data.reuse.egw}} Service
+{: #use-subscription-credentials-to-consume-through-the-gateway-service}
 
 Using the credentials that you retrieved from the Developer Portal, you can [configure a client application to consume from the topic](../../subscribe/configure-your-application-to-connect).
 
-## Generating an AsyncAPI document for use in {{site.data.reuse.apic_long}} 10.0.6 and 10.0.7
+## Generating an AsyncAPI document for use in {{site.data.reuse.apic_short}} 10.0.6 and 10.0.7
+{: #generating-an-asyncapi-document-for-use-in-api-connnect-1006-and-1007}
 
 ### Configure a Catalog in {{site.data.reuse.apic_short}}
+{: #configure-a-catalog-in-api-connect-pre1008}
 
 See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps about how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured](../configure-eem-for-apic) your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ### Export an AsyncAPI from {{site.data.reuse.eem_name}}
+{: #export-an-asyncapi-from-api-connect-pre1008}
 
 To export an AsyncAPI for your topic, complete the following steps.
 
@@ -62,11 +71,9 @@ To export an AsyncAPI for your topic, complete the following steps.
 
 An AsyncAPI document that describes the topic is downloaded as a YAML file.
 
-### Configure a Catalog in {{site.data.reuse.apic_short}}
-
-See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=catalogs-creating-configuring){:target="_blank"} for steps about how to configure a Catalog. When selecting the gateway service to use with the Catalog, choose the {{site.data.reuse.egw}} Service that you created when you [configured](../configure-eem-for-apic) your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ### Import by using existing definition of AsyncAPI from {{site.data.reuse.eem_name}} into {{site.data.reuse.apic_long}}
+{: #import-by-using-existing-def-asyncapi-into-apic-pre1008}
 
 To import the AsyncAPI document, complete the following steps in the API Manager UI.
 
@@ -82,13 +89,16 @@ To import the AsyncAPI document, complete the following steps in the API Manager
 7. Click **Next** again to create the API.
 
 ### Publish the API and Product
+{: #publish-the-api-and-product-pre1008}
 
-See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=definitions-publishing-api){:target="_blank"} for information about how to publish an API and a Product. When publishing the Product, select the Catalog you [configured](#configure-a-catalog-in-api-connect) earlier.
+See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=definitions-publishing-api){:target="_blank"} for information about how to publish an API and a Product. When publishing the Product, select the Catalog you [configured](#configure-a-catalog-in-api-connect-pre1008) earlier.
 
 ### Create a subscription to the Product
+{: #create-a-subscription-to-the-product-pre1008}
 
 In the [Developer Portal](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=developer-portal-socialize-your-apis){:target="_blank"} for the Catalog you created, [subscribe to the Product](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=portal-exploring-apis-products-in-developer){:target="_blank"}.
 
 ### Use subscription credentials to consume through the {{site.data.reuse.egw}} Service
+{: #use-subscription-creds-to-consume-through-gateway-pre1008}
 
 Using the credentials that you retrieved from the Developer Portal, you can [configure a client application to consume from the topic](../../subscribe/configure-your-application-to-connect).

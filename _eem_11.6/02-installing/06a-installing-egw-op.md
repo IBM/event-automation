@@ -153,7 +153,7 @@ openssl req -new -x509 -key tls.key -days 730 -out tls.crt
    ---
    ```
 
-   d. Replace any other placeholder variables in the YAML, and set other properties as required. For more information about properties that you can configure in the {{site.data.reuse.egw}} YAML file, see [configuring](../configuring).
+   d. Replace any other placeholder variables in the YAML, and set other properties as required.
 
    e. Create a backup of the updated `gateway_cr.yaml` file, in addition to the `gateway_cr_original.yaml` file.
 

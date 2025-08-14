@@ -9,16 +9,19 @@ toc: true
 When requested by IBM support, trace logging can be configured in {{site.data.reuse.eem_name}} to add more troubleshoot logging. This is useful for attempting to debug the system, as it captures additional details about what precisely is happening in the {{site.data.reuse.eem_name}} code.
 
 ## How to configure trace logging
+{: #how-to-configure-trace-logging}
 
 You can configure trace logging for the [{{site.data.reuse.eem_manager}} instance](#for-the-event-endpoint-management-instance), [{{site.data.reuse.egw}} instance](#for-the-event-gateway-instance) or [in the {{site.data.reuse.eem_name}} UI](#in-the-event-endpoint-management-ui).
 
 Different levels of trace logging are permitted, however the most relevant ones to use when you configure troubleshooting are `trace` or `debug`.
 
 ### For the Event Endpoint Management instance
+{: #for-the-event-endpoint-management-instance}
 
 Trace logging can be configured for an {{site.data.reuse.eem_manager}} instance by editing the `EventEndpointManagement` custom resource. This enables trace logging that can be observed from the pod logs.
 
 #### By using the custom resource traceSpec setting
+{: #mgr-by-using-the-custom-resource-tracespec-setting}
 
 You can dynamically change the trace setting and the pod will stay running.
 
@@ -34,6 +37,7 @@ spec:
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
 #### By using the TRACE_SPEC environment variable
+{: #mgr-by-using-the-trace_spec-environment-variable}
 
 **Note:** Enabling trace logging through the environment variable will cause a restart of the pod.
 
@@ -74,10 +78,12 @@ template:
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
 ### For the {{site.data.reuse.egw}} instance
+{: #for-the-event-gateway-instance}
 
 Trace logging can be configured for an {{site.data.reuse.egw}} instance by editing the `EventGateway` custom resource. This enables trace logging that can be observed from the pod logs.
 
 #### By using the custom resource traceSpec setting
+{: #gwy-by-using-the-custom-resource-tracespec-setting}
 
 You can dynamically change the trace setting and the pod will stay running.
 
@@ -92,6 +98,7 @@ spec:
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
 #### By using the TRACE_SPEC environment variable
+{: #gwy-by-using-the-trace_spec-environment-variable}
 
 **Note:** Enabling trace logging through the environment variable will cause a restart of the pod.
 
@@ -115,6 +122,7 @@ On a Docker gateway, set `TRACE_SPEC` as an argument in the Docker `run` command
 **Note:** `<VALUE>` is provided by [IBM Support]({{ 'support' | relative_url }}).
 
 ### In the Event Endpoint Management UI
+{: #in-the-event-endpoint-management-ui}
 
 It is possible to configure trace logging specifically for actions completed in the {{site.data.reuse.eem_name}} UI. This can be done by adding a query parameter to the browser URL.
 

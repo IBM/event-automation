@@ -28,6 +28,7 @@ The **Subscribers** list details all the current subscriptions for options on yo
 
 
 ## Removing subscriptions
+{: #removing-subscriptions}
 
 After socializing your option, you can remove subscriptions to it. After removing a subscription, any client that uses that subscription is no longer able to consume or produce data after the next gateway poll of the {{site.data.reuse.eem_manager}} (default is 30 seconds). To reconnect that client, a new subscription with new credentials is required.
 
@@ -43,6 +44,7 @@ To unpublish an archived option, you have to remove all subscriptions. After you
 **Note:** To delete an option from {{site.data.reuse.eem_name}}, all subscriptions must be removed first and the options must be placed in the **Unpublished** state.
 
 ## Reviewing requests
+{: #reviewing-requests}
 
 After socializing your option with approval enabled, you can review requests for subscriptions to it and approve or reject requests.
 

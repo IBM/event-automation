@@ -11,8 +11,10 @@ Find out how to remove {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw
 You can also remove the {{site.data.reuse.eem_name}} operator itself.
 
 ## Uninstalling instances
+{: #uninstalling-instances}
 
 ### Using the {{site.data.reuse.openshift_short}} web console
+{: #uninstall-instances-using-the-openshift-web-console}
 
 To delete an {{site.data.reuse.eem_manager}} instance:
 
@@ -35,6 +37,7 @@ To delete an {{site.data.reuse.egw}} instance in an OpenShift cluster:
 7. Check the namespace and instance name, and then click **Delete** to shutdown the associated pods and delete the instance.
 
 #### Check uninstallation progress
+{: #ui-check-uninstallation-progress}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Workloads** dropdown and select **Pods** to open the **Pods** dashboard.
@@ -43,6 +46,7 @@ To delete an {{site.data.reuse.egw}} instance in an OpenShift cluster:
 5. Wait for all the {{site.data.reuse.eem_name}} pods to be displayed as **Terminating** and then be removed from the list.
 
 #### Removing persistence resources
+{: #ui-removing-persistence-resources}
 
 If you had enabled persistence for the {{site.data.reuse.eem_manager}} instance but set the `deleteClaim` storage property to `false`, you will need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.
 
@@ -76,6 +80,7 @@ Delete remaining Persistent Volumes (PVs):
 
 
 ### Using the CLI
+{: #remove-pvc-using-the-cli}
 
 You can delete an {{site.data.reuse.eem_manager}} instance using the `kubectl` command-line tool:
 
@@ -120,6 +125,7 @@ To delete an operator-managed {{site.data.reuse.egw}} instance using the `kubect
    ```
 
 #### Check uninstallation progress
+{: #cli-check-uninstallation-progress}
 
 Run the following command to check the progress:
 
@@ -138,6 +144,7 @@ minimal-prod-gw-ibm-egw-gateway-664b4f8998-52bqc     0/1       Terminating   0  
 ```
 
 #### Removing persistence resources
+{: #cli-removing-persistence-resources}
 
 If you had enabled persistence for the {{site.data.reuse.eem_manager}} instance but set the `deleteClaim` storage property to `false`, you will need to manually remove the associated Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) that were created at installation time.
 
@@ -182,8 +189,10 @@ Delete remaining PVs:
 **Note:** Take extreme care to select the correct PV name to ensure you do not delete storage associated with a different application instance.
 
 ## Uninstalling the {{site.data.reuse.eem_name}} operator
+{: #uninstalling-the-event-endpoint-management-operator}
 
-### On the {{site.data.reuse.openshift_short}}
+### On {{site.data.reuse.openshift_short}}
+{: #uninstall-operator-on-openshift}
 
 To delete the {{site.data.reuse.eem_name}} operator:
 
@@ -195,6 +204,7 @@ To delete the {{site.data.reuse.eem_name}} operator:
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
 ### On other Kubernetes platforms
+{: #uninstall-operator-on-other-kubernetes-platforms}
 
 To delete the {{site.data.reuse.eem_name}} operator:
 
@@ -218,8 +228,10 @@ To delete the {{site.data.reuse.eem_name}} operator:
    ```
 
 ## Removing {{site.data.reuse.eem_name}} Custom Resource Definitions 
+{: #removing-event-endpoint-management-custom-resource-definitions}
 
-### On the {{site.data.reuse.openshift_short}}
+### On {{site.data.reuse.openshift_short}}
+{: #remove-cr-on-openshift}
 
 The {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you do not want:
 
@@ -242,6 +254,7 @@ To delete operator-managed {{site.data.reuse.egw}} CRDs:
 6. Check the name of the CRD and click **Delete** to remove the CRD.
 
 ### On other Kubernetes platforms
+{: #remove-cr-on-other-kubernetes-platforms}
 
 The {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} Custom Resource Definitions (CRDs) are not deleted automatically. You must manually delete any CRDs that you no longer require.
 Take caution when deleting CRDs and check there are no instances of the CRDs, or other operator installations that use the CRDs.
@@ -287,6 +300,7 @@ Take caution when deleting CRDs and check there are no instances of the CRDs, or
    ```
 
 ## Uninstalling a certificate manager on {{site.data.reuse.openshift_short}}
+{: #uninstalling-a-certificate-manager-on-openshift}
 
 To delete a certificate manager operator:
 
@@ -298,10 +312,12 @@ To delete a certificate manager operator:
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
 
 ## Removing certificate secrets
+{: #removing-certificate-secrets}
 
 Secrets that are created by the Cert Manager are not deleted automatically. You must manually delete any secrets that you do not want.
 
 ### Using the {{site.data.reuse.openshift_short}} web console
+{: #remove-certs-using-the-openshift-web-console}
 
 To delete {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} secrets by using the web console:
 
@@ -313,6 +329,7 @@ To delete {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} secrets by
 6. Check the name of the secret and click **Delete** to remove the secret.
 
 ### Using the CLI
+{: #remove-certs-using-the-cli}
 
 To delete {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} secrets by using the CLI:
 

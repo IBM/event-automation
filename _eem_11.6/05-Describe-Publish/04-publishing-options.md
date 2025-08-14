@@ -6,18 +6,20 @@ slug: publishing-options
 toc: true
 ---
 
-After [adding your Kafka topic](../adding-topics) and [creating an option](../managing-options#create_option), you can publish your option to a set of [gateway groups](../../about/key-concepts#gateway-group) which will make it available in the catalog.
+After [adding your Kafka topic](../adding-topics) and [creating an option](../managing-options#create-option), you can publish your option to a set of [gateway groups](../../about/key-concepts#gateway-group) which will make it available in the catalog.
 
 All the published options are displayed in the {{site.data.reuse.eem_name}} catalog as event endpoints, along with event source name, tags, and status information. The event source owner can edit or delete their options after publishing them, as described in [managing options](../managing-options#edit_option).
 
 Application developers can then [discover](../../subscribe/discovering-event-endpoints/) available event endpoints and [subscribe](../../subscribe/subscribing-to-event-endpoints/) to them directly or request access if approval is required.
 
 ## Before you begin
-A gateway is required to publish an option. Ensure that you have at least one gateway group associated with your {{site.data.reuse.eem_manager}} instance. For more information, see [managing gateways](../managing-gateways).
+{: #before-you-begin}
+A gateway is required to publish an option. Ensure that you have at least one gateway group associated with your {{site.data.reuse.eem_manager}} instance. For more information, see [managing gateways](../../administering/managing-gateways).
 
      
 
 ## Publishing options
+{: #publishing-options}
 To publish an option to the catalog, complete the following steps:
 
 **Note:** The controls within an option cannot be edited or deleted after the option is published.

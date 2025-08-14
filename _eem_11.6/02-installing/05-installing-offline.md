@@ -16,6 +16,7 @@ Follow the instructions to download the {{site.data.reuse.eem_name}} CASE bundle
 
 
 ## Prerequisites
+{: #prerequisites}
 
 Ensure you have the following set up for your environment:
 
@@ -65,6 +66,7 @@ If you are using other Kubernetes platforms, ensure you have the following set u
 
 
 ## Prepare your host
+{: #prepare-your-host}
 
 You must be able to connect your bastion host to the internet and to the restricted network environment (with access to the {{site.data.reuse.openshift_short}} cluster and the local registry) at the same time.
 
@@ -79,6 +81,7 @@ Ensure that the prerequisites are set up and that the bastion host can access:
 **Important:** Ensure you have access to the Kubernetes cluster by running the `kubectl get namespaces` command which lists all the available namespaces.
 
 ## Download the CASE bundle
+{: #download-the-case-bundle}
 
 Before mirroring your images, set the environment variables for the CASE images on your host, and then download the CASE by following these instructions:
 
@@ -149,6 +152,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 
 
 ## Configure registry authentication
+{: #configure-registry-authentication}
 
 To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
@@ -157,6 +161,7 @@ A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms ot
 For {{site.data.reuse.eem_name}}, all images are either present in the IBM Entitled Registry (`cp.icr.io`), which requires authentication, or in the IBM Container Registry (`icr.io/cpopen`), which does not.
 
 ### Creating an authentication secret for the source registry
+{: #creating-an-authentication-secret-for-the-source-registry}
 
 Run the following command to create an authentication secret for the source registry:
 
@@ -178,6 +183,7 @@ skopeo login <source-registry> -u <source-registry-user> -p <source-registry-pas
 ```
 
 ### Creating an authentication secret for the target registry
+{: #creating-an-authentication-secret-for-the-target-registry}
 
 Run the following command to create an authentication secret for the target registry:
 
@@ -199,6 +205,7 @@ Where:
 
 
 ## Mirror the images
+{: #mirror-the-images}
 
 The process of mirroring images pulls the image from the internet and pushes it to your local registry. After mirroring your images, you can configure your cluster and complete the offline installation.
 
@@ -250,6 +257,7 @@ Complete the following steps to mirror the images from your host to your offline
 Ensure that all the images have been mirrored to the target registry by checking the registry.
 
 ## Create `ImageContentSourcePolicy` on OpenShift platform
+{: #create-imagecontentsourcepolicy-on-openshift-platform}
 
 
 **Note:** Only applicable when installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
@@ -284,6 +292,7 @@ Ensure that all the images have been mirrored to the target registry by checking
    ```
 
 ## Apply catalog sources to your cluster on OpenShift platform
+{: #apply-catalog-sources-to-your-cluster-on-openshift-platform}
 
 **Note:** Only applicable when you install {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
 
@@ -296,6 +305,7 @@ oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/ca
 Where `<case-version>` is the version of the CASE you want to install.
 
 ## Install the operator
+{: #install-the-operator}
 
 If you are installing the operator for the first time, complete the instructions in the following sections to install it on the platform that you are using.
 
@@ -304,11 +314,13 @@ If you are upgrading an existing offline installation, follow the [upgrading](..
 **Important:** You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 ### Installing on OpenShift
+{: #installing-on-openshift}
  
 After you consider the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operator by using the {{site.data.reuse.openshift_short}} web console or command line. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} operator](../../installing/installing/#install-the-event-endpoint-management-operator).
 
 
 ### Installing on other Kubernetes platforms by using the `kubectl`
+{: #installing-on-other-kubernetes-platforms-by-using-the-kubectl}
 
 Complete the following steps to install the operator:
 
@@ -360,10 +372,12 @@ Complete the following steps to install the operator:
 Wait for the installation to complete.
 
 ## Install the {{site.data.reuse.eem_manager}} instance
+{: #install-the-manager-instance}
 
 The {{site.data.reuse.eem_manager}} instance can be created after the operators are installed. You can install the instance by using the {{site.data.reuse.openshift_short}} web console. For more information, see the instructions for installing the {{site.data.reuse.eem_manager}} instance on [OpenShift](../installing/#install-an-event-manager-instance), or on other [Kubernetes platforms](../installing-on-kubernetes/#install-an-event-manager-instance). 
 
 ## Install the {{site.data.reuse.egw}} instance
+{: #install-the-gateway-instance}
 
 Follow the instructions in [installing an {{site.data.reuse.egw}}](../install-gateway) to install an {{site.data.reuse.egw}} on the same cluster.
 

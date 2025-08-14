@@ -9,12 +9,14 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.eem_name}} on Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 ## Before you begin
+{: #before-you-begin}
 
 - Ensure you have set up your environment [according to the prerequisites](../prerequisites).
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, and considering security options.
 - Obtain the connection details for your Kubernetes cluster from your administrator.
 
 ## Create a namespace
+{: #create-a-namespace}
 
 Create a namespace into which {{site.data.reuse.eem_name}} will be installed. For more information about namespaces, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
 
@@ -23,6 +25,7 @@ Ensure you use a namespace that is dedicated to a single deployment of {{site.da
 **Important:** Do not use any of the initial or system [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install {{site.data.reuse.eem_name}} (some examples of these are: `default`, `kube-node-lease`, `kube-public`, and `kube-system`).
 
 ## Add the Helm repository
+{: #add-the-helm-repository}
 
 Before you can install the {{site.data.reuse.eem_name}} operator and use it to create instances of the {{site.data.reuse.eem_manager}}, add the IBM Helm repository to your local repository list. This will provide access to the {{site.data.reuse.eem_name}} Helm chart packages that will install the operator on your cluster.
 
@@ -33,12 +36,14 @@ helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/
 ```
 
 ## Install the {{site.data.reuse.eem_name}} operator
+{: #install-the-event-endpoint-management-operator}
 
 Ensure you have considered the {{site.data.reuse.eem_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
 **Important:** You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 ### Install the CRDs
+{: #install-the-crds}
 
 Before installing the operator, the Custom Resource Definitions (CRDs) for {{site.data.reuse.eem_name}} must be installed.  To install the CRDs, run the following command:
 
@@ -59,6 +64,7 @@ helm install eem-crds ibm-helm/ibm-eem-operator-crd -n eem-crds
 ```
 
 ### Choose the operator installation mode
+{: #choose-the-operator-installation-mode}
 
 Before installing the {{site.data.reuse.eem_name}} operator, decide if you want the operator to:
 
@@ -76,6 +82,7 @@ Before installing the {{site.data.reuse.eem_name}} operator, decide if you want 
 
 
 ### Installing the operator
+{: #installing-the-operator}
 
 To install the operator, run the following command:
 
@@ -119,6 +126,7 @@ helm install eventendpointmanagement ibm-helm/ibm-eem-operator -n "my-eventendpo
 ```
 
 #### Checking the operator status
+{: #checking-the-operator-status}
 
 To check the status of the installed operator, run the following command:
 
@@ -138,12 +146,14 @@ ibm-eem-operator                1/1     1            1           7d4h
 
 
 ## Install an {{site.data.reuse.eem_manager}} instance
+{: #install-an-event-manager-instance}
 
 Instances of the {{site.data.reuse.eem_manager}} can be created after the {{site.data.reuse.eem_name}} operator is installed. If the operator was installed to manage **a specific namespace**, then it can only be used to manage instances of the {{site.data.reuse.eem_manager}} in that namespace. If the operator was installed to manage **all namespaces**, then it can be used to manage instances of the {{site.data.reuse.eem_manager}} in any namespace, including those created after the operator was deployed.
 
 When installing an instance of the {{site.data.reuse.eem_manager}}, ensure you are using a namespace that an operator is managing.
 
 ### Creating an image pull secret
+{: #creating-an-image-pull-secret}
 
 Before installing an {{site.data.reuse.eem_manager}} instance, create an image pull secret called `ibm-entitlement-key` in the namespace where you want to create an instance of the {{site.data.reuse.eem_manager}}. The secret enables container images to be pulled from the registry.
 
@@ -160,6 +170,7 @@ Before installing an {{site.data.reuse.eem_manager}} instance, create an image p
 **Note:** If you do not create the required secret, pods will fail to start with `ImagePullBackOff` errors. In this case, ensure the secret is created and allow the pod to restart.
 
 ### Installing an instance by using the CLI
+{: #installing-an-instance-by-using-the-cli}
 
 To install an instance of the {{site.data.reuse.eem_manager}} from the command line, you must first prepare an `EventEndpointManagement` custom resource configuration in a YAML file.
 
@@ -169,7 +180,7 @@ The sample configurations are also available in [GitHub](https://ibm.biz/ea-eem-
 
 **Note:** If experimenting with {{site.data.reuse.eem_name}} for the first time, the **Quick start** sample is the smallest and simplest example that can be used to create an experimental deployment. For a production setup, use the **Production** sample configuration.
 
-More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and apply [customizations](../configuring) as required.
+More information about these samples is available in the [planning](../planning/#sample-deployments) section. You can base your deployment on the sample that most closely reflects your requirements and make customizations as required.
 
 **Important:** Ensure that the `spec.license.accept` field in the custom resource YAML is set to `true`, and that the correct values are selected for the `spec.license.license` and `spec.license.use` fields before deploying the {{site.data.reuse.eem_manager}} instance. These values are used for metering purposes and could result in inaccurate charging and auditing if set incorrectly. For more information about the available options, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 

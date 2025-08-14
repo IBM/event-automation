@@ -8,11 +8,12 @@ toc: true
 
 Configure your client applications to connect to the {{site.data.reuse.egw}} to access your subscriptions.
 
-Use the [code snippets provided](../discovering-event-endpoints#the-catalog) for each event endpoint, along with your subscription details.
+If your client applications are Java, [Node.JS](https://nodejs.org/){:target="_blank"}, or [kcat](https://github.com/edenhill/kcat){:target="_blank"}, then you can use the [code accelerator samples](../discovering-event-endpoints#code-accelerator-samples) for each event endpoint, along with your subscription details.
 
-![Configuring a client application to connect to an event endpoint.]({{ 'images' | relative_url }}/eem-client-app-connect.png "Diagram that shows what happens when you configure your client application to connect to an even endpoint.")
+![Configuring a client application to connect to an event endpoint.]({{ 'images' | relative_url }}/eem-client-app-connect.png "Diagram that shows what happens when you configure your client application to connect to an event endpoint.")
 
 ## Configuring a client
+{: #configuring-a-client}
 
 The {{site.data.reuse.egw}} manages access to event endpoints in {{site.data.reuse.eem_name}}. Configure your client applications to connect to the {{site.data.reuse.egw}} by using standard Kafka client configuration options.
 

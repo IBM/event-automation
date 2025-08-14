@@ -38,6 +38,7 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 **Important:** For a production setup, the sample configuration values are for guidance only, and you might need to change them.
 
 ### Example deployment: **Quick start**
+{: #example-deployment-quick-start}
 
 Overview: A development {{site.data.reuse.eem_manager}} instance with reduced resources, using ephemeral storage and local authentication.
 
@@ -52,6 +53,7 @@ Resource requirements for this deployment:
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Production**
+{: #example-deployment-production}
 
 Overview: A production instance with support for persistence and OpenID Connect (OIDC) authentication.
 
@@ -66,7 +68,8 @@ Resource requirements for this deployment:
 
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
-### Example deployment: **Quick start with {{site.data.reuse.apic_short}} integration**
+### Example deployment: Quick start with {{site.data.reuse.apic_short}} integration
+{: #example-deployment-quick-start-with-api-connect-integration}
 
 Overview: A development {{site.data.reuse.eem_manager}} instance with no persistence, local authentication, and configuration options for the {{site.data.reuse.apic_short}} integration.
 
@@ -81,6 +84,7 @@ Resource requirements for this deployment:
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Usage-based pricing**
+{: #example-deployment-usage-based-pricing}
 
 Overview: A production instance with additional fields to point to an installed License Service server to record usage-based metrics.
 
@@ -112,9 +116,9 @@ You must have the `Cluster Administrator` role for creating persistent volumes o
 
 **Important:** When creating persistent volumes ensure the **Access mode** is set to `ReadWriteOnce` for the volume.
 
-To use persistent storage, [configure the storage properties](../configuring/#enabling-persistent-storage) in your `EventEndpointManagement` custom resource.
+To use persistent storage, [configure the storage properties](../configuring#enabling-persistent-storage) in your `EventEndpointManagement` custom resource.
 
-**Note:** If you intend to [back up](../backup-restore/#before-you-begin) your {{site.data.reuse.eem_manager}} instance, consider a storage class that supports `CSI snapshotting`.
+**Note:** If you intend to [back up](../backup-restore#before-you-begin) your {{site.data.reuse.eem_manager}} instance, consider a storage class that supports `CSI snapshotting`.
 
 ## Planning for security
 {: #planning-for-security}
@@ -129,10 +133,10 @@ Before you install {{site.data.reuse.eem_name}}, decide how to authenticate user
 To authenticate users of the {{site.data.reuse.eem_name}} UI, you can choose from the following options:
 
    - LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
-   - OIDC: Use an existing OIDC-compatible security provider that is available in your environment.
+   - OIDC: Use an existing [OIDC-compatible](https://openid.net/connect/){:target="_blank"} security provider that is available in your environment.
    - INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
 
-To modify your authentication configuration, see [configuring authentication](../configuring/#configuring-authentication).
+To modify your authentication configuration, see [managing access](../../security/managing-access)
 
 <!-- FUTURE: we should cover Admin API too -->
 

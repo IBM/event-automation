@@ -261,13 +261,8 @@ After configuring {{site.data.reuse.eem_name}} to trust {{site.data.reuse.apic_s
 1. Expand the **Workloads** drop-down menu and select **Secrets**.
 2. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_manager}} instance is installed in.
 3. Use the search bar to locate the secret named `<event-manager-instance-name>-ibm-eem-manager` and click the secret.
-<<<<<<< HEAD
  
    **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../security/config-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
-=======
-
-   **Note:** If you provided your own certificate to {{site.data.reuse.eem_manager}} in a secret when you [configured TLS](../../installing/configuring#configuring-tls), use the data that is stored in the secret you created instead of `<event-manager-instance-name>-ibm-eem-manager`.
->>>>>>> main
 4. Scroll down to the `Data` section.
 5. Copy the **ca.crt** and save it in a file called `cluster-ca.pem`
 6. Copy the **tls.crt** and save it in a file called `manager-client.pem`

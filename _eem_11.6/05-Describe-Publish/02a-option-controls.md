@@ -86,21 +86,12 @@ If you want to control access to your event endpoint with mTLS, you can add the 
 To add the mTLS control to an option, complete the following steps:
 
 1. If you want to use a self-signed CA certificate for your control, then verify it is [uploaded](../../security/ca-certs).
-<<<<<<< HEAD
 2. In the navigation panel, click **Manage topics**.
 3. Click the name of the event source that you want to work with.
 4. Click the **Options** tab.
 5. If you are creating a new option, click **Create option**. The details pane is displayed. 
     * Complete the [details](../managing-options/#create-option) pane and click **Next**. The **Controls** pane is displayed.
 6. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
-=======
-1. In the navigation panel, click **Manage topics**.
-1. Click the name of the event source that you want to work with.
-1. Click the **Options** tab.
-1. If you are creating a new option, click **Create option**. The details pane is displayed. 
-    * Complete the [details](../managing-options/#create_option) pane and click **Next**. The **Controls** pane is displayed.
-1. If you want to edit an existing option, click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. A window to edit your option is displayed.
->>>>>>> main
     * In the left panel, click **Controls**. The **Controls** pane is displayed.
 1. Click **Add control**.
 1. Click the **mTLS** tile.

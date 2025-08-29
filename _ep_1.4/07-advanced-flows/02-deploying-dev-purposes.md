@@ -136,7 +136,6 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 1. {{site.data.reuse.cncf_cli_login}}
 
-
 2. Switch to the namespace where the {{site.data.reuse.ibm_flink_operator}} is installed.
 
    ```shell
@@ -179,7 +178,6 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 1. Setup the connection to the Flink cluster.
 
-
 2. Copy the file `statements.sql` to the target container `flink-main-container` of the Flink `JobManager` pod:
 
    ```shell
@@ -193,6 +191,7 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
    ```
 
    For example:
+
    ```shell
    kubectl cp -c flink-main-container /udfproject/target/udf.jar ${FLINK_JOB_MANAGER}:/opt/flink/lib
    ```

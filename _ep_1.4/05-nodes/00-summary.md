@@ -16,4 +16,3 @@ Nodes are categorized into five sections as:
 - [Joins](../joins)
 - [Enrichment](../enrichmentnode)
 - [Custom](../custom)
-

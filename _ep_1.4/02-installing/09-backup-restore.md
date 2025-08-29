@@ -81,7 +81,7 @@ The backup process captures the latest state of a running Flink job and its spec
 
 3. Save a copy of the `FlinkStateSnapshots` and `FlinkDeployment` custom resources. 
 4. Keep the `FlinkDeployment` custom resource and the PVC bound to a persistent volume (PV) containing the savepoint to make them available later for restoring your deployment.
-5. Keep the `FlinkSessionJob` custom resource and `FlinkDeployment` custom resource where the `FlinkSessionJob` was deployed. 
+5. Keep the `FlinkSessionJob` custom resource and `FlinkDeployment` custom resource where the `FlinkSessionJob` was deployed.
 
 ### Restoring
 {: #restoring}
@@ -130,4 +130,3 @@ To restore a previously backed-up Flink `SessionJob` instance, ensure that the P
      initialSavepointPath: file:/opt/flink/volume/flink-sp/savepoint-caf2b2-39d09a1c170c
      allowNonRestoredState: true
    ```
-

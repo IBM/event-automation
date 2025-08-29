@@ -149,6 +149,6 @@ INFO  com.ibm.ei.streamproc.model.jobgraph.apinode.connector.logger.CustomHttpLo
 ```
 
 **Important:**
-- Enabling the display of the values of API parameters, request bodies and responses can reveal sensitive data from the events or from the configured literal values of API parameters. If sensitive data must not be present in the logs, do not enable this option. The option is disabled by default.
+- Enabling the display of the values of API parameters, request bodies and responses can reveal sensitive data from the events or from the configured constant values of API parameters. If sensitive data must not be present in the logs, do not enable this option. The option is disabled by default.
 - The same sensitive data can also be included in logs if the default logging level of Flink is [customized](../trace-logging/#for-the-ibm-operator-for-apache-flink-instance) at `DEBUG` or `TRACE` level. Do not set the `DEBUG` or `TRACE` level if sensitive data must not be present in the logs.
 

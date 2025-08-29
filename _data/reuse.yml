@@ -17,19 +17,19 @@ ipaas_name: "IBM webMethods Hybrid Integration"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.es_current_version}} 
-es_current_version: "12.0.0"
+es_current_version: "12.0.1"
 
 # {{site.data.reuse.es_current_case_version}} 
-es_current_case_version: "12.0.0"
+es_current_case_version: "12.0.1"
 
 # {{site.data.reuse.eem_current_version}} 
 eem_current_version: "11.6.3"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.4.2"
+ep_current_version: "1.4.3"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.4.2"
+flink_operator_current_version: "1.4.3"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"

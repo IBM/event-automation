@@ -13,6 +13,7 @@ After [configuring access](../managing-access) to your {{site.data.reuse.ep_name
 **Note:** You must assign this role to each user.
 
 You can set up authorization in one of the following ways:
+
 1. [Assign each user their roles individually](#setting-up-roles-per-user).
 2. If using an OIDC provider for authentication, [define mappings to custom roles in your OIDC provider](#setting-up-roles-by-using-a-custom-identifier).
 

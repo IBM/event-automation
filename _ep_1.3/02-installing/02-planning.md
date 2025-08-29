@@ -26,6 +26,13 @@ The following {{site.data.reuse.ep_name}} sample configurations are available to
 - Quick Start: A development instance with reduced resources, using ephemeral storage and Local authentication.
 - Production: A production instance with placeholders for persistence and OpenID Connect (OIDC) authentication.
 
+**Important:** When selecting an {{site.data.reuse.ep_name}} sample, you must pair it with a Flink deployment created by using the equivalent Flink sample. This pairing is required because the {{site.data.reuse.ep_name}} Quick Start sample is designed to communicate with a Flink setup that does not use TLS, whereas the {{site.data.reuse.ep_name}} Production sample expects a Flink setup that has TLS enabled.  
+You can customize the Flink sample, for example, by adding truststores or making other configuration changes, as long as the TLS configuration remains consistent. This means TLS must stay enabled if it was originally enabled, or stay disabled if it was originally disabled. For example:
+
+- The {{site.data.reuse.ep_name}} Quick Start sample must be used with the Quick Start Flink sample.
+- The {{site.data.reuse.ep_name}} Production sample must be used with either the Flink Minimal Production sample or the Flink Production sample.
+
+
 By default, both samples require the following resources:
 
 | CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) | 

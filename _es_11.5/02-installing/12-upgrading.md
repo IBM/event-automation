@@ -51,7 +51,7 @@ If you are upgrading from {{site.data.reuse.es_name}} version 11.3.x or earlier,
   
     **Note:** After upgrading {{site.data.reuse.es_name}} to the latest version, if you are changing authentication type from IAM to Keycloak, modify the `EventStreams` custom resource as described in [post-upgrade tasks](#configure-your-instance-to-use-keycloak).
 
-- Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.6.2 or later before migrating.
+- Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before migrating.
 
 **Note:** There is no downtime during the {{site.data.reuse.es_name}} upgrade. The Kafka pods are rolled one at a time, so a Kafka instance will always be present to serve traffic. However, if the number of brokers you have matches the `min.insync.replicas` value set for any of your topics, then that topic will be unavailable to write to while the Kafka pods are rolling.
 

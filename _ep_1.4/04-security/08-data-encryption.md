@@ -23,7 +23,7 @@ Instead of the master key provided by {{site.data.reuse.ep_name}}, you can encry
 
 To create a custom key and use it instead of the master key:
 
-1. Create a encryption key by running the following `openssl` command:
+1. Create an encryption key by running the following `openssl` command:
 
    ```bash
    $ openssl enc -aes128 -k secret -P -md sha1 -pbkdf2 -iter 65535
@@ -64,7 +64,6 @@ To create a custom key and use it instead of the master key:
 3. After the secret is created, edit the `EventProcessing` custom resource to set `spec.authoring.storage.rotationSecretName` to the name of the secret.
 
    The {{site.data.reuse.ep_name}} operator starts the rotation of the encryption key. The rotation to use the custom key is complete when the `EventProcessing` custom resource reports status as `Ready`.
-
 
 4. Validate that the rotation was successful by checking whether the values of `<instance-name>-ibm-ep-mek` are the same as the rotation secret that you created earlier.
 

@@ -40,12 +40,13 @@ Some of the following steps depend on your [access permissions](../../security/m
 {: #running-the-application}
 
 Before running the application, ensure you have the following available:
+
 1. The application [JAR file](#downloading-the-application).
 2. A directory containing [security and configuration files](#generate-security-and-configuration-files)
 
 Run the following command to start the application:
 
-```
+```java
 java -Dproperties_path=<configuration_properties_path> -jar <jar_path>/demo-all.jar
 ```
 
@@ -54,7 +55,8 @@ Where:
 - `jar_path` is the path to the downloaded application JAR file.
 
 Wait for the application to be ready. It will print out the following message:
-```
+
+```java
 Application started in Xms
 ```
 

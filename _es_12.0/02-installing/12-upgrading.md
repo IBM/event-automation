@@ -25,7 +25,9 @@ Before upgrading, you must review the following breaking changes to ensure that 
 
 - **Kafka Connect compatibility:** Kafka 4.0.0 removes several deprecated Kafka Connect APIs. Before upgrading, ensure that all Kafka Connect plugins, including connectors, converters, and transformations, are compatible with Kafka Connect 4.0.0.
 
-   **Note:** IBM MQ source connector v2.5.0 and earlier are not compatible with Kafka Connect 4.0.0.
+   **Note:** 
+   - IBM MQ source connector v2.5.0 and earlier are not compatible with Kafka Connect 4.0.0. Versions v2.6.0 and later are compatible.
+   - IBM Connectivity Pack connectors v2.0.0 and earlier are not compatible with Kafka Connect 4.0.0. Versions v3.0.0 and later are compatible.
 
   Kafka Connect plugins that include JAR files from Kafka Connect 3.x are incompatible with Kafka Connect 4.0.0. For example, Apicurio-based Avro converters that include Kafka 3.x JAR files do not load successfully in Kafka Connect 4.0.0 runtime. For more information about resolving such issues, see the [Kafka Connect troubleshooting guidance](../../troubleshooting/kafka-connect-kafka4-compatibility/).
 
@@ -162,7 +164,7 @@ If you are upgrading from {{site.data.reuse.es_name}} version 11.7.x or earlier,
   - Follow the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=upgrading){:target="_blank"} before upgrading {{site.data.reuse.es_name}}.
   - If you are planning to configure {{site.data.reuse.es_name}} with Keycloak, ensure you have the {{site.data.reuse.cp4i}} 2023.4.1 (operator version 7.2.0) or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"}, including the required dependencies.
 
-- Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.6.2 or later before migrating.
+- Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before migrating.
 
 **Note:** There is no downtime during the {{site.data.reuse.es_name}} upgrade. The Kafka pods are rolled one at a time, so a Kafka instance will always be present to serve traffic. However, if the number of brokers you have matches the `min.insync.replicas` value set for any of your topics, then that topic will be unavailable to write to while the Kafka pods are rolling.
 

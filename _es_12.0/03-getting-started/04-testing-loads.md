@@ -18,7 +18,6 @@ You can [download the latest pre-built producer](https://github.com/IBM/event-st
 
 Alternatively, you can [clone the project from GitHub](https://github.com/IBM/event-streams-sample-producer){:target="_blank"}. However, if you clone from GitHub, you have to [build the producer](#building).
 
-
 ## Building
 {: #building}
 
@@ -40,7 +39,6 @@ If you cloned the Git repository, build the producer as follows:
    ```
 
 5. The `es-producer.jar` file is created in the `/target` directory.
-
 
 ## Configuring
 {: #configuring}
@@ -65,6 +63,7 @@ The bootstrap servers address can be obtained from the {{site.data.reuse.es_name
 The producer application might require credentials for the listener chosen in the previous step. For more information about these credentials, see the information about [managing access](../../security/managing-access/).
 
 Obtain the required credentials as follows:
+
 1. {{site.data.reuse.es_ui_login_nonadmin_samesection}}
 2. Click **Connect to this cluster** on the right.
 3. Go to the **Resources** tab.
@@ -137,7 +136,7 @@ You can generate a custom message load using your own settings.
 
 For example, to test the load to the topic called `my-topic` with custom settings that create a total load of `60,000` **messages** with a **size of 1024 bytes each**, at a **maximum throughput rate of 1000 messages per second**, use the `es-producer.jar` command as follows:
 
-```
+```java
 java -jar target/es-producer.jar -t my-topic -T 1000 -n 60000 -r 1024
 ```
 

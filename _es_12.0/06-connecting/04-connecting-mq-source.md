@@ -126,7 +126,7 @@ The queue manager is now ready to accept connection from the connector and get m
 
 Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/):
 
-1. The MQ source connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-source/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ source connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
+1. The MQ source connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-source/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ source connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.6.0/kafka-connect-mq-source-2.6.0-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
 
 1. Start the Kafka Connect by using the `KafkaConnect` custom resource. You can use the following sample `KafkaConnect` custom resource to get started:
 
@@ -156,7 +156,7 @@ spec:
     plugins:
       - artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.1.0/kafka-connect-mq-source-2.1.0-jar-with-dependencies.jar     
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.6.0/kafka-connect-mq-source-2.6.0-jar-with-dependencies.jar
         name: mq-source
   template:
     buildConfig:

@@ -120,6 +120,7 @@ To set the replication factor for Kafka topics by using the CLI:
    ```shell
    kubectl es init
    ```
+
 3. Run the following command to set the replication factor:
 
    ```shell
@@ -153,6 +154,7 @@ To delete a Kafka topic, complete the following steps:
    ```shell
    kubectl es init
    ```
+
 3. Run the following command to delete a topic:
 
    ```shell

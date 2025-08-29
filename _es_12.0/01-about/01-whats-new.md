@@ -9,6 +9,27 @@ toc: true
 Find out what is new in {{site.data.reuse.es_name}} version 12.0.x.
 
 ## Release {{site.data.reuse.es_current_version}}
+{: #release-1201}
+
+### Tiered storage support for Kafka topics
+
+{{site.data.reuse.es_name}} version 12.0.1 introduces support for [tiered storage](../../installing/configuring/#tiered-storage) for Kafka topics. This feature offloads historical topic data to remote storage, reducing storage requirements of local disks and improving cost efficiency.
+
+### Apicurio version updated to 2.6.13.Final
+
+{{site.data.reuse.es_name}} 12.0.1 includes Apicurio Registry version 2.6.13.Final for [managing schemas](../../schemas/overview/#schema-registry). Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before [upgrading](../../installing/upgrading/#prerequisites) to {{site.data.reuse.es_name}} 12.0.1. For more information, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Documentation: Highlighting differences between versions
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.0.1 compared to 12.0.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.0.1 icon]({{ 'images' | relative_url }}/12.0.1.svg "In Event Streams 12.0.1 and later.")
+
+
+### Security and bug fixes
+{: #security-and-bug-fixes}
+
+{{site.data.reuse.es_name}} release 12.0.1 contains security and bug fixes.
+
+## Release 12.0.0
 {: #release-1200}
 
 ### Kafka version upgraded to 4.0.0

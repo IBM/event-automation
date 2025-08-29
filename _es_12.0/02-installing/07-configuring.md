@@ -64,7 +64,7 @@ The following optional settings can be customized at the node pool level or inhe
 - JVM options: Allows customization of JVM parameters to optimize performance.
 - Templates: Enables customization of Kubernetes resources (such as pods and containers) that are associated with the node pool.
 
-Any configuration not explicitly set under `spec.strimziOverrides.nodePools` inherits from the `spec.strimziOverrides.kafka` in `EventStreams` custom resource. This helps maintain shared settings across the cluster while allowing customization of individual node pools when required.
+Configurations such as resource requests that are not explicitly set under `spec.strimziOverrides.nodePools` are inherited from `spec.strimziOverrides.kafka` in the `EventStreams` custom resource. However, pod templates must be defined in each node pool section. This helps maintain shared settings across the cluster while allowing customization of individual node pools when required.
 
 ### Customizing node IDs for scaling
 {: #customizing-node-ids-for-scaling}
@@ -95,6 +95,119 @@ strimziOverrides:
 
 For more information, see the [managing node pool IDs](https://strimzi.io/docs/operators/0.46.1/deploying#proc-managing-node-pools-ids-str){:target="_blank"}.
 
+## Tiered storage
+{: #tiered-storage}
+
+![Event Streams 12.0.1 icon]({{ 'images' | relative_url }}/12.0.1.svg "In Event Streams 12.0.1 and later.") You can now configure your Kafka cluster and topics to use tiered storage in {{site.data.reuse.es_name}}. Tiered storage retains recent data on broker disks for low-latency reads and writes, while moving historical topic data to remote storage.
+
+**Note:** Reading data from remote storage can be slower than accessing data from local storage, which might introduce increased latency for historical data access.
+
+Tiered storage extends data retention without increasing local disk usage and keeps data available for compliance, auditing, and analytics.
+
+{{site.data.reuse.es_name}} supports tiered storage only with Amazon S3-compatible storage by using the Aiven S3 plugin, which is bundled with and supported as part of {{site.data.reuse.es_name}}.
+
+
+### Enabling tiered storage
+{: #enabling-tiered-storage}
+
+To enable tiered storage for your {{site.data.reuse.es_name}} Kafka cluster:
+
+1. Update your `EventStreams` custom resource to include the `tieredStorage` configuration under `spec.strimziOverrides.kafka`, and set the following properties in the `config` section with values specific to your S3-compatible cloud provider to connect {{site.data.reuse.es_name}} to your remote storage service:
+
+   | Property | Type | Description |
+   |----------|------|-------------|
+   | `chunk.size` | string (numeric value as string, for example, `'1048576'`) | The size (in bytes) of each chunk uploaded to remote storage. Set a value based on performance and cost considerations. |
+   | `storage.overwrite.enabled` | boolean (`'true'` or `'false'`)  | Set to `'true'` to allow overwriting existing objects in the bucket. Use `'false'` to prevent overwrites. |
+   | `storage.s3.path.style.access.enabled` | boolean (`'true'` or `'false'`) | Set to `'true'` if your cloud provider requires path-style access. |
+   | `storage.s3.region` | string | The region where your bucket is hosted. |
+   | `storage.s3.endpoint.url` | string | The URL of your S3-compatible storage service. Use the endpoint provided by your cloud provider. |
+   | `storage.s3.bucket.name` | string | The name of the bucket where Kafka log segments will be stored. You must create this bucket in your storage service. |
+   | `storage.aws.secret.access.key` | string | The secret access key paired with the access key ID. You can get it from your cloud provider. Keep this value secure. |
+   | `storage.aws.access.key.id` | string | The access key ID used to authenticate with the storage service. You can get it from your cloud provider. |
+
+   For advanced optional configurations, see the [Aiven GitHub reference](https://github.com/Aiven-Open/tiered-storage-for-apache-kafka/blob/main/docs/configs.rst#s3storageconfig){:target="_blank"}.
+
+   For example:
+
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta2
+   kind: EventStreams
+   spec:
+     strimziOverrides:
+       kafka:
+         tieredStorage:
+           remoteStorageManager:
+             className: io.aiven.kafka.tieredstorage.RemoteStorageManager
+             classPath: /opt/kafka/tiered-storage/*
+             config:
+               chunk.size: '1048576'
+               storage.backend.class: io.aiven.kafka.tieredstorage.storage.s3.S3Storage
+               storage.overwrite.enabled: 'true'
+               storage.s3.path.style.access.enabled: 'true'
+               storage.s3.region: us-east-1
+               storage.s3.endpoint.url: 'https://s3.us-east-1.amazonaws.com'
+               storage.s3.bucket.name: example-bucket
+               storage.aws.secret.access.key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+               storage.aws.access.key.id: AKIAIOSFODNN7EXAMPLE
+           type: custom
+   ```
+
+1. Enable tiered storage for each topic by setting the `remote.storage.enable` property in your `KafkaTopic` custom resource:
+
+   ```yaml
+   apiVersion: kafka.strimzi.io/v1beta2
+   kind: KafkaTopic
+   metadata:
+     name: example-topic
+   spec:
+     config:
+       remote.storage.enable: 'true'
+   ```
+
+   **Note:**
+
+   - Tiered storage cannot be used for topics configured with log compaction.
+   - Tiered storage cannot be used with topics that contain log segments without a producer snapshot file. This typically affects topics created in Kafka versions earlier than 2.8.0.
+
+### Configuring tiered storage
+{: #configuring-tiered-storage}
+
+After you [enable tiered storage](#enabling-tiered-storage), configure the following topic-level properties to control how long data is retained in local storage before it becomes eligible for deletion. You can set one or both of these properties, depending on your requirements.
+
+| Property| Default value | Description |
+|----------|---------------|-------------|
+| `local.retention.bytes` | `-2` | Maximum size of data to retain locally before data becomes eligible for deletion.  By default, this is set to -2, indicating that the `retention.bytes` configuration must be used to determine the retention size. |
+| `local.retention.ms` | `-2` | Maximum time to retain data locally before data becomes eligible for deletion. By default, this is set to -2, indicating that the `retention.ms` configuration must be used to decide the retention period. |
+
+- If `local.retention.bytes` is set, data becomes eligible for deletion when the size of stored data exceeds the configured limit.
+- If `local.retention.ms` is set, data becomes eligible for deletion when the retention time exceeds the configured limit.
+- If both properties are set, data becomes eligible for deletion as soon as either limit is reached.
+- If neither property is set, Kafka uses the default `retention.bytes` and `retention.ms` values to determine local retention behavior.
+
+**Note:** Increasing the local retention threshold does not bring previously offloaded segments back to local storage. The change applies only to new data segments.
+
+### Disabling tiered storage
+{: #disabling-tiered-storage}
+
+You can disable tiered storage for a topic by configuring the following properties, depending on your requirement:
+
+- If you only want to stop writing new data to remote storage while keeping existing data accessible: 
+
+  ```yaml
+  remote.storage.enable=true
+  remote.log.copy.disable=true
+  ```
+
+- If you want to completely disable tiered storage and remove remote data permanently:
+
+  ```yaml
+  remote.log.delete.on.disable=true
+  remote.storage.enable=false
+  ```
+
+  Tiered storage can be disabled if local storage alone is sufficient for the workload. Disabling might be appropriate when reducing latency from remote storage is required, or when migrating to a new storage provider and existing remote data must be removed.
+
+  **Note:** This action is irreversible. After remote data is deleted, it cannot be recovered.
 
 ## Enabling persistent storage
 {: #enabling-persistent-storage}

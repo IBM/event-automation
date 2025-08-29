@@ -51,7 +51,7 @@ To set up your Java applications to use the Apicurio Registry and the Apicurio R
     <dependency>
       <groupId>io.apicurio</groupId>
       <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
-      <version>2.6.8.Final</version>
+      <version>2.6.13.Final</version>
     </dependency>
     ```
 

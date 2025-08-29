@@ -126,7 +126,7 @@ The queue manager is now ready to accept connection from the connector and put m
 
 Set up your Kafka Connect environment as described in [setting up connectors](../../setting-up-connectors/):
 
-1. The MQ sink connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ sink connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
+1. The MQ sink connector JAR file is available as a [GitHub release](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases){:target="_blank"} along with all the dependencies that are required to run the connector. To start Kafka Connect with the MQ sink connector, follow the guidance in [setting up connectors](../../setting-up-connectors/) to add the [connector JAR file](https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.1/kafka-connect-mq-sink-2.2.1-jar-with-dependencies.jar){:target="_blank"} by using the {{site.data.reuse.es_name}} operator or manually.
 
 1. Start the Kafka Connect by using the `KafkaConnect` custom resource. You can use the following sample `KafkaConnect` custom resource to get started:
 
@@ -155,7 +155,7 @@ spec:
     plugins:
       - artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.0/kafka-connect-mq-sink-2.2.0-jar-with-dependencies.jar 
+            url: https://github.com/ibm-messaging/kafka-connect-mq-sink/releases/download/v2.2.1/kafka-connect-mq-sink-2.2.1-jar-with-dependencies.jar
         name: mq-sink
   template:
     buildConfig:

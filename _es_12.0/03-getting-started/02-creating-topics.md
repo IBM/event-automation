@@ -118,5 +118,3 @@ spec:
 
 **Note:** To create a Kafka topic with a name that is not a valid Kubernetes resource name, specify the required topic name in the `spec.topicName` property. If the `spec.topicName` field is not specified, the value of the `metadata.name` property is used as the topic name.
 
-
-

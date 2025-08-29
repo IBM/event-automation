@@ -12,24 +12,24 @@ To configure an {{site.data.reuse.eem_manager}} or {{site.data.reuse.egw}} insta
 - For {{site.data.reuse.eem_manager}} instances, you can configure OpenTelemetry in the `spec.manager.openTelemetry` section of the `EventEndpointManagement` custom resource.
 - For operator-managed and [Kubernetes Deployment](../install-gateway#remote-gateways) {{site.data.reuse.egw}} instances, you can configure OpenTelemetry in the `spec.openTelemetry` section of the `EventGateway` custom resource or Kubernetes Deployment.  
 
-    ```yaml
-      openTelemetry:
-        endpoint: 'https://my.collector.endpoint:4317'
-        protocol: grpc
-        interval: 30000
-        tls:
-          secretName: my-mtls-secret
-          clientKey: tls.key
-          clientCertificate: tls.crt 
-          trustedCertificate:
-            secretName: my-collector-endpoint-ca-secret
-            certificate: ca.crt
-        instrumentations:
-          - name: netty
-            enabled: true
-          - name: runtime-telemetry
-            enabled: true
-    ```
+  ```yaml
+  openTelemetry:
+    endpoint: 'https://my.collector.endpoint:4317'
+    protocol: grpc
+    interval: 30000
+    tls:
+      secretName: my-mtls-secret
+      clientKey: tls.key
+      clientCertificate: tls.crt 
+      trustedCertificate:
+        secretName: my-collector-endpoint-ca-secret
+        certificate: ca.crt
+    instrumentations:
+      - name: netty
+        enabled: true
+      - name: runtime-telemetry
+        enabled: true
+  ```
 
     Where:
 

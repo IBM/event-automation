@@ -60,7 +60,7 @@ The following optional settings can be customized at the node pool level or inhe
 - JVM options: Allows customization of JVM parameters to optimize performance.
 - Templates: Enables customization of Kubernetes resources (such as pods and containers) that are associated with the node pool.
 
-Any configuration not explicitly set under `spec.strimziOverrides.nodePools` inherits from the `spec.strimziOverrides.kafka` in `EventStreams` custom resource. This helps maintain shared settings across the cluster while allowing customization of individual node pools when required.
+Configurations such as resources that are not explicitly set under `spec.strimziOverrides.nodePools` are inherited from `spec.strimziOverrides.kafka` in the `EventStreams` custom resource. However, pod templates must be defined in each node pool section. This helps maintain shared settings across the cluster while allowing customization of individual node pools when required.
 
 ### Customizing node IDs for scaling
 

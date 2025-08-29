@@ -21,6 +21,13 @@ sections:
   <!-- Assisted by WCA@IBM -->
   <details class="details">
     <summary><b>Event Streams</b></summary>
+      <h4>12.0.1 - what's new:</h4>
+      <ul>
+        <li>Tiered storage support for Kafka topics</li>
+        <li>Apicurio version updated to 2.6.13.Final</li>
+        <li>Security and bug fixes</li>
+      </ul>
+
     <h4>12.0.0 - what's new:</h4>
     <ul>
       <li>Kafka version upgraded to 4.0.0</li>
@@ -40,7 +47,9 @@ sections:
       <li>Download Kafka connection properties from UI</li>
       <li>Security and bug fixes</li>
     </ul>
-    <h3>Event Endpoint Management</h3>
+      </details>
+     <details class="details">
+    <summary><b>Event Endpoint Management</b></summary>
       <h4>11.6.3 - what's new:</h4>
       <ul>
         <li>Support for Red Hat OpenShift Container Platform 4.19</li>
@@ -73,6 +82,11 @@ sections:
     </details>
     <details class="details">
     <summary><b>Event Processing</b></summary>
+      <h4>1.4.3 - what's new:</h4>
+      <ul>
+        <li>Security and bug fixes</li>
+      </ul>
+
      <h4>1.4.2 - what's new:</h4>
     <ul>
       <li>Optimized Flink jobs when running flows containing sink nodes in the Event Processing UI</li>

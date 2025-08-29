@@ -173,9 +173,9 @@ To configure a transform node, complete the following steps:
       **Note:** Ensure you choose the values with correct data type for your expression. Properties that are used as values in the comparison operations must be of the same data type. Arithmetic operations are only allowed on integer and double data types. String operations are only possible with properties of string data type. Some temporal functions require a timestamp data type.
 
     {{site.data.reuse.array_expression_note}}
-2. Optional: Repeat steps 3 to 6 to create more properties.  
-3. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
-4. Only **leaf** properties are listed in the **Output properties** table. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
+1. Optional: Repeat steps 3 to 6 to create more properties.  
+1. Click **Next** to open the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
+1. Only **leaf** properties are listed in the **Output properties** table. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
 
    Click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"} to remove a property so that it is not displayed in the output.
    
@@ -183,17 +183,17 @@ To configure a transform node, complete the following steps:
      - Nested properties are displayed by using a period (`.`) as a separator for each level of nesting. For example, `product . id` or `customer . address . city`.
      - If a nested property name contains a period (`.`), the nested property is displayed within backticks (\`\`\) to distinguish the property name. For example, `name .`\``billing.address`\``. customer` where `billing.address` is the name of the property.
     
-5. Only **leaf** properties are listed in the **Output properties** table. You can only rename the last nested property within nested properties, you cannot rename the top-level or any other properties in between. For example, in the case of `customer . address . city`, you can only rename `city`, but not `address` or `customer`.
+1. Only **leaf** properties are listed in the **Output properties** table. You can only rename the last nested property within nested properties, you cannot rename the top-level or any other properties in between. For example, in the case of `customer . address . city`, you can only rename `city`, but not `address` or `customer`.
     
      **Note:** To rename the top-level property `customer . address . city` (in this case, `customer`), create a new property and add details in the following fields:
    - **Property name:** Add a new name for the property.
    - **Expression**: Add the name of the property to rename, for example, customer. 
 
-6. Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.   
+1. Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.   
      - In the text-box, enter a new name for your property.  
      - Click outside the text-box or press Enter on your keyboard to rename the property.
 7. Optional: To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties. For the property you want to add back, click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.  
-8. To complete the transform node configuration, click **Configure**.
+1. To complete the transform node configuration, click **Configure**.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the transform node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "DiagIconram showing red checkbox."){:height="30px" width="15px"} appears.
 

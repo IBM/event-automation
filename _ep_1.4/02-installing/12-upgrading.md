@@ -256,15 +256,15 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on other Kubernetes platforms by using Helm.
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs.
-3. Run the following command to upgrade the Helm release that manages your Flink CRDs:
+1. Ensure you are running in the namespace containing the Helm release of the {{site.data.reuse.ibm_flink_operator}} CRDs.
+1. Run the following command to upgrade the Helm release that manages your Flink CRDs:
 
 
    ```shell
    helm upgrade <flink_crd_release_name> ibm-helm/ibm-eventautomation-flink-operator-crd
    ```
 
-4. Download and unpack the chart archive to your local destination path.
+1. Download and unpack the chart archive to your local destination path.
 
    ```shell
    helm pull ibm-helm/ibm-eventautomation-flink-operator-crd -d <DESTINATION_PATH> --untar
@@ -272,7 +272,7 @@ You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on 
 
    Where `<DESTINATION_PATH>` is the local path where you download the chart.
 
-5. In the terminal of your choice, run the following commands. 
+1. In the terminal of your choice, run the following commands. 
 
    ```shell
    kubectl replace -f <DESTINATION_PATH>/ibm-eventautomation-flink-operator-crd/crds/flinkdeployments.flink.apache.org-v1.yml
@@ -286,7 +286,7 @@ You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on 
    kubectl apply -f <DESTINATION_PATH>/ibm-eventautomation-flink-operator-crd/crds/flinkstatesnapshots.flink.apache.org-v1.yml
    ```
 
-6. Upgrade the Helm release of {{site.data.reuse.ibm_flink_operator}}. Switch to the correct namespace if your CRD Helm release is in a different namespace to your operator and then run:
+1. Upgrade the Helm release of {{site.data.reuse.ibm_flink_operator}}. Switch to the correct namespace if your CRD Helm release is in a different namespace to your operator and then run:
 
    ```shell
    helm upgrade <flink_release_name> ibm-helm/ibm-eventautomation-flink-operator <install_flags>
@@ -298,7 +298,7 @@ You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on 
    - `<flink_release_name>` is the Helm release name of the Flink operator.
    - `<install_flags>` are any optional installation property settings such as `--set watchAnyNamespace=true`.
 
-7. Identify the namespace where the {{site.data.reuse.ep_name}} installation is located and the Helm release managing the CRDs by looking at the annotations on the CRDs:
+1. Identify the namespace where the {{site.data.reuse.ep_name}} installation is located and the Helm release managing the CRDs by looking at the annotations on the CRDs:
 
    ```shell
    kubectl get crd eventprocessings.events.ibm.com -o jsonpath='{.metadata.annotations}'
@@ -310,23 +310,23 @@ You can upgrade your {{site.data.reuse.ep_name}} and Flink instances running on 
    {"meta.helm.sh/release-name": "ep-crds", "meta.helm.sh/release-namespace": "ep"}
    ```
 
-8. Ensure you are using the namespace where your {{site.data.reuse.ep_name}} CRD Helm release is located (see previous step):
+1. Ensure you are using the namespace where your {{site.data.reuse.ep_name}} CRD Helm release is located (see previous step):
 
    ```shell
    kubectl config set-context --current --namespace=<namespace>
    ```
 
-9. Run the following command to upgrade the Helm release that manages your {{site.data.reuse.ep_name}} CRDs:
+1. Run the following command to upgrade the Helm release that manages your {{site.data.reuse.ep_name}} CRDs:
 
    ```shell
    helm upgrade <crd_release_name> ibm-helm/ibm-ep-operator-crd
    ```
 
-10. Run the following command to upgrade the Helm release of your operator installation. Switch to the right namespace if your CRD Helm release is in a different namespace to your operator.
+1. Run the following command to upgrade the Helm release of your operator installation. Switch to the right namespace if your CRD Helm release is in a different namespace to your operator.
 
-    ```shell
-    helm upgrade <ep_release_name> ibm-helm/ibm-ep-operator <install_flags>
-    ```
+   ```shell
+   helm upgrade <ep_release_name> ibm-helm/ibm-ep-operator <install_flags>
+   ```
 
 Where:
 

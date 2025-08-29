@@ -72,7 +72,7 @@ The following table explains the naming conventions in the nested properties:
 
 | Name | Description | Example |
 | Object |Object maps the keys to the values.|For more information, see the JSON schema documentation{:target="_blank"}.|
-| Leaf property | The name of the last-level property.|customer/address/number, in this case, the numberis the leaf property.|
+| Leaf property | The name of the last-level property.|customer/address/number, in this case, the number is the leaf property.|
 | Top-level | The name of the first-level property. |address/shipping or address/number, in this case, the address is the top-level property.|
 
 ## Timestamp
@@ -85,8 +85,7 @@ Time is an important factor in determining the latency of ingestion and processi
 
 A stream of messages is stored in categories called topics.
 
-
 To learn more about key concepts, see the following information:
- - [Apache Kafka documentation](http://kafka.apache.org/documentation.html){:target="_blank"}
- - [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-master/){:target="_blank"}
 
+- [Apache Kafka documentation](http://kafka.apache.org/documentation.html){:target="_blank"}
+- [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-master/){:target="_blank"}

@@ -271,17 +271,17 @@ including resource requirements and, if installing in **any namespace**, the req
 
 **Important:**
 
-* {{site.data.reuse.ibm_flink_operator}} must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
+- {{site.data.reuse.ibm_flink_operator}} must not be installed in a cluster where Apache Flink operator is also installed. Rationale:
   {{site.data.reuse.ibm_flink_operator}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources
   cannot be managed by more than one operator
   (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
-* Before installing {{site.data.reuse.ibm_flink_operator}} on a cluster where Apache Flink operator is already installed, to avoid
+- Before installing {{site.data.reuse.ibm_flink_operator}} on a cluster where Apache Flink operator is already installed, to avoid
   possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
   the Apache Flink CRDs as described in the
   [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
-* Only one version of {{site.data.reuse.ibm_flink_operator}} should be installed in a cluster. Installing multiple versions
+- Only one version of {{site.data.reuse.ibm_flink_operator}} should be installed in a cluster. Installing multiple versions
   is not supported, due to the possible conflicts between versions of the `CustomResourceDefinition` resources.
-* Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
+- Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
 
 
 

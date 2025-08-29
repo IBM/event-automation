@@ -16,6 +16,15 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
 
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-143}
+
+
+### Security and bug fixes
+{: #security-and-bug-fixes}
+
+{{site.data.reuse.ep_name}} release 1.4.3 and {{site.data.reuse.ibm_flink_operator}} version 1.4.3 contain security and bug fixes.
+
+## Release 1.4.2
 {: #release-142}
 
 

@@ -171,17 +171,17 @@ The API enrichment in {{site.data.reuse.ep_name}} has the following limitations:
 - The impact on processing performance depends on the response time of the API server, network latency, and the size of payloads.
 - The configured authentication credentials cannot be verified at flow authoring time. If the credentials need to be corrected or renewed for a running flow, stop the flow and reconfigure the node.
 - [Multiple security schemes](https://swagger.io/docs/specification/authentication/#multiple){:target="_blank"} cannot be combined with `AND` logic for the same API operation. Only `OR` logic is supported, for example, **Basic** or **API key** authentication.
-- A header parameter’s value can be set as a literal, but not by an input event property.
-- At least one API parameter, which is not a header parameter must be mapped to an event property or literal value in the **Input mapping** pane of the API node.
-- String literal values cannot contain single or double quotation marks (`'`, `"`). However, such values can be conveyed in input event properties. You can define string literals with quotation marks in a transform node that precedes the API enrichment node.
-- The value of API parameters of type `string` cannot contain backslash characters (`\`) when specifying the value as a literal value or mapping it to an event property.
+- A header parameter’s value can be set as a constant, but not by an input event property.
+- At least one API parameter, which is not a header parameter must be mapped to an event property or constant value in the **Input mapping** pane of the API node.
+- String constant values cannot contain single or double quotation marks (`'`, `"`). However, such values can be conveyed in input event properties. You can define string constants with quotation marks in a transform node that precedes the API enrichment node.
+- The value of API parameters of type `string` cannot contain backslash characters (`\`) when specifying the value as a constant value or mapping it to an event property.
 - OpenAPI can define [minimum and maximum](https://swagger.io/docs/specification/data-models/data-types/#range){:target="_blank"} values for numeric parameters and [pattern](https://swagger.io/docs/specification/data-models/data-types/#pattern){:target="_blank"} for string parameters, but the API node does not enforce them. An API returns a response other than a success code (2xx) if the parameter values are not compliant. In such cases, the processing job does not fail, but no output event is generated.
 - For API parameters where the schema defines the type by using `oneOf`, only the first type is used.
 - The optional `format` attribute provided by the OpenAPI for [API parameter types](https://swagger.io/docs/specification/data-models/data-types/){:target="_blank"} are treated as follows:
-   - For filtering matching types of event properties, and validating the configured literal values, `date` and `date-time` formats are used for `string` type, `float` and `double` formats for `number` type, and `int32` and `int64` formats for `integer` type.
+   - For filtering matching types of event properties, and validating the configured constant values, `date` and `date-time` formats are used for `string` type, `float` and `double` formats for `number` type, and `int32` and `int64` formats for `integer` type.
    - Parameters of type `string` are excluded if their `format` is `binary`.
    - Other values of the `format` field are not used by the API node, including custom formats. When such values are present, parameters of type `number` are treated as `double`, and parameters of type `integer` are treated as `int64`. 
-   - Custom formats cannot be treated specifically, as their semantics are not specified in OpenAPI. Check the API documentation you use to ensure that the event property or the literal value that feeds the API parameter contains the appropriate values.
+   - Custom formats cannot be treated specifically, as their semantics are not specified in OpenAPI. Check the API documentation you use to ensure that the event property or the constant value that feeds the API parameter contains the appropriate values.
 - The parameter names and fields in the nested request body and response payloads do not support the slash (`/`) character.
 
 ### Adding an API node

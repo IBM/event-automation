@@ -44,5 +44,3 @@ Ensure your environment meets the following prerequisites before running a Flink
        state: RUNNING
        ...
     ```
-
-

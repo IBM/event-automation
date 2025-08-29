@@ -26,7 +26,6 @@ The following tables provide information about the network connections of {{site
 
 **Note:** Not all networking solutions support network policies. Creating `NetworkPolicy` resources on clusters with solutions that do not support policies has no effect on restricting traffic.
 
-
 ### {{site.data.reuse.ep_name}} operator pod
 {: #event-processing-operator-pod}
 
@@ -44,7 +43,7 @@ If you are using a CNI plug-in that supports network policies, it might be possi
 
 The following is an example network policy that allows access to a CIDR block:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -78,12 +77,12 @@ To delete the network policy of the {{site.data.reuse.ep_name}} operator:
   **By using the OpenShift console**:
 
   1. {{site.data.reuse.openshift_ui_login}}
-  2. Expand `Home` in the navigation menu and click `Search`.
-  3. From the `Project` list, select the namespace where you installed the operator.
-  4. From the `Resources` list, select `Subscription`.
+  2. Expand **Home** in the navigation menu and click **Search**.
+  3. From the **Project** list, select the namespace where you installed the operator.
+  4. From the **Resources** list, select **Subscription**.
   5. From the results, select your {{site.data.reuse.ep_name}} subscription by clicking its name.
-  6. Click the `YAML` tab.
-  7. Scroll to the `spec` section of the YAML file, and add the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable as follows:
+  6. Click the **YAML** tab.
+  7. Scroll to the **spec** section of the YAML file, and add the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable as follows:
 
      ```yaml
      spec:
@@ -93,7 +92,7 @@ To delete the network policy of the {{site.data.reuse.ep_name}} operator:
              value: 'false'
      ```
 
-  8. Click `Save`.
+  8. Click **Save**.
 
   **By using the command line**:
 

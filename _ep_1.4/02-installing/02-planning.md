@@ -25,7 +25,15 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 The following {{site.data.reuse.ep_name}} sample configurations are available to deploy:
 
 - Quick Start: A development instance with reduced resources, using ephemeral storage and Local authentication.
+
 - Production: A production instance with placeholders for persistence and OpenID Connect (OIDC) authentication.
+
+
+**Important:** When selecting an {{site.data.reuse.ep_name}} sample, you must pair it with a Flink deployment created by using the equivalent Flink sample. This pairing is required because the {{site.data.reuse.ep_name}} Quick Start sample is designed to communicate with a Flink setup that does not use TLS, whereas the {{site.data.reuse.ep_name}} Production sample expects a Flink setup that has TLS enabled.  
+You can customize the Flink sample, for example, by adding truststores or making other configuration changes, as long as the TLS configuration remains consistent. This means TLS must stay enabled if it was originally enabled, or stay disabled if it was originally disabled. For example:
+
+- The {{site.data.reuse.ep_name}} Quick Start sample must be used with the Quick Start Flink sample.
+- The {{site.data.reuse.ep_name}} Production sample must be used with either the Flink Minimal Production sample or the Flink Production sample.
 
 By default, both samples require the following resources:
 
@@ -87,8 +95,9 @@ Points to consider for resource requirements:
 - To determine the right sample to use that meets your requirements, establish if your typical {{site.data.reuse.ep_name}} flows can be handled by the Minimal Production or the Production sample. For this purpose, find out if the CPU requirements of a typical job, along with the CPU requirements of all the other competing jobs that may be running on the same Task Manager, do not exceed the allocated amount of CPU. In addition, the memory required by a job should not exceed 80% of the limit defined in the sample.
 
 - What happens if the resource limits are exceeded?
-   * If the CPU limit is exceeded, Kubernetes CPU throttling is activated. When sustained, this can have a significant negative impact on performance. If the memory limit is exceeded, the Kubernetes [out-of-memory condition](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit){:target="_blank"} can terminate the Task Manager container.
-   * A good practice is to avoid resource usage consistently exceeding 70% of CPU or 80% of memory capacity. The spare capacity is often enough to take care of short-lived CPU peaks, Flink checkpoint processing, and minor fluctuations in memory usage. If either of the thresholds is being exceeded after choosing the Minimal Production sample despite performance optimizations on a flow, consider the larger Production sample.
+
+  - If the CPU limit is exceeded, Kubernetes CPU throttling is activated. When sustained, this can have a significant negative impact on performance. If the memory limit is exceeded, the Kubernetes [out-of-memory condition](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit){:target="_blank"} can terminate the Task Manager container.
+  - A good practice is to avoid resource usage consistently exceeding 70% of CPU or 80% of memory capacity. The spare capacity is often enough to take care of short-lived CPU peaks, Flink checkpoint processing, and minor fluctuations in memory usage. If either of the thresholds is being exceeded after choosing the Minimal Production sample despite performance optimizations on a flow, consider the larger Production sample.
 
 High-level criteria for choosing between Minimal Production and Production samples:
 
@@ -278,4 +287,3 @@ For more information, see [configuring TLS for Flink](../configuring/#configurin
 Licensing is typically based on Virtual Processing Cores (VPC).
 
 For more information about available licenses, chargeable components, and tracking license usage, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
-

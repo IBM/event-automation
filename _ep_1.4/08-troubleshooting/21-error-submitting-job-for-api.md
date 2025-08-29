@@ -12,7 +12,7 @@ toc: true
 When a Flink deployment is created to [deploy a job](../../advanced/deploying-customized/), the job manager pod fails with the following error in the log:
 
 ```markdown
-ERROR com.ibm.ei.streamproc.model.jobgraph.apinode.connector.ResponseJsonRowDataDeserializationSchema [] - Failed to convert response literal value xxx
+ERROR com.ibm.ei.streamproc.model.jobgraph.apinode.connector.ResponseJsonRowDataDeserializationSchema [] - Failed to convert response constant value xxx
 ```
 
 ## Causes

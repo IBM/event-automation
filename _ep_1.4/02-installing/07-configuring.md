@@ -922,7 +922,7 @@ To update the secret with the truststore that you configured earlier, complete t
    ```
 
    Where:
-   
+
    - `<keystore-extension>` is the extension for your keystore format. For example, `jks` for Java Keystore and `p12` for Public-Key Cryptography Standards.
 
 Delete the {{site.data.reuse.ep_name}} pod and wait for the pod to become ready.  After the pods are ready, your certificates are added.

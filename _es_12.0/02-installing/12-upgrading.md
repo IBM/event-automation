@@ -166,6 +166,8 @@ If you are upgrading from {{site.data.reuse.es_name}} version 11.7.x or earlier,
 
 - Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before migrating.
 
+   **Important:** Support for Apicurio Registry Core REST API version 1 is deprecated and will be removed in a future release. To ensure continued compatibility, it is recommended to update all Apicurio client libraries to use API version 2. For more information, see [what's new](../../about/whats-new/#deprecation-of-support-for-apicurio-registry-core-rest-api-version-1).
+
 **Note:** There is no downtime during the {{site.data.reuse.es_name}} upgrade. The Kafka pods are rolled one at a time, so a Kafka instance will always be present to serve traffic. However, if the number of brokers you have matches the `min.insync.replicas` value set for any of your topics, then that topic will be unavailable to write to while the Kafka pods are rolling.
 
 ### Scheduling the upgrade of an instance

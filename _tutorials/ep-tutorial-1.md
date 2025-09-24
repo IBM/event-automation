@@ -24,8 +24,8 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.4.2
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
 
@@ -237,6 +237,8 @@ The next step is to identify door badge events that occur at weekends. The addit
     ```
 
     **Did you know?** Including line breaks in your expressions can make them easier to read.
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 

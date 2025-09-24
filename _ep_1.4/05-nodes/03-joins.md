@@ -259,8 +259,6 @@ To configure a window join, complete the following steps:
    | Exclusive right join |  No event for left input stream and Event for right input stream | Events from right input stream that do not match  | NULL values for left input stream event properties |
    | Inclusive left join |  - Event for both input streams <br><br> - Event for left input stream with No event for right input stream | Merged events from left and right input streams that match | NULL values for right input stream event properties for unmatched events |
    | Inclusive right join |  - Event for both input streams <br><br> - No event for left input stream and Event for right input stream | Merged events from left and right input streams that match | NULL values for left input stream event properties for unmatched events |
-   | Exclusive full outer join | - Event for the left input stream, and No event for the right input stream <br> <br> - No event for the left input stream and Event for the right input stream | Events from both input streams that do not match (no joined matches) | NULL values for the missing side in each unmatched event from both streams |
-   | Full outer join | Select all three rows | Merged events from left and right input streams that match | NULL values for the missing side in each unmatched event from both streams |
 
 1. You can manage the properties that come from this node to suit your requirements in the Output properties section. When the properties from the events of the two input nodes are merged, you might have to resolve naming conflicts by renaming or removing properties.
 

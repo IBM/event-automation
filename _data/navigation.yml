@@ -156,8 +156,10 @@ latest_eemdocs:
         url: /describe/managing-user-access-to-topics/
       - title: "Managing user group visibility to options"
         url: /describe/user-groups/
-      - title: "Managing gateways"
-        url: /describe/managing-gateways/
+      - title: "Managing event source editors"
+        url: /describe/event-source-editors/
+      - title: "Managing cluster maintainers"
+        url: /describe/cluster-maintainers/
       
   - title: Subscribe
     children:
@@ -232,7 +234,7 @@ latest_eemdocs:
         url: /troubleshooting/no-main-key-backup/
       - title: "Unable to publish an option due to incompatible controls" 
         url: /troubleshooting/unexpected-option-not-publishable/    
-      - title: "Event Gateway loses connection to OAuth-authenticated Kafka cluster after upgrading to 11.6.2"
+      - title: "Event Gateway loses connection to OAuth-authenticated Kafka cluster after upgrading from 11.6.1 and earlier"
         url: /troubleshooting/v2-gateways-oauth/
 
 115_eemdocs:

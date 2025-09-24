@@ -81,8 +81,8 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.5.0
-- {{site.data.reuse.ep_name}} 1.3.1
+- {{site.data.reuse.eem_name}} 12.0.1
+- {{site.data.reuse.ep_name}} 1.4.4
 
 
 ## Instructions
@@ -237,6 +237,8 @@ The next step is to bring the stream of events you discovered in the catalog int
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
 
 1. Click **Add to expression**.
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 

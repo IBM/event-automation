@@ -24,9 +24,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- Event Streams 11.3.1
-- Event Endpoint Management 11.1.5
-- Event Processing 1.1.5
+- Event Streams 12.0.1
+- Event Endpoint Management 11.6.3
+- Event Processing 1.4.4
 
 ## Instructions
 
@@ -126,6 +126,8 @@ The next step is to filter the stream of events based on this new total order va
    ```sql
    `order total` > 350 AND region = 'EMEA'
    ```
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 

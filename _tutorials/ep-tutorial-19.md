@@ -74,9 +74,9 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.5.0
-- {{site.data.reuse.es_name}} 11.5.1
-- {{site.data.reuse.ep_name}} 1.3.2
+- {{site.data.reuse.es_name}} 12.0.1
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.4
 
 
 ## Instructions
@@ -166,7 +166,7 @@ Use the server address information and **Generate access credentials** button on
 
 1. Give the filter node a name that describes the results: `Filtered reviews`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-5b.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-5b.png "defining the filter")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
 
    Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
@@ -176,7 +176,9 @@ Use the server address information and **Generate access credentials** button on
    TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) <= 2
    ```
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-5c.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-5c.png "defining the filter")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 

@@ -22,8 +22,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots might differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.5.0
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.es_name}} 12.0.1
+- {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
 
@@ -190,6 +190,9 @@ The next step is to identify cancellations where the customer changed their mind
 
     Click **Add to expression**.
 
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
+
+
 1. Click **Configure** to finalize the filter.
 
 ### Step 6 : Test the flow
@@ -201,7 +204,6 @@ Use the **Run** menu, and select **Include historical** to run your filter on th
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-20.png "running the flow")
 
 Verify that all events are for cancellation events with a reason of `CHANGEDMIND`.
-
 
 ## Recap
 

@@ -14,16 +14,16 @@ After you discover an event endpoint that is suitable for use with your applicat
 To subscribe to an event endpoint that is not configured with approval controls, complete the following steps.
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-1. In the navigation pane, click **Catalog**.
-1. Select an event endpoint from the list. 
-1. Select an event endpoint and then click **Subscribe**. 
+2. In the navigation pane, click **Catalog**.
+3. Select an event endpoint from the list. 
+4. Select an event endpoint and then click **Subscribe**. 
    
    **Note:** The **Subscribe** button is only available for event endpoints that are still accepting new subscriptions. The owner of the event endpoint controls if subscriptions are offered in the **Catalog**.
 
-1. In the **Contact details** field, provide your contact details and then, depending on your version, click **Subscribe**.  
+5. In the **Contact details** field, provide your contact details and then, depending on your version, click **Subscribe**.  
 
    **Note:** The contact information is a free text field, and the owners of the event endpoint can use the details to contact you. For example, owners might contact you if an event endpoint is deprecated or disabled for maintenance. Providing an email address is recommended.  
-1. Complete one of the following steps according to the configuration of the event endpoint:
+6. Complete one of the following steps according to the configuration of the event endpoint:
    
    * If the event endpoint is configured to require a `SASL` username and password, then the **Subscription created** pane is displayed and presents your subscription credentials. 
       

@@ -28,10 +28,10 @@ Find out more abut the OpenTelemetry metrics emitted by the {{site.data.reuse.ee
 | options | LongUpDownCounter | Number of options and their associated subscriptions at a specific point in time. | 
 | successful_gateway_registration | LongCounter | Number of successful gateway registrations. | 
 | failed_gateway_registration | LongCounter |  Number of failed gateway registrations. | 
-| services_not_ready | LongGuage | Number of {{site.data.reuse.eem_name}} services that are not yet ready. |
-| services_ready | LongGuage | Number of {{site.data.reuse.eem_name}} services that are ready. |
-| resource_count | LongGuage | Number of resources created. The resources that are included in this count are: Options and {{site.data.reuse.egw}}s. |
-| resource_limit | LongGuage | Number of resources within that can be created. Not present if no resource limit is set. |
+| services_not_ready | LongGauge | Number of {{site.data.reuse.eem_name}} services that are not yet ready. |
+| services_ready | LongGauge | Number of {{site.data.reuse.eem_name}} services that are ready. |
+| resource_count | LongGauge | Number of resources created. The resources that are included in this count are: Options and {{site.data.reuse.egw}}s. |
+| resource_limit | LongGauge | Number of resources within that can be created. Not present if no resource limit is set. |
 | (deprecated) successfulGatewayRegistration | LongCounter | Number of successful gateway registrations. Use `successful_gateway_registration` instead. |
 | (deprecated) failedGatewayRegistration | LongCounter |  Number of failed gateway registrations. Use `failed_gateway_registration` instead. |
 | (deprecated) storageNotReady | LongCounter | Number of times the storage ready check failed. |
@@ -48,6 +48,7 @@ Find out more abut the OpenTelemetry metrics emitted by the {{site.data.reuse.ee
 | login_failed | LongCounter | Number of failed client logins to the {{site.data.reuse.egw}}. |
 | topic_authz_failed | LongCounter | Number of topic authorization failures that are caused by clients that use the {{site.data.reuse.egw}}. |
 | connected_clients | LongUpDownCounter | Number of clients that are connected to this gateway at a specific point in time. |
+| client_api_versions_gauge | LongGauge | Gauge that contains the API versions used per client ID for each Kafka API. |
 | consumers_msgs | LongCounter | Number of messages that clients consume through the {{site.data.reuse.egw}}. |
 | consumers_bytes | LongCounter | Number of bytes that clients consume through the {{site.data.reuse.egw}}. |
 | producers_bytes | LongCounter | Number of messages that clients produce through the {{site.data.reuse.egw}}. |

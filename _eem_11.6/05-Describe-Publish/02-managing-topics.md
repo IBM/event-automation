@@ -158,7 +158,24 @@ To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow thes
 7. Click **Delete schema** to delete the existing schema.
 8. To upload the modified schema, click **Add an Avro schema** and select the `.avsc` or `.avro` file that you modified and saved earlier.
   
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Adding event source editors
 
+In {{site.data.reuse.eem_name}} 11.6.4 and later, you can assign specific [user groups](../../security/groups) to edit selected event sources.
+
+<!-- Is it worth adding something here about what event source editors can do, or is the link to the user groups page enough? -->
+
+To assign user groups to enable members of the group to edit event sources, complete the following steps:
+
+1. In the navigation pane, click **Manage > Topics**.
+1. Find the event source that you want to work with and click the **Collaborate** icon ![Collaborate icon]({{ 'images' | relative_url }}/collaborate.svg "The collaborate icon."){:height="30px" width="15px"}. The **Manage event source editors** pane is displayed with the user groups already assigned to the event source.
+1. Select a user group from the list displayed. If the group that you want is not displayed, click **Enable user group** to add a group from your organization.  
+
+   **Note:** Any user groups that you enable must exist within the organization that is provided by your OAuth provider.  
+
+   a. Enter a name for the user group that you want to add.  
+   b. Click **Add user groups**. 
+
+1. Click **Save**. 
 
 ## Deleting an event source
 {: #deleting-an-event-source}

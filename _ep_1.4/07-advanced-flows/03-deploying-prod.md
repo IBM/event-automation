@@ -337,9 +337,9 @@ hide autoscaler -->
 
     b. In the `spec.flinkConfiguration`, add the Flink autoscaler parameters to match your workload expectations.
 
-      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/autoscaler/)
+      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/autoscaler/)
 
-      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/operations/configuration/#autoscaler-configuration)
+      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/operations/configuration/#autoscaler-configuration)
 
       **Important:** If you have already defined the `pipeline.max-parallelism` option in `spec.flinkConfiguration` then do not alter the value.
      This would result in an incompatible change when the Job is restarted from an existing savepoint.
@@ -411,7 +411,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Save the changes in the `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
 ## Enable SSL connection for your database and API server
 {: #enable-ssl-connection-for-your-database-and-api-server}

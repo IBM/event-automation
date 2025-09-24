@@ -61,11 +61,16 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
 1. Optional: If a name is not added by default, enter a unique event source name for the topics selected.
 
-   **Note:** The event source name is the unique ID that identifies your topics.
-      
+   **Note:** - The event source name is the unique ID that identifies your topics.
+             - If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
+1. ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Optional. If you're using {{site.data.reuse.eem_name}} 11.6.4 and later, click **Next**. The Editors pane is displayed.
+1. To enable members of the group to edit the topic information and create options for the topic, select a user group from the table.
+1. If the user group is not displayed, click **Add user group** to add one from your organization.  
+
+   **Note:** Any user groups that you add here must exist within the organization that is provided by your OAuth provider.
+   
 1. Click **Add Topic**.
 
-**Note:** If any of the event source names that you entered are already in use, an error message is displayed to indicate that there is a conflict and it failed to add the topic. Otherwise, your new topics are added to {{site.data.reuse.eem_name}}.
 
 Your new event source appears in the **Manage topics** page with the **Options status** as 0 published. For more information about socializing your options, see [Publishing options](../publishing-options).
 

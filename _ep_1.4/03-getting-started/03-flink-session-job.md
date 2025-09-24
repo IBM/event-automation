@@ -11,7 +11,7 @@ You can create and run a Flink session job that is written in Java by using the 
 The `FlinkSessionJob` custom resource is used to create and manage Flink jobs in a session cluster. The `FlinkSessionJob` instance can only run with an existing session cluster managed by the `FlinkDeployment` instance. The `FlinkSessionJob` custom resource contains the information to submit a session job to the session cluster with following information:
 
 - `deploymentName`: The name of the Flink deployment instance deployed by using the `FlinkDeployment` custom resource.
-- `job.jarUri`: Specifies the URI of the [Flink job JAR](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#jobspec){:target="_blank"} file.
+- `job.jarUri`: Specifies the URI of the [Flink job JAR](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/reference/#jobspec){:target="_blank"} file.
 
 The Flink job is deployed to the target session cluster mentioned in the `spec`. You can then manage the job running in the session cluster.
 

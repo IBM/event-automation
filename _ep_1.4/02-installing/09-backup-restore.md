@@ -24,7 +24,7 @@ You can back up your Flink instances by using [savepoints](https://nightlies.apa
 This procedure assumes that you have the following deployed:
 
 - An [instance of Flink deployed](../installing/) by the {{site.data.reuse.ibm_flink_operator}} and configured with persistent storage with a PersistentVolumeClaim (PVC).
-- Flink jobs as [application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/overview/#application-deployments){:target="_blank"}.
+- Flink jobs as [application deployments](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/overview/#application-deployments){:target="_blank"}.
 - A Flink job managed by the `FlinkSessionJob` custom resource.
 
 The `FlinkDeployment` custom resource that configures your Flink instance must define the hereafter parameters, each pointing to a different directory on the persistent storage.
@@ -49,7 +49,7 @@ The backup process captures the latest state of a running Flink job and its spec
        state: RUNNING
    ```
 
-2. You can use the `FlinkStateSnapshots` custom resource to create a savepoint. In the [FlinkSnapshots custom resource](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/snapshots/){:target="_blank"}, make the following modifications:
+2. You can use the `FlinkStateSnapshots` custom resource to create a savepoint. In the [FlinkSnapshots custom resource](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/snapshots/){:target="_blank"}, make the following modifications:
 
    a. Set the name of your `FlinkDeployment` custom resource in `spec.jobReference.name`.
 

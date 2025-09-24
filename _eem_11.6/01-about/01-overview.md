@@ -14,7 +14,7 @@ Access to the event endpoints is managed by the {{site.data.reuse.egw}}. The {{s
 
 {{site.data.reuse.eem_name}} can be deployed as a standalone installation, or it can be deployed as part of Cloud Pak For Integration. You can also integrate {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} by importing the AsyncAPI document that defines the event source. This integration provides the option to use events as part of your overall API management solution.
 
-The following diagram provides an overview of {{site.data.reuse.eem_name}}.
+The following diagram shows the flow of operations in {{site.data.reuse.eem_name}}; from a Kafka administrator adding a topic in {{site.data.reuse.eem_manager}}, to a client application accessing the published topic through the {{site.data.reuse.egw}}.
 
 ![Overview of Event Endpoint Management.]({{ 'images' | relative_url }}/EEM_Overview.jpg "Diagram that shows the overview of Event Endpoint Management."){:height=“100%” width=“100%“}
 

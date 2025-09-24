@@ -22,16 +22,21 @@ To access the **Manage clusters** page:
 To add a cluster, complete the following steps.
 
 1. Click **Add cluster**.
-2. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**. 
-3. Enter a bootstrap server URL for the Kafka cluster. 
-4. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
+1. In the **Add cluster** window, provide a unique name for the cluster in the **Cluster name** field, then click **Next**. 
+1. Enter a bootstrap server URL for the Kafka cluster. 
+1. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.
 
     **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.
 
-5. Optional: If a **No connection** warning message is displayed, follow the steps to [add your server manually](#manual-cluster).
-6. If the Kafka endpoint is configured to require mutual TLS authentication, then upload the private and public keys that your {{site.data.reuse.egw}}s must present to the Kafka cluster. These keys are provided to you by your Kafka Cluster Administrator. The keys must be in PEM format.
-7. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, and set the required SASL credential fields.
-8. Click **Add cluster**. 
+1. Optional: If a **No connection** warning message is displayed, follow the steps to [add your server manually](#manual-cluster).
+1. If the Kafka endpoint is configured to require mutual TLS authentication, then upload the private and public keys that your {{site.data.reuse.egw}}s must present to the Kafka cluster. These keys are provided to you by your Kafka Cluster Administrator. The keys must be in PEM format.
+1. If the entered bootstrap server URLs require SASL credentials to authenticate with Kafka, you are prompted to provide credential details. If required, select the **Security protocol**, and set the required SASL credential fields.
+1. ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Optional. If you're using {{site.data.reuse.eem_name}} 11.6.4 and later, in the **Maintainers** pane, select the users groups that you want to maintain this cluster.  
+
+    a. If the user group is not displayed, click **Add user group** to add one from your organization.  
+
+   **Note:** Any user groups that you add here must exist within the organization that is provided by your OAuth provider.
+1. Click **Add cluster**. 
 
 {{site.data.reuse.eem_name}} validates whether the entered credentials are valid to connect to the cluster. If valid, or if credentials were not required, your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Manage clusters** page, where your new cluster appears, and can be edited.
 
@@ -50,6 +55,11 @@ To add a cluster manually, complete the following steps.
 6. If the Kafka endpoint is configured to require mutual TLS authentication, then upload the private and public keys that your {{site.data.reuse.egw}}s must present to the Kafka cluster. These keys are provided to you by your Kafka Cluster Administrator. The keys must be in PEM format.
 7. Click **Next**.
 8. Update the **Credentials** page as required. 
+1. ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Optional. If you're using {{site.data.reuse.eem_name}} 11.6.4 and later, in the **Maintainers** pane, select the users groups that you want to maintain this cluster.  
+
+    a. If the user group is not displayed, click **Add user group** to add one from your organization.  
+
+   **Note:** Any user groups that you add here must exist within the organization that is provided by your OAuth provider.
 9. Click **Add cluster**. 
 
 Your cluster is added to {{site.data.reuse.eem_name}}, and you are returned to the **Manage clusters** page, where your new cluster is displayed with the **Gateway visibility** state as `Pending validation`.
@@ -70,6 +80,15 @@ To edit the details of a cluster, complete the following steps.
 1. Optional: You can click **Add URL** to add one or more additional bootstrap servers.  
 1. Click **Save** to exit the dialog or click **Credentials** to edit the credentials.
 1. If you clicked **Credentials**, clear the **Use existing credentials** checkbox to update the credentials as required.  
+1. ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Optional. If you're using {{site.data.reuse.eem_name}} 11.6.4 and later, in the **Maintainers** pane, select the users groups that you want to maintain this cluster.  
+
+    a. If the user group is not displayed, click **Add user group**.  
+    b. Select a user group from the list.  
+    c. If the user group is not displayed, click **Enable user group** to add one from your organization.    
+
+   **Note:** Any user groups that you enable here must exist within the organization that is provided by your OAuth provider.  
+   
+    d. Click **Add user groups**.     
 1. Click **Save**.
 
 ## Deleting a cluster

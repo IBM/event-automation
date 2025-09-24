@@ -94,12 +94,18 @@ The **Configure filter** window is displayed.
 1. Now, you need to configure the filter that defines the events that you are interested in. To do this, in the **Details** section, provide a name for the filter node.
 1. Click **Next**. The **Define filter** section is displayed.
 1. Use the **Assistant** to define a filter with your requirements by updating the **Property to filter on**, **Condition**, and **Value** fields.
+
+   ![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2.png "Image to show the clothing company using the assistant to define a filter")
+
 1. Click **Add to expression**.
-1. Click **Configure**. The canvas is displayed and your Filter node has a green checkmark, which indicates that the node has been configured successfully.
+1. ![Event Processing 1.4.4 icon]({{ 'images' | relative_url }}/1.4.4.svg "In Event Processing 1.4.4 and later.") Click **Next** to open the **Output properties** pane. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
+
+   ![Output properties of a filter]({{ 'images' | relative_url }}/ep-lab1-filter-3.png "Image to show the clothing company using the assistant to define a filter")
+
+1. Click **Configure**. The canvas is displayed, your filter node has a green checkmark, which indicates that the node has been configured successfully.
 
 The clothing company called their filter `EMEA orders` and defined a filter that matches events with a `region` value of `EMEA`.
 
-![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2.png "Image to show the clothing company using the assistant to define a filter")
 
 ## Step 5: Run the flow 
 {: #run-flow}

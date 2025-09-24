@@ -360,7 +360,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Apply the modified `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/job-management/#manual-recovery).
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/job-management/#manual-recovery).
 
 ## Enable SSL connection for your database and API server
 {: #enable-ssl-connection-for-your-database-and-api-server}

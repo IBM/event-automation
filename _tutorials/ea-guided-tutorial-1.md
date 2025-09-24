@@ -28,9 +28,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.5.0
-- {{site.data.reuse.eem_name}} 11.4.2
-- {{site.data.reuse.ep_name}} 1.2.0
+- {{site.data.reuse.es_name}} 12.0.1
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
 
@@ -148,8 +148,8 @@ The next step is to bring the stream of events you discovered in the catalog int
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/event-details1.png "connection details for the event source"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/event-details1.png "connection details for the event source") 
    
    **Note:** The auto-detected key and headers are displayed unselected in the **Event details** pane under the **Property name** column.
-    
-   Leave the event source to be saved for later reuse.    
+
+   Leave the event source to be saved for later reuse.
 
     **Tip**: Saving the connection details makes the later steps in the tutorial that use this same topic quicker. It avoids you needing to enter these details again.
 
@@ -183,8 +183,9 @@ The next step is to start processing this stream of events, by creating the filt
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter")
 
-1. Click **Configure** to finalize the filter.
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
+1. Click **Configure** to finalize the filter.
 
 ### Step 5 : Test the flow
 

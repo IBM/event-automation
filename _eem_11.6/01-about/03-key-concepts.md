@@ -23,6 +23,11 @@ Kafka administrators can use the catalog to check what options are published and
 
 Kafka runs as a cluster of one or more servers (Kafka brokers). The load is balanced across the cluster by distributing it amongst the servers.
 
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Cluster maintainers
+{: #cluster-maintainers}
+
+Cluster maintainers can [edit](../../administering/managing-clusters/#editing-a-cluster) and maintain cluster connection definitions for the clusters that they are assigned to. Cluster maintainers cannot add topics to {{site.data.reuse.eem_name}} from the cluster, change the maintainers of the cluster, or delete the cluster.
+
 ## Controls
 {: #controls}
 
@@ -104,6 +109,11 @@ The {{site.data.reuse.eem_manager}} component adopts your Kafka topics into a ce
 
 An event source is the term used to describe a topic when it has been added to {{site.data.reuse.eem_name}}. A Kafka administrator can make event sources accessible by publishing an [option](#option) to the [catalog](#catalog) where it becomes an [event endpoint](#event-endpoint). Application developers can discover and browse the available event endpoints and decide which ones they want access to. They can then configure their applications to either [consume](#consume) from the event endpoint or [produce](#produce) to it.
 
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Event source editors
+{: #event-source-editors}
+
+Event source editors can update [event source information](../../describe/managing-event-sources/#overview-information) and [manage](../../describe/managing-options/) options for the event sources that they are assigned to. Event source editors cannot change the editors of the event source or delete event sources.
+
 ## Message
 {: #message}
 
@@ -115,6 +125,16 @@ To learn more about key concepts, see the [Apache Kafka documentation](http://ka
 {: #option}
 
 A Kafka administrator can create an option for an [event source](#event-source) that enables them to control how the topic's stream of events are made available within the [catalog](#catalog). When an option is published to the catalog, it is called an [event endpoint](#event-endpoint).
+
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Option viewers
+{: #option-viewers}
+
+Option viewers are a group of users that can view and subscribe to selected options in the catalog, in addition to existing public options. Users can view and subscribe to the [options that are assigned](../../describe/user-groups/) to their user group.
+
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") Owner
+{: #owner}
+
+A user with the author [role](../../security/user-roles) who can assign [user groups](../../security/groups) to view options, edit event sources, and maintain clusters they create.
 
 ## Produce
 {: #produce}
@@ -136,4 +156,8 @@ A Kafka topic, which contains a set of related events.
 ## ![Event Endpoint Management 11.6.3 icon]({{ 'images' | relative_url }}/11.6.3.svg "In Event Endpoint Management 11.6.3 and later.") User groups
 {: #user-groups}
 
-A group of users that have access to only selected options. [User groups are defined by an external identity provider](../../security/groups/), and group membership is sent as part of the login process. For more information, see [managing user group access to options](../../describe/user-groups/).
+<!-- Updated this description so it's applicable for 11.6.3 and 11.6.4. For 11.7.0 update to - "A group of users that have access to specific actions such as viewing options, editing event sources, and maintaining clusters."-->
+
+<!-- @stefan, in the test fest doc you said "this key concept probably needs updating too". I'm trying to keep this one general for all users from 11.6.3 onwards. Is there anything in particular you had in mind? -->
+
+A group of users that have access to specific actions such as viewing options. [User groups are defined by an external identity provider](../../security/groups/), and group membership is sent as part of the login process.

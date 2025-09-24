@@ -10,7 +10,7 @@ order: 16
 
 ## Detect patterns
 
-With the detect patterns node, you can detect a sequence of events. As events are produced into the input streams, you can use the detect patterns node to identify a pattern from the events within a specific time window. 
+With the detect patterns node, you can detect a sequence of events. As events are produced into the input streams, you can use the detect patterns node to identify a pattern from the events within a specific time window.
 
 ## Scenario
 
@@ -26,8 +26,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.5.1
-- {{site.data.reuse.ep_name}} 1.3.2
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
 
@@ -143,16 +143,16 @@ To create an event source, complete the following steps:
 
 ### Step 4: Filter transaction states into separate events
 
-Currently, all transaction states are consolidated into a single `transactions` event. You must filter them into distinct events for each of the `STARTED`, `PROCESSING`, and `COMPLETED` states. You can use the filter node to achieve this. 
+Currently, all transaction states are consolidated into a single `transactions` event. You must filter them into distinct events for each of the `STARTED`, `PROCESSING`, and `COMPLETED` states. You can use the filter node to achieve this.
 
 1. Add a **Filter** node for the `STARTED` state and link it to the `transactions` event. 
 
-   Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.   
+   Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
    In the **Node name** field, enter the name of the filter node as `transactions_started`, and then click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter for transactions in started state")
 
-   Enter the filter expression **\`state\` LIKE 'STARTED'** , and click **Configure**. 
+   Enter the filter expression **\`state\` LIKE 'STARTED'**, click **Next** to open the **Output properties** pane, and then click **Configure**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state")
 
@@ -162,21 +162,21 @@ Currently, all transaction states are consolidated into a single `transactions` 
    Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
    In the **Node name** field, enter the name of the filter node as `transactions_processing`, and then click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-16.png "Creating a filter expresssion for transactions in processing state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-16.png "Creating a filter expression for transactions in processing state")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-16.png "Creating a filter expression for transactions in processing state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-16.png "Creating a filter expression for transactions in processing state")
 
-   Enter the filter expression **\`state\` LIKE 'PROCESSING'** , and click **Configure**.
+   Enter the filter expression **\`state\` LIKE 'PROCESSING'**, click **Next** to open the **Output properties** pane, and then click **Configure**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-15.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-15.png "Creating a filter for transactions in processing state")
 
 
 1. Add another **Filter** node for the `COMPLETED` state and link it to the `transactions` event.
 
-   Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.   
+   Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node. 
    In the **Node name** field, enter the name of the filter node as `transactions_completed`, and then click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-18.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-18.png "Creating a filter for transactions in completed state")
 
-   Enter the filter expression **\`state\` LIKE 'COMPLETED'** , and click **Configure**. 
+   Enter the filter expression **\`state\` LIKE 'COMPLETED'**, click **Next** to open the **Output properties** pane, and then click **Configure**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-17.png "Creating a filter expression for transactions in processing state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-17.png "Creating a filter expression for transactions in processing state")
 

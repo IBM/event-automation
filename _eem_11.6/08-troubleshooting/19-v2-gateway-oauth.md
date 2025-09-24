@@ -1,6 +1,6 @@
 ---
-title: "Event Gateway loses connection to OAuth-authenticated Kafka cluster after upgrading to 11.6.3"
-excerpt: "After upgrading to 11.6.3, one or more Event Gateways are unable to connect to your Kafka clusters."
+title: "Event Gateway loses connection to OAuth-authenticated Kafka cluster after upgrading from 11.6.1 or earlier"
+excerpt: "After upgrading from 11.6.1 or earlier, one or more Event Gateways are unable to connect to your Kafka clusters."
 categories: troubleshooting
 slug: v2-gateways-oauth
 toc: true
@@ -9,7 +9,7 @@ toc: true
 ## Symptoms
 {: #symptoms}
 
-After upgrading to {{site.data.reuse.eem_name}} 11.6.3, some or all {{site.data.reuse.egw}}s fail to forward events to and from your Kafka clusters. The {{site.data.reuse.eem_name}} UI displays a warning message.
+After upgrading to {{site.data.reuse.eem_name}}, some or all {{site.data.reuse.egw}}s fail to forward events to and from your Kafka clusters. The {{site.data.reuse.eem_name}} UI displays a warning message.
 
 <!-- DRAFT COMMENT: Can we get exact text of the warning and error messages UI users and kafka clients would see? So that a search on this text would return this page. -->
 

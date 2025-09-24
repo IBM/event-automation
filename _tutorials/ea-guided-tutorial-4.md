@@ -34,9 +34,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 11.7.0
-- {{site.data.reuse.eem_name}} 11.5.1
-- {{site.data.reuse.ep_name}} 1.3.2
+- {{site.data.reuse.es_name}} 12.0.1
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
 
@@ -109,6 +109,8 @@ The next step is to identify the large orders.
    **Tip**: You don't need to use the assistant if you know the expression you would like. You can type the expression in directly, and use the auto-complete and syntax-checking to make sure you enter it correctly.
 
 1. Click **Add to expression**.
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 
@@ -298,6 +300,8 @@ The next step is identify small orders (that we will later correlate with the ca
    ```
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-27.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-27.png "defining the filter")
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 

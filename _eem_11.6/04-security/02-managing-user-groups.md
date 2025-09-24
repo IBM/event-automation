@@ -10,6 +10,62 @@ toc: true
 
 **Note:** Access to user groups is available with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/){:target="_blank"} authentication only.
 
+## ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.") User group actions in {{site.data.reuse.eem_name}} 11.6.4 and later
+{: #group-actions}
+
+In {{site.data.reuse.eem_name}} 11.6.4 and later, you can use user groups to enable members of the group to edit event sources and maintain clusters. When users are added as part of a group to perform a particular task, they can only perform certain actions. The following sections describe the different types of users and the actions that they can perform. As the owner, you have elevated permissions, including the ability to assign user groups to tasks.
+
+In the UI, users are identified as follows with an **Editor**, **Maintainer**, or **Owner** graphic:
+
+- **Event source editor**:  ![Event source editor pill]({{ 'images' | relative_url }}/editor.svg "Event source editor pill.") 
+- **Cluster maintainer**:   ![Cluster maintainer pill]({{ 'images' | relative_url }}/maintainer.svg "Cluster maintainer pill.") 
+- **Owner**:                ![Owner pill]({{ 'images' | relative_url }}/owner.svg "Owner pill.")
+   
+**Note:** As the user assigning user groups to a task, you are identified as the owner.
+
+
+### Option viewers
+{: #option-viewers}
+
+Option viewers are a group of users that, in addition to existing public options, can also view and subscribe to selected options in the catalog. Users can view and subscribe to the [options that are assigned](../../describe/user-groups/) to their user group. 
+
+Option viewers can:
+- View options
+- Subscribe to options
+
+Option viewers cannot:
+- Create, publish, or delete options
+- Manage event sources (add or delete topics, edit topic information, or manage access)
+- Manage clusters (add, delete, or edit)
+
+### Event source editors
+{: #event-source-editors}
+
+Event source editors can update [event source information](../../describe/managing-event-sources/#overview-information) and [manage](../../describe/managing-options/) options for the event sources that are added to their user group.
+
+Event source editors can:
+- Create, publish, and delete options
+- Edit event source information
+- Revoke subscriptions
+- Manage access requests
+
+Event source editors cannot:
+- Delete event sources
+- Change event source editors
+
+### Cluster maintainers
+{: #cluster-maintainers}
+
+Cluster maintainers can [edit](../../administering/managing-clusters/#editing-a-cluster) and maintain cluster connection definitions for the clusters that are added to their user group.
+
+Cluster maintainers can:
+- Edit clusters
+
+Cluster maintainers cannot:
+- Delete clusters
+- Change cluster maintainers
+
+
 ## Accessing user groups
 {: #access-user-groups}
 

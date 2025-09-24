@@ -157,6 +157,8 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | secretName | string | Secret containing OIDC credentials. |
 | site | string | The site of the OIDC provider. |
 | tokenPath | string | The path to the token endpoint of this provider. |
+| userGroupClaimPointer | string | A JSON pointer to a claim in the ID token from the provider, which is used for adding user groups, for example `\"/resource_access/client_id/groups\"`. |
+| userInfoPath | string | The path to the user info endpoint of this provider |
 
 
 ### Resource: `pod`

@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.7.0
-- Event Endpoint Management 11.5.1
-- Event Processing 1.3.2
+- Event Streams 12.0.1
+- Event Endpoint Management 11.6.3
+- Event Processing 1.4.4
 
 ## Instructions
 
@@ -79,6 +79,10 @@ In this scenario, you suspect that people may be attempting to manipulate prices
    ```sql
    `quantity` > 5
    ```
+
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
+
+1. Click **Configure** to finalize the filter.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node")
 

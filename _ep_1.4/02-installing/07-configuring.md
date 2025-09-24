@@ -14,7 +14,7 @@ Configure your Flink and {{site.data.reuse.ep_name}} deployments as follows.
 Consider the following resources before configuring your `FlinkDeployment` custom resource:
 
 
-- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}
 - [Flink configuration options](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/deployment/config/#common-setup-options){:target="_blank"}
 - [Flink Event Time and Watermark](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/time/){:target="_blank"}
 - [Kafka SQL connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}
@@ -219,7 +219,7 @@ To configure persistent storage, complete the following steps:
 
 The following resources are valuable to read before configuring your `FlinkSessionJob` custom resource:
 
-- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/custom-resource/reference/#flinksessionjob){:target="_blank"}
+- [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/reference/#flinksessionjob){:target="_blank"}
 - [Job and scheduling](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/internals/job_scheduling/){:target="_blank"}
 
 ### Configuring session job resource to submit a job to session cluster
@@ -244,7 +244,7 @@ If a Flink job JAR file is in a registry which requires basic authentication, yo
 1. A [Flink session cluster](../installing/#install-a-flink-instance) is deployed and running.
 2. Set `spec.deploymentName` to the name of the Flink session cluster instance in the `FlinkSessionJob` custom resource. For example:
 
-3. In the `spec.flinkConfiguration` section, set the value of `kubernetes.operator.user.artifacts.http.header` field to a custom HTTP header with information about credentials for obtaining the session job artifacts. See the [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.11/docs/operations/configuration/#resourceuser-configuration){:target="_blank"} for more information about custom HTTP headers.
+3. In the `spec.flinkConfiguration` section, set the value of `kubernetes.operator.user.artifacts.http.header` field to a custom HTTP header with information about credentials for obtaining the session job artifacts. See the [Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/operations/configuration/#resourceuser-configuration){:target="_blank"} for more information about custom HTTP headers.
 
    For example, if you are using a basic authentication, specify the custom HTTP header as follows:
 

@@ -186,10 +186,7 @@ The certificate that secures your {{site.data.reuse.eem_manager}} must include y
 
 On {{site.data.reuse.openshift_short}}, your SANs must include the following entries:
 ```
-<instance name>-ibm-eem-manager
-<instance name>-ibm-eem-manager.<namespace>
-<instance name>-ibm-eem-manager.<namespace>.svc
-<instance name>-ibm-eem-manager.<namespace>.svc.cluster.local
+<instance name>-ibm-eem-manager.<namespace>.svc.cluster.local # Required for local authentication only.
 <instance name>-ibm-eem-apic-<namespace>.<cluster api>
 <instance name>-ibm-eem-gateway-<namespace>.<cluster api>
 <instance name>-ibm-eem-manager-<namespace>.<cluster api>
@@ -231,15 +228,6 @@ spec:
     - '*.<CLUSTER_API>'
     - eem.*.<CLUSTER_API>'
 ```
-
-The required SAN entries for the {{site.data.reuse.egw}} are as follows:
-
-```yaml
-spec:
-  dnsNames:
-    - '*.<CLUSTER_API>'
-```
-
 
 ### Configuring a custom {{site.data.reuse.eem_manager}} certificate
 {: #config-custom-cert}
@@ -351,9 +339,6 @@ The following example uses OpenSSL and [gettext](https://www.gnu.org/software/ge
    subjectAltName = @alt_names
 
    [alt_names]
-   DNS.1 = ${MANAGER_NAME}-ibm-eem-manager
-   DNS.2 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}
-   DNS.3 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc
    DNS.4 = ${MANAGER_NAME}-ibm-eem-manager.${NAMESPACE}.svc.cluster.local
    DNS.5 = ${MANAGER_NAME}-ibm-eem-apic-${NAMESPACE}.${CLUSTER_API}
    DNS.6 = ${MANAGER_NAME}-ibm-eem-gateway-${NAMESPACE}.${CLUSTER_API}

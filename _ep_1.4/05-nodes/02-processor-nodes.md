@@ -36,52 +36,73 @@ The **Configure a Filter** window opens.
 To configure a filter node, complete the following steps:
 
 1. {{site.data.reuse.node_details}}
-2. Click **Next** to open the **Define Filter** pane. 
+1. Click **Next** to open the **Define Filter** pane.
 
    {{site.data.reuse.ep_treeview_note}} 
-3. Enter an expression in the **Filter Expression** text box to filter the events. The expression consists of a property, a mathematical condition, and a value. You can create a simple expression with one condition or a complex expression with multiple conditions based on your requirement. You can create multiple conditions within an expression by using `AND` or `OR`.
-
-   Examples:
-      - Simple expression:
-
-        ```
-        example_property > 100
-        ```
-
-      - Complex expression:
-
-         ```
-         example_property1 > 50 AND example_property2 > 30 OR example_property3 < 25 AND example_property4 < 250
-         ```
-      - Expression with complex object property:
-  
-  
-         ```
-         example_property.nested_property IS NOT NULL AND example_property.nested_property.leaf_property > 100
-         ```
-      - Expression with an array property:
-  
-  
-         ```
-         example_array_property[1] IS NOT NULL AND ARRAY_CONTAINS(example_array_property, 10)
-         ```
-
-      - Expression with complex array property:
-
-
-         ```
-         example_array_of_array_property[1][1] IS NOT NULL AND ARRAY_CONTAINS(example_array_of_array_property[1][1], 10)
-         ```      
-
-      **Note:** The index of arrays starts at 1, not at 0.
+1. Enter an expression in the **Filter Expression** field to filter the events. The expression consists of a property, a mathematical condition, and a value. Depending on your requirements, you can create a simple expression with one condition or a complex expression with multiple conditions. For complex expressions, you can add multiple conditions within an expression by using `AND` or `OR`.
 
    **Note:** Expressions are prioritized based on [operator precedence](https://calcite.apache.org/docs/reference.html#operators-and-functions){:target="_blank"}.
 
-   Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the text-box to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
+   Examples:
+   - Simple expression:
+
+     ```
+     example_property > 100
+     ```
+
+   - Complex expression:
+
+     ```
+     example_property1 > 50 AND example_property2 > 30 OR example_property3 < 25 AND example_property4 < 250
+     ```
+
+   - Expression with complex object property:
+
+     ```
+     example_property.nested_property IS NOT NULL AND example_property.nested_property.leaf_property > 100
+     ```
+
+   - Expression with an array property:
+
+
+     ```
+     example_array_property[1] IS NOT NULL AND ARRAY_CONTAINS(example_array_property, 10)
+     ```
+
+   - Expression with complex array property:
+
+
+     ```
+     example_array_of_array_property[1][1] IS NOT NULL AND ARRAY_CONTAINS(example_array_of_array_property[1][1], 10)
+     ```      
+
+      **Note:** The index of arrays starts at 1, not at 0.
+
+
+   Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the **Filter Expression** field to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
 
    {{site.data.reuse.array_expression_note}}
 
-4. Scroll down and click **Configure Filter** to complete the configuration.
+1. ![Event Processing 1.4.4 icon]({{ 'images' | relative_url }}/1.4.4.svg "In Event Processing 1.4.4 and later.") Click **Next** to open the **Output properties** pane. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
+
+   Only **leaf** properties are listed in the **Properties to keep** table. 
+
+   - Optional: Click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"} to remove a property from being displayed in the output. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
+
+     **Note:** 
+     - Nested properties are displayed by using a period (`.`) as a separator for each level of nesting. For example, `product . id` or `customer . address . city`.
+     - If a nested property name contains a period (`.`), the nested property is displayed within backticks (\`\`\) to distinguish the property name. For example, `name .`\``billing.address`\``. customer` where `billing.address` is the name of the property.
+
+   - Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.
+     - In the text field, enter a new name for your property.  
+     - Click outside the text field or press Enter on your keyboard to rename the property.
+
+     Within nested properties, you can only rename the last nested property. You cannot rename the top-level or any other properties in between. For example, in the case of `customer . address . city`, you can only rename `city`, but not `address` or `customer`.
+
+     **Note:** To rename the top-level property `customer` in the example `customer . address . city`, create a new property by using the [transform node](#transform).
+
+   - Optional: To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties. For the property you want to add back, click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.  
+1. Scroll down and click **Configure Filter** to complete the configuration.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the filter node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears.
 
@@ -247,7 +268,7 @@ To configure the unpack arrays node, complete the following steps:
     - If you define a property p, and you have the array [1, 2], you will have one event where p equals 1 and another event where p equals 2.
  1. Click **Next** to open the **Output properties** pane. 
  
-    The properties that you added in the previous step are displayed in the **Output properties**. You can manage the properties that come from this node to suit your requirements.
+    The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
 
     **Note:** The array that you selected to unpack is not part of the output properties.
  

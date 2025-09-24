@@ -9,6 +9,26 @@ toc: true
 Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
+{: #release-1164}
+
+### Group-based event source and cluster management
+
+In {{site.data.reuse.eem_name}} version 11.6.4, you can enable [user groups](../../security/groups) to edit event sources and maintain clusters.
+
+### Enhanced visibility controls for published and archived options
+
+In {{site.data.reuse.eem_name}} version 11.6.4, you can now add user groups to published and archived options that have custom visibility, and you can also convert published and archived options from custom to public. For more information, see [how you can edit user group visibility to options](../../describe/user-groups/#edit-group-visible-options-1164).
+
+### Support for Kubernetes 1.33
+
+{{site.data.reuse.eem_name}} version 11.6.4 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for Kubernetes platforms version 1.33 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions}
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.6.4 compared to 11.6.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.").
+
+## Release 11.6.3
 {: #release-1163}
 
 
@@ -37,7 +57,7 @@ Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
 
 ### Documentation: Highlighting differences between versions
-{: #documentation-highlighting-differences-between-versions}
+{: #documentation-highlighting-differences-between-versions-1163}
 
 Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.6.3 compared to 11.6.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.6.3 icon]({{ 'images' | relative_url }}/11.6.3.svg "In Event Endpoint Management 11.6.3 and later.")
 

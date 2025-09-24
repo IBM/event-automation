@@ -12,12 +12,27 @@ Find out what is new in {{site.data.reuse.es_name}} version 12.0.x.
 {: #release-1201}
 
 ### Tiered storage support for Kafka topics
+{: #tiered-storage-support-for-kafka-topics}
 
 {{site.data.reuse.es_name}} version 12.0.1 introduces support for [tiered storage](../../installing/configuring/#tiered-storage) for Kafka topics. This feature offloads historical topic data to remote storage, reducing storage requirements of local disks and improving cost efficiency.
 
 ### Apicurio version updated to 2.6.13.Final
+{: #apicurio-version-updated-to-2613final}
 
 {{site.data.reuse.es_name}} 12.0.1 includes Apicurio Registry version 2.6.13.Final for [managing schemas](../../schemas/overview/#schema-registry). Ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later before [upgrading](../../installing/upgrading/#prerequisites) to {{site.data.reuse.es_name}} 12.0.1. For more information, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Deprecation of support for Apicurio Registry Core REST API version 1
+{: #deprecation-of-support-for-apicurio-registry-core-rest-api-version-1}
+
+Support for version 1 of the Apicurio Registry Core REST API is deprecated and has been replaced by version 2. Version 1 support will be removed in Apicurio Registry v3.x, which will be adopted in a future release of {{site.data.reuse.es_name}}.
+
+You can continue to use version 1 of the API with {{site.data.reuse.es_name}} 12.0.1 and earlier, but it is recommended that you:
+
+- Migrate to version 2 of the API to ensure continued compatibility with future releases of {{site.data.reuse.es_name}}.
+
+- Upgrade all client dependencies to the latest available 2.x versions.
+
+For guidance about API usage and migration, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/2.6.x/getting-started/assembly-managing-registry-artifacts-api.html){:target="_blank"}.
 
 ### Documentation: Highlighting differences between versions
 

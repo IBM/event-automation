@@ -50,6 +50,12 @@ sections:
       </details>
      <details class="details">
     <summary><b>Event Endpoint Management</b></summary>
+      <h4>11.6.4 - what's new:</h4>
+      <ul>
+        <li>Group-based event source and cluster management</li>
+        <li>Enhanced visibility controls for published and archived options</li>
+        <li>Support for Kubernetes 1.33</li>
+        </ul> 
       <h4>11.6.3 - what's new:</h4>
       <ul>
         <li>Support for Red Hat OpenShift Container Platform 4.19</li>
@@ -82,6 +88,12 @@ sections:
     </details>
     <details class="details">
     <summary><b>Event Processing</b></summary>
+      <h4>1.4.4 - what's new:</h4>
+      <ul>
+        <li>Filter node: You can now manage output properties</li>
+        <li>Security and bug fixes</li>
+      </ul>
+
       <h4>1.4.3 - what's new:</h4>
       <ul>
         <li>Security and bug fixes</li>

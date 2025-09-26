@@ -9,6 +9,39 @@ toc: true
 Find out what is new in {{site.data.reuse.es_name}} version 12.0.x.
 
 ## Release {{site.data.reuse.es_current_version}}
+{: #release-1202}
+
+### UI support for enabling tiered storage
+{: #ui-support-for-enabling-tiered-storage}
+
+{{site.data.reuse.es_name}} 12.0.2 includes support for enabling tiered storage when creating a topic by using the {{site.data.reuse.es_name}} UI.
+
+For more information, see the instructions for enabling tiered storage in [creating topics](../../getting-started/creating-topics/#by-using-the-ui).
+
+### Support for Kubernetes 1.33
+{: #support-for-kubernetes-133}
+
+{{site.data.reuse.es_name}} version 12.0.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for Kubernetes platforms version 1.33 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Deprecation of support for Confluent-compatible Schema Registry API version 6
+{: #deprecation-of-confluent-compatible-schema-registry-api-version-6}
+
+Support for version 6 of the Confluent-compatible Schema Registry API is deprecated and has been replaced by version 7. Version 6 support will be removed in a future release of {{site.data.reuse.es_name}}.
+
+You can continue to use version 6 of the API with {{site.data.reuse.es_name}} 12.0.2 and earlier, but to maintain compatibility with future releases of {{site.data.reuse.es_name}}, it is recommended that you update your Kafka producer and consumer applications to use version 7 of the Confluent-compatible Schema Registry API.
+
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1202}
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.0.2 compared to 12.0.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1202}
+
+{{site.data.reuse.es_name}} release 12.0.2 contain security and bug fixes.
+
+## Release 12.0.1
 {: #release-1201}
 
 ### Tiered storage support for Kafka topics
@@ -35,12 +68,12 @@ You can continue to use version 1 of the API with {{site.data.reuse.es_name}} 12
 For guidance about API usage and migration, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/2.6.x/getting-started/assembly-managing-registry-artifacts-api.html){:target="_blank"}.
 
 ### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1201}
 
 Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.0.1 compared to 12.0.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.0.1 icon]({{ 'images' | relative_url }}/12.0.1.svg "In Event Streams 12.0.1 and later.")
 
-
 ### Security and bug fixes
-{: #security-and-bug-fixes}
+{: #security-and-bug-fixes-1201}
 
 {{site.data.reuse.es_name}} release 12.0.1 contains security and bug fixes.
 
@@ -59,7 +92,6 @@ Kafka 4.0.0 introduces several significant improvements and includes updates to 
 
 {{site.data.reuse.es_name}} version 12.0.0 introduces changes to Java version requirements and client compatibility. Ensure that your applications are using [supported Java versions and client libraries](../../installing/prerequisites/#kafka-clients).
 
-
 ### Collection of usage metrics
 {: #collection-of-usage-metrics}
 
@@ -73,7 +105,6 @@ You can [disable data collection]({{ '/support/licensing/#usage-metrics' | relat
 {{site.data.reuse.es_name}} version 12.0.0 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.19.
 
 ### Security and bug fixes
-{: #security-and-bug-fixes}
+{: #security-and-bug-fixes-1200}
 
 {{site.data.reuse.es_name}} release 12.0.0 contains security and bug fixes.
-

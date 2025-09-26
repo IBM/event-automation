@@ -28,6 +28,12 @@ In {{site.data.reuse.eem_name}} version 11.6.4, you can now add user groups to p
 
 Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.6.4 compared to 11.6.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.6.4 icon]({{ 'images' | relative_url }}/11.6.4.svg "In Event Endpoint Management 11.6.4 and later.").
 
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1164}
+
+{{site.data.reuse.eem_name}} release 11.6.4 contains security and bug fixes.
+
 ## Release 11.6.3
 {: #release-1163}
 

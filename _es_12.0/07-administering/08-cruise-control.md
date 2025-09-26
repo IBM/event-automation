@@ -50,10 +50,15 @@ Follow these steps to rebalance a cluster by using Cruise Control:
 
 4. Wait for an [optimization proposal](#receiving-an-optimization-proposal) to appear in the status of the `KafkaRebalance` custom resource.
 5. [Accept the optimization proposal](#approving-an-optimization-proposal) in the `KafkaRebalance` custom resource by annotating it.
-6. Check for the `KafkaRebalance` proposal to be finished processed.
+6. When accepted, the `KafkaRebalance` custom resource is updated to show the status `Rebalancing` in `status.conditions`. This means that Cruise Control is currently rebalancing the Kafka cluster. Check whether the `KafkaRebalance` proposal is processed.
+
+   ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.") In {{site.data.reuse.es_name}} 12.0.2 and later, you can check the rebalance progress in the `status.progress.rebalanceProgressConfigMap` property of the `KafkaRebalance` custom resource. For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-tracking-cluster-rebalance-str){:target="_blank"}.
+
+   In versions earlier than 12.0.2, the progress information cannot be viewed for the `Rebalancing` state. Wait for the `Rebalancing` state to be changed to `Ready` or `NotReady`.
+
 7. Depending on the outcome of the `KafkaRebalance` proposal, perform the following steps:
    - If **`status.condtions[0].status` = Ready:** Cruise Control has successfully optimized the Kafka cluster and no further action is needed.
-   - If **`status.condtions[0].status` = NotReady:** Cruise Control was unable to optimize the Kafka cluster and you need to [address the error](#dealing-with-rebalancing-errors)
+   - If **`status.condtions[0].status` = NotReady:** Cruise Control was unable to optimize the Kafka cluster and you need to [address the error](#dealing-with-rebalancing-errors).
 
 ## Setting up optimization
 {: #setting-up-optimization}
@@ -192,7 +197,7 @@ status:
   sessionId: 03974f67-b208-4133-9f54-305d268a1a22
 ```
 
-For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/0.46.1/deploying.html#con-optimization-proposals-str){:target="_blank"}.
+For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/latest/deploying.html#con-optimization-proposals-str){:target="_blank"}.
 
 ### Refreshing an optimization proposal
 {: #refreshing-an-optimization-proposal}

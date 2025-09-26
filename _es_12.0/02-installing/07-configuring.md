@@ -93,7 +93,7 @@ strimziOverrides:
 
   **Note:** Ensure partitions are reassigned before reducing the number of nodes in the node pool.
 
-For more information, see the [managing node pool IDs](https://strimzi.io/docs/operators/0.46.1/deploying#proc-managing-node-pools-ids-str){:target="_blank"}.
+For more information, see the [managing node pool IDs](https://strimzi.io/docs/operators/latest/deploying#proc-managing-node-pools-ids-str){:target="_blank"}.
 
 ## Tiered storage
 {: #tiered-storage}
@@ -416,7 +416,7 @@ spec:
 
 This custom resource can be created using the `kubectl` command or the {{site.data.reuse.openshift_short}} web console under the **Event Streams** operator page.
 
-You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/0.46.1/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
+You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/latest/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
 
 After deployment, these settings can be [modified](../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings) by updating the `EventStreams` custom resource.
 
@@ -485,7 +485,7 @@ Kafka logging can be configured in two ways:
              logger.authorizer.level: TRACE
    ```
 
-For more information about logging, see the [Kafka logging reference](https://strimzi.io/docs/operators/0.46.1/configuring.html#property-kafka-logging-reference){:target="_blank"}.
+For more information about logging, see the [Kafka logging reference](https://strimzi.io/docs/operators/latest/configuring.html#property-kafka-logging-reference){:target="_blank"}.
 
 ## Setting geo-replication nodes
 {: #setting-geo-replication-nodes}
@@ -811,7 +811,7 @@ To configure OAuth authentication, configure a Kafka listener with type `oauth`,
 
 {{site.data.reuse.es_name}} supports 2 types of SASL mechanisms: `OAUTHBEARER` or `PLAIN`. By default, OAuth authentication uses `OAUTHBEARER` SASL mechanism, which is the most secure mechanism.
 
-**Important:** For clients that do not support the `OAUTHBEARER` authentication mechanism, you can configure the cluster to use the `PLAIN` mechanism by setting the `enableOauthBearer` property to `false` (default setting is `true` for `OAUTHBEARER`). For more information, see [OAuth 2.0 authentication mechanisms](https://strimzi.io/docs/operators/0.46.1/deploying.html#con-oauth-authentication-broker-str){:target="_blank"}.
+**Important:** For clients that do not support the `OAUTHBEARER` authentication mechanism, you can configure the cluster to use the `PLAIN` mechanism by setting the `enableOauthBearer` property to `false` (default setting is `true` for `OAUTHBEARER`). For more information, see [OAuth 2.0 authentication mechanisms](https://strimzi.io/docs/operators/latest/deploying.html#con-oauth-authentication-broker-str){:target="_blank"}.
 
 #### Configuring OAuth to use fast local JWT validation
 {: #configuring-oauth-to-use-fast-local-jwt-validation}
@@ -843,7 +843,7 @@ spec:
           type: route
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.46.1/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/latest/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
 
 #### Configuring OAuth to use token validation by using an introspection endpoint
 {: #configuring-oauth-to-use-token-validation-by-using-an-introspection-endpoint}
@@ -881,7 +881,7 @@ spec:
 
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/0.46.1/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/latest/deploying.html#assembly-oauth-authentication_str){:target="_blank"}.
 
 
 ### Enable OAuth authorization
@@ -915,7 +915,7 @@ spec:
           - "kubeadmin"
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/0.46.1/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/latest/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
 
 ## Configuring node affinity for components
 {: #configuring-node-affinity-for-components}
@@ -1162,7 +1162,7 @@ You can also configure Kafka Exporter using a `regex` to expose metrics for a co
         topicRegex: orders
 ```
 
-For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/0.46.1/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
+For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/latest/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
 
 ## Configuring the JMX Exporter
 {: #configuring-the-jmx-exporter}
@@ -1190,8 +1190,8 @@ To enable the collection of all JMX metrics available on the Kafka resources, co
 
 For more information about configuration options, see the following documentation:
 
-- [Kafka JMX metrics configuration](https://strimzi.io/docs/operators/0.46.1/deploying.html#assembly-metrics-str){:target="_blank"}
-- [Prometheus JMX metrics configuration](https://strimzi.io/docs/operators/0.46.1/configuring.html#con-common-configuration-prometheus-reference){:target="_blank"}
+- [Kafka JMX metrics configuration](https://strimzi.io/docs/operators/latest/deploying.html#assembly-metrics-str){:target="_blank"}
+- [Prometheus JMX metrics configuration](https://strimzi.io/docs/operators/latest/configuring.html#con-common-configuration-prometheus-reference){:target="_blank"}
 
 ## Enabling and configuring Kafka Bridge
 {: #enabling-and-configuring-kafka-bridge}
@@ -1275,7 +1275,7 @@ When configuring Cruise Control, you can define the following settings in the `E
 - Hard goals in `spec.strimziOverrides.cruiseControl.config["hard.goals"]`
 - The capacity limits for broker resources, which Cruise Control uses to determine if resource-based optimization goals are being broken. The `spec.strimziOverrides.cruiseControl.brokerCapacity` property defines the Kafka broker resource capacities that Cruise Control will optimize around.
 
-Cruise Control includes a number of [configuration options](https://github.com/linkedin/cruise-control/wiki/Configurations#cruise-control-configurations){:target="_blank"}. You can modify these configuration options for {{site.data.reuse.es_name}}, except the options managed directly by [Strimzi](https://strimzi.io/docs/operators/0.46.1/configuring.html#property-cruise-control-config-reference){:target="_blank"}.
+Cruise Control includes a number of [configuration options](https://github.com/linkedin/cruise-control/wiki/Configurations#cruise-control-configurations){:target="_blank"}. You can modify these configuration options for {{site.data.reuse.es_name}}, except the options managed directly by [Strimzi](https://strimzi.io/docs/operators/latest/configuring.html#property-cruise-control-config-reference){:target="_blank"}.
 
 When enabled, you can use Cruise Control and the `KafkaRebalance` custom resources to [optimize](../../administering/cruise-control/) your deployed {{site.data.reuse.es_name}} Kafka cluster.
 

@@ -21,10 +21,19 @@ sections:
   <!-- Assisted by WCA@IBM -->
   <details class="details">
     <summary><b>Event Streams</b></summary>
+      <h4>12.0.2 - what's new:</h4>
+      <ul>
+        <li>UI support for enabling tiered storage</li>
+        <li>Support for Kubernetes 1.33</li>
+        <li>Deprecation of support for Confluent-compatible Schema Registry API version 6</li>
+        <li>Security and bug fixes</li>
+      </ul>
+
       <h4>12.0.1 - what's new:</h4>
       <ul>
         <li>Tiered storage support for Kafka topics</li>
         <li>Apicurio version updated to 2.6.13.Final</li>
+        <li>Deprecation of support for Apicurio Registry Core REST API version 1</li>
         <li>Security and bug fixes</li>
       </ul>
 

@@ -14,29 +14,44 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 1. {{site.data.reuse.es_ui_login_nonadmin_samesection}}
 2. Click **Home** in the primary navigation.
 3. Click the **Create a topic** tile.
-4. Enter a topic name in the **Topic name** field, for example, `my-topic`.
+4. Optional: To view all configuration options you can set for topics, toggle **Show all available options** to **On**. 
+
+   When enabled, you can configure advanced settings including **Messages**, **Log**, **Replication**, **Cleanup**, **Index**, and **Flush**.
+   
+   **Note:** For more information about topic configuration options, see the [Apache Kafka documentation](https://kafka.apache.org/40/documentation/#topicconfigs){:target="_blank"}.
+
+   ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.") You can now configure [tiered storage](../../installing/configuring/#tiered-storage) when creating a topic, if tiered storage is enabled at the cluster level.
+
+   **Important:** Tiered storage is only available if the **cleanup policy** for the topic is set to **delete**.
+
+   To enable tiered storage:  
+
+   1. Toggle **Enable tiered storage** to **Yes**.  
+   2. Enter a valid value in the **Local retention time** field.
+
+      Data becomes eligible for deletion from the local storage after the specified time limit is reached.  
+   3. Enter a valid value in the **Local retention bytes** field.
+
+      Data becomes eligible for deletion from the local storage after the specified size limit is reached.  
+5. Enter a topic name in the **Topic name** field, for example, `my-topic`.
    This is the name of the topic that an application will be producing to or consuming from.
 
    Click **Next**.
-5. Enter the number of **Partitions**, for example, `1`.
+6. Enter the number of **Partitions**, for example, `1`.
    Partitions are used for scaling and distributing topic data across the Apache Kafka brokers.
    For the purposes of a basic starter application, using only 1 partition is sufficient.
 
    Click **Next**.
-6. Select a **Message retention**,  for example,  **A day**.
+7. Select a **Message retention**, for example, **A day**.
    This is how long messages are retained before they are deleted.
 
    Click **Next**.
-7. Select a replication factor in **Replicas**,  for example, **Replication factor: 1**.
+8. Select a replication factor in **Replicas**, for example, **Replication factor: 1**.
    This is how many copies of a topic will be made for high availability. For production environments, select **Replication factor: 3** as a minimum.
 
-8. Click **Create topic**. The topic is created and can be viewed from the **Topics** tab located in the primary navigation.
+9. Click **Create topic**.
 
-In the {{site.data.reuse.es_name}} UI **Topics** page, the topic list includes the current state of each topic, and the status icon displays a message providing further information when you hover over the status icon.
-
-**Note:** To view all configuration options you can set for topics, set **Show all available options** to **On**.
-
-**Note:** Kafka supports additional [topic configuration](https://kafka.apache.org/40/documentation/#topicconfigs){:target="_blank"} settings. Enable **Show all available options** to access more detailed configuration settings if required.
+   After the topic is created, you can view it from the **Topics** tab located in the primary navigation. The **Topics** page lists all topics in the cluster and displays details about each topic, including the number of replicas, partitions, geo-replication status, tiered storage settings, and the current state of the topic.
 
 ## By using the CLI
 {: #by-using-the-cli}

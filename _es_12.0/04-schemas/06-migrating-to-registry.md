@@ -8,7 +8,7 @@ toc: true
 
 If you are using the Confluent Platform schema registry, {{site.data.reuse.es_name}} provides a migration path for moving your Kafka consumers and producers over to use the Apicurio Registry in {{site.data.reuse.es_name}}.
 
-
+![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.") **Important:** Support for the Confluent-compatible Schema Registry API version 6 is deprecated and will be removed in a future release. To ensure continued compatibility, it is recommended to update your applications to use API version 7. For more information, see [what’s new](../../about/whats-new/#deprecation-of-confluent-compatible-schema-registry-api-version-6).
 
 ## Migrating schemas to Apicurio Registry in {{site.data.reuse.es_name}}
 {: #migrating-schemas-to-apicurio-registry-in-event-streams}
@@ -74,7 +74,7 @@ To migrate a Kafka producer application that uses the Confluent Platform schema 
    You can also use the following code snippet for Java applications:
 
    ```shell
-   props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<host name>:<API port>/apis/ccompat/v6");
+   props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<host name>:<API port>/apis/ccompat/v7");
    props.put(AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "SASL_INHERIT");
    ```
 
@@ -101,13 +101,13 @@ To migrate a Kafka consumer application that uses the Confluent Platform schema 
 
    Property name        |  Property value
    ---------------------|----------------
-   `schema.registry.url` |  `https://<schema_registry_endpoint>/apis/ccompat/v6`
+   `schema.registry.url` |  `https://<schema_registry_endpoint>/apis/ccompat/v7`
    `basic.auth.credentials.source` |  `SASL_INHERIT`
 
    You can also use the following code snippet for Java applications:
 
    ```shell
-   props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<schema_registry_endpoint>/apis/ccompat/v6");
+   props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "https://<schema_registry_endpoint>/apis/ccompat/v7");
    props.put(AbstractKafkaSchemaSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE, "SASL_INHERIT");
    ```
 

@@ -1,11 +1,13 @@
 ---
-title: "Licenses for Event Streams version 11.1.x and earlier"
-description: "Find out more about licenses for Event Streams 11.1.x and earlier."
+title: "Licenses for earlier versions of Event Streams"
+description: "Find out more about licenses for earlier versions of Event Streams."
 permalink: /support/licensing/es-111earlier/
 toc: true
 layout: pagesInsideCollection
 ---
 
+See the following table for license information of {{site.data.reuse.es_name}} 11.1.x and earlier:
+ 
 | {{site.data.reuse.es_name}} version   |  License  | 
 |---------------------------------------|--------------------------------------|
 | 11.1.x | [**L-ARWN-CJ4GZM**](https://www.ibm.com/terms/?id=L-ARWN-CJ4GZM){:target="_blank"} <br> [**L-PCKS-P8STZE**](https://www.ibm.com/terms/?id=L-PCKS-P8STZE){:target="_blank"}<br> [**L-ADXD-YFP5W5**](https://www.ibm.com/terms/?id=L-ADXD-YFP5W5){:target="_blank"}<br>[**L-LBCX-WC9TGP**](https://www.ibm.com/terms/?id=L-LBCX-WC9TGP){:target="_blank"}<br>[**L-ADBC-574R6X**](https://www.ibm.com/terms/?id=L-ADBC-574R6X){:target="_blank"}<br>[**L-TPYF-VBCB7S**](https://www.ibm.com/terms/?id=L-TPYF-VBCB7S){:target="_blank"}<br>[**L-PNPA-8URSGW**](https://www.ibm.com/terms/?id=L-PNPA-8URSGW){:target="_blank"} |

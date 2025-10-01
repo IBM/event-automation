@@ -47,12 +47,16 @@ From the relevant table in the sections that follow, choose the value for the fo
 
 ### {{site.data.reuse.ea_long}} license information
 
+See the following table for license details, included capabilities, and usage options for {{site.data.reuse.ea_long}} licenses. For information about end of support dates, see the [product lifecycle documentation](https://www.ibm.com/support/pages/lifecycle/search?q=5900-AXM){:target="_blank"}.
+
+For end of support licenses of {{site.data.reuse.ea_short}}, see the [earlier licenses]({{ '/support/eos-licenses/' | relative_url }}).
+
 | Program   | License ID (`spec.license.license`)  | Included capabilities | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
 | {{site.data.reuse.ea_long}} 1.2.0.0 | [**L-CYBH-K48BZQ**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-CYBH-K48BZQ){:target="_blank"} | - {{site.data.reuse.es_name}} 11.8.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.6.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.4.0 and later <br><br>| - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` |  N/A |
 | {{site.data.reuse.ea_long}} 1.1.0.0 | [**L-AUKS-FKVXVL**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-AUKS-FKVXVL){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.2 to 11.7.0 <br><br> - {{site.data.reuse.eem_name}} 11.4.0 to 11.5.1 <br><br> - {{site.data.reuse.ep_name}} 1.2.3 to 1.3.2 | - `EventAutomationNonProduction`  <br> <br> - `EventAutomationProduction` <br> <br> - `EventAutomationDevelopment` <br> <br> **Note:** <br> The `EventAutomationDevelopment` option is available for {{site.data.reuse.es_name}} 11.5.1, {{site.data.reuse.eem_name}} 11.4.0, and {{site.data.reuse.ep_name}} 1.2.2, and all later versions. |  N/A |
 | &nbsp; | [**L-KCVZ-JL5CRM**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-KCVZ-JL5CRM){:target="_blank"} | - {{site.data.reuse.es_name}} 11.5.0 to 11.7.0 <br><br> - {{site.data.reuse.eem_name}} 11.3.0 to 11.3.2 <br><br> - {{site.data.reuse.ep_name}} 1.2.0 to 1.2.4 | &nbsp; |  &nbsp; |
-| {{site.data.reuse.ea_long}} 1.0.0.0 | [**L-HRZF-DWHH7A**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-HRZF-DWHH7A){:target="_blank"}  | - {{site.data.reuse.es_name}} 11.2.0 to 11.4.0 <br><br> - {{site.data.reuse.eem_name}} 11.0.0 to 11.2.3 <br><br> - {{site.data.reuse.ep_name}} 1.0.0 to 1.1.9  | - `EventAutomationNonProduction` <br> <br> - `EventAutomationProduction` |  N/A |
+| {{site.data.reuse.ea_long}} 1.0.0.0 ![Image highlight end of support for the license mentioned.]({{ 'images' | relative_url }}/end-of-support.svg "Image highlight end of support for the license mentioned.")| [**L-HRZF-DWHH7A**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-HRZF-DWHH7A){:target="_blank"}  | - {{site.data.reuse.es_name}} 11.2.0 to 11.4.0 <br><br> - {{site.data.reuse.eem_name}} 11.0.0 to 11.2.3 <br><br> - {{site.data.reuse.ep_name}} 1.0.0 to 1.1.9  | - `EventAutomationNonProduction` <br> <br> - `EventAutomationProduction` |  N/A |
 
 <!-- 
 | Program   | Included capabilities  | License ID (`spec.license.license`) | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
@@ -63,11 +67,19 @@ From the relevant table in the sections that follow, choose the value for the fo
 
 ### {{site.data.reuse.ipaas_name}} license information
 
+See the following table for license details, included capabilities, and usage options for {{site.data.reuse.ipaas_name}} licenses. For information about end of support dates, see the [product lifecycle documentation](https://www.ibm.com/support/pages/lifecycle/search/?q=ibm%20webMethods%20hybrid%20integration){:target="_blank"}.
+
+
 | Program   | License ID (`spec.license.license`)  | Included capabilities | License use <br> (`spec.license.use`) | License metric <br> (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
 | {{site.data.reuse.ipaas_name}} 11.2 | [**L-SBZZ-CNR329**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-SBZZ-CNR329){:target="_blank"} | - {{site.data.reuse.es_name}} 11.8.0 and later <br><br> - {{site.data.reuse.eem_name}} 11.6.0 and later <br><br> - {{site.data.reuse.ep_name}} 1.4.0 and later <br><br>| - `WebMethodsHybridIntegrationNonProduction`  <br> <br> - `WebMethodsHybridIntegrationProduction` <br> <br> - `WebMethodsHybridIntegrationDevelopment` | - {{site.data.reuse.es_name}} and {{site.data.reuse.ep_name}}: `VIRTUAL_PROCESSOR_CORE` <br> <br> - {{site.data.reuse.eem_name}}: `MONTHLY_API_CALL` |
 
 ### {{site.data.reuse.cp4i}} license information
+
+See the following table for license details, included capabilities, and usage options for {{site.data.reuse.cp4i}} licenses. For information about end of support dates, see the [product lifecycle documentation](https://www.ibm.com/support/pages/lifecycle/search/?q=5737I89){:target="_blank"}.
+
+
+For end of support licenses of {{site.data.reuse.cp4i}}, see the [earlier licenses]({{ '/support/eos-licenses/' | relative_url }}).
 
 | Program   | License ID (`spec.license.license`)  | Included capabilities | License use (`spec.license.use`) | License metric (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
@@ -85,15 +97,7 @@ From the relevant table in the sections that follow, choose the value for the fo
 {{site.data.reuse.cp4i}} 2023.2.1 Standard <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=planning-licensing){:target="_blank"}. | [**L-YBXJ-ADJNSM**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-YBXJ-ADJNSM){:target="_blank"} | - {{site.data.reuse.es_name}} <br> <br> - {{site.data.reuse.eem_name}} |  -`CloudPakForIntegrationNonProduction` <br> <br> -`CloudPakForIntegrationProduction`   | `VIRTUAL_PROCESSOR_CORE` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}.
 {{site.data.reuse.cp4i}} 2023.2.1 API Calls  <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=planning-licensing){:target="_blank"}. | [**L-NRHE-WFD7EY**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-NRHE-WFD7EY){:target="_blank"} | - {{site.data.reuse.eem_name}} | -`CloudPakForIntegrationProduction`  | `MONTHLY_API_CALL` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}. <br> <br> Setting this metric and the related license ID configures the usage-based license. <br> <br> **Note:** For more information about what is charged when using the `MONTHLY_API_CALL` license reporting metric with {{site.data.reuse.eem_name}}, see [the {{site.data.reuse.eem_name}} usage-based pricing example]({{ 'eem/installing/planning/#example-deployment-usage-based-pricing' | relative_url }}).
 | {{site.data.reuse.cp4i}} 2023.2.1 Reserved or limited <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/2023.2?topic=planning-licensing)  |  [**L-PYRA-849GYQ**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-PYRA-849GYQ){:target="_blank"}  | {{site.data.reuse.es_name}} |  -`CloudPakForIntegrationNonProduction` <br> <br> -`CloudPakForIntegrationProduction`     | N/A
-| {{site.data.reuse.cp4i}} 2022.4.1 Reserved or limited  | [**L-RJON-CJR2TC**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-CJR2TC){:target="_blank"} | &nbsp;| &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2022.2.1 | [**L-RJON-CD3JKX**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-CD3JKX){:target="_blank"}| &nbsp;| &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2022.2.1 Reserved or limited | [**L-RJON-CD3JJU**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-CD3JJU){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2021.4.1  | [**L-RJON-C7QG3S**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-C7QG3S){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-|  {{site.data.reuse.cp4i}} 2021.4.1 Reserved or limited  | [**L-RJON-C7QFZX**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-C7QFZX){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2021.3.1  | [**L-RJON-C5CSNH**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-C5CSNH){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2021.3.1 Reserved or limited | [**L-RJON-C5CSM2**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-C5CSM2){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2021.2.1 | [**L-RJON-BZFQU2**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-BZFQU2){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
-| {{site.data.reuse.cp4i}} 2021.2.1 Reserved or limited | [**L-RJON-BZFQSB**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-RJON-BZFQSB){:target="_blank"} | &nbsp; | &nbsp; | &nbsp;
+
 
 
 **Note:** For information about licenses for {{site.data.reuse.es_name}} 11.1.x and earlier, see the [previous licenses for {{site.data.reuse.es_name}} only]({{ '/support/licensing/es-111earlier/' | relative_url }}).

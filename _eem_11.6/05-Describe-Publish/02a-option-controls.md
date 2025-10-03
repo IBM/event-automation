@@ -20,7 +20,11 @@ You can apply universal controls to options for both consume and produce-enabled
 ### Approval
 {: #approval-controls}
 
-When an option is published, it is available for everyone in your organization to view. If you want to control who can subscribe to your option, you can add an approval control. When an option is set up with approval enabled, a viewer must submit a request to subscribe to the option. The request includes a reason to justify the need for a subscription along with the requesters contact information. The option owner can then approve or reject the request as required.
+When an option is published, it is available for everyone in your organization to view. If you want to control who can subscribe to your option, you can add an approval control.
+
+When an option is set up with approval enabled, a viewer must submit a request to subscribe to the option. The request includes a reason to justify the need for a subscription along with the requester's contact information. The option owner can then approve or reject the request as required.
+
+The owner of an event source that has approval enabled receives notifications in the {{site.data.reuse.eem_name}} UI when someone requests access to the events on the topic, and can then approve or reject the request.
 
 **Note:** A viewer can only have one request for a subscription to an option open at a time.
 
@@ -38,7 +42,7 @@ To add the approval control to an option, complete the following steps.
 1. Click **Add control**. The approval control is added to the table of controls.
 1. To save the new control for this option, click **Next** > **Save**.
 
-The option tile is updated to show that the approval control is added. The option now requires viewers to create a request to justify having a subscription to your event source.
+The option tile is updated to show that the approval control is added. The option now requires viewers to create a request to justify having a subscription to your event source. Any access request will result in a notification in the {{site.data.reuse.eem_name}} UI to the event source owner to approve or reject the request.
 
 #### Viewing requests
 {: #viewing-requests}
@@ -51,6 +55,9 @@ As the owner of an event source with an option that has approval enabled, you ca
 To view requests for all the options that have approval enabled, complete the following steps.
 
 1. In the navigation pane, click **Manage topics**.
+   
+   **Note:** If you have any open access requests, a notification is displayed with a link to **View access requests**.
+
 1. Find the event source that you want to work with in the list, and click the name of the event source.
 1. Click the **Manage** tab.
 1. Click **Requests** to see a list of all of the requests made against this event source.
@@ -73,7 +80,7 @@ To approve or reject requests, complete the following steps.
 1. For the request you want to review, click **View request** . An approval pop-up window appears. All the details about the request including the event source, option, contact details of the requester and the justification for the request is displayed.
 1. Review the information that is provided and click **Approve** or **Reject** as required.
 
-When a request is approved, the viewer can make a new subscription.
+When a request is approved, a notification is presented in the {{site.data.reuse.eem_name}} UI to the viewer about the approval, and the viewer can create a new subscription.
 
 ### Mutual TLS
 {: #mtls}

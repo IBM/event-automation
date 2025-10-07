@@ -90,6 +90,28 @@ strimziOverrides:
 
 For more information, see the [managing node pool IDs](https://strimzi.io/docs/operators/latest/deploying#proc-managing-node-pools-ids-str){:target="_blank"}.
 
+### KRaft limitations 
+{: #kraft-limitations}
+
+KRaft limitations are mainly associated with controller scaling, which can affect how cluster operations are managed.
+
+KRaft mode supports the following two types of controller quorums:
+
+- Static controller quorums: The number of controllers is fixed when the cluster is created. Any changes, such as scaling or reconfiguring controllers, require restarting the cluster, which causes downtime.
+- Dynamic controller quorums: You can add or remove controllers without downtime, making it easier to manage tasks such as renaming node pools or updating storage settings.
+
+Migration between static and dynamic controller quorums is not currently supported by Apache Kafka. To maintain compatibility and ensure cluster stability, {{site.data.reuse.es_name}} uses static controller quorums. Support for dynamic controller quorums might be added in a future Kafka release.
+
+Static controller quorums limit operations that require controller scaling. The following operations are not supported on an existing {{site.data.reuse.es_name}} instance:
+
+- Adding or removing new node pools that have the `controller` role.
+- Adding the `controller` role to an existing node pool, or removing it from one.
+- Scaling a node pool that has the `controller` role.
+- Renaming a node pool that has the `controller` role.
+
+
+For more information about the limitations, see the [Strimzi KRaft documentation](https://strimzi.io/docs/operators/latest/deploying#kraft_limitations){:target="_blank"}.
+
 
 ## Enabling persistent storage
 

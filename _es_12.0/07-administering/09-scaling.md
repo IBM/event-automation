@@ -44,6 +44,9 @@ spec:
       - name: kafka
         replicas: 6
 ```
+
+**Note:** Controller node pools cannot be scaled or modified dynamically in KRaft mode. For more information, see [KRaft limitations](../../installing/configuring/#kraft-limitations).
+
 For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/in-development/deploying?utm_source#proc-scaling-up-node-pools-str).
 
 ## Increase the CPU request or limit settings for the Kafka brokers

@@ -198,3 +198,28 @@ The `offline_access` scope allows {{site.data.reuse.eem_name}} to refresh user i
 **Important:** Some OIDC providers allow the length of time before offline access expires to be configured. In such cases, the offline access might expire before the {{site.data.reuse.eem_name}} token expires. If this happens, the user must log back in to the UI to enable {{site.data.reuse.eem_name}} to refresh offline access.
 
 **Note:** Not all OIDC providers support the `offline_access` scope. Also, you might not want to give {{site.data.reuse.eem_name}} permission to perform offline access. In either of these cases, an Admin API user cannot use groups, and will see public options only.
+
+## Disabling user groups
+{: #disable-user-groups}
+
+If you want to disable user groups, review the following behaviors to avoid unintended consequences:
+
+- If an event source is configured with custom visibility, the associated event endpoint will no longer be visible to any users.
+- Before you disable group visibility, ensure that any event endpoint that you want to keep accessible is set to public visibility.
+- Existing subscriptions to event endpoints will continue to work.
+- Owners can remove subscriptions, but no new subscriptions can be created.
+- If group visibility is enabled again later, all previously defined groups become active again. 
+
+### Before you begin
+
+Ensure that you notify event source owners and event source editors before you disable user groups.
+
+### Disable user groups
+
+To disable user groups, complete the following steps:
+
+1. Open your `EventEndpointManagement` custom resource in your preferred editor or in the {{site.data.reuse.openshift}} UI.
+1. Remove the `userGroupClaimPointer` field.
+1. Save the updated custom resource.
+
+The manager pod restarts and the user group is removed.

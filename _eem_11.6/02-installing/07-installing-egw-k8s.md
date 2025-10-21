@@ -134,7 +134,7 @@ If you want to create externally signed certificates with cert-manager, then see
    Set the following properties:
    - `spec.secretName`: Replace `<gateway group>` and `<gateway ID>` with the names that you intend to use for your gateway group and gateway ID.
    - `spec.commonName`: Set a human-readable name for your certificate.
-   - `spec.dnsNames`: Set to a comma-separated list of the FQDNs for your {{site.data.reuse.egw}}.
+   - `spec.dnsNames`: Set to a list of the FQDNs for your {{site.data.reuse.egw}}.
    
    b. Apply the YAML file in your Kubernetes environment:
    

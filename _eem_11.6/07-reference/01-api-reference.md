@@ -160,6 +160,8 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | userGroupClaimPointer | string | A JSON pointer to a claim in the ID token from the provider, which is used for adding user groups, for example `\"/resource_access/client_id/groups\"`. |
 | userInfoPath | string | The path to the user info endpoint of this provider |
 
+**Important:** Removing `groups` from the `userGroupClaimPointer` field can have unintended consequences. Before you change the value for this field, review the information in [disabling user groups](../../security/groups/#disable-user-groups).
+
 
 ### Resource: `pod`
 {: #resource-pod}

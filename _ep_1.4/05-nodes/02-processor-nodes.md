@@ -12,6 +12,7 @@ The following processor nodes are available in {{site.data.reuse.ep_name}}:
 - [Transform](#transform)
 - [Unpack arrays](#unpack-arrays)
 - [Detect patterns](#detect-patterns)
+- ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") [Deduplicate](#deduplicate)
 
 ## Filter
 {: #filter}
@@ -40,6 +41,13 @@ To configure a filter node, complete the following steps:
 
    {{site.data.reuse.ep_treeview_note}} 
 1. Enter an expression in the **Filter Expression** field to filter the events. The expression consists of a property, a mathematical condition, and a value. Depending on your requirements, you can create a simple expression with one condition or a complex expression with multiple conditions. For complex expressions, you can add multiple conditions within an expression by using `AND` or `OR`.
+
+   Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the **Filter Expression** field to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
+
+   ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") In {{site.data.reuse.ep_name}} 1.4.5 and later:
+
+   - You can use the **Assistant** to create complex expressions with multiple filter conditions.
+   - To add an `AND` or `OR` operation to the root of the expression, click the **Add operation** button located at the bottom of the last condition.
 
    **Note:** Expressions are prioritized based on [operator precedence](https://calcite.apache.org/docs/reference.html#operators-and-functions){:target="_blank"}.
 
@@ -79,7 +87,6 @@ To configure a filter node, complete the following steps:
       **Note:** The index of arrays starts at 1, not at 0.
 
 
-   Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the **Filter Expression** field to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
 
    {{site.data.reuse.array_expression_note}}
 
@@ -335,15 +342,15 @@ To configure the detect patterns node, complete the following steps:
 
      - The `credit card activation` event schema:
 
-     ```json
-     {"creditcardNumber": ..., "activationDate": ...}
-     ```
+       ```md
+       {"creditcardNumber": ..., "activationDate": ...}
+       ```
 
      - The `credit card transaction` event schema:
 
-     ```json
-     {"credit_card_number": ..., "amount": ...}
-     ```
+       ```md
+       {"credit_card_number": ..., "amount": ...}
+       ```
 
      - The context is defined using the `creditcardNumber` and `credit_card_number` properties
 
@@ -435,3 +442,78 @@ To configure the detect patterns node, complete the following steps:
 1. To complete the configuration, click **Configure**.
 
    A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the detect patterns node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.
+
+
+## Deduplicate
+{: #deduplicate}
+
+![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") A deduplicate node processes a stream of an ordered sequence of events and removes duplicate events based on a specified property or set of properties within the specified time interval. This ensures that only unique events pass through, reducing redundancy and improving the efficiency of downstream processing.
+
+Deduplication is useful in multiple scenarios such as:
+
+- In IoT systems, to eliminate repeated sensor readings caused by network glitches.
+- E-commerce platforms often face duplicate order submissions due to retries or page refreshes.
+- In email campaign tracking, to count only one open or click event per user per email.
+- In financial systems, to ensure each transaction is processed only once.
+- Eliminates repeated log entries from distributed services.
+
+
+### Adding a deduplicate node
+{: #adding-a-deduplicate-node}
+
+To add a deduplicate node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+1. In the **Palette**, under **Processors**, drag the **Deduplicate** node into the canvas.
+1. {{site.data.reuse.node_connect}}
+
+   A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the deduplicate node indicating that the node is yet to be configured.
+
+1. Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+The **Configure deduplication** window opens.
+
+### Configuring a deduplicate node
+{: #configuring-a-deduplicate-node}
+
+To configure a deduplicate node, complete the following steps:
+
+1. {{site.data.reuse.node_details}}
+1. Click **Next** to open the **Define deduplication** pane.
+
+   {{site.data.reuse.ep_treeview_note}}
+1. In the **Event time property to start the deduplication** drop-down list, select the property of the event that corresponds to an event time. If there is only one event time property, it is selected by default.
+1. Select the deduplication mode:
+
+   As discussed in [step 10 of event nodes](../eventnodes#event-lateness), events can arrive out of order. To perform deduplication, the events are sorted in chronological order based on their event time. Watermarks from each input stream are used in the sorting process to handle out-of-order events.
+
+   There are two deduplication modes available to determine how the deduplicate node removes duplicate events:
+
+    - **Fixed interval** (default): In this mode, duplicates are removed within a fixed time window that starts when the first event is received. The window remains active for the specified duration (for example, 5 minutes). After the time window expires, the next event starts a new window of the same fixed interval.
+    - **Inactivity**: This mode removes duplicate events based on the time elapsed since the most recent occurrence of the same event. Each duplicate event becomes the key event for the next comparison, ensuring only events separated by the defined interval are emitted.
+
+1. In the **Time interval** field, specify a time interval to limit deduplication to a specific duration. If duplicate events occur within this interval, only the first event is retained and all subsequent duplicates are removed. Events outside this interval are not considered duplicates.
+
+1. Select one or more properties to define the uniqueness of an event. These properties act as keys for deduplication. If two events have the same values for the selected properties, only the first event is retained.
+
+   **Note:** In the case of arrays, you can only select the entire array.
+
+   Click **Next** to open the **Output properties** pane.
+
+1. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
+
+   Only **leaf** properties are listed in the **Properties to keep** table.
+
+   - Optional: Click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"} to remove a property from being displayed in the output. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
+
+   - Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.
+
+     **Note:** To rename the top-level property, use the [transform](#transform) node.
+
+   - Optional: To add a property that was previously removed, go to the **Properties to remove** table and click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.
+
+1. To complete the configuration, click **Configure**.
+
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} is displayed on the deduplicate node if the node is configured correctly. If there is any error in your configuration, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} is displayed.
+
+User actions are saved automatically.

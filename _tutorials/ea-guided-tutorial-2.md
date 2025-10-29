@@ -32,7 +32,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Create a flow
+### Step 1: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -44,7 +44,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-1.png "creating a flow")
 
-### Step 2 : Provide a source of events
+### Step 2: Provide a source of events
 
 The next step is to bring the stream of events to process into the flow. We will reuse the topic connection information from an earlier tutorial.
 
@@ -69,7 +69,7 @@ The next step is to bring the stream of events to process into the flow. We will
    Click **Configure**. 
 
 
-### Step 3 : Define the transformation
+### Step 3: Define the transformation
 
 The next step is to define the transformation that will remove the customer personal information from events.
 
@@ -99,7 +99,7 @@ The next step is to define the transformation that will remove the customer pers
 
     Remove properties from events by clicking the remove property icon next to their name.
 
-### Step 4 : Test the flow
+### Step 4: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

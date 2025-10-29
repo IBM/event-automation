@@ -90,6 +90,8 @@ strimziOverrides:
 
 For more information, see the [managing node pool IDs](https://strimzi.io/docs/operators/latest/deploying#proc-managing-node-pools-ids-str){:target="_blank"}.
 
+**Note:** To migrate Kafka brokers to a different storage configuration, see [migrating Kafka broker storage](../../administering/scaling/#migrating-kafka-broker-storage).
+
 ### KRaft limitations 
 {: #kraft-limitations}
 
@@ -108,7 +110,7 @@ Static controller quorums limit operations that require controller scaling. The 
 - Adding the `controller` role to an existing node pool, or removing it from one.
 - Scaling a node pool that has the `controller` role.
 - Renaming a node pool that has the `controller` role.
-
+- Changing the storage type for a node pool that has the `controller` role.
 
 For more information about the limitations, see the [Strimzi KRaft documentation](https://strimzi.io/docs/operators/latest/deploying#kraft_limitations){:target="_blank"}.
 

@@ -133,9 +133,13 @@ The clothing company selected **Include historical** to run the filter on the hi
 
 To view the output events of a complete flow, you can select the radio button of the last node in your flow. By default, the last node in the flow is selected.
 
-In {{site.data.reuse.ep_name}} 1.4.2 and later, while running a flow, you can check the number of output events represented by the icon ![Number of events icon]({{ 'images' | relative_url }}/number-of-events.svg "Number of events icon.") next to each node in the canvas. The number of output events is updated even while the refresh of the output events table is paused.
+In {{site.data.reuse.ep_name}} 1.4.2 and later, while running a flow, you can check the number of output events represented by the icon ![Number of events icon]({{ 'images' | relative_url }}/number-of-events.svg "Number of events icon.") next to each node in the canvas. Additionally, the number of output events for the selected node is also displayed on top of the results table.  The number of output events is updated even while the refresh of the output events table is paused.
 
-**Note:** If you leave the page without stopping the flow by navigating to the home page or by closing the browser tab, when you return to the flow, the number of events and the output events are those that occur after you returned to the flow.
+![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") In {{site.data.reuse.ep_name}} 1.4.5 and later, while you run the flow, you can view Flink watermarks in the UTC format next to each node in the canvas. This view is not enabled by default. To view watermarks next to nodes in the canvas, click the **Customize view** icon ![Customize view icon]({{ 'images' | relative_url }}/customize-view.svg "Customize view icon."), and select **Show Flink watermark** ![View watermark icon]({{ 'images' | relative_url }}/view-watermark.svg "View watermark icon."). Additionally, the watermark for the selected node is also displayed on top of the results table. 
+
+In {{site.data.reuse.ep_name}} 1.4.5 and later, you can also hide the number of output events or the Flink watermarks by unselecting the respective options.
+
+**Note:** If you leave the page without stopping the flow by navigating to the home page or by closing the browser tab, when you return to the flow, the number of events, watermarks, and the output events are those that occur after you returned to the flow.
 
 ## Flow statuses
 {: #flow-statuses}

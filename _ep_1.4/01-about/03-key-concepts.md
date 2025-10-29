@@ -45,13 +45,17 @@ The event destination is the output of the stream processing flow you set up tha
 
 Topics are presented as event sources in the catalog. Kafka administrators describe topics as event sources, and this information is published to the catalog. Business analysts and those interested in event data can choose the event sources they want to use in their processing to construct event flows. The processing done as a result of the event flow creates an event destination that can be used to solve specific business problems.
 
-## Event time
+## Event time and watermark
 {: #event-time}
 
-The event time denotes the date and time when an event occurs.
-Event time is essential when you need to measure the progress of time and perform time-based calculations.
-The event date and time does not always coincide with the creation date and time of the event message.
-The timestamp property, which acts as the event time, is determined in the event source configuration.
+The event time denotes the date and time when an event occurs. Event time is essential when you need to measure the progress of time and perform time-based calculations. Event time can be derived from a property in an event, the time the event was processed by Flink, or the time the event was processed by the event source system.
+
+
+To handle out-of-order events and ensure accurate time-based processing, watermarks are used. A watermark is a mechanism that marks the progress of event time in a stream. It signals that events that arrive with an event time earlier than the current watermark are considered late and might not be processed. The watermark can be configured in the event source configuration to lag behind event time to allow for out-of-order events. 
+
+Time-based operations, such as closing time windows, are triggered based on the progression of watermark rather than event time.
+
+For more information about watermarks, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/time/#event-time-and-watermarks).
 
 ## Flow
 {: #flow}

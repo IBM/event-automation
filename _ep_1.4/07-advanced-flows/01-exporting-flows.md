@@ -19,14 +19,30 @@ You can export your flow in the following formats:
 | --- | --- | --- |
 | **JSON and configuration YAML** | `<flow-name>.zip` file that contains `flow.json` and `config.yaml` |  Sensitive values are redacted. | For deploying jobs [customized for production or test environments](../deploying-customized), by using the command-line interface, possibly as part of a CI/CD pipeline. |
 | **JSON** | `<flow-name>.json` | Contains credentials | For backing up and sharing flows with others. |
-| **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. <br/> <br/> - Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns). |
+| **SQL** | `<flow-name>.sql` | Sensitive values are redacted. | - For deploying jobs by using the [Flink SQL client](../deploying-development) or the [Apache SQL Runner sample](../deploying-production). <br/> <br/> - Cannot be imported into the {{site.data.reuse.ep_name}} UI. <br/> <br/> - Cannot be used for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate). |
 
 **Notes:** 
+
 * The credentials used for the configuration of the [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connectors are redacted in the **JSON and configuration YAML** and **SQL** export formats, except for the [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connector when used in [SQL processor nodes](../../nodes/custom).
-* Exporting a flow as **JSON and configuration YAML** or as **SQL** requires the following prerequisites to be met:
-   - [Source nodes](../../nodes/eventnodes/#event-source) are connected to the same graph.
-   - Connected nodes are configured and valid. A valid graph has a green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} for all configured nodes.
-   - Connected nodes define a graph that ends with only one node. Additionally, for exporting as **JSON and configuration YAML**, the terminal node must be an [event destination node](../../nodes/eventnodes/#event-destination).
+
+* Exporting a flow as **SQL** requires the following prerequisites to be met:
+
+  - Connected nodes are configured and valid. A valid graph has a green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} for all configured nodes.
+  - ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") In flows where source nodes are not connected and form parallel graphs, [event destination](../../nodes/eventnodes/#event-destination) and [SQL destination](../../nodes/custom/) nodes appear only on a single graph.
+  - In {{site.data.reuse.ep_name}} versions 1.4.4 and earlier:
+    - Connected nodes define a graph that terminates with only one node.
+    - [Source nodes](../../nodes/eventnodes/#event-source) are connected to the same graph.
+
+
+* Exporting a flow as **JSON and configuration YAML** requires the following prerequisites to be met:
+
+  - Connected nodes are configured and valid. A valid graph has a green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} for all configured nodes.
+  - ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") The flow does not have any unconnected parts, and all its paths end at one or more destination nodes, which can be either [event destination](../../nodes/eventnodes/#event-destination) or [SQL destination](../../nodes/custom/) nodes.
+  - In {{site.data.reuse.ep_name}} versions 1.4.4 and earlier: 
+  
+    - [Source nodes](../../nodes/eventnodes/#event-source) are connected to the same graph.
+    - Connected nodes define a graph that terminates with only one node, which must be an [event destination](../../nodes/eventnodes/#event-destination) or an [SQL destination](../../nodes/custom/) node.
+
 
 To export a flow, complete the following steps:
 

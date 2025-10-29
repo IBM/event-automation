@@ -81,7 +81,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Create a destination topic for notifying abandoned products
+### Step 1: Create a destination topic for notifying abandoned products
 
 You can configure a processing flow to write the events to a separate topic, which you can then use as a source for systems that are unable to process idempotently.
 
@@ -326,7 +326,7 @@ For more information about how to create an unpack array node, see [unpack array
 1. Click **Configure** to finalize the unpack array node configuration.
 
 
-### Step 9 : Identify positive reviews of abandoned products
+### Step 9: Identify positive reviews of abandoned products
 
 The next step is to specify how to correlate the daily product reviews with the abandoned cart products.
 

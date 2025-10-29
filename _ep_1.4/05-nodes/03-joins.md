@@ -18,6 +18,9 @@ The following join nodes are available in {{site.data.reuse.ep_name}}:
 
 An interval join is used to merge two event streams based on a join condition that matches events within a time interval.
 
+For example, consider two streams where one contains customer orders (`order_stream`) and the other contains payment events (`payment_stream`). You can perform an interval join between these streams to identify payments that occurred within ten minutes after an order was placed.
+
+
 ### Adding an interval join node
 {: #adding-an-interval-join-node}
 
@@ -40,6 +43,7 @@ To configure an interval join, complete the following steps:
 1. In the **Join condition** section, either use the [assistant](#join-node-assistant) or enter your expression in the **Define events** text box to define your join condition, and then click **Next**.
 
    Examples:
+   
    - Simple expression:
 
      ```shell
@@ -66,6 +70,8 @@ To configure an interval join, complete the following steps:
       - ARRAY_CONTAINS(source1.example_array_of_array_of_object_property[1][1].floatArray, source2.example_array_of_object_property[1].floatArray)
       - CARDINALITY(source1.example_array_of_array_property[1]) = CARDINALITY(source2.example_array_property) 
       ```
+
+   For the earlier example, the join condition can be written as `payment_stream.timestamp BETWEEN order_stream.timestamp AND order_stream.timestamp + INTERVAL '10' MINUTE`, which helps match each order with its corresponding payment that happened shortly after the order was created.
 
    Alternatively, to use the assistant to create your expression, complete the following steps:
    {: #join-node-assistant}
@@ -138,12 +144,7 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 A window join is used to merge two input event streams based on a join condition that matches events within the same time window.
 
-For example, consider two streams of user interactions:
-
-`click_stream`: contains user click events on a website
-`purchase_stream`: contains user purchase events on a website
-
-You can perform a window join on these two streams to identify users who clicked on a product and then purchased it within the same fixed 30-minute window.
+For example, consider two streams of user interactions on a website, one that contains user click events (`click_stream`) and the other that captures user purchase events (`purchase_stream`). You can perform a window join on these two streams to identify users who clicked on a product and then purchased it within the same fixed 30-minute window.
 
 The difference between a window join and an interval join is that a window join matches events from two streams within the same time window (for example, 5 minutes), while interval joins match events with timestamps within a specified interval of each other (for example, 5 minutes apart).
 
@@ -156,11 +157,11 @@ To add a window join, complete the following steps:
 
 1. In the **Palette**, under **Joins**, drag the **Window join** node into the canvas.
 
-1. Connect the node to two input streams by separately dragging the Output port from each input node into the Input port of this node.
+1. Connect the node to two input streams by separately dragging the **Output port** from each input node into the **Input port** of this node.
 
-1. Hover over the node and click Edit to configure the node.
+1. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-The Configure Window join window is displayed.
+The **Configure Window join** window is displayed.
 
 ### Configuring a window join node
 {: #configuring-window-join}

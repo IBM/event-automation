@@ -31,7 +31,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the topics to use
+### Step 1: Discover the topics to use
 
 For this scenario, you need a source for the `Transactions` events.
 

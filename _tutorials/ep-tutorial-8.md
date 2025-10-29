@@ -33,7 +33,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Find the destination topic
+### Step 1: Find the destination topic
 
 This tutorial begins with the topic added to the catalog in [Share events for discovery by others](../guided/tutorial-6) tutorial, which identifies orders made in the EMEA region.
 
@@ -51,7 +51,7 @@ If you haven't completed that tutorial yet, you should do it now.
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
-### Step 2 : Make the destination topic available to App Connect
+### Step 2: Make the destination topic available to App Connect
 
 The first thing to do is to make this destination topic available for use in App Connect.
 
@@ -122,7 +122,7 @@ The first thing to do is to make this destination topic available for use in App
 
 
 
-### Step 3 : Parse the Event Processing output
+### Step 3: Parse the Event Processing output
 
 The next step is to parse the events on the topic to allow it to be used in App Connect flows.
 
@@ -145,7 +145,7 @@ The next step is to parse the events on the topic to allow it to be used in App 
 1. Click the **Generate Schema** button.
 
 
-### Step 4 : Send notifications in response to the events
+### Step 4: Send notifications in response to the events
 
 The next step is to complete the App Connect flow by adding a node to send notifications.
 
@@ -164,7 +164,7 @@ The next step is to complete the App Connect flow by adding a node to send notif
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the App Connect dashboard"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example8-16.png "screenshot of the App Connect dashboard")
 
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The flow is now ready to run. The final step is to start it.
 

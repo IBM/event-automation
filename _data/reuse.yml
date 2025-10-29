@@ -26,10 +26,10 @@ es_current_case_version: "12.0.2"
 eem_current_version: "11.6.4"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.4.4"
+ep_current_version: "1.4.5"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.4.4"
+flink_operator_current_version: "1.4.5"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"

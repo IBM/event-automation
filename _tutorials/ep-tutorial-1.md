@@ -25,11 +25,11 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
 - {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 ## Instructions
 
-### Step 1 : Discover the topic to use
+### Step 1: Discover the topic to use
 
 For this scenario, you need a source of door badge events.
 
@@ -51,7 +51,7 @@ For this scenario, you need a source of door badge events.
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Complete the following steps in a separate browser window or tab.
 
-### Step 2 : Create a flow
+### Step 2: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -63,7 +63,7 @@ For this scenario, you need a source of door badge events.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-1.png "creating a flow")
 
-### Step 3 : Provide a source of events
+### Step 3: Provide a source of events
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
@@ -142,7 +142,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 1. Configure the event source to use the `badgetime` property as the source of the event time, and to tolerate lateness of up to **3 minutes**.
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Derive additional properties
+### Step 4: Derive additional properties
 
 The next step is to define transformations that will derive additional properties to add to the events.
 
@@ -194,7 +194,7 @@ The next step is to define transformations that will derive additional propertie
 
 1. Click **Next** and then **Configure** to finalize the transform.
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The next step is to run your event processing flow and view the results.
 
@@ -204,7 +204,7 @@ The next step is to run your event processing flow and view the results.
 
     Verify that the day of the week is being correctly extracted from the timestamp, and that the building ID is correctly being extracted from the door ID.
 
-### Step 6 : Filter to events of interest
+### Step 6: Filter to events of interest
 
 The next step is to identify door badge events that occur at weekends. The additional `day of week` property that you computed in the transform node will be helpful for this.
 
@@ -228,7 +228,7 @@ The next step is to identify door badge events that occur at weekends. The addit
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-19.png "configuring the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-19.png "configuring the filter node")
 
-    Filter expression:
+    Use the assistant to create the following filter expression:
 
     ```sql
     `day of week` = CAST (1 AS BIGINT)
@@ -242,7 +242,7 @@ The next step is to identify door badge events that occur at weekends. The addit
 
 1. Click **Configure** to finalize the filter.
 
-### Step 7 : Test the flow
+### Step 7: Test the flow
 
 The next step is to run your event processing flow again and view the results.
 
@@ -252,7 +252,7 @@ The next step is to run your event processing flow again and view the results.
 
     Verify that all events are for door badge events with a timestamp of a Saturday or Sunday.
 
-### Step 8 : Enrich the events
+### Step 8: Enrich the events
 
 The next step is to add additional information about the building to these out-of-hours door events.
 
@@ -306,7 +306,7 @@ The next step is to add additional information about the building to these out-o
 
 1. Click **Configure** to finalize the enrichment.
 
-### Step 9 : Test the flow
+### Step 9: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

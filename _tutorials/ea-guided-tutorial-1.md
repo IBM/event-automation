@@ -13,7 +13,7 @@ order: 2
 When processing events, we can use filter operations to select a subset that we want to use. Filtering works on individual events in the stream.
 
 
-## Scenario : Identify orders from a specific region
+## Scenario: Identify orders from a specific region
 {: #scenario}
 
 The EMEA operations team wants to move away from reviewing quarterly sales reports and be able to review orders in their region as they occur.
@@ -30,11 +30,11 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 - {{site.data.reuse.es_name}} 12.0.1
 - {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 ## Instructions
 
-### Step 1 : Discover the topic to use
+### Step 1: Discover the topic to use
 
 For this scenario, you need a source of order events. A good place to discover sources of event streams to process is the catalog in {{site.data.reuse.eem_name}}.
 
@@ -58,7 +58,7 @@ For this scenario, you need a source of order events. A good place to discover s
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Do the following steps in a separate browser window or tab.
 
-### Step 2 : Create a flow
+### Step 2: Create a flow
 
 The next step is to start processing this stream of events, to create a custom subset that contains the events that you are interested in.
 
@@ -72,7 +72,7 @@ The next step is to start processing this stream of events, to create a custom s
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-3.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-3.png "creating a flow")
 
-### Step 3 : Provide a source of events
+### Step 3: Provide a source of events
 {: #event-source}
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
@@ -155,7 +155,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Define the filter
+### Step 4: Define the filter
 
 The next step is to start processing this stream of events, by creating the filter that will select the custom subset with the events that you are interested in.
 
@@ -187,7 +187,7 @@ The next step is to start processing this stream of events, by creating the filt
 
 1. Click **Configure** to finalize the filter.
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The next step is to run your event processing flow and view the results.
 

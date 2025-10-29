@@ -28,7 +28,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the topic to use
+### Step 1: Discover the topic to use
 
 For this scenario, you need to find information about the source of door badge events.
 
@@ -62,7 +62,7 @@ For this scenario, you need to find information about the source of door badge e
 
    Verify that the timestamp on the Kafka message is not a reliable indicator of when the event occurred, and is frequently up to a few minutes after the actual event.
 
-### Step 2 : Create the source of events
+### Step 2: Create the source of events
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -123,7 +123,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. Click **Configure** to finalize the event source.
 
-### Step 3 : Extract information to aggregate on
+### Step 3: Extract information to aggregate on
 
 1. Add a **Transform** node to the flow.
 
@@ -157,7 +157,7 @@ For this scenario, you need to find information about the source of door badge e
 
 1. Click **Configure** to finalize the transform.
 
-### Step 4 : Count the occurrences
+### Step 4: Count the occurrences
 
 1. Add an **Aggregate** node to the flow.
 
@@ -177,7 +177,7 @@ For this scenario, you need to find information about the source of door badge e
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example7-18.png "creating the processing flow")
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The final step is to run your completed flow.
 

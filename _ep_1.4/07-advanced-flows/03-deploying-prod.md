@@ -12,7 +12,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 
 * You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-* You cannot deploy jobs by using the Apache SQL Runner sample for flows containing the [detect patterns node](../../nodes/processornodes#detect-patterns).
+* You cannot deploy jobs by using the Apache SQL Runner sample for flows that contain the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate).
 
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
@@ -39,7 +39,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../../nodes/eventnodes/#event-source) and [destination](../../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. The Kafka connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.4.0-1.20. |
   | **JDBC** | [Database](../../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc/#connector-options){:target="_blank"} <br> <br> **Note:** The JDBC connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.3.0-1.20. |
-  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 0.19.0. |
+  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.4.5 and later is 0.22.0. <br> <br> For {{site.data.reuse.ep_name}} versions 1.4.0 to 1.4.4, the HTTP connector version is 0.19.0. |
 
 - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
   - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
@@ -261,7 +261,9 @@ Some adaptations to this procedure are required to build the Docker image and us
      image: <image built earlier from IBM Flink image in step 1 >
    ```
 
-   d. Set the Flink version (only required if the `--set webhook.create` is set to `false` during the operator installation).  
+   d. ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") Explicitly set the Flink version:
+
+   In {{site.data.reuse.ep_name}} version 1.4.4 and earlier, you need to set the Flink version only if the `--set webhook.create` is set to `false` during the operator installation.  
 
    1. Obtain the correct version by listing the `IBM_FLINK_VERSION` environment variable on the Flink operator pod:
 

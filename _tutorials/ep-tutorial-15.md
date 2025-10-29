@@ -27,8 +27,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.3.2
-- {{site.data.reuse.ep_name}} 1.2.2
+- {{site.data.reuse.eem_name}} 11.6.3
+- {{site.data.reuse.ep_name}} 1.4.5
 
 
 ## Instructions
@@ -79,13 +79,21 @@ The next step is to start processing this stream of events, by creating the filt
 
 1. Repeat Steps 1-4 under [Define the filter](../guided/tutorial-1#step-4--define-the-filter).
 
-1. Use the **Filter expression** field to update your filter expression, for example, \`countrycode\` = 'FR' AND \`priority\` = 'urgent'.
+1. Use the assistant to add the filter expression, for example, \`countrycode\` = 'FR' AND \`priority\` = 'urgent'. 
+
+   In the assistant, enter the first condition, click **Add operation**, and select `AND` to add a row for the second condition. Repeat the same to add the third condition.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-assistant.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-assistant.png "defining the filter")
+
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-expression.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-expression.png "defining the filter")
 
    **Note:** You must manually add the filter expression by using backticks for the property name and single quotes for the value, for example, enter \`countrycode\` = 'FR' in the **Filter expression** field for the complex expressions.
 
-   Click **Configure** to finalize the filter.
+1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
+
+1. Click **Configure** to finalize the filter.
+
 
 
 

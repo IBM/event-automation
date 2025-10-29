@@ -43,10 +43,10 @@ To add a custom node, complete the following steps:
 A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the node indicating that the node is yet to be configured.
 
 
-### Converting any node to a custom node
+### Converting a node to a custom node
 {: #converting-any-node-to-a-custom-node}
 
-You can convert any existing node on your canvas to a custom node in two ways:
+With the exception of the [detect patterns node](../../nodes/processornodes#detect-patterns) and the [deduplicate node](../../nodes/processornodes#deduplicate), you can convert any existing node on your canvas into a custom node as follows:
 
 - Click **Preview SQL** in the node configuration window.
 - Hover over the node or right-click the node in the canvas, click **More Options** ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} , and select **Preview SQL**.

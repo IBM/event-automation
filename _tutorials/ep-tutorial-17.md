@@ -115,7 +115,7 @@ The next step is to start processing this stream of events, to create a custom s
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_gen_createflow.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_gen_createflow.png "creating a flow")
 
-### Step 3 : Provide a source of events
+### Step 3: Provide a source of events
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
@@ -202,7 +202,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Filter reviews for the last 48 hours
+### Step 4: Filter reviews for the last 48 hours
 
 1. Add a **Filter** node to the flow.
 
@@ -352,7 +352,7 @@ The next step is to generate text responses by using the watsonx.ai node.
 
 1. Click **Configure** to finalize the watsonx.ai node configuration.
 
-### Step 8 : Test the flow
+### Step 8: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

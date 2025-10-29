@@ -26,11 +26,11 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 - Event Streams 12.0.1
 - Event Endpoint Management 11.6.3
-- Event Processing 1.4.4
+- Event Processing 1.4.5
 
 ## Instructions
 
-### Step 1 : Discover the topics to use
+### Step 1: Discover the topics to use
 
 For this scenario, you need a source of order events. A good place to discover sources of event streams to process is the catalog, so start there.
 
@@ -46,7 +46,7 @@ For this scenario, you need a source of order events. A good place to discover s
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-2.png "screenshot of the Event Endpoint Management catalog")
 
-### Step 2 : Provide a source of events
+### Step 2: Provide a source of events
 
 The next step is to create an event source in {{site.data.reuse.ep_name}} for the topic to use in the flow.
 
@@ -56,7 +56,7 @@ Use the server address information and **Generate access credentials** button on
 
 **Tip**: If you need a reminder on how to create an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
 
-### Step 3 : Calculate order totals
+### Step 3: Calculate order totals
 
 The next step is to calculate the total value of each order, that you will use to identify the high-value orders.
 
@@ -91,7 +91,7 @@ The next step is to calculate the total value of each order, that you will use t
 
 1. Click **Configure** to finalize the transform.
 
-### Step 4 : Identify high-value EMEA orders
+### Step 4: Identify high-value EMEA orders
 
 The next step is to filter the stream of events based on this new total order value property to select the high value EMEA orders.
 
@@ -119,19 +119,22 @@ The next step is to filter the stream of events based on this new total order va
 
 1. Edit the filter so that it also only matches orders that are made in the EMEA `region`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "Screen capture displaying a Filter node expression")
+   Use the assistant to add the following filter expression:
 
-   Suggested value for the filter expression:
+   In the assistant, enter the first expression, click **Add operation**, and select `AND` to add a row for the second expression.
 
    ```sql
    `order total` > 350 AND region = 'EMEA'
    ```
 
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example3-6.png "Screen capture displaying a Filter node expression")
+
+
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

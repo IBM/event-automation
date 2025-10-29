@@ -227,7 +227,9 @@ If there is any error in your configuration, a red checkbox ![red checkbox]({{ '
 
 The event destination node delivers the processed stream of events to a Kafka topic for further processing or storage.
 
-**Important:** Event destination node produces the processed events as JSON messages. The outgoing message structure is determined from the upstream node in the flow.
+![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") A valid flow can terminate with multiple destination nodes ([event destination](../eventnodes/#event-destination) or [SQL destination](../custom/)), which can be connected from any node that is not itself a destination node.
+
+**Important:** The event destination node produces the processed events as JSON messages. The outgoing message structure is determined from the upstream node in the flow.
 
 
 ### Adding an event destination node

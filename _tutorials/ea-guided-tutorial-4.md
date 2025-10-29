@@ -17,7 +17,7 @@ When looking for patterns in an event stream, sometimes we need to examine event
 When processing events we can use filter operations to select a subset that we want to use. Filtering works on individual events in the stream.
 
 
-## Scenario : Identify suspicious orders
+## Scenario: Identify suspicious orders
 {: #scenario}
 
 Many interesting situations need us to combine multiple streams of events that correlate events across these inputs to derive a new, interesting situation.
@@ -40,7 +40,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Create a flow
+### Step 1: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -52,7 +52,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-1.png "creating a flow")
 
-### Step 2 : Provide a source of events
+### Step 2: Provide a source of events
 
 The next step is to bring the stream of events to process into the flow. We will reuse the topic connection information from an earlier tutorial.
 
@@ -78,7 +78,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
    
 
-### Step 3 : Identify large orders
+### Step 3: Identify large orders
 
 In this scenario, you suspect that people may be attempting to manipulate prices by making large orders that are later cancelled.
 
@@ -115,7 +115,7 @@ The next step is to identify the large orders.
 1. Click **Configure** to finalize the filter.
 
 
-### Step 4 : Test the flow
+### Step 4: Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -129,7 +129,7 @@ The next step is to test your event processing flow and view the results.
 
 **Tip**: Keep this page open, as you will need it again in a moment. Do the following steps in a separate browser window or tab.
 
-### Step 5 : Discover an additional source of events
+### Step 5: Discover an additional source of events
 
 For this scenario, you want to identify which of these large orders are cancelled within 30 minutes of being made.
 
@@ -155,7 +155,7 @@ The next step is to find a stream of order cancellation events to add to your fl
 
 **Tip**: Keep this page open, and use your first browser window to continue developing the event processing flow. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work.
 
-### Step 6 : Add an additional source of events to the flow
+### Step 6: Add an additional source of events to the flow
 
 The next step is to bring this additional stream of events that you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
@@ -229,7 +229,7 @@ The next step is to bring this additional stream of events that you discovered i
 
 1. Click **Configure** to finalize the event source.
 
-### Step 7 : Join the two streams
+### Step 7: Join the two streams
 
 The next step is to specify how to correlate the large orders with the cancellations.
 
@@ -273,7 +273,7 @@ The next step is to specify how to correlate the large orders with the cancellat
 
 1. Click **Configure** to finalize the join.
 
-### Step 8 : Test the flow
+### Step 8: Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -281,7 +281,7 @@ The next step is to test your event processing flow and view the results.
 
 When you have finished reviewing the results, you can stop this flow.
 
-### Step 9 : Identify small orders
+### Step 9: Identify small orders
 
 The next step is identify small orders (that we will later correlate with the cancelled large orders).
 
@@ -306,7 +306,7 @@ The next step is identify small orders (that we will later correlate with the ca
 1. Click **Configure** to finalize the filter.
 
 
-### Step 10 : Correlating small orders with cancelled large orders
+### Step 10: Correlating small orders with cancelled large orders
 
 The next step is identify small orders that occur within a short time of cancelled large orders **of the same product**.
 
@@ -343,7 +343,7 @@ The next step is identify small orders that occur within a short time of cancell
 
 1. Click **Configure** to finalize the join.
 
-### Step 11 : Test the flow
+### Step 11: Test the flow
 
 The final step is to run your event processing flow and view the results.
 
@@ -369,5 +369,5 @@ You used join nodes to combine the orders events with the corresponding cancella
 
 ## Next step
 
-In the [next tutorial](./tutorial-5), you will see how to use the results of your event processing flows by emitting them to a Kafka topic.
+In the [next tutorial](./tutorial-5), you will see how to use the results of your event processing flows by emitting them to Kafka topics.
 

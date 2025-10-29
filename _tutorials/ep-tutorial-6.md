@@ -24,7 +24,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Create a flow
+### Step 1: Create a flow
 
 This tutorial begins with the flow that was created in the [Track how many products of each type are sold per hour](../guided/tutorial-3) tutorial, which gives an hourly count of the number of units that are sold of each style.
 
@@ -39,7 +39,7 @@ Run the flow to remind yourself of the output.
 When you have finished reviewing the results, you can stop this flow.
 
 
-### Step 2 : Identify the best selling style
+### Step 2: Identify the best selling style
 
 The next step is to identify the best selling product type in each hour.
 
@@ -68,7 +68,7 @@ The next step is to identify the best selling product type in each hour.
 1. Click **Configure** to finalize the top-n.
 
 
-### Step 3 : Test the flow
+### Step 3: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

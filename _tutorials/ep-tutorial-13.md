@@ -27,7 +27,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the topic to use
+### Step 1: Discover the topic to use
 
 For this scenario, you need a source of order cancellation events.
 
@@ -57,7 +57,7 @@ For this scenario, you need a source of order cancellation events.
 
 **Tip**: Keep the {{site.data.reuse.es_name}} UI open. It is helpful to have the schema available while you start to work on your {{site.data.reuse.ep_name}} flows, as you can refer to the event information as you work. Complete the following steps in a separate browser window or tab.
 
-### Step 2 : Create a flow
+### Step 2: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -69,7 +69,7 @@ For this scenario, you need a source of order cancellation events.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-5.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-5.png "creating a flow")
 
-### Step 3 : Provide a source of events
+### Step 3: Provide a source of events
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
@@ -154,7 +154,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Test the flow
+### Step 4: Test the flow
 
 The next step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 
@@ -164,7 +164,7 @@ Use the **Run** menu, and select **Include historical** to run your filter on th
 
 Click **Stop** after you have reviewed the events.
 
-### Step 5 : Filter to events of interest
+### Step 5: Filter to events of interest
 
 The next step is to identify cancellations where the customer changed their mind.
 
@@ -195,7 +195,7 @@ The next step is to identify cancellations where the customer changed their mind
 
 1. Click **Configure** to finalize the filter.
 
-### Step 6 : Test the flow
+### Step 6: Test the flow
 
 The final step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 

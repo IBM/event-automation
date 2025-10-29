@@ -30,7 +30,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the MQ queue
+### Step 1: Discover the MQ queue
 
 Messages in this scenario will start life on an MQ queue called `COMMANDS`. Start by accessing the queue in the MQ Console.
 
@@ -58,7 +58,7 @@ Messages in this scenario will start life on an MQ queue called `COMMANDS`. Star
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example11-1.png "screenshot of the MQ Console"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example11-1.png "screenshot of the MQ Console")
 
-### Step 2 : Verify the MQ connector
+### Step 2: Verify the MQ connector
 
 The next step is to verify that MQ messages are surfaced on the Kafka topic as a stream of events.
 
@@ -104,7 +104,7 @@ The next step is to verify that MQ messages are surfaced on the Kafka topic as a
 
    The use of a [streaming queue](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=scenarios-streaming-queues) means that a copy of messages can be made available for transferring to Kafka without disrupting any existing MQ application that is getting the messages.
 
-### Step 3 : Flattening the MQ messages
+### Step 3: Flattening the MQ messages
 
 To process the messages in **{{site.data.reuse.ep_name}}**, you first need to flatten the nested JSON payloads.
 
@@ -198,7 +198,7 @@ To process the messages in **{{site.data.reuse.ep_name}}**, you first need to fl
 
 This topic is now ready for use by {{site.data.reuse.ep_name}}. Before trying that, we will add some additional transformations to see what is possible.
 
-### Step 4 : Transforming the MQ messages
+### Step 4: Transforming the MQ messages
 
 The flatten transformation that you have applied is one of a wide range of transformations available.
 
@@ -303,7 +303,7 @@ Other available transformations are described in the [Kafka Connect documentatio
 
 This is now ready for use by {{site.data.reuse.ep_name}}.
 
-### Step 5 : MQ messages as a source of events
+### Step 5: MQ messages as a source of events
 
 The next step is to create an event source in {{site.data.reuse.ep_name}} based on the source of events from the MQ queue.
 
@@ -372,7 +372,7 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
 1. Click **Configure** to finalize the event source.
 
-### Step 6 : Aggregate the events
+### Step 6: Aggregate the events
 
 1. Create an **Aggregate** node.
 
@@ -411,7 +411,7 @@ The next step is to create an event source in {{site.data.reuse.ep_name}} based 
 
 1. Click **Configure** to finalize the aggregate.
 
-### Step 7 : Test the flow
+### Step 7: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

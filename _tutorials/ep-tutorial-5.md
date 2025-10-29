@@ -12,13 +12,12 @@ order: 5
 
 The operations team needs to remove duplicate events from the stock movements topic, for processing by systems that cannot behave idempotently.
 
-You can remove duplicate events by writing your Flink SQL with [custom nodes]({{ 'ep/nodes/custom' | relative_url}}).
 
 **Tip**: To learn more about deduplication, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/table/sql/queries/deduplication/){:target="_blank"}.
 
-## Custom nodes
+## Deduplicate node
 
-You can leverage custom nodes to access advanced SQL capabilities and run complex queries. With support for the full range of Flink SQL syntax, you can configure and edit these nodes to meet your specific needs.
+You can remove duplicate events by using the [deduplicate node]({{ 'ep/nodes/processornodes#deduplicate' | relative_url}}). The deduplicate node provides a simpler, built-in way to remove duplicate events without having to write SQL yourself.
 
 ## Before you begin
 
@@ -28,13 +27,13 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.8.1
-- Event Endpoint Management 11.6.2
-- Event Processing 1.4.2
+- {{site.data.reuse.es_name}} 12.0.2
+- {{site.data.reuse.eem_name}} 11.6.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 ## Instructions
 
-### Step 1 : Discover the source topic to use
+### Step 1: Discover the source topic to use
 
 For this scenario, you are processing an existing stream of events. You will start by identifying the topic.
 
@@ -44,7 +43,7 @@ For this scenario, you are processing an existing stream of events. You will sta
 
    If you need a reminder about how to access the {{site.data.reuse.eem_name}} catalog you can review [Accessing the tutorial environment](../guided/tutorial-access#event-endpoint-management).
 
-   If there are no topics in the catalog, you may need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
+   If there are no topics in the catalog, you might need to complete the tutorial setup step to [populate the catalog](../guided/tutorial-0#populating-the-catalog).
 
 1. The `Stock movement updates` topic contains the events used in this tutorial.
 
@@ -53,7 +52,7 @@ For this scenario, you are processing an existing stream of events. You will sta
    **Tip**: Notice that the topic information describes the issue that we are addressing in this tutorial. Documenting potential issues and considerations for using topics is essential for enabling effective reuse.
 
 
-### Step 2 : Create a topic for the deduplicated events
+### Step 2: Create a topic for the deduplicated events
 
 You can configure a processing flow to write the deduplicated events to a separate topic, which you can then use as a source for systems that are unable to process idempotently.
 
@@ -65,7 +64,7 @@ The next step is to create this topic.
 
    If you need a reminder about how to access the {{site.data.reuse.es_name}} web UI, you can review [Accessing the tutorial environment](../guided/tutorial-access#event-streams).
 
-1. Create a new topic called `STOCK.MOVEMENT.UNIQUE`.
+1. Create a topic called `STOCK.MOVEMENT.UNIQUE`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-3.png "screenshot of the Event Streams topics page")
 
@@ -74,7 +73,7 @@ The next step is to create this topic.
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-4.png "screenshot of the Event Streams topics page")
 
 
-### Step 3 : Create a processing flow
+### Step 3: Create a processing flow
 
 The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects. You can now write your Flink SQL in the {{site.data.reuse.ep_name}} UI.
 
@@ -86,7 +85,7 @@ The {{site.data.reuse.ep_name}} authoring UI makes it easy to start new projects
 
 1. Create a flow, and give it a name and description to explain that you will use it to deduplicate the events on the stock movements topic.
 
-### Step 4 : Provide a source of events
+### Step 4: Provide a source of events
 
 The next step is to bring the stream of events to process into the flow.
 
@@ -106,46 +105,40 @@ The next step is to bring the stream of events to process into the flow.
 
 **Tip**: If you need a reminder about how to configure an event source node, you can follow the [Filter events based on particular properties](../guided/tutorial-1) tutorial.
 
-### Step 5 : Deduplicate events with SQL processor node
+### Step 5: Deduplicate events with deduplicate node
 
-You can use the SQL processor node to deduplicate events.
+You can use the deduplicate node to remove duplicate events that produces an append-only stream.
 
-1. Drag an SQL processor node into the canvas. You can find this in the **Custom** section of the left panel.
+1. Drag a deduplicate node into the canvas and connect the node to the `Stock movements` node. You can find this in the **Processors** section of the left panel.
 
-1. Connect the node to the `Stock movements` node and click edit to configure the node.
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5b.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5b.png "adding an event destination node")
 
-1. Enter `Keep one event per movement ID` as the node name.
+1. Hover over the deduplicate node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. In the SQL editor, add the following statement to set a name for your Flink job:
+1. In the **Details** pane, enter `Keep one event per movement ID` as the node name. Click **Next**.
 
-   ```sql
-   SET 'pipeline.name' = 'stock-movements-deduplication';
-   ```
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5c.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5c.png "adding an event destination node")
 
-1. Then, add the following SQL to define a `TEMPORARY VIEW` to keep one event per movement ID:
+1. In the **Define deduplication** pane, the `event_time` property is automatically selected because the input contains only a single event time property. This property is used to determine the order of events when identifying duplicates.
 
-   ```sql
-   CREATE TEMPORARY VIEW `Keep one event per movement ID` AS
-   SELECT
-      movementid,
-      warehouse,
-      product,
-      quantity,
-      updatetime,
-      event_time
-   FROM (
-      SELECT *,
-         ROW_NUMBER() OVER (PARTITION BY movementid ORDER BY event_time ASC) AS rownum
-      FROM
-         `Stock movements`
-   )
-   WHERE 
-      rownum = 1;
-   ```
+1. In the **Deduplication mode**, select **Fixed interval** to remove duplicates within a fixed window that starts from the first event.
 
-Your SQL code is validated and the state of the node must be valid to run the flow. After configuring the node, click **Configure** to close the editor.
+1. In the **Time interval** field, specify a time interval for deduplication. 
 
-### Step 6 : Write your events to a Kafka topic
+   For example, for a time interval of one hour, only the first event per unique key property is kept, and any duplicates are discarded. After the interval ends, the deduplication cycle starts again.
+
+1. Select the property `movementid` from the **Identify properties** table that uniquely identifies each stock movement. Click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5d.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5d.png "adding an event destination node")
+
+
+1. In the **Output properties** pane, you can choose the output properties that are useful to return.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-5e.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-5e.png "adding an event destination node")
+
+1. Click **Configure** to finalize the deduplicate.
+
+### Step 6: Write your events to a Kafka topic
 
 The results must be written to a different Kafka topic. You can use the event destination node to write your events to a Kafka topic.
 
@@ -169,96 +162,21 @@ The results must be written to a different Kafka topic. You can use the event de
 
 1. Choose the `STOCK.MOVEMENT.UNIQUE` topic created in [Step 2](#step-2--create-a-topic-for-the-deduplicated-events).
 
+1. Click **Configure** to finalize the event destination node.
 
-### Step 7 : Write changelog stream of events with SQL destination node
-
-The SQL that you [added](#step-5--deduplicate-events-with-sql-processor-node) in the SQL processor node generates a changelog stream of events and changelog streams cannot be consumed by the standard Kafka connector. You must use the Upsert Kafka connector instead. You can edit the SQL of a pre-configured event destination node by converting the node to an SQL destination node.
-
-1. After selecting the topic in the **Configure event destination** window, click **Preview SQL** to view the SQL of your event destination node. Click **Edit SQL** in the **SQL preview for event destination** window, and click **Edit SQL** again in the dialog to convert the node to an SQL destination node.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-14.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-14.png "adding an event destination node")
-
-1. Update the SQL of your node as follows:
-
-
-   - Find the `CREATE TABLE` definition for the destination topic. It will start with something like this:
-
-     ```sql
-     CREATE TABLE `Unique stock movements`
-     (
-       `movementid`                   STRING,
-       `warehouse`                    STRING,
-       `product`                      STRING,
-       `quantity`                     BIGINT,
-       `updatetime`                   TIMESTAMP(9),
-       `event_time`                   TIMESTAMP_LTZ(6)
-     )
-     ```
-
-     You need to make a few modifications to this definition to prepare it for use by your query. All of the following modifications are to this table definition.
-
-   - Modify the `event_time` to look like this:
-
-     ```sql
-     CREATE TABLE `Unique stock movements`
-     (
-        `movementid`                   STRING,
-        `warehouse`                    STRING,
-        `product`                      STRING,
-        `quantity`                     BIGINT,
-        `updatetime`                   TIMESTAMP(9),
-        `event_time`                   TIMESTAMP_LTZ(6) METADATA FROM 'timestamp'
-     )
-     ```
-
-     This will mean that messages produced to `STOCK.MOVEMENT.UNIQUE` will have the metadata timestamp from the original message, rather than a new timestamp for when the message was produced.
-
-   - Add a `PRIMARY KEY` property to the table.
-
-     ```sql
-     CREATE TABLE `Unique stock movements`
-     (
-        `movementid`                   STRING,
-        `warehouse`                    STRING,
-        `product`                      STRING,
-        `quantity`                     BIGINT,
-        `updatetime`                   TIMESTAMP(9),
-        `event_time`                   TIMESTAMP_LTZ(6) METADATA FROM 'timestamp',
-        PRIMARY KEY (`movementid`) NOT ENFORCED
-     )
-     ```
-
-   - Modify the connector name to use `upsert-kafka` (instead of append) mode.
-
-     ```sql
-     PRIMARY KEY (`movementid`) NOT ENFORCED
-     )
-     WITH (
-       'connector' = 'upsert-kafka',
-       'topic' = 'STOCK.MOVEMENT.UNIQUE',
-     ```
-
-   - Remove `'format' = 'json'` and replace it with the following:
-
-     ```sql
-     'key.format' = 'raw',
-     'value.format' = 'json',
-     ```
-
-Your SQL code is validated and the state of the node must be valid to run the flow. After configuring the node, click **Configure** to close the editor.
-
-
-### Step 8 : Test the flow
+### Step 7: Test the flow
 
 The next step is to run your event processing flow and view the deduplicated events:
 
 Use the **Run** menu, and select **Include historical** to run your flow on the history of stock movement events available on this Kafka topic.
 
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example5-19.png "results"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example5-19.png "results")
+
 A live view of results from your flow is updated as new events are emitted onto the `STOCK.MOVEMENT.UNIQUE` topic.
 
 The running flow continuously processes and deduplicates new events as they are produced to the STOCK.MOVEMENT topic.
 
-### Step 9 : Confirm the results
+### Step 9: Confirm the results
 
 You can verify the results by examining the destination topic.
 
@@ -277,8 +195,8 @@ You can verify the results by examining the destination topic.
     You can see that there is only a single event with that timestamp and contents on the destination topic, as the duplicate event was filtered out.
 
 
+You can use this new deduplicated topic as the source for an {{site.data.reuse.ep_name}} flow, or any other Kafka application.
+
 ## Recap
 
-You have created a processing flow that uses custom nodes to preprocess the events on a Kafka topic. The results are written to a different Kafka topic.
-
-You could use this second topic as the source for an {{site.data.reuse.ep_name}} flow, or any other Kafka application.
+You have created a processing flow that uses deduplicate node to preprocess the events on a Kafka topic. The results are written to a different Kafka topic.

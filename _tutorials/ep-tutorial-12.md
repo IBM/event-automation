@@ -25,7 +25,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the topics to use
+### Step 1: Discover the topics to use
 
 For this scenario, you need a source for the `Online orders` events and the `Out of stock notifications` events.
 
@@ -49,7 +49,7 @@ For this scenario, you need a source for the `Online orders` events and the `Out
 
 **Tip**: Keep this page open. It is helpful to have the catalog available while you work on your event processing flows, as it allows you to refer to the documentation about the events as you work. Complete the following steps in a separate browser window or tab.
 
-### Step 2 : Create a flow
+### Step 2: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -61,7 +61,7 @@ For this scenario, you need a source for the `Online orders` events and the `Out
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example12-3.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example12-3.png "creating a flow")
 
-### Step 3 : Provide a source of events
+### Step 3: Provide a source of events
 
 The next step is to bring the stream of events you discovered in the catalog into {{site.data.reuse.ep_name}}.
 
@@ -156,7 +156,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4 : Merge the two event streams
+### Step 4: Merge the two event streams
 
 The next step is to define a join node to merge the two event streams to identify orders with out-of-stock products.
 
@@ -207,7 +207,7 @@ The next step is to define a join node to merge the two event streams to identif
 
 1. Click **Configure** to finalize the join.
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The next step is to run your event processing flow and view the results.
 
@@ -217,7 +217,7 @@ Use the **Run** menu, and select **Include historical** to run your filter on th
 
 Verify that the orders with out-of-stock products are being correctly displayed.
 
-### Step 6 : Derive additional properties
+### Step 6: Derive additional properties
 
 After identifying orders with out-of-stock products, we need to extract the necessary information to handle these orders and notify customers who placed them.
 
@@ -262,7 +262,7 @@ The next step is to define transformations that will derive additional propertie
 
 1. Click **Configure** to finalize the transform.
 
-### Step 7 : Test the flow
+### Step 7: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

@@ -32,7 +32,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Discover the topics to use
+### Step 1: Discover the topics to use
 
 For this scenario, you need a source of order events and new customer signup events.
 
@@ -54,7 +54,7 @@ A good place to discover sources of event streams to process is in the catalog, 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the Event Endpoint Management catalog"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-1.png "screenshot of the Event Endpoint Management catalog")
 
-### Step 2 : Provide sources of events
+### Step 2: Provide sources of events
 
 The next step is to create event sources in {{site.data.reuse.ep_name}} for each of the topics to use in the flow.
 
@@ -64,7 +64,7 @@ Use the server address information and **Generate access credentials** button on
 
 **Tip**: If you need a reminder about how to create an event source node, you can follow the [Identify orders from a specific region](../guided/tutorial-1) tutorial.
 
-### Step 3 : Identify large orders
+### Step 3: Identify large orders
 
 In this scenario, you suspect that people may be attempting to manipulate prices by making multiple large orders (that are all later cancelled). The next step is to identify the large orders.
 
@@ -86,7 +86,7 @@ In this scenario, you suspect that people may be attempting to manipulate prices
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-4.png "add a filter node")
 
-### Step 4 : Identify large cancelled orders
+### Step 4: Identify large cancelled orders
 
 For this scenario, you want to identify which of these large orders are cancelled within 30 minutes of being made.
 
@@ -118,7 +118,7 @@ The next step is find large cancelled orders, by joining our "large orders" stre
 
    **Tip**: Renaming properties to explain what they mean in your joined stream makes the output easier to use. For this join, instead of having two properties that are called "event_time", naming them "order time" and "cancel time" makes the meaning clearer.
 
-### Step 5 : Test the flow
+### Step 5: Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -128,7 +128,7 @@ The next step is to test your event processing flow and view the results.
 
    **Tip**: It is good to regularly test as you develop your event processing flow to confirm that the last node you have added is doing what you expected.
 
-### Step 6 : Counting large order cancellations
+### Step 6: Counting large order cancellations
 
 The next step is to count the number of times within a 1-hour window that a large order for the same product is made and then cancelled.
 
@@ -150,7 +150,7 @@ The next step is to count the number of times within a 1-hour window that a larg
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-13.png "aggregate node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-13.png "aggregate node")
 
-### Step 7 : Identify repeated cancellations
+### Step 7: Identify repeated cancellations
 
 The next step is to filter out cancelled large orders for a product where they only occur once within a one-hour window, leaving only repeated cancelled large orders.
 
@@ -164,7 +164,7 @@ The next step is to filter out cancelled large orders for a product where they o
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-15.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-15.png "filter node")
 
-### Step 8 : Test the flow
+### Step 8: Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -172,7 +172,7 @@ The next step is to test your event processing flow and view the results.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-16.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-16.png "testing the flow")
 
-### Step 9 : Identify small orders
+### Step 9: Identify small orders
 
 The next step is to identify small orders.
 
@@ -186,7 +186,7 @@ The next step is to identify small orders.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-18.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-18.png "filter node")
 
-### Step 10 : Identify suspicious orders
+### Step 10: Identify suspicious orders
 
 The next step is to identify small orders of the same product as the repeated cancelled large orders, where they are made within a short time window of the cancelled order.
 
@@ -216,7 +216,7 @@ The next step is to identify small orders of the same product as the repeated ca
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-22.png "filter node")
 
-### Step 11 : Test the flow
+### Step 11: Test the flow
 
 Test the flow again to confirm that it is identifying orders that could be investigated.
 
@@ -224,7 +224,7 @@ Test the flow again to confirm that it is identifying orders that could be inves
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-23.png "testing the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-23.png "testing the flow")
 
-### Step 12 : Create a destination Kafka topic
+### Step 12: Create a destination Kafka topic
 
 The next step is to create a topic that you will use for the results from this flow.
 
@@ -238,7 +238,7 @@ The next step is to create a topic that you will use for the results from this f
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-24.png "destination topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-24.png "destination topic")
 
-### Step 13 : Provide a destination for results
+### Step 13: Provide a destination for results
 
 The next step is to define the event destination for your flow.
 
@@ -260,7 +260,7 @@ The next step is to define the event destination for your flow.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example4-28.png "adding an event destination node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example4-28.png "adding an event destination node")
 
-### Step 14 : Test the flow
+### Step 14: Test the flow
 
 The final step is to run the flow and confirm that the notifications about suspicious orders are produced to the new topic.
 

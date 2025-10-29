@@ -345,19 +345,35 @@ Run the [patch command](#initiate-kraft-migration) to add a controller node pool
 
 ### Initiate KRaft migration
 
-When upgrading to {{site.data.reuse.es_name}} version 11.8.x and later, the upgrade will be blocked if your instance does not include a Kafka node pool with the `controller` role. To proceed, you must define a controller-only node pool. 
+When upgrading to {{site.data.reuse.es_name}} version 11.8.x and later, the upgrade will be blocked if your instance does not include a Kafka node pool that has the `controller` role. To proceed, you must define a controller-only node pool. 
 
 It is recommended to configure a dedicated node pool for the `controller` role, separate from any broker node pools.
 
-Run the following command to add a controller node pool by copying configuration properties from the existing ZooKeeper specification. This step initiates the migration to KRaft mode.
+**Note:** After the migration to KRaft mode, you cannot change the storage type for a node pool that has the `controller` role. This is a [KRaft limitation](../../installing/configuring/#kraft-limitations) with scaling the controllers. If you want to change the storage type currently used by ZooKeeper, you must create the controller node pool with the new storage configuration when initiating the KRaft migration.
 
-```shell
-oc patch eventstreams <instance-name> -n <namespace> --type=json -p='[
-  {"op": "add", "path": "/spec/strimziOverrides/nodePools/0", "value": {"name": "controller", "roles": ["controller"]}},
-  {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/replicas", "path": "/spec/strimziOverrides/nodePools/0/replicas"},
-  {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/storage", "path": "/spec/strimziOverrides/nodePools/0/storage"}
-]'
-```
+
+To create the controller node pool, you can either reuse the existing ZooKeeper storage configuration or specify a new storage configuration. Select one of the following options based on your storage requirements:
+
+- To reuse the existing ZooKeeper storage configuration, run the following command to add a controller node pool by copying configuration properties from the existing ZooKeeper specification. This step initiates the migration to KRaft mode.
+
+  ```shell
+  oc patch eventstreams <instance-name> -n <namespace> --type=json -p='[
+    {"op": "add", "path": "/spec/strimziOverrides/nodePools/0", "value": {"name": "controller", "roles": ["controller"]}},
+    {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/replicas", "path": "/spec/strimziOverrides/nodePools/0/replicas"},
+    {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/storage", "path": "/spec/strimziOverrides/nodePools/0/storage"}
+  ]'
+  ```
+
+- To use a different storage configuration, run the following command. This step initiates the migration to KRaft mode.
+
+  ```shell
+  oc patch eventstreams <instance-name> -n <namespace> --type=json -p='[
+    {"op": "add", "path": "/spec/strimziOverrides/nodePools/0", "value": {"name": "controller", "roles": ["controller"]}},
+    {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/replicas", "path": "/spec/strimziOverrides/nodePools/0/replicas"},
+    {"op": "copy", "from": "/spec/strimziOverrides/zookeeper/storage", "path": "/spec/strimziOverrides/nodePools/0/storage"},
+   "op":"replace","path":"/spec/strimziOverrides/nodePools/0/storage/class","value":"<new-storage-class>"}
+  ]'
+  ```
 
 Additionally, if resource configurations are defined in the custom resource under the ZooKeeper component, they must be moved to the `nodePools` section for the controller node pool. Run the following command to copy the resource configurations to the controller node pool:
 
@@ -370,6 +386,7 @@ Where:
 
 - `<instance-name>` is the name of your {{site.data.reuse.es_name}} instance.
 - `<namespace>` is the namespace where the instance is installed.
+- `<new-storage-class>` is the new storage class you want to use.
 
 For guidance about setting up Kafka node pools, see [Kafka node pool configuration](../../installing/configuring/#configuring-kafka-node-pools).
 

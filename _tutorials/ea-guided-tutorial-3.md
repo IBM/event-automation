@@ -17,7 +17,7 @@ Aggregates enable you to process events over a time-window. This enables a summa
 When processing events we can modify events to create additional properties, which are derived from the event. Transforms work on individual events in the stream.
 
 
-## Scenario : Track how many products of each type are sold per hour
+## Scenario: Track how many products of each type are sold per hour
 {: #scenario}
 
 In this scenario, we identify the product that has sold the most units in each hourly window. This could be used to drive a constantly updating event streams view of "Trending Products".
@@ -36,7 +36,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 ## Instructions
 
-### Step 1 : Create a flow
+### Step 1: Create a flow
 
 1. Go to the **{{site.data.reuse.ep_name}}** home page.
 
@@ -48,7 +48,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-1.png "creating a flow")
 
-### Step 2 : Provide a source of events
+### Step 2: Provide a source of events
 
 The next step is to bring the stream of events to process into the flow. We will reuse the topic connection information from an earlier tutorial.
 
@@ -74,7 +74,7 @@ The next step is to bring the stream of events to process into the flow. We will
 
   
 
-### Step 3 : Extract product type from events
+### Step 3: Extract product type from events
 
 The product description value in the events includes several attributes of the jeans that are sold - the size, material, and style. We would like to aggregate the data based on this information. This data in the description is combined as a single string in a consistent way. This means we can extract them using regular expressions.
 
@@ -119,13 +119,13 @@ In the next step, we extract product type into a separate property so that we ca
    >
    > Each word contains similar information in each description:
    >
-   > word 1 : Size. This is made up of one-or-more uppercase letters.
+   > word 1: Size. This is made up of one-or-more uppercase letters.
    >
-   > word 2 : Material or color, made up of a mixed-case word, optionally with a hyphen.
+   > word 2: Material or color, made up of a mixed-case word, optionally with a hyphen.
    >
-   > word 3 : The type of jeans, made up of a mixed-case word, optionally with a hyphen.
+   > word 3: The type of jeans, made up of a mixed-case word, optionally with a hyphen.
    >
-   > word 4 : The text "Jeans".
+   > word 4: The text "Jeans".
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-3-6-i.png "defining the transformation")
 
@@ -164,7 +164,7 @@ In the next step, we extract product type into a separate property so that we ca
 1. Click **Configure** to finalize the transform.
 
 
-### Step 4 : Test the flow
+### Step 4: Test the flow
 
 The next step is to test your event processing flow and view the results.
 
@@ -179,7 +179,7 @@ The next step is to test your event processing flow and view the results.
 1. When you have finished reviewing the results, you can stop this flow.
 
 
-### Step 5 : Count the number of events of each type
+### Step 5: Count the number of events of each type
 
 Now that you have transformed the stream of events to include the type attribute, the next step is to total the number of items sold (using this new property).
 
@@ -219,7 +219,7 @@ Now that you have transformed the stream of events to include the type attribute
 
 1. Click **Configure** to finalize the aggregate.
 
-### Step 6 : Test the flow
+### Step 6: Test the flow
 
 The final step is to run your event processing flow and view the results.
 

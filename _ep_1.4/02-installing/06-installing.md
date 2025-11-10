@@ -783,7 +783,7 @@ To view the samples, complete the following steps:
 1. Click the **Samples** tab to view the available sample configurations.
 2. Click the **Try it** link under any of the samples to open the configuration in the **Create FlinkSessionJob** panel.
 
-More information about these samples is available in the [planning](../planning/#flink-session-job-deployments) section.
+More information about these samples is available in the [planning](../planning/#flink-session-job-samples) section.
 You can base your deployment on the sample that most closely reflects your requirements and [configure](../configuring). You can also directly edit the custom resource YAML by clicking on the editor.
 
 After modifying the sample configuration, you can export the updated document from the **Create FlinkSessionJob** panel by clicking the **Download** button and re-imported by dragging the resulting file back into the window.

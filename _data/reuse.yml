@@ -17,10 +17,10 @@ ipaas_name: "IBM webMethods Hybrid Integration"
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.es_current_version}} 
-es_current_version: "12.0.2"
+es_current_version: "12.1.0"
 
 # {{site.data.reuse.es_current_case_version}} 
-es_current_case_version: "12.0.2"
+es_current_case_version: "12.1.0"
 
 # {{site.data.reuse.eem_current_version}} 
 eem_current_version: "11.6.4"
@@ -174,7 +174,6 @@ task_openshift_select_routes: "Expand the **Networking** dropdown and select **R
 
 # {{site.data.reuse.es_cli_init_k8s}}
 es_cli_init_k8s: "Run the following command to initialize the IBM Event Streams CLI: `kubectl es init`"
-
 
 # {{site.data.reuse.es_cli_init_111}}
 es_cli_init_111: "Initialize the Event Streams CLI by following the instructions in [logging in](../../getting-started/logging-in/#logging-in-to-event-streams-cli)."

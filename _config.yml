@@ -301,11 +301,17 @@ collections:
   "es_12.0":
     output: true
     version: "12.0"
-    tag: Latest
-    latest: true
-    permalink: /es/:categories/:slug/
+    permalink: /es/:collection/:categories/:slug/
     order: 20
     product: es  
+  "es_12.1":
+    output: true
+    version: "12.1"
+    tag: "Latest"
+    latest: true
+    permalink: "/es/:categories/:slug/"
+    order: 21
+    product: "es"
   "eem_11.0":
     version: "11.0"
     output: true
@@ -804,6 +810,23 @@ defaults:
     values:
       collection: "es_12.0"
       version: "12.0"
+      product: es
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
+      mastheadNavItem: Event Streams
+      versioned: true
+      sidebar:
+        nav: "120docs"
+ # 12.1 
+  - scope:
+      path: ""
+      type: "es_12.1"
+    values:
+      collection: "es_12.1"
+      version: "12.1"
       product: es
       layout: single
       read_time: false

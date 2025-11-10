@@ -52,7 +52,7 @@ Follow these steps to rebalance a cluster by using Cruise Control:
 5. [Accept the optimization proposal](#approving-an-optimization-proposal) in the `KafkaRebalance` custom resource by annotating it.
 6. When accepted, the `KafkaRebalance` custom resource is updated to show the status `Rebalancing` in `status.conditions`. This means that Cruise Control is currently rebalancing the Kafka cluster. Check whether the `KafkaRebalance` proposal is processed.
 
-   ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.") In {{site.data.reuse.es_name}} 12.0.2 and later, you can check the rebalance progress in the `status.progress.rebalanceProgressConfigMap` property of the `KafkaRebalance` custom resource. For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-tracking-cluster-rebalance-str){:target="_blank"}.
+    ![Event Streams 12.0.2 icon]({{ 'images' | relative_url }}/12.0.2.svg "In Event Streams 12.0.2 and later.") In {{site.data.reuse.es_name}} 12.0.2 and later, you can track the progress of a rebalance by checking the information included in the `ConfigMap` that is referenced in the `status.progress.rebalanceProgressConfigMap` field of the `KafkaRebalance` custom resource. For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-tracking-cluster-rebalance-str){:target="_blank"}.
 
    In versions earlier than 12.0.2, the progress information cannot be viewed for the `Rebalancing` state. Wait for the `Rebalancing` state to be changed to `Ready` or `NotReady`.
 

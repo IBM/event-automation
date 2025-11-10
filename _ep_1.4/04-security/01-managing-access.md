@@ -81,7 +81,7 @@ You can use local authentication to define users explicitly with usernames and p
 {: #using-the-cli}
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Find the existing {{site.data.reuse.ep_name}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-processing-instance), or on other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-processing-instance).
+2. Find the existing {{site.data.reuse.ep_name}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-processing-instance), or on other [Kubernetes platforms](../../installing/installing-on-kubernetes/#installing-an-event-processing-instance).
 3. Change to the namespace where your instance is installed.
 4. Edit the custom resource for the instance as follows:
 
@@ -186,7 +186,7 @@ If your OIDC provider does not implement the Open ID Connect Discovery standard,
 When creating an OIDC client in your provider, it will ask for redirect URLs for logging in to the UI, and potentially for logging out as well. Ensure you set these URLs to the appropriate {{site.data.reuse.ep_name}} UI URLs. If you have already installed {{site.data.reuse.ep_name}}, then see step 8 in [the UI steps](#using-openshift-container-platform-ui-1) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 
 ### Using {{site.data.reuse.openshift_short}} UI
-{: #using-openshift-container-platform-ui}
+{: #using-openshift-container-platform-ui-1}
 
 1. If you do not already have one, access your OIDC provider and create a client.
 2. Retrieve the following required configuration values from your client:
@@ -291,7 +291,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    kubectl edit eventprocessing/<custom-resource-name>
    ```
    
-   Edit the `spec.authoring.authConfig` section and add the `spec.authoring.authConfig` section to include the following settings for OIDC::
+   Edit the `spec.authoring.authConfig` section and add the `spec.authoring.authConfig` section to include the following settings for OIDC:
    
    ```yaml
    apiVersion: events.ibm.com/v1beta1

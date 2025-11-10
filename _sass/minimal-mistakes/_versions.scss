@@ -3,6 +3,10 @@
   box-shadow: inset 0px -1px 0px $keyline;
   overflow: hidden;
   display: block;
+  width: 18rem; // Ensures sidebar has a consistent width
+  max-width: 100vw;
+  min-width: 0;
+  box-sizing: border-box; // Ensures padding/borders included in width
   flex-direction: column;
   display: flex;
   flex-direction: column; // flex-basis: 3.5em;
@@ -53,6 +57,7 @@
         height: 100%;
         flex-shrink: 0;
         flex-grow: 0;
+        box-sizing: border-box;
         flex-basis: $versionsHeight;
         display: flex;
         flex-direction: row;
@@ -91,6 +96,8 @@
               list-style: none;
               padding: 0;
               margin: 0;
+              width: 100%;
+              box-sizing: border-box;
               padding: 0.5rem 0.5rem 0.5rem 2rem;
               display: flex;
               flex-shrink: 0;
@@ -133,6 +140,7 @@
     font-style: italic;
     align-self: center;
     margin-left: auto;
+    flex-grow: 1;
   }
 }
 
@@ -154,6 +162,7 @@ font-style: italic;
 align-self: center;
 margin-left: auto;
 margin-right: 1rem;
+flex-grow: 1;
 }
 
 .versionPill {

@@ -110,7 +110,7 @@ Complete the following steps to download the CASE archive:
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: {{site.data.reuse.es_current_case_version}} is complete
+   Download of CASE: ibm-eventstreams, version: 12.0.2 is complete
    ```
 
 4. Verify that the CASE archive and images `.csv` files have been generated for the {{site.data.reuse.es_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.es_name}} CASE.
@@ -123,13 +123,13 @@ Complete the following steps to download the CASE archive:
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── {{site.data.reuse.es_current_case_version}}
+   │   │       └── 12.0.2
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-charts.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-images.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}.tgz
+   │   │           ├── ibm-eventstreams-12.0.2-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-12.0.2-charts.csv
+   │   │           ├── ibm-eventstreams-12.0.2-images.csv
+   │   │           ├── ibm-eventstreams-12.0.2.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror

@@ -102,15 +102,15 @@ kind: KafkaTopic
 metadata:
    name: <topic-name>
    labels:
-   eventstreams.ibm.com/cluster: <cluster-name>
-   backup.eventstreams.ibm.com/component: kafkatopic
+     eventstreams.ibm.com/cluster: <cluster-name>
+     backup.eventstreams.ibm.com/component: kafkatopic
    namespace: <namespace>
 spec:
    topicName: <topic.name.with.special_characters>
    partitions: 1
    replicas: 1
    config:
-   min.insync.replicas: '1'
+     min.insync.replicas: '1'
 ```
 
 **Note:** To create a Kafka topic with a name that is not a valid Kubernetes resource name, specify the required topic name in the `spec.topicName` property. If the `spec.topicName` field is not specified, the value of the `metadata.name` property is used as the topic name.

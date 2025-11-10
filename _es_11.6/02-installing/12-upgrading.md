@@ -387,5 +387,5 @@ For more information, see the [Strimzi documentation](https://strimzi.io/docs/op
 
 ### Verifying the upgrade
 
-After the upgrade, verify the status of {{site.data.reuse.es_name}} by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
+After the upgrade, verify the status of {{site.data.reuse.es_name}} by using the [CLI](../post-installation/#check-the-status-of-the-event-streams-instance-through-the-command-line) or the [UI](../post-installation/#check-the-status-of-the-eventstreams-instance-through-the-openshift-web-console).
 

@@ -1,0 +1,434 @@
+---
+title: "TLS Configuration"
+excerpt: "Learn about how to customize and manager the certificates and keys that secure an Event Streams cluster."
+categories: security
+slug: tls-config
+toc: true
+---
+
+{{site.data.reuse.es_name}} uses TLS to secure all endpoints for external and internal communication. This topic explains how TLS is configured by default on an {{site.data.reuse.es_name}} deployment, and how you can customize the TLS certificates that are used.
+
+## TLS configuration overview
+{: #overview}
+
+{{site.data.reuse.es_name}} uses 4 secrets to store the certificate authority (CA) certificates and keys for the cluster.
+
+ Secret Name | Description  |
+--|--
+`<instance-name>-cluster-ca` | The secret that contains the cluster CA private key. This key is used to generate the certificates presented at the Event Streams endpoints, and for internal Kafka connections. |
+`<instance-name>-cluster-ca-cert` | The secret that contains the cluster CA certificate. This certificate is used to generate the certificates presented at the Event Streams endpoints, and for internal Kafka connections. |
+`<instance-name>-clients-ca` |  The secret that contains the private key that is used to sign the Mutual TLS `KafkaUser` certificates. These keys are used by clients when they connect to Kafka over an mTLS-authenticated listener. |
+`<instance-name>-clients-ca-cert` | The secret that contains the CA certificate that is used to sign the Mutual TLS `KafkaUser` certificates. These certificates are used by clients when they connect to Kafka over an mTLS-authenticated listener. |
+
+To view the details of the certificate that is securing an endpoint, you can use the following OpenSSL command:
+
+```
+openssl s_client -connect <endpoint>:443 -servername <endpoint> -showcerts
+```
+
+### Kafka cluster listeners
+{: #listeners}
+
+If you create external [Kafka listeners](../../installing/configuring#kafka-access), then the following endpoints are created:
+
+- An endpoint for each Kafka broker. The endpoint name format is `<es instance name>-kafka-<id>`. The TLS certificates that secure these endpoints are stored in the secret `<es instance name>-kafka-brokers`.
+- A single `kafka-bootstrap` endpoint. Provide this bootstrap endpoint to your Kafka clients. The bootstrap endpoint routes to one of the Kafka broker endpoints, which supplies the client with the full list of broker endpoints.
+
+The signing certificate for all listener endpoints is `<instance-name>-cluster-ca-cert`.
+
+
+### {{site.data.reuse.es_name}} endpoints
+{: #event-streams-endpoints}
+
+{{site.data.reuse.es_name}} uses the following secrets to store the certificates that are used to secure the {{site.data.reuse.es_name}} [endpoints](../../installing/configuring#configuring-access).
+
+| Endpoint | Secret | Description |
+|----------|----------|----------|
+| `<es instance name>-ibm-es-ac-reg-external` | `<es instance name>-ibm-es-ac-reg-cert` | Apicurio Registry |
+| `<es instance name>-ibm-es-admapi-external` | `<es instance name>-ibm-es-admapi-cert` | Admin API |
+| `<es instance name>-ibm-es-recapi-external` | `<es instance name>-ibm-es-recapi-cert` | REST Producer API |
+| `<es instance name>-ibm-es-ui` | `<es instance name>-ibm-es-ui-cert` | {{site.data.reuse.es_name}} UI |
+
+**Note:** By default, on {{site.data.reuse.openshift_short}} the `<es instance name>-ibm-es-ui` route is set to `reencrypt` instead of `passthrough`, so the {{site.data.reuse.es_name}} UI does not present the `<es instance name>-ibm-es-ui-cert` certificate to users.
+
+### Internal communication between pods
+{: #inter-pod-tls}
+
+Pod-to-Pod encryption is enabled by default for all {{site.data.reuse.es_name}} pods. Unless explicitly overridden in an `EventStreams` custom resource, the configuration option `spec.security.internalTls` is set to `TLSv1.2`. If you want to disable inter-pod TLS, then set it to `NONE`.
+
+For example, the following YAML snippet disables encryption between pods:
+
+```yaml
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: EventStreams
+# ...
+spec:
+  # ...
+  security:
+    # ...
+    internalTls: NONE
+# ...
+```
+
+## Customizing endpoint certificates
+{: #custom-endpoint-certs}
+
+Define custom certificates for an endpoint in `spec.<endpoint name>.endpoints.certOverrides`, for example:
+
+```yaml
+# ...
+spec:
+  externalCACertificates:
+    secretName: <name-of-the-secret>
+  # ...
+  adminApi:
+    # ...
+    endpoints:
+      - name: routes-example
+        # ...
+        certOverrides:
+            certificate: mycert.crt
+            key: mykey.key
+            secretName: custom-endpoint-cert
+        # ...
+```
+
+Where `<name-of-the-secret>` is the name of the secret that contains the external CA certificates.
+
+
+## Using your own certificates
+{: #custom-certs-main}
+
+{{site.data.reuse.es_name}} offers the capability to provide your own CA certificates and private keys instead of using the ones that are generated by the operator. If a CA certificate and private key are provided, the listener certificate is generated automatically and signed using the CA certificate.
+
+{{site.data.reuse.es_name}} also offers the capability to provide your own certificates.
+
+**Note:** You must complete the process of providing your own certificates before installing an instance of {{site.data.reuse.es_name}}.  <!-- _DRAFT COMMENT: Not clear if this note only applies to above sentence, or also to providing own CA certs?_ -->
+
+You must provide your own X.509 certificates and keys in PEM format with the addition of a PKCS12-formatted certificate and the CA password. If you want to use a CA which is not a Root CA, you have to include the whole chain in the certificate file. Include the chain in the following order:
+
+1. The cluster or client CA
+2. One or more intermediate CAs
+3. The root CA
+
+Ensure you configure each CA in the chain as a CA with the X509v3 Basic Constraints.
+
+### Providing a CA certificate and key
+{: #provide-ca-cert-key}
+
+**Note:** In the following instructions, the CA public certificate file is denoted `CA.crt` and the CA private key is denoted `CA.key`.
+
+As {{site.data.reuse.es_name}} also serves the `truststore` in PKCS12 format, generate a `.p12` file containing the relevant CA Certificates. When generating your PKCS12 truststore, ensure that the truststore does not contain the CA private key. This is important because the `.p12` file will be available to download from the {{site.data.reuse.es_name}} UI and distributed to clients.
+
+The following is an example showing how to use the Java `keytool` utility to generate a PKCS12 truststore that does not contain a private key:
+
+```shell
+keytool -import -file <ca.pem> -keystore ca.jks
+keytool -importkeystore -srckeystore ca.jks -srcstoretype JKS -deststoretype PKCS12 -destkeystore ca.p12
+```
+
+**Note:** Using OpenSSL PKCS12 commands to generate a truststore without private keys can break the cluster, because the resulting truststore is not compatible with Java runtimes.
+
+One way to test that the truststore is compatible and contains the correct certificates is to use the following java `keytool` utility command:
+
+```shell
+keytool -list -keystore ca.p12 -storepass <keystore password>
+```
+
+The cluster and client certificates, and keys must be added to secrets in the namespace that the {{site.data.reuse.es_name}} instance is intended to be created in. The naming of the secrets and required labels must follow the conventions detailed in the following command templates.
+
+The following commands can be used to create and label the secrets for custom certificates and keys. The commands for clients secrets follow the same structure as cluster secrets, with `cluster` replaced by `clients` in the secret names.  
+
+For each command, provide the intended name and namespace for the {{site.data.reuse.es_name}} instance.
+
+**Note:** Ensure that the `CA.key` file is in PKCS8 format (starting with `-----BEGIN PRIVATE KEY-----`). Keys in PKCS1 format (starting with `-----BEGIN RSA PRIVATE KEY-----`) are not supported and might cause the {{site.data.reuse.es_name}} instance to fail during installation.
+
+- For cluster secrets, use the following commands:
+
+ ```shell
+ kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca --from-file=ca.key=CA.key
+ ```
+
+ ```shell
+ kubectl label --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+ ```
+
+ ```shell
+ kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=0
+ ```
+
+ ```shell
+ kubectl create --namespace <namespace> secret generic <instance-name>-cluster-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
+ ```
+
+ ```shell
+ kubectl label --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+ ```
+
+ ```shell
+ kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=0
+ ```
+
+- For clients secrets, use the following commands:
+
+  ```shell
+ kubectl create --namespace <namespace> secret generic <instance-name>-clients-ca --from-file=ca.key=CA.key
+ ```
+
+ ```shell
+ kubectl label --namespace <namespace> secret <instance-şname>-clients-ca eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+ ```
+
+ ```shell
+ kubectl annotate --namespace <namespace> secret <instance-name>-clients-ca eventstreams.ibm.com/ca-key-generation=0
+ ```
+
+ ```shell
+ kubectl create --namespace <namespace> secret generic <instance-name>-clients-ca-cert --from-file=ca.crt=CA.crt --from-file=ca.p12=CA.p12 --from-literal=ca.password='<CA_PASSWORD>'
+ ```
+
+ ```shell
+ kubectl label --namespace <namespace> secret <instance-name>-clients-ca-cert eventstreams.ibm.com/kind=Kafka eventstreams.ibm.com/cluster=<instance-name>
+ ```
+
+ ```shell
+ kubectl annotate --namespace <namespace> secret <instance-name>-clients-ca-cert eventstreams.ibm.com/ca-cert-generation=0
+ ```
+
+**Note:** The `eventstreams.ibm.com/ca-cert-generation` and `eventstreams.ibm.com/ca-key-generation` values identify whether certificates are being renewed or not. Only set 0 for these values if you have not installed an instance of {{site.data.reuse.es_name}} yet. For more information about when to amend these annotations, see [renewing certificates](#renew-tls).
+
+To make use of the provided secrets, {{site.data.reuse.es_name}} requires the following overrides to be added to the custom resource.
+
+```yaml
+spec:
+  # ...
+  strimziOverrides:
+    clusterCa:
+      generateCertificateAuthority: false
+
+  # And/Or
+
+    clientsCa:
+      generateCertificateAuthority: false
+```
+
+For information about configuring the renewal settings for certificates, see [renewing certificates](#renew-tls).
+
+### Providing listener certificates
+{: #provide-listener}
+
+To use TLS hostname verification with your own Kafka listener certificates, ensure you use the correct Subject Alternative Names (SANs) for each listener. The certificate SANs must specify hostnames for:
+
+ - All of the Kafka brokers in your cluster
+
+ - The Kafka cluster bootstrap service
+
+You can use wildcard certificates if they are supported by your CA.
+
+For internal listeners, the hostnames will be service names. For external listeners, the hostnames will be present in the ingress or route definitions. <!-- _DRAFT COMMENT: Are any users likely to customize certs in internal listeners_? -->
+
+
+Create a secret containing the private key and server certificate:
+
+```shell
+kubectl create secret generic my-secret --from-file=my-listener-key.key --from-file=my-listener-certificate.crt
+```
+
+To make use of the secret, {{site.data.reuse.es_name}} will require the following overrides to be added to the custom resource.
+
+```yaml
+spec:
+  # ...
+  externalCACertificates:
+    secretName: <name-of-the-secret>
+  strimziOverrides:
+    kafka:
+      listeners:
+        - name: external
+          # ...
+          configuration:
+            brokerCertChainAndKey:
+              certificate: my-listener-certificate.crt
+              key: my-listener-key.key
+              secretName: my-secret
+```
+
+Where `<name-of-the-secret>` is the name of the secret that contains the external CA certificates. <!-- _DRAFT COMMENT: So user needs to create external ca secret first, should we move below section above this one?_ -->
+
+## Providing external CA certificates
+{: #provide-external-ca}
+
+If you provide your own certificates for [Kafka listeners](../../installing/configuring#kafka-access) instead of using the ones generated by {{site.data.reuse.es_name}}, you must create a secret containing the external public certificate authority (CA) certificates that were used to sign those certificates.
+
+You can also provide your own certificates for any of the [REST component endpoints](../../installing/configuring#rest-services-access), and include the external CA certificates in the secret for those as well if you want to make them available to download in {{site.data.reuse.es_name}}.
+
+After you provide the secrets, both the {{site.data.reuse.es_name}} cluster CA certificates and the external CA certificates will be included in the PEM or PKCS12 file that you can [download by using the {{site.data.reuse.es_name}} UI or CLI](../../getting-started/connecting#securing-the-connection). This will ensure that clients can connect to any of the endpoints in the cluster regardless of whether they have overridden certificates or not.
+
+To provide the external CA certificates to the {{site.data.reuse.es_name}} cluster, you must create a secret that contains a `ca.crt` element that has all the required external public CA certificates in PEM format. If a CA chain was used to sign the overriding certificates, ensure that the full CA chain is provided in the secret. Include the chain in the following order:
+
+1. The CA that signed the Kafka listener (`brokerCertChainAndKey`) or REST endpoint certificates
+2. Any intermediate CAs
+3. The root CA
+
+The following is the format of an external CA file with a Single CA Certificate to upload to the secret:
+
+```
+-----BEGIN CERTIFICATE-----
+<certificate-data>
+-----END CERTIFICATE-----
+
+```
+
+The following is the format of an external CA file with a CA Certificate chain to upload to the secret:
+
+```
+-----BEGIN CERTIFICATE-----
+<certificate-data>
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+<certificate-data>
+-----END CERTIFICATE-----
+...
+-----BEGIN CERTIFICATE-----
+<certificate-data>
+-----END CERTIFICATE-----
+
+```
+
+1. To create the secret that contains the external CA certificate, run the following command:
+   
+   ```shell
+   kubectl create secret generic <secret-name> --from-file=ca.crt=<path to external ca certificates file>
+   ```
+
+2. After the secret is created, add the `spec.externalCACertificates.secretName` field with the name of this secret to the `EventStreams` custom resource that defines your instance.
+   
+   The following examples show the snippet of an `EventStreams` custom resource with `spec.externalCACertificates.secretName` set as `my-external-certificates`.
+   
+   - For Kafka listeners that have overridden certificates:
+     
+     ```yaml
+     spec:
+       # ...
+       externalCACertificates:
+         secretName: my-external-certificates
+       strimziOverrides:
+         kafka:
+           listeners:
+             - name: external
+               # ...
+               configuration:
+                 brokerCertChainAndKey:
+                   certificate: my-listener-certificate.crt
+                   key: my-listener-key.key
+                   secretName: my-secret
+     ```
+   
+   - For REST endpoints that have overridden certificates:
+     
+     ```yaml
+     # ...
+     spec:
+       externalCACertificates:
+         secretName: my-external-certificates
+       # ...
+       adminApi:
+         # ...
+         endpoints:
+           - name: routes-example
+             containerPort: 9080
+             type: route
+             tlsVersion: TLSv1.3
+             authenticationMechanisms:
+               - tls
+               - scram-sha-512
+             certOverrides:
+                 certificate: mycert.crt
+                 key: mykey.key
+                 secretName: custom-endpoint-cert
+             host: example-host.apps.example-domain.com
+     ```
+     
+3. Apply the custom resource and wait for the pods to reconcile. Then, you can download your custom certificates by using the {{site.data.reuse.es_name}} UI or CLI.
+
+<!-- _DRAFT COMMENT: Looks like it is only possible to have the same CA cert for listeners and REST endpoints then? Since only one spec.externalCACertificates.secretName property that covers both kafka listeners and REST endpoints._ -->
+
+## Renewing TLS certificates
+{: #renew-tls}
+
+
+### Renewing auto-generated self-signed CA certificates for existing installations
+{: #renew-autogen-certs}
+
+By default, {{site.data.reuse.es_name}} uses self-signed CA certificates. These are automatically renewed when the default `renewalDays` (default is 60 days) and `validityDays` (default is 90 days) limits are met.
+
+To set exactly when certificates are renewed, you can configure the `renewalDays` and `validityDays` values under the `spec.strimziOverrides.clusterCa` and `spec.strimziOverrides.clientsCa` properties. Validity periods are expressed as a number of days after certificate generation. For more information, see [Certificate renewal and validity periods](https://strimzi.io/docs/operators/0.48.0/deploying.html#con-certificate-renewal-str){:target="_blank"}.
+
+You can define `maintenance windows` to ensure that the renewal of certificates are done at an appropriate time. For more information, see [Maintenance time windows for rolling update](https://strimzi.io/docs/operators/0.48.0/deploying.html#con-maintenance-time-window-definition-str){:target="_blank"}.
+
+You can also use the `strimzi.io/force-renew` annotation to manually renew the certificates. This can be necessary if you need to renew the certificates for security reasons outside of the defined renewal periods and maintenance windows. For more information, see [Manually renewing CA certificates](https://strimzi.io/docs/operators/0.48.0/deploying.html#proc-renewing-ca-certs-manually-str){:target="_blank"}.
+
+**Note:** The configuration settings for renewal periods and maintenance windows, and the annotation for manual renewal only apply to auto-generated self-signed certificates. If you provided your own CA certificates and keys, you must manually renew these certificates as described in the following sections.
+
+### Renewing your own CA certificates for existing installations
+{: #renew-CA}
+
+If you provided your own CA certificates and keys, and need to renew only the CA certificate, complete the following steps. The steps provided demonstrate renewing the cluster CA certificate, but the steps are identical for renewing the clients CA certificate, with the exception of the secret name.
+
+1. Generate a new CA certificate by using the existing CA private key. The new certificate must have an identical CN name to the certificate it is replacing. Optionally, create a PKCS12 truststore with the new certificate if required.
+2. Replace the value of the `ca.crt` in the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings if required.
+3. Increment the `eventstreams.ibm.com/ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
+
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=1
+   ```
+
+   When the operator reconciles the next time, the pods roll to process the certificate renewal. <!-- _DRAFT COMMENT: Leaf certs get recreated too after doing this?_ -->
+
+### Renewing your own CA certificates and private keys for existing installations
+{: #renew-private-key}
+
+If you provided your own CA Certificates and keys, and need to renew both the CA certificate and private key, complete the following steps. The steps provided demonstrate renewing the cluster CA certificate and key, but the steps are identical for renewing the clients CA certificate, with the exception of the secret name.
+
+1. Pause the operator's reconcile loop by running the following command:
+
+   ```shell
+   kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="true" --overwrite=true
+   ```
+
+2. Generate a new certificate and key pair. Optionally, create a PKCS12 truststore with the new certificate, if required.
+3. Replace the value of the `ca.key` in the `<instance-name>-cluster-ca` secret with a base64-encoded string of the new key.
+4. Increment the `eventstreams.ibm.com/ca-key-generation` annotation value in the `<instance-name>-cluster-ca` secret. If no annotation exists, add the annotation, setting the value to `1` with the following command:
+
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca eventstreams.ibm.com/ca-key-generation=1
+   ```
+
+5. Find the expiration date and time of the previous CA certificate by using OpenSSL or other certificate tooling.
+6. Edit the `<instance-name>-cluster-ca-cert` secret. Rename the `ca.crt` element to be `ca-<expiry of ca.crt>.crt`.
+
+   This will take the format of `ca-YYYY-MM-DDTHH-MM-SSZ.crt` (for example, `ca-2022-05-24T10-20-30Z.crt`). Ensure the value of this element contains the base64-encoded string of the original CA certificate that you are renewing.
+
+7. Add element `ca.crt` to the `<instance-name>-cluster-ca-cert` secret with a base64-encoded string of the new certificate. Optionally, replace the `ca.p12` and `ca.password` values with the base64-encoded strings, if required.
+8. Increment the `eventstreams.ibm.com/ca-cert-generation` annotation value in the `<instance-name>-cluster-ca-cert` secret. If no annotation exists, add the annotation, and set the value to `1` with the following command:
+
+   ```shell
+   kubectl annotate --namespace <namespace> secret <instance-name>-cluster-ca-cert eventstreams.ibm.com/ca-cert-generation=1
+   ```
+
+9. Resume the operator's reconcile loop by running the following command:
+
+   ```shell
+   kubectl annotate Kafka <instance-name> strimzi.io/pause-reconciliation="false" --overwrite=true
+   ```
+
+   When the operator reconciles the next time, the pods roll to process the certificate renewal. The pods might roll multiple times during the renewal process.
+
+### Updating clients after certificate change
+{: #update-client-certs}
+
+If you renew the CA certificates, clients might need to update their truststore with the new certificate.
+
+To update your client settings after a certificate change, see how to [secure the connection](../../getting-started/connecting#securing-the-connection).
+
+

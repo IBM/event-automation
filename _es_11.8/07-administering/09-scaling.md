@@ -347,7 +347,7 @@ The following steps describe how to migrate broker storage without recreating yo
              class: gp3-ebs
    ```
 
-1. Apply the updated configuration to remove the old broker nodes from the cluster.
+1. Apply the updated configuration to remove the previous broker nodes from the cluster.
 
    **Note:** The corresponding `KafkaNodePool` custom resource is not automatically deleted when the node pool is removed from the `EventStreams` custom resource. Run the following command to delete it manually:
 

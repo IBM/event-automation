@@ -67,7 +67,7 @@ Complete the following steps to plan your upgrade on OpenShift.
   4. Change your Subscription to the `v1.4` channel by using [the CLI](#upgrading-subscription-by-using-the-cli) or [the web console](#upgrading-subscription-by-using-the-web-console). The channel change will upgrade your {{site.data.reuse.ep_name}} and {{site.data.reuse.ibm_flink_operator}} operators, and your {{site.data.reuse.ep_name}} and Flink instances are then also automatically upgraded.
   5. [Update the license ID](#update-license-ids) in all of your {{site.data.reuse.ep_name}} and Flink custom resources, to allow upgrade to proceed.
   6. [Restart your flows](#restart-your-flows) after the upgrade.
-  7. Optional: Implement [secure communications between your Flink components](#securing-communication-with-flink-deployments) after your components are running the new version.
+  7. Optional: Implement [secure communications between your Flink components](../planning#securing-communication-with-flink-deployments) after your components are running the new version.
 
 - If your existing Subscription is already on the v1.4 channel, your upgrade is a change to the patch level (third digit) only. [Make the catalog source for your new version available](#making-new-catalog-source-available) to upgrade to the latest level. If you installed by using the IBM Operator Catalog with the `latest` label, new versions are automatically available.
 
@@ -349,7 +349,7 @@ Where:
 ### Verifying the upgrade
 {: #verifying-the-upgrade}
 
-After the upgrade, verify the status of the {{site.data.reuse.ep_name}} and Flink instances, by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
+After the upgrade, verify the status of the {{site.data.reuse.ep_name}} and Flink instances, by using the [CLI](../post-installation/#using-the-cli) or the [UI](../post-installation#using-the-openshift-container-platform-ui).
 
 ### Update license IDs
 {: #update-license-ids}

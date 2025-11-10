@@ -12,7 +12,7 @@ order: 19
 
 As a retailer, you want to reengage customers who have abandoned products in their shopping carts. This tutorial aims to identify which product left in the cart has the highest average customer rating and then highlighting that product along with its most positive review and email IDs.
 
-To achieve this, you can use the watsonx.ai node to identify the abandoned products. 
+To achieve this, you can use the watsonx.ai node to identify the abandoned products.
 
 
 ## watsonx.ai node
@@ -25,6 +25,8 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 - The instructions in this tutorial use the [Tutorial environment](../guided/tutorial-0), which includes a selection of topics each with a live stream of events, created to allow you to explore features in {{ site.data.reuse.ea_long }}. Following the [setup instructions](../guided/tutorial-0#deploy-the-tutorial) to deploy the demo environment gives you a complete instance of {{ site.data.reuse.ea_long }} that you can use to follow this tutorial for yourself.
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
+
+  **Note:** The free plan quota for watsonx.ai is limited. Therefore, the flow used in the following tutorial is configured such as it consumes a small volume of events with watsonx.ai. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} if you want to modify the flow to consume more events with watsonx.ai.
 
     1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Freeform** tab, enter your prompt in the text area. The following prompt is used in this tutorial:
 
@@ -58,7 +60,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
   The watsonx.ai node supports public text endpoint URLs with a serving name or a deployment ID.
 
-  **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}.
+  **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}. The flow used in this tutorial is configured such that it makes only few calls to watsonx.ai and can be used with a free plan.
 
 - Create an API key by completing the following steps:
 
@@ -76,7 +78,7 @@ This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capa
 
 - {{site.data.reuse.es_name}} 12.0.1
 - {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 
 ## Instructions
@@ -100,7 +102,6 @@ You can create the topic by completing the following steps.
 1. Create the topic with **1 partition**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-1c.png "screenshot of the Event Streams topics page"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-1c.png "screenshot of the Event Streams topics page")
-
 
 
 ### Step 2: Discover the topics to use
@@ -153,7 +154,7 @@ Use the server address information and **Generate access credentials** button on
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-4a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-4a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
 
 
-### Step 5: Filter reviews for the last 48 hours
+### Step 5: Filter reviews received today
 
 1. Add a **Filter** node to the flow and it to the `Product reviews` node.
 
@@ -170,10 +171,10 @@ Use the server address information and **Generate access credentials** button on
 
    Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. Use the expression editor to define a filter that filters records where `reviewtime` is within the last 48 hours, and click **Add to expression**.
+1. Use the expression editor to define a filter that filters records where `reviewtime` is today, and click **Add to expression**.
 
    ```sql
-   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) <= 2
+   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) = 0
    ```
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
@@ -181,6 +182,7 @@ Use the server address information and **Generate access credentials** button on
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 
 1. Click **Configure** to finalize the filter.
+
 
 ### Step 6: Calculate the average rating and review count
 
@@ -196,11 +198,9 @@ The next step is to count the number of review comments and the average review r
 
    Hover over the aggregate node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-
 1. Name the aggregate node to show that it will count the number of review comments in one day: `Review comments in a day`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-6b.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-6b.png "defining the aggregation")
-
 
 1. Specify a 1-day window.
 
@@ -233,16 +233,116 @@ The next step is to count the number of review comments and the average review r
    - AVG_review_rating → Average rating
    - LISTAGG_review_comment → Reviews
    - product → Product
+   - aggregateStartTime → Start time
+   - aggregateEndTime → End time
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-6e.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-6e.png "defining the aggregation")
-
-1. Remove the `aggregateResultTime` property.
 
    **Tip**: It can be helpful to adjust the name of properties to something that will make sense to you, such as describing the `AVG_review_rating` property as `Average rating`.
 
 1. Click **Configure** to finalize the aggregate.
 
-### Step 7: Create a watsonx.ai node
+
+### Step 7: Unpack the abandoned products into events
+
+The next step is to unpack the list of products from the abandoned orders into events.
+
+To add an unpack array node, complete the following steps:
+
+For more information about how to create an unpack array node, see [unpack array node]({{ 'ep/nodes/processornodes/#adding-an-unpack-array-node' | relative_url }}).
+
+1. Add an unpack array node and link the `Abandoned orders` node to the unpack array node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+   Hover over the unpack array node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+1. In the **Node name** field, enter the name of the unpack array node as `Unpack abandoned products`, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. In the **Array selection** pane, select the **products** array, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. In the **Unpack into events** tab, enter `product` in the **Property name** field, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+   **Note:** By default, the **Unpack the array** pane displays the **Unpack into events** tab.
+
+   In the **Output properties** pane, you can see that each event has only one single return object, and there is no products array anymore.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8e.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8e.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Click **Configure** to finalize the unpack array node configuration.
+
+
+### Step 8: Identify positive reviews of abandoned products
+
+The next step is to specify how to correlate the daily product reviews with the abandoned cart products.
+
+1. Add an **Interval join** node to combine the product reviews with the abandoned products.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Give the join node a name that describes the events it should identify: `Positive reviews of abandoned products`
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Define the join by matching the `product` from `Analyze positive reviews` events with the `Product` from `Unpack abandoned products` events.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Specify that you are interested in detecting abandoned orders that are made within 1 day of the positive review, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Select the join type as `Inner join` to retrieve only the common events from the two input streams. Then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9e.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9e.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Choose the output properties that will be useful to return.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9ee.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9ee.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Click **Configure** to finalize the interval join configuration.
+
+
+### Step 9: Identify the highest rated product on each abandoned cart
+
+1. Add a **Top-n** node and link it to the join node.
+
+   Create a top-n node by dragging one onto the canvas. You can find this in the **Windowed** section of the left panel.
+
+   Click and drag from the small gray dot on the output of the filter node to the matching dot on the input of the top-n node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+   Hover over the top-n node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+1. Name the top-n node to show that it will only display two results on each time window: `Highest rated product on each cart`.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. In the **Time window** pane, ensure that the `aggregateResultTime` is selected to use for start of the time window and set to 1 hour, and then click **Next**.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. In the **Condition** pane, enter the values in the following fields, and then click **Next**:
+    - **Number of results to keep on each window**: 1
+    - **Ordered by**: `Average rating, Descending`
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Remove the following properties: `aggregateResultTime`, `Start time`, `End time`, `windowResultTime`, `windowStartTime`, `windowEndTime`, `customer . id`.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10f.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10f.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
+
+1. Click **Configure** to finalize the top-n configuration.
+
+
+### Step 10: Create a watsonx.ai node
 
 The next step is to identify products with the most positive review by using the watsonx.ai node.
 
@@ -258,20 +358,17 @@ The next step is to identify products with the most positive review by using the
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7b.png "defining the watsonx"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7b.png "defining the watsonx")
 
-
 1. Provide the API key and the public text endpoint URL for the `Positive review analysis` prompt that you [created earlier](#before-you-begin).
 
    Click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7c.png "defining the watsonx"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7c.png "defining the watsonx")
 
-
 1. In the **Map prompt variables** pane, the prompt that you [created earlier](#before-you-begin) is displayed. In the **Variable mapping** section, toggle the values for `product` and `reviews` to take input properties and select `Product` and `Reviews` respectively.
 
    Click **Next**.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7d.png "defining the watsonx"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7d.png "defining the watsonx")
-
 
 1. In the **Response properties** pane, properties returned from watsonx.ai are displayed. Add or remove the fields properties that you do not want to include further.
 
@@ -281,122 +378,9 @@ The next step is to identify products with the most positive review by using the
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7e.png "defining the watsonx"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-7e.png "defining the watsonx")
 
-
 1. You can choose the output properties that you want in the **Output properties** pane.
-
+KOKO
 1. Click **Configure** to finalize the watsonx.ai node configuration.
-
-
-### Step 8: Unpack the abandoned products into events
-
-The next step is to unpack the list of products from the abandoned orders into events.
-
-To add an unpack array node, complete the following steps:
-
-For more information about how to create an unpack array node, see [unpack array node]({{ 'ep/nodes/processornodes/#adding-an-unpack-array-node' | relative_url }}).
-
-1. Add an unpack array node and link the `Abandoned orders` node to the unpack array node.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-   Hover over the unpack array node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
-
-1. In the **Node name** field, enter the name of the unpack array node as `Unpack abandoned products`, and then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. In the **Array selection** pane, select the **products** array, and then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. In the **Unpack into events** tab, enter `product` in the **Property name** field, and then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-   **Note:** By default, the **Unpack the array** pane displays the **Unpack into events** tab.
-
-
-   In the **Output properties** pane, you can see that each event has only one single return object, and there is no products array anymore.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8e.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-8e.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Click **Configure** to finalize the unpack array node configuration.
-
-
-### Step 9: Identify positive reviews of abandoned products
-
-The next step is to specify how to correlate the daily product reviews with the abandoned cart products.
-
-1. Add an **Interval join** node to combine the product reviews with the abandoned products.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Give the join node a name that describes the events it should identify: `Positive reviews of abandoned products`
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. Define the join by matching the `product` from `Analyze positive reviews` events with the `Product` from `Unpack abandoned products` events.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Specify that you are interested in detecting abandoned orders that are made within 1 day of the positive review, and then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. Select the join type as `Inner join` to retrieve only the common events from the two input streams. Then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9e.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9e.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. Choose the output properties that will be useful to return.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9ee.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-9ee.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Click **Configure** to finalize the interval join configuration.
-
-
-### Step 10: Identify the highest rated product on each abandoned cart
-
-1. Add a **Top-n** node and link it to the join node.
-
-   Create a top-n node by dragging one onto the canvas. You can find this in the **Windowed** section of the left panel.
-
-   Click and drag from the small gray dot on the output of the filter node to the matching dot on the input of the top-n node.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10a.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10a.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-   Hover over the top-n node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
-
-1. Name the top-n node to show that it will only display two results on each time window: `Highest rated product on each cart`.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10b.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10b.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. In the **Time window** pane, ensure that the `aggregateResultTime` is selected to use for start of the time window and set to 1 day, and then click **Next**.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10c.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10c.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-1. In the **Condition** pane, enter the values in the following fields, and then click **Next**:
-    - **Number of results to keep on each window**: 1
-    - **Ordered by**: `Average rating, Descending`
-    - **Grouped by**: `cartid`
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10d.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10d.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Remove the `aggregateResultTime` property.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10f.png "Screen capture of the watsonx.ai prompt"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-19-10f.png "Screen capture of the watsonx.ai prompt"){:height="200%" width="200%"}
-
-
-1. Click **Configure** to finalize the top-n configuration.
-
-
 
 ### Step 11: Write your events to a Kafka topic
 

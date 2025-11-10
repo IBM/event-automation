@@ -26,7 +26,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
-  **Note:** The free plan quota for watsonx.ai is limited. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} to a different plan because the following tutorial consumes a large volume of events with watsonx.ai.
+  **Note:** The free plan quota for watsonx.ai is limited. Therefore, the flow used in the following tutorial is configured such as it consumes a small volume of events with watsonx.ai. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} if you want to modify the flow to consume more events with watsonx.ai.
 
   1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Freeform** tab, enter your prompt in the text area. The following prompt is used in this tutorial:
 
@@ -55,7 +55,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
     The watsonx.ai node supports public text endpoint URLs with a serving name or a deployment ID.
 
-     **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}.
+     **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}. The flow used in this tutorial is configured such that it makes only few calls to watsonx.ai and can be used with a free plan.
 
 - Create an API key by completing the following steps:
 
@@ -72,7 +72,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
 - {{site.data.reuse.eem_name}} 12.0.1
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 
 ## Instructions
@@ -202,7 +202,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4: Filter reviews for the last 48 hours
+### Step 4: Filter reviews received today
 
 1. Add a **Filter** node to the flow.
 
@@ -218,10 +218,10 @@ The next step is to bring the stream of events you discovered in the catalog int
 
    Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. Use the expression editor to define a filter that filters records where `reviewtime` is within the last 48 hours.
+1. Use the expression editor to define a filter that filters records where `reviewtime` is today.
 
    ```sql
-   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) <= 2
+   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) = 0
    ```
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
@@ -300,10 +300,10 @@ The next step is to count the number of review comments and the average review r
 
    Hover over the top-n node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. Name the top-n node to show that it will only display two results on each time window: `review results`.
+1. Name the top-n node to show that it will only display one result on each time window: `Review results`.
 
 1. In the **Time window** pane, ensure that the `reviewtime` is selected to use for start of the time window, and then click **Next**.
-1. In the **Condition** pane, set the value of **Number of results to keep on each window** to `2`.
+1. In the **Condition** pane, set the value of **Number of results to keep on each window** to `1`.
 1. In the **Ordered by** field, select **Amount of reviews** as property and **Descending** as the sort order. Click **Next**.
 1. Remove the `aggregateResultTime` property.
 1. Click **Configure** to finalize the top-n configuration.
@@ -356,10 +356,10 @@ The next step is to generate text responses by using the watsonx.ai node.
 
 The final step is to run your event processing flow and view the results.
 
-Use the **Run** menu, and select **Include historical** to view the generated summary for the review comments that received in the last 48 hours.
+Use the **Run** menu, and select **Include historical** to view the generated summary for the review comments received today.
 
 [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx.ai-output.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx.ai-output.png "running the flow")
 
 ## Recap
 
-You used a watsonx.ai node to generate summary for the review comments received in the last 48 hours.
+You used a watsonx.ai node to generate summary for the review comments received today.

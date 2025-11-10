@@ -25,7 +25,7 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
 ### Support for multiple event destination nodes
 {: #support-for-multiple-event-destination-nodes}
 
-In {{site.data.reuse.ep_name}} 1.4.5 and later, flows can terminate with multiple nodes, and results can be sent to several destination nodes ([event destination](../eventnodes/#event-destination) or [SQL destination](../custom/)). Multiple destination nodes can be connected from any node that is not itself a destination node.
+In {{site.data.reuse.ep_name}} 1.4.5 and later, flows can terminate with multiple nodes, and results can be sent to several destination nodes ([event destination](../../nodes/eventnodes/#event-destination) or [SQL destination](../../nodes/custom/)). Multiple destination nodes can be connected from any node that is not itself a destination node.
 
 ### You can view Flink watermarks for any node in your flow
 {: #view-watermarks-in-your-flow}

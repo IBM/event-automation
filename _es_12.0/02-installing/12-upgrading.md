@@ -320,7 +320,7 @@ If you are using the OpenShift command-line interface (CLI), the `oc` command, c
    oc get packagemanifest ibm-eventstreams -o=jsonpath='{.status.channels[*].name}'
    ```
 
-2. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v3.8`):
+2. Change the subscription to move to the required update channel, where `vX.Y` is the required update channel (for example, `v12.0`):
 
    ```shell
    oc patch subscription -n <namespace> ibm-eventstreams --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
@@ -460,7 +460,7 @@ cat: /opt/kafka/custom-config/metadata.state: No such file or directory
 ## Verifying the upgrade
 {: #verifying-the-upgrade}
 
-After the upgrade, verify the version and status of {{site.data.reuse.es_name}} by using the [CLI](../post-installation/#using-the-openshift-container-platform-cli) or the [UI](../post-installation/#using-the-openshift-container-platform-ui).
+After the upgrade, verify the version and status of {{site.data.reuse.es_name}} by using the [CLI](../post-installation/#check-the-status-of-the-event-streams-instance-through-the-command-line) or the [UI](../post-installation/#check-the-status-of-the-eventstreams-instance-through-the-openshift-web-console).
 
 Ensure that all Kafka clients, streaming, and Connect applications are running without errors. If any errors are detected, do not proceed with the post-upgrade tasks.
 

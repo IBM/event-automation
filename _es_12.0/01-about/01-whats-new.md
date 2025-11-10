@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 12.0.x.
 
-## Release {{site.data.reuse.es_current_version}}
+## Release 12.0.2
 {: #release-1202}
 
 ### UI support for enabling tiered storage

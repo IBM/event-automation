@@ -12,7 +12,7 @@ order: 18
  
 ## Scenario
 
-As a retailer, you want to analyze customer reviews for your product to identify trends, sentiment, and areas for improvement. You have a large dataset of reviews with timestamps, and want to find out the most positive and the most negative review received within the last 48 hours.
+As a retailer, you want to analyze customer reviews for your product to identify trends, sentiment, and areas for improvement. You have a large dataset of reviews with timestamps, and want to find out the most positive and the most negative review received today.
 
 To achieve this, you can use the watsonx.ai node.
 
@@ -28,7 +28,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 - Ensure that you have a watsonx.ai [account](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/signup-wx.html?context=wx&locale=en&audience=wdp){:target="_blank"} and complete the following steps.
 
-  **Note:** The free plan quota for watsonx.ai is limited. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} to a different plan because the following tutorial consumes a large volume of events with watsonx.ai.
+  **Note:** The free plan quota for watsonx.ai is limited. Therefore, the flow used in the following tutorial is configured such as it consumes a small volume of events with watsonx.ai. [Upgrade](https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=cpdaas#choosing-a-watsonxai-runtime-plan){:target="_blank"} if you want to modify the flow to consume more events with watsonx.ai.
 
   1. [Create](https://www.ibm.com/docs/en/watsonx/saas?topic=prompts-prompt-lab){:target="_blank"} a prompt in the Prompt Lab in watsonx.ai. In the **Structured** tab, enter your prompt in the **Instruction** field. The following prompt is used in this tutorial:
 
@@ -65,7 +65,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
     The watsonx.ai node supports public text endpoint URLs with a serving name or a deployment ID.
 
-     **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}.
+     **Note:** Deployment spaces might incur charges depending on your watsonx.ai runtime plan. For more information, see the [IBM documentation](https://www.ibm.com/docs/en/watsonx/saas?topic=runtime-watsonxai-plans){:target="_blank"}. The flow used in this tutorial is configured such that it makes only few calls to watsonx.ai and can be used with a free plan.
 
 - Create an API key by completing the following steps:
 
@@ -82,7 +82,7 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
 - {{site.data.reuse.eem_name}} 12.0.1
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.5
 
 
 ## Instructions
@@ -212,7 +212,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
 1. Click **Configure** to finalize the event source.
 
-### Step 4: Filter reviews for the last 48 hours
+### Step 4: Filter reviews received today
 
 1. Add a **Filter** node to the flow.
 
@@ -228,10 +228,10 @@ The next step is to bring the stream of events you discovered in the catalog int
 
    Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. Use the expression editor to define a filter that filters records where `reviewtime` is within the last 48 hours.
+1. Use the expression editor to define a filter that filters records where `reviewtime` is today.
 
    ```sql
-   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) <= 2
+   TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) = 0
    ```
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
@@ -292,15 +292,31 @@ The next step is to count the number of review comments and the average review r
    - aggregateStartTime → Start Time
    - aggregateEndTime → End Time
 
-1. Remove the `aggregateResultTime` property.
-
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_aggregate1_4.png "defining the aggregation"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_aggregate1_4.png "defining the aggregation")
-
    **Tip**: It can be helpful to adjust the name of properties to something that will make sense to you, such as describing the `AVG_review_rating` property as `Average rating`.
 
 1. Click **Configure** to finalize the aggregate.
 
-### Step 6: Create a watsonx.ai node
+### Step 6: Create a top-n node
+
+1. Add a **Top-n** node and link it to the aggregate node.
+
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx-top-n-node-analyze-reviews.png "defining the top-n"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx-top-n-node-analyze-reviews.png "defining the top-n")
+
+   Create a top-n node by dragging one onto the canvas. You can find this in the **Windowed** section of the left panel.
+
+   Click and drag from the small gray dot on the output of the aggregate node to the matching dot on the input of the top-n node.
+
+   Hover over the top-n node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+1. Name the top-n node to show that it will only display one result on each time window: `Review results`.
+
+1. In the **Time window** pane, ensure that the `reviewtime` is selected to use for start of the time window, and then click **Next**.
+1. In the **Condition** pane, set the value of **Number of results to keep on each window** to `1`.
+1. In the **Ordered by** field, select **Amount of reviews** as property and **Descending** as the sort order. Click **Next**.
+1. Remove the `aggregateResultTime` and `topN` properties.
+1. Click **Configure** to finalize the top-n configuration.
+
+### Step 7: Create a watsonx.ai node
 
 The next step is to generate text responses by using the watsonx.ai node.
 
@@ -346,7 +362,7 @@ The next step is to generate text responses by using the watsonx.ai node.
 
 1. Click **Configure** to finalize the watsonx.ai node configuration.
 
-### Step 7: Extract sentiment from reviews
+### Step 8: Extract sentiment from reviews
 
 The AI generated text will include the most positive and the most negative review for a product. We can extract them using regular expressions.
 
@@ -453,7 +469,7 @@ The AI generated text will include the most positive and the most negative revie
 1. Click **Configure** to finalize the transform.
 
 
-### Step 8: Test the flow
+### Step 9: Test the flow
 
 The final step is to run your event processing flow and view the results.
 
@@ -463,4 +479,4 @@ Use the **Run** menu, and select **Include historical** to view the most positiv
 
 ## Recap
 
-You used the watsonx.ai node to view the most positive and the most negative review received for your product in the last 48 hours.
+You used the watsonx.ai node to view the most positive and the most negative review received for your product today.

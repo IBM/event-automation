@@ -93,7 +93,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: {{site.data.reuse.es_current_case_version}} is complete
+   Download of CASE: ibm-eventstreams, version: 12.0.2 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -114,13 +114,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── {{site.data.reuse.es_current_case_version}}
+   │   │       └── 12.0.2
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-charts.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-images.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}.tgz
+   │   │           ├── ibm-eventstreams-12.0.2-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-12.0.2-charts.csv
+   │   │           ├── ibm-eventstreams-12.0.2-images.csv
+   │   │           ├── ibm-eventstreams-12.0.2.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror

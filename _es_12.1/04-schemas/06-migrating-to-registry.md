@@ -8,7 +8,7 @@ toc: true
 
 If you are using the Confluent Platform schema registry, {{site.data.reuse.es_name}} provides a migration path for moving your Kafka consumers and producers over to use the Apicurio Registry in {{site.data.reuse.es_name}}.
 
-**Important:** Support for the Confluent-compatible Schema Registry API version 6 is deprecated and will be removed in a future release. To ensure continued compatibility, it is recommended to update your applications to use API version 7. For more information, see [what’s new](../../about/whats-new/#deprecation-of-confluent-compatible-schema-registry-api-version-6).
+**Important:** In {{site.data.reuse.es_name}} 12.1.0 and later, support for version 6 of the Confluent-compatible Schema Registry API is removed. Ensure that you update your applications to use API version 7 or later.
 
 ## Migrating schemas to Apicurio Registry in {{site.data.reuse.es_name}}
 {: #migrating-schemas-to-apicurio-registry-in-event-streams}

@@ -2070,7 +2070,7 @@ latestdocs:
       - title: "KafkaRebalance custom resource remains in PendingProposal state"
         url: /troubleshooting/kafkarebalance-pendingproposal/
       - title: "Errors in IBM MQ connectors"
-        url: /troubleshooting/kafka-protocol-error/
+        url: /troubleshooting/mq-connector-fails/
       - title: "Sharing a topic fails when Kafka Proxy is enabled"
         url: /troubleshooting/kafka-proxy-share-failure/
       - title: "Kafka Connect plugin fails to load with Kafka Connect 4.x"

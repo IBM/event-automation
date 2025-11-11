@@ -22,6 +22,11 @@ If you are upgrading to {{site.data.reuse.es_name}} 12.1.0, ensure before the up
 
 Support for version 1 of the Apicurio Registry Core REST API is removed. Ensure that all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are using version 2 or later of the Apicurio Registry Core REST API and client libraries.
 
+### Removal of support for Confluent-compatible Schema Registry API version 6
+{: #removal-of-support-for-confluent-compatible-schema-registry-api-version-6}
+
+Support for version 6 of the Confluent-compatible Schema Registry API is removed. Ensure that all applications connecting to {{site.data.reuse.es_name}} that use the schema registry are updated to use version 7 or later of the Confluent-compatible Schema Registry API.
+
 ### Deprecation of support for Apicurio Registry Core REST API version 2
 {: #deprecation-of-support-for-apicurio-registry-core-rest-api-version-2}
 

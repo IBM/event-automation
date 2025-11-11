@@ -160,7 +160,11 @@ The Apicurio Registry is used in {{site.data.reuse.es_name}} to store message sc
 
 To connect your applications to use the [Apicurio Registry](../../schemas/overview#schema-registry), ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later.
 
-**Important:** In {{site.data.reuse.es_name}} 12.1.0 and later, support for version 2 of the Apicurio Registry Core REST API is deprecated. You can continue to use version 2 of the API with {{site.data.reuse.es_name}} 12.1.0 and earlier, but it is recommended that you:
+**Important:** 
+
+- In {{site.data.reuse.es_name}} 12.1.0 and later, support for version 6 of the Confluent-compatible Schema Registry API is removed. Ensure that you update your applications to use API version 7 or later.
+
+- In {{site.data.reuse.es_name}} 12.1.0 and later, support for version 2 of the Apicurio Registry Core REST API is deprecated. You can continue to use version 2 of the API with {{site.data.reuse.es_name}} 12.1.0 and earlier, but it is recommended that you:
 
    - Migrate to version 3 of the API to ensure continued compatibility with future releases of {{site.data.reuse.es_name}}.
    - Upgrade all client dependencies to the latest available 3.x versions.
@@ -168,7 +172,6 @@ To connect your applications to use the [Apicurio Registry](../../schemas/overvi
      For more information about Apicurio Registry server 3.1.x changes and updating client applications to version 3, see [upgrading](../upgrading/#planning-your-upgrade).  
       
      For detailed API information, see the [Apicurio Registry REST API documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/getting-started/assembly-managing-registry-artifacts-api.html){:target="_blank"}.
-
 
 
 ## {{site.data.reuse.es_name}} UI

@@ -47,7 +47,6 @@ $event-streams-primary-action: #602797;
   }
 
   .nav__list {
-    padding-bottom: 16rem;
     padding-top: 1rem;
     padding-left: 1.5rem;
     padding-right: 1rem;
@@ -211,7 +210,7 @@ $event-streams-primary-action: #602797;
   left: 0rem;
   height: 3rem;
   background: white;
-  z-index: 18;
+  z-index: 24;
   position: -webkit-sticky;
   position: sticky;
   display: none;

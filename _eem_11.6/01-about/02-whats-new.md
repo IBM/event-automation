@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.6.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.6.4
 {: #release-1164}
 
 ### Group-based event source and cluster management
@@ -41,7 +41,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.eem_name}
 ### Support for {{site.data.reuse.openshift}} 4.19
 {: #support-for-openshift-419}
 
-{{site.data.reuse.eem_name}} version 11.6.3 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.19.
+{{site.data.reuse.eem_name}} version 11.6.3 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.19.
 
 
 ### Group-based visibility to options

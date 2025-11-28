@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     {
       license: "1.2.0.0",
       products: {
-        es: ["12.1", "12.0", "11.8"],
-        eem: ["11.6"],
+        es: ["11.8", "12.0", "12.1"],
+        eem: ["11.6", "11.7"],
         ep: ["1.4"]
       }
     },
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       license: "1.1.0.0",
       products: {
         es: ["11.5", "11.6","11.7"],
-        eem: ["11.5", "11.4", "11.3"],
+        eem: ["11.3", "11.4", "11.5"],
         ep: ["1.2","1.3"]
       }
     },

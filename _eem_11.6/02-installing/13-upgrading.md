@@ -248,7 +248,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
    helm show chart ibm-helm/ibm-eem-operator
    ```
       
-   Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
+   Check the `version:` value in the output, for example: `version: 11.6.4`
 
 If the chart version for your existing deployment is 11.5.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
@@ -349,7 +349,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.6.4               
+eem-manager           Running   11.6.4              
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms

@@ -105,7 +105,7 @@ To configure your event source node, complete the following steps:
      1. Before you begin, ensure that the [prerequisites](../../installing/prerequisites#schema-registry-requirements) to connect to a schema registry are met.
      1. In the **Schema registry URL** field, enter the [URL](../../installing/prerequisites/#schema-registry-requirements) to the REST endpoint of the schema registry.
 
-         **Important:** If using an Apicurio schema registry, you must append `/apis/ccompat/v6` to the REST endpoint URL. For example, if you are using {{site.data.reuse.es_name}}, the valid schema registry URL is `https://<schema_registry_endpoint>/apis/ccompat/v6`
+         **Important:** If using an Apicurio schema registry, append `/apis/ccompat/v6` or `/apis/ccompat/v7` to the REST endpoint URL, depending on the supported version of the Confluent-compatible Schema Registry API. For example, if you are using {{site.data.reuse.es_name}} 12.1.0 and later where version 7 is supported, the valid schema registry URL is `https://<schema_registry_endpoint>/apis/ccompat/v7`. If you are using {{site.data.reuse.es_name}} 12.0.2 and earlier where version 6 is supported, the valid schema registry URL is `https://<schema_registry_endpoint>/apis/ccompat/v6`.
 
      1. In the **Authentication method** field, select **No authentication** or **Basic authentication**, which requires a username and password.
 

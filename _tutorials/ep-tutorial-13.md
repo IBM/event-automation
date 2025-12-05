@@ -22,7 +22,7 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots might differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 12.0.1
+- {{site.data.reuse.es_name}} 12.1.0
 - {{site.data.reuse.ep_name}} 1.4.4
 
 ## Instructions
@@ -126,9 +126,11 @@ The next step is to bring the stream of events you discovered in the catalog int
 
     Click the **Copy** icon in the **Schema registry endpoint** section to copy the endpoint URL to the clipboard.
 
-1. Paste the schema registry endpoint URL into the **Schema registry URL** box. Append `/apis/ccompat/v6` to the end of the URL.
+1. Paste the schema registry endpoint URL into the **Schema registry URL** box. Append `/apis/ccompat/v7` to the end of the URL.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-12.png "paste schema registry endpoint"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-12.png "paste schema registry endpoint")
+
+    **Note:** In {{site.data.reuse.es_name}} 12.1.0 and later, support of version 6 of the Apicurio Registry API is removed.
 
 1. Use the same username and password for the `kafka-demo-apps` user for accessing the schema registry.
 

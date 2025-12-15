@@ -19,7 +19,7 @@ Before you begin, review the upgrade procedure and determine the appropriate ste
 
 - Ensure that client applications use version 2 or later of the Apicurio Registry Core REST API and client libraries before starting the upgrade. Apicurio Registry server 3.1.x does not support version 1 APIs.
 
-- After migration, client applications can continue to use version 2 APIs and libraries. However, version 2 APIs are deprecated. To use the new features, [update the client applications](#Update-apicurio-client-applications-to-version-3) to use version 3 APIs and libraries.
+- After migration, client applications can continue to use version 2 APIs and libraries. However, version 2 APIs are deprecated. To use the new features, [update the client applications](#update-apicurio-client-applications-to-version-3) to use version 3 APIs and libraries.
 
 - During the upgrade, the {{site.data.reuse.es_name}} schema registry is set to **read-only** mode. Client applications that perform write operations, such as adding or updating schemas, will be unable to make changes during this time. Applications that only read schema information will continue to function normally.
 
@@ -285,8 +285,6 @@ If you are running {{site.data.reuse.es_name}} on Kubernetes platforms that supp
 
 Complete the following steps to plan your upgrade on other Kubernetes platforms.
 
-- Ensure the [Kafka metadata version](#preparing-the-operator-for-upgrade) is updated.
-
 - Determine the chart version for your existing deployment:
    
    1. Change to the namespace where your {{site.data.reuse.es_name}} instance is installed:
@@ -390,7 +388,7 @@ To verify that the {{site.data.reuse.es_name}} upgrade migrated the Apicurio Reg
 {: #post-upgrade-tasks}
 
 ### Optional: Update Apicurio client applications to version 3
-{: #Update-apicurio-client-applications-to-version-3}
+{: #update-apicurio-client-applications-to-version-3}
 
 After upgrading, you can update your client applications that use the Apicurio Registry to use the version 3 API.
 

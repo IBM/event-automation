@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 12.1.x.
 
-## Release {{site.data.reuse.es_current_version}}
+## Release 12.1.0
 
 ### Apicurio Registry server version updated to 3.1.x
 {: #apicurio-registry-server-version-updated-to-3.1.x}

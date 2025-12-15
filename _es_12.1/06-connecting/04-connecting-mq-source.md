@@ -259,12 +259,14 @@ spec:
     mq.connection.name.list: localhost(1414)
     mq.channel.name: MYSVRCONN
     mq.queue: MYQSOURCE
-    mq.user.name: alice
-    mq.password: passw0rd
+    # Securely reference credentials from mounted secret files
+    mq.user.name: ${file:/mnt/mq-credentials:username}
+    mq.password: ${file:/mnt/mq-credentials:password}
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
     mq.record.builder: com.ibm.eventstreams.connect.mqsource.builders.DefaultRecordBuilder
 ```
+**Note:** For information about securely configuring credentials by using Kubernetes secrets, see [securing connector configuration](../../setting-up-connectors/#securing-connector-configuration).
 
 Run the following command to find a list of all the possible flags:
 

@@ -106,14 +106,14 @@ spec:
           # ...
 ```
 
-## Increase the memory request or limit settings for the Kafka brokers and Kafka controller nodes
-{: #increase-the-memory-request-or-limit-settings-for-the-kafka-brokers-and-kafka-controller-nodes}
+## Increase the memory request or limit settings for the Kafka brokers
+{: #increase-the-memory-request-or-limit-settings-for-the-kafka-brokers}
 
-The memory settings for the Kafka brokers and controller nodes are defined in the `EventStreams` custom resource in the `requests` and `limits` properties under `spec.strimziOverrides.nodePools[].resources`, based on the assigned roles.
+The memory settings for the Kafka broker nodes are defined in the `EventStreams` custom resource in the `requests` and `limits` properties under `spec.strimziOverrides.nodePools[].resources`, based on the assigned roles.
 
 Alternatively, to apply the same memory settings to all Kafka nodes, you can configure them globally under `spec.strimziOverrides.kafka.resources` in the `EventStreams` custom resource. All Kafka node pools will automatically inherit these settings unless overridden at the node pool level.
 
-For example to configure a pool of Kafka brokers and controllers to have a memory request set to `4GB` and limit set to `8GB`:
+For example to configure a pool of Kafka brokers to have a memory request set to `4GB` and limit set to `8GB`:
 
 ```yaml
 apiVersion: eventstreams.ibm.com/v1beta2
@@ -128,13 +128,6 @@ spec:
     nodePools:
       - name: kafka
         role: broker
-        resources:
-          requests:
-            memory: 4096Mi
-          limits:
-            memory: 8096Mi
-      - name: controller
-        role: controller
         resources:
           requests:
             memory: 4096Mi

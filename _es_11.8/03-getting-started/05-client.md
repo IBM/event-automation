@@ -32,26 +32,31 @@ If you are using Maven or Gradle to manage your project, you can use the followi
   <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
-      <version>2.8.1</version>
+      <version>{kafka-version}</version>
   </dependency>
   <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.26</version>
+      <version>{slf4j-version}</version>
   </dependency>
   <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.7.26</version>
+      <version>{slf4j-version}</version>
   </dependency>
   ```
 
 - For Gradle, use the following snippet in the `dependencies{}` section of your `build.gradle` file:
 
   ```gradle
-  implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.8.1'
-  implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
-  implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+  implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '{kafka-version}'
+  implementation group: 'org.slf4j', name: 'slf4j-api', version: '{slf4j-version}'
+  implementation group: 'org.slf4j', name: 'slf4j-simple', version: '{slf4j-version}'
   ```
+
+  Where:
+  - `<kafka-version>` is the Kafka client version you want to use.
+  - `<slf4j-version>` is the SLF4J version that is compatible with your Kafka client version.
+    You can find supported versions in the [Apache Kafka documentation](https://kafka.apache.org/downloads){:target="_blank"} and the [SLF4J documentation](https://www.slf4j.org/download.html){:target="_blank"}.
 
 - Ensure you [set up security](../connecting/#securing-the-connection).

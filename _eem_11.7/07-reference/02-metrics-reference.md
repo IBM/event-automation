@@ -51,6 +51,6 @@ Find out more abut the OpenTelemetry metrics emitted by the {{site.data.reuse.ee
 | client_api_versions_gauge | LongGauge | Gauge that contains the API versions used per client ID for each Kafka API. |
 | consumers_msgs | LongCounter | Number of messages that clients consume through the {{site.data.reuse.egw}}. |
 | consumers_bytes | LongCounter | Number of bytes that clients consume through the {{site.data.reuse.egw}}. |
-| producers_bytes | LongCounter | Number of messages that clients produce through the {{site.data.reuse.egw}}. |
-| producers_msgs | LongCounter | Number of bytes that clients produce through the {{site.data.reuse.egw}}. |
+| producers_bytes | LongCounter | Number of bytes that clients produce through the {{site.data.reuse.egw}}. |
+| producers_msgs | LongCounter | Number of messages that clients produce through the {{site.data.reuse.egw}}. |
 | quota_delay | LongUpDownCounter | Available if the [quota enforcement control](../../about/key-concepts/#controls) is enabled. It provides the delays that are applied to ensure that quota limitations are maintained per client by using metadata attributes. |

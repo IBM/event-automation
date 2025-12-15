@@ -449,12 +449,14 @@ spec:
     mq.connection.name.list: localhost(1414)
     mq.channel.name: MYSVRCONN
     mq.queue: MYQSOURCE
-    mq.user.name: alice
-    mq.password: passw0rd
+    # Securely reference credentials from mounted secret files
+    mq.user.name: ${file:/mnt/mq-credentials:username}
+    mq.password: ${file:/mnt/mq-credentials:password}
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
     mq.record.builder: com.ibm.eventstreams.connect.mqsource.builders.DefaultRecordBuilder
 ```
+**Note:** For information about securely configuring credentials by using Kubernetes secrets, see [securing connector configuration](#securing-connector-configuration).
 
 {{site.data.reuse.es_name}} operator will populate the `status` section of the `KafkaConnector` resource. Use the following command to verify that your connector is running as expected:
 
@@ -483,6 +485,110 @@ Status:
     Observerd Generation:   1
     Tasks Max:              1
 ```
+
+## Securing connector configuration
+{: #securing-connector-configuration}
+
+When configuring connectors, you might need to include sensitive credentials such as usernames, passwords, API tokens, or client secrets. 
+
+To avoid exposing these values as plain text in your connector configuration, you can store them in a Kubernetes secret and mount the secret into the Kafka Connect container. The connector then reads the credential values securely from the mounted secret at runtime.
+
+The following example shows how a Kubernetes secret is used to provide IBM MQ credentials in the connector configuration. You can follow these steps to configure Kafka Connect and a connector to securely include usernames and passwords by using Kubernetes secrets and volume mounts.
+
+1. Create a Kubernetes secret `mq-credentials-secret.yaml` containing the credentials that the connector uses to authenticate with the target system.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: mq-credentials-secret
+     namespace: <namespace>
+   stringData:
+     username: <mq-username>
+     password: <mq-password>
+   type: Opaque
+   ```
+   Each key in the secret (`username` and `password`) becomes a file in the mounted directory inside the Kafka Connect container.
+
+2. Apply the secret by running the following command:
+
+   ```bash
+   kubectl apply -f mq-credentials-secret.yaml
+   ```
+
+3. Add the secret as a volume in the `KafkaConnect` custom resource and mount it to a directory in the container.
+
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta2
+   kind: KafkaConnect
+   metadata:
+     annotations:
+       eventstreams.ibm.com/use-connector-resources: "true"
+     name: mq-connect-cluster
+     namespace: <namespace>
+     labels:
+       backup.eventstreams.ibm.com/component: kafkaconnect
+   spec:
+     bootstrapServers: <bootstrapServers>  
+     config:
+       # Enable the DirectoryConfigProvider to read secrets from a mounted directory
+       config.providers: file
+       config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
+     authentication:
+       type: scram-sha-512
+       username: <kafka-user>
+       passwordSecret:
+         secretName: <kafka-user>
+         password: password
+     template:
+       connectContainer:
+         volumeMounts:
+           # Mount the secret as a volume in the Connect container
+           - mountPath: /mnt/mq-credentials
+             name: mq-credentials-volume
+         securityContext:
+           allowPrivilegeEscalation: false
+           privileged: false
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
+       pod:
+         volumes:
+           # Reference the Kubernetes secret
+           - name: mq-credentials-volume
+             secret:
+               secretName: mq-credentials-secret
+     tls:
+       trustedCertificates:
+         - certificate: ca.crt
+           secretName: <eventstreams-instance>-cluster-ca-cert
+   ```
+
+4. Update your `KafkaConnector` custom resource to reference the mounted files.
+
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta2
+   kind: KafkaConnector
+   metadata:
+     name: mq-source
+     namespace: <namespace>
+     labels:
+       eventstreams.ibm.com/cluster: mq-connect-cluster
+   spec:
+     class: com.ibm.eventstreams.connect.mqsource.MQSourceConnector
+     tasksMax: 1
+     config:
+       topic: mq-source-topic
+       mq.queue.manager: QM1
+       mq.connection.name.list: localhost(1414)
+       mq.channel.name: MYSVRCONN
+       mq.queue: MYQSOURCE
+       # Securely reference credentials from mounted secret files
+       mq.user.name: ${file:/mnt/mq-credentials:username}
+       mq.password: ${file:/mnt/mq-credentials:password}
+       key.converter: org.apache.kafka.connect.storage.StringConverter
+       value.converter: org.apache.kafka.connect.storage.StringConverter
+   ```
+   This configuration securely references the `username` and `password` keys from the mounted secret at `/mnt/mq-credentials`.
 
 ## Enabling topic creation for connectors
 {: #enabling-topic-creation-for-connectors}

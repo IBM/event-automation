@@ -31,7 +31,7 @@ Ensure you have the following set up for your environment:
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/about/welcome-index){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/overview/welcome-index){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
@@ -93,7 +93,7 @@ Before mirroring your images, set the environment variables for the CASE images 
    Resolving inventory items ...
    Parsing inventory items
    - Success
-   Download of CASE: ibm-eventstreams, version: {{site.data.reuse.es_current_case_version}} is complete
+   Download of CASE: ibm-eventstreams, version: 12.1.0 is complete
    ```
 
    **Note:** To download the latest version of CASE, do not specify the CASE version. For example:
@@ -114,13 +114,13 @@ Before mirroring your images, set the environment variables for the CASE images 
    ├── data
    │   ├── cases
    │   │   └── ibm-eventstreams
-   │   │       └── {{site.data.reuse.es_current_case_version}}
+   │   │       └── 12.1.0
    │   │           ├── caseDependencyMapping.csv
    │   │           ├── charts
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-airgap-metadata.yaml
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-charts.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}-images.csv
-   │   │           ├── ibm-eventstreams-{{site.data.reuse.es_current_case_version}}.tgz
+   │   │           ├── ibm-eventstreams-12.1.0-airgap-metadata.yaml
+   │   │           ├── ibm-eventstreams-12.1.0-charts.csv
+   │   │           ├── ibm-eventstreams-12.1.0-images.csv
+   │   │           ├── ibm-eventstreams-12.1.0.tgz
    │   │           └── resourceIndexes
    │   │               └── ibm-eventstreams-resourcesIndex.yaml
    │   └── mirror

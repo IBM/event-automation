@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     {
       license: "1.2.0.0",
       products: {
-        es: ["11.8", "12.0", "12.1"],
+        es: ["11.8", "12.0", "12.1", "12.2"],
         eem: ["11.6", "11.7"],
         ep: ["1.4"]
       }

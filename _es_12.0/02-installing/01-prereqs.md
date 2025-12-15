@@ -17,7 +17,7 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/about/welcome-index){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/overview/welcome-index){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}). 
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 

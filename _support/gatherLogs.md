@@ -30,7 +30,7 @@ To gather logs from an online environment:
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-2. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+2. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc#cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 3. Change directory to the `/support` folder of the cloned repository.
 4. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
@@ -104,7 +104,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
    git clone https://github.com/IBM/ibm-event-automation
    ```
 
-5. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
+5. Log in to your cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target="_blank"} or by using the `oc` [CLI](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc#cli-developer-commands){:target="_blank"} (`oc login`) on {{site.data.reuse.openshift_short}}.
 
 6. Change directory to the `/support` folder of the cloned repository.
 

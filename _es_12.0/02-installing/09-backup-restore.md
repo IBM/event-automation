@@ -42,7 +42,7 @@ Follow the instructions to back up your {{site.data.reuse.es_name}} configuratio
 Before backing up {{site.data.reuse.es_name}} resources from the cluster, pause the reconciliation of the Kafka users.  This is to avoid scenarios where the Kafka user custom resources are restored first, causing new secrets to be generated before the ones from the backup are restored. To disable the reconciliation of all Kafka users before backing up, run the following command: 
 
 ```shell
-oc annotate KafkaUser -n <namespace> --all strimzi.io/pause-reconciliation="true"
+oc annotate KafkaUser -n <namespace> --all eventstreams.ibm.com/pause-reconciliation="true"
 ```
 
 ### Applying backup labels
@@ -277,7 +277,7 @@ Follow the steps to restore your {{site.data.reuse.es_name}} configurations in a
 Enable the reconciliation of all Kafka users after restoring your {{site.data.reuse.es_name}} configurations in a new cluster by running the following command:
 
 ```shell
-oc annotate KafkaUser -n <namespace> --all strimzi.io/pause-reconciliation-
+oc annotate KafkaUser -n <namespace> --all eventstreams.ibm.com/pause-reconciliation-
 ```
 
 ## Migrating topic data

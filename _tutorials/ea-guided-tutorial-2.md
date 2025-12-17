@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.5.0
-- Event Endpoint Management 11.3.0
-- Event Processing 1.2.0
+- Event Streams 12.1.0
+- Event Endpoint Management 11.6.4
+- Event Processing 1.4.6
 
 ## Instructions
 
@@ -107,9 +107,16 @@ The final step is to run your event processing flow and view the results.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-7.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-7.png "running the flow")
 
-1. Click the redact transform node to see a live view of results from your transform. It is updated as new events are emitted onto the orders topic.
+2. Click the redact transform node to see a live view of results from your transform. It is updated as new events are emitted onto the orders topic.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-8.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-8.png "running the flow")
+
+3. The **Output Events** table supports **Single node view** and **Multi node view** modes. With the **Multi node view** mode, you can simultaneously view the results from two different nodes, making it easier to visually compare and observe the difference between two output events in parallel.
+   Click the **Multi node view** tab, then click the `Orders` node to see the output events of the two nodes.
+   
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-9.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-2-9.png "running the flow")
+
+As you can see in the previous image, the output events table is composed of two tables that display the results from the selected nodes `Redact personal info` and `Orders` respectively.
 
 ## Recap
 

@@ -71,7 +71,7 @@ config:
 
 The `config.yaml` file contains information about the nodes, tables, and their connector properties where:
 
-- `config`: Lists the names of the nodes that use [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md){:target="_blank"} connectors. In the example snippet, the `source` and `sink_1` nodes are listed.
+- `config`: Lists the names of the nodes that use [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connectors. In the example snippet, the `source` and `sink_1` nodes are listed.
 - `config.source`: Lists the tables present in the SQL generated for the `source` node. In the example snippet, there is only one table for the `source` node: `source___TABLE`
 - `config.source.source___TABLE`: Lists the connector properties of the `source___TABLE` table.
 - `config.sink_1`: Lists the tables present in the SQL generated for the `sink_1` node.  In the example snippet, there is only one table for the `sink_1` node: `sink_1` (table name is same as the node name).
@@ -97,7 +97,7 @@ See the following table for credentials and connector properties information abo
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../../nodes/eventnodes/#event-source) and [destination](../../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. The Kafka connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.4.0-1.20. |
   | **JDBC** | [Database](../../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc/#connector-options){:target="_blank"} <br> <br> **Note:** The JDBC connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.3.0-1.20. |
-  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.4.5 and later is 0.22.0. <br> <br> For {{site.data.reuse.ep_name}} versions 1.4.0 to 1.4.4, the HTTP connector version is 0.19.0. |
+  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") Due to an ongoing issue in the HTTP connector version 0.22.0, the HTTP connector version was downgraded to 0.19.0 in {{site.data.reuse.ep_name}} 1.4.6 and later. <br> <br> In {{site.data.reuse.ep_name}} version 1.4.5, the HTTP connector version is 0.22.0. <br> <br> In {{site.data.reuse.ep_name}} versions 1.4.4 to 1.4.0, the HTTP connector version is 0.19.0. <br> <br>  |
 
 
 **Important:**
@@ -256,7 +256,7 @@ For deploying jobs that use UDFs, the JAR file that contains the UDF classes nee
 
    Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target, and `<path-of-the-udf-jar>` is the path of the UDF jar, for instance `/udfproject/target/udf.jar`.
 
-3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 4. Specify this image in the `spec.image` field of the Flink custom resource.
 
@@ -360,7 +360,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Apply the modified `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/job-management/#manual-recovery).
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
 ## Enable SSL connection for your database and API server
 {: #enable-ssl-connection-for-your-database-and-api-server}

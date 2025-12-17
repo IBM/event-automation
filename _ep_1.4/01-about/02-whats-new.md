@@ -15,6 +15,71 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-146}
+
+
+### Filter node: improvements to filter assistant
+{: #filter-assistant-improvements}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, you can modify your existing expression by using the filter assistant. Open the **Filter assistant**, make your changes, and click **Update expression** to apply them. For more information, see [configuring](../../nodes/processornodes#configuring-a-filter-node) a filter node.
+
+### API enrichment node: control unenriched results
+{: #api-enrichment-unenriched-results}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, you can configure how to handle unenriched results when the API call does not return a match for the input event. For more information, see [configuring an API node](../../nodes/enrichmentnode#configuring-an-api-node).
+
+### Undo and redo actions in the canvas
+{: #undo-redo-actions}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, you can revert changes or restore actions while building or editing your event processing flows in the canvas. Use the undo and redo buttons in the toolbar, or use keyboard shortcuts.
+
+
+### Better insights into your flow
+{: #better-insights-into-your-flow}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, flow statuses are enhanced to provide more information about the current state of the flow and its underlying Flink job.
+
+### Compare output events of any two nodes in the UI
+{: #compare-output-events-in-ui}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, you can compare the output events of any two nodes while running the flow by selecting the **Multi node view** tab in the **Output events** table. For more information, see [running a flow](../../getting-started/canvas#run-flow).
+
+### Customize your output events table
+{: #customize-output-events-table}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, you can customize the **Output events** table to show or hide properties, and reorder them by clicking the **Customize columns** icon ![Customize columns icon]({{ 'images' | relative_url }}/column.svg "Customize columns icon."){: height="32px" width="32px"}. For more information, see [running a flow](../../getting-started/canvas#run-flow-enhancements).
+
+### Change in deletion behavior for Flink instances
+{: #change-in-deletion-behavior-for-flink-instances}
+
+In {{site.data.reuse.ep_name}} 1.4.6 and later, by default, Flink instances cannot be deleted while Flink jobs are running. For more information, see [uninstalling](../../installing/uninstalling#uninstalling-instances).
+
+### Apache Flink Kubernetes Operator updated to 1.13.0
+{: #apache-flink-kubernetes-operator-updated-to-1130}
+
+{{site.data.reuse.ibm_flink_operator}} version 1.4.6 includes Apache Flink Kubernetes Operator version 1.13.0.
+
+### Support for {{site.data.reuse.openshift}} 4.20
+{: #support-for-openshift-420}
+
+{{site.data.reuse.ep_name}} version 1.4.6 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.20.
+
+### Support for Kubernetes 1.33
+{: #support-for-kubernetes-133}
+
+{{site.data.reuse.ep_name}} version 1.4.6 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for Kubernetes platforms version 1.33 that support the Red Hat Universal Base Images (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-higlighting-between-differences-146}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.4.6 compared to 1.4.5 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-146}
+
+{{site.data.reuse.ep_name}} release 1.4.6 and {{site.data.reuse.ibm_flink_operator}} version 1.4.6 contain security and bug fixes.
+
+## Release 1.4.5
 {: #release-145}
 
 ### Processor node: deduplicate

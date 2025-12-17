@@ -28,9 +28,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 12.0.1
-- {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.5
+- {{site.data.reuse.es_name}} 12.1.0
+- {{site.data.reuse.eem_name}} 11.6.4
+- {{site.data.reuse.ep_name}} 1.4.6
 
 ## Instructions
 
@@ -169,17 +169,20 @@ The next step is to start processing this stream of events, by creating the filt
 
     **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the last added node by double-clicking a node within the palette. For example, after configuring an event source node, double-click any processor node to add and connect the processor node to your previously configured event source node.
 
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+
 1. Give the filter node a name that describes the events it should identify: `EMEA orders`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-15.png "naming the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-15.png "naming the filter node")
 
-    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+    Click **Next**. In the **Define filter** pane, click the **Filter assistant** to open the assistant pane.
 
 1. Use the assistant to define a filter that matches events with a `region` value of `EMEA`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16.png "defining the filter")
 
-1. Click **Add to expression**.
+    Click **Insert expression**.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-1-16-i.png "defining the filter")
 

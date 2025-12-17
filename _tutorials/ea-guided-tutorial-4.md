@@ -34,9 +34,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 12.0.1
-- {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.es_name}} 12.1.0
+- {{site.data.reuse.eem_name}} 11.6.4
+- {{site.data.reuse.ep_name}} 1.4.6
 
 ## Instructions
 
@@ -92,13 +92,17 @@ The next step is to identify the large orders.
 
    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
+   Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+
 1. Give the filter node a name that describes the results: `Large orders`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-5.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-4-5.png "defining the filter")
 
-   Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
 
-1. Create a filter that selects orders for more than `5` items.
+    Click **Next**. In the **Define filter** pane, click the **Filter assistant** to open the assistant pane.
+
+1. Create an expression that selects orders for more than `5` items.
 
    ```sql
    `quantity` > 5
@@ -108,7 +112,7 @@ The next step is to identify the large orders.
 
    **Tip**: You don't need to use the assistant if you know the expression you would like. You can type the expression in directly, and use the auto-complete and syntax-checking to make sure you enter it correctly.
 
-1. Click **Add to expression**.
+   Click **Insert expression**.
 
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 

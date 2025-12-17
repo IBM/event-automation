@@ -221,9 +221,11 @@ To configure an API node, complete the following steps:
 
    {{site.data.reuse.ep_treeview_note}}
 
-1. To configure the **Required Inputs**, select an event property or enter a constant value. You can also select and configure input parameters from the **Optional Inputs** list.
+1. ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In {{site.data.reuse.ep_name}} 1.4.6 and later, you can configure how to handle unenriched results when the API call does not return a match for the input event. By default, the **Include unenriched events** toggle is set to **On**. When turned on, events without matching API results are included in the output with `null` values for the API response properties. To exclude events that do not have matching API results from the output, set the toggle to **Off**.
 
-   **Important:** Ensure that all the parameters in the **Required Inputs** are configured.
+1. To configure the **Required inputs**, select an event property or enter a constant value. You can also select and configure input parameters from the **Optional inputs** list.
+
+   **Important:** Ensure that all the parameters in the **Required inputs** are configured.
 
    **Notes:**
    - The dropdown for selecting event properties automatically filters properties for an SQL type that is compatible with the API parameter type.

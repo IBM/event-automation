@@ -90,7 +90,7 @@ To configure your event source node, complete the following steps:
 
      **Note:** If you manually modified the detected format, you can click the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"} to attempt to detect the format of the topic again.
 
-   - **Message format is undetected:** {{site.data.reuse.ep_name}} does not detect the message format if no message is available in the selected topic. In such cases, you can select the message format from the **Message format** drop-down.
+   - **Message format is undetected:** {{site.data.reuse.ep_name}} cannot detect the message format if the selected topic has no message or if the message is invalid. In such cases, you can select the message format from the **Message format** drop-down.
 
       **Note:** If messages are produced to the topic after the format is undetected, you can attempt to detect the message format by clicking the **Detect message format** icon ![reset button]({{ 'images' | relative_url }}/rotate--360.svg "Icon showing reset button."){:height="30px" width="15px"} after adding new messages to the topic.
 

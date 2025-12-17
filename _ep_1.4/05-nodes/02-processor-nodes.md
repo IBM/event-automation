@@ -40,7 +40,9 @@ To configure a filter node, complete the following steps:
 1. Click **Next** to open the **Define Filter** pane.
 
    {{site.data.reuse.ep_treeview_note}} 
-1. Enter an expression in the **Filter Expression** field to filter the events. The expression consists of a property, a mathematical condition, and a value. Depending on your requirements, you can create a simple expression with one condition or a complex expression with multiple conditions. For complex expressions, you can add multiple conditions within an expression by using `AND` or `OR`.
+1. Enter an expression in the **Filter Expression** field to filter the events and click **Insert expression**.
+
+   The expression consists of a property, a mathematical condition, and a value. Depending on your requirements, you can create a simple expression with one condition or a complex expression with multiple conditions. For complex expressions, you can add multiple conditions within an expression by using `AND` or `OR`.
 
    Alternatively, you can use the assistant to create an expression. Select **Assistant** at the right end of the **Filter Expression** field to open the assistant. The assistant provides a drop-down list of properties and conditions that you can use to create the expression.
 
@@ -89,6 +91,10 @@ To configure a filter node, complete the following steps:
 
 
    {{site.data.reuse.array_expression_note}}
+
+   ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In {{site.data.reuse.ep_name}} 1.4.6 and later, you can update your existing expression in the filter assistant. Open the **Filter assistant**, make your changes, and click **Update expression** to apply them.
+
+   **Note:** Expressions manually edited in the **Filter expression** field must be cleared before you use the assistant again.
 
 1. ![Event Processing 1.4.4 icon]({{ 'images' | relative_url }}/1.4.4.svg "In Event Processing 1.4.4 and later.") Click **Next** to open the **Output properties** pane. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
 
@@ -400,6 +406,8 @@ To configure the detect patterns node, complete the following steps:
        - But, then there is a cancellation.
        - This time, the cancellation is ignored because `... followed by >=2 orders` allows other events to occur before the two orders.
        - The pattern is then matched by the final two orders.
+
+1. ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In the **Event time property to detect patterns** drop-down list, select the property of the event that corresponds to an event time. If there is only one input stream and a single event time property, the event time property is automatically selected by default.
 
 1. In the **Time window duration** field, set the value and the unit for the pattern time interval. The interval is measured relative to event time, an interval of one hour means that a pattern will match if the event time property of the last event in the pattern is within an hour of the event time for the first event.
 

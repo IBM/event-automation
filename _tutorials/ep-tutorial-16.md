@@ -26,8 +26,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.eem_name}} 11.6.4
+- {{site.data.reuse.ep_name}} 1.4.6
 
 ## Instructions
 
@@ -168,7 +168,6 @@ Currently, all transaction states are consolidated into a single `transactions` 
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-15.png "Creating an event source node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-15.png "Creating a filter for transactions in processing state")
 
-
 1. Add another **Filter** node for the `COMPLETED` state and link it to the `transactions` event.
 
    Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node. 
@@ -208,6 +207,8 @@ To detect failed transactions, use the detect patterns node as follows.
    Condition: Not followed by
    Event: transaction_completed, occurrence: 1
    ```
+
+   For the **Event time property to detect patterns**, select `transactions_started (timestamp)` as the event time property for pattern detection.
 
    For the **Time window duration**, select `7 minutes`.
 

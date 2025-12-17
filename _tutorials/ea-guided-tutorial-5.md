@@ -26,9 +26,9 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 12.0.0
-- Event Endpoint Management 11.6.3
-- Event Processing 1.4.5
+- Event Streams 12.1.0
+- Event Endpoint Management 11.6.4
+- Event Processing 1.4.6
 
 ## Instructions
 
@@ -124,13 +124,13 @@ The next step is to create the filter that will select the subset of larger EMEA
 
     **Did you know?** Instead of dragging the node, you can add a node onto the canvas and automatically connect it to the selected node by double-clicking a node within the palette.
 
+    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
 1. Give the filter node a name that describes the events it should identify: `EMEA large orders`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-filter-large-2.png "naming the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-filter-large-2.png "naming the filter node")
 
-    Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
-
-1. Enter the following expression to filter the orders with a total amount larger than 300:
+1. Enter the following expression to filter the orders with a total amount larger than 300 and click **Next**:
 
    ```shell
    `price` * `quantity` >= 300

@@ -11,6 +11,16 @@ Find out how to remove your {{site.data.reuse.ep_name}} and related Flink deploy
 ## Uninstalling instances
 {: #uninstalling-instances}
 
+**Important:** ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In versions 1.4.6 and later, by default, you cannot delete a Flink instance if you are running Flink jobs. Either stop all the running Flink jobs, or set the [kubernetes.operator.session.block-on-unmanaged-jobs](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/operations/configuration/#resourceuser-configuration){:target="_blank"} field in the `FlinkDeployment` custom resource to `false` before you delete a Flink instance:
+
+```yaml
+spec:
+  flinkConfiguration:
+    kubernetes.operator.session.block-on-unmanaged-jobs: 'false'
+```
+
+<!-- Draft comment: Should we add a troubleshooting as well? -->
+
 ### By using the OpenShift web console
 {: #by-using-the-openshift-web-console}
 
@@ -163,6 +173,8 @@ Delete remaining PVs:
 ### By using the OpenShift web console
 {: #by-using-the-openshift-web-console}
 
+**Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**.
+
 To delete the {{site.data.reuse.ibm_flink_operator}}:
 
 1. {{site.data.reuse.openshift_ui_login}}
@@ -176,6 +188,7 @@ To delete the {{site.data.reuse.ep_name}} operator:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
+
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
 4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.ep_name}} operator to be deleted to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
@@ -240,6 +253,9 @@ To delete a certificate manager operator by using the OpenShift web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** and click **Installed Operators**.
+
+   **Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**.
+
 3. In the **Project** dropdown select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
 4. Find the certificate manager that you want to delete, and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.

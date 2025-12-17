@@ -97,7 +97,7 @@ Follow the instructions to install the {{site.data.reuse.ibm_flink_operator}} an
 **Important:**
 
 * The {{site.data.reuse.ibm_flink_operator}} must not be installed on a cluster where you already have an Apache Flink operator installed. This is because the {{site.data.reuse.ibm_flink_operator}} leverages the Apache Flink `CustomResourceDefinition` (CRD) resources. These resources cannot be managed by more than one operator at the same time (for more information, see the [Operator Framework documentation](https://sdk.operatorframework.io/docs/best-practices/best-practices/#summary){:target="_blank"}).
-* Before installing the {{site.data.reuse.ibm_flink_operator}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+* Before installing the {{site.data.reuse.ibm_flink_operator}} on a cluster where the Apache Flink operator is already installed, uninstall the Apache Flink operator and the Apache Flink CRDs as described in the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
 * Only one version of the {{site.data.reuse.ibm_flink_operator}} must be installed on a cluster. Installing multiple versions is not supported due to potential conflicts between different versions of the `CustomResourceDefinition` resources.
 * Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
 
@@ -256,7 +256,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 To deploy a Flink instance, run the following commands:
 
 1. Prepare a `FlinkDeployment` custom resource in a YAML file, using the information provided in
-   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
+   [FlinkDeployment Reference](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
 
    **Notes:** 
  

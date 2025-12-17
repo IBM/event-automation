@@ -22,7 +22,7 @@ The following sections provide instructions about installing {{site.data.reuse.e
 ## Create a project (namespace)
 {: #create-a-project-namespace}
 
-Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/building_applications/projects#working-with-projects){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.ep_name}}. This is required because {{site.data.reuse.ep_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
@@ -112,7 +112,7 @@ Before you can install the latest operators and use them to create instances of 
 
 If you have other IBM products that are installed in your cluster, then you might already have the IBM Operator Catalog available. If it is configured for automatic updates as described in the following section, it already contains the required operators, and you can skip the deployment of the IBM Operator Catalog.
 
-If you are installing the {{site.data.reuse.ibm_flink_operator}} or the {{site.data.reuse.ep_name}} operator as the first IBM operator in your cluster, to make the operators available in the OpenShift OperatorHub catalog, create the following YAML file and apply it as follows.
+If you are installing the {{site.data.reuse.ibm_flink_operator}} or the {{site.data.reuse.ep_name}} operator as the first IBM operator in your cluster, to make the operators available in the OpenShift software catalog, create the following YAML file and apply it as follows.
 
 To add the IBM Operator Catalog:
 
@@ -158,7 +158,7 @@ Alternatively, you can add the catalog source through the OpenShift web console 
 2. Paste the IBM Operator Catalog source YAML in the YAML editor. You can also drag-and-drop the YAML files into the editor.
 3. Select **Create**.
 
-This adds the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} to the OperatorHub catalog, making these operators available to install.
+This adds the catalog source for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}} to the software catalog, making these operators available to install.
 
 ### Adding specific versions
 {: #adding-specific-versions}
@@ -171,7 +171,7 @@ Before you can install the required operator versions and use them to create ins
 
 1. Before you begin, ensure that you have the following set up for your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After installing the plug-in, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
@@ -261,7 +261,7 @@ This adds the catalog source for the {{site.data.reuse.ibm_flink_operator}} and 
 - {{site.data.reuse.ibm_flink_operator}}
 - {{site.data.reuse.ep_name}}
 
-**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [OperatorHub catalog](#adding-latest-versions). OperatorHub updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
+**Important:** To install the operators by using the OpenShift web console, you must add the operators to the [Software catalog](#adding-latest-versions). The software catalog updates your operators automatically when a latest version is available. This might not be suitable for some production environments. For production environments that require manual updates and version control, [add specific versions](#adding-specific-versions), and then install the [{{site.data.reuse.ibm_flink_operator}}](#installing-the-ibm-operator-for-apache-flink-by-using-the-command-line) and the [{{site.data.reuse.ep_name}}](#installing-the-event-processing-operator-by-using-the-command-line) operator by using the CLI.
 
 ### Installing the {{site.data.reuse.ibm_flink_operator}}
 {: #installing-the-ibm-operator-for-apache-flink}
@@ -278,7 +278,7 @@ including resource requirements and, if installing in **any namespace**, the req
 - Before installing {{site.data.reuse.ibm_flink_operator}} on a cluster where Apache Flink operator is already installed, to avoid
   possible conflicts due to different versions, fully uninstall the Apache Flink operator, including the deletion of
   the Apache Flink CRDs as described in the
-  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
+  [Apache Flink operator documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}.
 - Only one version of {{site.data.reuse.ibm_flink_operator}} should be installed in a cluster. Installing multiple versions
   is not supported, due to the possible conflicts between versions of the `CustomResourceDefinition` resources.
 - Before you install the {{site.data.reuse.ibm_flink_operator}}, ensure that you have [created truststores and keystores](../configuring/) that are required to secure communication with Flink deployments.
@@ -292,6 +292,8 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Operators** dropdown and select **OperatorHub** to open the **OperatorHub** dashboard.
+
+   **Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**, and the **OperatorHub** is called **Software Catalog**.
 3. Select the project that you want to deploy the {{site.data.reuse.ep_name}} instance in.
 4. In the **All Items** search box, enter `{{site.data.reuse.ibm_flink_operator}}` to locate the operator title.
 5. Click the **{{site.data.reuse.ibm_flink_operator}}** tile to open the install side panel.
@@ -421,6 +423,8 @@ To install the operator by using the {{site.data.reuse.openshift_short}} web con
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand the **Operators** dropdown and select **OperatorHub** to open the **OperatorHub** dashboard.
+
+   **Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**, and the **OperatorHub** is called **Software Catalog**.
 3. Select the project that you want to deploy the {{site.data.reuse.ep_name}} instance in.
 4. In the **All Items** search box, enter `Event Processing` to locate the operator title.
 5. Click the **Event Processing** tile to open the install side panel.
@@ -683,7 +687,7 @@ A number of sample configuration files are available in [GitHub](https://ibm.biz
 
 To deploy a Flink instance, run the following commands:
 
-1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
+1. Prepare a `FlinkDeployment` custom resource in a YAML file by using the information provided in [Apache Flink documentation](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/custom-resource/reference/#flinkdeployment){:target="_blank"}.
 
    **Note:** Do not include the fields `spec.image` and `spec.flinkVersion`, as they are automatically included by {{site.data.reuse.ibm_flink_operator}}. 
 

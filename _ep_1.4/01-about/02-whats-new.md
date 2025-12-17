@@ -40,6 +40,7 @@ In {{site.data.reuse.ep_name}} 1.4.6 and later, you can revert changes or restor
 In {{site.data.reuse.ep_name}} 1.4.6 and later, flow statuses are enhanced to provide more information about the current state of the flow and its underlying Flink job.
 
 ### Compare output events of any two nodes in the UI
+{: #compare-output-events-in-ui}
 
 In {{site.data.reuse.ep_name}} 1.4.6 and later, you can compare the output events of any two nodes while running the flow by selecting the **Multi node view** tab in the **Output events** table. For more information, see [running a flow](../../getting-started/canvas#run-flow).
 

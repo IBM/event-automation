@@ -81,8 +81,8 @@ With the watsonx.ai node, you can create AI-generated text responses from a depl
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 12.0.1
-- {{site.data.reuse.ep_name}} 1.4.5
+- {{site.data.reuse.eem_name}} 12.1.0
+- {{site.data.reuse.ep_name}} 1.4.6
 
 
 ## Instructions
@@ -222,13 +222,16 @@ The next step is to bring the stream of events you discovered in the catalog int
 
    Click and drag from the small gray dot on the event source to the matching dot on the filter node.
 
+   Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+
 1. Give the filter node a name that describes the results: `Filtered reviews`.
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1.png "defining the filter")
 
-   Hover over the filter node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+   Click **Next**. In the **Define filter** pane, click the **Filter assistant** to open the assistant pane.
 
-1. Use the expression editor to define a filter that filters records where `reviewtime` is today.
+1. Define a filter expression that filters records where `reviewtime` is today.
 
    ```sql
    TIMESTAMPDIFF(DAY, reviewtime, CURRENT_TIMESTAMP) = 0
@@ -236,7 +239,7 @@ The next step is to bring the stream of events you discovered in the catalog int
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx_filter1_2.png "defining the filter")
 
-1. Click **Add to expression**.
+   Click **Insert expression**.
 
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 

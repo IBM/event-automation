@@ -17,8 +17,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -112,12 +112,12 @@ The {{site.data.reuse.ibm_flink_operator}} has the following minimum resource re
 
 You can only install one version of the {{site.data.reuse.ibm_flink_operator}} on a cluster. Installing multiple versions on a single cluster is not supported.
 
-You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
+You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that already has the open-source Apache Flink operator installed. If the Apache Flink operator is already installed, ensure you uninstall it first, including the [removal of related Custom Resource Definitions (CRDs)](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/development/guide/#generating-and-upgrading-the-crd){:target="_blank"}, and then install the {{site.data.reuse.ibm_flink_operator}}.
 
 ## Red Hat OpenShift Security context constraints
 {: #red-hat-openshift-security-context-constraints}
 
-{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
+{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -171,7 +171,7 @@ The Flink instances deployed by {{site.data.reuse.ibm_flink_operator}} store the
 
 Apache Flink requires the use of a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
 - `volumeMode`: `Filesystem`. See [Volume Mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode){:target="_blank"}.
-- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
+- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
 
 
 For example, you can use Rook Ceph for your storage.
@@ -226,7 +226,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install){:target="_blank"}.
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 

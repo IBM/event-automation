@@ -93,11 +93,15 @@ The **Configure filter** window is displayed.
 
 1. Now, you need to configure the filter that defines the events that you are interested in. To do this, in the **Details** section, provide a name for the filter node.
 1. Click **Next**. The **Define filter** section is displayed.
-1. Use the **Assistant** to define a filter with your requirements by updating the **Property to filter on**, **Condition**, and **Value** fields.
+1. ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") Click the **Filter assistant** to open the **Filter assistant** pane. Define a filter with your requirements by updating the **Property**, **Condition**, and **Value** fields.
 
    ![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2.png "Image to show the clothing company using the assistant to define a filter")
 
-1. Click **Add to expression**.
+   ![Defining a filter]({{ 'images' | relative_url }}/ep-lab1-filter-2a.png "Image to show the clothing company using the assistant to define a filter")
+
+   In {{site.data.reuse.ep_name}} 1.4.5 and earlier, click **Assistant** and define a filter with your requirements by updating the **Property to filter on**, **Condition**, and **Value** fields.
+
+1. Click **Insert expression**.
 1. ![Event Processing 1.4.4 icon]({{ 'images' | relative_url }}/1.4.4.svg "In Event Processing 1.4.4 and later.") Click **Next** to open the **Output properties** pane. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
 
    ![Output properties of a filter]({{ 'images' | relative_url }}/ep-lab1-filter-3.png "Image to show the clothing company using the assistant to define a filter")
@@ -141,20 +145,52 @@ In {{site.data.reuse.ep_name}} 1.4.5 and later, you can also hide the number of 
 
 **Note:** If you leave the page without stopping the flow by navigating to the home page or by closing the browser tab, when you return to the flow, the number of events, watermarks, and the output events are those that occur after you returned to the flow.
 
+
+![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In {{site.data.reuse.ep_name}} 1.4.6 and later, the following customization features are available for the **Output events** table:
+{: #run-flow-enhancements}
+
+- You can compare the output events of any two nodes while running the flow. After you run the flow, select the **Multi node view** tab in the **Output events** table, and select any two nodes that you want to compare. This tab displays the output events of the two nodes side-by-side. For example, you can compare the output events of the `Orders` node and the `EMEA orders` node.
+- You can show or hide properties, and reorder them by clicking the **Customize columns** icon ![Customize columns icon]({{ 'images' | relative_url }}/column.svg "Customize columns icon."){: height="32px" width="32px"} in the **Output events** table:
+
+  - Clear the column that you do not want to view in the **Output events** table.
+  - Drag a column name to reorder the columns.
+  
+  **Note:**
+  - The customization impacts only the output events table in the {{site.data.reuse.ep_name}} UI. It has no effect on the output events exported in **CSV** format, nor on Kafka output topics.
+  - The customization persists while the flow is running, and is cleared when reloading the page in the browser or stopping the flow. 
+
 ## Flow statuses
 {: #flow-statuses}
 
-A flow status indicates the current state of the flow. To view the status of a flow, navigate to the **Flows** section on the homepage of the {{site.data.reuse.ep_name}} UI. Each flow tile displays the current status of the flow.
+A flow status indicates the current state of the flow. To view the status of a flow, navigate to the **Flows** section on the home page of the {{site.data.reuse.ep_name}} UI. Each flow tile displays the current status of the flow.
 
-![Flow tiles displaying various statuses]({{ 'images' | relative_url }}/flowcard-status.png "Image of flow tiles displaying various statuses")
+- Authoring: the authoring flow states appear only on the tiles of the home page. The following states indicate the validation status of the flow:
+
+  - **Draft flow:** Indicates that the flow includes one or more nodes that need to be configured. The flow cannot be run.
+  - **Valid flow:** Indicates that all nodes in the flow are configured and valid. The flow is ready to run.
+  - **Invalid flow:** Indicates that the nodes in the flow are configured but have a validation error, or a required node is missing. The flow cannot be run.
+
+- Execution: the execution flow states are visible on the tiles of the home page and in the live view of results. The following flow states represent the different stages of execution:
+
+  ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In {{site.data.reuse.ep_name}} 1.4.6 and later, the flow statuses have been enhanced to better reflect the current state of the flow and the underlying Flink job.
+
+  - **Submitting flow:** The flow is being submitted to a JobManager.
+  - **Deploying flow:** The JobManager is creating and initializing a Flink job on a Task Manager to execute the flow.
+  - **Flow running:** The Flink job is executing the flow.
+  - **Restarting flow:** The Flink job has encountered an error and is attempting to restart automatically.
+  - **Stopping flow:** The Flink job is stopping.
+  - **Flow stopped:** The Flink job is stopped. 
+  - **Flow failed:** The Flink job is stopped. An error was encountered during its execution.
+  - **Flow finished:** The Flink job has finished processing all the events of its bounded event sources.
+  - **JobManager unavailable:** The JobManager that was executing a Flink job is restarting or not present.
+  - **Job missing:** The JobManager on which a Flink job was running has restarted in non high-availability mode. As a result, the Flink job cannot be recovered.
+
+  In versions earlier than 1.4.6, the following flow states represent the different stages of execution:
+
+  - **Running:** Indicates that the flow is configured, validated, running, and generating output.
+  - **Error:** Indicates that an error occurred during the runtime of a previously running flow.
+
+  **Tip:**  You can click the icon next to **Flow invalid** and **Flow failed** states to find more information about the error. In {{site.data.reuse.ep_name}} versions 1.4.5 and earlier, you can click the icon next to **Invalid** and **Error** states to find more information about the error.
 
 
-A flow can be in one of the following states:
-
-- **Draft:** Indicates that the flow includes one or more nodes that need to be configured. The flow cannot be run.
-- **Valid:** Indicates that all nodes in the flow are configured and valid. The flow is ready to run.
-- **Invalid:** Indicates that the nodes in the flow are configured but have a validation error, or a required node is missing. The flow cannot be run.
-- **Running:** Indicates that the flow is configured, validated, running, and generating output.
-- **Error:** Indicates that an error occurred during the runtime of a previously running flow.
-
-**Tip:** You can click the icon next to **Invalid** and **Error** states to find more information about the error.
+![Flow tiles displaying various statuses]({{ 'images' | relative_url }}/flowcard-fine-grain-status.png "Image of flow tiles displaying various fine grain statuses")

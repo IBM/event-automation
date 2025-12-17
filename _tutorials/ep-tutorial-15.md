@@ -27,8 +27,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots can differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.eem_name}} 11.6.3
-- {{site.data.reuse.ep_name}} 1.4.5
+- {{site.data.reuse.eem_name}} 11.6.4
+- {{site.data.reuse.ep_name}} 1.4.6
 
 
 ## Instructions
@@ -85,10 +85,7 @@ The next step is to start processing this stream of events, by creating the filt
 
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-assistant.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-assistant.png "defining the filter")
 
-
    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-expression.png "defining the filter"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial15-filter-expression.png "defining the filter")
-
-   **Note:** You must manually add the filter expression by using backticks for the property name and single quotes for the value, for example, enter \`countrycode\` = 'FR' in the **Filter expression** field for the complex expressions.
 
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 

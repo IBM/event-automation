@@ -39,7 +39,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
   | --- | --- | --- | --- |
   | **Kafka** | [Source](../../nodes/eventnodes/#event-source) and [destination](../../nodes/eventnodes/#event-destination) | [About Kafka connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"} <br> <br>  **Note:** When configuring SCRAM authentication for the Kafka connector, ensure you use double quotes only. Do not use a backslash character (`\`) to escape the double quotes. The valid format is: `username="<username>" password="<password>"` |  [Kafka connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector-options){:target="_blank"} <br> <br> For more information about how events can be consumed from Kafka topics, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#start-reading-position){:target="_blank"}. <br> <br>  **Note:** The Kafka [connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/#connector){:target="_blank"} value must be `kafka`. The Kafka connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.4.0-1.20. |
   | **JDBC** | [Database](../../nodes/enrichmentnode/#enrichment-from-a-database) | [About JDBC connector](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"} | [JDBC connector properties](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc/#connector-options){:target="_blank"} <br> <br> **Note:** The JDBC connector version for {{site.data.reuse.ep_name}} versions 1.4.0 and later is 3.3.0-1.20. |
-  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.22.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** ![Event Processing 1.4.5 icon]({{ 'images' | relative_url }}/1.4.5.svg "In Event Processing 1.4.5 and later.") The HTTP connector version for {{site.data.reuse.ep_name}} versions 1.4.5 and later is 0.22.0. <br> <br> For {{site.data.reuse.ep_name}} versions 1.4.0 to 1.4.4, the HTTP connector version is 0.19.0. |
+  | **HTTP** | [API](../../nodes/enrichmentnode/#enrichment-from-an-api) | [About HTTP connector](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} | [HTTP connector properties](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md#table-api-connector-options){:target="_blank"}. <br> <br> **Note:** ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") Due to an ongoing issue in the HTTP connector version 0.22.0, the HTTP connector version was downgraded to 0.19.0 in {{site.data.reuse.ep_name}} 1.4.6 and later. <br> <br> In {{site.data.reuse.ep_name}} version 1.4.5, the HTTP connector version is 0.22.0. <br> <br> In {{site.data.reuse.ep_name}} versions 1.4.4 to 1.4.0, the HTTP connector version is 0.19.0. <br> <br> |
 
 - To deploy a running Flink job, the SQL statements in the file `statements.sql` must contain one of the following clauses:
   - A definition of a Flink SQL Kafka sink (also known as event destination), and an `INSERT INTO` clause that selects the columns of the last temporary view into this sink.
@@ -129,7 +129,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
    ```
 
-   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
@@ -339,9 +339,9 @@ hide autoscaler -->
 
     b. In the `spec.flinkConfiguration`, add the Flink autoscaler parameters to match your workload expectations.
 
-      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/autoscaler/)
+      For more information about the autoscaler and a basic configuration example, see [Flink autoscaler](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/custom-resource/autoscaler/)
 
-      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/operations/configuration/#autoscaler-configuration)
+      For a detailed configuration reference, see the [Flink autoscaler configuration options](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/operations/configuration/#autoscaler-configuration)
 
       **Important:** If you have already defined the `pipeline.max-parallelism` option in `spec.flinkConfiguration` then do not alter the value.
      This would result in an incompatible change when the Job is restarted from an existing savepoint.
@@ -413,7 +413,7 @@ You can resume a suspended job from the exact point where it stopped by using th
 
 2. Save the changes in the `FlinkDeployment` custom resource.
 
-For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.12/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
+For more information on manually restoring a job, see [manual recovery](https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-release-1.13/docs/custom-resource/job-management/#manual-recovery){:target="_blank"}.
 
 ## Enable SSL connection for your database and API server
 {: #enable-ssl-connection-for-your-database-and-api-server}

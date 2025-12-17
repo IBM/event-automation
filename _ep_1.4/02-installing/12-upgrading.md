@@ -153,12 +153,15 @@ All {{site.data.reuse.ep_name}} and Flink pods that need to be updated as part o
 
 If you are using the {{site.data.reuse.openshift_short}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.ep_name}} installation.
 
+**Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**.
+
 For {{site.data.reuse.ep_name}}:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
 
    ![Operators > Installed Operators]({{ 'images' | relative_url }}/rhocp_menu_installedoperators.png "Screen capture showing how to select Operators > Installed Operators from navigation menu"){:height="50%" width="50%"}
+
 3. From the **Project** list, select the namespace (project) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.ep_name}} instance in the namespace. It is called **{{site.data.reuse.ep_name}}** in the **Name** column. Click the **{{site.data.reuse.ep_name}}** in the row.
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.ep_name}} operator.

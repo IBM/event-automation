@@ -23,7 +23,8 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots might differ from the current interface if you are using a newer version.
 
 - {{site.data.reuse.es_name}} 12.1.0
-- {{site.data.reuse.ep_name}} 1.4.4
+- {{site.data.reuse.ep_name}} 1.4.6
+
 
 ## Instructions
 
@@ -184,13 +185,13 @@ The next step is to identify cancellations where the customer changed their mind
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-18.png "naming the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-18.png "naming the filter node")
 
-    Click **Next**.
+    Click **Next**. In the **Define filter** pane, click the **Filter assistant** to open the assistant pane.
 
 1. Define a filter that matches cancellations events with a `reason` value that equals `CHANGEDMIND`.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example13-19.png "configuring the filter node"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example13-19.png "configuring the filter node")
 
-    Click **Add to expression**.
+    Click **Insert expression**.
 
 1. Click **Next** to open the **Output properties** pane. Choose the properties to output.
 

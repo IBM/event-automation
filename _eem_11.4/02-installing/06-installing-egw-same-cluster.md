@@ -54,7 +54,7 @@ When modifying the sample configuration, the updated document can be exported fr
 When modifying the sample configuration, ensure the following fields are updated based on your requirements:
 
 - `spec.license.accept` field in the custom resource YAML is set to `true` and that the [correct values](../planning/#licensing) are selected for `spec.license.use`, `spec.license.license`, and `spec.license.metric` fields.
-- `spec.ManagerEndpoint` is set to the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance. The `gateway` API endpoint will contain `ibm-eem-gateway` in the URL.
+- `spec.ManagerEndpoint` is set to the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} (`EventEndpointManagement`) instance. The `gateway` API endpoint will contain `ibm-eem-gateway` in the URL. This endpoint must be an OpenShift route or a Kubernetes ingress. Using a Kubernetes internal service is not supported.
 - `spec.tls.caSecretName` field is updated with the name of a secret that contains the root CA certificate.
 
    **Important:** The `caSecretName` of an {{site.data.reuse.egw}} instance must be the same as the `caSecretName` of the {{site.data.reuse.eem_manager}} instance you referred to when setting the endpoint URI in `spec.ManagerEndpoint`. If you are using the [operator-provided certificate](../configuring/#operator-configured-ca-certificate), enter the value as `<my-instance>-ibm-eem-manager-ca`.
@@ -94,9 +94,32 @@ To configure an `EventGateway` custom resource,  complete the following steps:
 
 1. Enter a name for the instance in the **Name** field.
 2. In **License > License Acceptance**, select the **accept** checkbox and ensure that the [correct values]({{ 'support/licensing' | relative_url }}) for **License**, **Metric**, and **Use** are entered.
-3. In **gatewayGroupName**, enter the name of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
-4. In **gatewayID**, enter the ID of a Gateway group to which this Gateway must be added. See [configuring](../configuring) on how to retrieve the details of Gateway groups.
-5. In **eemManager > endpoint**, enter the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} instance. See [configuring](../configuring) on how to retrieve the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} instance.
+3. In **gatewayGroupName**, enter the name of the gateway group which this gateway is joining.
+4. In **gatewayID**, enter a unique ID for your gateway.
+5. In **eemManager > endpoint**, enter the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} instance.
+   
+   **Note:** This endpoint must be an OpenShift route or a Kubernetes ingress. Using a Kubernetes internal service is not supported.
+   
+   You can retrieve the `gateway` API endpoint URI of an {{site.data.reuse.eem_manager}} instance by using the OpenShift UI or by using the CLI:
+   
+   - By using {{site.data.reuse.openshift_short}} UI:
+      
+      a. {{site.data.reuse.openshift_ui_login}}
+
+      b. Expand **Networking** in the navigation on the left, and click **Routes**.
+
+      c. Locate the route with the name that matches your {{site.data.reuse.eem_manager}} instance name. It is similar to the following: `<event-manager-instance-name>-ibm-eem-gateway`
+      
+   - By using the CLI:
+      
+      a. {{site.data.reuse.cncf_cli_login}}
+      
+      b. Run the following command:
+      
+         ```shell
+         kubectl get eem <eem-manager-instance-name> -o jsonpath='{.status.endpoints[?(@.name=="gateway")].uri}'
+         ```
+
 6. In **tls > caSecretName**, enter the name of the secret that contains the root CA certificate. 
      
      Optional: You can also [configure](../configuring#configuring-tls) other TLS specifications such as details of the secrets, keys, and certificates.

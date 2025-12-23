@@ -27,9 +27,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- {{site.data.reuse.es_name}} 12.0.2
+- {{site.data.reuse.es_name}} 12.1.0
 - {{site.data.reuse.eem_name}} 11.6.4
-- {{site.data.reuse.ep_name}} 1.4.5
+- {{site.data.reuse.ep_name}} 1.4.6
 
 ## Instructions
 

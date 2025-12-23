@@ -94,7 +94,9 @@ To expose {{site.data.reuse.eem_name}} services externally outside your cluster,
 - Kubernetes ingress resources when installing on other Kubernetes platforms.
 
 
-To use ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.eem_name}} services to work. Refer to your ingress controller documentation for more information.
+To use ingresses, you must have an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} installed in your Kubernetes environment. You must enable TLS passthrough in your ingress controller for your {{site.data.reuse.eem_name}} services to work. Refer to your ingress controller documentation for more information.
+
+**Note:** You must specify either {{site.data.reuse.openshift}} routes or Kubernetes ingresses for communication between {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}s. Specifying Kubernetes [Services](https://kubernetes.io/docs/concepts/services-networking/service){:target="_blank"} as your endpoints when you add gateways is not supported.
 
 ## Data storage requirements
 {: #data-storage-requirements}

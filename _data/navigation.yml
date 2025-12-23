@@ -1489,6 +1489,9 @@ latest_epdocs:
         url: /troubleshooting/error-submitting-job-for-enrichment
       - title: "Flink resources are unexpectedly missing from the cluster"
         url: /troubleshooting/missing-flink-resources
+      - title: "Read-only flows after upgrading to Event Processing 1.4.6"
+        url: /troubleshooting/flow-read-only-after-upgrade-146/
+
 130_epdocs:
   - title: About
     children:
@@ -1634,8 +1637,6 @@ latest_epdocs:
         url: /troubleshooting/error-submitting-job-for-enrichment
       - title: "Flink resources are unexpectedly missing from the cluster"
         url: /troubleshooting/missing-flink-resources
-      - title: "Read-only flows after upgrading to Event Processing 1.4.6"
-        url: /troubleshooting/flow-read-only-after-upgrade-146
 120_epdocs:
   - title: About
     children:

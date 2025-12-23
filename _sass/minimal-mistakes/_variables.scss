@@ -241,13 +241,13 @@ $standard-grid-layout: 1fr minmax(auto, 30rem) minmax(auto, 30rem) minmax(auto, 
          .page__content {
             .content {
                > *:not(table) {
-                  max-width: $maxW;
+                  max-width: $maxW;  // Content that is not a table has value of $maxW.
                   margin-left: auto;
                   margin-right: auto;
                   margin-top: 1rem;
                }
                table {
-                  max-width: $maxW*1.5;
+                  max-width: $maxW; //Update here for tables to match content width.
                   margin-left: auto;
                   margin-right: auto;
                }

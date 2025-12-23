@@ -150,11 +150,13 @@ Currently, all transaction states are consolidated into a single `transactions` 
    Hover over the filter node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
    In the **Node name** field, enter the name of the filter node as `transactions_started`, and then click **Next**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter for transactions in started state")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state")
+
 
    Enter the filter expression **\`state\` LIKE 'STARTED'**, click **Next** to open the **Output properties** pane, and then click **Configure**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-13.png "Creating a filter expression for transactions in started state")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter expression for transactions in started state"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-16-14.png "Creating a filter for transactions in started state")
+
 
 
 1. Add another **Filter** node for the `PROCESSING` state and link it to the `transactions` event. 

@@ -361,7 +361,7 @@ The final step is to run your event processing flow and view the results.
 
 Use the **Run** menu, and select **Include historical** to view the generated summary for the review comments received today.
 
-[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx.ai-output.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx.ai-output.png "running the flow")
+[![screenshot]({{ 'images' | relative_url }}/ea-tutorials/watsonx-output.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/watsonx-output.png "running the flow")
 
 ## Recap
 

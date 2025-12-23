@@ -22,9 +22,9 @@ The instructions in this tutorial use the [Tutorial environment](../guided/tutor
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 11.5.0
-- Event Endpoint Management 11.3.0
-- Event Processing 1.2.0
+- Event Streams 12.1.0
+- Event Endpoint Management 11.6.4
+- Event Processing 1.4.6
 
 ## Instructions
 

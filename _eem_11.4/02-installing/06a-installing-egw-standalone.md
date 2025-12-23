@@ -72,7 +72,7 @@ The password to log in to the IBM Container software library is your entitlement
 
 Before you start the {{site.data.reuse.egw}}, define the following options:
 
-- **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint defined in the {{site.data.reuse.eem_manager}}, and will contain `ibm-eem-gateway` in the URL.
+- **EEM_BACKEND_URL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint defined in the {{site.data.reuse.eem_manager}}, and will contain `ibm-eem-gateway` in the URL. This URL must be an OpenShift route or a Kubernetes ingress. Using a Kubernetes internal service is not supported.
 - **GATEWAY_ID**: The unique ID for this gateway.
 - **GATEWAY_GROUP**: The name of the group for the gateway to join.
 - **GATEWAY_PORT**: The port on the host that is exposed for external connections from Kafka applications.

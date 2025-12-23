@@ -2,7 +2,7 @@
 title: "Read-only flows after upgrading to Event Processing 1.4.6"
 excerpt: "After upgrading to Event Processing 1.4.6, flows might become read-only if they were authored with an earlier Event Processing version and are present in the Event Processing application when upgrading."
 categories: troubleshooting
-slug: flow-ready-only-after-upgrade-146
+slug: flow-read-only-after-upgrade-146
 toc: true
 ---
 

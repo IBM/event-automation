@@ -14,4 +14,4 @@ This problem space has parallels with another discipline: API management. Managi
 
 While API management and event management offerings provide similar capabilities, they each need to cater for the unique needs and characteristics of the technologies they describe, manage and socialize. This section will detail the similarities and differences between API and event management, and how the two can be combined to enable multi-form management. 
 
-{{site.data.reuse.eem_name}} can be [integrated with {{site.data.reuse.apic_long}}](../../integrating-with-apic/overview) 10.0.6 and later, the API management offering from IBM.
+{{site.data.reuse.eem_name}} can be [integrated with {{site.data.reuse.apic_long}} 10.x.x releases](../../integrating-with-apic/overview), the API management offering from IBM.

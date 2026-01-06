@@ -52,6 +52,8 @@ If you already have a server certificate that you want to use, then create a Kub
 
 The Subject Alternative Names (SANs) in your certificate must include the path to all the hostnames that are used for your {{site.data.reuse.egw}}. You can use a wildcard SAN entry, for example: `*.<CLUSTER_API>` - where `<CLUSTER_API>` is derived from the URL of your {{site.data.reuse.openshift_short}} cluster. If the URL is `https://console-openshift-console.apps.clusterapi.com/` then `<cluster api>` is `apps.clusterapi.com`.
 
+If your certificate is not signed by a well-known public CA chain, then you must provide the full signing chain.
+
 1. Create a file called `custom-gateway-cert.yaml` and paste in the following contents:
 
    ```yaml
@@ -117,23 +119,29 @@ The Subject Alternative Names (SANs) in your certificate must include the path t
       kind: Certificate
       ...
       ```
-      
-      b. Update the `spec.template.pod.spec.containers[egw].env[GATEWAY_TRUST_PEM]` section to refer to the CA certificate in your Kubernetes secret:
 
-      ```yaml
-           - name: GATEWAY_TRUST_PEM
-             valueFrom:
-               secretKeyRef:
-                 key: ca.crt
-                 name: "<Kubernetes secret that contains your certificate>"     
-      ```
+      b. Set the `spec.template.pod.spec.containers[egw].env[GATEWAY_TRUST_PEM]` environment variable.
+
+       - If you want the gateway CA certificate to be downloadable by consumers from the [{{site.data.reuse.eem_name}} UI](../../subscribe/configure-your-application-to-connect#configuring-a-client), then update the `spec.template.pod.spec.containers[egw].env[GATEWAY_TRUST_PEM]` section to refer to the CA certificate in your Kubernetes secret:
+
+         ```yaml
+              - name: GATEWAY_TRUST_PEM
+                valueFrom:
+                  secretKeyRef:
+                    key: ca.crt
+                    name: "<Kubernetes secret that contains your CA and server certificates and key>"     
+         ```
+        
+       - If you do not want the CA certificate to be downloadable from the {{site.data.reuse.eem_name}} UI, then delete the `spec.template.pod.spec.containers[egw].env[GATEWAY_TRUST_PEM]` environment variable.
+
+         **Note:** Delete the `GATEWAY_TRUST_PEM` variable only if you are certain that all consumers are configured to trust your CA, or you have another procedure for supplying consumers with your CA certificate. 
       
-      c. Configure the `spec.tls` section to refer to your server certificate:
+      d. Configure the `spec.tls` section to refer to your server certificate:
    
       ```yaml
       spec:
         tls:
-         secretName: <Kubernetes secret that contains your certificate>
+         secretName: <Kubernetes secret that contains your CA and server certificates and key>"
          key: tls.key
          serverCertificate: tls.crt
          caCertificate: ca.crt

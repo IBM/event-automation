@@ -160,7 +160,7 @@ After completing these steps, you should have the three PEM files that you need 
 
 The following properties are defined in the generated configuration:
 
-- **backendURL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint that is defined in the {{site.data.reuse.eem_manager}}, and contains `ibm-eem-gateway` in the URL.
+- **backendURL**: The URL to be used by the {{site.data.reuse.egw}} to connect to the {{site.data.reuse.eem_manager}}. This URL is the `gateway` API endpoint that is defined in the {{site.data.reuse.eem_manager}}, and contains `ibm-eem-gateway` in the URL. This URL must be an OpenShift route or a Kubernetes ingress. Using a Kubernetes internal service is not supported.
 - **KAFKA_ADVERTISED_LISTENER**: A comma-separated list of the hosts and ports that client applications must use to make requests. If applications have direct access, then this is the host and ports (as specified in the **PORT_MAPPINGS** property) of the {{site.data.reuse.egw}}. Otherwise, it is the host and ports of the routing or proxy service that is in front of the {{site.data.reuse.egw}}. 
 
   For example, if you have a single host `example.com` and **PORT_MAPPINGS** set to `-p 8443:8443 -p 8444:8443`, then set `KAFKA_ADVERTISED_LISTENER="example.com:8443,example.com:8444"`.

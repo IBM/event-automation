@@ -26,7 +26,7 @@ The following are the most common causes of {{site.data.reuse.eem_manager}} conn
 
 - Kubernetes [ingresses](../../installing/configuring#configuring-ingress) and {{site.data.reuse.openshift_short}} routes are misconfigured and not directing client requests to the {{site.data.reuse.eem_manager}}.
 - Firewalls blocking access to the {{site.data.reuse.eem_manager}}.
-- Load-balancers in front of the {{site.data.reuse.eem_manager}} are terminating TLS connections. TLS pass-through must be enabled on your load-balancer.
+- Load-balancers in front of the {{site.data.reuse.eem_manager}} are terminating TLS connections. TLS passthrough must be enabled on your load-balancer.
 - {{site.data.reuse.eem_manager}} CA certificate not trusted by clients.
 - {{site.data.reuse.eem_manager}} server certificate was not updated after the CA certificate was updated.
 

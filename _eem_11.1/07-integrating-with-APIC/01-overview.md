@@ -8,7 +8,7 @@ toc: true
 
 You can setup an integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}}.
 
-**Note:** To set up this integration, {{site.data.reuse.apic_short}} 10.0.6 or later is required:
+**Note:** This integration is supported with {{site.data.reuse.apic_short}} 10.0.6 and later 10.x.x releases:
 
 - If integrating {{site.data.reuse.apic_short}} 10.0.6 with {{site.data.reuse.eem_name}}, both deployments must be installed as part of {{site.data.reuse.cp4i}} on the same OpenShift cluster.
 

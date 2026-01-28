@@ -61,7 +61,7 @@ See the [{{site.data.reuse.apic_short}} documentation](https://www.ibm.com/docs/
 
 To export an AsyncAPI for your topic, complete the following steps.
 
-1. In the {{site.data.reuse.eem_name}} UI, go to the **Manage topics** page, and select the topic that you want to export.
+1. In the {{site.data.reuse.eem_name}} UI, go to the **Manage > Topics** page, and select the topic that you want to export.
 1. Click the **Options** tab.
 1. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** on the option that you want to use in {{site.data.reuse.apic_short}}.
 1. Click **Export AsyncAPI**. A dialog is displayed. 

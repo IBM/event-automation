@@ -23,6 +23,19 @@ The way that you provide the configuration settings to your client varies from c
 - `SASL` credentials : If `SASL_SSL` is specified as the `SASL mechanism`, then set `SASL username`, and `SASL password` with the values retrieved when you [subscribed to the event source](../subscribing-to-event-endpoints#requesting-access).
 - `Topic name`: The name of the event endpoint you want your application to use. The name is displayed in the **Catalog** table under the **Topic name** column and as the heading of the **Catalog** detail page when you view more information about an event endpoint.
 
+<!-- If the event endpoint is secured with OAuth2, then the following additional properties are required:
+
+```
+sasl.mechanism: "OAUTHBEARER"
+sasl.oauthbearer.method: "oidc"
+sasl.oauthbearer.grant.type: "client_credentials"
+https.ca.location: <oidc CA location>
+sasl.oauthbearer.token.endpoint.url: <oauth token endpoint>
+sasl.oauthbearer.client.id: <oauth client id>
+sasl.oauthbearer.client.secret: <oauth client secret>
+sasl.oauthbearer.scope: "openid"
+```
+-->
 
 ## Testing event endpoints with the Code accelerator
 {: #code-accelerator-samples}

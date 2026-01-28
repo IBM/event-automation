@@ -16,7 +16,7 @@ After [adding a topic](../adding-topics) as an event source to {{site.data.reuse
 To access the **Topic detail** page:
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-1. In the navigation pane, click **Manage topics**.
+1. In the navigation pane, click **Manage > Topics**.
 1. Find the event source you want to work with in the list, and click the name of the event source.
 
 The details of your event source appear in three sections:
@@ -59,7 +59,7 @@ You can edit the following information in this pane. Restrictions and validation
 
 The event information provides details to help use the events from the topic.
 
-- **Upload Schema:** You can provide an Avro schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic.  Checks are made to ensure a valid schema has been uploaded. If a valid schema has been uploaded, a preview of the schema is displayed. If the schema is invalid, a validation failure is displayed and the schema is not saved. When consuming events in a JSON, Avro binary, or an Avro JSON format from the topic, you can use an option that contains the [schema filtering control](../option-controls#schema-filter) to filter out any events that do not match the schema. 
+- **Upload Schema:** You can provide an Avro schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic.  Checks are made to ensure a valid schema has been uploaded. If a valid schema has been uploaded, a preview of the schema is displayed. If the schema is invalid, a validation failure is displayed and the schema is not saved. When consuming events in a JSON, Avro binary, or an Avro JSON format from the topic, you can use an option that contains the [schema filtering control](../data-option-controls#schema-filter) to filter out any events that do not match the schema. 
 
   You can also provide a JSON schema in JavaScript Object Notation (JSON) format that describes the structure of the messages in your topic.
 
@@ -91,7 +91,7 @@ For example, if you are using the {{site.data.reuse.es_name}} schema registry, c
 To edit a nested Avro schema in the {{site.data.reuse.eem_name}} UI, follow these steps:
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-2. In the navigation pane, click **Manage topics**.
+2. In the navigation pane, click **Manage > Topics**.
 3. Find the topic you shared in the list, and click the name of the topic.
 4. Click **Edit information** on the **Topic detail** page.
 5. From the left pane, click **Event information**.
@@ -185,7 +185,7 @@ An event source can be deleted from {{site.data.reuse.eem_name}} only if it has 
 
 To delete an event source from {{site.data.reuse.eem_name}}, complete the following steps: 
 
-1. In the navigation pane, click **Manage topics**.
+1. In the navigation pane, click **Manage > Topics**.
 1. Find the event source that you want to work with and ensure that the **Option status** is 0 published. All options in the **Unpublished** state will have a delete icon ![trash icon]({{ 'images' | relative_url }}/trashcan.svg "Diagram showing remove topic icon."){:height="30px" width="15px"} in their row in the table.
 1. Click the event source that you want to work with. 
 1. In the **Topics** pane header, click the delete icon ![Delete icon]({{ 'images' | relative_url }}/trashcan.svg "The delete icon."){:height="30px" width="15px"}.

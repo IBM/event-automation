@@ -13,6 +13,9 @@ Find out how you can install an {{site.data.reuse.egw}} as a Docker container wi
 
 Review the [planning](../install-gateway#gateway-planning) topic, which covers host system and network requirements for the {{site.data.reuse.egw}}.
 
+### Determine gateway address
+{: #gateway-address}
+
 Determine the hostname and decide the ports to use for your gateway. If your Kafka clients are run on the same system as the gateway Docker container, then use `localhost` for the hostname. If your Kafka clients are not on the same system as the gateway, then use the hostname of the system that runs your Docker gateway.
 
 If the Kafka cluster that you intend your {{site.data.reuse.egw}} to manage traffic for has multiple brokers, then you must define a hostname and port combination for each broker. 
@@ -22,6 +25,14 @@ For example, if your Kafka cluster has 3 brokers, then use the following hostnam
 - `localhost:9092`
 - `localhost:9093`
 - `localhost:9094`
+
+The hostnames must match the DNS `alt_names` that are specified in the certificate that secures the gateway endpoints. Using the preceding example, the `alt_names` in the certificate must specify `localhost`:
+
+```
+[alt_names]
+DNS.1 = localhost
+```
+
 
 ### Licensing
 {: #licensing}
@@ -124,18 +135,16 @@ After completing these steps, you should have the three PEM files that you need 
 1. In the navigation pane, click **Administration > Event Gateways**.
 2. Click **Add gateway**.
 3. Select the **Docker** tile, then click **Next**.
-4. Provide a gateway group and ID for your gateway, then click **Next**.
+4. Provide a gateway group, ID, and address for your gateway, then click **Next**.
 
    - **Gateway group**: Create or specify an existing [gateway group](../../about/key-concepts#gateway-group) for your new gateway.
    - **Gateway ID**: Provide an ID for your new gateway that is unique within the gateway group.
+   - **Server URL**: The address or comma-separated addresses for the gateway to be used by [client applications](../../subscribe/configure-your-application-to-connect). This address might be a proxy in front of the gateway, or the gateway itself. For more information about the gateway address, see [determine gateway address](#gateway-address). Setting this value here is optional, but if not set then the generated Docker command includes the placeholder argument `KAFKA_ADVERTISED_LISTENER` where you must set this value.
 
    The remaining properties are described and set in the next step.
 5. When you click **Next**, a Docker command is generated that contains the configuration required to deploy an {{site.data.reuse.egw}} as a Docker container. Complete the configuration by replacing the placeholder values:
 
-    - `<provide-gateway-advertised-listener-addresses>`: Address of your new gateway that [client applications](../../subscribe/configure-your-application-to-connect) use to access event endpoints through the gateway. 
-
-        Ensure that the DNS in the addresses match the alt names in your gateway certificate. Using the previous [openssl](#openssl) example, the listener addresses would be: `localhost:9092,localhost:9093,localhost:9094`.
-
+    - `KAFKA_ADVERTISED_LISTENER`: If you did not specify a value for `Server URL` in step 4, then you must specify it here. 
     - `<provide-path-to-tls-certificate>`:  Filepath to the TLS certificate that secures your gateway endpoint.
     - `<provide-path-to-tls-key>`: Filepath to the private key that the TLS certificate uses.
     - `<provide-path-to-CA-certificates-to-trust-gateway>`: Filepath to the CA that signs the TLS certificate.

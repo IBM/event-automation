@@ -60,7 +60,7 @@ Recently, unexpected surges in demand have resulted in not enough stock being av
 
 - Adds the "orders" topic and Cluster information by using the [discovery flow](../../describe/adding-topics).
 - He is guided to add appropriate metadata to [describe his topic](../../describe/managing-event-sources/#overview-information).
-- He adds [management capabilities](../../subscribe/managing-subscriptions) to make sure that when socialized, his topic has [controls](../../describe/option-controls) applied to enforce rules of engagement on any clients that use his topic. In this case, he [redacts](../../describe/option-controls/#redaction) sensitive data when clients consume events.
+- He adds [management capabilities](../../subscribe/managing-subscriptions) to make sure that when socialized, his topic has [security](../../describe/security-option-controls) and [event data controls](../../describe/data-option-controls) applied to enforce rules of engagement on any clients that use his topic. In this case, he [redacts](../../describe/data-option-controls/#consume-redaction) sensitive data when clients consume events.
 
 Having worked through these steps, **Kevin** is happy that his order topic can be securely socialized. He responds to **Andre** to let him know, and contacts **Steve** to ask how to offer this topic as an API.
 
@@ -76,7 +76,7 @@ Having set up the integration, and having added the registered {{site.data.reuse
 
 **Kevin** works with **Steve** to mature and standardize his Kafka topic as an API:
 
-- **Kevin** works with **Steve** to understand additional organization governance requirements. He makes any required updates to his topic in {{site.data.reuse.eem_name}} to match conventions and to set up any additional required [controls](../../describe/option-controls) to manage client behavior.
+- **Kevin** works with **Steve** to understand additional organization governance requirements. He makes any required updates to his topic in {{site.data.reuse.eem_name}} to match conventions and to set up any additional required [event data](../../describe/data-option-controls) and [security](../../describe/security-option-controls) controls to manage client behavior.
 - **Kevin** [imports his topic from {{site.data.reuse.eem_name}} as an AsyncAPI document](../generate-asyncapi) into the [API Manager](../apic-eem-concepts/#api-manager).
 - **Kevin** works with **Steve** to add his API to the appropriate [Product](../apic-eem-concepts/#product). In this case, a new Product called "Real-time orders" is created. It contains **Kevin**'s topic, described as an API.
 - **Steve** reviews the API and Product. Satisfied that Loosehanger's governance needs have been met, he publishes the Product to the Developer Portal.

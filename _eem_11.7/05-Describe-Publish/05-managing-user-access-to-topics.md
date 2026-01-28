@@ -17,7 +17,7 @@ If you have an option with approval control enabled, the **Manage** tab will inc
 To find out and manage which users are using your options, complete the following steps:
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-2. In the navigation pane, click **Manage topics**, then from the list select the event source you want to manage.
+2. In the navigation pane, click **Manage > Topics**, then from the list select the event source you want to manage.
 3. Click the **Manage** tab.
 
 The **Subscribers** list details all the current subscriptions for options on your event source. The **Requests** list details all the currently pending access requests for options on your event source. The following information is presented about each user:
@@ -34,7 +34,7 @@ After socializing your option, you can remove subscriptions to it. After removin
 
 To remove subscriptions, complete the following steps:
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-2. In the navigation pane, click **Manage topics**, then from the list select the event source that you want to manage.
+2. In the navigation pane, click **Manage > Topics**, then from the list select the event source that you want to manage.
 3. Click the **Manage** tab.
 4. Click **Remove** against the subscription you want to revoke.
 5. Enter the subscriber username and click **Remove**.
@@ -50,7 +50,7 @@ After socializing your option with approval enabled, you can review requests for
 
 To approve or deny a request, complete the following steps:
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-2. In the navigation pane, click **Manage topics**, then from the list select the event source that you want to manage.
+2. In the navigation pane, click **Manage > Topics**, then from the list select the event source that you want to manage.
 3. Click the **Manage** tab.
 4. Click **Requests** to see the list of requests against options on this event source.
 5. Click **View request** on the request you want to approve or reject.

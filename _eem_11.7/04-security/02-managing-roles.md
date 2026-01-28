@@ -11,7 +11,7 @@ After [configuring access](../managing-access) to your {{site.data.reuse.eem_man
 {{site.data.reuse.eem_name}} supports the following roles:
 - `viewer`: Assigns users viewer access to the {{site.data.reuse.eem_name}} UI and shared resources
 - `author`: Assigns users viewer access to the {{site.data.reuse.eem_name}} UI and shared resources. This role also gives users permissions to create and share their own resources.
-- `admin`: Assigns users the required permissions to add and configure [{{site.data.reuse.egw}}s](../../installing/install-gateway), and organization-level CA certificates for [mTLS controls](../ca-certs).
+- `admin`: Assigns users the required permissions to add and configure [{{site.data.reuse.egw}}s](../../installing/install-gateway), and organization-level [security controls](../../security/cred-sets).
 
 **Note:** You must assign at least one of these roles to each user.
 

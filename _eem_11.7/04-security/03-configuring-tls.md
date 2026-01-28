@@ -12,7 +12,7 @@ All {{site.data.reuse.eem_manager}} endpoints are secured by the `<instance name
 
 The {{site.data.reuse.egw}}s secure their endpoint with the `<gateway group>-<gateway name>-ibm-egw-cert` certificate. Kafka client applications see this certificate when they connect to the {{site.data.reuse.egw}}. You configure this certificate when you install the {{site.data.reuse.egw}}.
 
-The certificates used to secure mTLS [controls](../../describe/option-controls) are configured in the {{site.data.reuse.eem_name}} UI. For more information about configuring mTLS control certificates, see [Managing mTLS control certificates](../ca-certs).
+The certificates used to secure mTLS [security controls](../../describe/security-option-controls) are configured in the {{site.data.reuse.eem_name}} UI. For more information, see [Managing mTLS control certificates](../cred-sets#config-mtls).
 
 The certificates used to secure communication between the {{site.data.reuse.eem_name}} and Kafka clusters are configured in the {{site.data.reuse.eem_name}} UI. See [adding the cluster](../../administering/managing-clusters).
 

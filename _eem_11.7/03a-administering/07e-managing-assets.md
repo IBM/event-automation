@@ -15,7 +15,7 @@ You can transfer the following assets from one user to another:
 - [Event sources](../../about/key-concepts#event-source)
 - [Options](../../about/key-concepts#option)
 - [Subscriptions](../../about/key-concepts#subscription)
-- [CA Certificates](../../security/ca-certs)
+- [CA Certificates](../../security/cred-sets#config-mtls)
 
 **Note:** The CA certificates that are stored in a user's profile are replicated to the target user's profile during the transfer process. This ensures that any [controls](../../about/key-concepts#control) reliant on the CA certificate remain uninterrupted and functional.
 

@@ -17,10 +17,10 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 {: #upgrade-paths}
 
 <!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
-<!-- You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.7.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.7.x or 11.6.x version by using the latest 11.7.x operator. -->
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.7.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.7.x or 11.6.x version by using the latest 11.7.x operator.
 
 <!-- Below text to be used for .0 releases -->
-You can upgrade {{site.data.reuse.eem_name}} to [11.7.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.6.x by using the 11.7.0 operator.
+<!--You can upgrade {{site.data.reuse.eem_name}} to [11.7.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.6.x by using the 11.7.0 operator. -->
 
 If you are upgrading from {{site.data.reuse.eem_name}} version 11.5.x or earlier, you must first [upgrade your installation to 11.6.x]({{ 'eem/eem_11.6' | relative_url }}/installing/upgrading/), and then return to these instructions to upgrade to 11.7.x.
 
@@ -95,9 +95,8 @@ The pre-upgrade checks and preparation ensure that your {{site.data.reuse.eem_na
    oc ibm-pak generate mirror-manifests ibm-eventendpointmanagement icr.io
    ```
 
-<!-- ### Upgrading from v11.6.0 to v11.6.1 -->
-<!-- 
-If you installed by using the IBM Operator Catalog with the `latest` label, then the latest {{site.data.reuse.eem_name}} release for your update channel is always available and updates are applied automatically. Proceed directly to [verify your upgrade](#verify-upgrade). -->
+<!-- ### Patch upgrade e.g. x.y.0 -> x.y.1-->
+If you installed by using the IBM Operator Catalog with the `latest` label, then the latest {{site.data.reuse.eem_name}} release for your update channel is always available and updates are applied automatically. Proceed directly to [verify your upgrade](#verify-upgrade).
 
 
 ### Upgrading by using the OpenShift CLI
@@ -114,7 +113,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    ```
    
    <!-- Below line for non .0 releases only -->
-   <!-- If your existing subscription is already on the v11.6 channel, then the upgrade to 11.6.x is applied automatically. Skip the remaining steps and proceed to [verify your upgrade](#verify-upgrade). -->
+   If your existing subscription is already on the v11.7 channel, then the upgrade to 11.7.x is applied automatically. Skip the remaining steps and proceed to [verify your upgrade](#verify-upgrade).
    
    If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
 
@@ -244,7 +243,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 If the chart version for your existing deployment is 11.6.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
 <!-- Below line applies to non .0 releases only -->
-<!-- If the chart version for your existing deployment is 11.6.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#helm-upgrade-steps) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically. -->
+If the chart version for your existing deployment is 11.7.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#helm-upgrade-steps) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically.
 
 ### Upgrading by using Helm
 {: #helm-upgrade-steps}
@@ -340,7 +339,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.7.0               
+eem-manager           Running   11.7.1               
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms

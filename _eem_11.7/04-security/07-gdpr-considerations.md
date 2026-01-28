@@ -109,7 +109,7 @@ Typically, only the client name and email address are used to enable personal re
 - What data is being passed to {{site.data.reuse.eem_name}}?
 - What type of storage has been configured within {{site.data.reuse.eem_name}}? Has encryption been enabled? For more information, see [data storage](#data-storage).
 - Has the internal network traffic been encrypted? For more information, see [data processing](#data-processing).
-- Can you limit what personal information is accessible within {{site.data.reuse.eem_name}} by consumers of your event endpoints? For more information, see [redaction control](../../describe/option-controls#redaction).
+- Can you limit what personal information is accessible within {{site.data.reuse.eem_name}} by consumers of your event endpoints? For more information, see [redaction control](../../describe/data-option-controls#consume-redaction).
 
 ## Data Storage
 {: #data-storage}

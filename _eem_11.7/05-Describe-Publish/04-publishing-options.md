@@ -25,7 +25,7 @@ To publish an option to the catalog, complete the following steps:
 **Note:** The controls within an option cannot be edited or deleted after the option is published.
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-1. In the navigation pane, click **Manage topics**. A list of event sources is displayed.
+1. In the navigation pane, click **Manage > Topics**. A list of event sources is displayed.
 1. Select the event source that you want to publish an option from.
 1. Click the **Options** tab.
 1. For the option that you want to publish, click **Publish**.

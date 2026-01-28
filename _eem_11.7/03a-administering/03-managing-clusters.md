@@ -29,7 +29,8 @@ To add a cluster, complete the following steps.
 
    If your {{site.data.reuse.eem_manager}} cannot make a network connection to the Kafka cluster, then a **No connection** warning message is displayed. If you see this warning message, then follow these steps to add the Kafka cluster without {{site.data.reuse.eem_manager}} verification:
 
-      a. Click **Add servers manually**.
+      a. Click **Skip connection checks**.
+      {: #skip-conneciton-checks}
 
       b. Configure TLS for your {{site.data.reuse.egw}} to Kafka cluster connection, then click Next.
 

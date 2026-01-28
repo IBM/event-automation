@@ -195,6 +195,35 @@ If your OIDC provider does not implement the Open ID Connect Discovery standard,
 
 When creating an OIDC client in your provider, it will ask for redirect URLs for logging in to the UI, and potentially for logging out as well. Ensure you set these URLs to the appropriate {{site.data.reuse.eem_name}} UI URLs. If you have already installed {{site.data.reuse.eem_name}}, then see step 8 in [the UI steps](#oidc-ui-step-8) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 
+**Important:** If your OIDC provider is Microsoft EntraID, then the `spec.manager.authConfig.oidcConfig` section of the `EventEndpointManagement` custom resource requires some different properties. Two additional environment variables are also required:
+
+```
+   manager:
+     authConfig:
+       authType: OIDC
+       oidcConfig:
+         additionalScopes:
+           - offline_access
+           - 'api://<client ID>/app'
+         authorizationClaimPointer: <path to group section of ID token>
+         clientIDKey: <Entra ID secret client ID key name>
+         clientSecretKey: <Entra ID secret client secret key name>
+         discovery: true
+         secretName: <Entra ID secret name>
+         site: <oidc_provider_base_url>
+...
+     template
+       pod:
+         spec:
+           containers:
+             - name: manager
+               env:
+                 - name: SKIP_GET_USER_INFO
+                   value: 'true'
+                 - name: EI_AUTH_JWT_AUDIENCE
+                   value: ''
+```
+
 ### Using {{site.data.reuse.openshift_short}} UI
 {: #using-openshift-container-platform-ui-oidc}
 

@@ -135,8 +135,8 @@ latest_eemdocs:
         url: /security/data-encryption/
       - title: "Managing access to the Admin API"
         url: /security/api-tokens/
-      - title: "Managing mTLS control certificates"
-        url: /security/ca-certs/
+      - title: "Managing event endpoint security"
+        url: /security/cred-sets/
       - title: "Enabling FIPS"
         url: /security/fips/
 
@@ -148,8 +148,10 @@ latest_eemdocs:
         url: /describe/managing-event-sources/
       - title: "Managing options"
         url: /describe/managing-options/
-      - title: "Adding controls to options"
-        url: /describe/option-controls/
+      - title: "Event data controls"
+        url: /describe/data-option-controls/
+      - title: "Security controls"
+        url: /describe/security-option-controls/
       - title: "Publishing options"
         url: /describe/publishing-options/
       - title: "Managing user access to options"

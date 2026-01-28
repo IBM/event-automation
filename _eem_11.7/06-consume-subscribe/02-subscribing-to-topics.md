@@ -23,9 +23,19 @@ To subscribe to an event endpoint that is not configured with approval controls,
 5. In the **Contact details** field, provide your contact details, and then click **Next**.  
 
    **Note:** The contact information is a free text field, and the owners of the event endpoint can use the details to contact you. For example, owners might contact you if an event endpoint is deprecated or disabled for maintenance. Providing an email address is recommended.  
-6. Complete one of the following steps according to the configuration of the event endpoint:
+6. If the event endpoint is configured with an mTLS or OAuth security control, then a **Security** pane is displayed. 
    
-   * If the event endpoint is configured to require a `SASL` username and password, then the **Subscription created** pane is displayed and presents your subscription credentials. 
+   * If the event endpoint requires mTLS, then to access the endpoint you must present a client certificate that meets the requirements of the mTLS control. 
+      - Your client certificate must be signed by a well-known certificate authority. If your certificate is self-signed, then the CA certificate must be uploaded when the [mTLS control is created](../../describe/security-option-controls#mtls).
+      - Your client certificate subject fields must meet the requirements of the mTLS control. Click the tooltip next to **mTLS requirements** to see these requirements. 
+      - If the mTLS Control is using Subject Identifying Fields, then when you click **Subscribe** you must provide the subject fields of your client certificate. The subject fields are used to identify you when you access the endpoint. You can upload a `.pem` file of your client certificate to autofill these fields. The certificate subject field values that you provide must be unique, you cannot use the same client certificate in multiple subscriptions.  
+      <!-- cert validation is also done, but not mentioning it here since it's secondary and not available to mTLS control with SASL creds. We're also implying uniqueness and not mentioning here that it's possible that multiple users could have matching identifying fields if Kevin configures it so. -->  
+
+   * ![Event Endpoint Management 11.7.1 icon]({{ 'images' | relative_url }}/11.7.1.svg "In Event Endpoint Management 11.7.1 and later.")If the event endpoint requires OAuth authentication, then you must provide the `subject` from your OAuth provider user credentials, and follow any other connection instructions that are presented to you. Clients must be able to generate an OAuth2 token that is compatible with the OAuth2 provider's `userinfo` endpoint.
+
+   After entering the mTLS or OAuth details, click **Next**.
+
+7. If the event endpoint requires a `SASL` username and password, then the **Subscription created** pane is displayed and presents your subscription credentials. 
       
       - These credentials are a `SASL` username and password, which uniquely identifies you and your usage of this event endpoint. These credentials must be used when you access the event source through the {{site.data.reuse.egw}}.
       - Copy the generated username and password values, or click **Download credentials** to download your generated credentials as a JSON file for future use and reference.  
@@ -34,14 +44,7 @@ To subscribe to an event endpoint that is not configured with approval controls,
          **Important:** The credentials that are generated for you are shown one time. They cannot be retrieved later. Ensure that you save the access credentials and store them in a secure location.
       
       - Your application requires these credentials to [access the event source](../configure-your-application-to-connect) through the {{site.data.reuse.egw}}.
-
-   * If the event endpoint is configured with an mTLS control, then to access the endpoint you must present a client certificate that meets the requirements of the mTLS control. 
-      - Your client certificate must be signed by a well-known certificate authority. If your certificate is self-signed, then the CA certificate must be uploaded when the [mTLS control is created](../../describe/option-controls#mtls).
-      - Your client certificate subject fields must meet the requirements of the mTLS control. Click the tooltip next to **mTLS requirements** to see these requirements. 
-      - If the mTLS Control uses `SASL` credentials, then a username and password is generated for you.
-      - If the mTLS Control is using Subject Identifying Fields, then when you click **Subscribe** you must provide the subject fields of your client certificate. The subject fields are used to identify you when you access the endpoint. You can upload a `.pem` file of your client certificate to autofill these fields. The certificate subject field values that you provide must be unique, you cannot use the same client certificate in multiple subscriptions.  
-      <!-- cert validation is also done, but not mentioning it here since it's secondary and not available to mTLS control with SASL creds. We're also implying uniqueness and not mentioning here that it's possible that multiple users could have matching identifying fields if Kevin configures it so. -->  
-
+8. Your subscription is created. Click **Close** to return to the event endpoint details in the catalog page.
 
 ## Requesting access to an event endpoint
 {: #requesting-access}

@@ -31,22 +31,38 @@ Cluster maintainers can [edit](../../administering/managing-clusters/#editing-a-
 ## Controls
 {: #controls}
 
-You can add [controls to options](../../describe/option-controls) so that you have greater management over how event source data is presented to applications.
+Controls that manage how the event data is accessed, presented, and processed can be added to your [options](#option).
 
-You can add the following controls to an option on a [consume-enabled](#consume) event source:
+The following types of controls are available: event data controls and security controls.
 
-   * [Approval](../../describe/option-controls#approval-controls): Use the approval control to force users to request access to your event endpoint.
-   * [Redaction](../../describe/option-controls#redaction): Use a redaction control to hide sensitive data.
-   * [Schema filtering](../../describe/option-controls#schema-filter): Use the schema filtering control to manage how the data in your event source is presented to consumers and to ensure consistency.
-   * [Quota enforcement](../../describe/option-controls#quota-consume): Use the quota enforcement control to manage the rate at which data is consumed from your event source.
-   * [Mutual TLS](../../describe/option-controls#mtls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+### Event data controls
+{: #event-data-controls}
 
-You can add the following controls to an option on a [produce-enabled](#produce) event source:
+With event data controls, you can manage and modify the event data that is sent to or received from the event endpoint.
 
-   * [Approval](../../describe/option-controls#approval-controls): Use the approval control to force users to request access to your event endpoint.
-   * [Schema enforcement](../../describe/option-controls#schema-enforcement): Use the schema enforcement control to enforce the shape of data that is allowed to be produced to your event endpoint.
-   * [Quota enforcement](../../describe/option-controls#quota-produce): Use the quota enforcement control to manage the rate at which data is produced to your event endpoint.
-   * [Mutual TLS](../../describe/option-controls#mtls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+You can add the following event data controls to an option on a [consume-enabled](#consume) event endpoint:
+
+   * [Redaction](../../describe/data-option-controls#consume-redaction): Redact sensitive data from events.
+   * [Schema filtering](../../describe/data-option-controls#schema-filter): Filter out events that do not comply with the AVRO or JSON schema that is defined for the event endpoint.
+   * [Quota enforcement](../../describe/data-option-controls#quota-enforcement): Manage the rate at which data is consumed from your event endpoint.
+
+You can add the following event data controls to an option on a [produce-enabled](#produce) event endpoint:
+
+   * [Schema enforcement](../../describe/data-option-controls#produce-controls-schema-enforcement): Allow only events that comply with the AVRO or JSON schema that is defined for the event endpoint.
+   * [Quota enforcement](../../describe/data-option-controls#quota-enforcement): Manage the rate at which data can be written to your event endpoint.
+
+
+### Security controls
+{: #security-controls}
+
+With security controls, you can manage how the event endpoints are secured
+
+You can add the following security controls to an option on both [consume-enabled](#consume) and [produce-enabled](#produce) event endpoints:
+
+   * [Approval](../../describe/security-option-controls#approval-controls): Use the approval control to force users to request access to your event endpoint.
+   * [Mutual TLS](../../describe/security-option-controls#mtls): Require users to present a valid client certificate that matches on common name and other specified subject fields.
+   * ![Event Endpoint Management 11.7.1 icon]({{ 'images' | relative_url }}/11.7.1.svg "In Event Endpoint Management 11.7.1 and later.")[OAuth2](../../security/cred-sets#oauth): Require users to provide their OAuth2 credentials to access the event endpoint.
+   * [SASL Credentials](../../describe/security-option-controls#sasl): Require users to provide their SASL credentials to access the event endpoint.
 
 
 ## Consume

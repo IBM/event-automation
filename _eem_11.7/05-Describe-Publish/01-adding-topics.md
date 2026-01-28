@@ -27,7 +27,7 @@ You can then publish each option to the **Catalog**, making it available to soci
 To describe an event source by adding a Kafka topic from a cluster, complete the following steps:
 
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
-1. In the navigation pane, click **Manage topics**, then click **Add topic**.
+1. In the navigation pane, click **Manage > Topics**, then click **Add topic**.
 1. In the **Interaction** pane, select how your application will interact with the event source from one of the following options, and then click **Next**.  
     * [Consume](../../about/key-concepts/#consume) events
     * [Produce](../../about/key-concepts/#produce) events 
@@ -45,7 +45,7 @@ To describe an event source by adding a Kafka topic from a cluster, complete the
 
         **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
 
-     d. If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Add servers manually** to add a cluster and bypass the connection tests.  
+     d. If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Skip connection checks** to add a cluster and bypass the connection tests.  
 
      e. If the Kafka endpoint is configured to require mutual TLS authentication, then you must upload the private and public keys that were provided to you by your Kafka Cluster Administrator. Upload the private and public keys in PEM format.  
 

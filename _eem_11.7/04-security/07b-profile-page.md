@@ -18,7 +18,7 @@ The following features are available by using the Admin API:
 - [Subscriptions](../../subscribe/managing-subscriptions/) (Create, Read, Update, Delete)
 - [Gateways](../../administering/managing-gateways) (Read gateway list)
 
-**Note:** If you are working with Kafka topics and clusters that you add manually, you must wait for the event source and the associated cluster to pass the connection tests against your gateways after creating an event source. Only after these tests successfully pass can you proceed to publish any options that you create for the event source.
+**Note:** If you [skipped the connection checks](../../administering/managing-clusters#skip-conneciton-checks) when you added your Kafka cluster, then after you create an event source you must wait for your gateways to complete connection tests with your cluster. Only after these checks complete successfully can you proceed to publish any options that you create for the event source.
 
 ## Prerequisites
 {: #prerequisites}

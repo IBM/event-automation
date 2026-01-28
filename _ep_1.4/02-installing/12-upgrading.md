@@ -76,7 +76,7 @@ Complete the following steps to plan your upgrade on OpenShift.
 ### Stopping flows for major and minor upgrades
 {: #stopping-flows-for-major-and-minor-upgrades}
 
-When upgrading to a new major or minor release (first and second digit change), stop any running flows in the {{site.data.reuse.ep_name}} UI before upgrading. This is because running flows may contain artifacts built using the previous release that are not compatible with the newer version. If flows are not stopped, they may enter into an error state following the upgrade. You can run those flows again after the upgrade.
+When upgrading to a new major or minor release (first and second digit change), stop any running flows in the {{site.data.reuse.ep_name}} UI before upgrading. This is because running flows might contain artifacts built using the previous release that are not compatible with the newer version. If flows are not stopped, they might enter into an error state following the upgrade. You can run those flows again after the upgrade.
 
 This step is not required for patch level (third digit) upgrades.
 

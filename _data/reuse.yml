@@ -26,10 +26,10 @@ es_current_case_version: "12.2.0"
 eem_current_version: "11.7.0"
 
 # {{site.data.reuse.ep_current_version}}
-ep_current_version: "1.4.6"
+ep_current_version: "1.4.7"
 
 # {{site.data.reuse.flink_operator_current_version}}
-flink_operator_current_version: "1.4.6"
+flink_operator_current_version: "1.4.7"
 
 # {{site.data.reuse.egw}}
 egw: "Event Gateway"
@@ -177,9 +177,6 @@ es_cli_init_k8s: "Run the following command to initialize the IBM Event Streams 
 
 # {{site.data.reuse.es_cli_init_111}}
 es_cli_init_111: "Initialize the Event Streams CLI by following the instructions in [logging in](../../getting-started/logging-in/#logging-in-to-event-streams-cli)."
-
-# {{site.data.reuse.es_cli_init_111_samesection}}
-es_cli_init_111_samesection: "Initialize the Event Streams CLI by following the instructions in [logging in](../logging-in/#logging-in-to-event-streams-cli)."
 
 # {{site.data.reuse.cncf_cli_login}}
 cncf_cli_login: "Log in to your Kubernetes cluster as a cluster administrator by setting your `kubectl` [context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/){:target=\"_blank\"}."

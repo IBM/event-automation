@@ -42,7 +42,7 @@ Use one of the following methods to obtain the bootstrap address for your connec
 
 1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 
-2. {{site.data.reuse.es_cli_init_111_samesection}}
+2. {{site.data.reuse.es_cli_init_111}}
    Make note of the **Event Streams bootstrap address** value. This is the Kafka bootstrap address that your application will use.
 
    **Note:** If you have multiple listeners defined in `spec.strimziOverrides.kafka.listeners`, only the external listener is displayed. If you only have internal listeners defined, nothing is displayed.
@@ -103,7 +103,7 @@ kubectl get secret <cluster_name>-cluster-ca-cert -o jsonpath='{.data.ca\.crt}' 
 
 1. [Install the {{site.data.reuse.es_name}} CLI plugin](../../installing/post-installation/#installing-the-event-streams-command-line-interface) if not already installed.
 
-2. {{site.data.reuse.es_cli_init_111_samesection}}
+2. {{site.data.reuse.es_cli_init_111}}
 3. Use the `certificates` command to download the cluster's public certificate in the required format:
 
    ```shell

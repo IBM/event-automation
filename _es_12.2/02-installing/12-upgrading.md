@@ -10,7 +10,7 @@ Upgrade your {{site.data.reuse.es_name}} installation as follows. The {{site.dat
 
 Before you begin, review the upgrade procedure and determine the appropriate steps for your deployment based on your platform, current version, and target version.
 
-### Upgrade paths
+## Upgrade paths
 {: #upgrade-paths}
 
 You can upgrade {{site.data.reuse.es_name}} to the [latest 12.2.x version]({{ 'support/matrix/#event-streams' | relative_url }}) directly from any 12.1.x version by using the latest 12.2.x operator. The upgrade procedure depends on whether you are upgrading to a major, minor, or patch level version, and what your catalog source is.
@@ -24,7 +24,7 @@ If you are upgrading from {{site.data.reuse.es_name}} version 12.0.x or earlier,
 - On other Kubernetes platforms, you must update the Helm repository for any level version update (any digit update: major, minor, or patch), and then upgrade by using the Helm chart. Review the general upgrade [prerequisites](#prerequisites) before following the instructions to [upgrade on other Kubernetes platforms](#upgrading-on-other-kubernetes-platforms-by-using-helm).
 
 
-### Prerequisites
+## Prerequisites
 {: #prerequisites}
 
 - The images for {{site.data.reuse.es_name}} release 12.2.x are available in the IBM Cloud Container Registry. Ensure you redirect your catalog source to use `icr.io/cpopen` as described in [Implementing ImageContentSourcePolicy to redirect to the IBM Container Registry](https://www.ibm.com/docs/en/cloud-paks/1.0?topic=clusters-migrating-from-docker-container-registry#implementing-imagecontentsourcepolicy-to-redirect-to-the-ibm-container-registry){:target="_blank"}.
@@ -228,7 +228,7 @@ cat: /opt/kafka/custom-config/metadata.state: No such file or directory
 ```
 
 ### Upgrading Subscription by using the web console
-{: #upgrading-subscription-by-using-the-web-console}
+{: #upgrading-subscription-ui}
 
 If you are using the {{site.data.reuse.openshift_es_name}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.es_name}} installation.
 
@@ -355,8 +355,7 @@ After the upgrade, verify the version and status of {{site.data.reuse.es_name}} 
 
 
 ## Post-upgrade task
-{: #post-upgrade-tasks}
-
+{: #post-upgrade-task}
 
 ### Remove the Kafka Proxy
 {: #remove-kafka-proxy}

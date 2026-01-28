@@ -15,6 +15,40 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-147}
+
+### API enrichment node: improve efficiency with caching
+{: #api-enrichment-cache-configuration}
+
+In {{site.data.reuse.ep_name}} 1.4.7 and later, you can enable caching in the API enrichment node to improve efficiency by reducing repeated calls to external APIs. The cache stores API lookup results for a configurable time period and a maximum entry count, optimizing performance for high-volume event streams where data updates are not frequent. For more information, see [configuring an API node](../../nodes/enrichmentnode#configuring-an-api-node).
+
+
+### API enrichment node: add metadata fields to identify unenriched results
+{: #api-enrichment-unenriched-results-metadata}
+
+In {{site.data.reuse.ep_name}} 1.4.7 and later, in the **Unenriched events** pane, when the **Include unenriched events** toggle is set to **On**, you can add metadata fields to your output to identify why the API enrichment failed. For more information, see [configuring an API node](../../nodes/enrichmentnode#configuring-an-api-node).
+
+### Database enrichment node: improve efficiency with caching
+{: #database-enrichment-cache-configuration}
+
+In {{site.data.reuse.ep_name}} 1.4.7 and later, you can enable caching in database enrichment node to improve efficiency by limiting repeated queries to external databases. The cache stores database lookup results for a configurable time period and a maximum entry count, optimizing performance for high-volume event streams where data updates are not frequent. For more information, see [configuring a database node](../../nodes/enrichmentnode#configuring-a-database-node).
+
+### Apache Flink updated to 1.20.3
+{: #apache-flink-updated-to-1203}
+
+{{site.data.reuse.ibm_flink_operator}} version 1.4.7 update includes Apache Flink version 1.20.3.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-between-differences-147}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.4.7 compared to 1.4.6 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.4.7 icon]({{ 'images' | relative_url }}/1.4.7.svg "In Event Processing 1.4.7 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-147}
+
+{{site.data.reuse.ep_name}} release 1.4.7 and {{site.data.reuse.ibm_flink_operator}} version 1.4.7 contain security and bug fixes.
+
+## Release 1.4.6
 {: #release-146}
 
 

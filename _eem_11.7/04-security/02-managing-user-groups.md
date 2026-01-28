@@ -56,14 +56,15 @@ Event source editors cannot:
 ### Cluster maintainers
 {: #cluster-maintainers}
 
-Cluster maintainers can [edit](../../administering/managing-clusters/#editing-a-cluster) and maintain cluster connection definitions for the clusters that are added to their user group.
+Cluster maintainers can edit cluster connection definitions for the clusters that are added to their user group.
 
 Cluster maintainers can:
-- Edit clusters
+- [Edit](../../administering/managing-clusters/#editing-a-cluster) cluster names, URLs, and credentials.
 
 Cluster maintainers cannot:
-- Delete clusters
-- Change cluster maintainers
+- Delete clusters.
+- Change cluster maintainers.
+- Add topics from the cluster.
 
 
 ## Accessing user groups

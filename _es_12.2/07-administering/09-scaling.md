@@ -265,7 +265,7 @@ Complete the following steps to enable auto-scaling for Kafka brokers:
 
 2. Create a `HorizontalPodAutoscaler` custom resource for the broker node pool and define your scaling rule.
 
-   For example, the following configuration scales brokers when their average CPU utilization exceeds 50%.
+   For example, the following configuration scales brokers when their average CPU utilization exceeds 90%.
 
    ```yaml
    apiVersion: autoscaling/v2

@@ -19,8 +19,6 @@ spec:
     kubernetes.operator.session.block-on-unmanaged-jobs: 'false'
 ```
 
-<!-- Draft comment: Should we add a troubleshooting as well? -->
-
 ### By using the OpenShift web console
 {: #by-using-the-openshift-web-console}
 

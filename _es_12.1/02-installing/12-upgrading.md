@@ -249,7 +249,7 @@ cat: /opt/kafka/custom-config/metadata.state: No such file or directory
 ```
 
 ### Upgrading Subscription by using the web console
-{: #upgrading-subscription-by-using-the-web-console}
+{: #upgrading-subscription-ui}
 
 If you are using the {{site.data.reuse.openshift_es_name}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.es_name}} installation.
 

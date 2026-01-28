@@ -2267,7 +2267,8 @@ latestdocs:
         url: /troubleshooting/kafka-proxy-share-failure/
       - title: "Kafka Connect plugin fails to load with Kafka Connect 4.x"
         url: /troubleshooting/kafka-connect-kafka4-compatibility/
-        
+      - title: "Timeout error in Oracle (Debezium) source connector"
+        url: /troubleshooting/debezium-oracle-timeout/
 
 
 
@@ -2503,6 +2504,8 @@ latestdocs:
         url: /troubleshooting/kafka-proxy-share-failure/
       - title: "Kafka Connect plugin fails to load with Kafka Connect 4.x"
         url: /troubleshooting/kafka-connect-kafka4-compatibility/
+      - title: "Timeout error in Oracle (Debezium) source connector"
+        url: /troubleshooting/debezium-oracle-timeout/
         
 
 
@@ -2742,6 +2745,8 @@ latestdocs:
         url: /troubleshooting/kafka-connect-kafka4-compatibility/
       - title: "Pod anti-affinity rules are not set up properly for Kafka Node Pools"
         url: /troubleshooting/pod-anti-affinity/
+      - title: "Timeout error in Oracle (Debezium) source connector"
+        url: /troubleshooting/debezium-oracle-timeout/
         
 
 # Event Streams 11.8 docs

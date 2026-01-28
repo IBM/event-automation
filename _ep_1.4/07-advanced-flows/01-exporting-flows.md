@@ -23,7 +23,7 @@ You can export your flow in the following formats:
 
 **Notes:** 
 
-* The credentials used for the configuration of the [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connectors are redacted in the **JSON and configuration YAML** and **SQL** export formats, except for the [HTTP](https://github.com/getindata/flink-http-connector/blob/0.19.0/README.md){:target="_blank"} connector when used in [SQL processor nodes](../../nodes/custom).
+* The credentials used for the configuration of the [Kafka](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/kafka/){:target="_blank"}, [JDBC](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/connectors/table/jdbc){:target="_blank"}, and [HTTP](https://github.com/getindata/flink-http-connector/blob/0.25.0/README.md){:target="_blank"} connectors are redacted in the **JSON and configuration YAML** and **SQL** export formats, except for the [HTTP](https://github.com/getindata/flink-http-connector/blob/0.25.0/README.md){:target="_blank"} connector when used in [SQL processor nodes](../../nodes/custom).
 
 * Exporting a flow as **SQL** requires the following prerequisites to be met:
 

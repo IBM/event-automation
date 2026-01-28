@@ -25,7 +25,7 @@ You will also need to [run the optional instructions for creating a PostgreSQL d
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
 - {{site.data.reuse.eem_name}} 11.6.4
-- {{site.data.reuse.ep_name}} 1.4.6
+- {{site.data.reuse.ep_name}} 1.4.7
 
 ## Instructions
 
@@ -274,11 +274,18 @@ The next step is to add additional information about the building to these out-o
 
     The database username and password were included in the JDBC URI, so no additional credentials are required.
 
-1. Choose the **buildings** database table.
+1. Select the **buildings** database table.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-24.png "defining event enrichment"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-24.png "defining event enrichment")
 
-1. Use the assistant to define a join that matches events with the database row about the same building.
+1. In the **Cache configuration** pane, click the **Caching** toggle to enable caching.
+
+   Enter two minutes as the **Cache expiration** and 4 as the **Cache quantity** and click **Next**.
+
+    [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-24a.png "defining event enrichment"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-24a.png "defining event enrichment")
+
+
+1. In the **Match criteria** pane, use the assistant to define a join that matches events with the database row about the same building.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-25.png "defining event enrichment"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-25.png "defining event enrichment")
 
@@ -286,13 +293,13 @@ The next step is to add additional information about the building to these out-o
 
     Click **Next**.
 
-1. Choose the database columns to include in your output events.
+1. Select the database columns to include in your output events.
 
     [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/example1-26.png "defining event enrichment"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/example1-26.png "defining event enrichment")
 
     Include the street name and security contact columns.
 
-    There is no need to include the ``buildingid`` column because this value is already contained in the events.
+    There is no need to include the `buildingid` column because this value is already contained in the events.
 
     Click **Next**.
 

@@ -300,12 +300,12 @@ spec:
 
 TLS can be configured for the `EventProcessing` instance in one of the following ways:
 
-- [Operator configured CA certificate](#operator-configured-ca-certificate)
+- [Operator-configured CA certificate](#operator-configured-ca-certificate)
 - [User-provided CA certificate](#user-provided-ca-certificate)
 - [User-provided certificates](#user-provided-certificates)
 - [User-provided UI certificates](#user-provided-ui-certificates)
 
-#### Operator configured CA certificate
+#### Operator-configured CA certificate
 
 By default, the operator configures its own TLS.
 The operator uses the Cert Manager installed on the system to generate a CA certificate with a self-signed issuer. It then uses this self signed CA certificate to sign the certificates used for secure communication by the {{site.data.reuse.ep_name}} instance.

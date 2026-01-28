@@ -139,7 +139,7 @@ The {{site.data.reuse.eem_name}} user interface (UI) is supported on the followi
 ## Certificate management
 {: #certificate-management}
 
-A certificate manager is required to automatically manage the process of creating, renewing and using {{site.data.reuse.eem_name}} internal and system-to-system certificates. It is also used by default for managing {{site.data.reuse.eem_name}} certificates that are visible to clients and users, simplifying their configuration.
+A certificate manager is required to manage the {{site.data.reuse.eem_name}} internal and system-to-system certificates. {{site.data.reuse.eem_name}} cannot operate without a certificate manager. By default, the certificate manager is also used for managing the external user-facing {{site.data.reuse.eem_name}} certificates. 
 
 - On {{site.data.reuse.openshift}}, install the cert-manager Operator for Red Hat OpenShift.
 - On other Kubernetes platforms, use a certificate manager installation, for example [cert-manager](https://cert-manager.io/docs/), that supports `Issuer.cert-manager.io/v1` and `Certificate.cert-manager.io/v1` GroupVersionKind (GVK), or create certificates manually and provide them to {{site.data.reuse.eem_name}} by using Kubernetes secrets.

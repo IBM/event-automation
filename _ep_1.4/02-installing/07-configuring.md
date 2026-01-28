@@ -357,12 +357,12 @@ spec:
 
 TLS can be configured for the `EventProcessing` instance in one of the following ways:
 
-- [Operator configured CA certificate](#operator-configured-ca-certificate)
+- [Operator-configured CA certificate](#operator-configured-ca-certificate)
 - [User-provided CA certificate](#user-provided-ca-certificate)
 - [User-provided certificates](#user-provided-certificates)
 - [User-provided UI certificates](#user-provided-ui-certificates)
 
-#### Operator configured CA certificate
+#### Operator-configured CA certificate
 {: #operator-configured-ca-certificate}
 
 By default, the operator configures its own TLS.

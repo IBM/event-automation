@@ -113,6 +113,25 @@ To configure a database node, complete the following steps.
    | `TIMESTAMP`         | ✓          | ✓     | ✓      |
    | `VARCHAR`           | ✓          |       | ✓      |
 
+1. ![Event Processing 1.4.7 icon]({{ 'images' | relative_url }}/1.4.7.svg "In Event Processing 1.4.7 and later.") Optional: In the **Cache configuration** pane, you can configure caching to minimize database queries by storing and reusing previously fetched data. This is particularly beneficial when processing high-volume event streams or when the database data does not change frequently.
+
+   **Important:** Caching large volumes of messages consume additional memory resources. Ensure that you have sufficient memory resources to store the cached data.
+
+   Use the **Caching** toggle to enable or disable caching:
+   
+   - Set the toggle to **Enabled** to activate caching and configure the cache parameters.
+   - Set the toggle to **Disabled** to query the database for each incoming event without caching.
+
+   When caching is enabled, provide values for the following parameters:
+
+   - **Cache expiration**: Determines how long query results remain valid in the cache before they expire. Enter a value and choose a time unit (seconds, minutes, hours or days) from the drop-down menu. The appropriate duration depends on how often the database data is updated.
+
+   - **Cache quantity**: Sets the maximum number of unique database query results to retain in memory. Enter a value representing the cache size. 
+
+   **Note:** Both the cache expiration and cache quantity values must be greater than zero. Larger values allow more responses to be cached but consume additional memory resources. Set both the values based on the variety of unique query lookups expected and the memory capacity available in your environment.
+
+   After configuring the cache settings, click **Next**. The **Match criteria** pane is displayed.
+
 1. In the **Match criteria** pane, define your expression by using the property from the source, and the table field.
 
    For example, the incoming event has a field `country_code` with values such as `866, 453, 123` and you wish to lookup a human readable name from a database table.
@@ -215,21 +234,52 @@ To configure an API node, complete the following steps:
 
    **Note:** {{site.data.reuse.ep_name}} supports **Basic**, **API Key**, and **None** (no authentication) authentication methods. The options available in the drop-down list depend on the security methods defined in the OpenAPI document for the selected operation.
 
-1. Depending on the authentication method selected, enter your user name and password, or API key, and click **Next**. The **Input mapping** pane is displayed.
+1. Depending on the authentication method selected, enter your user name and password, or API key, and click **Next**. The **Cache configuration** pane is displayed.
 
    **Note:** Authentication credentials are only required for the **API key** and **Basic** authentication methods. Contact the API owner for access credentials.
 
    {{site.data.reuse.ep_treeview_note}}
 
-1. ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") In {{site.data.reuse.ep_name}} 1.4.6 and later, you can configure how to handle unenriched results when the API call does not return a match for the input event. By default, the **Include unenriched events** toggle is set to **On**. When turned on, events without matching API results are included in the output with `null` values for the API response properties. To exclude events that do not have matching API results from the output, set the toggle to **Off**.
+1. ![Event Processing 1.4.7 icon]({{ 'images' | relative_url }}/1.4.7.svg "In Event Processing 1.4.7 and later.") Optional: In the **Cache configuration** pane, you can configure caching to minimize API calls by storing and reusing previously fetched data. This is particularly beneficial when processing high-volume event streams or when the external API data does not change frequently.
+
+   **Important:** Caching large volumes of messages consume additional memory resources. Ensure that you have sufficient memory resources to store the cached data.
+
+   Use the **Caching** toggle to enable or disable caching:
+   
+   - Set the toggle to **Enabled** to activate caching and configure the cache parameters.
+   - Set the toggle to **Disabled** to query the API for each incoming event without caching.
+
+   When caching is enabled, provide values for the following parameters:
+
+   - **Cache expiration**: Determines how long API responses remain valid in the cache before they expire. Enter a value and choose a time unit (seconds, minutes, hours or days) from the drop-down menu. The appropriate duration depends on how often the API data is updated.
+
+     For instance, if your API refreshes its data every 10 minutes, you might configure a 10-minute expiration to balance freshness with reduced API load.
+
+   - **Cache quantity**: Sets the maximum number of unique API responses to retain in memory. Enter a value representing the cache size. 
+
+   **Note:** Both the cache expiration and cache quantity values must be greater than zero. Larger values allow more responses to be cached but consume additional memory resources. Set both the values based on the variety of unique API lookups expected and the memory capacity available in your environment.
+
+   After configuring the cache settings, click **Next**. The **Input mapping** pane is displayed.
 
 1. To configure the **Required inputs**, select an event property or enter a constant value. You can also select and configure input parameters from the **Optional inputs** list.
+
+   ![Event Processing 1.4.6 icon]({{ 'images' | relative_url }}/1.4.6.svg "In Event Processing 1.4.6 and later.") You can set the **Include unenriched events** toggle to **On** or **Off**. When turned on, events without matching API results are included in the output with `null` values for the API response properties. In {{site.data.reuse.ep_name}} 1.4.7 and later, the toggle is moved to the **Unenriched events** pane.
 
    **Important:** Ensure that all the parameters in the **Required inputs** are configured.
 
    **Notes:**
    - The dropdown for selecting event properties automatically filters properties for an SQL type that is compatible with the API parameter type.
    - The value provided for the API parameters must be compliant with the documented API constraints, including minimum and maximum values, format, or enumerated values.
+
+   Then click **Next**.
+
+1. ![Event Processing 1.4.7 icon]({{ 'images' | relative_url }}/1.4.7.svg "In Event Processing 1.4.7 and later.") In the **Unenriched events** pane, you can configure how to handle unenriched results when the API call does not return a match for the input event.
+
+   By default, the **Include unenriched events** toggle is set to **On**.
+
+   When turned on, events without matching API results are included in the output with `null` values for the API response properties. To exclude events that do not have matching API results from the output, set the toggle to **Off**.
+
+   When the **Include unenriched events** toggle is set to **On**, you can also select up to three metadata fields - response_metadata_https_status_code, response_metadata_http_completion_state, and response_metadata_error_message to identify why the API enrichment failed.
 
 1. Click **Next**. The **Output properties** pane is displayed, which contains properties from the preceding node and the API response. Remove the fields that you do not want to include in the output.
 

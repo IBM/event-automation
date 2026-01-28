@@ -39,7 +39,7 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 
 1. {{site.data.reuse.cncf_cli_login}}
 
-2. {{site.data.reuse.es_cli_init_111_samesection}}
+2. {{site.data.reuse.es_cli_init_111}}
 
 3. Run the following command to create a topic:
 

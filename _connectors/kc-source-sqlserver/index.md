@@ -3,7 +3,7 @@ title: "SQL Server (Debezium)"
 sortTitle: "SQL"
 connectorID: kc-source-sqlserver
 direction: source
-support: community
+support: IBM
 type: kafkaConnect
 iconInitial: S
 iconGradient: 1

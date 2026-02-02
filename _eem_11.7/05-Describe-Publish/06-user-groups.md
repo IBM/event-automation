@@ -6,8 +6,6 @@ slug: user-groups
 toc: true
 ---
 
-<!-- In 11.7.0 update this page to talk more about "option viewers" -->
-
 You can manage which options are available to users by assigning specific [user groups](../../about/key-concepts/#user-groups) to selected options. This means that only users in the groups you select can view and subscribe to the options that you have specified. 
 
 User group visibility to options requires an external identity provider, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, capable of managing user groups. When {{site.data.reuse.eem_name}} connects to your external identity provider, it suggests groups that are already in use, or that you belong to. You can then select one or more of these user groups to add to options. 
@@ -26,22 +24,6 @@ To access the **User groups** page:
 ## Adding a user group
 {: #add-group}
 
-To add a user group, complete the following steps:
-
-1. In the {{site.data.reuse.eem_name}} navigation pane, click **Manage > User groups**.
-1. Click **Add user group**. The **Authorize a user group to view options** pane is displayed.   
-
-   **Note:** Any user groups that you add manually must exist within the organization provided by your OAuth provider.
-1. Enter a name for the user group that you want to add.
-1. Click **Next**. The **Add options** pane is displayed with a list of unpublished options.
-1. Select the options that you want the group to access. 
-1. Click **Add user group**. 
-
-The new group is added to the table on the **User groups** page.
-
-## Adding a user group
-{: #add-group-1164}
-
 Complete the following steps to add a user group to view options:
 
 1. In the navigation pane, click **Manage > User groups**. The **Option viewers** tab is displayed.
@@ -56,22 +38,8 @@ Complete the following steps to add a user group to view options:
 
 The new group is added to the table in the **Option viewers** tab with all the options that the group can view displayed.
 
-## Editing user group visibility to options
-{: #edit-group-visible-options}
-
-To edit the options available to a user group, complete the following steps:
-
-1. In the {{site.data.reuse.eem_name}} navigation pane, click **Manage > User groups**.
-1. Click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "Diagram showing edit icon."){:height="30px" width="15px"} for the group that you want to edit. The **Edit user group Details** pane is displayed.
-1. In the side bar, click **Options**.
-1. To add options, click **Add options**. The **Add options** pane is displayed with a list of unpublished options.
-1. Select the options that you want, then click **Save**.   
-
-   **Tip**: Use the filter menu icon to help you find the options that you want quicker.
-1. Click **Save**. 
-
 ## Editing user group visibility
-{: #edit-group-visible-options-1164}
+{: #edit-group-visible-options}
 
 Complete the following steps to edit the options available to a user group:
 
@@ -91,7 +59,7 @@ If you need to perform an action that is not permitted (for example, removing gr
 
 1. [Remove](../../subscribe/managing-subscriptions/#removing-subscriptions) subscribers.
 1. [Unpublish](../../describe/managing-options/#option-lifecycle-states) the option.
-1. [Update](#edit-group-visible-options-1164) the visibility settings as needed.
+1. [Update](#edit-group-visible-options) the visibility settings as needed.
 1. [Publish](../../describe/publishing-options/#publishing-options) the option again.
 
 ## Removing user group visibility to options

@@ -52,7 +52,7 @@ Follow these steps to rebalance a cluster by using Cruise Control:
 5. [Accept the optimization proposal](#approving-an-optimization-proposal) in the `KafkaRebalance` custom resource by annotating it.
 6. When accepted, the `KafkaRebalance` custom resource is updated to show the status `Rebalancing` in `status.conditions`. This means that Cruise Control is currently rebalancing the Kafka cluster. Check whether the `KafkaRebalance` proposal is processed.
 
-   You can track the progress of a rebalance by checking the information included in the `ConfigMap` that is referenced in the `status.progress.rebalanceProgressConfigMap` field of the `KafkaRebalance` custom resource. For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.48.0/deploying#proc-tracking-cluster-rebalance-str){:target="_blank"}.
+   You can track the progress of a rebalance by checking the information included in the `ConfigMap` that is referenced in the `status.progress.rebalanceProgressConfigMap` field of the `KafkaRebalance` custom resource. For more information, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.49.1/deploying#proc-tracking-cluster-rebalance-str){:target="_blank"}.
 
 7. Depending on the outcome of the `KafkaRebalance` proposal, perform the following steps:
    - If **`status.condtions[0].status` = Ready:** Cruise Control has successfully optimized the Kafka cluster and no further action is needed.
@@ -195,7 +195,7 @@ status:
   sessionId: 03974f67-b208-4133-9f54-305d268a1a22
 ```
 
-For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/0.48.0/deploying.html#con-optimization-proposals-str){:target="_blank"}.
+For more information about optimization proposals, see the Strimzi [documentation](https://strimzi.io/docs/operators/0.49.1/deploying.html#con-optimization-proposals-str){:target="_blank"}.
 
 ### Refreshing an optimization proposal
 {: #refreshing-an-optimization-proposal}

@@ -129,6 +129,9 @@ The following tables provide information about the network policies that are app
 
 The following tables provide information about the outbound network connections (egress) initiated by pods in an {{site.data.reuse.es_name}} installation. If a particular pod is not required by an {{site.data.reuse.es_name}} configuration, the associated outbound connection is not applicable.
 
+**Important:** Network policies are provided with default configurations, and you must customize them. Before enabling production workloads, ensure you implement secure network policies that align with your internal security guidelines and compliance requirements. For more information about securing outbound network connections (egress), see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"}.
+
+
 ### Kafka broker pod
 {: #kafka-broker-pod}
 

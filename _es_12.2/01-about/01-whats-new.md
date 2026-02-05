@@ -11,6 +11,23 @@ Find out what is new in {{site.data.reuse.es_name}} version 12.2.x.
 ## Release {{site.data.reuse.es_current_version}}
 
 
+### Kafka version upgraded to 4.1.1
+{: #kafka-version-upgraded-to-411}
+
+{{site.data.reuse.es_name}} version 12.2.1 includes Kafka release 4.1.1, and supports the use of all Kafka interfaces.
+
+### Apicurio version updated to 3.1.6
+{: #apicurio-version-updated-to-316}
+
+{{site.data.reuse.es_name}} 12.2.1 includes Apicurio Registry version 3.1.6 for [managing schemas](../../schemas/overview/#schema-registry). For more information about client application requirements, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1221}
+
+{{site.data.reuse.es_name}} release 12.2.1 contains security and bug fixes.
+
+## Release 12.2.0
+
 ### Support for auto-scaling Kafka brokers
 {: #support-for-auto-scaling-kafka-brokers}
 

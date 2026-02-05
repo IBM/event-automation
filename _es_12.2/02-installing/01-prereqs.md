@@ -160,7 +160,7 @@ The Apicurio Registry is used in {{site.data.reuse.es_name}} to store message sc
 
 To connect your applications to use the [Apicurio Registry](../../schemas/overview#schema-registry), ensure all applications connecting to your instance of {{site.data.reuse.es_name}} that use the schema registry are using Apicurio client libraries version 2.5.0 or later.
 
-**Important:** Support for version 2 of the Apicurio Registry Core REST API is deprecated. You can continue to use version 2 of the API with {{site.data.reuse.es_name}} 12.2.0 and earlier, but it is recommended that you:
+**Important:** Support for version 2 of the Apicurio Registry Core REST API is deprecated. You can continue to use version 2 of the API with {{site.data.reuse.es_name}} 12.2.1 and earlier, but it is recommended that you:
 
    - Migrate to version 3 of the API to ensure continued compatibility with future releases of {{site.data.reuse.es_name}}.
    - Upgrade all client dependencies to the latest available 3.x versions.

@@ -56,7 +56,7 @@ To set up your Java applications to use the Apicurio Registry `serdes` library w
     <dependency>
         <groupId>io.apicurio</groupId>
         <artifactId>apicurio-registry-avro-serde-kafka</artifactId>
-        <version>3.1.2</version>
+        <version>3.1.6</version>
     </dependency>
     ```
 

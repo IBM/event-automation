@@ -60,7 +60,7 @@ spec:
 
 **Note:** Controller node pools cannot be scaled or modified dynamically in KRaft mode. For more information, see [KRaft limitations](../../installing/configuring/#kraft-limitations).
 
-For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.48.0/deploying#proc-scaling-up-node-pools-str). 
+For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.49.1/deploying#proc-scaling-up-node-pools-str). 
 
 ### Increase the CPU request or limit settings for the Kafka brokers
 {: #increase-the-cpu-request-or-limit-settings-for-the-kafka-brokers}
@@ -203,7 +203,7 @@ If you have specific requirements, you can modify the JVM settings for the Kafka
 
 **Note:** Take care when modifying these settings as changes can have an impact on the functioning of the product.
 
-**Note:** Only a [selected subset](https://strimzi.io/docs/operators/0.48.0/configuring.html#con-common-configuration-jvm-reference){:target="_blank"} of the available JVM options can be configured.
+**Note:** Only a [selected subset](https://strimzi.io/docs/operators/0.49.1/configuring.html#con-common-configuration-jvm-reference){:target="_blank"} of the available JVM options can be configured.
 
 JVM settings for the pools of Kafka brokers are defined in the `EventStreams` custom resource in the `spec.strimziOverrides.kafka.jvmOptions` property for all Kafka brokers. Alternatively, you can configure the JVM settings separately for each Kafka node pool by using `spec.strimziOverrides.kafka.nodePools.jvmOptions`. 
 

@@ -345,7 +345,7 @@ You can use log data to monitor cluster activity and investigate any problems af
 ## Kafka static configuration properties
 {: #kafka-static-configuration-properties}
 
-You can set [Kafka broker configuration](https://strimzi.io/docs/operators/0.48.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
+You can set [Kafka broker configuration](https://strimzi.io/docs/operators/0.49.1/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
 
 You can also use this configuration property to modify read-only Kafka broker settings for an existing {{site.data.reuse.es_name}} installation. Read-only parameters are defined by Kafka as settings that require a broker restart. Find out more about the [Kafka configuration options and how to modify them](../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings) for an existing installation.
 

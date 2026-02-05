@@ -212,7 +212,7 @@ If the Topic operator is not running or deleted before deleting `KafkaTopic` cus
 ```shell
 kubectl get kafkatopic <topic_resource_name> -o=json | jq '.metadata.finalizers = null' | kubectl apply -f -
 ```
-For more information, see [Removing finalizers on topics](https://strimzi.io/docs/operators/0.48.0/full/deploying.html#con-removing-topic-finalizers-str){:target="_blank"}.
+For more information, see [Removing finalizers on topics](https://strimzi.io/docs/operators/0.49.1/full/deploying.html#con-removing-topic-finalizers-str){:target="_blank"}.
 
 ## Uninstalling an {{site.data.reuse.es_name}} operator on {{site.data.reuse.openshift_short}}
 {: #uninstalling-an-event-streams-operator-on-openshift}

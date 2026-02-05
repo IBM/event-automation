@@ -34,7 +34,7 @@ toc: true
 
 - Granular security configuration through Kafka access control lists to configure authorization and quotas for connecting applications.
 
-- [Kafka Raft metadata](https://strimzi.io/docs/operators/0.48.0/deploying#assembly-kraft-mode-str){:target="_blank"} (KRaft) mode manages cluster metadata directly within Kafka, simplifying cluster management and improving scalability and resilience. For more information, see the [Kafka documentation](https://kafka.apache.org/documentation/#kraft){:target="_blank"}.
+- [Kafka Raft metadata](https://strimzi.io/docs/operators/0.49.1/deploying#assembly-kraft-mode-str){:target="_blank"} (KRaft) mode manages cluster metadata directly within Kafka, simplifying cluster management and improving scalability and resilience. For more information, see the [Kafka documentation](https://kafka.apache.org/documentation/#kraft){:target="_blank"}.
 
 ## Operators
 {: #operators}

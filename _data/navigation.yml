@@ -242,6 +242,8 @@ latest_eemdocs:
         url: /troubleshooting/v2-gateways-oauth/
       - title: "Warnings about clients that use deprecated Kafka APIs"
         url: /troubleshooting/deprecated-kafka/
+      - title: "Invalid certificates error after adding a Kafka cluster"
+        url: /troubleshooting/ca-cert/
 
 116_eemdocs:
   - title: About

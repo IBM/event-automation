@@ -16,3 +16,6 @@ group :jekyll_plugins do
 end
 
 gem "webrick", "~> 1.7"
+gem "nokogiri", ">= 1.18.9"
+gem "faraday", ">= 2.14.1"
+

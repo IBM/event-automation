@@ -15,7 +15,7 @@ group :jekyll_plugins do
   gem "jekyll-algolia"
 end
 
-gem "webrick", "~> 1.7"
+gem "webrick", ">= 1.7"
 gem "nokogiri", ">= 1.18.9"
 gem "faraday", ">= 2.14.1"
 

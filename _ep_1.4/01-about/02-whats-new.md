@@ -14,7 +14,7 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 
 Find out what is new in {{site.data.reuse.ep_name}} version 1.4.x.
 
-## Release {{site.data.reuse.ep_current_version}}
+## Release 1.4.7
 {: #release-147}
 
 ### API enrichment node: improve efficiency with caching

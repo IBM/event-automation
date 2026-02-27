@@ -12,6 +12,8 @@ Find out which capability versions in {{site.data.reuse.ea_short}} are no longer
 
 The following {{site.data.reuse.es_name}} versions are no longer supported.
 
+**Note:** Product defect fixes and security updates are only available in the latest CD version, in line with IBM's continuous delivery lifecycle policy (for more information, see the {{site.data.reuse.es_name}} [support lifecycle addendum](https://www.ibm.com/support/pages/node/6589953){:target="_blank"}). Ensure you stay current with the installation of the latest CD update packages.
+
 {{site.data.reuse.es_name}} version | Operator version | Operator channel | Kafka version shipped | CASE version | Container platform  | Systems | 
 -----------------------------------------------|------------------|------------------|-----------------------|---------------------|---------|
 11.2.5  | 3.2.5  | v3.2  | 3.5.1  | 3.2.5 | {{site.data.reuse.openshift}} versions 4.10 to 4.12, all fix levels (see [support dates](https://access.redhat.com/support/policy/updates/openshift#dates){:target="_blank"}).<br> <br> Managed OpenShift services on cloud platforms (PaaS): <br>- Red Hat OpenShift on IBM Cloud <br> - Azure Red Hat OpenShift <br> - Red Hat OpenShift Service on AWS <br> **Note:** [AWS ECS Fargate](https://aws.amazon.com/fargate/){:target="_blank"} is not supported. <br> <br> OpenShift on cloud infrastructure (IaaS): <br> - IBM Cloud <br> - Microsoft Azure <br> - Amazon Web Services <br> <br> Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers, versions 1.21 to 1.28  | - Linux on IBM Power Systems (ppc64le) <br> - Linux 64-bit (x86_64) systems <br>  - OpenShift only: Linux on IBM z13 (s390x) or later systems |

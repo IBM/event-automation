@@ -98,7 +98,7 @@ latest_eemdocs:
         url: /installing/uninstalling/
       - title: "Upgrading Event Manager and operator-managed Event Gateways"
         url: /installing/upgrading/
-      - title: "Upgrading Docker and Kubernetes Event Gateways"
+      - title: "Upgrading Event Gateways"
         url: /installing/upgrading-gateways/
   - title: Getting started
     children:

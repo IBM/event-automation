@@ -89,10 +89,10 @@ The following are examples of audit events logged by the {{site.data.reuse.eem_m
 2. `SIMPLE`: A succinct version of the `CADF` format that contains only essential elements. The previous [examples](#examples) were produced using this format.
 3. `NONE`: No audit logging is produced.
 
-Additionally, {{site.data.reuse.eem_name}} can be configured to write audit logging to one of two destinations:
+{{site.data.reuse.eem_name}} can be configured to write audit logging to one of the following destinations:
 
-1. `FILE`: Audit logging is written to a file separate from the standard output logs. When a file reaches a set size, it is rotated, and the old file can be retained. For details about managing file handling, see [Environment variables](#environment-variables).
-2. `STDOUT`: Audit logging is included in the standard output logs.
+1. `FILE`: Audit logging is written to a file in the {{site.data.reuse.eem_name}} manager pod. Maximum file size, rotation, and retention can be configured with [environment variables](#environment-variables).
+2. `STDOUT`: Audit logging is written to the {{site.data.reuse.eem_name}} manager pod logs as an INFO level log message.
 
 ### Environment Variables
 {: #environment-variables}

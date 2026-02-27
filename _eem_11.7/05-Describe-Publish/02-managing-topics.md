@@ -19,6 +19,8 @@ To access the **Topic detail** page:
 1. In the navigation pane, click **Manage > Topics**.
 1. Find the event source you want to work with in the list, and click the name of the event source.
 
+**Note:** ![Event Endpoint Management 11.7.2 icon]({{ 'images' | relative_url }}/11.7.2.svg "In Event Endpoint Management 11.7.2 and later.") In {{site.data.reuse.eem_name}} version 11.7.2 and later, use the search field to find the event source that you want to work with.
+
 The details of your event source appear in three sections:
 
 - **Information**: This section displays all the event source information presented to a user when an option for this event source is [socialized in the catalog](../publishing-options).

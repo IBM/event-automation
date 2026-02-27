@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       products: {
         es: ["11.8", "12.0", "12.1", "12.2"],
         eem: ["11.6", "11.7"],
-        ep: ["1.4"]
+        ep: ["1.4", "1.5"]
       }
     },
     {

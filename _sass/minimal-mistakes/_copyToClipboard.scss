@@ -1,16 +1,85 @@
-.copy-to-clipboard {
+/* Override default padding from syntax.scss - keep minimal padding for copy icon */
+div.highlighter-rouge,
+figure.highlight {
+  padding-right: 2.5rem !important;
+}
+
+/* Add extra padding on hover to accommodate both copy and wrap icons */
+div.highlighter-rouge:hover,
+figure.highlight:hover {
+  padding-right: 4.5rem !important;
+}
+
+.code-block-buttons {
     position: absolute;
     top: 0.6rem;
     right: 0.6rem;
-    width: 54px;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    z-index: 10;
+  }
+
+.copy-to-clipboard,
+.toggle-word-wrap {
+    width: 24px;
     height: 18px;
     border-radius: 3px;
-    background-color: #0f62fe;
+    background-color: transparent;
     color: white;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+  }
+
+/* Copy button is always visible but subtle - icon only, no background */
+.copy-to-clipboard {
+    opacity: 0.5;
+  }
+
+/* Wrap button is hidden by default */
+.toggle-word-wrap {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+/* On hover, make copy button fully visible with background and show wrap button */
+pre:hover .copy-to-clipboard,
+div.highlighter-rouge:hover .copy-to-clipboard,
+figure.highlight:hover .copy-to-clipboard {
+    opacity: 1;
+    background-color: #0f62fe;
+  }
+
+pre:hover .toggle-word-wrap,
+div.highlighter-rouge:hover .toggle-word-wrap,
+figure.highlight:hover .toggle-word-wrap {
+    opacity: 1;
+    background-color: #0f62fe;
+    pointer-events: auto;
+  }
+
+.copy-to-clipboard:hover,
+.toggle-word-wrap:hover {
+    background-color: #007bff;
+  }
+
+.copied-to-clipboard {
+    width: 24px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
   
   .important-block {
@@ -102,37 +171,6 @@
 
 
 
-  .copy-to-clipboard:hover {
-    background-color: #007bff;
-  }
-  
-  button.copied-to-clipboard {
-    background-color: green;
-    width: 60px;
-    height: 18px;
-    color: white;
-  }
-  
-  pre:hover .copy-to-clipboard {
-    opacity: 1;
-  }
-
-  
-  .copied-to-clipboard {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
-    width: 60px;
-    height: 18px;
-    border-radius: 3px;
-    background-color: #green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   
 
   .ibm-ind-link::before {
@@ -157,3 +195,27 @@
   a.ibm-forward-link:hover {
     text-decoration: underline;
   }
+
+/* Word wrap and overflow toggle styles */
+
+/* Default: code blocks have overflow scrolling */
+div.highlighter-rouge > pre,
+figure.highlight > pre {
+  overflow-x: auto;
+}
+
+div.highlighter-rouge > pre > code,
+figure.highlight > pre > code {
+  white-space: pre;
+}
+
+/* When wrap is enabled, allow text wrapping and hide scrollbar */
+pre > code.wrap-enabled {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+pre:has(> code.wrap-enabled) {
+  overflow-x: hidden !important;
+}

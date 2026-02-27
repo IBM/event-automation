@@ -23,6 +23,15 @@ The way that you provide the configuration settings to your client varies from c
 - `SASL` credentials : If `SASL_SSL` is specified as the `SASL mechanism`, then set `SASL username`, and `SASL password` with the values retrieved when you [subscribed to the event source](../subscribing-to-event-endpoints#requesting-access).
 - `Topic name`: The name of the event endpoint you want your application to use. The name is displayed in the **Catalog** table under the **Topic name** column and as the heading of the **Catalog** detail page when you view more information about an event endpoint.
 
+If you configure multiple clients that use the same subscription and the same group ID, then you must also use the same client ID. The group ID and client ID are not required to match, but each client that shares a subscription must reuse the same pair of values. For example,
+
+```
+myClientApplication1: <GROUP_ID>=BOB, <CLIENT_ID>=ABC
+myClientApplication2: <GROUP_ID>=BOB, <CLIENT_ID>=ABC
+```
+
+Using different client ID values within the same subscription and group ID can cause connection failures or runtime errors.
+
 <!-- If the event endpoint is secured with OAuth2, then the following additional properties are required:
 
 ```
@@ -61,6 +70,8 @@ Before using the downloaded configuration for an event endpoint in a complex app
    - `<CLIENT_ID>` - Replace with a unique string.
    - `<CREDENTIALS_USERNAME>` - set to your SASL username.
    - `<CREDENTIALS_PASSWORD>` - set to your SASL password.
+
+   **Note:** When you set the client ID, reuse the same values across all clients that share the subscription and group ID.
 9. Run the kcat sample command. For example:
 
    ```

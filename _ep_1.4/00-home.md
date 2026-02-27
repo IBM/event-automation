@@ -1,7 +1,7 @@
 ---
 title: "Home"
 layout: splash
-permalink: /ep/
+permalink: /ep/:collection/
 quickLinks:
   - mainTitle: Introduction
   - link:

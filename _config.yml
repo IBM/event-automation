@@ -395,11 +395,17 @@ collections:
   "ep_1.4":
     version: "1.4"
     output: true
-    latest: true
-    permalink: /ep/:categories/:slug/
+    permalink: /ep/:collection/:categories/:slug/
     product: ep
-    tag: Latest
     order: 5
+  "ep_1.5":
+    output: true
+    version: "1.5"
+    tag: "Latest"
+    latest: true
+    permalink: "/ep/:categories/:slug/"
+    order: 6
+    product: "ep"
   "tutorials":
     output: true
     permalink: /:collection/:path/
@@ -1033,6 +1039,23 @@ defaults:
       version: "1.4"
       product: ep
       layout: single
+      mastheadNavItem: Event Processing
+      versioned: true
+      sidebar:
+        nav: "140_epdocs"
+ # 1.5 
+  - scope:
+      path: ""
+      type: "ep_1.5"
+    values:
+      collection: "ep_1.5"
+      version: "1.5"
+      product: ep
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comment: false
       latest: true
       mastheadNavItem: Event Processing
       versioned: true

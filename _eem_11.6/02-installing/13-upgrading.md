@@ -33,7 +33,7 @@ On other Kubernetes platforms, you must update the Helm repository and then upgr
 
 In [Kafka version 4.0.0](https://kafka.apache.org/40/documentation/#upgrade_servers_400_notable){:target="_blank"}, some client APIs were removed. Client applications that use these removed APIs do not work with a Kafka 4.0 server. You can verify whether any of your client applications use these removed APIs by enabling the `client_api_versions_gauge` metric. {{site.data.reuse.eem_name}} 11.6.4 uses Kafka 3.9.1, so client applications that use the removed APIs will still work. However, it is recommended to verify your clients now so that you can notify the client application owners and allow them time to update their clients to supported API versions.
 
-1. If you are on {{site.data.reuse.eem_name}} version 11.6.2 or earlier, then upgrade to 11.6.3 first. The `client_api_versions_gauge` metric was added to [{{site.data.reuse.eem_name}}](https://jsw.ibm.com/browse/IPAAS-2910) version 11.6.3.
+1. If you are on {{site.data.reuse.eem_name}} version 11.6.2 or earlier, then upgrade to 11.6.3 first. The `client_api_versions_gauge` metric was added to {{site.data.reuse.eem_name}} version 11.6.3.
 2. Enable the `client_api_versions_gauge` metric by following the procedures documented in [export metrics](../export-metrics).
 3. Use a monitoring tool such as [Prometheus](https://prometheus.io/docs/introduction/overview/){:target="_blank"} to identify client applications that are using deprecated APIs.
 4. Contact the users of all identified client applications and advise them to update their applications to use the Kafka 4.0 APIs.

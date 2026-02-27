@@ -35,6 +35,23 @@ function createSVGIcon() {
   return svg;
 }
 
+function createWordWrapIcon() {
+  // Create word wrap icon - IBM "text-wrap" icon
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttribute("viewBox", "0 0 32 32");
+  svg.style.width = "16px";
+  svg.style.height = "16px";
+
+  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M24,9H4V7H24ZM4,13H20a4,4,0,0,1,4,4v2.17l1.59-1.58L31,19l-4,4-4-4,1.41-1.41L26,19.17V17a2,2,0,0,0-2-2H4Zm0,6H14v2H4Zm0,6H24v2H4Z");
+  path.setAttribute("fill", "#ffffff");
+
+  svg.appendChild(path);
+  return svg;
+}
+
+
 function createCheckmarkSVG() {
   // Create the SVG element
   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -60,6 +77,50 @@ function createCheckmarkSVG() {
   return svg;
 }
 
+// Function to check and update wrap button visibility
+function checkAndUpdateWrapButton(codeBlock, buttonContainer, copyButton) {
+  var needsScrolling = codeBlock.scrollWidth > codeBlock.clientWidth ||
+                       codeBlock.scrollHeight > codeBlock.clientHeight;
+  
+  var existingWrapButton = buttonContainer.querySelector('.toggle-word-wrap');
+  var isWrapped = codeBlock.classList.contains("wrap-enabled");
+  
+  // Keep button if wrapped OR if there's overflow
+  var shouldShowButton = needsScrolling || isWrapped;
+  
+  if (shouldShowButton && !existingWrapButton) {
+    // Add wrap button if needed and doesn't exist
+    var wrapButton = document.createElement("button");
+    wrapButton.className = "toggle-word-wrap";
+    wrapButton.title = isWrapped ? "Unwrap text" : "Wrap text";
+    wrapButton.setAttribute("aria-label", isWrapped ? "Unwrap text" : "Wrap text");
+    var wrapIcon = createWordWrapIcon();
+    wrapButton.appendChild(wrapIcon);
+
+    // Insert wrap button before copy button
+    buttonContainer.insertBefore(wrapButton, copyButton);
+    
+    // Add wrap button event listener
+    wrapButton.addEventListener("click", function () {
+      if (codeBlock.classList.contains("wrap-enabled")) {
+        codeBlock.classList.remove("wrap-enabled");
+        wrapButton.title = "Wrap text";
+        wrapButton.setAttribute("aria-label", "Wrap text");
+        // Re-check after unwrapping to see if button should stay
+        setTimeout(function() {
+          checkAndUpdateWrapButton(codeBlock, buttonContainer, copyButton);
+        }, 100);
+      } else {
+        codeBlock.classList.add("wrap-enabled");
+        wrapButton.title = "Unwrap text";
+        wrapButton.setAttribute("aria-label", "Unwrap text");
+      }
+    });
+  } else if (!shouldShowButton && existingWrapButton) {
+    // Remove wrap button if not needed and not wrapped
+    existingWrapButton.remove();
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -175,47 +236,66 @@ function copyCode() {
   var codeBlocks = document.querySelectorAll("pre > code");
   codeBlocks.forEach(function (codeBlock) {
     var parent = codeBlock.parentNode;
-    var button = document.createElement("button");
-    button.className = "copy-to-clipboard";
-    button.title = "Copy to clipboard";
+    
+    // Create button container
+    var buttonContainer = document.createElement("div");
+    buttonContainer.className = "code-block-buttons";
+    
+    // Create copy button
+    var copyButton = document.createElement("button");
+    copyButton.className = "copy-to-clipboard";
+    copyButton.title = "Copy to clipboard";
+    copyButton.setAttribute("aria-label", "Copy to clipboard");
 
     // Create the SVG icon using the separate function
     var svg = createSVGIcon();
 
-    // Create a span for the "Copy" text
-    var copyText = document.createElement("span");
-    copyText.innerText = " Copy";
+    // Append only the SVG icon to the button (no text)
+    copyButton.appendChild(svg);
 
-    // Append the SVG and copyText elements to the button
-    button.appendChild(svg);
-    button.appendChild(copyText);
+    // Add copy button to container first
+    buttonContainer.appendChild(copyButton);
 
-    // Add the button to the parent container
-    parent.insertBefore(button, codeBlock);
+    // Add the button container to the parent
+    parent.insertBefore(buttonContainer, codeBlock);
+    
+    // Check if code block needs scrolling after rendering
+    // Use setTimeout to ensure layout is complete
+    setTimeout(function() {
+      checkAndUpdateWrapButton(codeBlock, buttonContainer, copyButton);
+    }, 100);
+    
+    // Re-check on window resize
+    var resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        checkAndUpdateWrapButton(codeBlock, buttonContainer, copyButton);
+      }, 250);
+    });
 
-    button.addEventListener("click", function () {
+    // Copy button event listener
+    copyButton.addEventListener("click", function () {
       copyCodeToClipboard(codeBlock.textContent);
-      button.className = "copied-to-clipboard";
-      button.title = "Copied to clipboard";
+      copyButton.className = "copied-to-clipboard";
+      copyButton.title = "Copied!";
+      copyButton.setAttribute("aria-label", "Copied!");
       var checkmarkSVG = createCheckmarkSVG();
-      button.innerHTML = ""; // Clear the button's content
-      copyText.innerText = " Copied!";
-      button.appendChild(checkmarkSVG);
-      button.appendChild(copyText);
-      button.disabled = true;
+      copyButton.innerHTML = ""; // Clear the button's content
+      copyButton.appendChild(checkmarkSVG);
+      copyButton.disabled = true;
 
       setTimeout(function () {
-        button.className = "copy-to-clipboard";
-        button.title = "Copy to clipboard";
+        copyButton.className = "copy-to-clipboard";
+        copyButton.title = "Copy to clipboard";
+        copyButton.setAttribute("aria-label", "Copy to clipboard");
         var svg = createSVGIcon();
-        button.innerHTML = ""; // Clear the button's content
-        // Create a span for the "Copy" text
-        copyText.innerText = " Copy";
-        button.appendChild(svg);
-        button.appendChild(copyText);
-        button.disabled = false;
+        copyButton.innerHTML = ""; // Clear the button's content
+        copyButton.appendChild(svg);
+        copyButton.disabled = false;
       }, 5000);
     });
+
   });
 }
 

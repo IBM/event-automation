@@ -235,10 +235,10 @@ For more information, see [UDFs in the exported SQL](../../reference/supported-f
 
 For deploying jobs that use UDFs, the JAR file that contains the UDF classes needs to be copied into the Flink image, using the following steps:
 
-1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
+1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version 1.4.7:
 
    ```shell
-   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v1.4.7
    ```
    
    Alternatively, you can obtain the image name from the Flink operator pod's environment variable:

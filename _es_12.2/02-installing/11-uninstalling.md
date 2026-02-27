@@ -212,7 +212,7 @@ If the Topic operator is not running or deleted before deleting `KafkaTopic` cus
 ```shell
 kubectl get kafkatopic <topic_resource_name> -o=json | jq '.metadata.finalizers = null' | kubectl apply -f -
 ```
-For more information, see [Removing finalizers on topics](https://strimzi.io/docs/operators/0.49.1/full/deploying.html#con-removing-topic-finalizers-str){:target="_blank"}.
+For more information, see [Removing finalizers on topics](https://strimzi.io/docs/operators/0.50.1/full/deploying.html#con-removing-topic-finalizers-str){:target="_blank"}.
 
 ## Uninstalling an {{site.data.reuse.es_name}} operator on {{site.data.reuse.openshift_short}}
 {: #uninstalling-an-event-streams-operator-on-openshift}
@@ -255,11 +255,34 @@ To delete an {{site.data.reuse.es_name}} operator:
 
 4. Find the {{site.data.reuse.es_name}} operator release, it should have the chart as `ibm-eventstreams-operator-<version-number>`
 
-   **Important:** When multiple {{site.data.reuse.es_name}} operators are installed on the same cluster, all the operators share the same custom resource definitions (CRDs). Do not delete these global resources that other operators on the cluster depend upon. The {{site.data.reuse.es_name}} operator that was installed first on the cluster must not be uninstalled if you have other {{site.data.reuse.es_name}} operators deployed on the same cluster.
+   **Important:** When multiple {{site.data.reuse.es_name}} operators are installed on the same cluster, all the operators share the same CRDs. Do not delete these cluster-scoped resources that other operators on the cluster depend upon. The {{site.data.reuse.es_name}} operator that was installed first on the cluster must not be uninstalled if you have other {{site.data.reuse.es_name}} operators deployed on the same cluster.
 
-5. Run the following command to uninstall the {{site.data.reuse.es_name}} operator and the {{site.data.reuse.es_name}} Custom Resource Definitions (CRDs):
-  
+5. Run the following command to uninstall the {{site.data.reuse.es_name}} operator and the {{site.data.reuse.es_name}} CRDs:
+   
    ```shell
    helm uninstall <release-name>
    ```
+
+**Note:** If you installed the cluster-scoped resources (CRDs and ClusterRoles) separately, uninstalling the operator does not remove them. You can [uninstall the cluster-scoped resources](#uninstalling-crds) after all {{site.data.reuse.es_name}} instances and operators have been uninstalled.
+
+
+## ![Event Streams 12.2.2 icon]({{ 'images' | relative_url }}/12.2.2.svg "In Event Streams 12.2.2 and later.") Uninstalling {{site.data.reuse.es_name}} cluster-scoped resources
+{: #uninstalling-crds}
+
+After uninstalling all {{site.data.reuse.es_name}} instances and operators, you can uninstall the cluster-scoped resources.
+
+To uninstall the cluster-scoped resources:
+
+1. {{site.data.reuse.cncf_cli_login}}
+2. Run the following command to uninstall the cluster-scoped resources:
+  
+   ```shell
+   helm uninstall <crd-release-name> -n <namespace>
+   ```
+
+   Where:
+   - `<crd-release-name>` is the name of the Helm release for the cluster-scoped resources (for example, `es-crds`).
+   - `<namespace>` is the namespace where the cluster-scoped resources were installed.
+
+This removes the {{site.data.reuse.es_name}} CRDs and ClusterRoles from the cluster.
 

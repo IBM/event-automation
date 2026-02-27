@@ -10,6 +10,32 @@ Find out what is new in {{site.data.reuse.es_name}} version 12.2.x.
 
 ## Release {{site.data.reuse.es_current_version}}
 
+### Support for installing cluster-scoped resources separately
+{: #support-for-installing-cluster-scoped-resources-separately}
+
+{{site.data.reuse.es_name}} 12.2.2 supports management of cluster-scoped resources (Custom Resource Definitions and ClusterRoles) and namespace-scoped resources independently. For more information, see [installing the operator and cluster-scoped resources separately](../../installing/installing-on-kubernetes/#installing-by-using-separate-releases).
+
+### Apicurio version updated to 3.1.7
+{: #apicurio-version-updated-to-317}
+
+{{site.data.reuse.es_name}} 12.2.2 includes Apicurio Registry version 3.1.7 for [managing schemas](../../schemas/overview/#schema-registry). For more information about client application requirements, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Support for {{site.data.reuse.openshift}} 4.21
+{: #support-for-openshift-421}
+
+{{site.data.reuse.es_name}} version 12.2.2 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.21.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1222}
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.2.2 compared to 12.2.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.2.2 icon]({{ 'images' | relative_url }}/12.2.2.svg "In Event Streams 12.2.2 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1222}
+
+{{site.data.reuse.es_name}} release 12.2.2 contains security and bug fixes.
+
+## Release 12.2.1
 
 ### Kafka version upgraded to 4.1.1
 {: #kafka-version-upgraded-to-411}

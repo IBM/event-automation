@@ -27,9 +27,9 @@ Consider the following when planning to back up and restore your {{site.data.reu
 
 Ensure that the following prerequisites are met before you back up and restore {{site.data.reuse.es_name}} configurations by using OADP:
 
-- A storage mechanism, such as Amazon Simple Storage Service (Amazon S3), to securely retain backed up data. For more information about the supported storage types, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/oadp-application-backup-and-restore#oadp-s3-compatible-backup-storage-providers-supported){:target="_blank"}.
+- A storage mechanism, such as Amazon Simple Storage Service (Amazon S3), to securely retain backed up data. For more information about the supported storage types, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/backup_and_restore/oadp-application-backup-and-restore#oadp-s3-compatible-backup-storage-providers-supported){:target="_blank"}.
 
-- Ensure that the OADP operator is installed in your cluster along with a `DataProtectionApplication` instance in `Ready` state. Follow the instructions in the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/oadp-application-backup-and-restore#oadp-installing-operator-doc){:target="_blank"} to install OADP.
+- Ensure that the OADP operator is installed in your cluster along with a `DataProtectionApplication` instance in `Ready` state. Follow the instructions in the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/backup_and_restore/oadp-application-backup-and-restore#oadp-installing-operator-doc){:target="_blank"} to install OADP.
 
 ## Backing up configurations of {{site.data.reuse.es_name}}
 {: #backing-up-configurations-of-event-streams}

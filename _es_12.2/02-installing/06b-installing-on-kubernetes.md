@@ -51,11 +51,11 @@ helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/
 ```
 
 ## Install the {{site.data.reuse.es_name}} operator
-{: #install-the-event-streams-operator}
+{: #installing-the-operator}
 
 Ensure you have considered the {{site.data.reuse.es_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
-### Choosing operator installation mode
+### Choose the operator installation mode
 {: #choosing-operator-installation-mode}
 
 Before installing the {{site.data.reuse.es_name}} operator, decide if you want the operator to:
@@ -68,12 +68,83 @@ Before installing the {{site.data.reuse.es_name}} operator, decide if you want t
 
   This is the default option: if `watchAnyNamespace` is not set, then it defaults `false`. The operator will be deployed into the specified namespace, and will only be able to manage instances of {{site.data.reuse.es_name}} in that namespace.
 
-   **Important:** When multiple {{site.data.reuse.es_name}} operators are installed on the same cluster, all the operators share the same custom resource definitions (CRDs). Do not install a previous version of the {{site.data.reuse.es_name}} operator if a later version is already installed on the same cluster.   
-  
-### Installing the operator
-{: #installing-the-operator}
+   **Important:** When multiple {{site.data.reuse.es_name}} operators are installed on the same cluster, all the operators share the same Custom Resource Definitions (CRDs). Do not install a previous version of the {{site.data.reuse.es_name}} operator if a later version is already installed on the same cluster.
 
-To install the operator, run the following command:
+You can install the {{site.data.reuse.es_name}} operator by using one of the following methods:
+- ![Event Streams 12.2.2 icon]({{ 'images' | relative_url }}/12.2.2.svg "In Event Streams 12.2.2 and later.") [Install the operator and cluster-scoped resources separately](#installing-by-using-separate-releases)
+- [Install the operator with cluster-scoped resources](#installing-the-operator-with-crds)
+
+### ![Event Streams 12.2.2 icon]({{ 'images' | relative_url }}/12.2.2.svg "In Event Streams 12.2.2 and later.") Install the operator and cluster-scoped resources separately
+{: #installing-by-using-separate-releases}
+
+Before installing the operator in a specific namespace, install cluster-scoped resources (CRDs and ClusterRoles). By using this approach, you can manage cluster-scoped and namespace-scoped permissions independently.
+
+**Note:** If you want to install the operator with the CRDs and ClusterRoles together, skip this section and go to [install the operator with cluster-scoped resources](#installing-the-operator-with-crds).
+
+#### Install the CRDs and ClusterRoles
+{: #install-crds-separately}
+
+Before installing the operator, install the CRDs and ClusterRoles.
+
+Run the following command to install only the cluster-scoped resources:
+
+```shell
+helm install <crd-release-name> ibm-helm/ibm-eventstreams-operator \
+   -n <namespace> \
+   --set namespaceScopedResources=false
+```
+
+Where:
+- `<crd-release-name>` is the name you provide to identify the CRD installation (for example, `es-crds`).
+- `<namespace>` is the namespace where you want to install the cluster-scoped resources.
+
+For example:
+
+```shell
+helm install es-crds ibm-helm/ibm-eventstreams-operator \
+   -n es-global \
+   --set namespaceScopedResources=false
+```
+
+The `namespaceScopedResources=false` flag ensures that only the cluster-scoped resources are installed. The default value is `true`.
+
+#### Install the operator
+{: #installing-the-operator-without-crds}
+
+After the cluster-scoped resources are installed, run the following command to install the {{site.data.reuse.es_name}} operator:
+
+```shell
+helm install <release-name> ibm-helm/ibm-eventstreams-operator \
+   -n <namespace> \
+   --set clusterScopedResources=false \
+   --set watchAnyNamespace=<true/false>
+```
+
+Where:
+- `<release-name>` is the name you provide to identify your operator.
+- `<namespace>` is the namespace where you want to install the operator.
+- `watchAnyNamespace=<true/false>` determines whether the operator manages instances of {{site.data.reuse.es_name}} in any namespace or only a single namespace (default is `false` if not specified).
+
+   Set `watchAnyNamespace` to `true` for the operator to manage instances in any namespace, or do not specify if you want the operator to only manage instances in a single namespace.
+
+For example, to install the operator in the `my-eventstreams` namespace:
+
+```shell
+helm install eventstreams ibm-helm/ibm-eventstreams-operator \
+   -n my-eventstreams \
+   --set clusterScopedResources=false
+```
+
+The `clusterScopedResources=false` flag ensures that the installation skips the cluster-scoped resources and only installs the operator. The default value is `true`.
+
+**Note:** When you uninstall an operator installed by using this method, only the operator is removed, while the CRDs and ClusterRoles remain available for other {{site.data.reuse.es_name}} operator instances on the cluster.
+
+### Alternative: Install the operator with cluster-scoped resources
+{: #installing-the-operator-with-crds}
+
+Alternatively, you can install the operator with all required resources (CRDs, ClusterRoles, and operator) together.
+
+To install the operator with all required resources, run the following command:
 
 ```shell
 helm install \
@@ -87,7 +158,7 @@ Where:
 - `<namespace>` is the name of the namespace where you want to install the operator.
 - `watchAnyNamespace=<true/false>` determines whether the operator manages instances of {{site.data.reuse.es_name}} in any namespace or only a single namespace (default is `false` if not specified).
 
-   Set to `true` for the operator to manage instances in any namespace, or do not specify if you want the operator to only manage instances in a single namespace.
+   Set `watchAnyNamespace` to `true` for the operator to manage instances in any namespace, or do not specify if you want the operator to only manage instances in a single namespace.
 
 For example, to install the operator on a cluster where it will manage all instances of {{site.data.reuse.es_name}}, run the command as follows:
 

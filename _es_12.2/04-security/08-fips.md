@@ -11,7 +11,7 @@ Find out how to set up {{site.data.reuse.es_name}} to be FIPS-compliant by using
 ## Requirements
 {: #requirements}
 
-To run a FIPS-compliant {{site.data.reuse.es_name}} deployment, ensure that you have a [FIPS-enabled OpenShift Container Platform cluster](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/installation_overview/installing-fips#installing-fips-mode_installing-fips){:target="_blank"} available with {{site.data.reuse.es_name}} version of 11.3.0 or later installed.
+To run a FIPS-compliant {{site.data.reuse.es_name}} deployment, ensure that you have a [FIPS-enabled OpenShift Container Platform cluster](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installation_overview/installing-fips#installing-fips-mode_installing-fips){:target="_blank"} available with {{site.data.reuse.es_name}} version of 11.3.0 or later installed.
 
 ### Configuring {{site.data.reuse.es_name}} for FIPS
 {: #configuring-event-streams-for-fips}

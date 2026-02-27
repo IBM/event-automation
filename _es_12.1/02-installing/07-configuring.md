@@ -1014,7 +1014,7 @@ spec:
           - "kubeadmin"
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/0.48.0/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
+The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/0.45.0/deploying.html#proc-oauth-server-config-str){:target="_blank"}.
 
 ## Configuring node affinity for components
 {: #configuring-node-affinity-for-components}
@@ -1261,7 +1261,7 @@ You can also configure Kafka Exporter using a `regex` to expose metrics for a co
         topicRegex: orders
 ```
 
-For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/0.48.0/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
+For more information about configuration options, see [configuring the Kafka Exporter](https://strimzi.io/docs/operators/0.45.0/deploying.html#proc-metrics-kafka-deploy-options-str){:target="_blank"}.
 
 ## Configuring the JMX Exporter
 {: #configuring-the-jmx-exporter}

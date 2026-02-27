@@ -200,13 +200,13 @@ You either need to create a [persistent volume](https://kubernetes.io/docs/conce
 
  For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
-- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/storage/understanding-persistent-storage){:target="_blank"}.
+- For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/understanding-persistent-storage){:target="_blank"}.
 - For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the Cluster Administrator role for creating persistent volumes or a storage class.
 
 - If these persistent volumes are to be created manually, this must be done by the system administrator before installing {{site.data.reuse.es_name}}. These will then be claimed from a central pool when the {{site.data.reuse.es_name}} instance is deployed. The installation will then claim the required number of persistent volumes from this pool.
-- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.es_name}}.
+- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.es_name}}.
 
 **Important:** When creating persistent volumes for each component, ensure the correct **Access mode** is set for the volumes as described in the following table.
 
@@ -345,7 +345,7 @@ You can use log data to monitor cluster activity and investigate any problems af
 ## Kafka static configuration properties
 {: #kafka-static-configuration-properties}
 
-You can set [Kafka broker configuration](https://strimzi.io/docs/operators/0.49.1/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
+You can set [Kafka broker configuration](https://strimzi.io/docs/operators/0.50.1/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"} settings in your `EventStreams` custom resource under the property `spec.strimziOverrides.kafka`. These settings will override the default Kafka configuration defined by {{site.data.reuse.es_name}}.
 
 You can also use this configuration property to modify read-only Kafka broker settings for an existing {{site.data.reuse.es_name}} installation. Read-only parameters are defined by Kafka as settings that require a broker restart. Find out more about the [Kafka configuration options and how to modify them](../../administering/modifying-installation/#modifying-kafka-broker-configuration-settings) for an existing installation.
 

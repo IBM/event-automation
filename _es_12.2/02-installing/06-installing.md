@@ -33,7 +33,7 @@ Installing {{site.data.reuse.es_name}} has two phases:
 ## Create a project (namespace)
 {: #create-a-project-namespace}
 
-Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/building_applications/projects#working-with-projects){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.es_name}} instance will be installed by creating a [project](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/building_applications/projects#working-with-projects){:target="_blank"}.
 When you create a project, a namespace with the same name is also created.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.es_name}}. This is required because {{site.data.reuse.es_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.

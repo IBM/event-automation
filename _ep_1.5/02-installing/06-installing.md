@@ -630,7 +630,8 @@ the **Quick Start** sample is the smallest and simplest example. For the smalles
 
   ```yaml
   metadata:
-    eventautomation.ibm.com/auto-version-upgrade: false
+    annotations:
+      eventautomation.ibm.com/auto-version-upgrade: 'false'
   #... 
   spec:
     flinkVersion: v1_20
@@ -692,8 +693,9 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
 
    ```yaml
    metadata:
-     eventautomation.ibm.com/auto-version-upgrade: false
-
+     annotations:
+       eventautomation.ibm.com/auto-version-upgrade: 'false'
+   #...
    spec:
      flinkVersion: v1_20
    ```
@@ -752,8 +754,9 @@ To deploy a Flink instance, run the following commands:
 
      ```yaml
      metadata:
-       eventautomation.ibm.com/auto-version-upgrade: false
-
+       annotations:
+         eventautomation.ibm.com/auto-version-upgrade: 'false'
+     #....
      spec:
        flinkVersion: v1_20
      ```

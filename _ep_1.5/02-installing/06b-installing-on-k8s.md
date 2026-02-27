@@ -316,8 +316,9 @@ To deploy a Flink instance, run the following commands:
  
       ```yaml
       metadata:
-        eventautomation.ibm.com/auto-version-upgrade: false
- 
+        annotations:
+          eventautomation.ibm.com/auto-version-upgrade: 'false'
+      #....
       spec:
         flinkVersion: v1_20
       ```

@@ -6,7 +6,7 @@ slug: upgrading
 toc: true
 ---
 
-Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}}, and all [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} instances that are on the same cluster. To upgrade a Docker or Kubernetes {{site.data.reuse.egw}}, see [Upgrading Docker and Kubernetes {{site.data.reuse.egw}}s](../upgrading-gateways).
+Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.data.reuse.eem_name}} operator handles the upgrade of your {{site.data.reuse.eem_manager}}, and all [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} instances that are on the same cluster. 
 
 Review the upgrade procedure and decide the right steps to take for your deployment based on your platform, current version, and target version.
 
@@ -182,6 +182,7 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
 7. Select the required channel, for example **v11.7**, and click **Save** on the **Change Subscription update channel** dialog.<!-- This step can be commented out from releases that do not require license updates. -->
 8. If you are upgrading from 11.6.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.7.0 and later. The instances will not upgrade until the license ID is updated.
 9. Monitor your {{site.data.reuse.eem_name}} operator and instance in the web console to confirm that the upgrade completes.
+10. If your {{site.data.reuse.egw}} instances do not automatically upgrade, then follow the steps in [upgrade gateways](../upgrading-gateways#upgrade-opman-gateways).
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
@@ -299,6 +300,8 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 
    Confirm that the CHART column shows your target version for your {{site.data.reuse.eem_name}} CRDs and operator.
 
+   If your {{site.data.reuse.egw}} instances do not automatically upgrade, then follow the steps in [upgrade gateways](../upgrading-gateways#upgrade-opman-gateways).
+
 
 ## Post-upgrade tasks
 {: #post-upgrade}
@@ -339,7 +342,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.7.1               
+eem-manager           Running   11.7.2               
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms

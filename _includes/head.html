@@ -13,6 +13,9 @@
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
+<!-- Theme Switcher: Load early to prevent flash -->
+<script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
+
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 

@@ -1,0 +1,1996 @@
+/* ==========================================================================
+   Theme Switcher Styles
+   ========================================================================== */
+
+// Theme toggle button in masthead
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+  outline: none;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  &:hover {
+    background-color: #0043ce;
+  }
+
+  &:focus {
+    outline: 2px solid #0f62fe;
+    outline-offset: 2px;
+  }
+
+  .theme-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: white;
+    transition: opacity 0.2s ease;
+  }
+
+  .theme-icon-light,
+  .theme-icon-dark,
+  .theme-icon-system {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ==========================================================================
+   Dark Theme Styles
+   ========================================================================== */
+
+// Light theme (default)
+html.theme-light {
+  // Uses default variables from _variables.scss
+}
+
+// Dark theme - Using IBM Carbon g100 (#161616) everywhere
+html.theme-dark {
+  // Background colors - g100 for all backgrounds
+  --background-color: #161616;
+  --code-background-color: #161616;
+  --code-background-color-dark: #161616;
+  --form-background-color: #161616;
+  --footer-background-color: #161616;
+  --card-background-color: #161616;
+  --border-color: #393939;
+
+  // Text colors
+  --text-color: #f4f4f4;
+  --muted-text-color: #c6c6c6;
+  --link-color: #78a9ff;
+  --link-color-hover: #a6c8ff;
+  --link-color-visited: #78a9ff;
+
+  // Primary colors
+  --primary-color: #0f62fe;
+  --success-color: #24a148;
+  --warning-color: #f1c21b;
+  --danger-color: #da1e28;
+  --info-color: #0043ce;
+
+  // Masthead specific
+  --masthead-link-color: #f4f4f4;
+  --masthead-link-color-hover: #ffffff;
+
+  // Apply g100 background everywhere
+  background-color: #161616;
+  color: var(--text-color);
+
+  body {
+    background-color: #161616;
+    color: var(--text-color);
+  }
+
+  // Content areas - all g100
+  .page__content,
+  .page__inner-wrap,
+  .archive,
+  .sidebar,
+  .page,
+  .layout,
+  .layout--single,
+  .layout--splash,
+  .initial-content {
+    background-color: #161616;
+    color: var(--text-color);
+  }
+
+  // Links
+  a {
+    color: var(--link-color);
+
+    &:visited {
+      color: var(--link-color-visited);
+    }
+
+    &:hover {
+      color: var(--link-color-hover);
+    }
+  }
+  
+  // Sidebar links should not use visited color
+  .sidebar {
+    a {
+      color: var(--text-color) !important;
+      
+      &:visited {
+        color: var(--text-color) !important;
+      }
+      
+      &:hover {
+        color: var(--link-color-hover) !important;
+      }
+    }
+  }
+
+  // Code blocks - g90 grey background
+  pre,
+  code {
+    background-color: #262626 !important; // g90 grey
+    background: #262626 !important;
+    color: var(--text-color);
+  }
+
+  .highlight {
+    background-color: #262626 !important; // g90 grey
+    background: #262626 !important;
+    
+    pre {
+      background-color: #262626 !important; // g90 grey
+      background: #262626 !important;
+    }
+  }
+  
+  // Code blocks with language class - override $base00 variable
+  div.highlighter-rouge,
+  figure.highlight {
+    background: #262626 !important; // g90 grey - override $base00
+    background-color: #262626 !important;
+    
+    > pre,
+    pre.highlight {
+      background: #262626 !important;
+      background-color: #262626 !important;
+    }
+  }
+  
+  // Code blocks with language class
+  div.highlight {
+    background-color: #262626 !important; // g90 grey
+    background: #262626 !important;
+  }
+  
+  // Inline code
+  p code,
+  li code,
+  td code {
+    background-color: #262626 !important; // g90 grey
+    background: #262626 !important;
+    padding: 0.2em 0.4em;
+  }
+  
+  // Syntax highlighting container
+  .highlight table td {
+    background-color: #262626 !important;
+    background: #262626 !important;
+  }
+
+  // Tables - g100 background
+  table {
+    background-color: #161616;
+    border-color: var(--border-color);
+
+    th {
+      background-color: #161616;
+      color: var(--text-color);
+      font-weight: bold;
+      border-color: var(--border-color);
+    }
+    
+    td {
+      border-color: var(--border-color);
+      color: var(--text-color);
+      border-bottom-color: var(--border-color);
+    }
+
+    thead {
+      background-color: #161616;
+      color: var(--text-color);
+      
+      th {
+        font-weight: bold;
+      }
+    }
+    
+    tbody {
+      background-color: #161616 !important;
+      background: #161616 !important;
+      
+      tr {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        border-color: var(--border-color);
+        
+        td {
+          background-color: #161616 !important;
+          background: #161616 !important;
+        }
+      }
+    }
+  }
+
+  // Forms - g100 background
+  input,
+  textarea,
+  select {
+    background-color: #161616;
+    color: var(--text-color);
+    border-color: var(--border-color);
+
+    &:focus {
+      border-color: var(--primary-color);
+    }
+  }
+
+  // Buttons
+  .btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+
+    &:hover {
+      background-color: #0353e9;
+    }
+  }
+
+  // Notices and callout blocks - IBM Carbon grey backgrounds
+  .notice,
+  .notice--primary,
+  .notice--info,
+  .notice--warning,
+  .notice--success,
+  .notice--danger {
+    background-color: #262626; // Carbon g90
+    border-color: var(--border-color);
+    color: var(--text-color);
+    
+    h4 {
+      color: var(--text-color);
+    }
+    
+    p, li {
+      color: var(--text-color);
+    }
+    
+    code {
+      background-color: #393939; // Carbon g80
+      color: var(--text-color);
+    }
+  }
+  
+  // Note blocks (blue info boxes) - IBM Carbon grey background
+  .note-block {
+    background-color: #262626 !important; // Carbon g90
+    border-left-color: var(--primary-color);
+    color: var(--text-color);
+    
+    p, li, span {
+      color: var(--text-color);
+    }
+    
+    code {
+      background-color: #262626 !important; // Same as note block
+      background: #262626 !important;
+      color: var(--text-color);
+    }
+    
+    pre {
+      background-color: #161616 !important; // Darker to stand out
+      background: #161616 !important;
+      
+      code {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+  }
+  
+  // Important blocks (yellow warning boxes) - IBM Carbon grey background
+  .important-block {
+    background-color: #262626 !important; // Carbon g90
+    border-left-color: var(--warning-color);
+    color: var(--text-color);
+    
+    p, li, span {
+      color: var(--text-color);
+    }
+    
+    code {
+      background-color: #262626 !important; // Same as important block
+      background: #262626 !important;
+      color: var(--text-color);
+    }
+    
+    pre {
+      background-color: #161616 !important; // Darker to stand out
+      background: #161616 !important;
+      
+      code {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+  }
+  
+  // Tip blocks - IBM Carbon grey background
+  .tip-block {
+    background-color: #262626 !important; // Carbon g90
+    border-left-color: #24a148; // Success green
+    color: var(--text-color);
+    
+    p, li, span {
+      color: var(--text-color);
+    }
+    
+    code {
+      background-color: #262626 !important; // Same as tip block
+      background: #262626 !important;
+      color: var(--text-color);
+    }
+    
+    pre {
+      background-color: #161616 !important; // Darker to stand out
+      background: #161616 !important;
+      
+      code {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+  }
+
+  // Footer - layer-01 (g90 grey) for better visual separation
+  .page__footer {
+    background-color: #262626;
+    color: var(--text-color);
+    border-top-color: var(--border-color);
+  }
+
+  // Sidebar - g100 background (override hardcoded #fff in _sidebarLeft.scss line 14)
+  .sidebar,
+  .sidebar.sticky,
+  .sidebar.nav-close,
+  .sidebar.sidebarOpen,
+  .sidebarLeft {
+    background: #161616 !important;
+    background-color: #161616 !important;
+    border-color: var(--border-color) !important;
+    border-right-color: var(--border-color) !important;
+    
+    &__inner,
+    .sidebar-inner {
+      background: #161616 !important;
+      background-color: #161616 !important;
+      color: var(--text-color);
+    }
+    
+    // Override the ::after pseudo-element border
+    .sidebar-inner::after {
+      background-color: var(--border-color) !important;
+    }
+  }
+  
+  .sidebar {
+    
+    .nav__sub-title {
+      color: #ffffff !important;
+      font-weight: bold !important;
+    }
+    
+    // When sidebar is closed/collapsed
+    &.closed,
+    &.collapsed,
+    &.nav-close {
+      background: #161616 !important;
+      background-color: #161616 !important;
+    }
+    
+    // Sidebar inner element
+    .sidebar-inner {
+      background: #161616 !important;
+      background-color: #161616 !important;
+    }
+  }
+  
+  // Hamburger menu button and container
+  #hamburgerMenu,
+  .menuIcon {
+    background: #161616 !important;
+    background-color: #161616 !important;
+    
+    svg {
+      fill: #ffffff;
+      color: #ffffff;
+    }
+  }
+  
+  // Navigation close button
+  #navCloseBtn,
+  .nav__close-btn {
+    background: #161616 !important;
+    background-color: #161616 !important;
+    
+    svg {
+      fill: #ffffff;
+      color: #ffffff;
+    }
+
+    .nav__title {
+      background-color: #161616 !important;
+      color: var(--text-color);
+    }
+
+    .nav__list {
+      background-color: #161616 !important;
+      background: #161616 !important;
+      
+      a {
+        color: var(--text-color) !important;
+
+        &:visited {
+          color: var(--text-color) !important;
+        }
+
+        &:hover {
+          color: var(--link-color-hover) !important;
+        }
+      }
+
+      .active {
+        color: var(--link-color) !important;
+        font-weight: bold;
+      }
+      
+      li {
+        color: var(--text-color);
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        ul {
+          background-color: #161616 !important;
+          background: #161616 !important;
+        }
+      }
+    }
+    
+    .nav__sub-title {
+      color: #ffffff !important;
+      font-weight: bold;
+    }
+    
+    .nav__items {
+      background-color: #161616 !important;
+      
+      a {
+        color: var(--text-color) !important;
+        
+        &:visited {
+          color: var(--text-color) !important;
+        }
+        
+        &:hover {
+          color: var(--link-color-hover) !important;
+        }
+      }
+      
+      li {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        a {
+          color: var(--text-color) !important;
+          
+          &:visited {
+            color: var(--text-color) !important;
+          }
+        }
+        
+        // Active/current page styling
+        &.active,
+        &.current {
+          a {
+            color: var(--link-color) !important;
+            font-weight: bold !important;
+          }
+        }
+      }
+    }
+    
+    // SVG icons in sidebar (like arrows next to "Change Version")
+    svg {
+      fill: #ffffff;
+      color: #ffffff;
+    }
+    
+    .changeVersion {
+      color: var(--text-color);
+      
+      svg {
+        fill: #ffffff;
+        color: #ffffff;
+      }
+    }
+  }
+  
+  // SubMenu / Back menu - g100 background (override white in _sidebarLeft.scss line 212)
+  .subMenu,
+  .subMenu.backMenu {
+    background: #161616 !important;
+    background-color: #161616 !important;
+    border-bottom-color: var(--border-color) !important;
+    
+    a {
+      color: var(--text-color) !important;
+      
+      &:hover {
+        color: var(--link-color-hover) !important;
+      }
+    }
+  }
+  
+  // Override style block in pagesInsideCollection.html for dark mode
+  .mainContainer .mainContent .page {
+    background: #161616 !important;
+    background-color: #161616 !important;
+  }
+  
+  // Version selector bar - g100 background (override white in _versions.scss)
+  .versionsBar,
+  .versionsBar.open {
+    background-color: #161616 !important;
+    background: #161616 !important;
+    box-shadow: inset 0px -1px 0px var(--border-color);
+    
+    .selectedVersion {
+      background-color: #161616 !important;
+      
+      .versionContainer {
+        background-color: #161616 !important;
+        
+        .versionLabel {
+          color: var(--text-color) !important;
+        }
+        
+        .changeVersion {
+          color: var(--text-color) !important;
+        }
+      }
+    }
+    
+    .allVersions {
+      background-color: #161616 !important;
+      
+      ul {
+        background-color: #161616 !important;
+        
+        .version {
+          background-color: #161616 !important;
+          
+          &:hover {
+            background-color: #262626 !important;
+          }
+          
+          &:first-of-type {
+            border-top-color: var(--border-color) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Search - g100 background
+  .search-content {
+    background-color: #161616;
+    color: var(--text-color);
+
+    .search-input {
+      background-color: #161616;
+      color: var(--text-color);
+      border-color: var(--border-color);
+    }
+  }
+  
+  .search-content__inner-wrap {
+    h1 {
+      color: var(--text-color);
+      font-weight: bold;
+    }
+  }
+
+  // Masthead stays dark in both themes (as per current design)
+  .masthead {
+    background-color: #161616;
+    border-bottom-color: #393939;
+    
+    // Masthead links
+    a {
+      color: #ffffff !important;
+      
+      &:visited {
+        color: #ffffff !important;
+      }
+      
+      &:hover {
+        color: var(--link-color-hover) !important;
+      }
+    }
+    
+    // Site title
+    .site-title {
+      color: #ffffff !important;
+    }
+    
+    // Navigation items
+    .greedy-nav {
+      a {
+        color: #ffffff !important;
+        
+        &:visited {
+          color: #ffffff !important;
+        }
+        
+        &:hover {
+          color: var(--link-color-hover) !important;
+        }
+      }
+      
+      .visible-links {
+        a {
+          color: #ffffff !important;
+          
+          &:hover {
+            color: var(--link-color-hover) !important;
+          }
+        }
+      }
+    }
+    
+    // Button hover styles for search and theme toggle
+    .masthead__menu-item {
+      // Removed hover background colors
+    }
+  }
+
+  // Archive items
+  .archive__item {
+    .archive__item-title {
+      color: var(--text-color);
+    }
+
+    .archive__item-excerpt {
+      color: var(--muted-text-color);
+    }
+  }
+
+  // Pagination - g100 background
+  .pagination {
+    border-top-color: var(--border-color);
+    
+    .previous,
+    .next {
+      background-color: #161616;
+      color: #ffffff;
+      
+      &:hover {
+        box-shadow: inset 0px 0px 0px 1px var(--primary-color) !important;
+      }
+    }
+    
+    .previous {
+      box-shadow: none;
+      border-right: 1px solid var(--border-color) !important;
+      
+      &:hover {
+        box-shadow: inset 0px 0px 0px 1px var(--primary-color) !important;
+      }
+    }
+    
+    .next {
+      border-left: none !important;
+      margin-left: 0 !important;
+      
+      &.disabled {
+        color: var(--muted-text-color);
+        opacity: 0.5;
+      }
+      
+      .container {
+        color: #ffffff;
+        
+        .pagination--pager {
+          color: #ffffff !important;
+          font-weight: bold;
+          
+          &:visited {
+            color: #ffffff !important;
+          }
+        }
+        
+        .titlePreview {
+          color: var(--text-color);
+        }
+      }
+      
+      // Target the arrow symbols directly
+      &::before,
+      &::after {
+        color: #ffffff !important;
+        font-weight: bold;
+      }
+    }
+    
+    .current,
+    .disabled {
+      background-color: #161616;
+      color: var(--text-color);
+    }
+
+    a {
+      background-color: #161616;
+      color: var(--link-color);
+
+      &:hover {
+        background-color: #161616;
+      }
+    }
+  }
+
+  // Breadcrumbs
+  .breadcrumbs {
+    color: var(--muted-text-color);
+
+    a {
+      color: var(--link-color);
+    }
+  }
+
+  // TOC (Right sidebar)
+  .toc {
+    background-color: transparent;
+    border-color: var(--border-color);
+
+    .nav__title {
+      background-color: transparent;
+      color: var(--text-color);
+    }
+
+    a {
+      color: var(--text-color);
+      border-bottom-color: var(--border-color);
+
+      &:hover {
+        color: var(--link-color-hover);
+      }
+    }
+
+    .active a {
+      color: var(--link-color);
+    }
+  }
+  
+  .toc__menu {
+    a {
+      color: var(--muted-text-color);
+      border-bottom-color: var(--border-color);
+      
+      &:hover {
+        color: var(--link-color-hover);
+      }
+    }
+    
+    a.active-link {
+      color: var(--link-color);
+      
+      &::before {
+        color: var(--primary-color);
+      }
+      
+      &:hover {
+        color: var(--link-color-hover);
+        
+        &::before {
+          color: var(--link-color-hover);
+        }
+      }
+    }
+  }
+  
+  .sidebar__right {
+    background-color: transparent;
+  }
+
+  // Syntax highlighting adjustments for dark theme
+  .highlight {
+    .c,
+    .cm,
+    .cp,
+    .c1,
+    .cs { color: #8d8d8d; } // Comments
+    .k,
+    .kc,
+    .kd,
+    .kn,
+    .kp,
+    .kr,
+    .kt { color: #ff7eb6; } // Keywords
+    .s,
+    .sb,
+    .sc,
+    .sd,
+    .s2,
+    .se,
+    .sh,
+    .si,
+    .sx,
+    .sr,
+    .s1,
+    .ss { color: #3ddbd9; } // Strings
+    .na { color: #78a9ff; } // Attributes
+    .nb { color: #ee5396; } // Built-ins
+    .nc { color: #82cfff; } // Classes
+    .no { color: #ff7eb6; } // Constants
+    .nd { color: #78a9ff; } // Decorators
+    .ni { color: #f4f4f4; } // Entities
+    .ne { color: #ff7eb6; } // Exceptions
+    .nf { color: #82cfff; } // Functions
+    .nl { color: #78a9ff; } // Labels
+    .nn { color: #82cfff; } // Namespaces
+    .nt { color: #ff7eb6; } // Tags
+    .nv { color: #78a9ff; } // Variables
+    .ow { color: #ff7eb6; } // Operators
+    .m,
+    .mf,
+    .mh,
+    .mi,
+    .mo { color: #ee5396; } // Numbers
+  }
+  
+  // Version selector
+  .versionsBar {
+    background-color: #161616;
+    box-shadow: inset 0px -1px 0px var(--border-color);
+    
+    // Arrow icon
+    svg {
+      fill: #ffffff;
+      color: #ffffff;
+    }
+    
+    .selectedVersion {
+      background-color: #161616 !important;
+      
+      svg {
+        fill: #ffffff;
+        color: #ffffff;
+      }
+      
+      .versionContainer {
+        background-color: #161616 !important;
+        
+        .versionLabel {
+          color: var(--text-color);
+        }
+        
+        .changeVersion {
+          color: var(--text-color);
+          background-color: #161616 !important;
+        }
+        
+        svg {
+          fill: #ffffff;
+          color: #ffffff;
+        }
+      }
+    }
+    
+    .allVersions {
+      background-color: #161616;
+
+      ul {
+        background-color: #161616;
+
+        .version {
+          color: var(--text-color);
+          background-color: #161616;
+          
+          &:first-of-type {
+            border-top-color: var(--border-color);
+          }
+          
+          &:hover {
+            background-color: #262626;
+          }
+        }
+      }
+    }
+  }
+  
+  .versionPill {
+    // Ensure white text on all version pills in dark mode
+    color: #ffffff !important;
+    
+    &.active {
+      background-color: var(--primary-color) !important;
+      color: #ffffff !important;
+    }
+    
+    &.inactive {
+      background-color: #393939 !important;
+      color: #c6c6c6 !important;
+      
+      &:hover {
+        background-color: var(--primary-color) !important;
+        color: #ffffff !important;
+      }
+    }
+  }
+  
+  .versionPillContainer {
+    // Default pills in containers (search results)
+    &:not(.initial):not(.inactive) {
+      .versionPill {
+        background-color: #393939 !important;
+        color: #c6c6c6 !important;
+      }
+    }
+    
+    &.initial {
+      .versionPill {
+        background-color: var(--primary-color) !important;
+        color: #ffffff !important;
+      }
+    }
+    
+    &.inactive {
+      .versionPill {
+        background-color: #393939 !important;
+        color: #c6c6c6 !important;
+      }
+      
+      &:hover {
+        .versionPill {
+          background-color: var(--primary-color) !important;
+          color: #ffffff !important;
+        }
+      }
+    }
+    
+    &:hover {
+      .versionPill {
+        background-color: var(--primary-color) !important;
+        color: #ffffff !important;
+      }
+    }
+  }
+  
+  .latest {
+    color: var(--muted-text-color);
+  }
+  
+  .versionChange {
+    color: var(--muted-text-color);
+  }
+  
+  // Splash pages and cards - g100 black background
+  .splash {
+    background-color: #161616 !important;
+    background: #161616 !important;
+    
+    .splashcontent {
+      background-color: #161616 !important;
+      background: #161616 !important;
+      color: var(--text-color);
+      
+      // All headings in splash content
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color) !important;
+      }
+      
+      // All text elements
+      p, span, li, div, a {
+        color: var(--text-color);
+      }
+      
+      a {
+        color: #ffffff !important;
+        
+        &:visited {
+          color: #ffffff !important;
+        }
+        
+        &:hover {
+          color: var(--link-color-hover) !important;
+        }
+      }
+      
+      .section {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        &:first-of-type {
+          padding-top: 4rem !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+          color: var(--text-color) !important;
+        }
+        
+        // Add title class override
+        .title {
+          background-color: #161616 !important;
+          background: #161616 !important;
+        }
+        
+        .sectionContent {
+          background-color: #161616 !important;
+          background: #161616 !important;
+          
+          .content {
+            color: var(--text-color);
+            background-color: #161616 !important;
+            background: #161616 !important;
+            
+            h1, h2, h3, h4, h5, h6 {
+              color: var(--text-color) !important;
+            }
+            
+            p, span, li, div {
+              color: var(--text-color);
+            }
+            
+            a {
+              color: #ffffff !important;
+              
+              &:visited {
+                color: #ffffff !important;
+              }
+              
+              &:hover {
+                color: var(--link-color-hover) !important;
+              }
+            }
+          }
+        }
+      }
+      
+      // More specific override for section with pageSpacing class
+      .section.pageSpacing {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        .sectionContent {
+          background-color: #161616 !important;
+          background: #161616 !important;
+          
+          .title {
+            background-color: #161616 !important;
+            background: #161616 !important;
+          }
+          
+          .content {
+            background-color: #161616 !important;
+            background: #161616 !important;
+          }
+        }
+      }
+      
+      // Fix splash grid cards
+      .splashGridContainer {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        .card {
+          background-color: #161616 !important;
+          background: #161616 !important;
+          
+          .cardContent {
+            background-color: #161616 !important;
+            background: #161616 !important;
+            border-bottom-color: var(--border-color) !important;
+            
+            &:hover {
+              background-color: #161616 !important;
+              background: #161616 !important;
+            }
+            
+            a {
+              color: #ffffff !important;
+              
+              &:visited {
+                color: #ffffff !important;
+              }
+              
+              &:hover {
+                color: var(--link-color-hover) !important;
+              }
+            }
+          }
+        }
+      }
+      
+      // Ultra-specific override for the hover grey from _splash.scss line 150
+      .splashGridContainer .card .cardContent:hover {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+    
+    .heroContainer {
+      background-color: #161616;
+      margin-bottom: 0 !important;
+
+      h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
+      }
+
+      p, span, li, div {
+        color: #ffffff;
+      }
+      
+      .intro {
+        background-color: transparent !important;
+        background: transparent !important;
+        
+        .pictogramHero {
+          background-color: transparent !important;
+          background: transparent !important;
+        }
+        
+        img.pictogramHero {
+          background-color: transparent !important;
+          background: transparent !important;
+        }
+      }
+    }
+  }
+  
+  // Images - add slight brightness adjustment for better visibility in dark mode, no background
+  img {
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+    background-color: transparent !important;
+    background: transparent !important;
+    
+    &:hover {
+      filter: brightness(1);
+    }
+  }
+  
+  // Ensure image containers also have transparent backgrounds
+  .page__content img,
+  .page__inner-wrap img,
+  .splash img,
+  p img {
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+  
+  .card {
+    background-color: var(--code-background-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    
+    &:hover {
+      background-color: var(--code-background-color-dark);
+    }
+    
+    h2, h3, h4 {
+      color: var(--text-color);
+    }
+    
+    p {
+      color: var(--text-color);
+    }
+    
+    a {
+      color: var(--link-color);
+    }
+  }
+  
+  .cardContent {
+    background-color: transparent !important;
+    color: var(--text-color);
+    
+    a {
+      color: #ffffff !important;
+      
+      &:visited {
+        color: #ffffff !important;
+      }
+      
+      &:hover {
+        color: var(--link-color-hover) !important;
+      }
+    }
+  }
+  
+  // Features hero cards - g100 background
+  .featuresHeroCards {
+    .card {
+      background-color: #161616 !important;
+      background: #161616 !important;
+      
+      .cardContent {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        
+        &:hover {
+          background-color: #161616 !important;
+          background: #161616 !important;
+        }
+        
+        a {
+          color: #ffffff !important;
+          
+          &:visited {
+            color: #ffffff !important;
+          }
+          
+          &:hover {
+            color: var(--link-color-hover) !important;
+          }
+        }
+      }
+      
+      &:hover .cardContent {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+  }
+  
+  // Search page
+  .search-content__inner-wrap {
+    .card {
+      background-color: var(--code-background-color);
+      border-top-color: var(--border-color);
+      
+      &:hover {
+        background-color: var(--code-background-color-dark);
+        
+        .versionPillContainer {
+          .versionPill {
+            background-color: #393939 !important;
+            color: #c6c6c6 !important;
+          }
+          
+          &.initial {
+            .versionPill {
+              background-color: var(--primary-color) !important;
+              color: #ffffff !important;
+            }
+          }
+          
+          &:hover {
+            .versionPill {
+              background-color: var(--primary-color) !important;
+              color: #ffffff !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  #catalog-search {
+    background-color: var(--code-background-color) !important;
+    background: var(--code-background-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    color: var(--text-color);
+    
+    input {
+      color: var(--text-color) !important;
+      background-color: transparent !important;
+      
+      &::placeholder {
+        color: var(--muted-text-color);
+      }
+    }
+    
+    &:focus,
+    &:focus-within,
+    &:active {
+      border-color: var(--primary-color);
+      outline-color: var(--primary-color);
+    }
+  }
+  
+  // Filter dropdown
+  .filter-dropdown {
+    background-color: var(--form-background-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+    
+    .checkbox-wrapper {
+      border-bottom-color: var(--border-color);
+      
+      &:hover {
+        background-color: var(--code-background-color);
+      }
+      
+      &:has(input[type="checkbox"]:checked) {
+        background-color: var(--code-background-color-dark);
+      }
+      
+      label {
+        color: var(--text-color);
+      }
+      
+      input[type="checkbox"] {
+        border-color: var(--text-color);
+        
+        &:checked {
+          background-color: var(--primary-color);
+        }
+        
+        &:focus {
+          outline-color: var(--primary-color);
+        }
+      }
+    }
+  }
+  
+  .filter-button {
+    background-color: var(--form-background-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    
+    svg {
+      fill: var(--text-color);
+    }
+  }
+  
+  .filter-count {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    
+    svg {
+      fill: #ffffff;
+    }
+    
+    &:empty {
+      display: none; // Hide when no filters selected
+    }
+  }
+  
+  // Connector cards and catalog page
+  .connectorsAll {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    
+    // Only target cards in the cards container, not in splash panel
+    .cardsContainer {
+      .buttonContainer {
+        background-color: var(--code-background-color) !important;
+        
+        &:hover {
+          .card {
+            background-color: #262626 !important; // g90 grey for hover in dark mode
+            background: #262626 !important;
+            
+            .cardContent {
+              background-color: #262626 !important;
+              background: #262626 !important;
+              
+              .content {
+                background-color: #262626 !important;
+                background: #262626 !important;
+                
+                .titleContent {
+                  background-color: #262626 !important;
+                  background: #262626 !important;
+                }
+              }
+              
+              .diagram {
+                background-color: #262626 !important;
+                background: #262626 !important;
+              }
+            }
+          }
+        }
+        
+        .card {
+          background-color: var(--code-background-color) !important;
+          background: var(--code-background-color) !important;
+          
+          .cardContent {
+            background-color: var(--code-background-color) !important;
+            background: var(--code-background-color) !important;
+            
+            .content {
+              background-color: var(--code-background-color) !important;
+              background: var(--code-background-color) !important;
+              
+              .titleContent {
+                background-color: var(--code-background-color) !important;
+                background: var(--code-background-color) !important;
+                
+                h3 {
+                  color: var(--text-color) !important;
+                }
+                
+                p {
+                  color: var(--text-color) !important;
+                }
+                
+                .pillContainer {
+                  .pill {
+                    p {
+                      color: inherit !important;
+                    }
+                  }
+                }
+              }
+            }
+            
+            .diagram {
+              background-color: var(--code-background-color) !important;
+              background: var(--code-background-color) !important;
+              
+              img {
+                background-color: transparent !important;
+              }
+            }
+          }
+        }
+        
+        // Preserve IBM supported badge - keep green
+        .supportLevel {
+          &.ibm {
+            background-color: #42be65 !important;
+            
+            svg, img {
+              background-color: transparent !important;
+            }
+          }
+        }
+      }
+    }
+    
+    .splash {
+      .heroContainer {
+        color: var(--text-color);
+        
+        h1, h2, h3, h4, p {
+          color: var(--text-color) !important;
+        }
+        
+        // Links in heroContainer should use proper link colors for visibility
+        a {
+          color: var(--link-color) !important;
+          
+          &:visited {
+            color: var(--link-color-visited) !important;
+          }
+          
+          &:hover {
+            color: var(--link-color-hover) !important;
+          }
+        }
+        
+        .intro {
+          a {
+            color: var(--link-color) !important;
+            
+            &:visited {
+              color: var(--link-color-visited) !important;
+            }
+            
+            &:hover {
+              color: var(--link-color-hover) !important;
+            }
+          }
+        }
+        
+        .keyTasks {
+          .task {
+            border-bottom-color: var(--border-color);
+            
+            &:hover {
+              background-color: var(--code-background-color);
+            }
+            
+            h3 {
+              color: var(--text-color);
+            }
+          }
+        }
+      }
+    }
+    
+    .connectorsEmptyState,
+    .searchedConnectorsExistInfo {
+      color: var(--text-color);
+      
+      p {
+        color: var(--text-color);
+      }
+    }
+    
+    // Tag control and category tabs
+    .tagControl {
+      background-color: var(--background-color) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      
+      .connectorsCategories {
+        background-color: var(--background-color) !important;
+        background: var(--background-color) !important;
+        
+        .menuItems {
+          background-color: var(--background-color) !important;
+          background: var(--background-color) !important;
+          
+          .visible-links {
+            background-color: var(--background-color) !important;
+            background: var(--background-color) !important;
+            
+            .menuItem {
+              color: var(--text-color);
+              border-right: 1px solid var(--border-color) !important;
+              
+              p, .heading-four {
+                color: var(--text-color);
+              }
+              
+              &:hover {
+                background-color: var(--code-background-color);
+              }
+              
+              &.all {
+                // Active state keeps its blue background
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    // Filter content
+    .filterContent {
+      background-color: var(--background-color) !important;
+      background: var(--background-color) !important;
+      border-color: var(--border-color);
+      border-top-color: var(--border-color) !important;
+      box-shadow: 0px 2px 5px var(--background-color);
+      
+      .filterIcon {
+        svg, img {
+          filter: invert(1);
+        }
+      }
+      
+      .filters {
+        background-color: var(--background-color) !important;
+        
+        .filterGroup {
+          .tagToggle {
+            background-color: var(--code-background-color) !important;
+            background: var(--code-background-color) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-color);
+            
+            p {
+              color: var(--text-color);
+            }
+            
+            &:hover {
+              background-color: var(--code-background-color-dark) !important;
+            }
+            
+            &.active {
+              background-color: var(--primary-color) !important;
+              color: #ffffff;
+              
+              p {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .filterToggle {
+      background-color: var(--background-color) !important;
+      
+      .filterToggleContent {
+        background-color: var(--background-color) !important;
+        
+        .filterIcon {
+          svg, img {
+            filter: invert(1);
+          }
+        }
+      }
+    }
+  }
+  
+  .cardsContainer {
+    .buttonContainer {
+      border-right: 1px solid var(--border-color) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      
+      &:hover {
+        .card {
+          background-color: var(--code-background-color-dark) !important;
+        }
+      }
+      
+      &.active {
+        .card {
+          background-color: var(--code-background-color-dark) !important;
+        }
+      }
+    }
+    
+    .card {
+      background-color: var(--code-background-color) !important;
+      background: var(--code-background-color) !important;
+      border-color: var(--border-color) !important;
+      
+      .cardContent {
+        background-color: var(--code-background-color) !important;
+        background: var(--code-background-color) !important;
+        color: var(--text-color);
+        
+        .content {
+          background-color: var(--code-background-color) !important;
+          background: var(--code-background-color) !important;
+          
+          .titleContent {
+            background-color: var(--code-background-color) !important;
+            background: var(--code-background-color) !important;
+          }
+          
+          .diagram {
+            background-color: var(--code-background-color) !important;
+            background: var(--code-background-color) !important;
+          }
+        }
+        
+        h2, h3, h4, p, span {
+          color: var(--text-color);
+        }
+      }
+      
+      &:hover {
+        background-color: var(--code-background-color-dark) !important;
+        background: var(--code-background-color-dark) !important;
+      }
+    }
+  }
+  
+  // Connector cards - g100 background
+  .connectorsAll {
+    .cardsContainer {
+      .buttonContainer {
+        &:hover {
+          .card,
+          [class*="connector-card"] {
+            background-color: #262626 !important; // g90 grey for hover
+            background: #262626 !important;
+          }
+        }
+        
+        &.active {
+          .card,
+          [class*="connector-card"] {
+            background-color: #262626 !important; // g90 grey for active
+            background: #262626 !important;
+          }
+        }
+      }
+      
+      .card,
+      [class*="connector-card"] {
+        background-color: #161616 !important;
+        background: #161616 !important;
+      }
+    }
+    
+    // Connector detail page
+    .connectorsContent {
+      background-color: #161616 !important;
+      background: #161616 !important;
+      
+      .connectorPage {
+        background-color: #161616 !important;
+        background: #161616 !important;
+        color: var(--text-color);
+        
+        .mainConnectorContent {
+          background-color: #161616;
+          
+          .subPageContent {
+            background-color: #161616;
+            color: var(--text-color);
+            
+            h1, h2, h3, h4, h5, h6 {
+              color: var(--text-color);
+            }
+            
+            p, span, li, div {
+              color: var(--text-color);
+            }
+            
+            a {
+              color: var(--link-color);
+              
+              &:hover {
+                color: var(--link-color-hover);
+              }
+            }
+          }
+        }
+        
+        // Tabs styling
+        .subPageTabs {
+          box-shadow: inset 0px -0.1875rem 0px var(--border-color);
+          
+          .tab {
+            border-bottom-color: var(--border-color);
+            color: var(--text-color);
+            
+            a {
+              color: var(--text-color);
+            }
+            
+            &:hover {
+              border-bottom-color: var(--muted-text-color);
+            }
+            
+            &.active {
+              border-bottom-color: var(--link-color);
+              
+              a {
+                color: var(--link-color);
+              }
+            }
+          }
+        }
+        
+        // Sub pages content
+        .subPages {
+          background-color: var(--background-color);
+          color: var(--text-color);
+          
+          h1, h2, h3, h4, h5, h6 {
+            color: var(--text-color);
+          }
+          
+          p, span, li, div {
+            color: var(--text-color);
+          }
+          
+          a {
+            color: var(--link-color);
+            
+            &:hover {
+              color: var(--link-color-hover);
+            }
+          }
+          
+          code {
+            background-color: var(--code-background-color-dark);
+            color: var(--text-color);
+          }
+          
+          pre {
+            background-color: var(--code-background-color-dark);
+            
+            code {
+              background-color: var(--code-background-color-dark);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Mobile back button
+  .mobileBackButton {
+    background-color: var(--background-color) !important;
+    color: var(--text-color);
+  }
+  
+  // Connector splash panel (right side detail panel)
+  .splashPanel {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    
+    .splash {
+      background-color: var(--background-color);
+      
+      .heroContainer {
+        background-color: transparent;
+        color: var(--text-color);
+        
+        h1, h2, h3, h4, h5, h6 {
+          color: var(--text-color);
+        }
+        
+        p, span, li, div {
+          color: var(--text-color);
+        }
+        
+        a {
+          color: var(--link-color);
+          
+          &:hover {
+            color: var(--link-color-hover);
+          }
+        }
+        
+        strong, b {
+          color: var(--text-color);
+        }
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color);
+      }
+      
+      p, span, li, div {
+        color: var(--text-color);
+      }
+      
+      a {
+        color: var(--link-color);
+      }
+      
+      strong, b {
+        color: var(--text-color);
+      }
+      
+      code {
+        background-color: var(--code-background-color-dark);
+        color: var(--text-color);
+      }
+      
+      pre {
+        background-color: var(--code-background-color-dark);
+        
+        code {
+          background-color: var(--code-background-color-dark);
+        }
+      }
+      
+      ul, ol {
+        li {
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+  
+  // Collection pages (Tutorials, Support, etc.)
+  .collectionPageContent {
+    background-color: var(--background-color);
+    
+    .card {
+      background-color: var(--background-color);
+      border-color: var(--border-color);
+      
+      .content {
+        background-color: var(--background-color) !important;
+        color: var(--text-color);
+        
+        &:hover {
+          background-color: #262626 !important; // g90 grey for hover
+        }
+        
+        h1, h2, h3, h4, p, span {
+          color: var(--text-color);
+        }
+        
+        .archive__item-title {
+          color: var(--text-color);
+          
+          a {
+            color: var(--link-color);
+          }
+        }
+      }
+      
+      .largeCard {
+        .content {
+          background-color: var(--background-color) !important;
+          
+          &:hover {
+            background-color: #262626 !important; // g90 grey for hover
+          }
+        }
+      }
+      
+      &.blank {
+        .content {
+          background: transparent !important;
+          
+          &:hover {
+            background: transparent !important; // No hover effect for blank card
+          }
+        }
+        
+        .largeCard {
+          .content {
+            &:hover {
+              background: transparent !important; // No hover effect for blank card
+            }
+          }
+        }
+      }
+    }
+    
+    h1, h2, h3 {
+      color: var(--text-color);
+    }
+  }
+  
+  // Collapsible sections (details/summary elements)
+  .details {
+    background-color: var(--code-background-color);
+    color: var(--text-color);
+    
+    &:hover,
+    &.active {
+      background-color: #262626; // g90 grey for hover
+    }
+    
+    // Nested details (Event Streams, Event Endpoint Management, Event Processing)
+    .details {
+      background-color: #262626; // g90 grey - always visible
+      
+      &:hover,
+      &.active {
+        background-color: #393939; // g80 grey for hover - slightly lighter
+      }
+    }
+    
+    &:after,
+    &.active:after {
+      color: var(--muted-text-color);
+    }
+  }
+  
+  .summary {
+    color: var(--text-color);
+  }
+}
+
+// Smooth transitions when switching themes
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+.page__content,
+.sidebar,
+.masthead,
+.page__footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

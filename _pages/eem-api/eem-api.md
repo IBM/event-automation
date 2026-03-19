@@ -5,9 +5,6 @@ layout: apiFrame
 mastheadNavItem: APIs
 ---
 
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 h2.ex1 {
   margin-left: 32px;
@@ -15,8 +12,8 @@ h2.ex1 {
 
 .dropbtn {
   background-color: #0f62fe;
-  justify-content: space-between;
   color: white;
+  justify-content: space-between;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -28,7 +25,7 @@ h2.ex1 {
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+  background-color: #0043ce;
 }
 
 .dropdown {
@@ -54,13 +51,47 @@ h2.ex1 {
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+  background-color: #ddd;
+}
 
 .show {display: block;}
-</style>
-</head>
 
-<body>
+/* Dark theme overrides */
+html.theme-dark h2.ex1 {
+  color: var(--text-color) !important;
+}
+
+html.theme-dark .dropbtn {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+html.theme-dark .dropbtn:hover,
+html.theme-dark .dropbtn:focus {
+  background-color: var(--info-color) !important;
+}
+
+html.theme-dark .dropbtn svg polygon {
+  fill: white !important;
+}
+
+html.theme-dark .dropdown-content {
+  background-color: #262626 !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+html.theme-dark .dropdown-content a {
+  color: var(--text-color) !important;
+}
+
+html.theme-dark .dropdown-content a:hover {
+  background-color: #393939 !important;
+  color: var(--link-color-hover) !important;
+}
+</style>
+
+<div>
 
 <h2 class="ex1">Select your Event Endpoint Management version to view the compatible Admin API documentation:</h2>
 
@@ -106,6 +137,3 @@ window.onclick = function(event) {
   }
 }
 </script>
-
-</body>
-</html>

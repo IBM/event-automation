@@ -2420,6 +2420,8 @@ latestdocs:
         url: /troubleshooting/kafka-connect-kafka4-compatibility/
       - title: "Timeout error in Oracle (Debezium) source connector"
         url: /troubleshooting/debezium-oracle-timeout/
+      - title: "Broker pods fail to start after upgrade due to SSL private key format"
+        url: /troubleshooting/upgrade-ssl-private-key-format/
 
 
 

@@ -165,6 +165,16 @@ Upgrade your {{site.data.reuse.es_name}} instance running on the {{site.data.reu
 
 Complete the following steps to plan your upgrade on OpenShift.
 
+- If your Kafka cluster uses custom listener certificates with SSL private keys, ensure that they are in PKCS#8 format (BEGIN PRIVATE KEY) before upgrading. Private keys in PKCS#1 format (BEGIN RSA PRIVATE KEY) are not compatible with {{site.data.reuse.es_name}} 12.2.0 and later.
+  
+  Run the following command to convert your private key to PKCS#8 format:
+  
+  ```shell
+  openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in PKCS1.key -out PKCS8.key
+  ```
+  
+  For more information, see [troubleshooting](../../troubleshooting/upgrade-ssl-private-key-format/).
+
 - Determine which Operator Lifecycle Manager (OLM) channel is used by your existing Subscription. You can check the channel you are subscribed to in the [web console](#upgrading-subscription-ui) (see **Update channel** section), or by using the CLI as follows (this is the [subscription created during installation](../installing/#install-the-event-streams-operator)):
    
    1. Run the following command to check your subscription details:

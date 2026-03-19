@@ -62,3 +62,43 @@ video.tutorial-video {
   display: block;
   border: thin $event-streams-gray-2 solid;
 }
+
+// Dark mode overrides for featured links - use g100 (#161616)
+html.theme-dark {
+  .feature__wrapper.featured_links {
+    .feature__item {
+      background-color: #161616;
+      border-color: #393939;
+    }
+
+    .archive__item-title {
+      background-color: #161616;
+      color: #f4f4f4;
+
+      svg.icon {
+        fill: #78a9ff;
+      }
+    }
+
+    .archive__item-excerpt {
+      background-color: #161616;
+      color: #f4f4f4;
+
+      ul {
+        background-color: #161616;
+      }
+
+      li {
+        color: #f4f4f4;
+      }
+    }
+  }
+
+  img.tutorial-screenshot {
+    border-color: #393939;
+  }
+
+  video.tutorial-video {
+    border-color: #393939;
+  }
+}

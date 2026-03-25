@@ -6,9 +6,33 @@ slug: whats-new
 toc: true
 ---
 
-Find out what is new in {{site.data.reuse.eem_name}} version 11.7.2.
+
+Find out what is new in {{site.data.reuse.eem_name}} version 11.7.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
+
+### OAuth 2.0 introspection endpoint support
+{: #oauth2-introspection-1173}
+
+{{site.data.reuse.eem_name}} version 11.7.3 introduces support for OAuth 2.0 introspection endpoints in addition to the existing userinfo endpoint support. When you [configure an OAuth 2.0 authentication provider](../../security/cred-sets#oauth), you can now specify either the `userinfo` endpoint or the `introspection` endpoint, depending on what your OAuth 2.0 provider exposes. If you use the introspection endpoint, then you must provide the client ID and client secret for token introspection requests.
+
+### Configurable expiry for Admin API tokens
+{: #extended-admin-api-token-duration-1173}
+
+{{site.data.reuse.eem_name}} version 11.7.3 introduces configurable expiry duration for the [Admin API access tokens](../../security/api-tokens/). You can set custom expiration periods of up to a maximum of 365 days.
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1173}
+
+{{site.data.reuse.eem_name}} release 11.7.3 contains security and bug fixes.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1173}
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.7.3 compared to 11.7.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.7.3 icon]({{ 'images' | relative_url }}/11.7.3.svg "In Event Endpoint Management 11.7.3 and later.")
+
+
+## Release 11.7.2
 {: #release-1172}
 
 ### Support for {{site.data.reuse.openshift}} 4.21
@@ -94,4 +118,6 @@ The {{site.data.reuse.egw}} identifies any clients that are calling APIs that ar
 {{site.data.reuse.eem_name}} 11.7.0 and later do not support Kubernetes versions 1.25 and 1.26. For more information about supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
 ### Security and bug fixes
+
 {{site.data.reuse.eem_name}} release 11.7.0 contains security and bug fixes.
+

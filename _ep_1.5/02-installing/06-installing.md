@@ -225,6 +225,7 @@ Before you can install the required operator versions and use them to create ins
    - catalog-sources.yaml
    - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
    - image-content-source-policy.yaml
+   - image-digest-mirror-set.yaml
    - images-mapping.txt
 
 4. Apply the catalog sources for the operator to the cluster by running the following command:

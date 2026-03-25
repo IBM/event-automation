@@ -388,6 +388,98 @@ This only applies if you stopped flows before upgrade. After the successful upgr
    - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
    - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
+### Migrate ImageContentSourcePolicy to ImageDigestMirrorSet
+{: #migrate-imagecontentsourcepolicy-to-imagedigestmirrorset}
+
+If you are running {{site.data.reuse.ep_name}} on {{site.data.reuse.openshift_short}} 4.14 or later in an offline environment and upgraded from OpenShift 4.13 or earlier, you must migrate your `ImageContentSourcePolicy` resources to `ImageDigestMirrorSet`. The `ImageContentSourcePolicy` API is deprecated in OpenShift 4.14 and later versions.
+
+**Note:** This migration is only required if you are running in an offline environment and have existing `ImageContentSourcePolicy` resources from a previous installation.
+
+Complete the following steps to migrate:
+
+1. {{site.data.reuse.openshift_cli_login}}
+2. Get the name of the `ImageContentSourcePolicy` resources on your cluster:
+
+   ```shell
+   oc get ImageContentSourcePolicy
+   ```
+
+3. For {{site.data.reuse.ibm_flink_operator}}, migrate the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   a. Set an environment variable to the name of the Flink `ImageContentSourcePolicy`. For example, if the policy name is `ibm-eventautomation-flink`:
+
+   ```shell
+   export FLINK_ICSP=ibm-eventautomation-flink
+   ```
+
+   b. Save the `ImageContentSourcePolicy` as a YAML file:
+
+   ```shell
+   oc get ImageContentSourcePolicy ${FLINK_ICSP} -o yaml >> ${FLINK_ICSP}.yaml
+   ```
+
+   c. Convert the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   ```shell
+   oc create -f $(oc adm migrate icsp ${FLINK_ICSP}.yaml | cut -f 4 -d ' ')
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+   d. Delete the `ImageContentSourcePolicy`:
+
+   ```shell
+   oc delete ImageContentSourcePolicy ${FLINK_ICSP}
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+4. For {{site.data.reuse.ep_name}}, migrate the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   a. Set an environment variable to the name of the {{site.data.reuse.ep_name}} `ImageContentSourcePolicy`. For example, if the policy name is `ibm-eventprocessing`:
+
+   ```shell
+   export EP_ICSP=ibm-eventprocessing
+   ```
+
+   b. Save the `ImageContentSourcePolicy` as a YAML file:
+
+   ```shell
+   oc get ImageContentSourcePolicy ${EP_ICSP} -o yaml >> ${EP_ICSP}.yaml
+   ```
+
+   c. Convert the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   ```shell
+   oc create -f $(oc adm migrate icsp ${EP_ICSP}.yaml | cut -f 4 -d ' ')
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+   d. Delete the `ImageContentSourcePolicy`:
+
+   ```shell
+   oc delete ImageContentSourcePolicy ${EP_ICSP}
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+5. Verify that the `ImageDigestMirrorSet` resources are created:
+
+   ```shell
+   oc get imagedigestmirrorset
+   ```
+
+   **Important:** After the `ImageDigestMirrorSet` resources are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+
+6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
+
+   ```shell
+   oc get MachineConfigPool -w
+   ```
+
+For more information about converting to `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-convert_image-configuration){:target="_blank"}.
+
 ### Update SSL configuration properties
 {: #update-ssl-properties}
 

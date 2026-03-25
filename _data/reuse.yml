@@ -23,7 +23,7 @@ es_current_version: "12.2.2"
 es_current_case_version: "12.2.2"
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.7.2"
+eem_current_version: "11.7.3"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.5.0"

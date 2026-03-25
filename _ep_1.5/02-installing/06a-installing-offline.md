@@ -283,12 +283,15 @@ The previous command generates the following files based on the target internal 
 - catalog-sources.yaml
 - catalog-sources-linux-`<arch>`.yaml (if there are architecture specific catalog sources)
 - image-content-source-policy.yaml
+- image-digest-mirror-set.yaml
 - images-mapping.txt
 
 ### Copy the images to local registry
 {: #copy-the-images-to-local-registry}
 
 Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
+
+**Note:** You can view the list of images to be mirrored from the mirror registry by adding `--dry-run` to the following commands. For more information, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/disconnected_environments/installing-mirroring-disconnected#oc-mirror-dry-run_installing-mirroring-disconnected){:target="_blank"}.
 
 - If you are installing on the {{site.data.reuse.openshift_short}}, run the following command:
 
@@ -320,30 +323,114 @@ Run the following command to copy the images to the local registry. Your device 
 
   **Note:** If you are using a macOS system and encounter the `xargs: command line cannot be assembled, too long` error, add `-S1024` to `xargs`, and run the command as follows:
 
-  For {{site.data.reuse.ibm_flink_operator}}:
+  - For {{site.data.reuse.ibm_flink_operator}}:
 
-  ```shell
-  cat ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
-  ```
+    ```shell
+    cat ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
+    ```
 
-  For {{site.data.reuse.ep_name}}:
+  - For {{site.data.reuse.ep_name}}:
 
-  ```shell
-  cat ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
-  ```
+    ```shell
+    cat ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -S1024 -I {} sh -c 'echo {}; {}'
+    ```
 
-  Where:
-
-  - `<case-version>` is the version of the CASE file to be copied.
+  Where `<case-version>` is the version of the CASE file to be copied.
 
 
 Ensure that all the images have been mirrored to the target registry by checking the registry.
 
 
-## Create `ImageContentSourcePolicy` on OpenShift platform
-{: #create-imagecontentsourcepolicy-on-openshift-platform}
+## Create image mirror configuration on OpenShift platform
+{: #create-image-mirror-configuration-on-openshift-platform}
 
 **Note:** Only applicable when installing {{site.data.reuse.ep_name}} and the Flink on the {{site.data.reuse.openshift_short}}.
+
+The configuration steps differ depending on your OpenShift version:
+
+- For OpenShift 4.14 and later, use the `ImageDigestMirrorSet` YAML file as the `ImageContentSourcePolicy` API is deprecated in OpenShift versions 4.14 and later.
+- For OpenShift 4.13 and earlier, use the `ImageContentSourcePolicy` YAML file.
+
+### For OpenShift 4.14 and later (using `ImageDigestMirrorSet`)
+{: #using-imagedigestmirrorset}
+
+**Note:** Using `ImageContentSourcePolicy` to configure repository mirroring is a deprecated feature in OpenShift 4.14 and later. Use `ImageDigestMirrorSet` instead for new deployments.
+
+**Important:** If you are upgrading from OpenShift 4.13 or earlier and already have `ImageContentSourcePolicy` resources configured, see the [post-upgrade tasks](../upgrading/#migrate-imagecontentsourcepolicy-to-imagedigestmirrorset) for migration instructions.
+
+1. {{site.data.reuse.openshift_cli_login}}
+1. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`.
+1. Ensure that an `ImageDigestMirrorSet` YAML file is [created](#generate-mirror-manifests) for both the {{site.data.reuse.ibm_flink_operator}} and {{site.data.reuse.ep_name}}. For example:
+
+   ```yaml
+   apiVersion: config.openshift.io/v1
+   kind: ImageDigestMirrorSet
+   metadata:
+     name: ibm-eventautomation-flink
+   spec:
+     imageDigestMirrors:
+     - mirrors:
+       - <target-registry>/cpopen
+       source: icr.io/cpopen
+   ```
+
+   ```yaml
+   apiVersion: config.openshift.io/v1
+   kind: ImageDigestMirrorSet
+   metadata:
+     name: ibm-eventprocessing
+   spec:
+     imageDigestMirrors:
+     - mirrors:
+       - <target-registry>/cp/ibm-eventprocessing
+       source: cp.icr.io/cp/ibm-eventprocessing
+     - mirrors:
+       - <target-registry>/cpopen
+       source: icr.io/cpopen
+   ```
+
+   Where `<target-registry>` is your internal container image registry.
+
+1. Apply the `ImageDigestMirrorSet` custom resources:
+
+   For {{site.data.reuse.ibm_flink_operator}}:
+
+   ```shell
+   oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventautomation-flink/<case-version>/image-digest-mirror-set.yaml
+   ```
+
+   For {{site.data.reuse.ep_name}}:
+
+   ```shell
+   oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventprocessing/<case-version>/image-digest-mirror-set.yaml
+   ```
+
+   **Note:** Applying the `ImageDigestMirrorSet` might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+1. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
+
+   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageDigestMirrorSet` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
+
+1. Verify that the `ImageDigestMirrorSet` resources are created:
+
+   ```shell
+   oc get imagedigestmirrorset
+   ```
+
+   **Important:** After the `ImageDigestMirrorSet` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+
+1. Verify your cluster node status and wait for all nodes to be updated before proceeding:
+
+   ```shell
+   oc get MachineConfigPool -w
+   ```
+
+For more information about configuring `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-configuring_image-configuration){:target="_blank"}.
+
+### For OpenShift 4.13 and earlier (by using ImageContentSourcePolicy)
+{: #using-imagecontentsourcepolicy}
+
+**Note:** `ImageContentSourcePolicy` is deprecated in OpenShift 4.14 and later. Use `ImageDigestMirrorSet` instead for newer versions.
 
 1. {{site.data.reuse.openshift_cli_login}}
 2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
@@ -365,7 +452,7 @@ Ensure that all the images have been mirrored to the target registry by checking
 
 4. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
 
-   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageSourceContentPolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
+   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageContentSourcePolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
 
 5. Verify that the `ImageContentSourcePolicy` resource is created:
 
@@ -373,7 +460,7 @@ Ensure that all the images have been mirrored to the target registry by checking
    oc get imageContentSourcePolicy
    ```
 
-   **Important:** After the `ImageContentsourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+   **Important:** After the `ImageContentSourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
 
 6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
 

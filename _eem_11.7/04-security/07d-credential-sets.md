@@ -94,8 +94,11 @@ To review the CA certificates that are available only to your user, and to uploa
 
 If you want to create an authentication set that has an OAuth 2.0 control, then you must define at least one OAuth 2.0 provider.
 
-- Your OAuth 2.0 provider must have a `userinfo` endpoint.
+Your OAuth 2.0 provider must expose either a `userinfo` endpoint or an `introspection` endpoint. You can configure {{site.data.reuse.eem_name}} to use whichever endpoint type your provider supports.
+
+**Note:**
 - Microsoft Entra ID is not supported.
+- ![Event Endpoint Management 11.7.3 icon]({{ 'images' | relative_url }}/11.7.3.svg "In Event Endpoint Management 11.7.3 and later.") The `introspection` endpoint is supported only in {{site.data.reuse.eem_name}} 11.7.3 and later.
 
 ### Adding an OAuth2 authentication provider
 {:#add-oauth}
@@ -107,7 +110,18 @@ If you want to create an authentication set that has an OAuth 2.0 control, then 
 5. Enter the details for your OAuth 2.0 provider.
 
    - **Name**: Enter a name for the OAuth2 configuration that users recognize.
-   - **UserInfo endpoint**:  For example: `https://example.com/userinfo`.
+   - **Endpoint type**: Depending on your version of {{site.data.reuse.eem_name}}, select either **UserInfo** or **Introspection** to specify which endpoint your OAuth 2.0 provider exposes.
+   
+   Depending on your selection, different fields are displayed:
+   
+   - If you selected **UserInfo**:
+     - **UserInfo URL**: Enter the URL for your OAuth 2.0 provider's userinfo endpoint. For example: `https://example.com/userinfo`.
+   
+   - ![Event Endpoint Management 11.7.3 icon]({{ 'images' | relative_url }}/11.7.3.svg "In Event Endpoint Management 11.7.3 and later.") If you selected **Introspection**:
+     - **Introspection URL**: Enter the URL for your OAuth 2.0 provider's introspection endpoint. For example: `https://example.com/introspect`.
+     - **Client ID**: Enter the client ID to be used for token introspection requests.
+     - **Client Secret**: Enter the client secret to be used for token introspection requests.
+   
    - **Trusted certificates**: Upload the CA certificate of your OAuth2 provider. Your clients must trust this CA to be able to authenticate.
    - **Additional information**: Provide any additional information or steps that the consumer must follow to be able to use this OAuth2 provider.
 

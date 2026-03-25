@@ -20553,7 +20553,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"introspectionEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>    <span class="token property">"credentials"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"clientId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"clientSecret"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="createidpserver-parameters">Parameters</h3>
 <table>
 <thead>
@@ -20598,8 +20598,43 @@ Note - This will not include the subscription credentials</p>
 <td>» userInfoUrl</td>
 <td>body</td>
 <td>string(uri)</td>
-<td>true</td>
+<td>false</td>
 <td>The userInfo endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>» introspectionEndpoint</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>The introspection endpoint of the IDP Server.</td>
+</tr>
+<tr>
+<td>»» url</td>
+<td>body</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>The introspection endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>»» credentials</td>
+<td>body</td>
+<td>object</td>
+<td>true</td>
+<td>Credentials for authenticating to access the introspection endpoint.</td>
+</tr>
+<tr>
+<td>»»» clientId</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» clientSecret</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
 </tr>
 <tr>
 <td>» trustedCertificates</td>
@@ -20614,6 +20649,20 @@ Note - This will not include the subscription credentials</p>
 <td>string</td>
 <td>true</td>
 <td>PEM</td>
+</tr>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
 </tr>
 </tbody>
 </table>
@@ -20756,7 +20805,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>200 Response</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>    <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"expiry"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>        <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"hasPublishedOptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">[</span><br>  <span class="token punctuation">{</span><br>    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>    <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>    <span class="token property">"introspectionEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>      <span class="token property">"credentials"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token property">"clientId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><span class="token punctuation">,</span><br>    <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>      <span class="token punctuation">{</span><br>        <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>        <span class="token property">"expiry"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>        <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"hasPublishedOptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">]</span></code></pre>
 <h3 id="readallidpservers-responses">Responses</h3>
 <table>
 <thead>
@@ -20858,9 +20907,37 @@ Note - This will not include the subscription credentials</p>
 <tr>
 <td>» userInfoUrl</td>
 <td>string(uri)</td>
-<td>true</td>
+<td>false</td>
 <td>none</td>
 <td>The userInfo endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>» introspectionEndpoint</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>The introspection endpoint of the IDP Server.</td>
+</tr>
+<tr>
+<td>»» url</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>none</td>
+<td>The introspection endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>»» credentials</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Credentials for authenticating to access the introspection endpoint.</td>
+</tr>
+<tr>
+<td>»»» clientId</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
 </tr>
 <tr>
 <td>» trustedCertificates</td>
@@ -20903,6 +20980,48 @@ Note - This will not include the subscription credentials</p>
 <td>true</td>
 <td>none</td>
 <td>Flag indicating if the IDP Server is being used in published options.</td>
+</tr>
+</tbody>
+</table>
+<p><em>anyOf</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p><em>or</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
 </tr>
 </tbody>
 </table>
@@ -20980,7 +21099,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>200 Response</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"expiry"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hasPublishedOptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"organization"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"introspectionEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>    <span class="token property">"credentials"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"clientId"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"issuer"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"expiry"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token property">"hasPublishedOptions"</span><span class="token operator">:</span> <span class="token boolean">true</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="readidpserver-responses">Responses</h3>
 <table>
 <thead>
@@ -21082,9 +21201,37 @@ Note - This will not include the subscription credentials</p>
 <tr>
 <td>» userInfoUrl</td>
 <td>string(uri)</td>
-<td>true</td>
+<td>false</td>
 <td>none</td>
 <td>The userInfo endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>» introspectionEndpoint</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>The introspection endpoint of the IDP Server.</td>
+</tr>
+<tr>
+<td>»» url</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>none</td>
+<td>The introspection endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>»» credentials</td>
+<td>object</td>
+<td>true</td>
+<td>none</td>
+<td>Credentials for authenticating to access the introspection endpoint.</td>
+</tr>
+<tr>
+<td>»»» clientId</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
 </tr>
 <tr>
 <td>» trustedCertificates</td>
@@ -21130,6 +21277,48 @@ Note - This will not include the subscription credentials</p>
 </tr>
 </tbody>
 </table>
+<p><em>anyOf</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p><em>or</em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
 <h4 id="enumerated-values-29">Enumerated Values</h4>
 <table>
 <thead>
@@ -21160,7 +21349,7 @@ Note - This will not include the subscription credentials</p>
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"OAUTH2"</span><span class="token punctuation">,</span><br>  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>  <span class="token property">"userInfoUrl"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>  <span class="token property">"introspectionEndpoint"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://example.com"</span><span class="token punctuation">,</span><br>    <span class="token property">"credentials"</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>      <span class="token property">"clientId"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span><br>      <span class="token property">"clientSecret"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token property">"trustedCertificates"</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token punctuation">{</span><br>      <span class="token property">"pem"</span><span class="token operator">:</span> <span class="token string">"string"</span><br>    <span class="token punctuation">}</span><br>  <span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="updateidpserver-parameters">Parameters</h3>
 <table>
 <thead>
@@ -21212,8 +21401,43 @@ Note - This will not include the subscription credentials</p>
 <td>» userInfoUrl</td>
 <td>body</td>
 <td>string(uri)</td>
-<td>true</td>
+<td>false</td>
 <td>The userInfo endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>» introspectionEndpoint</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>The introspection endpoint of the IDP Server.</td>
+</tr>
+<tr>
+<td>»» url</td>
+<td>body</td>
+<td>string(uri)</td>
+<td>true</td>
+<td>The introspection endpoint of the IDP Server (including protocol).</td>
+</tr>
+<tr>
+<td>»» credentials</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>Credentials for authenticating to access the introspection endpoint.</td>
+</tr>
+<tr>
+<td>»»» clientId</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»»» clientSecret</td>
+<td>body</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
 </tr>
 <tr>
 <td>» trustedCertificates</td>
@@ -21228,6 +21452,20 @@ Note - This will not include the subscription credentials</p>
 <td>string</td>
 <td>true</td>
 <td>PEM</td>
+</tr>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» <em>anonymous</em></td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
 </tr>
 </tbody>
 </table>
@@ -21261,6 +21499,12 @@ Note - This will not include the subscription credentials</p>
 <td>200</td>
 <td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
 <td>IDP server successfully updated</td>
+<td>None</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad input</td>
 <td>None</td>
 </tr>
 <tr>

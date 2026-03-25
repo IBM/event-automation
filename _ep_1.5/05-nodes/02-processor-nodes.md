@@ -94,6 +94,18 @@ To configure a filter node, complete the following steps:
 
    **Note:** Expressions manually edited in the **Filter expression** field must be cleared before you use the assistant again.
 
+1. ![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") Optional: In the **Unmatched events** section, you can enable an additional output to capture events that do not match the filter expression, enabling the use of both matched and unmatched events in downstream nodes for separate processing. To configure an additional output for unmatched events, complete the following steps:
+
+
+   1. Set **Unmatched events** to on.
+   1. In the **Additional output name** field, enter a name for the additional output where unmatched events will be added.
+
+   When enabled, the filter node is available with two output ports:
+   - The primary output port contains events that match the filter expression.
+   - The additional output port contains events that do not match the filter expression.
+
+   With this, you can use both the matched and unmatched events in downstream nodes for separate processing.
+
 1. Click **Next** to open the **Output properties** pane. The properties that you added in the previous step are displayed in the **Output properties** pane. You can manage the properties that come from this node to suit your requirements.
 
    Only **leaf** properties are listed in the **Properties to keep** table. 

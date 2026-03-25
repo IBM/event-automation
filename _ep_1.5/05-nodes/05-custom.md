@@ -62,6 +62,19 @@ Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename
 
 1. Hover over the node name in the toolbar, and click **Edit** to rename the node.
 
+1. ![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") Optional: For SQL processor nodes only, you can configure an additional output that splits the processing logic to send different results to separate downstream nodes:
+
+   In the top right corner of the configuration window, click **Configure an additional output**.
+   1. Set **Additional output** to on.
+   1. In the **Additional output name** field, enter a name for the node's additional output where the side output will be added.
+   1. In the SQL editor, define a separate `CREATE [TEMPORARY] VIEW` statement for the additional output.
+
+   When enabled, the SQL processor node has two output ports:
+   - The primary output port is defined by the penultimate `VIEW` statement.
+   - The additional output port is defined by the last `VIEW` statement.
+
+   With an additional output, you can split streams into two outputs based on different SQL logic defined in the SQL processor node and send results to separate downstream nodes.
+
 1. Write your Flink SQL statements in the editor. To assist with your SQL statements, you can use the tree view in the SQL processor and the SQL destination nodes to view all the properties and their respective types of all the input nodes.
 
    In addition to writing Flink SQL code from scratch, you can also paste existing SQL code into the editor for convenience. The toolbar in the editor provides a range of features, including:
@@ -71,7 +84,7 @@ Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename
    - A search function to quickly find specific parts of your code
 
 
-   You can click **Configure** regardless of the validity of the SQL statements. If errors are present, a dialog pops-up showing **Invalid node**. You can view the errors by clicking **View errors**.  In the dialog, you can click **Save as draft** to preserve your statements even if they contain errors.
+   You can click **Configure** regardless of the validity of the SQL statements. If errors are present, a dialog is displayed with the message **Invalid node**. You can view the errors by clicking **View errors**. In the dialog, you can click **Save as draft** to preserve your statements even if they contain errors.
 
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} is displayed on the node if your node is configured correctly.
 
@@ -86,14 +99,21 @@ A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.
 
 - SQL processor node:
 
-  - The SQL must contain at least one `CREATE [TEMPORARY] VIEW` statement and any number of other SQL statements.
+  - Without an additional output:
+    - The SQL must contain at least one `CREATE [TEMPORARY] VIEW` statement and any number of other SQL statements.
+    - The output structure is defined by the last `VIEW` in the statement.
+  
+  - With an additional output enabled:
+    - The SQL must contain at least two `CREATE [TEMPORARY] VIEW` statements and any number of other SQL statements.
+    - The structure of the primary output is defined by the penultimate `VIEW` in the statement.
+    - The structure of the additional output is defined by the last `VIEW` in the statement.
+  
   - The node supports multiple inputs and the SQL statements are allowed to reference only the tables or views from the input list or those created internally within the node.
-  - The structure of the output of the node is defined by the last `VIEW` in the statement.
 
 - SQL destination node:
 
   - The SQL must contain exactly one `CREATE [TEMPORARY] TABLE` statement.
-  - The structure of the output of the node is defined by that `TABLE`.
+  - The output structure is defined by that `TABLE`.
 
 The following statements are not supported in all the three custom nodes:
 

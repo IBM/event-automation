@@ -6,7 +6,7 @@ slug: supported-functions
 toc: true
 ---
 
-The following lists the Flink built-in SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions){:target="_blank"}.
+The following tables list the Flink built-in SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions){:target="_blank"}.
 
 Additionally, [user-defined SQL functions](#user-defined-functions-in-the-exported-sql) can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when deploying jobs in a [development](../../advanced/deploying-development) or [production](../../advanced/deploying-production) environment.
 

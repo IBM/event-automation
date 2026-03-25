@@ -12,10 +12,51 @@ toc: true
 
 IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has been expanded. For more information, see the [support policy statement]({{ '/support/support-policy/' | relative_url}}).
 
+
 Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-151}
+
+
+
+### Additional outputs for conditional branching
+{: #additional-outputs-for-conditional-branching}
+
+{{site.data.reuse.ep_name}} version 1.5.1 introduces additional output support for the [Filter](../../nodes/processornodes/#filter) and [SQL Processor](../../nodes/custom/#sql-processor) nodes, enabling conditional branching with multiple output paths.
+
+- **Filter node**: Configure an additional output to capture events that do not match the filter expression, enabling the use of both matched and unmatched events in downstream nodes for separate processing.
+- **SQL Processor node**: Define multiple VIEW statements to create side outputs that split the processing logic and send different results to separate downstream nodes.
+
+This feature provides greater flexibility in designing event processing flows with conditional logic and multiple processing paths.
+
+### Automatic merge of public certificates to the custom truststore
+{: #automatic-truststore-merge-for-ssl-connections}
+
+In {{site.data.reuse.ep_name}} 1.5.1 and later, when you provide a custom truststore containing self-signed or internal CA certificates, public CA certificates are automatically added from the Java truststore to your custom truststore. This means that public CA certificates are maintained through regular Java version updates, and you are not required to manually add and update them. The truststore merge feature is enabled by default.
+
+For more information, see [configuring SSL](../../installing/configuring/#configuring-ssl-for-api-server-database-and-schema-registry).
+
+### Annotate on canvas with comments
+{: #annotate-canvas-comments}
+
+{{site.data.reuse.ep_name}} 1.5.1 introduces the commenting feature on the flow canvas. With comments, you can document your work directly on the canvas and collaborate with team members.
+
+For more information, see [adding comments to your flow](../../getting-started/canvas/#adding-comments).
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-151}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.5.1 compared to 1.5.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-151}
+
+{{site.data.reuse.ep_name}} release 1.5.1 contains security and bug fixes.
+
+
+## Release 1.5.0
 {: #release-150}
 
 ### Support for Apache Flink 2.2.0
@@ -50,3 +91,4 @@ To use Flink 1.20.3 for deploying Flink jobs, you must configure the `FlinkDeplo
 ### Security and bug fixes
 
 {{site.data.reuse.ep_name}} release 1.5.0 and {{site.data.reuse.ibm_flink_operator}} version 1.5.0 contain security and bug fixes.
+

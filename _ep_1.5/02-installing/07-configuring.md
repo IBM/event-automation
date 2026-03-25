@@ -723,14 +723,16 @@ You can use the same procedure mentioned in [Add the CA certificate to the trust
 
 If an API server, database, or a schema registry exposes a TLS encrypted endpoint where the certificate is self-signed, or has been issued by an internal Certificate Authority (CA), you must configure {{site.data.reuse.ep_name}} and Flink instances to enable verification of the endpoint certificate.
 
+![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") In {{site.data.reuse.ep_name}} 1.5.1 and later, when you provide a custom truststore containing self-signed or internal CA certificates, public CA certificates are automatically added from the Java truststore to your custom truststore. This means that public CA certificates are maintained through regular Java version updates, and you are not required to manually add and update them. The truststore merge feature is enabled by default. You can opt out of [automatic truststore merges](#opt-out-of-the-automatic-truststore-merge) if required.
+
 To enable SSL connections to an API server, database, and a schema registry from {{site.data.reuse.ep_name}} and Flink, complete the following steps:
 
 1. Add the CA certificate used to issue the certificate presented by an API server, database, or a schema registry to a Java truststore.
 
-   Additionally, if you want to trust the recommended public CA certificates, include the public CA certificates to a Java truststore.
-2. Create a secret with the truststore.
-3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}. 
+   **Note:** In version 1.5.0, if you want to trust the public CA certificates, you must [manually include the public CA certificates](#add-the-public-ca-certificate-to-the-truststore) in a Java truststore. In {{site.data.reuse.ep_name}} 1.5.1 and later, this is no longer required as public CA certificates are automatically added from the Java truststore to your custom truststore.
 
+2. Create a secret with the truststore.
+3. Mount the secret through {{site.data.reuse.ep_name}} and the {{site.data.reuse.ibm_flink_operator}}.
 
 ### Add the CA certificate to the truststore
 {: #add-the-ca-certificate-to-the-truststore}
@@ -761,6 +763,10 @@ To enable SSL connections to an API server, database, and a schema registry from
 #### Add the public CA certificate to the truststore
 {: #add-the-public-ca-certificate-to-the-truststore}
 
+This section applies to version 1.5.0 only.
+
+**Note:** ![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") In {{site.data.reuse.ep_name}} 1.5.1 and later, public CA certificates are automatically added from the Java truststore to your custom truststore for both {{site.data.reuse.ep_name}} and Flink deployments, so you do not need to follow these steps unless you [opt out of the truststore merge feature](#opt-out-of-the-automatic-truststore-merge).
+
 1. To obtain public CA certificates from a Java truststore, run the following command:
 
 
@@ -775,7 +781,44 @@ To enable SSL connections to an API server, database, and a schema registry from
 
    ```shell
    keytool -importkeystore -srckeystore $(pwd)/cacerts_truststore.jks -destkeystore ./truststore.jks --deststorepass <password> -noprompt
-   ``` 
+   ```
+
+#### ![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") Opt out of the automatic truststore merge
+{: #opt-out-of-the-automatic-truststore-merge}
+
+In {{site.data.reuse.ep_name}} 1.5.1 and later, the automatic truststore merge feature is enabled by default. If you want to opt out and manually manage all certificates (including public CA certificates), you can disable this feature by adding an annotation to your custom resource.
+
+To opt out of the automatic truststore merge:
+
+1. Add the appropriate annotation to your custom resource:
+
+   - For `EventProcessing` custom resource, add the following annotation in the `metadata.annotations` section:
+
+     ```yaml
+     apiVersion: events.ibm.com/v1beta1
+     kind: EventProcessing
+     metadata:
+       name: my-eventprocessing
+       annotations:
+         eventprocessing.ibm.com/skip-truststore-merge: "true"
+     spec:
+       # ... 
+     ```
+
+   - For `FlinkDeployment` custom resource, add the following annotation in the `metadata.annotations` section:
+
+     ```yaml
+     apiVersion: flink.apache.org/v1beta1
+     kind: FlinkDeployment
+     metadata:
+       name: my-flink
+       annotations:
+         eventautomation.ibm.com/skip-truststore-merge: "true"
+     spec:
+       # ...
+     ```
+
+2. If you opt out, you must [manually include public CA certificates](#add-the-public-ca-certificate-to-the-truststore) in your truststore.
 
 
 ### Create a secret with the truststore

@@ -224,7 +224,7 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
 
 1. Optional: If your flow connects to databases or API servers, ensure that you have [configured the SSL connection](#enable-ssl-connection-for-your-database-and-api-server).
 
-1. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#Installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#Installing-a-flink-instance-by-using-the-cli).
+1. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
 
 <!-- HIDE UDF until supported at authoring time
 ## Use Flink user-defined functions

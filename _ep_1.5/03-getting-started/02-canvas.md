@@ -51,6 +51,28 @@ User actions are saved automatically. For save status updates, see the canvas he
     - **Accept changes**: Select this action to apply the latest updates that are made by the other user to the flow. For the **Flow running** case, you can view the running flow.
     - **Home**: Select this action to navigate back to the home page. The specific flow will no longer be available because it was deleted by another user.
 
+### Adding comments to your flow
+{: #adding-comments}
+
+![Event Processing 1.5.1 icon]({{ 'images' | relative_url }}/1.5.1.svg "In Event Processing 1.5.1 and later.") You can add comments directly on the flow canvas to document your work and collaborate with team members.
+
+To add a comment:
+
+- Click the **Add comment** icon ![Add comment icon]({{ 'images' | relative_url }}/add-comment.svg "Add comment icon"){:height="30px" width="15px"} on the top of the canvas.
+- Right-click on the canvas where you want to add a comment, and select **Add comment**.
+
+You can add comments to:
+
+- Document your thought process and design decisions as you build flows.
+- Attach detailed information to specific nodes, including complex logic, requirements, or implementation details.
+- Leave comments for team members to facilitate collaboration and communication within the authoring UI.
+- Capture context that is not represented in node configurations.
+
+Comments remain attached to your flow and are available when you resume work, making it easier to maintain and understand complex event processing flows over time.
+
+You can also show or hide your comments by using the **Show comment** ![Show comment icon]({{ 'images' | relative_url }}/chat.svg "Show comment icon"){:height="30px" width="15px"} and **Hide comment** ![Hide comment icon]({{ 'images' | relative_url }}/chat-off.svg "Hide comment icon"){:height="30px" width="15px"} icons on the top of the canvas.
+
+
 ## Step 2: Configure an event source
 {: #configure-event}
 

@@ -36,7 +36,7 @@ The Admin API is available from outside the cluster.
 - If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you [add the user to the role mappings file](../user-roles#assigning-individual-roles-to-users). 
 
   **Important:** 
-  - When using `offline_access`, your provider might control how long the offline session can last before expiring. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (90 days), then the user might receive unauthorized error responses when trying to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
+  - When using `offline_access`, your provider might control how long the offline session can last before expiring. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (maximum 365 days), then the user might receive unauthorized error responses when trying to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
  
 ## API access tokens
 {: #api-access-tokens}
@@ -62,8 +62,9 @@ To create an access token, complete the following steps:
 2. Click the user icon ![User icon]({{ 'images' | relative_url }}/usericon.svg "The user icon."){:height="30px" width="15px"} in the header, and then click **Profile** to open the **Profile** page.
 3. If your user has the [author role](../../security/user-roles), then within the **Profile** page, switch to the **Access tokens** tab.
 4. Click **Create token** to open the dialog.
-5. Read the message and note that API access tokens expire.
-6. Provide a token description that can be used to identify your token and then click **Create**.
+6. Provide a token description that can be used to identify your token. 
+1. ![Event Endpoint Management 11.7.3 icon]({{ 'images' | relative_url }}/11.7.3.svg "In Event Endpoint Management 11.7.3 and later.") Specify the token duration in days (minimum: 1 day, maximum: 365 days).
+1. Click **Create**.
 7. A new token is generated.
 
    - To view the token, click **Show token** within the **Token** field.

@@ -6,7 +6,7 @@ slug: managing-access
 toc: true
 ---
 
-You can manage access to {{site.data.reuse.eem_name}} by defining authentication and authorization rules. Authentication rules control login access, and authorization rules control what actions the user has permissions to take after logging in.
+You can manage access to {{site.data.reuse.eem_name}} by defining authentication and authorization rules. Authentication rules control login access, and authorization rules control what actions the user has permission to take.
 
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
 - Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
@@ -15,26 +15,26 @@ You can set up authentication in {{site.data.reuse.eem_name}} in one of the foll
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.
-2. If you have used an OIDC provider for authentication, set up mappings to control roles through your OIDC provider.
-3. If you have integrated with the {{site.data.reuse.cp4i}} identity provider (Keycloak), set up mappings to control roles through Keycloak.
+2. If you use an OIDC provider for authentication, then set up mappings to control roles through your OIDC provider.
+3. If you integrate with the {{site.data.reuse.cp4i}} identity provider (Keycloak), then set up mappings to control roles through Keycloak.
 
-For more information these options, see [managing roles](../user-roles).
+For more information about these options, see [managing roles](../user-roles).
 
 
-**Important:** Before you begin, ensure you have [installed the {{site.data.reuse.eem_name}} operator](../../installing/installing).
+**Important:** Before you begin, ensure that the [{{site.data.reuse.eem_name}} operator](../../installing/installing) is installed.
 
 ## Setting up local authentication
 {: #setting-up-local-authentication}
 
 You can use local authentication to define users explicitly with usernames and passwords in a Kubernetes secret on the cluster. Local authentication is best suited for testing, prototyping, and demonstration purposes.
 
-**Important:** Despite local authentication being a valid internal OIDC provider with secure network traffic, the local authentication provider stores user credentials in a single JSON file as unencrypted strings. This makes local authentication simpler to set up than OIDC-based authentication, but passwords are at a higher risk of being exposed.
+**Important:** Although local authentication is a valid internal OIDC provider with secure network traffic, the local authentication provider stores user credentials in a single JSON file as unencrypted strings. The use of a single JSON file makes local authentication simpler to set up than OIDC-based authentication, but passwords are at a higher risk of exposure.
 
 ### Using {{site.data.reuse.openshift_short}} UI
 {: #using-openshift-container-platform-ui-local}
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. In the **Installed Operators** view, switch to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
+2. In the **Installed Operators** view, switch to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 3. Edit the custom resource for the instance and add the `spec.manager.authConfig` section to include `authType: LOCAL` as follows:
    ```yaml
    apiVersion: events.ibm.com/v1beta1
@@ -48,7 +48,7 @@ You can use local authentication to define users explicitly with usernames and p
      ...
    ```
 
-   This will create two secrets: 
+   When you save this update, two secrets are created: 
    
    - `<custom-resource-name>-ibm-eem-user-credentials` 
    - `<custom-resource-name>-ibm-eem-user-roles`
@@ -89,7 +89,7 @@ You can use local authentication to define users explicitly with usernames and p
 {: #using-the-cli-local}
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-manager-instance), or on other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-manager-instance).
+2. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 3. Change to the namespace where your instance is installed.
 4. Edit the custom resource for the instance as follows:
 
@@ -111,7 +111,8 @@ You can use local authentication to define users explicitly with usernames and p
      ...
    ```
 
-    This will create two secrets: 
+    
+    When you save this update, two secrets are created: 
     
     - `<custom-resource-name>-ibm-eem-user-credentials`
     - `<custom-resource-name>-ibm-eem-user-roles`
@@ -139,7 +140,7 @@ You can use local authentication to define users explicitly with usernames and p
    }
    ```
 
-6. Obtain the Base64-encoded string representing the file content. For example, you can run the following command to obtain the string:
+6. Create a Base64-encoded string from the file content. For example, you can run the following command to obtain the string:
 
    ```shell
    cat myusers.json | base64
@@ -153,7 +154,7 @@ You can use local authentication to define users explicitly with usernames and p
    
    where:
      - `<custom-resource-name>` is the name of your {{site.data.reuse.eem_manager}} instance.
-     - `<your-base64-value>` is the Base64-encoded string returned from the previous command.
+     - `<your-base64-value>` is the Base64-encoded string from the `myusers.json` file.
    
    For example:
 
@@ -161,7 +162,7 @@ You can use local authentication to define users explicitly with usernames and p
    kubectl patch secret quick-start-manager-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "ewogICAgInVzZXJzIjogWwogICAgICAgIHsKICAgICAgICAgICAgInVzZXJuYW1lIjogImF1dGhvcjEiLAogICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQxJCIKICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICAgInVzZXJuYW1lIjogInZpZXdlcjEiLAogICAgICAgICAgICAicGFzc3dvcmQiOiAiUGFzc3dvcmQyJCIKICAgICAgICB9CiAgICBdCn0KCg=="}]'
    ```
 
-   **Note:** Alternatively, edit the secret directly and replace the Base64 value associated with `data.user-credentials.json`. To edit the secret directly, run the following command:
+   **Note:** Alternatively, edit the secret directly and replace the Base64 value that is assigned to `data.user-credentials.json`. To edit the secret directly, run the following command:
 
    ```bash
    kubectl edit secret/<custom-resource-name>-ibm-eem-user-credentials -o json
@@ -181,19 +182,19 @@ You can use local authentication to define users explicitly with usernames and p
 
 You can authenticate users from an OIDC Identification Provider as follows. By using OIDC authentication, you can centralize authentication across all your applications, providing a more secure setup than local authentication.
 
-Before you start, ensure you retrieve the following configuration values for your OIDC provider:
+Before you start, retrieve the following configuration values for your OIDC provider:
   - Client ID
   - Client Secret
   - OIDC Provider base URL
 
-**Note:** Ensure you have the right permission in your organization to retrieve these values or set up an OIDC client with your provider. You might need to contact your security administrator for permission or to set up a new OIDC client.
+**Note:** Ensure that you have the right permission in your organization to retrieve these values or set up an OIDC client with your provider. You might need to contact your security administrator for permission or to set up a new OIDC client.
 
-If your OIDC provider does not implement the Open ID Connect Discovery standard, ensure you also have the following values:
-  - The `tokenPath` used by that provider (this extends the OIDC Provider base URL noted earlier).
+If your OIDC provider does not implement the Open ID Connect Discovery standard, ensure that you also have the following values:
+  - The `tokenPath` used by that provider (this path extends the OIDC Provider base URL noted earlier).
   - The `authorizationPath` used by that provider, which also extends the base URL.
   - Optional: The `endSessionPath` for that provider, which also extends the base URL.
 
-When creating an OIDC client in your provider, it will ask for redirect URLs for logging in to the UI, and potentially for logging out as well. Ensure you set these URLs to the appropriate {{site.data.reuse.eem_name}} UI URLs. If you have already installed {{site.data.reuse.eem_name}}, then see step 8 in [the UI steps](#oidc-ui-step-8) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
+When you create an OIDC client in your provider, it asks for redirect URLs for logging in to the UI, and potentially for logging out as well. Set these URLs to the appropriate {{site.data.reuse.eem_name}} UI URLs. If you already installed {{site.data.reuse.eem_name}}, then see step 8 in [the UI steps](#oidc-ui-step-8) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 
 **Important:** If your OIDC provider is Microsoft EntraID, then the `spec.manager.authConfig.oidcConfig` section of the `EventEndpointManagement` custom resource requires some different properties. Two additional environment variables are also required:
 
@@ -233,8 +234,8 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     - Client Secret
     - OIDC Provider base URL
 3. {{site.data.reuse.openshift_ui_login}}
-4. In the **Installed Operators** view, switch to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
-5. Click the **+** button in the navigation on the top. The text editor opens.
+4. In the **Installed Operators** view, switch to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
+5. Click the **+** (plus) icon on the upper-right. The text editor opens.
 6. Paste the following Secret YAML into the editor:
 
     ```yaml
@@ -266,7 +267,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
             site: <oidc_provider_base_url>
       ...
     ```
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with  `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If there is no discovery endpoint, the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
@@ -289,7 +290,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     https://<ui_host>/logout/callback
     ```
 
-    Users defined in your OIDC provider will now be able to log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+    Users who are defined in your OIDC provider can now log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 
 9.  Edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure roles and permissions for your users. For more information, see [managing roles](../user-roles).
 
@@ -304,7 +305,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     - Client Secret
     - OIDC Provider base URL
 3. {{site.data.reuse.cncf_cli_login}}
-4. Run the following command to create a secret containing the OIDC credentials, in the namespace where your {{site.data.reuse.eem_name}} will run: 
+4. Run the following command to create a secret that contains the OIDC credentials, in your {{site.data.reuse.eem_name}} namespace: 
    ```bash
    cat <<EOF | kubectl apply -f -
    kind: Secret
@@ -318,7 +319,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
    type: Opaque
    EOF
    ```
-5. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-manager-instance), or on other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-manager-instance).
+5. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 6. Edit the custom resource for the instance as follows:
    
    ```bash
@@ -344,7 +345,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
               site: <oidc_provider_base_url>
    ```
 
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed, with `/.well-known/openid-configuration` removed from the end of the path. If there is no discovery endpoint, the URL preceding the required path is used.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If there is no discovery endpoint, the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
@@ -367,7 +368,7 @@ When creating an OIDC client in your provider, it will ask for redirect URLs for
     https://<ui_host>/logout/callback
     ```
 
-    Users defined in your OIDC provider will now be able to log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
+    Users who are defined in your OIDC provider can now log in. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
 7. Edit the secret `<custom-resource-name>-ibm-eem-user-roles` to configure roles and permissions for your users. For more information, see [managing roles](../user-roles).
 
     The changed configuration files are automatically picked up by the {{site.data.reuse.eem_manager}} instance after a few minutes, and you can then log in with these users. For more information, see [logging in to {{site.data.reuse.eem_name}}](../../getting-started/logging-in).
@@ -406,14 +407,14 @@ spec:
 ## {{site.data.reuse.cp4i}}: Setting up Keycloak authentication
 {: #keycloak-authentication}
 
-You can authenticate users by using the Keycloak provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
+You can authenticate users by using the Keycloak that is provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
 
 
 ### Using {{site.data.reuse.openshift_short}} UI
 {: #using-openshift-container-platform-ui-keycloak}
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. In the **Installed Operators** view, change to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you have not created one yet, follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
+2. In the **Installed Operators** view, change to the namespace where you installed your existing {{site.data.reuse.eem_manager}} instance. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 3. Edit the custom resource for the instance and add the `spec.manager.authConfig` section to include `authType: INTEGRATION_KEYCLOAK` as follows:
 
    ```yaml
@@ -434,7 +435,7 @@ You can authenticate users by using the Keycloak provided by {{site.data.reuse.c
 {: #using-the-cli-keycloak}
 
 1. {{site.data.reuse.cncf_cli_login}}
-2. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you have not created one yet, create one by using one of the templates for [OpenShift](../../installing/installing/#install-an-event-manager-instance), or for other [Kubernetes platforms](../../installing/installing-on-kubernetes/#install-an-event-manager-instance).
+2. Find the existing {{site.data.reuse.eem_manager}} instance that you want to configure. If you do not have an {{site.data.reuse.eem_manager}} instance, then follow the [installation instructions](../../installing/installing/#install-an-event-manager-instance) to create an instance.
 3. Change to the namespace where your instance is installed.
 4. Edit the `EventEndpointManagement` custom resource for the instance as follows:
 

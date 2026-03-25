@@ -31,7 +31,9 @@ To subscribe to an event endpoint that is not configured with approval controls,
       - If the mTLS Control is using Subject Identifying Fields, then when you click **Subscribe** you must provide the subject fields of your client certificate. The subject fields are used to identify you when you access the endpoint. You can upload a `.pem` file of your client certificate to autofill these fields. The certificate subject field values that you provide must be unique, you cannot use the same client certificate in multiple subscriptions.  
       <!-- cert validation is also done, but not mentioning it here since it's secondary and not available to mTLS control with SASL creds. We're also implying uniqueness and not mentioning here that it's possible that multiple users could have matching identifying fields if Kevin configures it so. -->  
 
-   * ![Event Endpoint Management 11.7.1 icon]({{ 'images' | relative_url }}/11.7.1.svg "In Event Endpoint Management 11.7.1 and later.")If the event endpoint requires OAuth authentication, then you must provide the `subject` from your OAuth provider user credentials, and follow any other connection instructions that are presented to you. Clients must be able to generate an OAuth2 token that is compatible with the OAuth2 provider's `userinfo` endpoint.
+   * ![Event Endpoint Management 11.7.1 icon]({{ 'images' | relative_url }}/11.7.1.svg "In Event Endpoint Management 11.7.1 and later.")If the event endpoint requires OAuth authentication, then you must provide the `subject` from your OAuth provider user credentials, and follow any other connection instructions that are presented to you. Clients must be able to generate an OAuth2 token that is compatible with the OAuth2 provider's configured endpoint (either `userinfo` or `introspection`).
+
+   **Note:** ![Event Endpoint Management 11.7.3 icon]({{ 'images' | relative_url }}/11.7.3.svg "In Event Endpoint Management 11.7.3 and later.") The `introspection` endpoint is supported only in {{site.data.reuse.eem_name}} 11.7.3 and later.
 
    After entering the mTLS or OAuth details, click **Next**.
 

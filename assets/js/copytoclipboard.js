@@ -157,22 +157,24 @@ document.querySelectorAll("p").forEach(function (p) {
 
     p.parentNode.replaceChild(noteBlock, p);
 
-    // Check for code block or list immediately after
-    let next = noteBlock.nextElementSibling;
-    while (next) {
-      if (
-        next.tagName === "UL" ||
-        next.tagName === "CODE" ||
-        (next.tagName === "DIV" && next.className.startsWith("language-"))
-      ) {
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("note-code");
-        wrapper.appendChild(next.cloneNode(true));
-        noteBlock.appendChild(wrapper);
-        next.remove(); // Remove original node
-        next = noteBlock.nextElementSibling;
-      } else {
-        break;
+    // Check if note ends with colon before including lists
+    if (noteBlock.textContent.trim().endsWith(":")) {
+      let next = noteBlock.nextElementSibling;
+      while (next) {
+        if (
+          next.tagName === "UL" ||
+          next.tagName === "CODE" ||
+          (next.tagName === "DIV" && next.className.startsWith("language-"))
+        ) {
+          const wrapper = document.createElement("div");
+          wrapper.classList.add("note-code");
+          wrapper.appendChild(next.cloneNode(true));
+          noteBlock.appendChild(wrapper);
+          next.remove(); // Remove original node
+          next = noteBlock.nextElementSibling;
+        } else {
+          break;
+        }
       }
     }
   }

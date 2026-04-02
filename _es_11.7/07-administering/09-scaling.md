@@ -42,7 +42,7 @@ spec:
       - name: kafka
         replicas: 6
 ```
-For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/in-development/deploying?utm_source#proc-scaling-up-node-pools-str).
+For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/in-development/deploying?utm_source#proc-scaling-up-node-pools-str){:target="_blank"}.
 
 ## Increase the CPU request or limit settings for the Kafka brokers
 

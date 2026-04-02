@@ -354,7 +354,66 @@ Describe the `EventEndpointManagement` custom resource:
 
 Review the output and confirm that `status.phase=Running` and `status.versions.reconciled=<target version>`.
 
+### Migrate ImageContentSourcePolicy to ImageDigestMirrorSet
+{: #migrate-imagecontentsourcepolicy-to-imagedigestmirrorset}
 
+If you are running {{site.data.reuse.eem_name}} on {{site.data.reuse.openshift_short}} 4.14 or later in an offline environment and upgraded from OpenShift 4.13 or earlier, you must migrate your `ImageContentSourcePolicy` resources to `ImageDigestMirrorSet`. The `ImageContentSourcePolicy` API is deprecated in OpenShift 4.14 and later versions.
+
+**Note:** This migration is only required if you are running in an offline environment and have existing `ImageContentSourcePolicy` resources from a previous installation.
+
+Complete the following steps to migrate:
+
+1. {{site.data.reuse.openshift_cli_login}}
+1. Get the name of the `ImageContentSourcePolicy` resources on your cluster:
+
+   ```shell
+   oc get ImageContentSourcePolicy
+   ```
+1. For {{site.data.reuse.eem_name}}, migrate the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   a. Set an environment variable to the name of the {{site.data.reuse.eem_name}} `ImageContentSourcePolicy`. For example, if the policy name is `ibm-eventendpointmanagement`:
+
+   ```shell
+   export EEM_ICSP=ibm-eventendpointmanagement
+   ```
+
+   b. Save the `ImageContentSourcePolicy` as a YAML file:
+
+   ```shell
+   oc get ImageContentSourcePolicy ${EEM_ICSP} -o yaml >> ${EEM_ICSP}.yaml
+   ```
+
+   c. Convert the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
+
+   ```shell
+   oc create -f $(oc adm migrate icsp ${EEM_ICSP}.yaml | cut -f 4 -d ' ')
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+   d. Delete the `ImageContentSourcePolicy`:
+
+   ```shell
+   oc delete ImageContentSourcePolicy ${EEM_ICSP}
+   ```
+
+   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
+
+5. Verify that the `ImageDigestMirrorSet` resources are created:
+
+   ```shell
+   oc get imagedigestmirrorset
+   ```
+
+   **Important:** After the `ImageDigestMirrorSet` resources are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
+
+6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
+
+   ```shell
+   oc get MachineConfigPool -w
+   ```
+
+For more information about converting to `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-convert_image-configuration){:target="_blank"}.
 
 
 

@@ -6,12 +6,7 @@ slug: key-concepts
 toc: true
 ---
 
-Read about the key concepts and terms used in Event Processing. 
-
-## Catalog
-{: #catalog}
-
-The catalog lists all available topics that represent event sources, and you can use the event data from them in the stream processing flow you configure.
+Read about the key concepts and terms used in Event Processing.
 
 ## Cluster
 {: #cluster}

@@ -1,7 +1,7 @@
 ---
 title: "Deploying a custom Flink session job"
 excerpt: "Find out how to deploy a Flink session job written in Java by using the IBM Operator for Apache Flink."
-categories: getting-started
+categories: reference
 slug: flink-session-job
 toc: true
 ---

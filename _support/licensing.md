@@ -83,6 +83,8 @@ For end of support licenses of {{site.data.reuse.cp4i}}, see the [earlier licens
 
 | Program   | License ID (`spec.license.license`)  | Included capabilities | License use (`spec.license.use`) | License metric (`spec.license.metric`) | 
 ----------|------------------------|-----------------------------------------|--------------------------------------|--------------------------------------------|
+{{site.data.reuse.cp4i}} 16.1.3 including the Cloud Pak for Integration Agent and {{site.data.reuse.es_name}} DR Full <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.3?topic=planning-licensing){:target="_blank"}. | [**L-EEPY-X55F4E**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-EEPY-X55F4E){:target="_blank"} | - {{site.data.reuse.es_name}} 12.3.0 and later <br> <br> - {{site.data.reuse.eem_name}} 11.7.3 and later | -`CloudPakForIntegrationNonProduction`  <br> <br> -`CloudPakForIntegrationProduction` <br> <br> - `CloudPakForIntegrationDevelopment` <br> <br> - `CloudPakForIntegrationDisasterRecovery` <br> <br> **Note:** `CloudPakForIntegrationDisasterRecovery` is only applicable to {{site.data.reuse.es_name}}. For more information, see [disaster recovery licensing](#disaster-recovery-licensing). | `VIRTUAL_PROCESSOR_CORE` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}.
+{{site.data.reuse.cp4i}} 16.1.3 including the Cloud Pak for Integration Agent and {{site.data.reuse.es_name}} DR Reserved <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.3?topic=planning-licensing){:target="_blank"}. | [**L-YKPH-DG8FFX**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-YKPH-DG8FFX){:target="_blank"} | - {{site.data.reuse.es_name}} 12.3.0 and later <br> <br> - {{site.data.reuse.eem_name}} 11.7.3 and later | -`CloudPakForIntegrationNonProduction`  <br> <br> -`CloudPakForIntegrationProduction` <br> <br> - `CloudPakForIntegrationDevelopment` <br> <br> - `CloudPakForIntegrationDisasterRecovery` <br> <br> **Note:** `CloudPakForIntegrationDisasterRecovery` is only applicable to {{site.data.reuse.es_name}}. For more information, see [disaster recovery licensing](#disaster-recovery-licensing). | `VIRTUAL_PROCESSOR_CORE` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}.
 {{site.data.reuse.cp4i}} 16.1.3 Full <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.3?topic=planning-licensing){:target="_blank"}. | [**L-SJZL-NMUUCT**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-SJZL-NMUUCT){:target="_blank"} | - {{site.data.reuse.es_name}} 12.2.0 and later <br> <br> - {{site.data.reuse.eem_name}} 11.7.0 and later | -`CloudPakForIntegrationNonProduction`  <br> <br> -`CloudPakForIntegrationProduction` <br> <br> - `CloudPakForIntegrationDevelopment` <br>  | `VIRTUAL_PROCESSOR_CORE` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}.
 {{site.data.reuse.cp4i}} 16.1.3 Reserved <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.3?topic=planning-licensing){:target="_blank"}. | [**L-JNME-56SJTB**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-JNME-56SJTB){:target="_blank"} | - {{site.data.reuse.es_name}} 12.2.0 and later <br> <br> - {{site.data.reuse.eem_name}} 11.7.0 and later | -`CloudPakForIntegrationNonProduction`  <br> <br> -`CloudPakForIntegrationProduction` <br> <br> - `CloudPakForIntegrationDevelopment` <br> | `VIRTUAL_PROCESSOR_CORE` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}.
 {{site.data.reuse.cp4i}} 16.1.3 API Calls <br> <br> For more information, see the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.3?topic=planning-licensing){:target="_blank"}. | [**L-YPZT-N6DZVW**](https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?popup=Y&li_formnum=L-YPZT-N6DZVW){:target="_blank"} | <br> <br> - {{site.data.reuse.eem_name}} 11.7.0 and later|   -`CloudPakForIntegrationProduction` | `MONTHLY_API_CALL` <br><br> **Note:** Only an option for {{site.data.reuse.eem_name}}. <br> <br> Setting this metric and the related license ID configures the usage-based license. <br> <br> **Note:** For more information about what is charged when using the `MONTHLY_API_CALL` license reporting metric with {{site.data.reuse.eem_name}}, see [the {{site.data.reuse.eem_name}} usage-based pricing example]({{ 'eem/installing/planning/#example-deployment-usage-based-pricing' | relative_url }}).
@@ -141,11 +143,29 @@ If you are deploying {{site.data.reuse.es_name}} or {{site.data.reuse.eem_name}}
 
 ### Licensing {{site.data.reuse.es_name}} and {{site.data.reuse.eem_name}} within {{site.data.reuse.cp4i}}
 
-The {{site.data.reuse.es_name}} and {{site.data.reuse.eem_name}} capabilities are also included in {{site.data.reuse.cp4i}}. 
+The {{site.data.reuse.es_name}} and {{site.data.reuse.eem_name}} capabilities are also included in {{site.data.reuse.cp4i}}.
 
-{{site.data.reuse.cp4i}} has a ratio table with a 1:1 ratio for production deployments, and a 2:1 ratio for non-production deployments.
+{{site.data.reuse.cp4i}} has a ratio table with a 1:1 ratio for production deployments, and a 2:1 ratio for non-production and [disaster recovery](#disaster-recovery-licensing) deployments.
 
 For example, if your production deployment consists of 12 chargeable cores, this uses the 1:1 ratio and you would require 12 {{site.data.reuse.cp4i}} VPCs. If you have a non-production deployment with 6 chargeable cores, this uses the 2:1 ratio, and you would require 3 {{site.data.reuse.cp4i}} VPCs for this deployment.
+
+### Licensing for {{site.data.reuse.es_name}} disaster recovery cluster
+{: #disaster-recovery-licensing}
+
+Disaster recovery licensing is available in {{site.data.reuse.es_name}} 12.3.0 and later, when deployed with the correct {{site.data.reuse.cp4i}} license. See the [{{site.data.reuse.cp4i}} license table](#ibm-cloud-pak-for-integration-license-information) for disaster recovery-enabled licenses that include the `CloudPakForIntegrationDisasterRecovery` license use option. Disaster recovery instances use a 2:1 ratio, where 2 VPCs in the disaster recovery instance count as 1 VPC for licensing purposes.
+
+For example, if you have a disaster recovery instance with 12 chargeable cores, the disaster recovery instance uses the 2:1 ratio, and you would require 6 {{site.data.reuse.cp4i}} VPCs for the disaster recovery instance.
+
+To create a disaster recovery instance identical to your production instance, you can copy the configuration you created for your production instance, and change the license configuration to add a license that includes the `CloudPakForIntegrationDisasterRecovery` option for [license use](#ibm-cloud-pak-for-integration-license-information).
+
+**Important:** Disaster recovery licensing applies only to one-way disaster recovery scenarios and has the following restrictions:
+
+- During normal operation, no producers, consumers, or Kafka Connect connectors can connect to the disaster recovery instance.
+- During normal operation, only MirrorMaker 2.0 can connect to the disaster recovery instance for one-way replication.
+- If the production instance becomes unavailable, producers, consumers, and connectors can temporarily connect to the disaster recovery instance until the production instance is restored.
+- The 2:1 licensing ratio applies to the containers of Kafka brokers and MirrorMaker 2.0 nodes running in the disaster recovery instance.
+
+For more information about disaster recovery topologies and configuration, see [configuring disaster recovery topologies]({{ 'es/installing/disaster-recovery' | relative_url }}).
 
 ### Licensing {{site.data.reuse.ep_name}} add-on for {{site.data.reuse.cp4i}}
 

@@ -151,71 +151,58 @@ logger.kafka_request.appenderRef.audit.ref = audit
 
 The audit file is stored at `/var/lib/kafka/data/` in the Kafka pod. To aggregate logs, use a tool such as rsyslog instead of a file appender.
 
-<!--### Auditing all Kafka users and user-created topics
+### Auditing all Kafka users and user-created topics
 {: #auditing-all-kafka-users-and-user-created-topics}
 
-Draft comment: This section needs updating as per log4j2 configs.
-
-Use the following log4j configuration to audit all Kafka users and only topics created by users (excluding internal {{site.data.reuse.es_name}} topics).
+Use the following log4j2 configuration to audit all Kafka users and only topics created by users (excluding internal {{site.data.reuse.es_name}} topics).
 
 ```
-# Kafka root logger 
-log4j.rootLogger=INFO, stdout 
-log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.ConversionPattern=[%d] %p %m (%c)%n
+# Kafka root logger
+rootLogger.level = INFO
+rootLogger.appenderRef.stdout.ref = stdout
 
-# Kafka request logger
-log4j.logger.kafka.request.logger=TRACE, audit
-log4j.additivity.kafka.request.logger=false
+# Console Appender for standard logs
+appender.stdout.type = Console
+appender.stdout.name = stdout
+appender.stdout.layout.type = PatternLayout
+appender.stdout.layout.pattern = [%d] %p %m (%c)%n
 
-# SysLog Appender
-log4j.appender.audit=org.apache.log4j.net.SyslogAppender
-log4j.appender.audit.syslogHost=rsyslog-service.es-audit.svc.cluster.local:514
-log4j.appender.audit.facility=AUDIT
-log4j.appender.audit.layout=org.apache.log4j.PatternLayout
-log4j.appender.audit.layout.conversionPattern=%m%n
+# Syslog Appender
+appender.audit.type = Syslog
+appender.audit.name = audit
+appender.audit.host = rsyslog-service.es-audit.svc.cluster.local
+appender.audit.port = 514
+appender.audit.protocol = UDP
+appender.audit.facility = AUDIT
+appender.audit.layout.type = PatternLayout
+appender.audit.layout.pattern = %d{ISO8601} %m%n
+
+# Container to hold all audit log filters
+appender.audit.filter.auditFilters.type = Filters
 
 # Reject internal topics
-log4j.appender.audit.filter.1=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.1.StringToMatch="topics":[{"name":"__
-log4j.appender.audit.filter.1.AcceptOnMatch=false
+appender.audit.filter.auditFilters.f1.type = RegexFilter
+appender.audit.filter.auditFilters.f1.regex = .*\"topics\":\\[\\{\"name\":\"__.*
+appender.audit.filter.auditFilters.f1.onMatch = DENY
+appender.audit.filter.auditFilters.f1.onMismatch = NEUTRAL
 
-log4j.appender.audit.filter.2=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.2.StringToMatch="topics":[{"name":"eventstreams-apicurio-registry-kafkasql-topic"
-log4j.appender.audit.filter.2.AcceptOnMatch=false
+appender.audit.filter.auditFilters.f2.type = RegexFilter
+appender.audit.filter.auditFilters.f2.regex = .*\"topics\":\\[\\{\"name\":\"eventstreams-apicurio-registry-journal-topic\".*
+appender.audit.filter.auditFilters.f2.onMatch = DENY
+appender.audit.filter.auditFilters.f2.onMismatch = NEUTRAL
 
-# Accept requests for Create/Delete Topics
-log4j.appender.audit.filter.3=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.3.StringToMatch="requestApiKeyName":"CREATE_TOPICS"
-log4j.appender.audit.filter.3.AcceptOnMatch=true
+# Custom filter for audit events
+appender.audit.filter.auditFilters.f3.type = RegexFilter
+appender.audit.filter.auditFilters.f3.regex = .*(CREATE_TOPICS|DELETE_TOPICS|CREATE_ACLS|DELETE_ACLS|ALTER_CONFIGS|INCREMENTAL_ALTER_CONFIGS).*
+appender.audit.filter.auditFilters.f3.onMatch = ACCEPT
+appender.audit.filter.auditFilters.f3.onMismatch = DENY
 
-log4j.appender.audit.filter.4=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.4.StringToMatch="requestApiKeyName":"DELETE_TOPICS"
-log4j.appender.audit.filter.4.AcceptOnMatch=true
-
-# Accept requests for Create/Delete User
-log4j.appender.audit.filter.5=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.5.StringToMatch="requestApiKeyName":"CREATE_ACLS"
-log4j.appender.audit.filter.5.AcceptOnMatch=true
-
-log4j.appender.audit.filter.6=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.6.StringToMatch="requestApiKeyName":"DELETE_ACLS"
-log4j.appender.audit.filter.6.AcceptOnMatch=true
-
-# Accept requests for Alter Topic/User/Cluster
-log4j.appender.audit.filter.7=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.7.StringToMatch="requestApiKeyName":"ALTER_CONFIGS"
-log4j.appender.audit.filter.7.AcceptOnMatch=true
-
-log4j.appender.audit.filter.8=org.apache.log4j.varia.StringMatchFilter
-log4j.appender.audit.filter.8.StringToMatch="requestApiKeyName":"INCREMENTAL_ALTER_CONFIGS"
-log4j.appender.audit.filter.8.AcceptOnMatch=true
-
-# Deny All entries that do not match other filters
-log4j.appender.audit.filter.9=org.apache.log4j.varia.DenyAllFilter
+# Kafka request logger for audit
+logger.kafka_request.name = kafka.request.logger
+logger.kafka_request.level = TRACE
+logger.kafka_request.additivity = false
+logger.kafka_request.appenderRef.audit.ref = audit
 ```
--->
 
 ## Example audit records
 {: #example-audit-records}

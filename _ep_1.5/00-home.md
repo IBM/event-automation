@@ -14,7 +14,11 @@ quickLinks:
     - title: Key concepts
     - url: about/key-concepts/
 gettingStarted:
-  - mainTitle: How to get going
+  - mainTitle: How to get going 
+  - link:
+    - title: Introduction to authoring
+    - url: getting-started/introduction/
+    - icon: install.svg
   - link:
     - title: Installing in an online environment
     - url: installing/installing/

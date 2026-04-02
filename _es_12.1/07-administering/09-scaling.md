@@ -47,7 +47,7 @@ spec:
 
 **Note:** Controller node pools cannot be scaled or modified dynamically in KRaft mode. For more information, see [KRaft limitations](../../installing/configuring/#kraft-limitations).
 
-For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.48.0/deploying#proc-scaling-up-node-pools-str). 
+For more information about scaling up Kafka node pools, see the [Strimzi documentation](https://strimzi.io/docs/operators/0.48.0/deploying#proc-scaling-up-node-pools-str){:target="_blank"}. 
 
 ## Increase the CPU request or limit settings for the Kafka brokers
 {: #increase-the-cpu-request-or-limit-settings-for-the-kafka-brokers}

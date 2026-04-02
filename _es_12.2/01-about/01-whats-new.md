@@ -8,7 +8,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 12.2.x.
 
-## Release {{site.data.reuse.es_current_version}}
+## Release 12.2.2
 
 ### Support for installing cluster-scoped resources separately
 {: #support-for-installing-cluster-scoped-resources-separately}

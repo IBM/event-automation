@@ -26,7 +26,7 @@ To access the **Security controls** pane for an option, follow these steps:
 ## Approval
 {: #approval-controls}
 
-If you want to control who can subscribe to your event endpoint, enable **Manual approval** in the [**Security controls**](#edit-controls) pane when you are creating or editing the option.
+If you want to control who can subscribe to your event endpoint, enable **Require approval** in the [**Security controls**](#edit-controls) pane when you are creating or editing the option.
 
 When an option is set up with approval enabled, a viewer must submit a request to subscribe to the option. The request includes a reason to justify the need for a subscription along with the requester's contact information. The option owner can then approve or reject the request as required.
 

@@ -342,7 +342,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.7.2               
+eem-manager           Running   11.7.4               
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms

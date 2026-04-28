@@ -6,7 +6,7 @@ slug: disaster-recovery
 toc: true
 ---
 
-You cam use MirrorMaker 2.0 to mirror topics from one {{site.data.reuse.es_name}} cluster to another.
+You can use MirrorMaker 2.0 to mirror topics from one {{site.data.reuse.es_name}} cluster to another.
 
 You can configure {{site.data.reuse.es_name}} for disaster recovery (DR) by using multiple {{site.data.reuse.es_name}} instances in different locations. Two key topologies to consider as starting points for planning a DR solution suitable for your business are:
 
@@ -26,7 +26,7 @@ MirrorMaker 2.0 provides unidirectional data replication between the 2 Kafka clu
 
 This approach is typically used when there is a need for data recovery or business continuity because the secondary {{site.data.reuse.es_name}} cluster provides a backup to the primary cluster if there is a disaster or outage. Unidirectional replication ensures that the secondary cluster has a copy of the data, but this {{site.data.reuse.es_name}} instance is not directly accessed by producer and consumer applications.
 
-If there is a failure in the active cluster, the passive cluster can be activated to take over processing of data. To implement an Active-Passive topology, MirrorMaker 2.0 must be configured on the {{site.data.reuse.openshift}} cluster hosting the passive cluster that will allow the data from the primary active cluster to be copied across to the secondary cluster.
+If there is a failure in the active cluster, the passive cluster can be activated to take over processing of data. To implement an Active-Passive topology, MirrorMaker 2.0 must be configured on the Kubernetes cluster hosting the passive cluster that will allow the data from the primary active cluster to be copied across to the secondary cluster.
 
 In an Active-Passive topology, the primary {{site.data.reuse.es_name}} cluster, Cluster-1, is hosting Topic-A so all producer and consumer applications for Topic-A are connected to Cluster-1.
 
@@ -74,3 +74,5 @@ Active-Active topology can be useful for:
 - Applications that are independent of location and prefer a broader view of the data across different {{site.data.reuse.es_name}} clusters.
 
 ![Single topic across 2 instances diagram.]({{ 'images' | relative_url }}/SingleTopic2Clusters2.png "Diagram that shows consumer with conceptual topic across 2 clusters.")
+
+In the previous diagram, the topic appears as a single global conceptual topic across both clusters through bidirectional geo-replication. The consumer is not connected to both clusters simultaneously, but can access data from both clusters through a single connection point (for example, Cluster-1).

@@ -7,9 +7,10 @@ section: "Tutorials for Event Endpoint Management"
 cardType: "large"
 ---
 
-After creating an {{site.data.reuse.eem_name}} service, set up an {{site.data.reuse.egw}} to connect your service with your Kafka cluster. You can then describe topics from that cluster as event sources, adding them to the {{site.data.reuse.eem_name}} catalog, and making them available to share as event endpoints through options.
+**Note:** ![Event Endpoint Management 11.7.1 icon]({{ 'images' | relative_url }}/11.7.1.svg "In Event Endpoint Management 11.7.1 and later.") The {{site.data.reuse.eem_name}} UI provides a guided tutorial that you can access from the **Help and support** menu. The guided tutorial covers all the main concepts and operations of {{site.data.reuse.eem_name}} and provides a mock Kafka cluster. 
 
-Follow the steps in this guide to get your topics described in {{site.data.reuse.egw}} and make them available to others in your organization.
+In this tutorial, you set up an {{site.data.reuse.egw}} to connect your {{site.data.reuse.eem_name}} service with your Kafka cluster. You can then describe topics from that cluster as event sources, adding them to the {{site.data.reuse.eem_name}} catalog, and making them available to share as event endpoints through options.
+
 
 ## Before you begin
 {: #before-you-begin}
@@ -19,8 +20,6 @@ Follow the steps in this guide to get your topics described in {{site.data.reuse
 - Ensure you have a host with [Docker installed](https://docs.docker.com/get-started/){:target="_blank"} for deploying an {{site.data.reuse.egw}}.
 - Ensure you have the connection details for your Kafka cluster available.
 - Ensure you have at least one Kafka topic.
-
-**Note:** Don't have a Kafka cluster? We’re working on a trial experience that doesn’t require your own Kafka cluster. [Let us know](https://forms.office.com/r/7rb3www0NF){:target="_blank"} if you want to be notified when this is available.
 
 ## Add an {{site.data.reuse.egw}}
 {: #add-a-gateway}

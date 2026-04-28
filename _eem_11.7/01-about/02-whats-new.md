@@ -7,9 +7,19 @@ toc: true
 ---
 
 
+
 Find out what is new in {{site.data.reuse.eem_name}} version 11.7.x.
 
 ## Release {{site.data.reuse.eem_current_version}}
+{: #release-1174}
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1174}
+
+{{site.data.reuse.eem_name}} release 11.7.4 contains security and bug fixes.
+
+
+## Release 11.7.3
 
 ### OAuth 2.0 introspection endpoint support
 {: #oauth2-introspection-1173}

@@ -2424,7 +2424,7 @@ latestdocs:
         url: /troubleshooting/debezium-oracle-timeout/
       - title: "Broker pods fail to start after upgrade due to SSL private key format"
         url: /troubleshooting/upgrade-ssl-private-key-format/
-      - title: "Helm diff plugin failure when upgrading to 12.3.x due to large CRD size"
+      - title: "Helm diff plugin failure when upgrading to 12.3.x"
         url: /troubleshooting/helm-diff-plugin-failure/
 
 

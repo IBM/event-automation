@@ -26,7 +26,7 @@ toc: true
 
 - A REST API for producing messages to {{site.data.reuse.es_name}} topics, expanding event source possibilities.
 
-- A schema registry to support the definition and enforcement of message formats between producers and consumers. {{site.data.reuse.es_name}} includes the open-source [Apicurio Registry](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/index.html){:target="_blank"} for managing schemas.
+- A schema registry to support the definition and enforcement of message formats between producers and consumers. {{site.data.reuse.es_name}} includes the open-source [Apicurio Registry](https://www.apicur.io/registry/docs/apicurio-registry/3.2.x/index.html){:target="_blank"} for managing schemas.
 
 - Health check information to help identify issues with your clusters and brokers.
 

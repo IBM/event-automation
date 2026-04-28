@@ -51,7 +51,7 @@ To set up your Java applications to use the Apicurio Registry and the Apicurio R
     <dependency>
       <groupId>io.apicurio</groupId>
       <artifactId>apicurio-registry-avro-serde-kafka</artifactId>
-      <version>3.1.7</version>
+      <version>3.2.2</version>
     </dependency>
     ```
 
@@ -167,7 +167,7 @@ producer.close();
 
 The Kafka configuration property `value.serializer` is set to `AvroKafkaSerializer.class`, telling Kafka to use the Apicurio Registry Avro Kafka serializer for message values when producing messages. You can also use the Apicurio Registry Avro Kafka serializer for message keys.
 
-For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/index.html){:target="_blank"}.
+For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.2.x/index.html){:target="_blank"}.
 
 **Note:** Use the `put` method in the `GenericRecord` class to set field names and values in your message.
 
@@ -243,7 +243,7 @@ props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, <kafka_bootstrap_address
 
 **Note:** Follow the instructions in the code snippet to uncomment lines. Replace `<ca_p12_file_location>` with the path to the Java truststore file you downloaded earlier, `<ca_p12_password>` with the truststore password which has the permissions needed for your application, `<kafka_bootstrap_address>` with the bootstrap address (find out how to [obtain the address](../../getting-started/connecting/#obtaining-the-bootstrap-address)), and `<schema_registry_endpoint>` with the endpoint address for Apicurio Registry in {{site.data.reuse.es_name}}. For SCRAM, replace the `<username>` and `<password>` with the SCRAM username and password. For Mutual authentication, replace `<user_p12_file_location>` with the path to the `user.p12` file extracted from the `.zip` file downloaded earlier and `<user_p12_password>` with the contents of the `user.password` file in the same `.zip` file.
 
-For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/index.html){:target="_blank"}.
+For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.2.x/index.html){:target="_blank"}.
 
 The code snippet from the **Consumer code** section defines properties for the consumer application that set it to use the schema registry and the correct schema, for example:
 
@@ -276,7 +276,7 @@ while(true) {
 
 The Kafka configuration property `value.deserializer` is set to `AvroKafkaDeserializer.class`, telling Kafka to use the Apicurio Registry Avro Kafka deserializer for message values when consuming messages. You can also use the Apicurio Registry Avro Kafka deserializer for message keys.
 
-For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/index.html){:target="_blank"}.
+For more information about the configuration keys and values to use with the Apicurio Registry `serdes` library, see the [Apicurio Registry documentation](https://www.apicur.io/registry/docs/apicurio-registry/3.2.x/index.html){:target="_blank"}.
 
 **Note:** Use the `get` method in the `GenericRecord` class to get field names and values.
 

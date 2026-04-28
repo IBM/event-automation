@@ -1,6 +1,6 @@
 ---
-title: "Helm diff plugin failure when upgrading to 12.3.x due to large CRD size"
-excerpt: "When upgrading to Event Streams 12.3.x on other Kubernetes platforms by using Helm, the Helm diff plugin fails with an error."
+title: "Helm diff plugin failure when upgrading to 12.3.x"
+excerpt: "When upgrading to Event Streams 12.3.x by using Helm, the Helm diff plugin fails with an error."
 categories: troubleshooting
 slug: helm-diff-plugin-failure
 toc: true
@@ -9,7 +9,7 @@ toc: true
 ## Symptoms
 {: #symptoms}
 
-When upgrading to {{site.data.reuse.es_name}} 12.3.x on other Kubernetes platforms by using Helm, you might encounter a failure with the following error:
+When upgrading to {{site.data.reuse.es_name}} 12.3.x by using Helm, you might encounter a failure with the following error:
 
 ```
 Error: plugin "diff" exited with error

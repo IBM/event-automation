@@ -21,7 +21,7 @@ It is common for all of the messages on a topic to use the same schema. The key 
 
 **Important:** Support for version 2 of the Apicurio Registry Core REST API is deprecated and will be removed in a future release. To ensure continued compatibility, update all Apicurio client libraries to use API version 3. For more information, see [prerequisites](../../installing/prerequisites#schema-requirements).
 
-Schemas are stored in internal Kafka topics by the [Apicurio Registry](https://www.apicur.io/registry/docs/apicurio-registry/3.1.x/index.html){:target="_blank"}, an open-source schema registry. In addition to storing a versioned history of schemas, Apicurio Registry provides an interface for retrieving them. Each {{site.data.reuse.es_name}} cluster has its own instance of Apicurio Registry providing schema registry functionality.
+Schemas are stored in internal Kafka topics by the [Apicurio Registry](https://www.apicur.io/registry/docs/apicurio-registry/3.2.x/index.html){:target="_blank"}, an open-source schema registry. In addition to storing a versioned history of schemas, Apicurio Registry provides an interface for retrieving them. Each {{site.data.reuse.es_name}} cluster has its own instance of Apicurio Registry providing schema registry functionality.
 
 ![Event Streams Schemas architecture]({{ 'images' | relative_url }}/architectures/ibm-event-automation-diagrams-es-schemaregistry.svg "Diagram showing the architecture of the Event Streams schemas as part of IBM Event Automation.")
 

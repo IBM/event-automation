@@ -89,6 +89,80 @@ Hover over the node, and click ![Edit icon]({{ 'images' | relative_url }}/rename
 A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Diagram showing green checkbox."){:height="30px" width="15px"} is displayed on the node if your node is configured correctly.
 
 
+### Using user-defined functions in SQL processor nodes
+{: #using-udfs-in-sql-processor-nodes}
+
+![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") In {{site.data.reuse.ep_name}} 1.5.2 and later, SQL processor nodes support [user-defined functions (UDFs)](../../reference/supported-functions#udfs). You can use UDFs to extend the built-in functionality of Flink by writing custom logic in Java.
+
+To use UDFs in an SQL processor node:
+
+1. Package your UDF as a custom Java class into a JAR file. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"}.
+
+1. Make the JAR file available at a URL that is accessible from your cluster, for example, by hosting it on a web server.
+
+1. Modify the `EventProcessing` custom resource to mount the JAR file into the filesystem at runtime.
+
+   Add an init container to the `EventProcessing` custom resource to fetch the JAR file from a remote web server:
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: EventProcessing
+   metadata:
+     name: <my-event-processing>
+   spec:
+     authoring:
+       template:
+         pod:
+           spec:
+             initContainers:
+             - name: udf-fetcher
+               image: registry.access.redhat.com/ubi8/toolbox:latest
+               volumeMounts:
+                 - mountPath: <mount-path>
+                   name: udf-volume
+               command:
+                 - /bin/sh
+                 - -c
+                 - "wget -O <mount-path>/<jar-filename> <url-of-jar>"
+             containers:
+             - name: backend
+               volumeMounts:
+               - mountPath: <mount-path>
+                 name: udf-volume
+             volumes:
+             - name: udf-volume
+               emptyDir: {}
+   ```
+
+   Where:
+   - `<my-event-processing>` is the name of your `EventProcessing` instance.
+   - `<mount-path>` is the path in the container where the JAR file is mounted, for example, `/udf`.
+   - `<jar-filename>` is the name of your UDF JAR file, for example, `my-udf.jar`.
+   - `<url-of-jar>` is the URL from where the JAR file is downloaded, for example, `https://my.web.server/my-udf.jar`.
+
+   **Note:** Alternatively, you can store the JAR file in a Kubernetes ConfigMap and mount it into the `EventProcessing` instance. However, ConfigMaps have a 1 MB size limit, so this approach might not always be possible.
+
+1. Apply the `EventProcessing` custom resource.
+
+1. In your SQL processor node, register and use the UDF by using one of the following methods:
+
+   - Register the UDF and specify the JAR file in a single statement:
+
+     ```sql
+     create function MyPTF as 'com.example.MyPTF' using jar '/udf/my-udf.jar';
+     create temporary view output as SELECT * FROM MyPTF(TABLE input PARTITION BY keyword);
+     ```
+
+   - Add the JAR file first, then register the UDF:
+
+     ```sql
+     add jar '/udf/my-udf.jar';
+     create function MyPTF as 'com.example.MyPTF';
+     create temporary view output as SELECT * FROM MyPTF(TABLE input PARTITION BY keyword);
+     ```
+
+   **Important:** When using the same UDF across multiple SQL processor nodes in a flow, declare the function in each node by using a distinct function name. For example, if two nodes require the same UDF class `com.example.MyPTF`, use `create function MyPTF_Node1 as 'com.example.MyPTF'` in the first node and `create function MyPTF_Node2 as 'com.example.MyPTF'` in the second node.
+
 ### Validation rules for Flink SQL code
 {: #validation-rules-for-flink-sql-code}
 
@@ -115,13 +189,16 @@ A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.
   - The SQL must contain exactly one `CREATE [TEMPORARY] TABLE` statement.
   - The output structure is defined by that `TABLE`.
 
-The following statements are not supported in all the three custom nodes:
+![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") In {{ site.data.reuse.ep_name }} 1.5.2 and later, the following statements are supported in SQL processor nodes:
+
+- `ADD JAR`
+- `CREATE FUNCTION USING JAR`
+
+The following statements are not supported in any of the three custom nodes:
 
 - `CREATE TABLE AS SELECT`
 - `[CREATE OR] REPLACE TABLE AS SELECT`
 - `EXECUTE STATEMENT SET`
-- `ADD JAR`
-- `CREATE FUNCTION USING JAR`
 - SQL statements that begin with `SELECT` or `INSERT`
 
 **Important:** You can write any supported SQL statements, but be aware of the risks, such as deleting or renaming an input table or view.

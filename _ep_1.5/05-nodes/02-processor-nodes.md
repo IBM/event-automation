@@ -13,6 +13,8 @@ The following processor nodes are available in {{site.data.reuse.ep_name}}:
 - [Unpack arrays](#unpack-arrays)
 - [Detect patterns](#detect-patterns)
 - [Deduplicate](#deduplicate)
+- ![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") [Combine](#combine)
+
 
 ## Filter
 {: #filter}
@@ -131,6 +133,76 @@ A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.
 
 User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
+## Combine
+{: #combine}
+
+![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") A combine node merges multiple event sources into a single unified event stream by mapping properties to a reference event source schema. Unlike [joins](../joins), a combine node does not correlate events across streams. Instead, it merges events from multiple sources with the same schema into a unified event stream, allowing downstream nodes to process them consistently.
+
+### Adding a combine node
+{: #adding-a-combine-node}
+
+To add a combine node, complete the following steps:
+
+1. {{site.data.reuse.node_step1}}
+2. In the **Palette**, under **Processors**, drag the **Combine** node onto the canvas.
+3. Connect the node to two or more input streams by dragging the **Output port** from each input node to the **Input port** on the Combine node. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the combine node indicating that the node is yet to be configured.
+4. Hover over the node and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit** to configure the node.
+
+The **Configure streams to combine** window opens.
+
+### Configuring a combine node
+{: #configuring-a-combine-node}
+
+To configure a combine node, complete the following steps:
+
+1. {{site.data.reuse.node_details}}
+1. Select a reference input stream from the **Reference input stream** section. The reference input stream defines the output structure and is the template used to map all other input streams.
+
+1. Click **Next** to open the **Define combine** pane.
+
+   {{site.data.reuse.ep_treeview_note}}
+
+1. In the property mapping table, map properties from other input streams to the reference input stream. The table displays columns for the reference stream and each connected input stream.
+
+   Properties with identical names, data types, and structures are mapped automatically. A notification banner indicates when properties are automatically mapped.
+
+   **Note:** Only properties that are mapped in every input stream appear in the output. Any properties that are not fully mapped from an input stream are removed and do not appear in the output.
+
+1. To map a property manually for each input stream, select a property in the drop-down menu that corresponds with the reference input stream. Click the **X** icon to remove a mapping if required.
+
+   To map a property as null, select **NULL** from the drop-down menu. This ensures schema alignment across all streams when a property is not present in one or more input streams.
+
+   **Important:** You can map properties only if they have compatible data types and structures.
+
+1. Click **Next** after you mapped the properties.
+
+   If any properties are not mapped, a popup is displayed to remind you that unmapped properties will be removed. Click **Confirm** to proceed with removing the unmapped properties, or click **Cancel** to complete the mapping.
+
+1. Click **Next** to open the **Output properties** pane. The properties that you mapped in the previous step are displayed. You can manage the properties that come from this node to suit your requirements.
+
+   Only **leaf** properties are listed in the **Properties to keep** table.
+
+   - Optional: Click **Remove property** ![remove icon]({{ 'images' | relative_url }}/remove.svg "Diagram showing remove icon."){: height="30px" width="15px"} to remove a property from being displayed in the output. You can remove specific properties from an object, or if you want to remove the entire object, remove all the properties related to it one by one.
+
+     **Note:**
+     - Nested properties are displayed by using a period (`.`) as a separator for each level of nesting. For example, `product . id` or `customer . address . city`.
+     - If a nested property name contains a period (`.`), the nested property is displayed within backticks (\`\`\) to distinguish the property name. For example, `name .`\``billing.address`\``. customer` where `billing.address` is the name of the property.
+
+   - Optional: To rename a property, hover over the property name and click the **Edit** icon ![edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){: height="30px" width="15px"}.
+     - In the text field, enter a new name for your property.
+     - Click outside the text field or press Enter on your keyboard to rename the property.
+
+     Within nested properties, you can only rename the last nested property. You cannot rename the top-level or any other properties in between. For example, in the case of `customer . address . city`, you can only rename `city`, but not `address` or `customer`.
+
+     **Note:** To rename the top-level property `customer` in the example `customer . address . city`, create a new property by using the [transform node](#transform).
+
+   - Optional: To add a property that was previously removed, go to the **Properties to remove** table that lists the removed properties. For the property you want to add back, click the **Add** icon ![add icon]({{ 'images' | relative_url }}/add.svg "Diagram showing add icon."){:height="30px" width="15px"}.
+
+1. Scroll down and click **Configure** to complete the configuration.
+
+A green checkbox ![green checkbox]({{ 'images' | relative_url }}/checkbox_green.svg "Icon showing a green checkbox."){:height="30px" width="15px"} appears on the combine node if the node is configured correctly. If the configuration contains errors, a red checkbox ![red checkbox]({{ 'images' | relative_url }}/errornode.svg "Icon showing a red checkbox."){:height="30px" width="15px"} appears instead.
+
+User actions are [saved](../../getting-started/canvas/#save) automatically. For save status updates, see the canvas header.
 
 ## Transform
 {: #transform}

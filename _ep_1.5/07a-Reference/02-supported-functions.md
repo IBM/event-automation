@@ -6,9 +6,11 @@ slug: supported-functions
 toc: true
 ---
 
-The following tables list the Flink built-in SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions){:target="_blank"}.
+The following tables list the built-in Flink SQL functions supported by {{site.data.reuse.ep_name}}. For more information about Flink SQL functions, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions){:target="_blank"}.
 
-Additionally, [user-defined SQL functions](#user-defined-functions-in-the-exported-sql) can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when deploying jobs in a [development](../../advanced/deploying-development) or [production](../../advanced/deploying-production) environment.
+User-defined SQL functions (UDFs) can be used when [deploying Flink jobs](../../advanced/deploying-customized#use-flink-user-defined-functions) to write your custom logic.
+
+![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") In {{site.data.reuse.ep_name}} 1.5.2 and later, you can also use UDFs in the {{site.data.reuse.ep_name}} UI within SQL processor nodes. For more information, see [user-defined functions](#udfs).
 
 ## Temporal functions
 {: #temporal-functions}
@@ -149,21 +151,32 @@ Additionally, [user-defined SQL functions](#user-defined-functions-in-the-export
 | `ELEMENT(array)`  | This function returns the sole element of array (whose cardinality should be one). Returns NULL if array is empty. Throws an exception if array has more than one element. |
 
 
-## User-defined functions in the exported SQL
-{: #user-defined-functions-in-the-exported-sql}
+## User-defined functions
+{: #udfs}
 
-User-defined functions (UDFs) are extension points allowing to implement a custom logic. For more information about UDFs, see the [Apache Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"}.
+User-defined functions (UDFs) are extension points you can use to implement frequently used or custom logic to complement your queries. For more information about UDFs, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"}.
+
+{{site.data.reuse.ep_name}} supports all UDFs in Flink:
+
+- **Scalar functions**: Map scalar values to a new scalar value.
+- **Asynchronous scalar functions**: Asynchronously map scalar values to a new scalar value.
+- **Table functions**: Map scalar values to new rows.
+- **Async table functions**: Asynchronously map scalar values to new rows and can be used for table sources that perform a lookup.
+- **Aggregate functions**: Map scalar values of multiple rows to a new scalar value.
+- **Table aggregate functions**: Map scalar values of multiple rows to new rows.
+- **Process table functions**: Map tables to new rows, enabling user-defined operators with state and timers.
 
 For implementing UDFs, see the following resources:
 
-* The [implementation guide](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/#implementation-guide){:target="_blank"} in the Apache Flink documentation.
+* The [implementation guide](https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/#implementation-guide){:target="_blank"} in the Apache Flink documentation.
 * The [sample project](https://ibm.biz/ep-flink-udf-sample){:target="_blank"} in the {{site.data.reuse.ea_long}} GitHub repository.
+* ![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.1 and later.") In {{site.data.reuse.ep_name}} 1.5.2 and later, UDFs can be used within [SQL processor nodes](../../nodes/custom#using-udfs-in-sql-processor-nodes) in the {{site.data.reuse.ep_name}} UI. To deploy Flink jobs that use UDFs, see [deploying customized jobs](../../advanced/deploying-customized#use-flink-user-defined-functions).
 
-In {{site.data.reuse.ep_name}}, UDFs can be used by editing the SQL exported from the {{site.data.reuse.ep_name}} UI when [deploying jobs for development purposes](../../advanced/deploying-development) or [deploying jobs in a production environment](../../advanced/deploying-production).
+<!-- ### User-defined functions in the exported SQL
+{: #user-defined-functions-in-the-exported-sql}
 
-**Note:** UDFs cannot be used in the {{site.data.reuse.ep_name}} UI.
 
-Complete the following steps:
+Complete the following steps to use UDFs in an exported flow:
 
 1. Implement the UDF in a Java project and package the compiled classes of this implementation in a JAR file, for example `udf.jar`.
 
@@ -185,4 +198,4 @@ Complete the following steps:
 
    * For [deploying jobs in development environments by using the Flink SQL client](../../advanced/deploying-development), see step 3 in [Submit a Flink SQL job](../../advanced/deploying-development/#submit-a-flink-sql-job).
    * For deploying jobs in production environments by using the Apache SQL Runner sample, see step 1c in [Build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner).
-   <!-- HIDE until supported at authoring time * For deploying jobs customized for production or test environments, see [Use Flink user-defined functions](../../advanced/deploying-production#use-fink-user-defined-functions). -->
+   * For deploying jobs customized for production or test environments, see [Flink user-defined functions](../../advanced/deploying-customized#use-flink-user-defined-functions). -->

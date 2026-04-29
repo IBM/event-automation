@@ -31,7 +31,7 @@ If you are upgrading from {{site.data.reuse.es_name}} version 12.1.x or earlier,
 
 The `v1beta2` API is deprecated in {{site.data.reuse.es_name}} 12.3.0 and later, and will be removed in a future release. Several fields within the `v1beta2` API are also deprecated.
 
-**Note:** Your existing {{site.data.reuse.es_name}} instances will continue to work with the `v1beta2` API in 12.3.x versions without requiring any configuration changes.
+**Note:** Your existing {{site.data.reuse.es_name}} instances will continue to work with the `v1beta2` API in 12.3.x versions without requiring any configuration changes. Any message about using the `v1` version of the API instead can be ignored as the `v1` API is not supported in {{site.data.reuse.es_name}} 12.3.x.
 
 The following table lists the deprecated fields:
 

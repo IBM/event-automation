@@ -1412,6 +1412,8 @@ latest_epdocs:
     children:
       - title: "Monitoring Flink health"
         url: /administering/flink-health/
+      - title: "Monitoring flow metrics"
+        url: /administering/flow-metrics/
 
   - title: Nodes
     children:

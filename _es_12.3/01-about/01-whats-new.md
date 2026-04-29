@@ -20,7 +20,7 @@ Find out what is new in {{site.data.reuse.es_name}} version 12.3.x.
 ### Documentation: Highlighting differences between versions
 {: #documentation-highlighting-differences-between-versions-1231}
 
-Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.3.1 compared to 12.3.0 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 12.3.1 icon]({{ 'images' | relative_url }}/12.3.1.svg "In Event Streams 12.3.1 and later.")
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 12.3.1 compared to 12.3.0 is highlighted in this documentation by using the following graphic: ![Event Streams 12.3.1 icon]({{ 'images' | relative_url }}/12.3.1.svg "In Event Streams 12.3.1 and later.")
 
 ### Security and bug fixes
 {: #security-and-bug-fixes-1231}

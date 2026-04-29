@@ -13,13 +13,52 @@ toc: true
 IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has been expanded. For more information, see the [support policy statement]({{ '/support/support-policy/' | relative_url}}).
 
 
+
+
 Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 
-
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-152}
+
+
+### User-defined functions (UDFs) in SQL processor nodes
+{: #udfs-sql-processor-nodes}
+
+{{site.data.reuse.ep_name}} 1.5.2 introduces support for user-defined functions (UDFs) in SQL processor nodes. You can use UDFs to extend the built-in functionality of Flink by writing custom logic in Java.
+
+All UDFs available in Flink are supported. For more information, see [configuring UDFs](../../nodes/custom#using-udfs-in-sql-processor-nodes).
+
+### Processor node: merge multiple input streams with the combine node
+{: #combine-node}
+
+{{site.data.reuse.ep_name}} version 1.5.2 introduces the **Combine** node to merge multiple event sources into a single unified event stream by mapping properties to a reference event source schema.
+
+Unlike [joins](../../nodes/joins), the combine node does not correlate events across streams. Instead, it merges events from multiple sources with the same schema into a single stream, allowing downstream nodes to process them consistently.
+
+For more information, see [combine node](../../nodes/processornodes/#combine).
+
+
+### Metrics for monitoring running flows
+{: #flow-metrics}
+
+{{site.data.reuse.ep_name}} 1.5.2 introduces the **Flow metrics** tab where you can monitor the health and performance of running flows. The tab is available next to the **Output events** tab, and provides real-time insights into the current state of your flow including uptime, restarts, and checkpoint metrics.
+
+<!-- - **Event activity**: Monitor event source and destination activity, including event counts, bytes read or written, message lag, and Flink watermarks. -->
+
+For more information, see [monitoring flow metrics](../../administering/flow-metrics/).
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-152}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.5.2 compared to 1.5.1 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-152}
+
+{{site.data.reuse.ep_name}} release 1.5.2 contains security and bug fixes.
+
+## Release 1.5.1
 {: #release-151}
-
-
 
 ### Additional outputs for conditional branching
 {: #additional-outputs-for-conditional-branching}
@@ -30,6 +69,7 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 - **SQL Processor node**: Define multiple VIEW statements to create side outputs that split the processing logic and send different results to separate downstream nodes.
 
 This feature provides greater flexibility in designing event processing flows with conditional logic and multiple processing paths.
+
 
 ### Automatic merge of public certificates to the custom truststore
 {: #automatic-truststore-merge-for-ssl-connections}
@@ -45,6 +85,7 @@ For more information, see [configuring SSL](../../installing/configuring/#config
 
 For more information, see [adding comments to your flow](../../getting-started/canvas/#adding-comments).
 
+
 ### Documentation: Highlighting differences between versions
 {: #documentation-highlighting-differences-between-versions-151}
 
@@ -54,7 +95,6 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 {: #security-and-bug-fixes-151}
 
 {{site.data.reuse.ep_name}} release 1.5.1 contains security and bug fixes.
-
 
 ## Release 1.5.0
 {: #release-150}

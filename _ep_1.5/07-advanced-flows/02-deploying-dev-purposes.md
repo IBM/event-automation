@@ -127,9 +127,7 @@ SET 'key' = 'value';
 ## Use Flink user-defined functions
 {: #use-flink-user-defined-functions}
 
-Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
-
-For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
+Optionally, [user-defined functions (UDFs)]( https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"} can be used to complement the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}. For information about using UDFs, see [user-defined functions in SQL processor nodes](../../nodes/custom#using-udfs-in-sql-processor-nodes) and [deploying customized jobs with UDFs](../deploying-customized#use-flink-user-defined-functions).
 
 ## Setup a connection to the Flink cluster
 {: #setup-a-connection-to-the-flink-cluster}

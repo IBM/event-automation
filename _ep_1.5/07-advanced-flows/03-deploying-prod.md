@@ -53,9 +53,7 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 ## Use Flink user-defined functions
 {: #use-flink-user-defined-functions}
 
-Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}, by editing the SQL exported from the {{site.data.reuse.ep_name}} UI.
-
-For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
+Optionally, [user-defined functions (UDFs)]( https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"} can be used to complement the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}. For information about using UDFs, see [deploying customized jobs with UDFs](../deploying-customized#use-flink-user-defined-functions).
 
 ## Setup a connection to the Flink cluster
 {: #setup-a-connection-to-the-flink-cluster}
@@ -132,7 +130,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
    ```
 
-   g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   g. [Build the image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 

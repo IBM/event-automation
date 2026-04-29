@@ -85,10 +85,13 @@ You can edit the `config.yaml` file as follows:
 * An actual value must be provided for the properties with redacted values. Otherwise, the deployment fails.
 * Do not modify node names and table names. It must match the values in the `flow.json` file.
 * Optional: values of unredacted properties can be modified.
-  * **Important:** The property `scan.startup.mode` has always the value `earliest-offset` in the exported `config.yaml` file. It can be changed for instance to `latest-offset`, as required.
+
+  **Important:** The property `scan.startup.mode` has always the value `earliest-offset` in the exported `config.yaml` file. It can be changed for instance to `latest-offset`, as required.
+
 * Optional: connector properties can be added or removed.
 * For security reasons, the values containing sensitive credentials, such as username and password, are removed when exporting the flow from the {{site.data.reuse.ep_name}} UI, so you must restore them.
-* **Important:** In the `config.yaml` file, if you see a warning message about enabling SSL connections for Kafka brokers in production environments, see [configuring SSL for Kafka brokers in production environments](../../installing/configuring/#ssl-for-config-yaml).
+  
+  **Important:** In the `config.yaml` file, if you see a warning message about enabling SSL connections for Kafka brokers in production environments, see [configuring SSL for Kafka brokers in production environments](../../installing/configuring/#ssl-for-config-yaml).
 
 Also, the exported `config.yaml` file contains connector configuration that is applicable to the environment targeted in the {{site.data.reuse.ep_name}} UI. When deploying to a different target environment, you might need to adapt the connector properties to the target environment.
 
@@ -219,6 +222,9 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
          allowNonRestoredState: true
      ```
 
+   - ![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") Optional: To use user-defined functions (UDFs) in your Flink job, reference the JAR file that contains the UDF classes [by using an init container](#using-an-init-container).
+
+
    b. Prepare the `FlinkDeployment` custom resource as described in step 1 of [installing a Flink instance](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
 
 
@@ -226,47 +232,110 @@ You can use a Kubernetes `FlinkDeployment` custom resource in [application mode]
 
 1. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
 
-<!-- HIDE UDF until supported at authoring time
 ## Use Flink user-defined functions
 {: #use-flink-user-defined-functions}
 
-Optionally, [user-defined functions (UDFs)](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/udfs/){:target="_blank"} can be used as a complement of the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}. UDFs can be used in the SQL of [SQL processor nodes](../../nodes/custom) authored in the {{site.data.reuse.ep_name}} UI.
+Optionally, [user-defined functions (UDFs)]( https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"} can be used to complement the [built-in functions](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/functions/systemfunctions/){:target="_blank"}. UDFs can be used in the SQL of [SQL processor nodes](../../nodes/custom) authored in the {{site.data.reuse.ep_name}} UI.
 
-For more information, see [UDFs in the exported SQL](../../reference/supported-functions#user-defined-functions-in-the-exported-sql).
+![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") To use UDFs in your deployed jobs, the JAR file that contains the UDF classes must be made available. You can do this [by using an init container](#using-an-init-container) to fetch the JAR file at runtime, or [by building a custom Flink image](#building-a-custom-flink-image) that includes the JAR file.
 
-For deploying jobs that use UDFs, the JAR file that contains the UDF classes needs to be copied into the Flink image, using the following steps:
+### ![Event Processing 1.5.2 icon]({{ 'images' | relative_url }}/1.5.2.svg "In Event Processing 1.5.2 and later.") By using an init container
+{: #using-an-init-container}
 
-1. Execute the following command to extract the Flink image name including its SHA digest from the `ClusterServiceVersion` (CSV). For example, if you are running on Flink version {{site.data.reuse.flink_operator_current_version}}:
+Complete the following steps to use an init container to fetch the UDF JAR file from a remote location at runtime:
+
+1. Package your UDF as a custom Java class into a JAR file. For more information, see the [Flink documentation]( https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"}.
+
+2. Make the JAR file available at a URL that is accessible from your cluster, for example, by hosting it on a web server.
+
+3. Modify the `FlinkDeployment` custom resource to add an init container that fetches the JAR file and mounts it into the Flink containers:
+
+   ```yaml
+   apiVersion: events.ibm.com/v1beta1
+   kind: FlinkDeployment
+   metadata:
+     name: my-flink-deployment
+   spec:
+    #...
+     podTemplate:
+     #...
+       spec:
+       #...
+         initContainers:
+         - name: udf-fetcher
+           image: registry.access.redhat.com/ubi8/toolbox:latest
+           volumeMounts:
+             - mountPath: <mount-path>
+               name: udf-volume
+           command:
+             - /bin/sh
+             - -c
+             - "wget -O <mount-path>/<jar-filename> <url-of-jar>"
+         containers:
+         - name: flink-main-container
+           volumeMounts:
+           - mountPath: <mount-path>
+             name: udf-volume
+         volumes:
+         - name: udf-volume
+           emptyDir: {}
+   ```
+
+   Where:
+   - `<mount-path>` is the path in the container where the JAR file is mounted, matching the path referenced in your SQL, for example, `/udf`.
+   - `<jar-filename>` is the name of your UDF JAR file, for example, `my-udf.jar`.
+   - `<url-of-jar>` is the URL from where the JAR file is downloaded, for example, `https://my.web.server/my-udf.jar`.
+
+4. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
+
+The user-defined functions are now available for use in your deployed Flink jobs.
+
+### By building a custom Flink image
+{: #building-a-custom-flink-image}
+
+Alternatively, complete the following steps to build a custom Flink image that includes the UDF JAR file:
+
+1. Package your UDF as a custom Java class into a JAR file. For more information, see the [Flink documentation]( https://nightlies.apache.org/flink/flink-docs-release-2.2/docs/dev/table/functions/udfs/){:target="_blank"}.
+
+2. Run the following command to extract the Flink image name (including its SHA digest) from the `ClusterServiceVersion` (CSV). For example, if you are running Flink version {{site.data.reuse.flink_operator_current_version}}:
 
    ```shell
-   kubectl get csv -o jsonpath='{.spec.install.spec.deployments[*].spec.template.spec.containers[0].env[?(@.name=="IBM_FLINK_IMAGE")].value}' ibm-eventautomation-flink.v{{site.data.reuse.flink_operator_current_version}}
+   kubectl get deployment \
+   -l app.kubernetes.io/name=flink-kubernetes-operator \
+   -o jsonpath='{.items[0].spec.template.spec.containers[?(@.name=="flink-kubernetes-operator")].env[?(@.name=="IBM_FLINK_IMAGE")].value}' 
    ```
-   
+
    Alternatively, you can obtain the image name from the Flink operator pod's environment variable:
 
    ```shell
    kubectl set env pod/<flink_operator_pod_name> --list -n <flink_operator_namespace> | grep IBM_FLINK_IMAGE
    ```
 
-2. Create a `Dockerfile` with a `FROM` clause to use the IBM Flink image with its SHA digest, as determined in the previous step, and adding the UDF jar.
+3. Create a `Dockerfile` with a `FROM` clause to use the IBM Flink image with its SHA digest, as determined in the previous step, and add the UDF JAR file at the same path that is referenced in your SQL.
 
-    ```Dockerfile
-    FROM --platform=<platform> <IBM Flink image with digest>
-    COPY --chown=flink:root <path-of-the-udf-jar> /opt/flink/lib
-    ```
+   ```Dockerfile
+   FROM --platform=<platform> <IBM Flink image with digest>
+   COPY --chown=flink:root <path-of-the-udf-jar> <path-of-the-udf-jar>
+   ```
 
-   Where `<platform>` is `linux/amd64` or `linux/s390x`, depending on your deployment target, and `<path-of-the-udf-jar>` is the path of the UDF jar, for instance `/udfproject/target/udf.jar`.
+   Where:
+   - `<platform>` is `linux/amd64` or `linux/s390x` depending on your deployment target.
+   - `<path-of-the-udf-jar>` is the path of the UDF JAR file as referenced in your SQL, for example, `/udf/my-udf.jar`.
 
-3. Build the docker image and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+4. Build the image and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
-4. Specify this image in the `spec.image` field of the Flink custom resource.
+5. Specify this image in the `spec.image` field of the `FlinkDeployment` custom resource:
 
    ```yaml
    spec:
      image: <image built at step 3>
    ```
 
-## Changing the parallelism
+6. Apply the modified `FlinkDeployment` custom resource by using the [UI](../../installing/installing#installing-a-flink-instance-using-the-yaml-view) or the [CLI](../../installing/installing#installing-a-flink-instance-by-using-the-cli).
+
+The custom Flink image with the UDF JAR file is now deployed, and the user-defined functions are available for use in your deployed Flink jobs.
+
+<!-- ## Changing the parallelism
 {: #changing-the-parallelism}
 
 1. Edit the `FlinkDeployment` custom resource.

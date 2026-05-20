@@ -18,6 +18,30 @@ To use the {{page.connectorTitle}} {{page.categories}} connector, complete the f
 
 3. {{site.data.reuse.kafkaconnectStep4_newcontent}}
 
-   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://debezium.io/documentation/reference/3.3/connectors/informix.html){:target="_blank"}.      
+   {{site.data.reuse.kafkaconnectStep5_newcontent}} [connector documentation](https://debezium.io/documentation/reference/3.3/connectors/informix.html){:target="_blank"}.
+
+   See the following sample `KafkaConnector` custom resource for a basic username and password connection:
+   
+   ```yaml
+   apiVersion: eventstreams.ibm.com/v1beta2
+   kind: KafkaConnector
+   metadata:
+     name: <connector_name>
+     labels:
+       eventstreams.ibm.com/cluster: <kafka_connect_name>
+   spec:
+     class: io.debezium.connector.informix.InformixConnector
+     config:
+       database.hostname: <database_server_address_or_name>
+       database.user: <database_user_with_appropriate_privileges>
+       database.password: <user_password>
+       database.port: <port_number_for_database_server>
+       database.dbname: <name_of_the_informix_database>
+       topic.prefix: <prefix_for_kafka_topics>
+       table.include.list: <list_of_all_tables_whose_changes_Debezium_should_capture>
+       schema.history.internal.kafka.bootstrap.servers: <list_of_kafka_brokers_that_the_connector_uses_to_write_and_recover_DDL_statements_to_the_database_history_topic>
+       schema.history.internal.kafka.topic: <name_of_the_database_history_topic>
+     tasksMax: 1
+   ```
     
 4. {{site.data.reuse.kafkaconnectStep6_newcontent}}

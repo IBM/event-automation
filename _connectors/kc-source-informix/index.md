@@ -3,7 +3,7 @@ title: "Informix (Debezium)"
 sortTitle: "Informix"
 connectorID: kc-source-informix
 direction: source
-support: community
+support: IBM
 type: kafkaConnect
 iconInitial: I
 iconGradient: 1

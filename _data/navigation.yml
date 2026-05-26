@@ -1414,6 +1414,8 @@ latest_epdocs:
         url: /administering/flink-health/
       - title: "Monitoring flow metrics"
         url: /administering/flow-metrics/
+      - title: "Monitoring session cluster"
+        url: /administering/session-cluster/
 
   - title: Nodes
     children:
@@ -1497,6 +1499,9 @@ latest_epdocs:
         url: /troubleshooting/error-submitting-job-for-enrichment
       - title: "Flink resources are unexpectedly missing from the cluster"
         url: /troubleshooting/missing-flink-resources
+      - title: "Job manager pod crashes after High Availability data deletion"
+        url: /troubleshooting/not-able-to-recover-flink-job
+
 
 # Event Processing 1.4 docs
 140_epdocs:

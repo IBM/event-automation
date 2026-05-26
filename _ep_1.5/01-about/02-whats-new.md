@@ -15,9 +15,65 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 
 
 
+
 Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-153}
+
+### Combine node: enhancements for mapping properties
+{: #combine-node-enhancements}
+
+{{site.data.reuse.ep_name}} 1.5.3 introduces usability enhancements for mapping properties in the combine node. You can now search properties in the reference input stream, clear all mappings, expand or collapse property groups, and undo or redo changes when working with complex schemas that contain many properties or nested structures.
+
+For more information, see [combine node](../../nodes/processornodes/#combine).
+
+### Monitoring event activity in running flows
+{: #event-activity-metrics}
+
+{{site.data.reuse.ep_name}} 1.5.3 introduces event activity metrics in the **Flow metrics** tab. You can now monitor detailed activity for event source and event destination nodes, including:
+
+- Number of events sent or received by event source and event destination nodes
+- Bytes read from event source nodes and bytes written to event destination nodes
+- Message lag for event source nodes
+
+These metrics provide deeper insights into the data flow through your event processing pipelines. You can use these insights to identify bottlenecks and optimize performance.
+
+For more information, see [monitoring event activity](../../administering/flow-metrics#event-activity).
+
+### Session cluster monitoring
+{: #session-cluster-monitoring}
+
+{{site.data.reuse.ep_name}} 1.5.3 introduces the **Session cluster** page for monitoring the health and capacity of the Flink session cluster that supports your authoring environment. This page provides real-time visibility into TaskManager resource utilization and cluster capacity:
+
+- **TaskManager overview**: View the number of free processing slots and total TaskManagers in your session cluster.
+- **Resource metrics**: Monitor CPU load and memory usage for each TaskManager with visual indicators.
+- **Slot allocation**: See how processing slots are distributed and utilized across TaskManagers.
+- **Log downloads**: Download logs from individual TaskManagers, all TaskManagers, JobManager, or all logs combined using the dropdown menu.
+
+For more information, see [monitoring session cluster](../../administering/session-cluster/).
+
+### Apache Flink updated to 2.2.1
+{: #apache-flink-updated-to-221}
+
+{{site.data.reuse.ibm_flink_operator}} version 1.5.3 update includes Apache Flink version 2.2.1.
+
+Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. 
+The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-153}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.5.3 compared to 1.5.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.5.3 icon]({{ 'images' | relative_url }}/1.5.3.svg "In Event Processing 1.5.3 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-153}
+
+{{site.data.reuse.ep_name}} release 1.5.3 contains security and bug fixes.
+
+
+## Release 1.5.2
 {: #release-152}
 
 
@@ -42,8 +98,6 @@ For more information, see [combine node](../../nodes/processornodes/#combine).
 {: #flow-metrics}
 
 {{site.data.reuse.ep_name}} 1.5.2 introduces the **Flow metrics** tab where you can monitor the health and performance of running flows. The tab is available next to the **Output events** tab, and provides real-time insights into the current state of your flow including uptime, restarts, and checkpoint metrics.
-
-<!-- - **Event activity**: Monitor event source and destination activity, including event counts, bytes read or written, message lag, and Flink watermarks. -->
 
 For more information, see [monitoring flow metrics](../../administering/flow-metrics/).
 

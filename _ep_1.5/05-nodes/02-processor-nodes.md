@@ -168,6 +168,13 @@ To configure a combine node, complete the following steps:
 
    **Note:** Only properties that are mapped in every input stream appear in the output. Any properties that are not fully mapped from an input stream are removed and do not appear in the output.
 
+1. ![Event Processing 1.5.3 icon]({{ 'images' | relative_url }}/1.5.3.svg "In Event Processing 1.5.3 and later.") Optional: Use the following features to navigate and manage the property mapping table:
+
+   - **Search properties**: Enter text in the search field to filter and locate specific properties in the reference input stream.
+   - **Clear matches**: Clear all the mappings from all the input streams, including both manually mapped and automatically mapped properties.
+   - **Expand or collapse properties**: Click the expand or collapse icons to show or hide child properties.
+   - **Undo or redo changes**: Use the undo and redo buttons to reverse or reapply recent mapping changes.
+
 1. To map a property manually for each input stream, select a property in the drop-down menu that corresponds with the reference input stream. Click the **X** icon to remove a mapping if required.
 
    To map a property as null, select **NULL** from the drop-down menu. This ensures schema alignment across all streams when a property is not present in one or more input streams.

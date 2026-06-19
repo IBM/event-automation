@@ -35,7 +35,7 @@ To use the {{page.connectorTitle}} {{page.categories}} connector, complete the f
 
 If the Kafka cluster uses SCRAM-SHA-512 authentication, add the following configuration properties to your `KafkaConnector` custom resource under spec.config :  
 ```yaml
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaConnector
 metadata:
 name: <connector_name>

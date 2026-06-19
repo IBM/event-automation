@@ -18,6 +18,15 @@ You can configure {{site.data.reuse.es_name}} for disaster recovery (DR) by usin
 
 **Note:** {{site.data.reuse.es_name}} 12.3.0 and later supports disaster recovery licensing with a 2:1 ratio for Active-Passive topologies when deployed with {{site.data.reuse.cp4i}} licenses. For more information, see the [licensing reference]({{ '/support/licensing/#disaster-recovery-licensing' | relative_url }}).
 
+<!--
+**Note:** {{site.data.reuse.es_name}} supports disaster recovery licensing for Active-Passive topologies with the following licenses:
+
+- {{site.data.reuse.cp4i}} licenses with the `CloudPakForIntegrationDisasterRecovery` license use option, with a 2:1 ratio (available in {{site.data.reuse.es_name}} 12.3.0 and later).
+- ![Event Streams 12.3.1 icon]({{ 'images' | relative_url }}/12.3.1.svg "In Event Streams 12.3.1 and later.") {{site.data.reuse.ipaas_name}} licenses with the `WebMethodsHybridIntegrationDisasterRecovery` license use option, with a 1:6 ratio (available in {{site.data.reuse.es_name}} 12.3.1 and later).
+
+  For more information, see the [licensing reference]({{ '/support/licensing/#disaster-recovery-licensing' | relative_url }}).
+-->
+
 In the Active-Passive topology, there are two Kafka clusters; one active and one passive, which are in two different locations. The active cluster is the primary cluster where the data is processed, while the passive cluster serves as a backup for disaster recovery purposes.
 
 MirrorMaker 2.0 provides unidirectional data replication between the 2 Kafka clusters. This is one way to mitigate the risks that are associated with any outages that might cause data loss and interrupt ongoing business activities.

@@ -26,7 +26,7 @@ The instructions in this tutorial use the [Tutorial environment](./tutorial-0), 
 
 This tutorial uses the following versions of {{ site.data.reuse.ea_short }} capabilities. Screenshots may differ from the current interface if you are using a newer version.
 
-- Event Streams 12.1.0
+- Event Streams 13.0.0
 - Event Endpoint Management 11.6.4
 - Event Processing 1.4.6
 
@@ -62,17 +62,17 @@ The next step is to create the two Kafka topics that you will use for the result
 
 1. Create a topic called `ORDERS.EMEA`.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-3.png "destination topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-3.png "destination topic")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-3-new.png "destination topic"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-3-new.png "destination topic")
 
    You can accept the defaults for the remaining properties of the topic.
 
-1. Click into the new topic page, and then click **Connect to this topic**.
+1. Click into the new topic page, and then click **View connection details**.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4.png "connection details for the destination")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4-new.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-4-new.png "connection details for the destination")
 
 1. Get the internal address of the Kafka listener to use for the new topic.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5.png "connection details for the destination")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5-new.png "connection details for the destination"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-5-new.png "connection details for the destination")
 
    Click the **Copy** icon for the **Internal** Kafka listener to copy the address to the clipboard.
 
@@ -164,7 +164,7 @@ The final step is to run the flow and confirm that the EMEA orders and EMEA larg
 
 1. Confirm that the events for EMEA orders are produced to the new topic `ORDERS.EMEA` from {{site.data.reuse.es_name}}.
 
-   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12.png "running the flow")
+   [![screenshot]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12-new.png "running the flow"){: class="tutorial-screenshot" }]({{ 'images' | relative_url }}/ea-tutorials/tutorial-5-12-new.png "running the flow")
 
 1. Select the **Output EMEA large orders** node and confirm that the events are filtered correctly to only EMEA large orders.
 

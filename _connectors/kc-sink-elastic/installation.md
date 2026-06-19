@@ -23,7 +23,7 @@ To use the {{page.title}} {{page.categories}} connector, complete the following 
    See the following sample `KafkaConnector` custom resource:
 
    ```yaml
-   apiVersion: eventstreams.ibm.com/v1beta2
+   apiVersion: eventstreams.ibm.com/v1
    kind: KafkaConnector
    metadata:
    name: <connector_name>

@@ -388,6 +388,9 @@ Where:
 - `<namespace>` is the namespace where the instance is installed.
 - `<new-storage-class>` is the new storage class you want to use.
 
+
+**Important:** After adding the controller node pool, monitor the `kafkaMetadataState` field in the `EventStreams` custom resource and wait until it has fully transitioned to `KRaft` before proceeding with any further upgrade or configuration changes.
+
 For guidance about setting up Kafka node pools, see [Kafka node pool configuration](../../installing/configuring/#configuring-kafka-node-pools).
 
 #### Migration phases

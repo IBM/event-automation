@@ -22,7 +22,7 @@ To use the {{page.connectorTitle}} {{page.categories}} connector, complete the f
    See the following sample `KafkaConnector` custom resource for a basic username and password connection:
 
    ```yaml
-   apiVersion: eventstreams.ibm.com/v1beta2
+   apiVersion: eventstreams.ibm.com/v1
    kind: KafkaConnector
    metadata:
    name: <connector_name>

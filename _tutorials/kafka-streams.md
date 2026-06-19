@@ -15,7 +15,7 @@ The examples mentioned in this tutorial are based on the `WordCountDemo.java` [s
 
 ## Prerequisites
 
-- Ensure you have an {{site.data.reuse.es_name}} installation available. This tutorial is based on {{site.data.reuse.es_name}} version 11.0.3.
+- Ensure you have an {{site.data.reuse.es_name}} installation available. This tutorial is based on {{site.data.reuse.es_name}} version 13.0.0.
 - Ensure you have a [Kafka Streams](https://kafka.apache.org/documentation/streams/){:target="_blank"} application ready to use. You can also use one of the Kafka Streams [sample applications](https://github.com/apache/kafka/tree/3.3/streams/examples/src/main/java/org/apache/kafka/streams/examples){:target="_blank"} such as the `WordCountDemo.java` sample used here.
 
 ## Creating input and output topics
@@ -28,7 +28,7 @@ To create the topics:
 
 1. Log in to your {{site.data.reuse.es_name}} UI.
 2. Click the **Topics** tab and click **Create topic**.
-3. Enter the name `streams-plaintext-input` and click **Next**.
+3. Enter the name `streams-plaintext-input`.
 4. Set 1 partition for the topic, leave the default retention period, and select 1 replica.
 5. Click **Create topic**.
 6. Repeat the same steps to create a topic called `streams-wordcount-output`.
@@ -42,7 +42,7 @@ To set up permissions:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 1. Click the **Topics** tab.
 1. Select your input topic you created earlier from the list, for example `streams-plaintext-input`.
-1. Click **Connect to this topic** on the right.
+1. Click **View connection details** on the right.
 1. From the **Certificates** section, download the server certificate from the **PEM certificate** section.
 1. To generate SCRAM credentials, click the **Generate SCRAM credentials** button, and follow the instructions. Ensure you select **Produce messages**. In the **A specific topic** field, enter the name of the input topic `streams-plaintext-input`.
 1. Click the **Sample code** tab, in the **Sample configuration properties** section, from the **Select the bootstrap server** drop-down, select a server. You can either copy the snippet or click the **Download properties** button to download the properties file for your Kafka Streams application.
@@ -96,7 +96,7 @@ Set up your Kafka Streams application to connect to your {{site.data.reuse.es_na
 To set up permissions and secure the connection:
 
 1. Log in to your {{site.data.reuse.es_name}} UI.
-1. Click **Connect to this cluster** on the right.
+1. Click **View connection details** on the right.
 1. From the **Certificates** section, download the server certificate from the **PKCS12 certificate** section, and make a note of the password.
 1. To generate SCRAM credentials, click the **Generate SCRAM credentials** button, and follow the instructions. Ensure you select **Produce messages, consume messages and create topics and schemas**.
 
@@ -152,7 +152,7 @@ To set up permissions:
 1. Log in to your {{site.data.reuse.es_name}} UI.
 1. Click the **Topics** tab.
 1. Select your output topic you created earlier from the list, for example `streams-wordcount-output`.
-1. Click **Connect to this topic** on the right.
+1. Click **View connection details** on the right.
 1. From the **Certificates** section, download the server certificate from the **PEM certificate** section.
 1. To generate SCRAM credentials, click the **Generate SCRAM credentials** button, and follow the instructions. Ensure you select **Consume only**. The name of the output topic is filled in automatically, for example `streams-wordcount-output`.
 1. Click the **Sample code** tab, in the **Sample configuration properties** section, from the **Select the bootstrap server** drop-down, select a server. You can either copy the snippet or click the **Download properties** button to download the properties file for your Kafka Streams application.

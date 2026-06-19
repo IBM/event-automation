@@ -9,7 +9,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.es_name}} version 12.3.x.
 
-## Release {{site.data.reuse.es_current_version}}
+## Release 12.3.1
 {: #release-1231}
 
 ### Apicurio Registry version updated to 3.2.2
@@ -27,9 +27,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.es_name}}
 
 {{site.data.reuse.es_name}} release 12.3.1 contains security and bug fixes.
 
-
 ## Release 12.3.0
-
 
 ### Geo-replication configuration simplified
 {: #georeplication-configuration-simplified}

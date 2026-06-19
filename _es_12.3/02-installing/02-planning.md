@@ -277,6 +277,16 @@ In {{site.data.reuse.es_name}} 12.3.0 and later, you can install {{site.data.reu
 
 For more information, see [disaster recovery licensing]({{ 'support/licensing/#disaster-recovery-licensing' | relative_url }}).
 
+<!--
+You can install {{site.data.reuse.es_name}} clusters for disaster recovery purposes by using the following licenses:
+
+- {{site.data.reuse.cp4i}} licenses with the `CloudPakForIntegrationDisasterRecovery` license use option (available in {{site.data.reuse.es_name}} 12.3.0 and later). Disaster recovery instances use a 2:1 ratio, where 2 VPCs in the disaster recovery instance count as 1 VPC for licensing purposes.
+
+- ![Event Streams 12.3.1 icon]({{ 'images' | relative_url }}/12.3.1.svg "In Event Streams 12.3.1 and later.") {{site.data.reuse.ipaas_name}} licenses with the `WebMethodsHybridIntegrationDisasterRecovery` license use option (available in {{site.data.reuse.es_name}} 12.3.1 and later). Disaster recovery instances use a 1:6 ratio, where 6 RUs in the disaster recovery instance count as 1 VPC for licensing purposes.
+
+For more information, see [disaster recovery licensing]({{ 'support/licensing/#disaster-recovery-licensing' | relative_url }}).
+-->
+
 ### Kafka high availability
 {: #kafka-high-availability}
 

@@ -6,7 +6,6 @@ slug: export-metrics
 toc: true
 ---
 
-
 To configure an {{site.data.reuse.eem_manager}} or {{site.data.reuse.egw}} instance to emit OpenTelemetry data, you configure the `openTelemetry` section on the associated custom resource or Kubernetes Deployment. On [Docker](../install-gateway#remote-gateways) gateways, set the OpenTelemetry properties as arguments in your Docker `run` command, for example: `-e <property name>`.
 
 - For {{site.data.reuse.eem_manager}} instances, you can configure OpenTelemetry in the `spec.manager.openTelemetry` section of the `EventEndpointManagement` custom resource.

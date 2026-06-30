@@ -151,7 +151,6 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
 9. Create a backup of the updated `gateway_cr.yaml` file, in addition to the `gateway_cr_original.yaml` file.
 
-_Also, how is the ConfigMap created from the properties file?_
 10. To install the {{site.data.reuse.egw}} through the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
       a. {{site.data.reuse.openshift_ui_login}}

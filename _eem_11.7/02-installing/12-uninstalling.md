@@ -10,8 +10,6 @@ Find out how to remove {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw
 
 You can also remove the {{site.data.reuse.eem_name}} operator itself.
 
-_DRAFT COMMENT: Updates needed for new gateway config. Will user need to manually delete the configmap?_
-
 ## Uninstalling instances
 {: #uninstalling-instances}
 

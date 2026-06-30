@@ -70,7 +70,7 @@ To determine the right sample to use that meets your requirements, establish if 
 - All jobs in the same Task Manager compete for the CPU capacity of the Task Manager as defined in the sample. The amount of memory defined for a Task Manager is equally pre-allocated to each Task Manager slot.
 
 - What happens if the resource limits are exceeded?
-  - If the CPU limit is exceeded, Kubernetes CPU throttling is activated. When sustained, the throttling can have a significant negative impact on performance. If the memory limit is exceeded, the Kubernetes [out-of-memory condition](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit){:target="_blank"} can terminate the Task Manager container.
+  - If the CPU limit is exceeded, Kubernetes CPU throttling is activated. When sustained, the throttling can have a significant negative impact on performance. If the memory limit is exceeded, the Kubernetes [out-of-memory condition](https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#exceed-a-container-s-memory-limit){:target="_blank"} can terminate the Task Manager container.
   - A good practice is to avoid exceeding resource usage beyond 70% of CPU or 80% of memory capacity for prolonged periods. The spare capacity can cover short-lived CPU peaks, Flink checkpoint processing, and minor fluctuations in memory usage. If either of the thresholds is exceeded consistently after choosing the Minimal Production sample despite performance optimizations on a flow, consider the larger Production sample.
 
 High-level criteria for choosing between Minimal Production and Production samples:
@@ -136,7 +136,7 @@ You can control parallelism to suit the characteristics of your flow and your wo
 ### Deploying the Flink PVC
 {: #deploying-the-flink-pvc}
 
-All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims){:target="_blank"} must be deployed as follows.
+All Flink samples except the Quick Start sample configure Flink to use persistent storage. Before installing a Flink instance (`FlinkDeployment` custom resource), the following [PersistentVolumeClaim](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims){:target="_blank"} must be deployed as follows.
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. If the namespace where the Flink instance will be deployed does not exist yet, create it:
@@ -205,13 +205,13 @@ See the following table for a comparison of the available Flink session job samp
 
 If you plan to have persistent volumes, consider the disk space required for storage.
 
-You either need to create a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}. Each component can use a different storage class to control how physical volumes are allocated.
+You either need to create a [persistent volume](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}. Each component can use a different storage class to control how physical volumes are allocated.
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
 - For {{site.data.reuse.openshift_short}}, see the [{{site.data.reuse.openshift_short}} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/understanding-persistent-storage){:target="_blank"}.
 
-- For other Kubernetes platforms, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
+- For other Kubernetes platforms, see the [Kubernetes documentation](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/){:target="_blank"}.
 
 You must have the Cluster Administrator role for creating persistent volumes or a storage class.
 
@@ -231,6 +231,9 @@ There are two areas of security to consider when installing {{site.data.reuse.ep
 1. The type of authentication the {{site.data.reuse.ep_name}} UI uses. {{site.data.reuse.ep_name}} UI supports locally defined authentication for testing purposes and OpenID Connect (OIDC) authentication for production purposes.
     - If you are configuring with locally defined authentication, the {{site.data.reuse.ep_name}} UI uses a secret that has a list of username and passwords.
     - If you are configuring with OIDC authentication, you must provide the required information to connect to your OIDC provider.
+
+      **Note:** ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") In {{site.data.reuse.ep_name}} 1.5.4 and later, you can discover and select topics from {{site.data.reuse.eem_name}} 11.8.0 or later when you configure event source nodes. To use this feature, configure OIDC authentication for both {{site.data.reuse.ep_name}} and {{site.data.reuse.eem_name}}.
+
 2. Certificates for the encryption of data in flight require the following configuration when deploying {{site.data.reuse.ep_name}}:
     - Provide a secret containing a CA certificate, which will be used to generate other certificates.
     - Provide a secret that contains a CA certificate, server certificate, and key that has the required DNS names for accessing the deployment.

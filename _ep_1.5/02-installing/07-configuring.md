@@ -260,6 +260,54 @@ If a Flink job JAR file is in a registry which requires basic authentication, yo
 ## Configuring {{site.data.reuse.ep_name}}
 {: #configuring-event-processing}
 
+### Configuring integration with {{site.data.reuse.eem_name}}
+{: #configuring-event-endpoint-management-integration}
+
+![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") In {{site.data.reuse.ep_name}} 1.5.4 and later, you can discover and select topics from {{site.data.reuse.eem_name}} 11.8.0 or later when you configure event source nodes.
+
+To view the available topics in {{site.data.reuse.eem_name}} 11.8.0 or later, complete the following steps:
+
+1. Ensure that you set up OpenID Connect (OIDC) authentication for both [{{site.data.reuse.eem_name}}]({{ 'eem/security/managing-access/#setting-up-openid-connect-oidc-based-authentication' | relative_url }}) and [{{site.data.reuse.ep_name}}]({{ 'ep/security/managing-access/#setting-up-openid-connect-oidc-based-authentication' | relative_url }}) and have roles assigned.
+
+1. Set the following environment variables in the `EventProcessing` custom resource:
+
+   - `EEM_MANAGER_UI_BASE_URL`: The base URL for the {{site.data.reuse.eem_name}} UI endpoint. This corresponds to the `ui` service endpoint in your {{site.data.reuse.eem_name}} instance. Configure this environment variable in the `ui` container.
+   - `EEM_MANAGER_ADMIN_BASE_URL`: The base URL for the {{site.data.reuse.eem_name}} Admin API endpoint. This corresponds to the `server` service endpoint in your {{site.data.reuse.eem_name}} instance. Configure this environment variable in the `backend` container.
+
+   **Note:** The URLs must be accessible from the {{site.data.reuse.ep_name}} instance. If your {{site.data.reuse.eem_name}} instance uses self-signed certificates or certificates issued by an internal CA, configure the certificates as described in [configuring SSL for {{site.data.reuse.eem_name}}](#configuring-ssl-for-api-server-database-and-schema-registry). For information about retrieving the {{site.data.reuse.eem_name}} CA certificates, see [Configuring TLS]({{ 'eem/security/config-tls/' | relative_url }}) in the {{site.data.reuse.eem_name}} documentation.
+
+See the following example snippet:
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+# ...
+spec:
+  license:
+    # ...
+  authoring:
+    template:
+      pod:
+        spec:
+          containers:
+             - env:
+                - name: EEM_MANAGER_UI_BASE_URL
+                  value: 'https://my-eem-ui.mycluster.com'
+              name: ui
+            - env:
+                - name: EEM_MANAGER_ADMIN_BASE_URL
+                  value: 'https://eem.my-eem-server.mycluster.com'
+              name: backend
+# ...
+```
+
+Where:
+
+- `my-eem-ui.mycluster.com` is the hostname for the {{site.data.reuse.eem_name}} UI endpoint.
+- `eem.my-eem-server.mycluster.com` is the hostname for the {{site.data.reuse.eem_name}} Admin API endpoint.
+
+For more information about {{site.data.reuse.eem_name}} endpoints and how to retrieve the URLs, see the [{{site.data.reuse.eem_name}} documentation]({{ 'eem/installing/configuring/#configuring-ingress' | relative_url }}).
+
 ### Enabling persistent storage
 {: #enabling-persistent-storage}
 
@@ -297,7 +345,7 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
+- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://v1-35.docs.kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt/storage"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
@@ -327,7 +375,7 @@ spec:
 
 ```
 
-- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
+- Optionally, specify the storage size in `storage.size` (for example, the default value used would be `"100Mi"`). Ensure that the [quantity suffix](https://v1-35.docs.kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/), such as `Mi` or `Gi`, is included.
 - Optionally, specify the root storage path where data is stored in `storage.root` (for example, `"/opt/storage"`).
 - Optionally, specify the retention setting for the storage if the instance is deleted in `storage.deleteClaim` (for example, `"true"`).
 
@@ -712,7 +760,7 @@ spec:
 
 
 
-## Configuring SSL for API server, database, and schema registry
+## Configuring SSL for API server, database,{{site.data.reuse.eem_name}} and schema registry
 {: #configuring-ssl-for-api-server-database-and-schema-registry}
 
 Databases, such as PostgreSQL, MySQL, and Oracle offer a built-in functionality to enhance security by using the Secure Sockets Layer (SSL) connections. 
@@ -737,9 +785,11 @@ To enable SSL connections to an API server, database, and a schema registry from
 ### Add the CA certificate to the truststore
 {: #add-the-ca-certificate-to-the-truststore}
 
-1. Obtain a CA certificate of an API server, database, or schema registry from your administrator.
+1. Obtain a CA certificate of an API server, database, schema registry, or {{site.data.reuse.eem_name}} from your administrator.
 
    For example, to obtain the certificate from an {{site.data.reuse.es_name}} schema registry, see the [{{site.data.reuse.es_name}} documentation]({{ 'es/schemas/using-with-rest-producer/' | relative_url }}).
+
+   ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") To obtain the CA certificate from an {{site.data.reuse.eem_name}} instance, see [Configuring TLS]({{ 'eem/security/config-tls/' | relative_url }}) in the {{site.data.reuse.eem_name}} documentation.
 
    To retrieve the certificate from a REST endpoint of an API server, run the following command:
 

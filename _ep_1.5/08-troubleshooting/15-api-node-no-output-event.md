@@ -73,7 +73,13 @@ java.lang.RuntimeException: Unable to create KeyStore for Http Connector Securit
   1. Wait for the pods to become ready.
   1. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, complete one of the following steps:
 
-     - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+     - If your flow includes any event sources, expand **Run flow** and select one of the following options:
+
+       - **Events from now**
+       - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**
+       - **Include historical**.
+
+   - If your flow uses SQL sources only, click **Run flow** to start the flow.
      - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
 ### API credentials misconfiguration
@@ -98,7 +104,12 @@ Complete the following steps:
 1. Correct the configuration of the API credentials in the [node configuration](../../nodes/enrichmentnode/#configuring-an-api-node).
 1. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, complete one of the following steps:
 
-   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow includes any event sources, expand **Run flow** and select one of the following options:
+
+     - **Events from now**
+     - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**
+     - **Include historical**.
+
    - If your flow uses only SQL sources, click **Run flow** to start the flow.
 
 

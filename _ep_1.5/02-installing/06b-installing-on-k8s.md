@@ -20,11 +20,11 @@ The following sections provide instructions about installing {{site.data.reuse.e
 ## Create a namespace
 {: #create-a-namespace}
 
-Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
+Create a namespace into which the {{site.data.reuse.ep_name}} instance will be installed. For more information about namespaces, see the [Kubernetes documentation](https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/namespaces/){:target="_blank"}.
 
 Ensure you use a namespace that is dedicated to a single instance of {{site.data.reuse.ep_name}}. This is required because {{site.data.reuse.ep_name}} uses network security policies to restrict network connections between its internal components. A single namespace per instance also allows for finer control of user accesses.
 
-**Important:** Do not use any of the initial or system [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.ep_name}} (some examples of these are: `default`, `kube-node-lease`, `kube-public`, and `kube-system`).
+**Important:** Do not use any of the initial or system [namespaces](https://v1-35.docs.kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#initial-namespaces){:target="_blank"} to install an instance of {{site.data.reuse.ep_name}} (some examples of these are: `default`, `kube-node-lease`, `kube-public`, and `kube-system`).
 
 
 ## Add the Helm repository
@@ -244,7 +244,7 @@ If the operator is installed for **all namespaces**, then it can be used to mana
 
 When installing an instance of Flink, ensure you are using a namespace that the Flink operator is managing.
 
-**Note:** In {{site.data.reuse.ep_name}} 1.5.0 and later, Apache Flink 2.2.0 is supported for both UI-based flows and deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+**Note:** In {{site.data.reuse.ep_name}} 1.5.0 and later, Apache Flink 2.2 is supported for both UI-based flows and deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. Flink 1.20 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
 #### Installing a Flink instance by using the CLI
 {: #installing-a-flink-instance-by-using-the-cli}
@@ -312,7 +312,7 @@ To deploy a Flink instance, run the following commands:
           kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
       ```
  
-    - To use Flink 1.20.3 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
+    - To use Flink 1.20 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
  
       ```yaml
       metadata:
@@ -323,7 +323,7 @@ To deploy a Flink instance, run the following commands:
         flinkVersion: v1_20
       ```
  
-      **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+      **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
  
 2. Apply the configured `FlinkDeployment` custom resource to your target namespace:
 

@@ -40,12 +40,14 @@ The **Flow health** section displays the current state of your flow, including t
   - **Events per second**: the rate at which events are being processed through the event source, measured in records per second. Displays a single value when parallelism is 1, or a range (minimum to maximum) across all parallel tasks when parallelism is greater than 1.
   - **Bytes read**: total bytes read from the Kafka topic.
   - **Message lag**: difference between the latest message offset and the last processed message in milliseconds.
+  - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **Latest Flink watermark**: timestamp of the latest watermark emitted by the event source.
 
 - **Event destination activity** table displays the following information for each event destination:
   - **Name**: the event destination node name.
   - **Number of events**: total number of events sent to the destination.
   - **Events per second**: the rate at which events are being processed through the event destination, measured in records per second. Displays a single value when parallelism is 1, or a range (minimum to maximum) across all parallel tasks when parallelism is greater than 1.
   - **Bytes written**: total bytes written to the Kafka topic.
+  - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **Latest Flink watermark**: timestamp of the latest watermark emitted by the event destination.
 
 
 ## Using flow metrics for troubleshooting and optimization

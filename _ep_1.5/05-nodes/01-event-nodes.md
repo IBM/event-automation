@@ -48,41 +48,61 @@ To add additional event source nodes, in the **Palette**, under **Events**, drag
 ### Configuring a source node
 {: #configuring-a-source-node}
 
-To configure an event source, hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}. The **Configure event source** window appears.
+To configure an event source, hover over the node and click the **Edit** icon ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"}. In the **Configure event source** window, complete the following steps:
 
-To configure your event source node, complete the following steps: 
+1. In the **Select a source** section, select one of the following options, or select a recent topic from the **Recent topics** section:
 
-1. In the **Add an event source or pick a recent one.** section, either add an event source by clicking **Add event source**, or select a recent topic from the list of available topics, and then click **Next**.
+   - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **Select from {{site.data.reuse.eem_name}}**: If {{site.data.reuse.eem_name}} 11.8.0 or later is [integrated](../../installing/configuring/#configuring-event-endpoint-management-integration) with {{site.data.reuse.ep_name}}, subscribe to a topic from the {{site.data.reuse.eem_name}} Catalog and start streaming events. This option provides the ability to browse available topics, filter by tags or description, and subscribe directly from the catalog.
 
-1. In the **Cluster connection** pane, provide the broker address or addresses of the Kafka cluster that you want to connect to as bootstrap servers, and then click **Next**.
-
-   Kafka runs as a cluster of one or more servers. These servers are called brokers. To establish a connection to the Kafka cluster, provide the address of one or more brokers.  These brokers are used to bootstrap the connection (referred to as bootstrap servers). You do not have to provide addresses for all the brokers in the cluster. You can get the broker addresses for the event source from your cluster administrator.
-
-   A bootstrap server address must be defined in the form: `hostname:port`. For example: `kafkaBoostrapServer:9000`
-
-   If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
-
-   **Note:** To add more addresses, click **Add bootstrap server +** and enter the additional server address.
+   - **Add from a Kafka cluster**: Connect to a Kafka topic directly.
 
 
-1. {{site.data.reuse.ep_name}} connects to the Kafka cluster and determine which access mechanisms are enabled on the cluster. In the **Access credentials** section, based on the inputs your cluster administrator provided for setting up the Kafka cluster, you might see one of the following options:
+1. ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") If **Select from {{site.data.reuse.eem_name}}** is selected, complete the following steps:
+   {: #selecting-from-event-endpoint-management}
 
-   - SSL-only or plain text (without security) bootstrap server URLs:
+   1. Ensure that you have set up OIDC authentication for both {{site.data.reuse.eem_name}} and {{site.data.reuse.ep_name}} and that you have been assigned a role. Also, ensure that {{site.data.reuse.eem_name}} 11.8.0 or later is [integrated](../../installing/configuring/#configuring-event-endpoint-management-integration) with {{site.data.reuse.ep_name}} 1.5.4 or later.
 
-     1. In the **Access Credentials** section, **Connection credential not required** is displayed and you do not have to set up any access credentials.
-     2. Click **Next**.
+   1. In the **Topics** pane, browse and select an available topic.
 
-   - SASL-only or SSL-SASL setup:
+      All the topics available from the {{site.data.reuse.eem_name}} Catalog are listed. You can view more information about a topic by clicking that topic. After selecting a topic, click **Next**.
 
-     Retrieve the credentials from your cluster administrator and complete the following steps:
+   1. In the **Access credentials** pane, obtain credentials from {{site.data.reuse.eem_name}} and provide them for your topic.
 
-     1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
-     2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
-     3. Click **Next**.
+      1. Click **Subscribe** to open the {{site.data.reuse.eem_name}} UI in a new window and follow the steps in [subscribing to virtual topics]({{ 'eem/subscribe/subscribing-apps/' | relative_url}}).
 
-1. In the **Topic selection** pane, the list of topics that are hosted in this Kafka cluster is displayed. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic from where you want to receive the stream of events. You can use the search field to get a filtered list of matching topics.
+      2. Return to {{site.data.reuse.ep_name}}, enter the credentials, and then click **Next** to proceed to the **Message format** pane.
 
-   After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, click **Next** to go to the **Message format** pane.
+1. If **Add from a Kafka cluster** is selected, complete the following steps:
+   {: #adding-from-a-kafka-cluster}
+
+   1. In the **Cluster connection** pane, provide the broker address or addresses of the Kafka cluster to connect to as bootstrap servers, and then click **Next**.
+
+      Kafka runs as a cluster of one or more servers. These servers are called brokers. To establish a connection to the Kafka cluster, provide the address of one or more brokers.  These brokers are used to bootstrap the connection (referred to as bootstrap servers). You do not have to provide addresses for all the brokers in the cluster. You can get the broker addresses for the event source from your cluster administrator.
+
+      A bootstrap server address must be defined in the form: `hostname:port`. For example: `kafkaBoostrapServer:9000`
+
+      If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
+
+      **Note:** To add more addresses, click **Add bootstrap server +** and enter the additional server address.
+
+   1. {{site.data.reuse.ep_name}} connects to the Kafka cluster and determine which access mechanisms are enabled on the cluster. In the **Access credentials** section, based on the inputs your cluster administrator provided for setting up the Kafka cluster, you might see one of the following options:
+
+      - SSL-only or plain text (without security) bootstrap server URLs:
+
+        1. In the **Access Credentials** section, **Connection credential not required** is displayed and you do not have to set up any access credentials.
+        2. Click **Next**.
+
+      - SASL-only or SSL-SASL setup:
+
+        Retrieve the credentials from your cluster administrator and complete the following steps:
+
+        1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
+        2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
+        3. Click **Next**.
+
+   1. In the **Topic selection** pane, the list of topics that are hosted in this Kafka cluster is displayed. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic from where you want to receive the stream of events. You can use the search field to get a filtered list of matching topics.
+
+      After selecting the topic ![radio button]({{ 'images' | relative_url }}/radio-button-checked.svg "Icon showing checked radio button."){:height="30px" width="15px"}, click **Next** to go to the **Message format** pane.
 
 1. {{site.data.reuse.ep_name}} introspects the latest message on the topic (assuming there are incoming messages), and detects if the message is in a supported format. If the format cannot be detected, manually choose the correct message format for the topic the event source is connecting to.
 

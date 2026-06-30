@@ -16,9 +16,81 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 
 
 
+
 Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-154}
+
+### Event source node: Select topic from {{site.data.reuse.eem_name}}
+{: #eem-integration}
+
+In {{site.data.reuse.ep_name}} 1.5.4, you can discover and select topics directly from {{site.data.reuse.eem_name}} 11.8.0 and later, when you configure event source nodes. You can now connect more easily to virtual topics that are published and managed in {{site.data.reuse.eem_name}}.
+
+To use this feature, [configure the {{site.data.reuse.eem_name}}](../../installing/configuring/#configuring-event-endpoint-management-integration) connection details in your {{site.data.reuse.ep_name}} instance, then follow the steps to configure your [event source node](../../nodes/eventnodes/#selecting-from-event-endpoint-management).
+
+
+### UI enhancements: Enhanced landing page with flow management
+{: #enhanced-home-page-flow-management}
+
+{{site.data.reuse.ep_name}} 1.5.4 introduces an enhanced landing page with improved flow management capabilities:
+
+- **Flow overview section**: displays total number of flows and number of flows in each status.
+- **Flow filtering**: filter flows by status and running time to locate long-running flows.
+- **Flow metrics**: expand individual flows to view detailed metrics such as running time, restart count, consumer lag, checkpoint duration, and checkpoint count.
+
+For more information, see [managing flows](../../getting-started/canvas/#managing-flows).
+
+
+### Run flow from time offset
+{: #run-flow-from-time-offset}
+
+{{site.data.reuse.ep_name}} 1.5.4 introduces the ability to start processing events from a time offset when running flows. You can replay events from a relative point in time, providing more flexibility in testing and debugging flows.
+
+You can use the time offset when running flows to:
+
+- Test flows with historical data without processing all events from the beginning.
+- Debug issues that occurred at a specific time.
+- Replay events from a known point in time for analysis.
+
+For more information, see [running a flow](../../getting-started/canvas/#run-flow).
+
+
+### Event activity metrics: Latest Flink watermark
+{: #watermark-metrics}
+
+{{site.data.reuse.ep_name}} 1.5.4 introduces an additional metric for event source and event destination nodes in the **Flow metrics > Event activity** tab.
+
+You can now monitor the most recent watermark for all the event source and event destination nodes in your flow. These metrics provide insights into the temporal behavior of your flows and can be used to identify timing-related issues.
+
+For more information, see [monitoring event activity](../../administering/flow-metrics#event-activity).
+
+
+
+### Apache Flink updated to 1.20.4
+{: #apache-flink-updated-to-1204}
+
+{{site.data.reuse.ibm_flink_operator}} version 1.5.4 update includes Apache Flink version 1.20.4.
+
+Flink 1.20 is supported only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
+
+### Support for Kubernetes 1.34 and 1.35
+{: #support-for-kubernetes-135}
+
+{{site.data.reuse.ep_name}} version 1.5.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for Kubernetes platform versions 1.34 and 1.35 that support the Red Hat Universal Base Image (UBI) containers.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-154}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.5.4 compared to 1.5.3 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-154}
+
+{{site.data.reuse.ep_name}} release 1.5.4 contains security and bug fixes.
+
+
+## Release 1.5.3
 {: #release-153}
 
 ### Combine node: enhancements for mapping properties
@@ -46,10 +118,10 @@ For more information, see [monitoring event activity](../../administering/flow-m
 
 {{site.data.reuse.ep_name}} 1.5.3 introduces the **Session cluster** page for monitoring the health and capacity of the Flink session cluster that supports your authoring environment. This page provides real-time visibility into TaskManager resource utilization and cluster capacity:
 
-- **TaskManager overview**: View the number of free processing slots and total TaskManagers in your session cluster.
-- **Resource metrics**: Monitor CPU load and memory usage for each TaskManager with visual indicators.
-- **Slot allocation**: See how processing slots are distributed and utilized across TaskManagers.
-- **Log downloads**: Download logs from individual TaskManagers, all TaskManagers, JobManager, or all logs combined using the dropdown menu.
+- **TaskManager overview**: view the number of free processing slots and total TaskManagers in your session cluster.
+- **Resource metrics**: monitor CPU load and memory usage for each TaskManager with visual indicators.
+- **Slot allocation**: see how processing slots are distributed and utilized across TaskManagers.
+- **Log downloads**: download logs from individual TaskManagers, all TaskManagers, JobManager, or all logs combined using the dropdown menu.
 
 For more information, see [monitoring session cluster](../../administering/session-cluster/).
 

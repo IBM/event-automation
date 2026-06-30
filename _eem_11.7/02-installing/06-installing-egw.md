@@ -12,7 +12,6 @@ toc: true
 - Kubernetes Deployment. The {{site.data.reuse.eem_name}} UI generates the YAML for a Kubernetes Deployment that runs the {{site.data.reuse.egw}}. 
 - Operator-managed custom resource (CR). The {{site.data.reuse.eem_name}} UI generates the YAML for a custom resource that runs the {{site.data.reuse.egw}}. Your {{site.data.reuse.eem_name}} operator manages this custom resource.
 
-_DRAFT COMMENT: Needs update for new gateway config changes expected in UI._
 
 Key points to consider:
 

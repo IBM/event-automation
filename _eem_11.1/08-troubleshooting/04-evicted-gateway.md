@@ -12,11 +12,12 @@ When an {{site.data.reuse.egw}} instance is set up with ephemeral storage, it is
 
 ## Causes
 
-Kubernetes pods use [ephemeral storage](https://v1-29.docs.kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-emphemeralstorage-consumption){:target="_blank"} for scratch space, caching and for logs. The {{site.data.reuse.egw}} is spewing out logs that are not being cleaned up in time, which causes the {{site.data.reuse.egw}} to reach the `Evicted` state.
+Kubernetes pods use [ephemeral storage](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-emphemeralstorage-consumption){:target="_blank"} for scratch space, caching, and for logs. If the logs produced by the {{site.data.reuse.egw}} are not cleaned up in time, the gateway reaches the `Evicted` state.
 
 ## Resolving the problem
+{: #resolving-the-problem}
 
-This issue can be resolved by adding more ephemeral storage for the {{site.data.reuse.egw}}, so that additional storage is available to clean up logs. You can add more storage by editing the {{site.data.reuse.egw}} custom resource:
+You can increase the ephemeral storage available to the {{site.data.reuse.egw}}, so that additional storage is available to clean up logs. You can add more storage by editing the `EventGateway` custom resource:
 
 ```yaml
 # excerpt from a {{site.data.reuse.egw}} CRD 
@@ -30,4 +31,4 @@ template:
               ephemeral-storage: 500Mi
 ```
 
-This updates the pod ephemeral storage limits for the {{site.data.reuse.egw}}, which prevents the {{site.data.reuse.egw}} instance from overloading the storage and being `Evicted`.
+This updates the pod's ephemeral storage for the {{site.data.reuse.egw}}, which prevents the gateway instance from overloading the storage and reaching the `Evicted` state.

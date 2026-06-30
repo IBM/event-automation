@@ -14,6 +14,13 @@ eem_name: "Event Endpoint Management"
 # {{site.data.reuse.ipaas_name}}
 ipaas_name: "IBM webMethods Hybrid Integration"
 
+# {{site.data.reuse.wm_portal_long}}
+wm_portal_long: "IBM API Connect Developer Portal"
+
+# {{site.data.reuse.wm_portal_short}}
+wm_portal_short: "Developer Portal"
+
+
 # EGW standalone docs refer to the version/tag of EEM - have a variable where any 'current' version is referenced from
 
 # {{site.data.reuse.es_current_version}} 
@@ -23,7 +30,7 @@ es_current_version: "13.0.0"
 es_current_case_version: "13.0.0"
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.7.4"
+eem_current_version: "11.8.0"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.5.3"

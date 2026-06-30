@@ -172,7 +172,6 @@ If you want to create externally signed certificates with cert-manager, then see
 
     **Important:** Keep `gateway_k8s_original.yaml` in a safe location and do not edit it. To remove write permissions to avoid accidental updates to this file you can run `chmod a-w gateway_k8s_original.yaml`.
 
-_DRAFT COMMENT: Updates needed for new gateway config_
 
 ## Configuring your {{site.data.reuse.egw}} Kubernetes Deployment YAML
 {: #config-yaml}

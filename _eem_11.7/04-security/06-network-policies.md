@@ -164,8 +164,6 @@ spec:
 
 **Note:** To stop the automatic deployment of the instance's network policy, set the `spec.deployNetworkPolicies` option for the instance to `false`. 
 
-_DRAFT COMMENT: Updates needed for new gateway config?_
-
 
 ### Considerations for ingress
 {: #inbound-considerations-for-ingress}

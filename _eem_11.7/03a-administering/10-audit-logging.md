@@ -8,7 +8,6 @@ toc: true
 
 Find out how to configure {{site.data.reuse.eem_name}} to log audit data that permit administrators to monitor user activity and identify security breaches.
 
-_DRAFT COMMENT: Updates needed for new gateway config?_
 
 ## Event model
 {: #event-model}

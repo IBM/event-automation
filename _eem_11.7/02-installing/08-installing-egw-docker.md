@@ -155,7 +155,6 @@ After completing these steps, you should have the three PEM files that you need 
     - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.ea_short}} license, then set `swid="EA"`.
     - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.cp4i}} license, then set `swid="CP4I"`.
 
-_DRAFT COMMENT: Updates needed for new gateway config_
 
 6. Backup the Docker command to a file and keep it in a safe location.
 

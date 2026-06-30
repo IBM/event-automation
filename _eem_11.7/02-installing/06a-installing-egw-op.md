@@ -93,7 +93,6 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
     **Important:** Keep `gateway_cr_original.yaml` in a safe location and do not edit it. To remove write permissions to avoid accidental updates to this file, you can run `chmod a-w gateway_cr_original.yaml`.
 
-
 6. Update the `gateway_cr.yaml` file and set `spec.license.accept` to `true`.
 
 7. Configure TLS certificates. The following TLS configuration options are available:

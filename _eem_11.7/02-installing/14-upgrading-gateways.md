@@ -6,6 +6,8 @@ slug: upgrading-gateways
 toc: true
 ---
 
+_DRAFT COMMENT: Major updates needed for new gateway config._
+
 ## Upgrading operator-managed gateways
 {: #upgrade-opman-gateways}
 

@@ -10,6 +10,8 @@ Upgrade your {{site.data.reuse.eem_name}} installation as follows. The {{site.da
 
 Review the upgrade procedure and decide the right steps to take for your deployment based on your platform, current version, and target version.
 
+_DRAFT COMMENT: Major updates needed for new gateway config._
+
 ## Planning your upgrade
 {: #planning-upgrade}
 

@@ -93,6 +93,8 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
     **Important:** Keep `gateway_cr_original.yaml` in a safe location and do not edit it. To remove write permissions to avoid accidental updates to this file, you can run `chmod a-w gateway_cr_original.yaml`.
 
+    _DRAFT COMMENT: Expect changes here for new gateway config properties file._
+
 6. Update the `gateway_cr.yaml` file and set `spec.license.accept` to `true`.
 
 7. Configure TLS certificates. The following TLS configuration options are available:
@@ -150,6 +152,9 @@ If your certificate is not signed by a well-known public CA chain, then you must
 8. Replace any other placeholder variables in the YAML.
 
 9. Create a backup of the updated `gateway_cr.yaml` file, in addition to the `gateway_cr_original.yaml` file.
+
+_DRAFT COMMENT: Update for the gateway.properties file, advise user to name backup file as <gateway group>-<gway id>.properties_
+_Also, how is the ConfigMap created from the properties file?_
 
 10. To install the {{site.data.reuse.egw}} through the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 

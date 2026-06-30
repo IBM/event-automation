@@ -90,6 +90,220 @@ latest_eemdocs:
         url: /installing/configuring/
       - title: "Post-installation tasks"
         url: /installing/post-installation/
+      - title: "Managing your installation and advanced configuration"
+        url: "/installing/advancedconfig/"
+      - title: "Backing up and restoring"
+        url: /installing/backup-restore/
+      - title: "Exporting metrics with OpenTelemetry"
+        url: /installing/export-metrics/
+      - title: "Uninstalling"
+        url: /installing/uninstalling/
+      - title: "Upgrading Event Manager and operator-managed Event Gateways"
+        url: /installing/upgrading/
+      - title: "Upgrading Event Gateways"
+        url: /installing/upgrading-gateways/
+      - title: "Configuring gateways for applications"
+        url: /installing/converting-gateways/    
+  - title: Getting started
+    children:
+      - title: "Logging in"
+        url: /getting-started/logging-in/
+  - title: Administering
+    children:
+      - title: "Managing clusters"
+        url: /administering/managing-clusters/
+      - title: "Managing gateways"
+        url: /administering/managing-gateways/
+      - title: "Managing assets"
+        url: /administering/managing-assets/
+      - title: "Managing external applications"
+        url: /administering/managing-external-applications/
+      - title: "Audit logging"
+        url: /administering/audit-logging/
+        
+  - title: Security
+    children:
+      - title: "Managing access"
+        url: /security/managing-access/
+      - title: "Managing user roles"
+        url: /security/user-roles/
+      - title: "Managing user groups"
+        url: /security/groups/
+      - title: "Configuring TLS"
+        url: /security/config-tls/
+      - title: "Verifying container image signatures"
+        url: /security/verifying-signature/
+      - title: "Network policies"
+        url: /security/network-policies/
+      - title: "Considerations for GDPR"
+        url: /security/gdpr-considerations/
+      - title: "Encrypting your data"
+        url: /security/data-encryption/
+      - title: "Managing access to the Admin API"
+        url: /security/api-tokens/
+      - title: "Managing virtual topic security"
+        url: /security/cred-sets/
+      - title: "Enabling FIPS"
+        url: /security/fips/
+
+  - title: Describe and publish
+    children:
+      - title: "Describing topics"
+        url: /describe/adding-topics/
+      - title: "Managing topics"
+        url: /describe/managing-source-topics/
+      - title: "Managing virtual topics"
+        url: /describe/managing-virtual-topics/
+      - title: "Event data controls"
+        url: /describe/event-data-controls/
+      - title: "Security controls"
+        url: /describe/security-controls/
+      - title: "Publishing virtual topics"
+        url: /describe/publishing-virtual-topics/
+      - title: "Managing user access to virtual topics"
+        url: /describe/managing-user-access-to-topics/
+      - title: "Managing user group visibility to virtual topics"
+        url: /describe/user-groups/
+      - title: "Managing source topic editors"
+        url: /describe/source-topic-editors/
+      - title: "Managing cluster maintainers"
+        url: /describe/cluster-maintainers/
+      
+  - title: Subscribe
+    children:
+      - title: "Discovering virtual topics"
+        url: /subscribe/discovering-virtual-topics/
+      - title: "Managing applications"
+        url: /subscribe/managing-apps/
+      - title: "Subscribing applications to topics"
+        url: /subscribe/subscribing-apps/
+      - title: "Configuring a client application to connect to a virtual topic"
+        url: /subscribe/configure-your-application-to-connect/
+ 
+  - title: "Combining API and event management"
+    children:
+      - title: "Overview"
+        url: /api-and-event-management/overview/
+      - title: "Why combine API and event management"
+        url: /api-and-event-management/combining-events-and-api-management/
+      - title: "API and event management personas"
+        url: /api-and-event-management/personas/
+      - title: "Component topology"
+        url: /api-and-event-management/components/
+
+  - title: "Integrating with IBM API Connect v10.x.x"
+    children:
+      - title: "Overview"
+        url: /integrating-with-apic/overview/
+      - title: "Integration concepts and glossary"
+        url: /integrating-with-apic/apic-eem-concepts/
+      - title: "Configure the Manager as an Event Gateway Service"
+        url: /integrating-with-apic/configure-eem-for-apic/
+      - title: "Generating an AsyncAPI document for use in API Connect"
+        url: /integrating-with-apic/generate-asyncapi/
+      - title: "API and event management: example scenario"
+        url: /integrating-with-apic/apic-eem-scenario/
+
+  - title: "Integrating with IBM API Connect Developer Portal v12.1.1 or later"
+    children:
+      - title: "Overview"
+        url: /dpo-integration/overview/
+      - title: "Configure Event Endpoint Management and Developer Portal"
+        url: /dpo-integration/configure-eem-for-dpo-apic12/
+      - title: "Publishing virtual topics to Developer Portal"
+        url: /dpo-integration/publishing-to-dpo/
+ 
+  - title: Reference
+    children:
+      - title: "CRD reference for the Event Manager"
+        url: /reference/mgr-api-reference/
+      - title: "CRD reference for the Event Gateway"
+        url: /reference/gwy-api-reference/
+      - title: "Event Gateway property reference"
+        url: /reference/gateway-properties/   
+      - title: "OpenTelemetry metrics"
+        url: /reference/metrics-reference/
+      - title: Event Endpoint Management Admin API
+        url: /../eem-api/   
+  - title: Troubleshooting
+    children:
+      - title: "Troubleshooting overview"
+        url: /troubleshooting/intro/
+      - title: "Gathering logs"
+        url: /troubleshooting/gathering-logs/
+      - title: "Configuring trace logging"
+        url: /troubleshooting/trace-logging/
+      - title: "Error messages"
+        url: /troubleshooting/error-messages/
+      - title: "No such algorithm exception log"
+        url: /troubleshooting/no-such-algorithm-log/
+      - title: "Event Gateway in 'Evicted' state"
+        url: /troubleshooting/evicted-gateway/
+      - title: "Unable to access Event Manager endpoints"
+        url: /troubleshooting/mgr-endpoints/
+      - title: "Java application fails with SSLHandshakeException"
+        url: /troubleshooting/ssl-protocol-failure/
+      - title: "Configuring usage-based reporting"
+        url: /troubleshooting/usage-based-reporting/
+      - title: "Event Gateway fails with SSL errors"
+        url: /troubleshooting/ssl-error/
+      - title: "Error when logging in to UI after certificate rotation"
+        url: /troubleshooting/certificate-rotation/
+      - title: "502 Bad Gateway error when logging in to UI"
+        url: /troubleshooting/502-bad-gateway/
+      - title: "Subscribed topics not available with API Connect subscription credentials"
+        url: /troubleshooting/apic-subscription-topics-unavailable/
+      - title: "Event Manager fails with `Unable to find main key backup` error"
+        url: /troubleshooting/no-main-key-backup/
+      - title: "Warnings about clients that use deprecated Kafka APIs"
+        url: /troubleshooting/deprecated-kafka/
+      - title: "Invalid certificates error after adding a Kafka cluster"
+        url: /troubleshooting/ca-cert/
+      - title: "Client fails to connect with a NullPointerException error"
+        url: /troubleshooting/key-null/
+      - title: "Virtual topic is not displayed in IBM API Connect Developer Portal"
+        url: /troubleshooting/dpo-topic-not-appearing/
+      - title: "Unable to subscribe to a virtual topic in IBM API Connect Developer Portal"
+        url: /troubleshooting/dpo-unable-to-subscribe
+      - title: "Replace auto-generated mutual TLS credentials"
+        url: /troubleshooting/auto-mtls
+
+117_eemdocs:
+  - title: About
+    children:
+      - title: "Overview"
+        url: /about/overview/
+      - title: "What's new"
+        url: /about/whats-new/
+      - title: "Key concepts"
+        url: /about/key-concepts/
+
+  - title: Installing
+    children:
+      - title: "Prerequisites"
+        url: /installing/prerequisites/
+      - title: "Planning your installation"
+        url: /installing/planning/
+      - title: "Installation overview"
+        url: /installing/overview/
+      - title: "Installing the Manager in an online OpenShift environment"
+        url: /installing/installing/
+      - title: "Installing the Manager in an offline environment"
+        url: /installing/offline/
+      - title: "Installing the Manager on other Kubernetes platforms"
+        url: /installing/installing-on-kubernetes/
+      - title: "Installing the Event Gateway"
+        url: /installing/install-gateway/
+      - title: "Installing an operator-managed Event Gateway"
+        url: /installing/install-opman-egw/
+      - title: "Installing the Event Gateway as a Kubernetes Deployment"
+        url: /installing/install-k8s-egw/
+      - title: "Installing the Event Gateway as a Docker container"
+        url: /installing/install-docker-egw/
+      - title: "Configuring initial installation"
+        url: /installing/configuring/
+      - title: "Post-installation tasks"
+        url: /installing/post-installation/
       - title: "Backing up and restoring"
         url: /installing/backup-restore/
       - title: "Exporting metrics with OpenTelemetry"
@@ -173,7 +387,6 @@ latest_eemdocs:
         url: /subscribe/managing-subscriptions/
       - title: "Configuring a client application to connect to an event endpoint"
         url: /subscribe/configure-your-application-to-connect/
- 
   - title: "Combining API and event management"
     children:
       - title: "Overview"
@@ -222,7 +435,7 @@ latest_eemdocs:
         url: /troubleshooting/evicted-gateway/
       - title: "Unable to access Event Manager endpoints"
         url: /troubleshooting/mgr-endpoints/
-      - title: "Kafka application fails with SSLHandshakeException"
+      - title: "Java application fails with SSLHandshakeException"
         url: /troubleshooting/ssl-protocol-failure/
       - title: "Configuring usage-based reporting"
         url: /troubleshooting/usage-based-reporting/
@@ -246,6 +459,8 @@ latest_eemdocs:
         url: /troubleshooting/ca-cert/
       - title: "Client fails to connect with a NullPointerException error"
         url: /troubleshooting/key-null/
+      - title: "Event Endpoint Management operator unable to reconcile custom resource"
+        url: /troubleshooting/cp4i-service-binding/
 
 116_eemdocs:
   - title: About
@@ -2433,6 +2648,8 @@ latestdocs:
         url: /troubleshooting/upgrade-ssl-private-key-format/
       - title: "Helm diff plugin failure when upgrading to 12.3.x"
         url: /troubleshooting/helm-diff-plugin-failure/
+      - title: "Cannot create topics in the UI with only topic-level ACLs"
+        url: /troubleshooting/topic-create-acl-validation/
 
 # Event Streams 12.3 docs
 123docs:

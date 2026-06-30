@@ -39,3 +39,4 @@ Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More 
 - For gateways created in {{site.data.reuse.eem_name}} 11.4.1 and earlier, the gateway shows a warning state if it has not contacted the {{site.data.reuse.eem_name}} instance within the last 15 minutes.
 
 
+_DRAFT COMMENT: Add new section on updating gateway config, link to properties reference._

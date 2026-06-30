@@ -26,6 +26,8 @@ To back up and restore the {{site.data.reuse.eem_manager}} and operator-managed 
   - Secrets containing certificates that are associated with the related instances.
   - The {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} resource configurations.
 
+_DRAFT COMMENT: Update to cover gateway.properties file_
+
 This means that your backup storage location and configuration must be able to store both Kubernetes objects and volumes. For more information about the solutions available to back up PVs and PVCs, see the [{{site.data.reuse.openshift_short}}](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/backup_and_restore/oadp-application-backup-and-restore#oadp-features-plugins){:target="_blank"} or [Velero](https://velero.io/plugins/){:target="_blank"} documentation. For example, you can use a remote object store such as `AWS S3` and a `CSI` compliant storage class to create the PVC for your instance.
 
 In your CSI-supported storage provider (such as Ceph), ensure you have the `VolumeSnapshotClass` configured.

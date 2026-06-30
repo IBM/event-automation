@@ -35,7 +35,7 @@ To gather logs from an online environment:
 4. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
    ```shell
-   ./ibm-events-must-gather -n <instance-namespace> [--es-namespace <eventstreams-instance-namespace>  --eem-namespace <event-endpoint-management-instance-namespace> --ep-namespace <event-processing-instance-namespace> --flink-namespace <flink-instance-namespace>] -m <gather-modules> -i <image-address>
+   ./ibm-events-must-gather (-n <instance-namespace> | [--es-namespace <eventstreams-instance-namespace>] [--eem-namespace <event-endpoint-management-instance-namespace>] [--ep-namespace <event-processing-instance-namespace>] [--flink-namespace <flink-instance-namespace>]) -m <gather-modules> -i <image-address>
    ```
 
    - For example, to gather logs for {{site.data.reuse.es_name}}, run the following command:
@@ -67,7 +67,7 @@ To gather logs from an online environment:
    - `<image-address>` is the address of the image to use for gathering logs. If `<image-address>` is not specified, then the default image (`icr.io/cpopen/ibm-events-must-gather`) is set. You can set a different image if instructed by IBM Support.
    - `<instance-namespace>` is the namespace where your capability instance is installed, and where the script gathers log data from.  
 
-      If specifying more than one of `eventstreams`, `eem`, `eventprocessing`, and `flink` modules, individual namespace flags must be used:
+      If you specify more than one of `eventstreams`, `eem`, `eventprocessing`, and `flink` modules, you must not use the `-n` flag. Use the individual namespace flags instead:
         - `--es-namespace` specifies the namespace containing the {{site.data.reuse.es_name}} instance to gather data from.
         - `--eem-namespace` specifies the namespace containing the {{site.data.reuse.eem_name}} instance to gather data from.
         - `--ep-namespace` specifies the namespace containing the {{site.data.reuse.ep_name}} instance to gather data from.
@@ -111,7 +111,7 @@ To gather diagnostic logs in an offline (also referred to as air-gapped or disco
 7. Run the `./ibm-events-must-gather` script to capture the relevant logs:
 
    ```shell
-   ./ibm-events-must-gather -n <instance-namespace> [--es-namespace <eventstreams-instance-namespace>  --eem-namespace <event-endpoint-management-instance-namespace> --ep-namespace <event-processing-instance-namespace>] -m <gather-modules> -i <image-address>
+   ./ibm-events-must-gather (-n <instance-namespace> | [--es-namespace <eventstreams-instance-namespace>] [--eem-namespace <event-endpoint-management-instance-namespace>] [--ep-namespace <event-processing-instance-namespace>]) -m <gather-modules> -i <image-address>
    ```
 
    - For example, to gather logs for {{site.data.reuse.es_name}}, run the following command:

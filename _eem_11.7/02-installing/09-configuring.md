@@ -5,6 +5,7 @@ categories: installing
 slug: configuring
 toc: true
 ---
+_DRAFT COMMENT: Updates needed for new gateway config. Separate gateway and manager coverage._
 
 ## Setting environment variables
 {: #setting-environment-variables}

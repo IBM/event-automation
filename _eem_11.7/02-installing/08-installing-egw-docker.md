@@ -155,7 +155,6 @@ After completing these steps, you should have the three PEM files that you need 
     - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.ea_short}} license, then set `swid="EA"`.
     - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.cp4i}} license, then set `swid="CP4I"`.
 
-
 6. Backup the Docker command to a file and keep it in a safe location.
 
 7. Run the generated Docker command to deploy the gateway in your environment. 

@@ -92,7 +92,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    -o jsonpath='{.items[0].spec.template.spec.containers[?(@.name=="flink-kubernetes-operator")].env[?(@.name=="IBM_FLINK_IMAGE")].value}'  
    ```
 
-   If you are running Flink 1.20.3 with {{site.data.reuse.ep_name}} 1.5.0, run the following command to extract the Flink image:
+   If you are running Flink 1.20 with {{site.data.reuse.ep_name}} 1.5.0 and later, run the following command to extract the Flink image:
 
    ```shell
    kubectl get deployment \
@@ -273,7 +273,7 @@ Some adaptations to this procedure are required to build the Docker image and us
       -o jsonpath='{.items[0].spec.template.spec.containers[?(@.name=="flink-kubernetes-operator")].env[?(@.name=="IBM_FLINK_VERSION")].value}'
       ```
 
-      If you are using Flink 1.20.3, run the following command to obtain the correct version:
+      If you are using Flink 1.20, run the following command to obtain the correct version:
 
       ```shell
       kubectl get deployment \

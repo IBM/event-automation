@@ -32,9 +32,9 @@ If you are upgrading from {{site.data.reuse.ep_name}} version 1.3.x or earlier, 
 
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
-- {{site.data.reuse.ep_name}} 1.5.0 introduces support for Apache Flink 2.2.0. Additionally, Flink 1.20.3 is supported only for deploying Flink jobs. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+- {{site.data.reuse.ep_name}} 1.5.0 introduces support for Apache Flink 2.2. Additionally, Flink 1.20 is supported only for deploying Flink jobs. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
-  To use Flink 1.20.3 in {{site.data.reuse.ep_name}} 1.5.0 for deploying Flink jobs outside the UI, add the following parameters in your `FlinkDeployment` custom resource as follows:
+  To use Flink 1.20 in {{site.data.reuse.ep_name}} 1.5.0 and later for deploying Flink jobs outside the UI, add the following parameters in your `FlinkDeployment` custom resource as follows:
 
   ```yaml
   metadata:
@@ -385,7 +385,11 @@ This only applies if you stopped flows before upgrade. After the successful upgr
 2. In the flow that you want to run, select **Edit flow**.
 3. In the navigation banner, complete one of the following steps:
 
-   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow includes any event sources, expand **Run flow** and select one of the following options:
+
+     - **Events from now**
+     - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**
+     - **Include historical**.
    - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
 ### Migrate ImageContentSourcePolicy to ImageDigestMirrorSet

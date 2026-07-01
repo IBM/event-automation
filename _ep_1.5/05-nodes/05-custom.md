@@ -245,11 +245,15 @@ By understanding these implications, you can design and implement {{site.data.re
 
 In the navigation banner, complete one of the following steps:
 
-- If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+- If your flow includes any event sources, expand **Run flow** and select one of the following options:
+
+  - **Events from now**
+  - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**
+  - **Include historical**.
 - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
 **Important:** 
 
-- If your flow has an SQL source node, then your flow results are based on the value of the [scan.startup.mode](https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/kafka/#scan-startup-mode){:target="_blank"} property in your Flink SQL code. The **Events from now** or **Include historical** options are ignored.
+- If your flow has an SQL source node, then your flow results are based on the value of the [scan.startup.mode](https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/kafka/#scan-startup-mode){:target="_blank"} property in your Flink SQL code. The **Events from now**, **From time offset**, or **Include historical** options are ignored.
 
 - If your flow has both event source nodes and SQL source nodes, the results depend on the **Run flow** options for the event source node. The same options for the SQL source node are ignored.

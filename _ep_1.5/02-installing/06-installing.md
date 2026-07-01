@@ -551,7 +551,7 @@ including those created after the operator was deployed.
 
 A Flink instance is installed by deploying the `FlinkDeployment` custom resource to a namespace managed by an instance of {{site.data.reuse.ibm_flink_operator}}.
 
-**Note:** In {{site.data.reuse.ep_name}} 1.5.0 and later, Apache Flink 2.2.0 is supported for both UI-based flows and deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+**Note:** In {{site.data.reuse.ep_name}} 1.5.0 and later, Apache Flink 2.2 is supported for both UI-based flows and deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. Flink 1.20 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
 
 
@@ -627,7 +627,7 @@ the **Quick Start** sample is the smallest and simplest example. For the smalles
       kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
   ```
 
-- To use Flink 1.20.3 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
+- To use Flink 1.20 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
 
   ```yaml
   metadata:
@@ -638,7 +638,7 @@ the **Quick Start** sample is the smallest and simplest example. For the smalles
     flinkVersion: v1_20
   ```
 
-  **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
+  **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
 To deploy a Flink instance, use the following steps:
 
@@ -690,7 +690,7 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
        kubernetes.secrets: '<jks-secret>:/opt/flink/tls-cert'
    ```
 
-5. To use Flink 1.20.3 for deploying Flink jobs and to prevent automatic version upgrades, switch to the YAML view, and specify the Flink version as `1.20` by adding the following configuration:
+5. To use Flink 1.20 for deploying Flink jobs and to prevent automatic version upgrades, switch to the YAML view, and specify the Flink version as `1.20` by adding the following configuration:
 
    ```yaml
    metadata:
@@ -701,7 +701,7 @@ To configure a `FlinkDeployment` custom resource in the **Form view**, do the fo
      flinkVersion: v1_20
    ```
 
-   **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3. 
+   **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
 6. Scroll down and click the **Create** button to deploy the Flink instance.
 6. Wait for the installation to complete.
@@ -751,7 +751,7 @@ To deploy a Flink instance, run the following commands:
 
      Where `<jks-secret>` is the secret containing the keystores and truststores for your deployment, and `<jks-password>` is the password for those stores.
 
-   - To use Flink 1.20.3 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
+   - To use Flink 1.20 for deploying Flink jobs and to prevent automatic version upgrades, add the following configuration and specify the Flink version as `1.20`:
 
      ```yaml
      metadata:
@@ -762,7 +762,7 @@ To deploy a Flink instance, run the following commands:
        flinkVersion: v1_20
      ```
 
-     **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3. Do not include the `spec.image` field as they are automatically included by the {{site.data.reuse.ibm_flink_operator}}.  
+     **Note:** The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20. Do not include the `spec.image` field as they are automatically included by the {{site.data.reuse.ibm_flink_operator}}.
 
 2. Set the project where your `FlinkDeployment` custom resource will be deployed in:
 

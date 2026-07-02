@@ -22,19 +22,19 @@ A number of sample configurations are available when installing {{site.data.reus
 If you are installing on the {{site.data.reuse.openshift_short}} or on other Kubernetes platforms, the following samples are available:
 
 - [Quick start](#example-deployment-quick-start)
-- [Quick start - with ephemeral](#example-deployment-quick-start-with-ephemeral)
-- [Quick start with {{site.data.reuse.apic_short}} integration v10 integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Quick start - with ephemeral storage](#example-deployment-quick-start-with-ephemeral)
+- [Quick start with {{site.data.reuse.apic_short}} v10 integration](#example-deployment-quick-start-with-api-connect-integration)
 - [Production](#example-deployment-production)
-- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-sitedatareusewm_portal_long-v1211-or-later-integration)
+- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
 
 If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
 - [Quick start](#example-deployment-quick-start)
-- [Quick start - with ephemeral](#example-deployment-quick-start-with-ephemeral)
-- [Quick start with {{site.data.reuse.apic_short}} integration v10 integration](#example-deployment-quick-start-with-api-connect-integration)
+- [Quick start - with ephemeral storage](#example-deployment-quick-start-with-ephemeral)
+- [Quick start with {{site.data.reuse.apic_short}} v10 integration](#example-deployment-quick-start-with-api-connect-integration)
 - [Production](#example-deployment-production)
+- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
 - [Usage-based pricing](#example-deployment-usage-based-pricing)
-- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-sitedatareusewm_portal_long-v1211-or-later-integration)
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
 
@@ -89,7 +89,7 @@ Resource requirements for this deployment:
 Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration
-{: #example-deployment-production-with-api-connect-dpo-integration-12.1.1}
+{: #example-deployment-production-with-api-connect-dpo-integration}
 
 This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, using OIDC authentication with keycloak, using a provided CA and custom UI certificates, and configuration options for the integration with {{site.data.reuse.wm_portal_long}} v12.1.1 or later.
 

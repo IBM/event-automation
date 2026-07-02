@@ -26,6 +26,10 @@ To create an application, follow these steps:
 8. Click **Create**.
 9. If the authentication sets that you specified include SASL credentials, then the username and password that clients must use is displayed. Click **Download credentials** to download the application credentials.
 
+**Note:** For any virtual topics that use both an [MTLS](../describe/security-controls#mtls) and a [SASL](../describe/security-controls#sasl) security control, the following limitations apply to your applications:
+
+- If the MTLS control does not specify a wildcard in the common name, then you cannot use the Admin API to create more than one subscription to the virtual topic, and you cannot update the application until you specify a unique common name field in the application's MTLS configuration.
+- If the MTLS control specifies any rules, then the certificate that is specified can be used only in that application.
 
 ## Editing an application
 {: #edit-app}

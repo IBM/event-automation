@@ -58,7 +58,12 @@
       });
       document.documentElement.style.setProperty('--banner-total-height', offset + 'px');
     }
+    // Run immediately (banners already in DOM above this script tag),
+    // then again once fully loaded in case fonts/images affect heights,
+    // and on resize for reflow.
+    stackBanners();
     document.addEventListener('DOMContentLoaded', stackBanners);
+    window.addEventListener('load', stackBanners);
     window.addEventListener('resize', stackBanners);
   })();
 </script>

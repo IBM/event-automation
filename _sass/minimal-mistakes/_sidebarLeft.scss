@@ -18,16 +18,19 @@ $event-streams-primary-action: #602797;
   border-right: 1px solid $keyline;
 
   &.sticky {
-    height: calc(100vh - var(--banner-total-height, 0px));
+    height: 100vh;
     min-height: calc(100vh - #{$mastheadHeight});
     top: var(--banner-total-height, 0px);
   }
 
   .sidebar-inner {
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;  // for line positioning
+    position: sticky;  // pins version switcher to top of sidebar while nav list scrolls
+    top: 0;
+    z-index: 1;
+    background: #fff;
   }
 
   /* Full-width bottom line under sidebar header */
@@ -206,7 +209,7 @@ $event-streams-primary-action: #602797;
 }
 
 .subMenu {
-  top: 3rem;
+  top: calc(var(--banner-total-height, 0px) + 3rem);
   left: 0rem;
   height: 3rem;
   background: white;
@@ -220,7 +223,7 @@ $event-streams-primary-action: #602797;
 
   &.backMenu {
     display: flex;
-    top: .5rem;
+    top: calc(var(--banner-total-height, 0px) + 3rem);
     position: sticky;
     align-items: center;
     padding-left: 1.5rem;

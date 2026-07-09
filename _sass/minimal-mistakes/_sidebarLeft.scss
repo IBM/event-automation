@@ -18,9 +18,9 @@ $event-streams-primary-action: #602797;
   border-right: 1px solid $keyline;
 
   &.sticky {
-    height: 100vh;
+    height: calc(100vh - var(--banner-total-height, 0px));
     min-height: calc(100vh - #{$mastheadHeight});
-    top: 0rem;
+    top: var(--banner-total-height, 0px);
   }
 
   .sidebar-inner {

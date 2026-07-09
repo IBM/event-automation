@@ -23,20 +23,9 @@ The following sections provide instructions for configuring the integration of y
 
 In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the basic authentication credentials of the administrator that you identified or created.
 
-### By using the {{site.data.reuse.openshift_short}} CLI
-{: #open-shift-cli}
-
-1. {{site.data.reuse.openshift_ui_login}}
-2. Run the following command to create a secret called `devportal-api-secret`:
-   ```bash
-   oc -n <ns_containing_EEM> secret generic devportal-api-secret \
-     --from-literal="key"="<username>:<password>"
-   ```
-
-### By using the CLI of other Kubernetes platforms
-{: #k8s}
-
-1. {{site.data.reuse.cncf_cli_login}}
+1. Log in to your cluster:   
+- {{site.data.reuse.openshift_ui_login}} Alternatively,   
+- {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to create a secret called `devportal-api-secret`:
    ```bash
    kubectl -n <ns_containing_EEM> secret generic devportal-api-secret \

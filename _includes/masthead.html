@@ -47,24 +47,93 @@
 
 <script>
   (function () {
-    function stackBanners() {
-      var selectors = ['.draftBar', '.eemBanner', '.eomBanner', '.eosBanner'];
-      var offset = 0;
-      selectors.forEach(function (sel) {
+    var SCROLL_THRESHOLD = 10;
+    var bannerSelectors = ['.draftBar', '.eemBanner', '.eomBanner', '.eosBanner'];
+
+    // Set max-height to exact measured height so the CSS transition
+    // animates across the real content height — no Firefox stutter.
+    function setExactMaxHeights() {
+      bannerSelectors.forEach(function (sel) {
         var el = document.querySelector(sel);
         if (!el) return;
-        el.style.top = offset + 'px';
-        offset += el.getBoundingClientRect().height;
+        // Temporarily clear max-height to measure natural height
+        el.style.maxHeight = 'none';
+        var h = el.getBoundingClientRect().height;
+        el.style.maxHeight = h + 'px';
       });
-      document.documentElement.style.setProperty('--banner-total-height', offset + 'px');
     }
-    // Run immediately (banners already in DOM above this script tag),
-    // then again once fully loaded in case fonts/images affect heights,
-    // and on resize for reflow.
+
+    function stackBanners() {
+      var hidden = document.body && document.body.classList.contains('banners-hidden');
+      var offset = 0;
+      bannerSelectors.forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        if (!hidden) {
+          el.style.top = offset + 'px';
+          offset += el.getBoundingClientRect().height;
+        }
+      });
+      document.documentElement.style.setProperty(
+        '--banner-total-height', hidden ? '0px' : offset + 'px'
+      );
+    }
+
+    function hideBanners() {
+      setExactMaxHeights(); // pin to real height first
+      requestAnimationFrame(function () {
+        bannerSelectors.forEach(function (sel) {
+          var el = document.querySelector(sel);
+          if (!el) return;
+          el.style.maxHeight = '0';
+          el.style.opacity = '0';
+          el.style.paddingTop = '0';
+          el.style.paddingBottom = '0';
+        });
+        document.documentElement.style.setProperty('--banner-total-height', '0px');
+      });
+    }
+
+    function showBanners() {
+      bannerSelectors.forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        el.style.maxHeight = '';
+        el.style.opacity = '';
+        el.style.paddingTop = '';
+        el.style.paddingBottom = '';
+      });
+      stackBanners();
+    }
+
+    function onScroll() {
+      var scrolled = window.scrollY || window.pageYOffset;
+      var hidden = document.body.classList.contains('banners-hidden');
+      if (scrolled > SCROLL_THRESHOLD && !hidden) {
+        document.body.classList.add('banners-hidden');
+        hideBanners();
+      } else if (scrolled <= SCROLL_THRESHOLD && hidden) {
+        document.body.classList.remove('banners-hidden');
+        showBanners();
+      }
+    }
+
     stackBanners();
-    document.addEventListener('DOMContentLoaded', stackBanners);
-    window.addEventListener('load', stackBanners);
-    window.addEventListener('resize', stackBanners);
+    document.addEventListener('DOMContentLoaded', function () {
+      setExactMaxHeights();
+      stackBanners();
+    });
+    window.addEventListener('load', function () {
+      setExactMaxHeights();
+      stackBanners();
+    });
+    window.addEventListener('resize', function () {
+      if (!document.body.classList.contains('banners-hidden')) {
+        setExactMaxHeights();
+      }
+      stackBanners();
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
   })();
 </script>
 

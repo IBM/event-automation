@@ -95,7 +95,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
 6. Update the `<gateway name>-gateway_cr.yaml` file and set `spec.license.accept` to `true`.
 
-7. (Optional) To create a gateway using wildcard routes, update `<gateway name>-gateway_cr.yaml` as follows:
+7. (Optional) To create a gateway using wildcard routes, update `<gateway name>-gateway_cr.yaml` and add the listener groups `endpoint` property. Also set `endpoint.type` and `tls.certificateType` to WILDCARD. For example:
 
       ```yaml
       spec:

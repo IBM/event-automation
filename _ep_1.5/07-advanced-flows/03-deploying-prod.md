@@ -13,7 +13,6 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 * You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
 * You cannot deploy jobs by using the Apache SQL Runner sample for flows that contain the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate).
-
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
 * Automatic upgrade is not supported if the `FlinkDeployment` custom resource uses an extension of the IBM Flink image. In such cases, the extension of the image must be rebuilt to use the upgraded IBM Flink image.

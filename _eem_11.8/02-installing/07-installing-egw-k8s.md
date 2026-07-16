@@ -157,7 +157,7 @@ If you want to create externally signed certificates with cert-manager, then see
 1. In the {{site.data.reuse.eem_name}} UI navigation pane, click **Administration > Event Gateways**.
 2. Click **Add gateway**.
 3. Select the **Kubernetes Deployment** tile, then click **Next**.
-4. Provide the configuration properties for your gateway.
+4. {: #ui-details}Provide the configuration properties for your gateway.
 
     You must provide these properties to be able to generate the YAML:
     - **Gateway group**: Create or specify an existing [gateway group](../../about/key-concepts#gateway-group) for your new gateway.
@@ -186,7 +186,24 @@ Open the `<gateway name>-gateway_k8s.yaml` file that you [generated](#generating
   kafka.listener.listener.group.group.addresses=grp1-gwy1-1.ingress.domain:443,grp1-gwy1-2.ingress.domain:443,grp1-gwy1-3.ingress.domain:443
   ```
 - If you do not want the gateway CA certificate to be downloadable by users from the [{{site.data.reuse.eem_name}} UI](../../subscribe/configure-your-application-to-connect#configuring-a-client), then in the ConfigMap section, delete the `kafka.listener.listener.group.group.trust.pem` property.
-- If you did not provide TLS certificates and a key in step 4, then delete the `<group name>-<gateway ID>-certs` secret from the YAML file and verify that the name of the secret you [created](#self-signed) matches the value in `spec.template.spec.containers[egw].volumes[certs].secret.secretName`. 
+- If you did not provide TLS certificates and a key in [step 4](#ui-details), then delete the `<group name>-<gateway ID>-certs` secret from the YAML file and verify that the name of the secret you [created](#self-signed) matches the value in `spec.template.spec.containers[egw].volumes[certs].secret.secretName`, and set the `items` property to map the key names of your certificate to the names used in the gateway deployment. For example:
+
+   ```
+   spec:
+     containers:
+     - name: egw
+       volumes:
+       - name: certs
+         secret:
+            secretName: <self-signed cert secret>
+            items:
+              - key: tls.crt
+                path: client.pem
+              - key: tls.key
+                path: client.key
+              - key: ca.crt
+                path: ca.pem
+   ```
 - The generated YAML includes a Kubernetes service definition for your gateway. A Kubernetes service is required for client access to your gateway. If the generated service configuration does not suit your requirements then you can either update it in the generated YAML, or delete the definition from the YAML and [create the Kubernetes](#create-kube-service) service later.
 
 ## Install your Kubernetes Deployment {{site.data.reuse.egw}}

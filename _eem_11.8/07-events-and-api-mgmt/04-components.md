@@ -8,7 +8,7 @@ toc: true
 
 API management systems consist of a number of deployed components. These components typically encompass a particular function or phase of the API management process. For example, an API management solution might contain:
 
-- Management components: where APIs are authored, [policies](../../integrating-with-apic/apic-eem-concepts#policy) applied, and API usage managed. In addition, governance and Day 2 operations and management activities of API usage are also managed from here.
+- Management components: where APIs are authored, [policies](../apic-eem-concepts#policy) applied, and API usage managed. In addition, governance and Day 2 operations and management activities of API usage are also managed from here.
 - Socialization components: where APIs are documented and socialized for external use.
 - Gateway components: a runtime service that exposes published APIs for clients to connect to, abstracts the service providing the API, and applies configured governance or policy rules that are enforced on clients utilizing the API.
 

@@ -1,7 +1,7 @@
 ---
 title: "Integration concepts and glossary"
 excerpt: "Understand the similarities and differences between API Connect and Event Endpoint Management concepts and terminology."
-categories: integrating-with-apic
+categories: api-and-event-management
 slug: apic-eem-concepts
 toc: true
 ---
@@ -9,6 +9,8 @@ toc: true
 {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}} have a number of overlapping concepts, constructs, and terminology. The following glossary aims to describe how these concepts and terminology map between the offerings, or differ where appropriate.
 
 For more information about {{site.data.reuse.eem_name}} concepts and constructs, see the [key concepts topic](../../about/key-concepts/).
+
+For more information about the integration of {{site.data.reuse.eem_name}} with specific {{site.data.reuse.apic_long}} versions, see [Integration with {{site.data.reuse.wm_portal_long}} v12.1.1 or later](../../dpo-integration/overview) and [Integration with {{site.data.reuse.wm_portal_long}} v10](../../integrating-with-apic/overview).
 
 ## Terminology
 {: #terminology}
@@ -18,7 +20,7 @@ For more information about {{site.data.reuse.eem_name}} concepts and constructs,
 
 API stands for Application Programming Interface. An API defines a contract which describes a service that can be invoked by a client. Depending on the technology or protocols being used, these contracts can be defined and documented in a variety of different ways, such as [OpenAPI](#openapi), used typically for synchronous APIs, or [AsyncAPI](#asyncapi) for asynchronous APIs.
 
-In {{site.data.reuse.eem_name}}, Kafka topics are the back-end service being invoked by a client, and are represented as a [virtual topic](../../about/key-concepts/#virtual-topic) as the API for that topic.
+In {{site.data.reuse.eem_name}}, Kafka topics are the backend service being invoked by a client, and are represented as a [virtual topic](../../about/key-concepts/#virtual-topic) as the API for that topic.
 
 ### OpenAPI
 {: #openapi}
@@ -81,7 +83,7 @@ Controls are configured in the [{{site.data.reuse.eem_manager}}](../../api-and-e
 ### Gateway
 {: #gateway}
 
-A gateway enforces runtime [policies](#policy) on [API](#api) traffic, and abstracts the client from the back-end implementation. In {{site.data.reuse.apic_short}}, DataPower [Gateways](../../api-and-event-management/components) are used to provide synchronous API gateway capabilities. {{site.data.reuse.eem_name}} provides the {{site.data.reuse.egw}} to perform the same role for asynchronous APIs.
+A gateway enforces runtime [policies](#policy) on [API](#api) traffic, and abstracts the client from the backend implementation. In {{site.data.reuse.apic_short}}, DataPower [Gateways](../../api-and-event-management/components) are used to provide synchronous API gateway capabilities. {{site.data.reuse.eem_name}} provides the {{site.data.reuse.egw}} to perform the same role for asynchronous APIs.
 
 When [{{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}} are integrated](../overview), both types of gateways can be used to enforce API traffic.
 
@@ -90,23 +92,23 @@ When [{{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}} are integr
 
 A logical grouping of related [APIs](#api) and [Plans](#plan) to access those APIs. After an AsyncAPI document is [imported](../generate-asyncapi), the [AsyncAPI specification](#asyncapi) representing the [virtual topic](../../about/key-concepts/#virtual-topic) from {{site.data.reuse.eem_name}} can be added to any Product for publishing later.
 
-**Important:** Products can only be configured to allow one type of [gateway](#gateway) for enforcement.
+**Important:** For the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} v10, Products support only one [gateway](#gateway) type for enforcement. Products do not apply to the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.wm_portal_long}} v12.1.1 or later.
 
-**Note:** Currently, there is no direct equivalent Product concept in {{site.data.reuse.eem_name}} when not integrated with {{site.data.reuse.apic_short}}.
+**Note:** Currently, there is no direct equivalent Product concept in {{site.data.reuse.eem_name}}.
 
 ### Plan
 {: #plan}
 
 An attribute of a [Product](#product). Used to offer different levels of service (for example, rate limits and monetization) to the APIs contained within a Product.
 
-**Note:** Currently, there is no direct equivalent concept in {{site.data.reuse.eem_name}} when not integrated with {{site.data.reuse.apic_short}}.
+**Important:** Rate limits associated with a Plan in {{site.data.reuse.apic_short}} are **not** [enforced](#enforced-api) by the {{site.data.reuse.egw}}.
 
-**Important:** Rate limits associated with a Plan in {{site.data.reuse.apic_short}} are **not** [enforced](#enforced-api) by the {{site.data.reuse.egw}}. Instead, you can configure a Quota [policy](#policy) in {{site.data.reuse.eem_name}} to enable event-specific [rate limiting capabilities](../../describe/event-data-controls#quota-enforcement) for applications.
+**Note:** Currently, there is no direct equivalent concept in {{site.data.reuse.eem_name}}. Instead, you can configure a Quota policy in Event Endpoint Management to enable event-specific rate limiting capabilities for applications.
 
 ### Lifecycle
 {: #lifecycle}
 
-An {{site.data.reuse.apic_short}} [Product](#product), and all the [APIs](#api) it contains, is managed under a single lifecycle. For a full description of the Product lifecycle, including state transitions, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=products-product-lifecycle){:target="_blank"}. Any [exported AsyncAPI document](../generate-asyncapi/) from {{site.data.reuse.eem_name}} representing a [virtual topic](../../about/key-concepts/#virtual-topic) can be included in a Product, and therefore go through the same Product lifecycle.
+An {{site.data.reuse.apic_short}} [Product](#product), and all the [APIs](#api) it contains, are managed under a single lifecycle. For a full description of the Product lifecycle, including state transitions, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=products-product-lifecycle){:target="_blank"}. Any [exported AsyncAPI document](../generate-asyncapi/) from {{site.data.reuse.eem_name}} representing a [virtual topic](../../about/key-concepts/#virtual-topic) can be included in a Product, and therefore go through the same Product lifecycle.
 
 {{site.data.reuse.eem_name}} has a lifecycle concept applied to a [virtual topic](../../about/key-concepts/#virtual-topic), which manages the visibility, discovery and use of a virtual topic. The conceptual overlap of {{site.data.reuse.apic_short}} Product lifecycle states with {{site.data.reuse.eem_name}} virtual topics is as follows: 
 
@@ -118,7 +120,7 @@ An {{site.data.reuse.apic_short}} [Product](#product), and all the [APIs](#api) 
 
 For more information about the virtual topic lifecycle and state transitions, see [managing virtual topics](../../describe/managing-virtual-topics#virtual-topic-lifecycle-states).
 
-**Note:** To export an AsyncAPI document from {{site.data.reuse.eem_name}} to use with {{site.data.reuse.apic_short}}, a virtual topic must exist. This requires a virtual topic that associated with the [source topic](../../about/key-concepts/#source-topic) to be shared to be in **Published** lifecycle state.
+**Note:** To export an AsyncAPI document from {{site.data.reuse.eem_name}} to use with {{site.data.reuse.apic_short}}, a virtual topic must exist. This requires a virtual topic that is associated with the [source topic](../../about/key-concepts/#source-topic) to be shared to be in **Published** lifecycle state.
 
 ### Catalog
 {: #catalog}
@@ -127,7 +129,7 @@ An {{site.data.reuse.apic_short}} Catalog is both a collection of published [Pro
 
 Catalog management tasks include configuring [Gateways](#gateway) and [Developer portal](#developer-portal) instances to associate with the Catalog. An {{site.data.reuse.apic_short}} [Provider organization](#provider-organization) can contain many Catalogs. Catalogs can also be partitioned into [Spaces](#space) to offer greater management flexibility.
 
-When the integration is set up between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}, the {{site.data.reuse.egw}} can be configured as one of the available Gateway [Services](#service-or-subsystem). As a service, the gateway provides enforcement for any AsyncAPI exported from {{site.data.reuse.eem_name}} when the AsyncAPI is published as part of a Product to the Catalog.
+When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}} v10, the {{site.data.reuse.egw}} can be configured as one of the available Gateway [Services](#service-or-subsystem). As a service, the gateway provides enforcement for any AsyncAPI exported from {{site.data.reuse.eem_name}} when the AsyncAPI is published as part of a Product to the Catalog.
 
 **Note:** {{site.data.reuse.eem_name}} also includes the concept of a [Catalog](../../about/key-concepts/#catalog). While [event authors](../../api-and-event-management/personas/) perform similar API management and usage tasks in the {{site.data.reuse.eem_name}} Catalog, the Catalog also provides the equivalent user experience to the {{site.data.reuse.apic_short}} [Developer Portal](#developer-portal), providing a list of available virtual topics available for others to discover and sign up to use as a source of events.
 
@@ -136,7 +138,7 @@ When the integration is set up between {{site.data.reuse.apic_short}} and {{site
 
 A Space allows a [Catalog](#catalog) to be partitioned or syndicated for management purposes. With Spaces, an individual or team within a [Provider organization](#provider-organization) can manage a selected subset of [APIs](#api) published to a [Developer portal](#developer-portal).
 
-**Note:** Currently, {{site.data.reuse.eem_name}} does not have an equivalent concept within its [catalog](../../about/key-concepts/#catalog) when not integrated with {{site.data.reuse.apic_short}}.
+**Note:** Currently, {{site.data.reuse.eem_name}} does not have an equivalent concept within its [catalog](../../about/key-concepts/#catalog) when not integrated with {{site.data.reuse.apic_short}} v10.
 
 ### Developer Portal
 {: #developer-portal}
@@ -150,24 +152,25 @@ When the integration is set up between {{site.data.reuse.apic_short}} and {{site
 ### Application
 {: #application}
 
-An Application invokes exposed [APIs](#api). To use an API, an Application must first be registered by using the [Developer portal](#developer-portal), through which access credentials are generated for the Application. Applications then register themselves with a [Product's](#product) [Plans](#plan) to gain access for invoking the plan's APIs. A single Application can register with more than one plan. 
+An Application invokes exposed [APIs](#api). To use an API, an Application must first be registered by using the [Developer portal](#developer-portal), through which access credentials are generated for the Application. 
 
-When the integration is set up between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}, applications registered for Product Plans will have access to [virtual topics](../../about/key-concepts/#virtual-topic) from {{site.data.reuse.eem_name}}.
+When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_long}} v12.1.1 or later, users can create {{site.data.reuse.wm_portal_short}} applications to request access to virtual topics published from {{site.data.reuse.eem_name}}.
 
+When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}} v10, applications register themselves with a [Product's](#product) [Plans](#plan) to gain access for invoking the plan's APIs. A single Application can register with more than one plan. Applications registered for Product Plans will have access to [virtual topics](../../about/key-concepts/#virtual-topic) from {{site.data.reuse.eem_name}}.
 
 ### Provider organization
 {: #provider-organization}
 
-A group within an organization that is responsible for the creation, [governance](#governance), and [management](#management) of [APIs](#api). When the integration is set up between {{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}}, members of a Provider organization can import any [virtual topic](../../about/key-concepts/#virtual-topic) from any integrated {{site.data.reuse.eem_name}} instance. The integration is configured in the [Cloud Manager](#cloud-manager).
+A group within an organization that is responsible for the creation, [governance](#governance), and [management](#management) of [APIs](#api). When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}} v10, members of a Provider organization can import any [virtual topic](../../about/key-concepts/#virtual-topic) from any integrated {{site.data.reuse.eem_name}} instance. The integration is configured in the [Cloud Manager](#cloud-manager).
 
-**Note:** When not integrated with {{site.data.reuse.apic_short}}, {{site.data.reuse.eem_name}} does not have a similar concept of an organization to differentiate the provider of an API. {{site.data.reuse.eem_name}} is instead [configured and deployed](../../installing/overview/) by using Kubernetes Operators and custom resources, and [user authentication](../../security/managing-access/) and [role management](../../security/user-roles/) (for example, who can author or view APIs) are configured through these resources.
+**Note:** When not integrated with {{site.data.reuse.apic_short}} v10, {{site.data.reuse.eem_name}} does not have a similar concept of an organization to differentiate the provider of an API. {{site.data.reuse.eem_name}} is instead [configured and deployed](../../installing/overview/) by using Kubernetes Operators and custom resources, and [user authentication](../../security/managing-access/) and [role management](../../security/user-roles/) (for example, who can author or view APIs) are configured through these resources.
 
 ### Consumer organization
 {: #consumer-organization}
 
 A group within an organization who are consuming socialized [APIs](#api).
 
-**Note:** When not integrated with {{site.data.reuse.apic_short}}, {{site.data.reuse.eem_name}} does not have a similar concept of an organization to differentiate the consumer of an API. {{site.data.reuse.eem_name}} is instead [configured and deployed](../../installing/overview/) by using Kubernetes Operators and custom resources, and [user authentication](../../security/managing-access/) and [role management](../../security/user-roles/) (for example, who can author or view APIs) is configured through these resources.
+**Note:** When not integrated with {{site.data.reuse.apic_short}} v10, {{site.data.reuse.eem_name}} does not have a similar concept of an organization to differentiate the consumer of an API. {{site.data.reuse.eem_name}} is instead [configured and deployed](../../installing/overview/) by using Kubernetes Operators and custom resources, and [user authentication](../../security/managing-access/) and [role management](../../security/user-roles/) (for example, who can author or view APIs) is configured through these resources.
 
 ### Service or Subsystem
 {: #service-or-subsystem}

@@ -190,19 +190,8 @@ latest_eemdocs:
         url: /api-and-event-management/personas/
       - title: "Component topology"
         url: /api-and-event-management/components/
-
-  - title: "Integrating with IBM API Connect v10.x.x"
-    children:
-      - title: "Overview"
-        url: /integrating-with-apic/overview/
-      - title: "Integration concepts and glossary"
-        url: /integrating-with-apic/apic-eem-concepts/
-      - title: "Configure the Manager as an Event Gateway Service"
-        url: /integrating-with-apic/configure-eem-for-apic/
-      - title: "Generating an AsyncAPI document for use in API Connect"
-        url: /integrating-with-apic/generate-asyncapi/
-      - title: "API and event management: example scenario"
-        url: /integrating-with-apic/apic-eem-scenario/
+      - title: "Integrating with API Connect: concepts and glossary"
+        url: /api-and-event-management/apic-eem-concepts/
 
   - title: "Integrating with IBM API Connect Developer Portal v12.1.1 or later"
     children:
@@ -212,7 +201,18 @@ latest_eemdocs:
         url: /dpo-integration/configure-eem-for-dpo-apic12/
       - title: "Publishing virtual topics to Developer Portal"
         url: /dpo-integration/publishing-to-dpo/
- 
+
+  - title: "Integrating with IBM API Connect v10.x.x"
+    children:
+      - title: "Overview"
+        url: /integrating-with-apic/overview/
+      - title: "Configure the Manager as an Event Gateway Service"
+        url: /integrating-with-apic/configure-eem-for-apic/
+      - title: "Generating an AsyncAPI document for use in API Connect"
+        url: /integrating-with-apic/generate-asyncapi/
+      - title: "API and event management: example scenario"
+        url: /integrating-with-apic/apic-eem-scenario/
+
   - title: Reference
     children:
       - title: "CRD reference for the Event Manager"
@@ -1662,13 +1662,15 @@ latest_epdocs:
   - title: Reference
     children:
       - title: "Event structure definition"
-        url: /reference/event-structure/    
+        url: /reference/event-structure/
       - title: "API reference for the CRDs"
         url: /reference/api-reference/
       - title: "Supported Flink SQL functions"
         url: /reference/supported-functions/
       - title: "Deploying a custom Flink session job"
         url: /reference/flink-session-job/
+      - title: "Migrating flows to Confluent Platform for Apache Flink"
+        url: /reference/migrate-to-confluent/
 
   - title: Troubleshooting
     children:

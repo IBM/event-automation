@@ -8,6 +8,8 @@ toc: true
 
 You can integrate {{site.data.reuse.eem_name}} with [{{site.data.reuse.wm_portal_long}}](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=portal-overview){:target="_blank"} to provide a unified developer experience to discover and consume both APIs and event streams. This integration enables you to publish virtual topics from {{site.data.reuse.eem_name}} directly to {{site.data.reuse.wm_portal_short}}, where users can discover them alongside REST APIs and other services.
 
+For a comparison of the concepts in {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_short}}, see [Integration concepts and glossary](../../api-and-event-management/apic-eem-concepts).
+
 ## Benefits of integration
 {: #benefits}
 
@@ -38,6 +40,13 @@ When you publish a virtual topic from {{site.data.reuse.eem_name}}, you can choo
 - **{{site.data.reuse.eem_name}} catalog only**: The virtual topic is available only in the {{site.data.reuse.eem_name}} catalog.
 - **{{site.data.reuse.wm_portal_short}} only**: The virtual topic is available only in {{site.data.reuse.wm_portal_short}}.
 - **Both**: The virtual topic is available in both the {{site.data.reuse.eem_name}} catalog and {{site.data.reuse.wm_portal_short}}.
+
+## Using virtual topics
+{: #using-virtual-topics}
+
+To use virtual topics published to {{site.data.reuse.wm_portal_short}} in Kafka client applications:
+- Create {{site.data.reuse.wm_portal_short}} applications using one or more virtual topics.
+- Configure Kafka clients by using the connection information that {{site.data.reuse.wm_portal_short}} provides for the published virtual topic and application.
 
 ## Next steps
 {: #next-steps}

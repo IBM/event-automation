@@ -33,7 +33,7 @@ Complete the following steps to share your topic with {{site.data.reuse.eem_name
      
 6. Click **Share for reuse** to share your topic with {{site.data.reuse.eem_name}}.
 
-You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create]({{ 'eem/describe/managing-options/#create_option' | relative_url}}) and [publish]({{ 'eem/describe/publishing-options' | relative_url}}) the topic data as an option. After you publish the option, consumers can [subscribe]({{ 'eem/describe/managing-user-access-to-topics' | relative_url}}) to an option as required.
+You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create]({{ 'eem/describe/managing-virtual-topics/#create_option' | relative_url}}) and [publish]({{ 'eem/describe/publishing-virtual-topics' | relative_url}}) the topic data as an virtual topic. After you publish the virtual topic, consumers can [subscribe]({{ 'eem/describe/managing-user-access-to-topics' | relative_url}}) as required.
 
 **Note:** When you create an event source in {{site.data.reuse.eem_name}}, the following items are also created:
 

@@ -65,6 +65,12 @@ apic_long: IBM API Connect
 # {{site.data.reuse.apic_short}}
 apic_short: API Connect
 
+# {{site.data.reuse.cpf_long}}
+cpf_long: "Confluent Platform for Apache Flink"
+
+# {{site.data.reuse.cmf_long}}
+cmf_long: "Confluent Manager for Apache Flink"
+
 # No site.data.reuse.flink_short (without the "IBM"" prefix), because "Operator for Apache Flink" would be confusing,
 # due to the existence of the Apache Flink operator.
 # When referring to the operand pods (Flink jobmanager/taskmanager), or to the Flink capability in general, the words

@@ -6,7 +6,9 @@ slug: overview
 toc: true
 ---
 
-You can setup an integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}}. This integration also allows published [virtual topics](../../about/key-concepts/#virtual-topic) in {{site.data.reuse.eem_name}} to be packaged, governed, and socialized alongside any other APIs you might already be managing in {{site.data.reuse.apic_short}}. By combining {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}}, you can take advantage of [multi-form API Management](../apic-eem-concepts/#multi-form-api-management).
+You can setup an integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}}. This integration also allows published [virtual topics](../../about/key-concepts/#virtual-topic) in {{site.data.reuse.eem_name}} to be packaged, governed, and socialized alongside any other APIs you might already be managing in {{site.data.reuse.apic_short}}. By combining {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}}, you can take advantage of [multi-form API Management](../../api-and-event-management/apic-eem-concepts/#multi-form-api-management).
+
+For a comparison of the concepts in {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_short}}, see [Integration concepts and glossary](../../api-and-event-management/apic-eem-concepts).
 
 **Note:** This integration is supported with {{site.data.reuse.apic_short}} 10.0.6 and later 10.x.x releases:
 
@@ -16,6 +18,6 @@ You can setup an integration between {{site.data.reuse.eem_name}} and {{site.dat
 
 {{site.data.reuse.eem_name}} provides the capability to discover, describe and manage your [virtual topics](../../about/key-concepts/#virtual-topic) as an AsyncAPI which can then be [imported into {{site.data.reuse.apic_long}}](../generate-asyncapi). This can then be governed and socialized among other APIs.
 
-[Enforcement](../apic-eem-concepts/#enforcement) of socialized AsyncAPIs from {{site.data.reuse.eem_name}} is provided by the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway). Using the gateway director model, {{site.data.reuse.eem_name}} provides the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway) for use with {{site.data.reuse.apic_short}}. {{site.data.reuse.eem_name}} is integrated as an [{{site.data.reuse.egw}} Service in the {{site.data.reuse.apic_short}} Cloud Manager](../configure-eem-for-apic).
+[Enforcement](../../api-and-event-management/apic-eem-concepts/#enforced-api) of socialized AsyncAPIs from {{site.data.reuse.eem_name}} is provided by the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway). Using the gateway director model, {{site.data.reuse.eem_name}} provides the [{{site.data.reuse.egw}}](../../about/key-concepts/#event-gateway) for use with {{site.data.reuse.apic_short}}. {{site.data.reuse.eem_name}} is integrated as an [{{site.data.reuse.egw}} Service in the {{site.data.reuse.apic_short}} Cloud Manager](../configure-eem-for-apic).
 
-Application developers can discover socialized virtual topics and configure their applications to consume from or produce to the stream of events through the [Developer Portal](../apic-eem-concepts/#developer-portal).
+Application developers can discover socialized virtual topics and configure their applications to consume from or produce to the stream of events through the [Developer Portal](../../api-and-event-management/apic-eem-concepts/#developer-portal).

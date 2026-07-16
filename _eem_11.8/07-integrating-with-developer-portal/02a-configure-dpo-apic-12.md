@@ -8,7 +8,9 @@ toc: true
 
 The following sections provide instructions for configuring the integration of your {{site.data.reuse.eem_manager}} instance with [{{site.data.reuse.apic_long}} 12.1.1](https://www.ibm.com/docs/en/api-connect/software/12.1.1){:target="_blank"} or later.
 
-**Important:** You can configure an integration with either {{site.data.reuse.apic_short}} 10.x.x or {{site.data.reuse.apic_short}} 12.1.1 or later, but not both simultaneously.
+**Important:**
+- You can configure an integration with either {{site.data.reuse.apic_short}} 10.x.x or {{site.data.reuse.apic_short}} 12.1.1 or later, but not both simultaneously.
+- Each {{site.data.reuse.eem_name}} instance integrates with only one {{site.data.reuse.apic_short}} instance, and each {{site.data.reuse.apic_short}} instance integrates with only one {{site.data.reuse.eem_name}} instance.
 
 
 ## Before you begin

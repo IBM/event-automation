@@ -6,14 +6,14 @@ slug: generate-asyncapi
 toc: true
 ---
 
-You can generate an AsyncAPI document from your published [virtual topics](../apic-eem-concepts/#api) in {{site.data.reuse.eem_name}}, and then import this AsyncAPI into {{site.data.reuse.apic_long}}. After you imported the AsyncAPI document into {{site.data.reuse.apic_short}}, you can use the API Manager to socialize this event-driven API in the Developer Portal, enabling the management of events and APIs in one place.
+You can generate an AsyncAPI document from your published [virtual topics](../../api-and-event-management/apic-eem-concepts/#api) in {{site.data.reuse.eem_name}}, and then import this AsyncAPI into {{site.data.reuse.apic_long}}. After you imported the AsyncAPI document into {{site.data.reuse.apic_short}}, you can use the API Manager to socialize this event-driven API in the Developer Portal, enabling the management of events and APIs in one place.
 
 Before you begin, ensure that you [configure](../configure-eem-for-apic) your {{site.data.reuse.eem_manager}} as an {{site.data.reuse.egw}} Service.
 
 ## Generating an AsyncAPI document for use in {{site.data.reuse.apic_long}} 10.0.8 and later
 {: #generating-an-asyncapi-document-for-use-in-ibm-api-connect-1008-and-later}
 
-In {{site.data.reuse.apic_long}} 10.0.8 or later, you can generate and import a new AsyncAPI document from a configured {{site.data.reuse.eem_name}} instance into {{site.data.reuse.apic_short}} in a single step. Each AsyncAPI maps to a [published virtual topic](../apic-eem-concepts/#api) in {{site.data.reuse.eem_name}}.
+In {{site.data.reuse.apic_long}} 10.0.8 or later, you can generate and import a new AsyncAPI document from a configured {{site.data.reuse.eem_name}} instance into {{site.data.reuse.apic_short}} in a single step. Each AsyncAPI maps to a [published virtual topic](../../api-and-event-management/apic-eem-concepts/#api) in {{site.data.reuse.eem_name}}.
 
 ### Configure a Catalog in {{site.data.reuse.apic_short}}
 {: #configure-a-catalog-in-api-connect}
@@ -31,7 +31,7 @@ To import the AsyncAPI document into {{site.data.reuse.apic_long}}, complete the
 3. Select the AsyncAPI from your {{site.data.reuse.egw}} Service that you want to import, and click **Next**.
 4. The AsyncAPI definition is generated and created in {{site.data.reuse.apic_short}}. Click **Done** to complete the flow.
 
-**Note:** You cannot import AsyncAPI documents into {{site.data.reuse.apic_short}} from {{site.data.reuse.eem_name}} where the published virtual topic has an [approval control](../apic-eem-concepts/#policy) applied. 
+**Note:** You cannot import AsyncAPI documents into {{site.data.reuse.apic_short}} from {{site.data.reuse.eem_name}} where the published virtual topic has an [approval control](../../api-and-event-management/apic-eem-concepts/#policy) applied. 
 
 ### Publish the API and Product
 {: #publish-the-api-and-product}

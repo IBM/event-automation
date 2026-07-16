@@ -6,7 +6,7 @@ slug: integrating-eem
 toc: true
 ---
 
-[{{site.data.reuse.eem_name}}]({{ 'eem/about/overview/' | relative_url }}) provides the capability to describe and catalog your Kafka topics as event sources, and to share the details of the topics with application developers within the organization. Application developers can discover the event sources and configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream.
+[{{site.data.reuse.eem_name}}]({{ 'eem/about/overview/' | relative_url }}) provides the capability to describe and catalog your Kafka topics and to share them as virtual topics with application developers within the organization. Application developers can discover and subscribe to the virtual topics, and configure their applications to produce or consume from the stream of events, providing self-service access to the message content from the event stream.
 
 The following methods are available to integrate {{site.data.reuse.eem_name}} with {{site.data.reuse.es_name}}:
 

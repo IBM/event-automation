@@ -15,24 +15,22 @@ Find out more about the {{site.data.reuse.egw}} custom resource properties.
 
 | Field                 | Type                             | Description                                                                 |
 |-----------------------|----------------------------------|-----------------------------------------------------------------------------|
-| config                | string                           | N/A. Usage not advised.                                                     |
 | deployNetworkPolicies | boolean                          | Control the deployment of NetworkPolicies that are used by the instance. (default: true) |
 | endpoints             | [][endpoint](gwy-resource-endpoint) | **Deprecated:** List of endpoint configurations. Use `spec.listener.{0}.groups.{0}.endpoint instead.                                           |
-| fips                  | [fips](#gwy-resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.   |
+| fips                  | [fips](#gwy-resource-fips)           | Object containing Federal Information Processing Standard (FIPS) configuration.  <!-- _DEV COMMENT: Raise dev issue to make consistent with k8s deploy https://ibm-middleware.atlassian.net/browse/EVI-69812?focusedCommentId=5586162. https://ibm-middleware.atlassian.net/browse/EVI-70011_ -->|
 | gatewayGroupName      | string                           | The name of the gateway group to which this gateway is to be added.          |
 | gatewayID             | string                           | The identifier of the gateway group to which this gateway is to be added.          |
-| gatewayContact        | string                           | The contact information of the gateway administrator.                      |
+| gatewayContact        | string                           | The contact information of the gateway administrator.                    |
 | license               | [license](#gwy-resource-license)     | Object containing product licensing details.                                |
 | listeners             | [][listener](#gwy-resource-listener) | Configure event gateway listeners.           |
 | manager               | [manager](#gwy-resource-gateway-manager) | Configure Event Manager instance to register the gateway. |
 | managerEndpoint       | string                           |  **Deprecated:** The endpoint address for an {{site.data.reuse.eem_manager}} instance. Use `spec.manager.endpoint` instead.   |
 | maxNumKafkaBrokers    | integer                          |  **Deprecated:** The maximum number of Kafka brokers your Event Gateway can connect to. Default is 20. Use `spec.listener.{0}.groups.{0}.maxNumKafkaBrokers` instead. |
-| openTelemetry         | [openTelemetry](#gwy-resource-opentelemetry) | Configuration for OpenTelemetry                     |
+| openTelemetry         | [openTelemetry](#gwy-resource-opentelemetry) | Configuration for OpenTelemetry   |
 | replicas              | integer                          | The number of replicas for the gateway deployment            |
 | security              | [security](#gwy-resource-security)   | Object containing security configuration.                                        |
-| template              | [template](#gwy-resource-template)   | Object containing Kubernetes resource overrides.                            |
-| tls                   | [tls](#gwy-resource-tls)             |  **Deprecated:** Object containing TLS configuration. Use `spec.listener.{0}.tls` instead. |                                     |
-| traceSpec             | string                           | Dynamically configurable trace specification                      |
+| template              | [template](#gwy-resource-template)   | Object containing Kubernetes resource overrides.                        |                                  |
+| traceSpec             | string                           | Dynamically configurable trace specification.        |
 
 
 ### `spec.fips`
@@ -40,7 +38,7 @@ Find out more about the {{site.data.reuse.egw}} custom resource properties.
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. |
+| mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. <!-- _DRAFT COMMENT: Raise dev issue to make consistent with k8s deploy https://ibm-middleware.atlassian.net/browse/EVI-69812?focusedCommentId=5586162_ --> |
 
 
 ### `spec.license`
@@ -50,9 +48,9 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| accept | boolean | Setting to true will declare that you have accepted the license terms and conditions. (default: false) |
-| license | string | The license with which you are installing the product. |
-| metric | string | The license metric being used for your product license. |
+| accept | boolean | Setting to true declares that you accept the license terms and conditions. (default: false) |
+| license | string | The license to be used for this product instance. |
+| metric | string | The license metric used for your product license. |
 | use | string | The usage of the license with which you are installing the product. |
 
 ### `spec.template`
@@ -60,9 +58,9 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| annotations | object | Annotations that will be added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and subsequently deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
-| labels | object | Labels that will be added to all Kubernetes resources used by the instance. |
-| pod | [pod]gwy-resource-pod) | Object containing pod override configuration. |
+| annotations | object | Annotations that are added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and subsequently deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
+| labels | object | Labels that are added to all Kubernetes resources used by the instance. |
+| pod | [pod](#gwy-resource-pod) | Object containing pod override configuration. |
 
 
 #### `spec.template.pod`
@@ -78,9 +76,8 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | connection | [connection](#gwy-resource-connection) | Object containing connection options.  |
-| connection | [connection](#gwy-resource-connection) | Object containing connection options.  |
 | authentication| [authentication](#gwy-resource-authentication) | Object containing authentication options.  |
-| request | [request](#gwy-resource-request) | Object containing request options.  |
+| request | [request](#gwy-resource-request) | Object containing request options. |
 
 
 #### `spec.security.authentication`
@@ -100,9 +97,9 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| closeDelayMs | integer | The minimum delay in milliseconds after you close a connection. This helps prevent spam. Default is 8000. |
-| closeJitterMs | integer | Additional delay in milliseconds after you close a connection. This helps prevent attacks. Default is 4000.|
-| perSubLimit | integer | The maximum allowed TCP connections for each subscription. Default is -1 (no limit). |
+| closeDelayMs | integer | The minimum delay in milliseconds after you close a connection. This property can reduce spam. Default is 8000. |
+| closeJitterMs | integer | Additional delay in milliseconds after you close a connection. This property can prevent attacks. Default is 4000.|
+| perSubLimit | integer | The maximum allowed TCP connections for each subscription. Default is -1 (no limit).  |
 
 
 ##### `spec.security.connection.request`
@@ -112,26 +109,19 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | ----------- | ----------- | ----------- |
 | maxSizeBytes | integer | The maximum size allowed for the request payload in bytes. Default is -1 (no limit). |
 
-
 ### `spec.tls`
 {: #gwy-resource-tls}
+
+**Note:** The `spec.tls` property is deprecated. Configure TLS in `spec.listeners.tls`.
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | caCertificate | string | The key in the secret that holds the value of the CA certificate. |
-| caSecretName | string | The name of a secret containing a root CA certificate that the product should use when creating additional certificates. |
+| caSecretName | string | The name of a secret that contains the root CA certificate that the product uses when it creates additional certificates. |
 | key | string | The key in the secret that holds the value of the private key. |
 | secretName | string | The name of a secret containing certificates for securing component communications. |
 | serverCertificate | string | The key in the secret that holds the value of the server certificate. |
-| trustedCertificate | array[[trustedCertificate](#gwy-resource-trustedcertificate)] | A set of secrets containing certificates which the {{site.data.reuse.egw}} should trust when communicating with other services, such as gateways or OIDC providers. |
-
-#### `spec.tls.trustedCertificate`
-{: #gwy-resource-trustedcertificate}
-
-| Field | Type | Description |
-| ----------- | ----------- | ----------- |
-| certificate | string | The key within the specified secret that holds the value of the CA certificate. |
-| secretName | string | The name of a Kubernetes secret containing a CA certificate to add to the truststore. |
+| trustedCertificate | array[[trustedCertificate](#gwy-resource-trustedcertificate)] | A set of secrets that contain the certificates that the {{site.data.reuse.egw}} trusts when it communicates with other services, such as gateways or OIDC providers. |
 
 
 ### `spec.openTelemetry`
@@ -139,11 +129,11 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field            | Type    | Description |
 | ---------------- | --------| ----------- |
-| endpoint         | string  | The endpoint to send the OpenTelemetry metrics.  Must include protocol http:// or https:// |
+| endpoint         | string  | The endpoint to send the OpenTelemetry metrics. Must include protocol http:// or https:// |
 | protocol         | string  | The transport protocol to use, grpc (default) or http/protobuf. |
 | interval         | integer | The interval between reporting of metrics in milliseconds. Default is 30000. |
 | tls              | [otelTLS](#gwy-resource-opentelemetry-tls) | The configuration of SSL Certificates for mTLS and a trusted certificate for endpoint server validation. |
-| instrumentations | [][instrumentation](#gwy-resource-instrumentation) | A list of instrumentations to enable in addition to those for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}. |
+| instrumentations | [][instrumentation](#gwy-resource-instrumentation) | A list of instrumentations to enable, in addition to the instrumentations for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}. |
 | metricsEnablement | [][instrumentation](#gwy-resource-instrumentation) | Configure {{site.data.reuse.egw}} OpenTelemetry metrics enablement. |
 | tracesEnablement | [][instrumentation](#gwy-resource-instrumentation) | Configure {{site.data.reuse.egw}} OpenTelemetry trace enablement. |
 
@@ -155,7 +145,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | clientCertificate | string | The key in the secret that holds the value of the PKCS8 encoded client certificate to use for mutualTLS (mTLS). |
 | clientKey | string | The key in the secret that holds the value of the PKCS8 encoded private key certificate to use for mutualTLS (mTLS). |
 | secretName | string | The name of a secret containing certificates for securing component communications for mutualTLS (mTLS). |
-| trustedCertificate | [] | Configuration of a secret containing a TLS certificate to trust to validate the endpoint servers identity. |
+| trustedCertificate | [] | Configuration of a secret that contains a TLS certificate to trust to validate the endpoint server's identity. |
 
 
 #### `spec.openTelemetry.instrumentations`
@@ -167,7 +157,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | enabled      | boolean  | Whether to enable or disabled the specified instrumentation. |
 
 **Important:**
-- The instrumentation name should be the instrumentation shortname. The supplied shortname is then configured as an env var against the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>` automatically.
+- The name must be the instrumentation shortname. The supplied shortname is then automatically configured as an environment variable in the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>`.
 
 
 ### `spec.listeners`
@@ -188,7 +178,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field              | Type                                           | Description                                                                                                                |
 |--------------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| endpoint           | [listenerEndpoint](#gwy-resource-listenerendpoint) | Object containing endpoint configuration for the listener group.                                                           |
+| endpoint           | [listenerEndpoint](#gwy-resource-listenerendpoint) | Object containing endpoint configuration for the listener group. Set this property to configure ingress and custom hosts.                                                   |
 | maxNumKafkaBrokers | integer                                        | The maximum number of Kafka brokers your Event Gateway can connect to. Default is 20. (minimum: 1, maximum: 50)           |
 | name               | string                                         | Name of the group in the listener.                                                                                         |
 | type               | string                                         | Type of the group: 'EXPLICIT' or 'WILDCARD'. Default is 'EXPLICIT'.                                                       |
@@ -197,10 +187,9 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 ##### `spec.listeners.groups.endpoint`
 {: #gwy-resource-listenerendpoint}
 
-
 | Field       | Type              | Description                                    |
 |-------------|-------------------|------------------------------------------------|
-| annotations | map[string]string | Annotations for ingress resources.             |
+| annotations | map[string] | Annotations for ingress resources.             |
 | class       | string            | The ingress class name.                        |
 | host        | string            | The host to set on the endpoint resource.      |
 
@@ -212,7 +201,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | Field           | Type                             | Description                                                    |
 |-----------------|----------------------------------|----------------------------------------------------------------|
 | caCertificate   | string                           | The key in the secret that holds the value of the CA certificate. |
-| caSecret        | [caSecret](#gwy-resource-casecret)   | The details of the root CA certificate that the product should use when creating additional certificates. |
+| caSecret        | [caSecret](#gwy-resource-casecret)   | The details of the root CA certificate that the product uses when it creates additional certificates. |
 | certificateType | string                           | The type of certificate to generate: 'wildcard' for a single wildcard certificate (*.example.com), or 'explicit' for a single certificate with explicit hostnames as SANs. Defaults to 'explicit'. |
 | key             | string                           | The key in the secret that holds the value of the private key. |
 | secretName      | string                           | The name of a secret containing certificates for securing component communications. |
@@ -224,7 +213,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field      | Type   | Description                                                    |
 |------------|--------|----------------------------------------------------------------|
-| secretName  | string | The name of a secret containing a root CA certificate that the product should use when creating additional certificates. |
+| secretName  | string | The name of a secret that contains a root CA certificate that the product uses when it creates additional certificates. |
 
 
 ### `spec.manager`
@@ -235,7 +224,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 |--------------------|------------------------------------------------|----------------------------------------------------------------|
 | apiKey             | [managerApiKey](#gwy-resource-managerapikey)       | Manager API key                                               |
 | endpoint           | string                                         | Manager endpoint                                              |
-| trustedCertificate | [trustedCertificate](#gwy-resource-trustedcertificate) | Trustore for communicating with the manager.             |
+| trustedCertificate | [trustedCertificate](#gwy-resource-trustedcertificate) | Manager endpoint certificate.         |
 
 ### `spec.manager.apiKey`
 {: #gwy-resource-managerapikey}
@@ -254,10 +243,10 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| conditions | array[[condition](#gwy-status-resource-conditions)] | A list of conditions representing the state of the custom resource. |
+| conditions | array[[condition](#gwy-status-resource-conditions)] | A list of conditions that represent the state of the custom resource. |
 | versions | [versions](#gwy-status-resource-versions) | Object containing versioning information. |
 | endpoints | array[[endpoint](#gwy-status-resource-endpoint)] | A list of endpoints exposed by the instance. |
-| phase | string | A value representing the phase in which the instance is operating. One of `Running`, `Failed` or `Pending`. |
+| phase | string | A value that represents the phase in which the instance is operating. One of `Running`, `Failed`, or `Pending`. |
 
 
 ### `status.versions`
@@ -300,9 +289,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | name | string | The semantic version number. |
 | displayName | string | Optional display name for the license. |
 | link | string | Link to the license content. |
-| matchesCurrentType | boolean | True if the license matches the type of license used by the current operand. |
-| licenseUseList | array[string] | A list of available license uses. |
-| availableMetrics | array[string] | A list of available licenses metrics. |
+| matchesCurrentType | boolean | True if the license matches the type of license that is used by the current operand. |
 
 
 ### `status.conditions`
@@ -310,10 +297,10 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| lastTransitionTime | string | The time at which the condition was applied. |
-| message | string | Human-readable message indicating details about the condition. |
-| reason | string | Machine-readable, UpperCamelCase text indicating the reason for the condition. |
-| status | string | Indicates whether that condition is applicable. One of `True`, `False` or `Unknown`. |
+| lastTransitionTime | string | The time when the condition was applied. |
+| message | string | Human-readable message that provides details about the condition.  |
+| reason | string | Machine-readable, UpperCamelCase text that indicates the reason for the condition. |
+| status | string | Indicates whether that condition is applicable. One of `True`, `False`, or `Unknown`. |
 
 
 ### `status.endpoints`
@@ -322,6 +309,6 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | name | string | Unique name for the endpoint. |
-| type | string | Type of service the endpoint is exposing. For example `UI` or `API`. |
+| type | string | Type of service the endpoint exposes. For example, `UI` or `API`. |
 | uri | string | The URI of the endpoint. |
 

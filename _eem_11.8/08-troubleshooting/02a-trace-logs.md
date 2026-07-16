@@ -103,6 +103,8 @@ data:
     trace.spec=<value>
 ```
 
+Do not surround `<value>` with quotes.
+
 For more information about updating the gateway ConfigMap, refer to the [gateway properties reference](../../reference/gateway-properties).
 
 A pod restart is not required when you update `trace.spec` in the ConfigMap.

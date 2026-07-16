@@ -6,7 +6,7 @@ slug: apic-eem-scenario
 toc: true
 ---
 
-The following is an example of combining {{site.data.reuse.apic_long}} and {{site.data.reuse.eem_name}} to achieve [multi-form API management](../apic-eem-concepts/#multi-form-api-management) for a stock management system. It focuses on a fictitious clothing firm, Loosehanger, and challenges they are experiencing with their stock procurement processes responding to customer demand.
+The following is an example of combining {{site.data.reuse.apic_long}} and {{site.data.reuse.eem_name}} to achieve [multi-form API management](../../api-and-event-management/apic-eem-concepts/#multi-form-api-management) for a stock management system. It focuses on a fictitious clothing firm, Loosehanger, and challenges they are experiencing with their stock procurement processes responding to customer demand.
 
 ## Background
 {: #background}
@@ -18,13 +18,13 @@ Loosehanger already have implemented {{site.data.reuse.apic_long}} to govern and
 ### Personas
 {: #personas}
 
-**Andre** works in the Loosehanger supply chain management team, and owns a stock procurement application to request the manufacturing of new stock. So far he has made use of [APIs](../apic-eem-concepts/#api) through the Loosehanger API [Developer Portal](../apic-eem-concepts/#developer-portal), and has been working with **Kevin** on some of the APIs he has been providing to the Developer Portal in his application.
+**Andre** works in the Loosehanger supply chain management team, and owns a stock procurement application to request the manufacturing of new stock. So far he has made use of [APIs](../../api-and-event-management/apic-eem-concepts/#api) through the Loosehanger API [Developer Portal](../../api-and-event-management/apic-eem-concepts/#developer-portal), and has been working with **Kevin** on some of the APIs he has been providing to the Developer Portal in his application.
 
 **Kevin** works in the Loosehanger IT team, and he provides services to access a range of data within the Loosehanger organization, including current stock and order information. He works with **Steve** to manage the exposure of these services as APIs so they meet organizational governance requirements.
 
 **Steve** is responsible for API implementation and management within Loosehanger. He sets guidelines for API governance and packaging, while also working with **Will** to make sure any required infrastructure is set up and available.
 
-**Will** is also a member of Loosehanger's IT team, and maintains {{site.data.reuse.apic_short}} by using the [Cloud Manager](../apic-eem-concepts/#cloud-manager). He also has deployed an instance of {{site.data.reuse.eem_name}} for use with the Loosehanger business.
+**Will** is also a member of Loosehanger's IT team, and maintains {{site.data.reuse.apic_short}} by using the [Cloud Manager](../../api-and-event-management/apic-eem-concepts/#cloud-manager). He also has deployed an instance of {{site.data.reuse.eem_name}} for use with the Loosehanger business.
 
 ## The Problem
 {: #the-problem}
@@ -69,7 +69,7 @@ Having worked through these steps, **Kevin** is happy that his order topic can b
 
 **Steve**, having understood the business need **Andre** and **Kevin** want to provide, asks **Will** if he can integrate the company's {{site.data.reuse.eem_name}} instance with {{site.data.reuse.apic_short}}. **Will** follows the [integration steps](../configure-eem-for-apic) described.
 
-Having set up the integration, and having added the registered {{site.data.reuse.egw}} Service to the required [Provider Organizations](../apic-eem-concepts/#provider-organization), he lets **Steve** and **Kevin** know that he can now add AsyncAPIs of Kafka topics to the Developer Portal.
+Having set up the integration, and having added the registered {{site.data.reuse.egw}} Service to the required [Provider Organizations](../../api-and-event-management/apic-eem-concepts/#provider-organization), he lets **Steve** and **Kevin** know that he can now add AsyncAPIs of Kafka topics to the Developer Portal.
 
 ### Importing, packaging, and socializing an AsyncAPI
 {: #importing-packaging-and-socializing-an-asyncapi}
@@ -77,8 +77,8 @@ Having set up the integration, and having added the registered {{site.data.reuse
 **Kevin** works with **Steve** to mature and standardize his Kafka topic as an API:
 
 - **Kevin** works with **Steve** to understand additional organization governance requirements. He makes any required updates to his topic in {{site.data.reuse.eem_name}} to match conventions and to set up any additional required [event data](../../describe/event-data-controls) and [security](../../describe/security-controls) controls to manage client behavior.
-- **Kevin** [imports his topic from {{site.data.reuse.eem_name}} as an AsyncAPI document](../generate-asyncapi) into the [API Manager](../apic-eem-concepts/#api-manager).
-- **Kevin** works with **Steve** to add his API to the appropriate [Product](../apic-eem-concepts/#product). In this case, a new Product called "Real-time orders" is created. It contains **Kevin**'s topic, described as an API.
+- **Kevin** [imports his topic from {{site.data.reuse.eem_name}} as an AsyncAPI document](../generate-asyncapi) into the [API Manager](../../api-and-event-management/apic-eem-concepts/#api-manager).
+- **Kevin** works with **Steve** to add his API to the appropriate [Product](../../api-and-event-management/apic-eem-concepts/#product). In this case, a new Product called "Real-time orders" is created. It contains **Kevin**'s topic, described as an API.
 - **Steve** reviews the API and Product. Satisfied that Loosehanger's governance needs have been met, he publishes the Product to the Developer Portal.
 
 **Kevin**'s Kafka topic, described and enforced by {{site.data.reuse.eem_name}}, is now visible in the {{site.data.reuse.apic_short}} Developer Portal, and can be managed from the API Manager by **Steve**.
@@ -103,4 +103,4 @@ If the aggregation detects that orders will exhaust current stock levels at the 
 
 In this example, Andre, Kevin, Steve, and Will combined to solve a business challenge Loosehanger were facing by combining different styles of technology, APIs, and data. {{site.data.reuse.eem_name}} provides the features that make events easy to discover, and turned into enforceable APIs, which can then be integrated with {{site.data.reuse.apic_long}} to provide unified management, governance, and socialization. 
 
-This [multi-form API management](../apic-eem-concepts/#multi-form-api-management) approach enables multiple styles of API to be used to solve new business challenges without sacrificing the security, management, or governance needs of the business.
+This [multi-form API management](../../api-and-event-management/apic-eem-concepts/#multi-form-api-management) approach enables multiple styles of API to be used to solve new business challenges without sacrificing the security, management, or governance needs of the business.

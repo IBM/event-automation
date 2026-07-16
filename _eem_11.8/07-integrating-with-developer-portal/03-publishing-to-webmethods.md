@@ -105,4 +105,6 @@ To unpublish a virtual topic from {{site.data.reuse.wm_portal_short}}:
 
 The virtual topic is removed from the selected destinations and is no longer available for new subscriptions. Existing subscriptions remain active until they are revoked or expire.
 
+To use virtual topics that are published to {{site.data.reuse.wm_portal_short}} in Kafka client applications, see [Using virtual topics](../overview#using-virtual-topics).
+
 For troubleshooting information related to publishing virtual topics to {{site.data.reuse.wm_portal_short}}, see the [troubleshooting section](../../troubleshooting/intro).

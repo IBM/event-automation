@@ -102,7 +102,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
+| spec | [podSpec](https://v1-35.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
 ### Resource: `tls`
 {: #resource-tls}

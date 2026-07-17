@@ -22,17 +22,26 @@ The steps in this getting started tutorial should take you about 10 minutes to c
 
 This getting started scenario assumes that there is an order details available through a Kafka topic, and the topic is discoverable in [{{site.data.reuse.eem_name}}]({{ '/eem/describe/adding-topics' | relative_url }}). For example, in this scenario, the clothing company have a topic in their {{site.data.reuse.eem_name}} catalog called `ORDERS.NEW`. This topic emits events for every new order that is made.
 
+
+
 ## Step 1: Create a flow
 {: #Create}
 
-1. On the {{site.data.reuse.ep_name}} home page, click **Create**.
+Follow the steps in {{site.data.reuse.ep_name}} 1.5.4 and later to create a flow:
+
+1. On the {{site.data.reuse.ep_name}} home page, click **Get started > Create a flow**.
+1. Provide a name, and optionally the author information and description for your flow.
+1. Click **Create**.
+
+For versions earlier than 1.5.4:
+
+1. On the {{site.data.reuse.ep_name}} home page, go to the **Flows** section and click **Create flow**.
 1. Provide a name and optionally a description for your flow.
-1. Click **Create**. The canvas is displayed with an event source node on it.
+1. Click **Create**.
 
+The canvas is displayed with an event source node on it.
 
-   **Note:** When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
-
-1. To configure an event source, hover over the source node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed. 
+**Note:** When you create a flow, an event source node is automatically added to your canvas. A purple checkbox ![unconfigured_node icon]({{ 'images' | relative_url }}/unconfigured_node.svg "Diagram showing the unconfigured node icon."){: height="30px" width="15px"} is displayed on the event source node indicating that the node is yet to be configured.
 
 The clothing company created a flow called `Filter` and provided a description to explain that this flow will be used to identify orders made in a specific region.
 
@@ -76,7 +85,8 @@ You can also show or hide your comments by using the **Show comment** ![Show com
 ## Step 2: Configure an event source
 {: #configure-event}
 
-1. You need to provide the source of events that you want to process. To do this, start by adding an event source, select **Add new event source** > **Next**.
+1. You need to provide the source of events that you want to process. To do this, hover over the source node, and click ![Edit icon]({{ 'images' | relative_url }}/rename.svg "The edit icon."){:height="30px" width="15px"} **Edit**. The **Configure event source** window is displayed.
+
 1. In the **Cluster connection** pane, provide the server address of the Kafka cluster that you want to connect to. You can get the server address for the event source from your cluster administrator.
 
     **Note:** To add more addresses, click **Add bootstrap server +** and enter the server address.
@@ -137,15 +147,20 @@ The clothing company called their filter `EMEA orders` and defined a filter that
 1. The last step is to run your {{site.data.reuse.ep_name}} flow and view the results.
 2. In the navigation banner, complete one of the following steps:
 
-   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow includes any event sources, expand **Run flow** and select one of the following options:
+     - **Events from now**: Start processing events from the latest offset in the Kafka topic.
+     - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**: Start processing events from a time offset, for example, 5 minutes ago or 1 day ago.
+     - **Include historical**: Start processing events from the earliest offset in the Kafka topic.
    - If your flow uses SQL sources only, click **Run flow** to start the flow.
 
-**Note**: The options to run your flow either **Events from now** or **Include historical** are shown only when the flow includes event sources. These options are not shown when all sources are SQL, because the start position is defined in the SQL query itself. If your flow includes only SQL sources (that is, no event source nodes), a single **Run flow** button is displayed instead.
+**Note**: The options to run your flow are shown only when the flow includes event source nodes. If the flow includes only SQL source nodes, the start position is defined in the SQL query, and a single **Run flow** button is shown.
 
 A live view of results from your running flow automatically opens. The results view is showing the output from your flow - the result of processing any events that have been produced to your chosen {{site.data.reuse.eem_name}} topic.
 
 
-**Tip**: **Include historical** is useful while you are developing your flows because you don't need to wait for new events to be produced to the topic. You can use all the events already on the Kafka topic to check that your flow is working the way that you want.
+**Tips**:
+- **Include historical** is useful while you are developing your flows because you do not need to wait for new events to be produced to the topic. You can use existing events in the Kafka topic to verify that your flow works as expected.
+- ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset** starts processing events from a relative point in time. Specify how far back from the current time to start processing events (for example, 10 minutes, 1 hour, or 1 day). The flow positions the Kafka consumer at the appropriate offset and filters events by timestamp so that only events from the specified time onward are processed.
 
 In the navigation banner, click **Stop flow** to stop the flow when you finish reviewing the results.
 
@@ -179,33 +194,39 @@ The following customization features are available for the **Output events** tab
   
   **Note:**
   - The customization impacts only the output events table in the {{site.data.reuse.ep_name}} UI. It has no effect on the output events exported in **CSV** format, nor on Kafka output topics.
-  - The customization persists while the flow is running, and is cleared when reloading the page in the browser or stopping the flow. 
+  - The customization persists while the flow is running, and is cleared when reloading the page in the browser or stopping the flow.
+
+
+## Managing flows
+{: #managing-flows}
+
+![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") The {{site.data.reuse.ep_name}} home page displays a **Flow overview** section that summarizes all flows and their [current statuses](#flow-statuses). You can filter flows by running time and status (such as **Drafts**, **Not started**, **Running**, **Warning**, or **Failed**) by clicking the **Filter** icon ![Filter icon]({{ 'images' | relative_url }}/filter.svg "Filter icon"){:height="30px" width="15px"} in the toolbar. Expand any flow to view detailed metrics including **Running time**, **Restart count**, **Max consumer lag**, **Last checkpoint duration**, and **Checkpoints**. For more information, see [monitoring flow metrics](../../administering/flow-metrics/).
 
 ## Flow statuses
 {: #flow-statuses}
 
 A flow status indicates the current state of the flow and its underlying Flink job. To view the status of a flow, navigate to the **Flows** section on the home page of the {{site.data.reuse.ep_name}} UI. Each flow tile displays the current status of the flow.
 
-- Authoring: the authoring flow states appear only on the tiles of the home page. The following states indicate the validation status of the flow:
+- Authoring: the authoring flow statuses appear only on the tiles of the home page. The following statuses indicate the validation status of the flow:
 
   - **Draft flow:** Indicates that the flow includes one or more nodes that need to be configured. The flow cannot be run.
   - **Valid flow:** Indicates that all nodes in the flow are configured and valid. The flow is ready to run.
   - **Invalid flow:** Indicates that the nodes in the flow are configured but have a validation error, or a required node is missing. The flow cannot be run.
 
-- Execution: the execution flow states are visible on the tiles of the home page and in the live view of results. The following flow states represent the different stages of execution:
+- Execution: the execution flow statuses are visible on the tiles of the home page and in the live view of results. The following flow statuses represent the different stages of execution:
 
   - **Submitting flow:** The flow is being submitted to a JobManager.
   - **Deploying flow:** The JobManager is creating and initializing a Flink job on a Task Manager to execute the flow.
   - **Flow running:** The Flink job is executing the flow.
   - **Restarting flow:** The Flink job has encountered an error and is attempting to restart automatically.
   - **Stopping flow:** The Flink job is stopping.
-  - **Flow stopped:** The Flink job is stopped. 
+  - **Flow stopped:** The Flink job is stopped.
   - **Flow failed:** The Flink job is stopped. An error was encountered during its execution.
   - **Flow finished:** The Flink job has finished processing all the events of its bounded event sources.
   - **JobManager unavailable:** The JobManager that was executing a Flink job is restarting or not present.
   - **Job missing:** The JobManager on which a Flink job was running has restarted in non high-availability mode. As a result, the Flink job cannot be recovered.
 
-  **Tip:**  You can click the icon next to **Flow invalid** and **Flow failed** states to find more information about the error.
+  **Tip:**  You can click the icon next to **Flow invalid** and **Flow failed** statuses to find more information about the error.
 
 
 ![Flow tiles displaying various statuses]({{ 'images' | relative_url }}/flowcard-fine-grain-status.png "Image of flow tiles displaying various fine grain statuses")

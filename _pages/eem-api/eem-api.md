@@ -108,6 +108,7 @@ html.theme-dark .dropdown-content a:hover {
   </svg>
 </button>
   <div id="myDropdown" class="dropdown-content">
+    <a href="../eem-api-118/">11.8.x</a>
     <a href="../eem-api-117/">11.7.x</a>
     <a href="../eem-api-116/">11.6.x</a>
     <a href="../eem-api-115/">11.5.x</a>

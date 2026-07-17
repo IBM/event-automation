@@ -10,7 +10,7 @@ toc: true
 
 Find out what is new in {{site.data.reuse.eem_name}} version 11.7.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.7.4
 {: #release-1174}
 
 ### Security and bug fixes

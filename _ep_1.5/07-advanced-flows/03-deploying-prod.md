@@ -13,7 +13,6 @@ Find out how to deploy your flows in an [application mode](https://nightlies.apa
 * You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user-experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
 * You cannot deploy jobs by using the Apache SQL Runner sample for flows that contain the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate).
-
 * This deployment cannot be used with the {{site.data.reuse.ep_name}} UI.
 
 * Automatic upgrade is not supported if the `FlinkDeployment` custom resource uses an extension of the IBM Flink image. In such cases, the extension of the image must be rebuilt to use the upgraded IBM Flink image.
@@ -92,7 +91,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    -o jsonpath='{.items[0].spec.template.spec.containers[?(@.name=="flink-kubernetes-operator")].env[?(@.name=="IBM_FLINK_IMAGE")].value}'  
    ```
 
-   If you are running Flink 1.20.3 with {{site.data.reuse.ep_name}} 1.5.0, run the following command to extract the Flink image:
+   If you are running Flink 1.20 with {{site.data.reuse.ep_name}} 1.5.0 and later, run the following command to extract the Flink image:
 
    ```shell
    kubectl get deployment \
@@ -130,7 +129,7 @@ Some adaptations to this procedure are required to build the Docker image and us
    RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
    ```
 
-   g. [Build the image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+   g. [Build the image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 2. Create the {{site.data.reuse.ibm_flink_operator}} `FlinkDeployment` custom resource.
 
@@ -273,7 +272,7 @@ Some adaptations to this procedure are required to build the Docker image and us
       -o jsonpath='{.items[0].spec.template.spec.containers[?(@.name=="flink-kubernetes-operator")].env[?(@.name=="IBM_FLINK_VERSION")].value}'
       ```
 
-      If you are using Flink 1.20.3, run the following command to obtain the correct version:
+      If you are using Flink 1.20, run the following command to obtain the correct version:
 
       ```shell
       kubectl get deployment \

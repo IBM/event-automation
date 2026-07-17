@@ -6,7 +6,7 @@ slug: metrics-reference
 toc: true
 ---
 
-Find out more abut the OpenTelemetry metrics emitted by the {{site.data.reuse.eem_name}} components: the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}}.
+Find out more about the OpenTelemetry metrics emitted by the {{site.data.reuse.eem_name}} components: the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}}.
 
 ## `{{site.data.reuse.eem_manager}}`
 {: #manager}
@@ -54,3 +54,4 @@ Find out more abut the OpenTelemetry metrics emitted by the {{site.data.reuse.ee
 | producers_bytes | LongCounter | Number of bytes that clients produce through the {{site.data.reuse.egw}}. |
 | producers_msgs | LongCounter | Number of messages that clients produce through the {{site.data.reuse.egw}}. |
 | quota_delay | LongUpDownCounter | Available if the [quota enforcement control](../../about/key-concepts/#controls) is enabled. It provides the delays that are applied to ensure that quota limitations are maintained per client by using metadata attributes. |
+

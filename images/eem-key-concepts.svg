@@ -1,0 +1,283 @@
+<svg width="1660" height="848" viewBox="0 0 1660 848" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1660" height="848" fill="white"/>
+<rect x="100.5" y="80.5" width="277" height="245" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="100.5" y="80.5" width="277" height="245" stroke="#A56EFF"/>
+<rect x="101" y="81" width="276" height="244" fill="white"/>
+<rect x="101" y="81" width="276" height="244" fill="#F6F2FF"/>
+<g clip-path="url(#clip0_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="156" y="109.25">Kafka cluster</tspan></text>
+<rect width="24" height="24" transform="translate(116 92)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M131.75 113C132.578 113 133.25 112.328 133.25 111.5C133.25 110.672 132.578 110 131.75 110C130.922 110 130.25 110.672 130.25 111.5C130.25 112.328 130.922 113 131.75 113Z" fill="#161616"/>
+<path d="M131.75 98C132.578 98 133.25 97.3284 133.25 96.5C133.25 95.6716 132.578 95 131.75 95C130.922 95 130.25 95.6716 130.25 96.5C130.25 97.3284 130.922 98 131.75 98Z" fill="#161616"/>
+<path d="M119 105.5C119.828 105.5 120.5 104.828 120.5 104C120.5 103.172 119.828 102.5 119 102.5C118.172 102.5 117.5 103.172 117.5 104C117.5 104.828 118.172 105.5 119 105.5Z" fill="#161616"/>
+<path d="M137 101C136.337 101.002 135.693 101.224 135.169 101.631C134.646 102.038 134.272 102.608 134.107 103.25H130.893C130.787 102.827 130.589 102.433 130.314 102.095C130.038 101.757 129.691 101.483 129.298 101.294C128.905 101.105 128.476 101.005 128.04 101C127.603 100.996 127.172 101.087 126.775 101.268L124.392 98.2904C124.784 97.7756 124.998 97.147 125 96.5C125 95.9067 124.824 95.3266 124.494 94.8333C124.165 94.3399 123.696 93.9554 123.148 93.7284C122.6 93.5013 121.997 93.4419 121.415 93.5576C120.833 93.6734 120.298 93.9591 119.879 94.3787C119.459 94.7982 119.173 95.3328 119.058 95.9147C118.942 96.4967 119.001 97.0999 119.228 97.6481C119.455 98.1962 119.84 98.6648 120.333 98.9944C120.827 99.3241 121.407 99.5 122 99.5C122.423 99.4989 122.841 99.4075 123.225 99.232L125.607 102.209C125.214 102.723 125 103.353 125 104C125 104.647 125.214 105.276 125.607 105.79L123.226 108.768C122.841 108.592 122.423 108.501 122 108.5C121.407 108.5 120.827 108.676 120.333 109.006C119.84 109.335 119.455 109.804 119.228 110.352C119.001 110.9 118.942 111.503 119.058 112.085C119.173 112.667 119.459 113.202 119.879 113.621C120.298 114.041 120.833 114.327 121.415 114.442C121.997 114.558 122.6 114.499 123.148 114.272C123.696 114.045 124.165 113.66 124.494 113.167C124.824 112.673 125 112.093 125 111.5C124.998 110.853 124.785 110.224 124.392 109.71L126.774 106.732C127.171 106.913 127.603 107.005 128.039 107C128.475 106.996 128.905 106.895 129.298 106.706C129.691 106.517 130.038 106.244 130.314 105.906C130.589 105.568 130.787 105.173 130.893 104.75H134.107C134.248 105.292 134.538 105.784 134.945 106.169C135.351 106.554 135.858 106.818 136.406 106.93C136.955 107.042 137.524 106.997 138.049 106.802C138.574 106.607 139.034 106.268 139.376 105.825C139.718 105.381 139.929 104.851 139.985 104.293C140.041 103.736 139.939 103.174 139.692 102.672C139.444 102.169 139.061 101.746 138.585 101.451C138.109 101.155 137.56 100.999 137 101ZM120.5 96.5C120.5 96.2033 120.588 95.9133 120.753 95.6666C120.918 95.42 121.152 95.2277 121.426 95.1142C121.7 95.0007 122.002 94.9709 122.293 95.0288C122.584 95.0867 122.851 95.2296 123.061 95.4393C123.27 95.6491 123.413 95.9164 123.471 96.2074C123.529 96.4983 123.499 96.7999 123.386 97.074C123.272 97.3481 123.08 97.5824 122.833 97.7472C122.587 97.912 122.297 98 122 98C121.602 97.9995 121.221 97.8414 120.94 97.5602C120.659 97.279 120.5 96.8977 120.5 96.5ZM122 113C121.703 113 121.413 112.912 121.167 112.747C120.92 112.582 120.728 112.348 120.614 112.074C120.501 111.8 120.471 111.498 120.529 111.207C120.587 110.916 120.73 110.649 120.939 110.439C121.149 110.23 121.416 110.087 121.707 110.029C121.998 109.971 122.3 110.001 122.574 110.114C122.848 110.228 123.082 110.42 123.247 110.667C123.412 110.913 123.5 111.203 123.5 111.5C123.5 111.898 123.341 112.279 123.06 112.56C122.779 112.841 122.398 113 122 113ZM128 105.5C127.703 105.5 127.413 105.412 127.167 105.247C126.92 105.082 126.728 104.848 126.614 104.574C126.501 104.3 126.471 103.998 126.529 103.707C126.587 103.416 126.73 103.149 126.939 102.939C127.149 102.73 127.416 102.587 127.707 102.529C127.998 102.471 128.3 102.501 128.574 102.614C128.848 102.728 129.082 102.92 129.247 103.167C129.412 103.413 129.5 103.703 129.5 104C129.5 104.398 129.341 104.779 129.06 105.06C128.779 105.341 128.398 105.5 128 105.5ZM137 105.5C136.703 105.5 136.413 105.412 136.167 105.247C135.92 105.082 135.728 104.848 135.614 104.574C135.501 104.3 135.471 103.998 135.529 103.707C135.587 103.416 135.73 103.149 135.939 102.939C136.149 102.73 136.416 102.587 136.707 102.529C136.998 102.471 137.3 102.501 137.574 102.614C137.848 102.728 138.082 102.92 138.247 103.167C138.412 103.413 138.5 103.703 138.5 104C138.5 104.398 138.341 104.779 138.06 105.06C137.779 105.341 137.398 105.5 137 105.5Z" fill="#161616"/>
+<line x1="102" y1="80" x2="102" y2="128" stroke="#A56EFF" stroke-width="4"/>
+</g>
+<rect x="164.5" y="168.5" width="149" height="93" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="164.5" y="168.5" width="149" height="93" stroke="black"/>
+<rect x="165" y="169" width="148" height="92" fill="white"/>
+<rect width="158" height="102" transform="translate(164 160)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M322 160H164V262H322V160Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M168 164.5H317.5V258" stroke="black"/>
+<path d="M172 160.5H321.5V254" stroke="black"/>
+<g clip-path="url(#clip1_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="180" y="197.25">Topic</tspan></text>
+<line x1="166" y1="168" x2="166" y2="216" stroke="black" stroke-width="4"/>
+</g>
+<rect x="658.5" y="80.5" width="901" height="687" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="658.5" y="80.5" width="901" height="687" stroke="#0F62FE"/>
+<rect x="659" y="81" width="900" height="686" fill="white"/>
+<rect x="659" y="81" width="900" height="686" fill="#EDF5FF"/>
+<g clip-path="url(#clip2_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="714" y="109.25">Event Endpoint Management</tspan></text>
+<g clip-path="url(#clip3_1_8593)">
+<rect width="24" height="24" transform="translate(674 92)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M695.75 115.25C696.578 115.25 697.25 114.578 697.25 113.75C697.25 112.922 696.578 112.25 695.75 112.25C694.922 112.25 694.25 112.922 694.25 113.75C694.25 114.578 694.922 115.25 695.75 115.25Z" fill="#161616"/>
+<path d="M692.75 114.5H686.75C685.923 114.5 685.25 113.827 685.25 113V110H686.75V113H692.75V114.5Z" fill="#161616"/>
+<path d="M696.5 110.75H695V104.75H691.25V103.25H695C695.827 103.25 696.5 103.923 696.5 104.75V110.75Z" fill="#161616"/>
+<path d="M689.311 102.939L687.061 100.689C686.778 100.406 686.401 100.25 686 100.25C685.599 100.25 685.223 100.406 684.939 100.689L682.689 102.939C682.397 103.232 682.25 103.616 682.25 104C682.25 104.384 682.397 104.768 682.689 105.061L684.939 107.311C685.223 107.594 685.599 107.75 686 107.75C686.401 107.75 686.777 107.594 687.061 107.311L689.311 105.061C689.603 104.768 689.75 104.384 689.75 104C689.75 103.616 689.603 103.232 689.311 102.939ZM686 106.25L683.75 104L686 101.75L688.25 104L686 106.25Z" fill="#161616"/>
+<path d="M680.75 104.75H677C676.173 104.75 675.5 104.077 675.5 103.25V97.25H677V103.25H680.75V104.75Z" fill="#161616"/>
+<path d="M686.75 98H685.25V95H679.25V93.5H685.25C686.077 93.5 686.75 94.1729 686.75 95V98Z" fill="#161616"/>
+<path d="M676.25 95.75C677.078 95.75 677.75 95.0784 677.75 94.25C677.75 93.4216 677.078 92.75 676.25 92.75C675.422 92.75 674.75 93.4216 674.75 94.25C674.75 95.0784 675.422 95.75 676.25 95.75Z" fill="#161616"/>
+</g>
+<line x1="660" y1="80" x2="660" y2="128" stroke="#0F62FE" stroke-width="4"/>
+</g>
+<rect width="294" height="560" transform="translate(722 144)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="722" y="144" width="294" height="560" fill="white"/>
+<rect x="722" y="144" width="294" height="560" fill="#F6F2FF"/>
+<g clip-path="url(#clip4_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="738" y="173.25">Author view</tspan></text>
+<line x1="724" y1="144" x2="724" y2="192" stroke="#A56EFF" stroke-width="4"/>
+</g>
+<path d="M727.959 144V144.5H731.933V144H735.905V144.5H739.878V144H743.852V144.5H747.824V144H751.797V144.5H755.771V144H759.743V144.5H763.716V144H767.689V144.5H771.662V144H775.635V144.5H779.608V144H783.581V144.5H787.554V144H791.527V144.5H795.5V144H799.473V144.5H803.446V144H807.419V144.5H811.392V144H815.365V144.5H819.338V144H823.311V144.5H827.283V144H831.257V144.5H835.229V144H839.202V144.5H843.176V144H847.148V144.5H851.121V144H855.095V144.5H859.067V144H863.04V144.5H867.014V144H870.986V144.5H874.959V144H878.933V144.5H882.905V144H886.878V144.5H890.852V144H894.824V144.5H898.797V144H902.771V144.5H906.743V144H910.716V144.5H914.689V144H918.662V144.5H922.635V144H926.608V144.5H930.581V144H934.554V144.5H938.527V144H942.5V144.5H946.473V144H950.446V144.5H954.419V144H958.392V144.5H962.365V144H966.338V144.5H970.311V144H974.284V144.5H978.257V144H982.229V144.5H986.203V144H990.176V144.5H994.148V144H998.122V144.5H1002.09V144H1006.07V144.5H1010.04V144H1014.01V144.5H1015.5V146H1016V150H1015.5V154H1016V158H1015.5V162H1016V166H1015.5V170H1016V174H1015.5V178H1016V182H1015.5V186H1016V190H1015.5V194H1016V198H1015.5V202H1016V206H1015.5V210H1016V214H1015.5V218H1016V222H1015.5V226H1016V230H1015.5V234H1016V238H1015.5V242H1016V246H1015.5V250H1016V254H1015.5V258H1016V262H1015.5V266H1016V270H1015.5V274H1016V278H1015.5V282H1016V286H1015.5V290H1016V294H1015.5V298H1016V302H1015.5V306H1016V310H1015.5V314H1016V318H1015.5V322H1016V326H1015.5V330H1016V334H1015.5V338H1016V342H1015.5V346H1016V350H1015.5V354H1016V358H1015.5V362H1016V366H1015.5V370H1016V374H1015.5V378H1016V382H1015.5V386H1016V390H1015.5V394H1016V398H1015.5V402H1016V406H1015.5V410H1016V414H1015.5V418H1016V422H1015.5V426H1016V430H1015.5V434H1016V438H1015.5V442H1016V446H1015.5V450H1016V454H1015.5V458H1016V462H1015.5V466H1016V470H1015.5V474H1016V478H1015.5V482H1016V486H1015.5V490H1016V494H1015.5V498H1016V502H1015.5V506H1016V510H1015.5V514H1016V518H1015.5V522H1016V526H1015.5V530H1016V534H1015.5V538H1016V542H1015.5V546H1016V550H1015.5V554H1016V558H1015.5V562H1016V566H1015.5V570H1016V574H1015.5V578H1016V582H1015.5V586H1016V590H1015.5V594H1016V598H1015.5V602H1016V606H1015.5V610H1016V614H1015.5V618H1016V622H1015.5V626H1016V630H1015.5V634H1016V638H1015.5V642H1016V646H1015.5V650H1016V654H1015.5V658H1016V662H1015.5V666H1016V670H1015.5V674H1016V678H1015.5V682H1016V686H1015.5V690H1016V694H1015.5V698H1016V702H1015.5V703.5H1014.01V704H1010.04V703.5H1006.07V704H1002.09V703.5H998.122V704H994.148V703.5H990.176V704H986.203V703.5H982.229V704H978.257V703.5H974.284V704H970.311V703.5H966.338V704H962.365V703.5H958.392V704H954.419V703.5H950.446V704H946.473V703.5H942.5V704H938.527V703.5H934.554V704H930.581V703.5H926.608V704H922.635V703.5H918.662V704H914.689V703.5H910.717V704H906.743V703.5H902.771V704H898.798V703.5H894.824V704H890.852V703.5H886.879V704H882.905V703.5H878.933V704H874.96V703.5H870.986V704H867.014V703.5H863.041V704H859.067V703.5H855.095V704H851.122V703.5H847.148V704H843.176V703.5H839.203V704H835.229V703.5H831.257V704H827.284V703.5H823.311V704H819.338V703.5H815.365V704H811.392V703.5H807.419V704H803.446V703.5H799.473V704H795.5V703.5H791.527V704H787.554V703.5H783.581V704H779.608V703.5H775.635V704H771.662V703.5H767.689V704H763.716V703.5H759.743V704H755.771V703.5H751.797V704H747.824V703.5H743.852V704H739.878V703.5H735.905V704H731.933V703.5H727.959V704H723.986V703.5H722.5V702H722V698H722.5V694H722V690H722.5V686H722V682H722.5V678H722V674H722.5V670H722V666H722.5V662H722V658H722.5V654H722V650H722.5V646H722V642H722.5V638H722V634H722.5V630H722V626H722.5V622H722V618H722.5V614H722V610H722.5V606H722V602H722.5V598H722V594H722.5V590H722V586H722.5V582H722V578H722.5V574H722V570H722.5V566H722V562H722.5V558H722V554H722.5V550H722V546H722.5V542H722V538H722.5V534H722V530H722.5V526H722V522H722.5V518H722V514H722.5V510H722V506H722.5V502H722V498H722.5V494H722V490H722.5V486H722V482H722.5V478H722V474H722.5V470H722V466H722.5V462H722V458H722.5V454H722V450H722.5V446H722V442H722.5V438H722V434H722.5V430H722V426H722.5V422H722V418H722.5V414H722V410H722.5V406H722V402H722.5V398H722V394H722.5V390H722V386H722.5V382H722V378H722.5V374H722V370H722.5V366H722V362H722.5V358H722V354H722.5V350H722V346H722.5V342H722V338H722.5V334H722V330H722.5V326H722V322H722.5V318H722V314H722.5V310H722V306H722.5V302H722V298H722.5V294H722V290H722.5V286H722V282H722.5V278H722V274H722.5V270H722V266H722.5V262H722V258H722.5V254H722V250H722.5V246H722V242H722.5V238H722V234H722.5V230H722V226H722.5V222H722V218H722.5V214H722V210H722.5V206H722V202H722.5V198H722V194H722.5V190H722V186H722.5V182H722V178H722.5V174H722V170H722.5V166H722V162H722.5V158H722V154H722.5V150H722V146H722.5V144.5H723.986V144H727.959Z" stroke="#A56EFF" stroke-dasharray="4 4"/>
+<rect width="294" height="560" transform="translate(1202 144)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1202" y="144" width="294" height="560" fill="white"/>
+<rect x="1202" y="144" width="294" height="560" fill="#DEFBE6"/>
+<g clip-path="url(#clip5_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1218" y="173.25">Catalog</tspan></text>
+<line x1="1204" y1="144" x2="1204" y2="192" stroke="#198038" stroke-width="4"/>
+</g>
+<path d="M1207.96 144V144.5H1211.93V144H1215.91V144.5H1219.88V144H1223.85V144.5H1227.82V144H1231.8V144.5H1235.77V144H1239.74V144.5H1243.72V144H1247.69V144.5H1251.66V144H1255.63V144.5H1259.61V144H1263.58V144.5H1267.55V144H1271.53V144.5H1275.5V144H1279.47V144.5H1283.45V144H1287.42V144.5H1291.39V144H1295.37V144.5H1299.34V144H1303.31V144.5H1307.28V144H1311.26V144.5H1315.23V144H1319.2V144.5H1323.18V144H1327.15V144.5H1331.12V144H1335.09V144.5H1339.07V144H1343.04V144.5H1347.01V144H1350.99V144.5H1354.96V144H1358.93V144.5H1362.91V144H1366.88V144.5H1370.85V144H1374.82V144.5H1378.8V144H1382.77V144.5H1386.74V144H1390.72V144.5H1394.69V144H1398.66V144.5H1402.63V144H1406.61V144.5H1410.58V144H1414.55V144.5H1418.53V144H1422.5V144.5H1426.47V144H1430.45V144.5H1434.42V144H1438.39V144.5H1442.37V144H1446.34V144.5H1450.31V144H1454.28V144.5H1458.26V144H1462.23V144.5H1466.2V144H1470.18V144.5H1474.15V144H1478.12V144.5H1482.09V144H1486.07V144.5H1490.04V144H1494.01V144.5H1495.5V146H1496V150H1495.5V154H1496V158H1495.5V162H1496V166H1495.5V170H1496V174H1495.5V178H1496V182H1495.5V186H1496V190H1495.5V194H1496V198H1495.5V202H1496V206H1495.5V210H1496V214H1495.5V218H1496V222H1495.5V226H1496V230H1495.5V234H1496V238H1495.5V242H1496V246H1495.5V250H1496V254H1495.5V258H1496V262H1495.5V266H1496V270H1495.5V274H1496V278H1495.5V282H1496V286H1495.5V290H1496V294H1495.5V298H1496V302H1495.5V306H1496V310H1495.5V314H1496V318H1495.5V322H1496V326H1495.5V330H1496V334H1495.5V338H1496V342H1495.5V346H1496V350H1495.5V354H1496V358H1495.5V362H1496V366H1495.5V370H1496V374H1495.5V378H1496V382H1495.5V386H1496V390H1495.5V394H1496V398H1495.5V402H1496V406H1495.5V410H1496V414H1495.5V418H1496V422H1495.5V426H1496V430H1495.5V434H1496V438H1495.5V442H1496V446H1495.5V450H1496V454H1495.5V458H1496V462H1495.5V466H1496V470H1495.5V474H1496V478H1495.5V482H1496V486H1495.5V490H1496V494H1495.5V498H1496V502H1495.5V506H1496V510H1495.5V514H1496V518H1495.5V522H1496V526H1495.5V530H1496V534H1495.5V538H1496V542H1495.5V546H1496V550H1495.5V554H1496V558H1495.5V562H1496V566H1495.5V570H1496V574H1495.5V578H1496V582H1495.5V586H1496V590H1495.5V594H1496V598H1495.5V602H1496V606H1495.5V610H1496V614H1495.5V618H1496V622H1495.5V626H1496V630H1495.5V634H1496V638H1495.5V642H1496V646H1495.5V650H1496V654H1495.5V658H1496V662H1495.5V666H1496V670H1495.5V674H1496V678H1495.5V682H1496V686H1495.5V690H1496V694H1495.5V698H1496V702H1495.5V703.5H1494.01V704H1490.04V703.5H1486.07V704H1482.09V703.5H1478.12V704H1474.15V703.5H1470.18V704H1466.2V703.5H1462.23V704H1458.26V703.5H1454.28V704H1450.31V703.5H1446.34V704H1442.37V703.5H1438.39V704H1434.42V703.5H1430.45V704H1426.47V703.5H1422.5V704H1418.53V703.5H1414.55V704H1410.58V703.5H1406.61V704H1402.63V703.5H1398.66V704H1394.69V703.5H1390.72V704H1386.74V703.5H1382.77V704H1378.8V703.5H1374.82V704H1370.85V703.5H1366.88V704H1362.91V703.5H1358.93V704H1354.96V703.5H1350.99V704H1347.01V703.5H1343.04V704H1339.07V703.5H1335.09V704H1331.12V703.5H1327.15V704H1323.18V703.5H1319.2V704H1315.23V703.5H1311.26V704H1307.28V703.5H1303.31V704H1299.34V703.5H1295.37V704H1291.39V703.5H1287.42V704H1283.45V703.5H1279.47V704H1275.5V703.5H1271.53V704H1267.55V703.5H1263.58V704H1259.61V703.5H1255.63V704H1251.66V703.5H1247.69V704H1243.72V703.5H1239.74V704H1235.77V703.5H1231.8V704H1227.82V703.5H1223.85V704H1219.88V703.5H1215.91V704H1211.93V703.5H1207.96V704H1203.99V703.5H1202.5V702H1202V698H1202.5V694H1202V690H1202.5V686H1202V682H1202.5V678H1202V674H1202.5V670H1202V666H1202.5V662H1202V658H1202.5V654H1202V650H1202.5V646H1202V642H1202.5V638H1202V634H1202.5V630H1202V626H1202.5V622H1202V618H1202.5V614H1202V610H1202.5V606H1202V602H1202.5V598H1202V594H1202.5V590H1202V586H1202.5V582H1202V578H1202.5V574H1202V570H1202.5V566H1202V562H1202.5V558H1202V554H1202.5V550H1202V546H1202.5V542H1202V538H1202.5V534H1202V530H1202.5V526H1202V522H1202.5V518H1202V514H1202.5V510H1202V506H1202.5V502H1202V498H1202.5V494H1202V490H1202.5V486H1202V482H1202.5V478H1202V474H1202.5V470H1202V466H1202.5V462H1202V458H1202.5V454H1202V450H1202.5V446H1202V442H1202.5V438H1202V434H1202.5V430H1202V426H1202.5V422H1202V418H1202.5V414H1202V410H1202.5V406H1202V402H1202.5V398H1202V394H1202.5V390H1202V386H1202.5V382H1202V378H1202.5V374H1202V370H1202.5V366H1202V362H1202.5V358H1202V354H1202.5V350H1202V346H1202.5V342H1202V338H1202.5V334H1202V330H1202.5V326H1202V322H1202.5V318H1202V314H1202.5V310H1202V306H1202.5V302H1202V298H1202.5V294H1202V290H1202.5V286H1202V282H1202.5V278H1202V274H1202.5V270H1202V266H1202.5V262H1202V258H1202.5V254H1202V250H1202.5V246H1202V242H1202.5V238H1202V234H1202.5V230H1202V226H1202.5V222H1202V218H1202.5V214H1202V210H1202.5V206H1202V202H1202.5V198H1202V194H1202.5V190H1202V186H1202.5V182H1202V178H1202.5V174H1202V170H1202.5V166H1202V162H1202.5V158H1202V154H1202.5V150H1202V146H1202.5V144.5H1203.99V144H1207.96Z" stroke="#198038" stroke-dasharray="4 4"/>
+<rect x="754.5" y="208.5" width="229" height="211" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="754.5" y="208.5" width="229" height="211" stroke="black"/>
+<rect x="755" y="209" width="228" height="210" fill="white"/>
+<rect x="755" y="209" width="228" height="210" fill="#F4F4F4"/>
+<rect width="238" height="220" transform="translate(754 200)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M992 200H754V420H992V200Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M758 204.5H987.5V416" stroke="black"/>
+<path d="M762 200.5H991.5V412" stroke="black"/>
+<g clip-path="url(#clip6_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="770" y="228.25">Source topic</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" letter-spacing="0.16px"><tspan x="770" y="246.25">Consume interaction</tspan></text>
+<line x1="756" y1="208" x2="756" y2="256" stroke="black" stroke-width="4"/>
+</g>
+<rect x="754.5" y="460.5" width="229" height="211" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="754.5" y="460.5" width="229" height="211" stroke="black"/>
+<rect x="755" y="461" width="228" height="210" fill="white"/>
+<rect x="755" y="461" width="228" height="210" fill="#F4F4F4"/>
+<rect width="238" height="220" transform="translate(754 452)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M992 452H754V672H992V452Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M758 456.5H987.5V668" stroke="black"/>
+<path d="M762 452.5H991.5V664" stroke="black"/>
+<g clip-path="url(#clip7_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="770" y="480.25">Source topic</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" letter-spacing="0.16px"><tspan x="770" y="498.25">Produce interaction</tspan></text>
+<line x1="756" y1="460" x2="756" y2="508" stroke="black" stroke-width="4"/>
+</g>
+<rect x="1234.5" y="208.5" width="229" height="211" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1234.5" y="208.5" width="229" height="211" stroke="#1192E8"/>
+<rect x="1235" y="209" width="228" height="210" fill="white"/>
+<rect x="1235" y="209" width="228" height="210" fill="#E5F6FF"/>
+<rect width="238" height="220" transform="translate(1234 200)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1472 200H1234V420H1472V200Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1238 204.5H1467.5V416" stroke="#1192E8"/>
+<path d="M1242 200.5H1471.5V412" stroke="#1192E8"/>
+<g clip-path="url(#clip8_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1250" y="228.25">Event endpoint</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" letter-spacing="0.16px"><tspan x="1250" y="246.25">Consume interaction</tspan></text>
+<line x1="1236" y1="208" x2="1236" y2="256" stroke="#1192E8" stroke-width="4"/>
+</g>
+<rect x="1234.5" y="460.5" width="229" height="211" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1234.5" y="460.5" width="229" height="211" stroke="#1192E8"/>
+<rect x="1235" y="461" width="228" height="210" fill="white"/>
+<rect x="1235" y="461" width="228" height="210" fill="#E5F6FF"/>
+<rect width="238" height="220" transform="translate(1234 452)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1472 452H1234V672H1472V452Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1238 456.5H1467.5V668" stroke="#1192E8"/>
+<path d="M1242 452.5H1471.5V664" stroke="#1192E8"/>
+<g clip-path="url(#clip9_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1250" y="480.25">Event endpoint</tspan></text>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" letter-spacing="0.16px"><tspan x="1250" y="498.25">Produce interaction</tspan></text>
+<line x1="1236" y1="460" x2="1236" y2="508" stroke="#1192E8" stroke-width="4"/>
+</g>
+<rect x="778.5" y="268.5" width="181" height="127" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="778.5" y="268.5" width="181" height="127" stroke="#A56EFF"/>
+<rect x="779" y="269" width="180" height="126" fill="white"/>
+<rect width="190" height="136" transform="translate(778 260)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M968 260H778V396H968V260Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M782 264.5H963.5V392" stroke="#A56EFF"/>
+<path d="M786 260.5H967.5V388" stroke="#A56EFF"/>
+<g clip-path="url(#clip10_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="794" y="297.25">Virtual topic</tspan></text>
+<line x1="780" y1="268" x2="780" y2="316" stroke="#A56EFF" stroke-width="4"/>
+</g>
+<rect x="778.5" y="520.5" width="181" height="127" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="778.5" y="520.5" width="181" height="127" stroke="#A56EFF"/>
+<rect x="779" y="521" width="180" height="126" fill="white"/>
+<rect width="190" height="136" transform="translate(778 512)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M968 512H778V648H968V512Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M782 516.5H963.5V644" stroke="#A56EFF"/>
+<path d="M786 512.5H967.5V640" stroke="#A56EFF"/>
+<g clip-path="url(#clip11_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="794" y="549.25">Virtual topic</tspan></text>
+<line x1="780" y1="520" x2="780" y2="568" stroke="#A56EFF" stroke-width="4"/>
+</g>
+<rect x="1258.5" y="268.5" width="181" height="127" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1258.5" y="268.5" width="181" height="127" stroke="#0F62FE"/>
+<rect x="1259" y="269" width="180" height="126" fill="white"/>
+<g clip-path="url(#clip12_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1274" y="297.25">Virtual topic</tspan></text>
+<line x1="1260" y1="268" x2="1260" y2="316" stroke="#0F62FE" stroke-width="4"/>
+</g>
+<rect x="1258.5" y="520.5" width="181" height="127" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1258.5" y="520.5" width="181" height="127" stroke="#0F62FE"/>
+<rect x="1259" y="521" width="180" height="126" fill="white"/>
+<g clip-path="url(#clip13_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1274" y="549.25">Virtual topic</tspan></text>
+<line x1="1260" y1="520" x2="1260" y2="568" stroke="#0F62FE" stroke-width="4"/>
+</g>
+<rect x="794.5" y="332.5" width="149" height="47" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="794.5" y="332.5" width="149" height="47" stroke="black"/>
+<rect x="795" y="333" width="148" height="46" fill="white"/>
+<rect x="795" y="333" width="148" height="46" fill="#F2F4F8"/>
+<rect width="158" height="56" transform="translate(794 324)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M952 324H794V380H952V324Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M798 328.5H947.5V376" stroke="black"/>
+<path d="M802 324.5H951.5V372" stroke="black"/>
+<g clip-path="url(#clip14_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="810" y="361.25">Control</tspan></text>
+<line x1="796" y1="332" x2="796" y2="380" stroke="black" stroke-width="4"/>
+</g>
+<rect x="794.5" y="584.5" width="149" height="47" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="794.5" y="584.5" width="149" height="47" stroke="black"/>
+<rect x="795" y="585" width="148" height="46" fill="white"/>
+<rect x="795" y="585" width="148" height="46" fill="#F2F4F8"/>
+<rect width="158" height="56" transform="translate(794 576)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M952 576H794V632H952V576Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M798 580.5H947.5V628" stroke="black"/>
+<path d="M802 576.5H951.5V624" stroke="black"/>
+<g clip-path="url(#clip15_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="810" y="613.25">Control</tspan></text>
+<line x1="796" y1="584" x2="796" y2="632" stroke="black" stroke-width="4"/>
+</g>
+<rect x="1274.5" y="332.5" width="149" height="47" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1274.5" y="332.5" width="149" height="47" stroke="black"/>
+<rect x="1275" y="333" width="148" height="46" fill="white"/>
+<rect x="1275" y="333" width="148" height="46" fill="#F2F4F8"/>
+<rect width="158" height="56" transform="translate(1274 324)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1432 324H1274V380H1432V324Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1278 328.5H1427.5V376" stroke="black"/>
+<path d="M1282 324.5H1431.5V372" stroke="black"/>
+<g clip-path="url(#clip16_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1290" y="361.25">Control</tspan></text>
+<line x1="1276" y1="332" x2="1276" y2="380" stroke="black" stroke-width="4"/>
+</g>
+<rect x="1274.5" y="584.5" width="149" height="47" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<rect x="1274.5" y="584.5" width="149" height="47" stroke="black"/>
+<rect x="1275" y="585" width="148" height="46" fill="white"/>
+<rect x="1275" y="585" width="148" height="46" fill="#F2F4F8"/>
+<rect width="158" height="56" transform="translate(1274 576)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1432 576H1274V632H1432V576Z" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1278 580.5H1427.5V628" stroke="black"/>
+<path d="M1282 576.5H1431.5V624" stroke="black"/>
+<g clip-path="url(#clip17_1_8593)">
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="14" font-weight="600" letter-spacing="0.16px"><tspan x="1290" y="613.25">Control</tspan></text>
+<line x1="1276" y1="584" x2="1276" y2="632" stroke="black" stroke-width="4"/>
+</g>
+<rect width="290" height="0" transform="matrix(1 0 0 -1 960 544)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M960 544H1250" stroke="#A56EFF"/>
+<rect width="8" height="8" transform="matrix(-4.37114e-08 -1 -1 4.37114e-08 963 548)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="4" cy="4" r="3.5" transform="matrix(-1 4.37114e-08 4.37114e-08 1 963 540)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="4" cy="4" r="3.5" transform="matrix(-1 4.37114e-08 4.37114e-08 1 963 540)" stroke="#A56EFF"/>
+<path d="M959 541C957.343 541 956 542.343 956 544C956 545.657 957.343 547 959 547C960.657 547 962 545.657 962 544C962 542.343 960.657 541 959 541Z" fill="white"/>
+<rect width="8" height="8" transform="matrix(1 0 0 -1 1250 548)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1250 548L1258 544L1250 540V548Z" fill="#A56EFF"/>
+<rect width="290" height="0" transform="matrix(1 0 0 -1 960 292)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M960 292H1250" stroke="#A56EFF"/>
+<rect width="8" height="8" transform="matrix(-4.37114e-08 -1 -1 4.37114e-08 963 296)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="4" cy="4" r="3.5" transform="matrix(-1 4.37114e-08 4.37114e-08 1 963 288)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="4" cy="4" r="3.5" transform="matrix(-1 4.37114e-08 4.37114e-08 1 963 288)" stroke="#A56EFF"/>
+<path d="M959 289C957.343 289 956 290.343 956 292C956 293.657 957.343 295 959 295C960.657 295 962 293.657 962 292C962 290.343 960.657 289 959 289Z" fill="white"/>
+<rect width="8" height="8" transform="matrix(1 0 0 -1 1250 296)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<path d="M1250 296L1258 292L1250 288V296Z" fill="#A56EFF"/>
+<path d="M722 168L717 165.113V170.887L722 168ZM377 168V168.5H458.5V168V167.5H377V168ZM458.5 168V168.5H717.5V168V167.5H458.5V168Z" fill="black"/>
+<rect x="446.5" y="160.5" width="142" height="15" rx="7.5" fill="white"/>
+<rect x="446.5" y="160.5" width="142" height="15" rx="7.5" stroke="black"/>
+<text fill="black" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="12" letter-spacing="0.32px"><tspan x="454" y="171.5">Source topic adoption</tspan></text>
+<rect x="1078.5" y="284.5" width="57" height="15" rx="7.5" fill="white"/>
+<rect x="1078.5" y="284.5" width="57" height="15" rx="7.5" stroke="#7F66FF"/>
+<text fill="#241F59" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="12" letter-spacing="0.32px"><tspan x="1086" y="295.5">Publish</tspan></text>
+<rect x="1078.5" y="536.5" width="57" height="15" rx="7.5" fill="white"/>
+<rect x="1078.5" y="536.5" width="57" height="15" rx="7.5" stroke="#7F66FF"/>
+<text fill="#241F59" xml:space="preserve" style="white-space: pre" font-family="IBM Plex Sans" font-size="12" letter-spacing="0.32px"><tspan x="1086" y="547.5">Publish</tspan></text>
+<rect width="8" height="8" transform="translate(381 164) rotate(90)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="377" cy="168" r="3.5" transform="rotate(-180 377 168)" fill="white" fill-opacity="0.01" style="mix-blend-mode:multiply"/>
+<circle cx="377" cy="168" r="3.5" transform="rotate(-180 377 168)" stroke="black"/>
+<path d="M377 171C375.343 171 374 169.657 374 168C374 166.343 375.343 165 377 165C378.657 165 380 166.343 380 168C380 169.657 378.657 171 377 171Z" fill="white"/>
+<defs>
+<clipPath id="clip0_1_8593">
+<rect width="278" height="48" fill="white" transform="translate(100 80)"/>
+</clipPath>
+<clipPath id="clip1_1_8593">
+<rect width="150" height="48" fill="white" transform="translate(164 168)"/>
+</clipPath>
+<clipPath id="clip2_1_8593">
+<rect width="902" height="48" fill="white" transform="translate(658 80)"/>
+</clipPath>
+<clipPath id="clip3_1_8593">
+<rect width="24" height="24" fill="white" transform="translate(674 92)"/>
+</clipPath>
+<clipPath id="clip4_1_8593">
+<rect width="294" height="48" fill="white" transform="translate(722 144)"/>
+</clipPath>
+<clipPath id="clip5_1_8593">
+<rect width="294" height="48" fill="white" transform="translate(1202 144)"/>
+</clipPath>
+<clipPath id="clip6_1_8593">
+<rect width="230" height="48" fill="white" transform="translate(754 208)"/>
+</clipPath>
+<clipPath id="clip7_1_8593">
+<rect width="230" height="48" fill="white" transform="translate(754 460)"/>
+</clipPath>
+<clipPath id="clip8_1_8593">
+<rect width="230" height="48" fill="white" transform="translate(1234 208)"/>
+</clipPath>
+<clipPath id="clip9_1_8593">
+<rect width="230" height="48" fill="white" transform="translate(1234 460)"/>
+</clipPath>
+<clipPath id="clip10_1_8593">
+<rect width="182" height="48" fill="white" transform="translate(778 268)"/>
+</clipPath>
+<clipPath id="clip11_1_8593">
+<rect width="182" height="48" fill="white" transform="translate(778 520)"/>
+</clipPath>
+<clipPath id="clip12_1_8593">
+<rect width="182" height="48" fill="white" transform="translate(1258 268)"/>
+</clipPath>
+<clipPath id="clip13_1_8593">
+<rect width="182" height="48" fill="white" transform="translate(1258 520)"/>
+</clipPath>
+<clipPath id="clip14_1_8593">
+<rect width="150" height="48" fill="white" transform="translate(794 332)"/>
+</clipPath>
+<clipPath id="clip15_1_8593">
+<rect width="150" height="48" fill="white" transform="translate(794 584)"/>
+</clipPath>
+<clipPath id="clip16_1_8593">
+<rect width="150" height="48" fill="white" transform="translate(1274 332)"/>
+</clipPath>
+<clipPath id="clip17_1_8593">
+<rect width="150" height="48" fill="white" transform="translate(1274 584)"/>
+</clipPath>
+</defs>
+</svg>

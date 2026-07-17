@@ -32,5 +32,9 @@ Use the Event Source wizard to replace the certificate stored in {{site.data.reu
 5. Accept the new certificates and complete the wizard steps.
 6. Restart your {{site.data.reuse.ep_name}} flow. In the navigation banner, complete one of the following steps:
 
-   - If your flow includes any event sources, expand **Run flow** and select either **Events from now** or **Include historical**.
+   - If your flow includes any event sources, expand **Run flow** and select one of the following options:
+
+     - **Events from now*
+     - ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") **From time offset**
+     - **Include historical**.
    - If your flow uses SQL sources only, click **Run flow** to start the flow.

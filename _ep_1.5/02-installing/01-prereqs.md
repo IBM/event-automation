@@ -17,13 +17,13 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-getting-started){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
 - A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-processing' | relative_url }}).
-- The Kubernetes command-line tool (`kubectl`) [installed](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}.
+- The Kubernetes command-line tool (`kubectl`) [installed](https://v1-35.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 ## Hardware requirements
 {: #hardware-requirements}
@@ -63,10 +63,10 @@ Flink resource requirements:
 
 Task Manager (TM) pods are scaled up and down horizontally on demand. A new TM replica is created when a job is deployed that exceeds the current slot capacity across all the currently running TMs, which is determined by the parameter `spec.flinkConfiguration.taskmanager.numberOfTaskSlots` in the `FlinkDeployment` custom resource.
 
-{{site.data.reuse.ep_name}} is a [Kubernetes operator-based](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.ep_name}} configurations.
+{{site.data.reuse.ep_name}} is a [Kubernetes operator-based](https://v1-35.docs.kubernetes.io/docs/concepts/extend-kubernetes/operator/){:target="_blank"} release and uses custom resources to define your {{site.data.reuse.ep_name}} configurations.
 The {{site.data.reuse.ep_name}} operator uses the declared required state of your {{site.data.reuse.ep_name}} in the custom resources to deploy and manage the entire lifecycle of your {{site.data.reuse.ep_name}} instances. Custom resources are presented as YAML configuration documents that define instances of the `EventProcessing` custom resource type.
 
-The provided samples define typical configuration settings for your {{site.data.reuse.ep_name}} instance, including security settings, and default values for resources such as CPU and memory defined as "request" and "limit" settings. [Requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
+The provided samples define typical configuration settings for your {{site.data.reuse.ep_name}} instance, including security settings, and default values for resources such as CPU and memory defined as "request" and "limit" settings. [Requests and limits](https://v1-35.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
 
 - Requests set the minimum requirements that a container requires to be scheduled. If your system does not have the required request value, then the services do not start.
 - Limits set the value beyond which a container cannot consume the resource. It is the upper limit within your system for the service. Containers that exceed a CPU resource limit are throttled, and containers that exceed a memory resource limit are terminated by the system.
@@ -117,7 +117,7 @@ You cannot install the {{site.data.reuse.ibm_flink_operator}} on a cluster that 
 ## Red Hat OpenShift Security context constraints
 {: #red-hat-openshift-security-context-constraints}
 
-{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
+{{site.data.reuse.ep_name}} requires a [security context constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.ep_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -135,7 +135,7 @@ To expose {{site.data.reuse.ep_name}} services externally outside your cluster, 
 - Kubernetes ingress resources when installing on other Kubernetes platforms.
 
 
-To use ingress, ensure you install and run an [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.ep_name}} services to work. Refer to your ingress controller documentation for more information.
+To use ingress, ensure you install and run an [ingress controller](https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.ep_name}} services to work. Refer to your ingress controller documentation for more information.
 
 ## Data storage requirements
 {: #data-storage-requirements}
@@ -169,9 +169,9 @@ The Flink instances deployed by {{site.data.reuse.ibm_flink_operator}} store the
 - Checkpoints and savepoints. For more information about checkpoints, see the Flink documentation about [checkpoint storage](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/checkpoints/#checkpoint-storage){:target="_blank"} and [checkpointing prerequisites](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/datastream/fault-tolerance/checkpointing/#prerequisites){:target="_blank"}. For more information about savepoints, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/savepoints/){:target="_blank"}.
 - When configured to persist states in RocksDB, the data of processed events is stored in a binary, compressed, and unencrypted format.
 
-Apache Flink requires the use of a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
-- `volumeMode`: `Filesystem`. See [Volume Mode](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode){:target="_blank"}.
-- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
+Apache Flink requires the use of a [persistent volume](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes){:target="_blank"} with the following capabilities:
+- `volumeMode`: `Filesystem`. See [Volume Mode](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode){:target="_blank"}.
+- `accessMode`: `ReadWriteMany (RWX)`. See [access modes](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/storage/understanding-persistent-storage#pv-capacity_understanding-persistent-storage){:target="_blank"}.
 
 
 For example, you can use Rook Ceph for your storage.
@@ -184,8 +184,8 @@ If installing on RedHat OpenShift Kubernetes Service on IBM Cloud (ROKS), you ca
 
 **Important:**
 - For security reasons, the use of `hostPath` volumes is not supported.
-- On the {{site.data.reuse.openshift_short}}, the dynamically provisioned volumes are created with the reclaim policy set to `Delete` by default. This means that the volume lasts only while the claim still exists in the system. If you delete the claim, the volume is also deleted, and all data on the volume is lost. If this is not appropriate, you can use the `Retain` policy. For more information about the reclaim policy, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming){:target="_blank"}.
-- Some [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/){:target="_blank"} support dynamic provisioning. If the `StorageClass` that you use supports dynamic provisioning, then a `PersistentVolume` can be dynamically provisioned when the `PersistentVolumeClaim` is created. Otherwise, the `PersistentVolume` must be created before you define the `PersistentVolumeClaim`.
+- On the {{site.data.reuse.openshift_short}}, the dynamically provisioned volumes are created with the reclaim policy set to `Delete` by default. This means that the volume lasts only while the claim still exists in the system. If you delete the claim, the volume is also deleted, and all data on the volume is lost. If this is not appropriate, you can use the `Retain` policy. For more information about the reclaim policy, see the [Kubernetes documentation](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming){:target="_blank"}.
+- Some [storage classes](https://v1-35.docs.kubernetes.io/docs/concepts/storage/storage-classes/){:target="_blank"} support dynamic provisioning. If the `StorageClass` that you use supports dynamic provisioning, then a `PersistentVolume` can be dynamically provisioned when the `PersistentVolumeClaim` is created. Otherwise, the `PersistentVolume` must be created before you define the `PersistentVolumeClaim`.
 
 
 ## {{site.data.reuse.ep_name}} UI
@@ -228,7 +228,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install){:target="_blank"}.
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install){:target="_blank"}.
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 

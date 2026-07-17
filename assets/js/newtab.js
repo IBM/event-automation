@@ -1,13 +1,13 @@
 // Assisted by WCA for GP
 // Latest GenAI contribution: granite-20B-code-instruct-v2 model
 
-const trustedLinks = ['ibm.com','ibm.biz','docs.openshift.com']
+const trustedLinks = ['ibm.com','ibm.biz','docs.openshift.com','docs.confluent.io','github.com/ibm']
 
 function isTrustedDomain(link){
   var trusted = false;
 
   trustedLinks.forEach(x=>{
-    if(link.href.includes(x)){
+    if(link.href.toLowerCase().includes(x)){
       trusted = true;
     }
   });

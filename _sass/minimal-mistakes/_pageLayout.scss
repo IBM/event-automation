@@ -13,6 +13,7 @@
 
 .mainContainer {
   display: flex;
+  align-items: flex-start;
   .sidebar {
     flex-basis: 24rem;
   }

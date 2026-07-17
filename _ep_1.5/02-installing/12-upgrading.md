@@ -482,7 +482,7 @@ Complete the following steps to migrate:
    oc get MachineConfigPool -w
    ```
 
-For more information about converting to `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-convert_image-configuration){:target="_blank"}.
+For more information about converting to `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/image-configuration-classic#images-configuration-registry-mirror-convert_image-configuration){:target="_blank"}.
 
 ### Update SSL configuration properties
 {: #update-ssl-properties}

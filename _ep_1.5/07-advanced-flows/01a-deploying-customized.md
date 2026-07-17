@@ -322,7 +322,7 @@ Alternatively, complete the following steps to build a custom Flink image that i
    - `<platform>` is `linux/amd64` or `linux/s390x` depending on your deployment target.
    - `<path-of-the-udf-jar>` is the path of the UDF JAR file as referenced in your SQL, for example, `/udf/my-udf.jar`.
 
-4. Build the image and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
+4. Build the image and push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 
 5. Specify this image in the `spec.image` field of the `FlinkDeployment` custom resource:
 

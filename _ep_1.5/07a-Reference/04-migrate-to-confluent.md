@@ -88,7 +88,7 @@ Run the following command to build the image:
 docker build --build-arg FLOW_SQL_PATH=/path/to/exported.sql -t my/image -f /path/to/Dockerfile
 ```
 
-After building the image, push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. 
+After building the image, push it to a registry accessible from your Kubernetes cluster. If your registry requires authentication, configure the image pull secret. For example, in OpenShift, you can use the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. 
 
 The following sections describe the components of the image in more detail.
 

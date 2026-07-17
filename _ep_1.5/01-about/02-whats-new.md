@@ -65,7 +65,10 @@ You can now monitor the most recent watermark for all the event source and event
 
 For more information, see [monitoring event activity](../../administering/flow-metrics#event-activity).
 
+### Support for {{site.data.reuse.openshift}} 4.22
+{: #support-for-openshift-422}
 
+{{site.data.reuse.ep_name}} version 1.5.4 introduces [support]({{ 'support/matrix/#event-processing' | relative_url }}) for {{site.data.reuse.openshift}} 4.22.
 
 ### Apache Flink updated to 1.20.4
 {: #apache-flink-updated-to-1204}

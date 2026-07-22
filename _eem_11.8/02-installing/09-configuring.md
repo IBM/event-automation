@@ -24,7 +24,7 @@ Ensure that you have sufficient disk space for persistent storage.
 ### Dynamic provisioning
 {: #dynamic-provisioning}
 
-If a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/dynamic-provisioning) is present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
+If a [dynamic storage provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/storage/dynamic-provisioning) is present on the system, you can use the dynamic storage provisioner to dynamically provision the persistence for {{site.data.reuse.eem_name}}.
 To configure this, set `spec.manager.storage.storageClassName` to the name of the storage class provided by the provisioner.
 
 ```yaml

@@ -49,11 +49,11 @@ You can define users explicitly with usernames and passwords, which is typically
        "users": [
            {
              "username": "user1",
-             "password": "Password1$"
+             "password": "<password>"
            },
            {
              "username": "user2",
-             "password": "Password2$"
+             "password": "<password>"
            }
        ]
    }
@@ -94,11 +94,11 @@ You can define users explicitly with usernames and passwords, which is typically
        "users": [
            {
              "username": "user1",
-             "password": "Password1$"
+             "password": "<password>"
            },
            {
              "username": "user2",
-             "password": "Password2$"
+             "password": "<password>"
            }
        ]
    }

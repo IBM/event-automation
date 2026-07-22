@@ -30,7 +30,7 @@ es_current_version: "13.0.0"
 es_current_case_version: "13.0.0"
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.8.0"
+eem_current_version: "11.8.1"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.5.4"

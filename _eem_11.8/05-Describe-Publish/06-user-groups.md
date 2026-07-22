@@ -6,8 +6,6 @@ slug: user-groups
 toc: true
 ---
 
-<!-- In 11.8.0 update this page to talk more about "virtual topic viewers" -->
-
 You can manage which virtual topics are available to users by assigning specific [user groups](../../about/key-concepts/#user-groups) to selected virtual topics. This means that only users in the groups you select can view and subscribe to the virtual topics that you have specified. 
 
 User group visibility to virtual topics requires an external identity provider, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, capable of managing user groups. When {{site.data.reuse.eem_name}} connects to your external identity provider, it suggests groups that are already in use, or that you belong to. You can then select one or more of these user groups to add to virtual topics. 

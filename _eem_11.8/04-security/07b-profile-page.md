@@ -15,7 +15,9 @@ The following features are available by using the Admin API:
 - [Clusters](../../administering/managing-clusters) (Create, Read, Update, Delete)
 - [Source topics](../../describe/adding-topics) (Create, Read, Update, Delete)
 - [Virtual topic lifecycle states](../../describe/managing-virtual-topics#virtual-topic-lifecycle-states) (Publish, Unpublish, Archive)
-- [Subscriptions](../../subscribe/managing-apps/) (Create, Read, Update, Delete) **Note:** In {{site.data.reuse.eem_name}} 11.8.0, subscriptions created with the Admin API are [converted to applications](../../installing/upgrading#planning-upgrade).
+- [Subscriptions](../../subscribe/managing-apps/) (Create, Read, Update, Delete)
+
+  **Note:** In {{site.data.reuse.eem_name}} 11.8.x, subscriptions created with the Admin API are [converted to applications](../../installing/upgrading#planning-upgrade).
 - [Gateways](../../administering/managing-gateways) (Read gateway list)
 
 **Note:** If you [skipped the connection checks](../../administering/managing-clusters#skip-conneciton-checks) when you added your Kafka cluster, then after you create a source topic you must wait for your gateways to complete connection tests with your cluster. Only after these checks complete successfully can you proceed to publish any virtual topics that you create for the source topic.

@@ -16,8 +16,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -76,7 +76,7 @@ The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped 
 ## Red Hat OpenShift Security Context Constraints
 {: #red-hat-openshift-security-context-constraints}
 
-If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace before installation.
+If used, {{site.data.reuse.eem_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace before installation.
 
 By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 
@@ -164,16 +164,16 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
     If the cert-manager pods are up and running, the cert-manager Operator for Red Hat OpenShift is ready to use.
 
-- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
+- If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
 
 **Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 
 ## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i}}
 {: #prereqs-keycloak}
 
-If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-identity-access-management){:target="_blank"}.
+If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=administering-identity-access-management){:target="_blank"}.
 
-Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
+Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
 
 For more information, see [managing access with Keycloak](../../security/managing-access#keycloak-authentication).
 

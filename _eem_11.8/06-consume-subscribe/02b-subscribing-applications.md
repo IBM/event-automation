@@ -6,7 +6,7 @@ slug: subscribing-apps
 toc: true
 ---
 
-To subscribe to virtual topics, you must have at least one application. In {{site.data.reuse.eem_name}} 11.8.0 and later, you do not subscribe to virtual topics directly, you use applications. Applications can subscribe to multiple virtual topics, so you do not need separate credentials for each virtual topic. 
+To subscribe to virtual topics, you must have at least one application. In {{site.data.reuse.eem_name}} 11.8.x and later, you do not subscribe to virtual topics directly, you use applications. Applications can subscribe to multiple virtual topics, so you do not need separate credentials for each virtual topic. 
 
 If you upgraded from version 11.7.x, then your existing subscriptions were automatically converted to applications.
 

@@ -60,7 +60,7 @@ Before using the downloaded configuration for an event endpoint in a complex app
    -----END CERTIFICATE-----" \
      -X sasl.mechanisms="PLAIN" \
      -X sasl.username="eem-7f0c68e8-3c40-432b-a926-921080c9661d" \
-     -X sasl.password="f742c545-0ce2-4958-a801-114f242c3d3e" \
+     -X sasl.password="<password>" \
      "noop"; : # Note: in some versions of kcat the '-t' flag must precede the topic name
    ```
 

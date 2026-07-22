@@ -54,8 +54,8 @@ Ensure you have the following set up for your environment:
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
 
@@ -231,7 +231,7 @@ Complete the following steps to mirror the images from your host to your offline
 
 2. Run the following command to copy the images to the local registry. Your device must be connected to both the internet and the restricted network environment that contains the local registry.
 
-   **Note:** You can view the list of images to be mirrored from the mirror registry by adding `--dry-run` to the following commands. For more information, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/disconnected_environments/installing-mirroring-disconnected#oc-mirror-dry-run_installing-mirroring-disconnected){:target="_blank"}.
+   **Note:** You can view the list of images to be mirrored from the mirror registry by adding `--dry-run` to the following commands. For more information, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/disconnected_environments/installing-mirroring-disconnected#oc-mirror-dry-run_installing-mirroring-disconnected){:target="_blank"}.
 
    If you are installing on the {{site.data.reuse.openshift_short}}, run the following command:
 
@@ -262,23 +262,10 @@ Ensure that all the images have been mirrored to the target registry by checking
 ## Create image mirror configuration on OpenShift platform
 {: #create-image-mirror-configuration-on-openshift-platform}
 
-
 **Note:** Only applicable when installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
 
-The configuration steps differ depending on your OpenShift version:
-
-- For OpenShift 4.14 and later, use the `ImageDigestMirrorSet` YAML file as the `ImageContentSourcePolicy` API is deprecated in OpenShift versions 4.14 and later.
-- For OpenShift 4.13 and earlier, use the `ImageContentSourcePolicy` YAML file.
-
-### For OpenShift 4.14 and later (using `ImageDigestMirrorSet`)
-{: #using-imagedigestmirrorset}
-
-**Note:** Using `ImageContentSourcePolicy` to configure repository mirroring is a deprecated feature in OpenShift 4.14 and later. Use `ImageDigestMirrorSet` instead for new deployments.
-
-**Important:** If you are upgrading from OpenShift 4.13 or earlier and already have `ImageContentSourcePolicy` resources configured, see the [post-upgrade tasks](../upgrading/#migrate-imagecontentsourcepolicy-to-imagedigestmirrorset) for migration instructions.
-
 1. {{site.data.reuse.openshift_cli_login}}
-1. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`.
+1. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`.
 1. Ensure that an `ImageDigestMirrorSet` YAML file is [created](#mirror-the-images) for {{site.data.reuse.eem_name}}. For example:
 
    ```yaml
@@ -324,41 +311,8 @@ The configuration steps differ depending on your OpenShift version:
    oc get MachineConfigPool -w
    ```
 
-For more information about configuring `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-configuring_image-configuration){:target="_blank"}.
+For more information about configuring `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/image-configuration-classic#images-configuration-registry-mirror-configuring_image-configuration){:target="_blank"}.
 
-### For OpenShift 4.13 and earlier (by using ImageContentSourcePolicy)
-{: #using-imagecontentsourcepolicy}
-
-**Note:** `ImageContentSourcePolicy` is deprecated in OpenShift 4.14 and later. Use `ImageDigestMirrorSet` instead for newer versions.
-
-
-1. {{site.data.reuse.openshift_cli_login}}
-2. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`, as specified in the `image-content-source-policy.yaml`.
-3. Apply `ImageContentSourcePolicy` YAML by running the following command:
-
-   ```shell
-   oc apply -f  ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/image-content-source-policy.yaml
-   ```
-
-   Where `<case-version>` is the version of the CASE file.
-
-4. Additionally, a global image pull secret must be added so that images can be pulled from the target registry. Follow the instructions in the [OpenShift documentation](https://github.com/openshift/openshift-docs/blob/main/modules/images-update-global-pull-secret.adoc#updating-the-global-cluster-pull-secret){:target="_blank"} to add credentials for the target registry.
-
-   **Important:** Cluster resources must adjust to the new pull secret, which can temporarily limit the access to the cluster. Applying the `ImageContentSourcePolicy` causes cluster nodes to recycle, which results in limited access to the cluster until all the nodes are ready.
-
-5. Verify that the `ImageContentSourcePolicy` resource is created:
-
-   ```shell
-   oc get imageContentSourcePolicy
-   ```
-
-   **Important:** After the `ImageContentSourcePolicy` and global image pull secret are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
-
-6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
-
-   ```shell
-   oc get MachineConfigPool -w
-   ```
 
 ## Apply catalog sources to your cluster on OpenShift platform
 {: #apply-catalog-sources-to-your-cluster-on-openshift-platform}

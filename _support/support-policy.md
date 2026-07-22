@@ -23,13 +23,18 @@ The Kafka protocol is made up of many API keys. Each API key has a range of requ
 
 | {{site.data.reuse.eem_name}} version | API key name | Supported API key request and response versions |
 | ---------------- | -------------------- | ------------------------------------------------- |
-| 11.1.5 and later | Produce              | All                                               |
+| 11.1.5 to 11.8.0 | Produce              | All                                               |
+| 11.8.1 and later | Produce              | v3 and later                                      |
 | 11.1.5 and later | InitProducerId       | All                                               |
-| 11.0.0 and later | Fetch                | All                                               |
-| 11.0.0 and later | ListOffsets          | All                                               |
+| 11.0.0 to 11.8.0 | Fetch                | All                                               |
+| 11.8.1 and later | Fetch                | v4 and later                                      |
+| 11.0.0 to 11.8.0 | ListOffsets          | All                                               |
+| 11.8.1 and later | ListOffsets          | v1 and later                                      |
 | 11.0.0 and later | Metadata             | All                                               |
-| 11.0.0 and later | OffsetCommit         | All                                               |
-| 11.0.0 and later | OffsetFetch          | All                                               |
+| 11.0.0 to 11.8.0 | OffsetCommit         | All                                               |
+| 11.8.1 and later | OffsetCommit         | v2 and later                                      |
+| 11.0.0 to 11.8.0 | OffsetFetch          | All                                               |
+| 11.8.1 and later | OffsetFetch          | v1 and later                                      |
 | 11.0.0 and later | FindCoordinator      | All                                               |
 | 11.0.0 and later | JoinGroup            | All                                               |
 | 11.0.0 and later | Heartbeat            | All                                               |

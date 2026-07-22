@@ -68,7 +68,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
+| spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
 ### `spec.security`
 {: #gwy-resource-security}

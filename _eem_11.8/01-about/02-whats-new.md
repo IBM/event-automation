@@ -7,7 +7,7 @@ toc: true
 ---
 
 
-Find out what is new in {{site.data.reuse.eem_name}} version 11.8.0.
+Find out what is new in {{site.data.reuse.eem_name}} version 11.8.1.
 
 ## Release {{site.data.reuse.eem_current_version}}
 {: #release-1181}

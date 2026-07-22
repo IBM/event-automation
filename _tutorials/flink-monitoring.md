@@ -137,7 +137,7 @@ To install a Grafana instance through the {{site.data.reuse.openshift_short}} we
           level: warn
           mode: console
         security:
-          admin_password: secret
+          admin_password: <password>
           admin_user: root
       ```
 

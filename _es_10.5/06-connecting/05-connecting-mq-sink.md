@@ -126,7 +126,7 @@ spec:
     mq.channel.name: MYSVRCONN
     mq.queue: MYQSINK
     mq.user.name: alice
-    mq.password: passw0rd
+    mq.password: <password>
     key.converter: org.apache.kafka.connect.storage.StringConverter
     value.converter: org.apache.kafka.connect.storage.StringConverter
     mq.message.builder: com.ibm.eventstreams.connect.mqsink.builders.DefaultMessageBuilder

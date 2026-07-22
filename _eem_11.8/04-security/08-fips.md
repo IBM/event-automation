@@ -6,13 +6,13 @@ slug: fips
 toc: true
 ---
 
-Find out how to set up {{site.data.reuse.eem_name}} to be FIPS-compliant by using a boundary approach that is enabled by the ["FIPS Wall"](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=reference-fips-compliance){:target="_blank"}.
+Find out how to set up {{site.data.reuse.eem_name}} to be FIPS-compliant by using a boundary approach that is enabled by the ["FIPS Wall"](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=reference-fips-compliance){:target="_blank"}.
 
 
 ## Requirements
 {: #requirements}
 
-To run a FIPS-compliant {{site.data.reuse.eem_name}} deployment, you need a [FIPS-enabled OpenShift Container Platform cluster](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installation_overview/installing-fips){:target="_blank"} available with the {{site.data.reuse.eem_name}} operator.
+To run a FIPS-compliant {{site.data.reuse.eem_name}} deployment, you need a [FIPS-enabled OpenShift Container Platform cluster](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/installation_overview/installing-fips){:target="_blank"} available with the {{site.data.reuse.eem_name}} operator.
 
 Ensure that you run both the {{site.data.reuse.eem_manager}} and the {{site.data.reuse.egw}} with the default TLS version of 1.3 and ensure that all clients have the following cipher suites available:
 

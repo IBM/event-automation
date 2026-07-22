@@ -247,7 +247,7 @@ To enable tiered storage for your {{site.data.reuse.es_name}} Kafka cluster:
                storage.s3.endpoint.url: 'https://s3.us-east-1.amazonaws.com'
                storage.s3.bucket.name: example-bucket
                storage.aws.secret.access.key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-               storage.aws.access.key.id: AKIAIOSFODNN7EXAMPLE
+               storage.aws.access.key.id: <aws-access-key-id>
            type: custom
    ```
 

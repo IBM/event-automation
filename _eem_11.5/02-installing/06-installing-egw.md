@@ -156,7 +156,7 @@ To install a Docker {{site.data.reuse.egw}}, run the Docker command that you [ge
   -v "<provide-path-to-tls-key>:/certs/client.key" \
   -e GATEWAY_PORT=8443 \
   -p 8443:8443 \
-  -e API_KEY="36e88938-fb08-401b-ab89-191ea9b30503" \
+  -e API_KEY="<API-KEY>" \
   -e LICENSE_ID="L-AUKS-FKVXVL" \
   -e ACCEPT_LICENSE="true" \
   -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.5.0
@@ -256,7 +256,7 @@ metadata:
     gatewayId: test-gateway1
 type: Opaque
 stringData:
-  apiKey: "8684cbb3-83f8-452f-9fce-b4b1c9223a47"
+  apiKey: "<API-KEY>"
 ```
 
 ## Example operator-managed gateway YAML
@@ -314,7 +314,6 @@ metadata:
     app: gateway-group-test-gateway2
 type: Opaque
 stringData:
-  apiKey: "f28c526b-a292-4198-9016-a35c17995ae4"
-
+  apiKey: "<API-KEY>"
 ```
 

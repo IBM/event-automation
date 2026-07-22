@@ -6,9 +6,36 @@ slug: whats-new
 toc: true
 ---
 
-Find out what is new in {{site.data.reuse.eem_name}} version 11.8.0.
+
+Find out what is new in {{site.data.reuse.eem_name}} version 11.8.1.
 
 ## Release {{site.data.reuse.eem_current_version}}
+{: #release-1181}
+
+
+### Event Gateway Kafka client update
+{: #event-gateway-kafka-client-update-1181}
+
+{{site.data.reuse.eem_name}} 11.8.1 updates the {{site.data.reuse.egw}} Kafka client library to version 4.3.0. Before you upgrade, check the {{site.data.reuse.eem_name}} UI for any warnings the {{site.data.reuse.egw}} reports about clients that use deprecated APIs. For more information, you can check the [{{site.data.reuse.egw}} OpenTelemetry metrics](../../reference/metrics-reference/#gateway) to identify clients that use Kafka protocol API versions no longer supported in Kafka 4.x. Update any affected clients to avoid disruption.
+
+### Support for {{site.data.reuse.openshift}} 4.22
+{: #support-for-openshift-422}
+
+{{site.data.reuse.eem_name}} version 11.8.1 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for {{site.data.reuse.openshift}} 4.22.
+
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1181}
+
+Any difference in features or behavior introduced by {{site.data.reuse.eem_name}} 11.8.1 compared to 11.8.0 is highlighted in this documentation by using the following graphic: ![Event Endpoint Management 11.8.1 icon]({{ 'images' | relative_url }}/11.8.1.svg "In Event Endpoint Management 11.8.1 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1181}
+
+{{site.data.reuse.eem_name}} release 11.8.1 contains security and bug fixes.
+
+
+## Release 11.8.0
 {: #release-1180}
 
 ### Terminology changes

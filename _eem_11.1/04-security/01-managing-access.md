@@ -58,11 +58,11 @@ You can use local authentication to define users explicitly with usernames and p
        "users": [
            {
                "username": "author1",
-               "password": "Password1$"
+               "password": "<password>"
            },
            {
                "username": "viewer1",
-               "password": "Password2$"
+               "password": "<password>"
            }
        ]
    }
@@ -113,11 +113,11 @@ You can use local authentication to define users explicitly with usernames and p
        "users": [
            {
                "username": "author1",
-               "password": "Password1$"
+               "password": "<password>"
            },
            {
                "username": "viewer1",
-               "password": "Password2$"
+               "password": "<password>"
            }
        ]
    }

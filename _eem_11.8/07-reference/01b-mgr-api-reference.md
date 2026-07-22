@@ -166,7 +166,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| spec | [podSpec](https://v1-35.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
+| spec | [podSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#podspec-v1-core){:target="_blank"} | Kubernetes pod spec overrides. |
 
 
 #### `spec.manager.storage`

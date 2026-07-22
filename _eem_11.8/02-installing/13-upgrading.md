@@ -13,44 +13,66 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 ## Planning your upgrade
 {: #planning-upgrade}
 
-{{site.data.reuse.eem_name}} 11.8.0 introduces significant changes to how topics are subscribed to, and how the {{site.data.reuse.egw}}s are configured.
+{{site.data.reuse.eem_name}} 11.8.1 updates the {{site.data.reuse.egw}} Kafka client library to version 4.3.0. Before you upgrade, check the {{site.data.reuse.eem_name}} UI for any warnings the {{site.data.reuse.egw}} reports about clients that use deprecated APIs. For more information, you can check the [{{site.data.reuse.egw}} OpenTelemetry metrics](../../reference/metrics-reference/#gateway) to identify clients that use Kafka protocol API versions no longer supported in Kafka 4.x. Update any affected clients to avoid disruption.
+
+### Upgrading from 11.8.0
+{: #upgrading-from-118}
+
+**Important**: If you upgrade from version 11.8.0 to 11.8.1, the current Kafka offsets of some of your Kafka client consumers might not be preserved during the upgrade. This issue can occur when the following conditions are met:
+
+- Your gateways were [updated to support multi-topic subscriptions](../converting-gateways), or your {{site.data.reuse.eem_name}} deployment was installed at version 11.8.0 (in which case your gateways support multi-topic subscriptions by default).
+- You have applications that have only one subscription to a consumer-enabled virtual topic, and a single credential defined.
+
+If both of these conditions are met, then all applications that have only one subscription can lose their offset when you upgrade to 11.8.1.
+
+To prevent this issue, edit all applications that have a single subscription to a consumer-enabled topic, and complete one of the following procedures before you upgrade to version 11.8.1:
+
+- Add an extra credential to the application.
+- Add an extra subscription to the application.
+
+You can remove the credential or subscription that you added after you complete the upgrade to version 11.8.1.
+
+
+
+### Upgrading from 11.7.x and previous
+{: #upgrading-from-117}
+
+{{site.data.reuse.eem_name}} 11.8.x introduces significant changes to how topics are subscribed to, and how the {{site.data.reuse.egw}}s are configured.
 
 - [Multiple topic subscriptions: applications](../../about/whats-new#applications-1180)
 - [Gateway properties configuration](../../about/whats-new#gateway-props)
 
-### Subscriptions converted to applications
+#### Subscriptions converted to applications
 {: #application-convert}
 
-When you upgrade from 11.7.x to 11.8.0, all your existing subscriptions are converted to applications and continue to work seamlessly for your clients. However, to be able to use all of the new features in 11.8.0, additional post-upgrade steps are required to [convert](../converting-gateways) your gateways to support multi-topic application subscriptions.
+When you upgrade from 11.7.x to 11.8.x, all your existing subscriptions are converted to applications and continue to work seamlessly for your clients. However, to be able to use all of the new features in 11.8.x, additional post-upgrade steps are required to [convert](../converting-gateways) your gateways to support multi-topic application subscriptions.
 
-### Automatically generated mTLS credentials
+#### Automatically generated mTLS credentials
 {: #auto-mtls}
 
-In 11.7.x, if you define a virtual topic (option) as secured by mTLS and an additional security control (OAuth or SASL), then it is possible to create a subscription that provides only OAuth or SASL credentials, and not supply the mTLS credentials. In 11.8.0, applications that specify mTLS must always include the mTLS credentials. If any of your subscriptions specified mTLS, but did not include mTLS credentials, then when the subscription is converted to an application, appropriate mTLS credentials are automatically generated. No changes are required to your clients, the virtual topics continue to accept the TLS credentials that your clients present.
+In 11.7.x, if you define a virtual topic (option) as secured by mTLS and an additional security control (OAuth or SASL), then it is possible to create a subscription that provides only OAuth or SASL credentials, and not supply the mTLS credentials. In 11.8.x, applications that specify mTLS must always include the mTLS credentials. If any of your subscriptions specified mTLS, but did not include mTLS credentials, then when the subscription is converted to an application, appropriate mTLS credentials are automatically generated. No changes are required to your clients, the virtual topics continue to accept the TLS credentials that your clients present.
 
 All applications that use automatically generated mTLS credentials display a warning in the {{site.data.reuse.eem_name}} UI. To replace the auto-generated mTLS credentials, see [how to replace auto-generated mutual TLS credentials](../../troubleshooting/auto-mtls).
 
-### Admin API
+#### Admin API
 {: #admin-api}
 
-The [application](../../about/key-concept#application) feature is not available in the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }}) in version 11.8.0. The feature will be added to the API in a future version. You can continue to use the [Admin API]({{ 'eem-api' | relative_url }}) in 11.8.0 to manage subscriptions, but all existing and any new subscriptions you create are converted to applications. If you are creating subscriptions that specify mTLS security, then you must provide the mTLS credentials. Otherwise, credentials are automatically-created when the subscription is converted to an application.
+The [application](../../about/key-concept#application) feature is not available in the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }}) in version 11.8.1. The feature will be added to the API in a future version. You can continue to use the [Admin API]({{ 'eem-api' | relative_url }}) in 11.8.1 to manage subscriptions, but all existing and any new subscriptions you create are converted to applications. If you are creating subscriptions that specify mTLS security, then you must provide the mTLS credentials. Otherwise, credentials are automatically-created when the subscription is converted to an application.
 
-### Open subscription approval requests
+#### Open subscription approval requests
 {: #approval-requests}
 
-If you have open approval requests when you upgrade to 11.8.0, these requests are no longer valid, and will not be visible in the UI. You can view these requests and delete them in the Admin API. Users must create new subscription requests with applications.
-
-
+If you have open approval requests when you upgrade to 11.8.x, these requests are no longer valid, and will not be visible in the UI. You can view these requests and delete them in the Admin API. Users must create new subscription requests with applications.
 
 
 ### Upgrade paths
 {: #upgrade-paths}
 
-<!-- Below text to be used for .1, .2,... releases (non .0 releases) 
-You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.7.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.7.x or 11.6.x version by using the latest 11.7.x operator.-->
+<!-- Below text to be used for .1, .2,... releases (non .0 releases) -->
+You can upgrade {{site.data.reuse.eem_name}} to the [latest 11.8.x version]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any earlier 11.8.x or 11.7.x version by using the latest 11.8.x operator.
 
-<!-- Below text to be used for .0 releases -->
-You can upgrade {{site.data.reuse.eem_name}} to [11.8.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.7.x by using the 11.8.0 operator.
+<!-- Below text to be used for .0 releases 
+You can upgrade {{site.data.reuse.eem_name}} to [11.8.0]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) directly from any 11.7.x by using the 11.8.0 operator. -->
 
 If you are upgrading from {{site.data.reuse.eem_name}} version 11.6.x or earlier, you must first [upgrade your installation to 11.7.x]({{ 'eem/eem_11.7' | relative_url }}/installing/upgrading/), and then return to these instructions to upgrade to 11.8.x.
 
@@ -63,7 +85,7 @@ On other Kubernetes platforms, you must update the Helm repository and then upgr
 
 - Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
 - To keep your data, your {{site.data.reuse.eem_manager}} instance must have persistent storage enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, then all data is lost.
 
@@ -73,7 +95,7 @@ On other Kubernetes platforms, you must update the Helm repository and then upgr
 
 - Rolling back an upgrade is not supported. If your upgrade fails, then reinstall {{site.data.reuse.eem_name}} and restore your data from your [backup](../backup-restore).
 
-- Advise existing users that after the upgrade from 11.7.x, they will see some UI changes and their existing [subscriptions](../../about/key-concepts#subscription) are converted to applications. Applications are used to [subscribe to virtual topics](../../subscribe/subscribing-apps). 
+- Upgrade from 11.7.x: Advise existing users that after the upgrade from 11.7.x, they will see some UI changes and their existing [subscriptions](../../about/key-concepts#subscription) are converted to applications. Applications are used to [subscribe to virtual topics](../../subscribe/subscribing-apps). 
 
 **Important:** The upgrade process requires some downtime as {{site.data.reuse.eem_name}} and {{site.data.reuse.egw}} pods are restarted.
 
@@ -145,7 +167,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    ```
    
    <!-- Below line for non .0 releases only -->
-   <!-- If your existing subscription is already on the v11.8 channel, then the upgrade to 11.8.x is applied automatically. Skip the remaining steps and proceed to [verify your upgrade](#verify-upgrade).-->
+   If your existing subscription is already on the v11.8 channel, then the upgrade to 11.8.x is applied automatically. Skip the remaining steps and proceed to [verify your upgrade](#verify-upgrade).
    
    If you used the CASE bundle for an offline installation that uses a private registry, follow the instructions in [installing offline](../offline/#download-the-case-bundle) to remirror images and update the `CatalogSource`.
 
@@ -163,7 +185,7 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    oc -n <namespace> patch subscription ibm-eventendpointmanagement --patch '{"spec":{"channel":"vX.Y"}}' --type=merge
    ```
 <!-- Below step can be commented out from releases that do not require license updates. -->
-<!-- 5. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated. Set `<namespace>` to the namespace of your {{site.data.reuse.eem_name}} instance.
+5. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated. Set `<namespace>` to the namespace of your {{site.data.reuse.eem_name}} instance.
 
     a. Get the names of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
 
@@ -184,9 +206,9 @@ If you are using the OpenShift command-line interface (CLI), complete the steps 
    ```shell
    oc -n <namespace> patch eventgateway.events.ibm.com <gateway instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
    ```
- -->
+ 
 
-5. Check the status of the `Subscription` custom resource to confirm that your {{site.data.reuse.eem_name}} operator was updated to your target version.
+6. Check the status of the `Subscription` custom resource to confirm that your {{site.data.reuse.eem_name}} operator was updated to your target version.
 
    ```shell
    oc -n <namespace> get -o yaml subscription
@@ -211,11 +233,11 @@ If you are using the {{site.data.reuse.openshift_eem_name}} web console, complet
 3. From the **Project** list, select the project (namespace) the instance is installed in.
 4. Locate the operator that manages your {{site.data.reuse.eem_manager}} instance in the project. It is called **{{site.data.reuse.eem_name}}** in the **Name** column. Click the **{{site.data.reuse.eem_name}}** link in the row.
 5. Click the **Subscription** tab to display the **Subscription details** for the {{site.data.reuse.eem_name}} operator.
-6. Select the version number link in the **Update channel** section (for example, **v11.6**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
+6. Select the version number link in the **Update channel** section (for example, **v11.7**). The **Change Subscription update channel** dialog is displayed, showing the channels that are available to upgrade to.
 7. Select the required channel, for example **v11.8**, and click **Save** on the **Change Subscription update channel** dialog.<!-- This step can be commented out from releases that do not require license updates. -->
-<!-- 8. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated. -->
-8. Monitor your {{site.data.reuse.eem_name}} operator and instance in the web console to confirm that the upgrade completes.
-9. If your {{site.data.reuse.egw}} instances do not automatically upgrade, then follow the steps in [upgrade gateways](../upgrading-gateways#upgrade-opman-gateways).
+8. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated.
+9. Monitor your {{site.data.reuse.eem_name}} operator and instance in the web console to confirm that the upgrade completes.
+10. If your {{site.data.reuse.egw}} instances do not automatically upgrade, then follow the steps in [upgrade gateways](../upgrading-gateways#upgrade-opman-gateways).
 
 All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade are restarted.
 
@@ -252,8 +274,8 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
    
    ```shell
    NAME     NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART                                   	APP VERSION     
-   eem-crd  eemns   	1       	2025-08-29 02:10:55.343886423 -0800 PST	deployed	ibm-eem-operator-crd-11.7.4             	26955880-704cca1
-   eem-op   eemns  	1         	2025-08-29 02:11:08.814270035 -0800 PST	deployed	ibm-eem-operator-11.7.4                 	26955880-704cca1
+   eem-crd  eemns   	1       	2026-07-29 02:10:55.343886423 -0800 PST	deployed	ibm-eem-operator-crd-11.7.4             	26955880-704cca1
+   eem-op   eemns  	1         	2026-07-29 02:11:08.814270035 -0800 PST	deployed	ibm-eem-operator-11.7.4                 	26955880-704cca1
    ```
 
    If the chart version for your existing deployment is earlier than 11.7.x, you must first [upgrade your installation to 11.7.x]({{ 'eem/eem_11.7' | relative_url }}/installing/upgrading/), including any post-upgrade tasks. Return to these instructions to complete your upgrade to the 11.8.x version.
@@ -277,7 +299,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
 If the chart version for your existing deployment is 11.7.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
 <!-- Below line applies to non .0 releases only -->
-<!-- If the chart version for your existing deployment is 11.8.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#helm-upgrade-steps) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically. -->
+If the chart version for your existing deployment is 11.8.x, your upgrade is a change in patch level only. Follow the steps in [upgrading by using Helm](#helm-upgrade-steps) to update your Custom Resource Definitions (CRDs) and operator charts to the latest version. The operator will then upgrade your {{site.data.reuse.eem_manager}} instance automatically.
 
 ### Upgrading by using Helm
 {: #helm-upgrade-steps}
@@ -299,7 +321,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 
    Replace `<EEM operator namespace>` and `<EEM operator name>` with the NAMESPACE and NAME values that you identified in the [pre-upgrade checks](#pre-upgrade-checks-and-preparation-on-other-kubernetes-platforms). 
  
-<!-- 3. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated.
+3. If you are upgrading from 11.7.x, then update the `spec.license.license` field in the custom resources of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances to the [license ID]({{ '/support/licensing/#available-licenses' | relative_url }}) for 11.8.0 and later. The instances will not upgrade until the license ID is updated.
 
    a. Retrieve the names of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances:
 
@@ -320,7 +342,7 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
    ```shell
    kubectl -n <namespace> patch eventgateways.events.ibm.com <gateway instance name> --patch '{"spec":{"license":{"license":"<license ID>"}}}' --type=merge
    ```
--->
+
    <!-- Above step can be commented out from releases that do not require license updates. -->
 3. Verify that your upgrade completed:
 
@@ -372,7 +394,7 @@ Confirm that the PHASE is `Running`, and the RECONCILED VERSION is your target v
 
 ```
 NAME                  PHASE     RECONCILED VERSION   
-eem-manager           Running   11.8.0              
+eem-manager           Running   11.8.1              
 ```
 
 ### Verifying the upgrade on other Kubernetes platforms
@@ -383,66 +405,3 @@ Describe the `EventEndpointManagement` custom resource:
 `kubectl -n <namespace> get -o yaml eventendpointmanagement`
 
 Review the output and confirm that `status.phase=Running` and `status.versions.reconciled=<target version>`.
-
-### Migrate ImageContentSourcePolicy to ImageDigestMirrorSet
-{: #migrate-imagecontentsourcepolicy-to-imagedigestmirrorset}
-
-If you are running {{site.data.reuse.eem_name}} on {{site.data.reuse.openshift_short}} 4.14 or later in an offline environment and upgraded from OpenShift 4.13 or earlier, you must migrate your `ImageContentSourcePolicy` resources to `ImageDigestMirrorSet`. The `ImageContentSourcePolicy` API is deprecated in OpenShift 4.14 and later versions.
-
-**Note:** This migration is only required if you are running in an offline environment and have existing `ImageContentSourcePolicy` resources from a previous installation.
-
-Complete the following steps to migrate:
-
-1. {{site.data.reuse.openshift_cli_login}}
-1. Get the name of the `ImageContentSourcePolicy` resources on your cluster:
-
-   ```shell
-   oc get ImageContentSourcePolicy
-   ```
-1. For {{site.data.reuse.eem_name}}, migrate the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
-
-   a. Set an environment variable to the name of the {{site.data.reuse.eem_name}} `ImageContentSourcePolicy`. For example, if the policy name is `ibm-eventendpointmanagement`:
-
-   ```shell
-   export EEM_ICSP=ibm-eventendpointmanagement
-   ```
-
-   b. Save the `ImageContentSourcePolicy` as a YAML file:
-
-   ```shell
-   oc get ImageContentSourcePolicy ${EEM_ICSP} -o yaml >> ${EEM_ICSP}.yaml
-   ```
-
-   c. Convert the `ImageContentSourcePolicy` to `ImageDigestMirrorSet`:
-
-   ```shell
-   oc create -f $(oc adm migrate icsp ${EEM_ICSP}.yaml | cut -f 4 -d ' ')
-   ```
-
-   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
-
-   d. Delete the `ImageContentSourcePolicy`:
-
-   ```shell
-   oc delete ImageContentSourcePolicy ${EEM_ICSP}
-   ```
-
-   **Note:** This command might trigger node upgrades. Wait for all the nodes to be in Ready state before you proceed to the next step.
-
-5. Verify that the `ImageDigestMirrorSet` resources are created:
-
-   ```shell
-   oc get imagedigestmirrorset
-   ```
-
-   **Important:** After the `ImageDigestMirrorSet` resources are applied, you might see the node status as `Ready`, `Scheduling`, or `Disabled`. Wait until all the nodes show a `Ready` status.
-
-6. Verify your cluster node status and wait for all nodes to be updated before proceeding:
-
-   ```shell
-   oc get MachineConfigPool -w
-   ```
-
-For more information about converting to `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/images/image-configuration-classic#images-configuration-registry-mirror-convert_image-configuration){:target="_blank"}.
-
-

@@ -68,7 +68,7 @@ The {{site.data.reuse.eem_name}} UI generates a `docker run` command that includ
      -v "/home/users/me/myclientcert:/certs/client.pem" \
      -v "/home/users/me/myclientkey>:/certs/client.key" \
      -p 9090:8443 \
-     -e MANAGER_CLIENT_API_KEY="e08da073-846f-4e1a-9035-9d43c537e2ba" \
+     -e MANAGER_CLIENT_API_KEY="<api-key>" \
      -e LICENSE_ID="L-CYBH-K48BZQ" \
      -e ACCEPT_LICENSE="true" \
      -v "/home/users/me/myca:/certs/ca.pem" \

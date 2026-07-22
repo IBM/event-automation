@@ -164,7 +164,7 @@ The following example shows the result of a system that has usage-based licensin
       "conditions" : [ ]
     }, {
       "id" : "UBP.Reporting.Status",
-      "description" : "Failed to send data to the license service : https://ibm-licensing-service-instance.ibm-common-services.svc.cluster.local:8089/v2/metric_upload?token=cEDdqE9sodSl8n87Vz82Im39 : No route to host: ibm-licensing-service-instance.ibm-common-services.svc.cluster.local/172.30.42.210:8089 : {\"cloudpakId\":\"279abae6bfe647eca1f0efcbf136099c\",\"cloudpakName\":\"IBM Cloud Pak for Integration - API Calls\",\"productId\":\"3af7dda8ce3e4369b1c461c2982719c8\",\"productName\":\"IBM {{site.data.reuse.eem_name}} Non Production\",\"productMetric\":\"MONTHLY_API_CALL\",\"productCloudpakRatio\":\"2:1\",\"cloudpakMetric\":\"RESOURCE_VALUE_UNIT\",\"aggregationPolicy\":\"ADD\",\"metricValue\":0}",
+      "description" : "Failed to send data to the license service : https://ibm-licensing-service-instance.ibm-common-services.svc.cluster.local:8089/v2/metric_upload?token=<token> : No route to host: ibm-licensing-service-instance.ibm-common-services.svc.cluster.local/172.30.42.210:8089 : {\"cloudpakId\":\"279abae6bfe647eca1f0efcbf136099c\",\"cloudpakName\":\"IBM Cloud Pak for Integration - API Calls\",\"productId\":\"3af7dda8ce3e4369b1c461c2982719c8\",\"productName\":\"IBM {{site.data.reuse.eem_name}} Non Production\",\"productMetric\":\"MONTHLY_API_CALL\",\"productCloudpakRatio\":\"2:1\",\"cloudpakMetric\":\"RESOURCE_VALUE_UNIT\",\"aggregationPolicy\":\"ADD\",\"metricValue\":0}",
       "code" : 500,
       "conditions" : [ ]
     }, {

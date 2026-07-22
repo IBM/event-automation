@@ -39,9 +39,11 @@ To enable the Apicurio Avro converter in your Kafka Connect setup:
    ```yaml
    value.converter.apicurio.registry.url: <username>:<password>@<Schema registry endpoint>
    value.converter.apicurio.registry.request.ssl.truststore.location: "\$\{file:/tmp/strimzi-connect.truststore.p12}"
-   value.converter.apicurio.registry.request.ssl.truststore.password: "\$\{file:/tmp/strimzi-connect.password}"
+   value.converter.apicurio.registry.request.ssl.truststore.password: "<your-truststore-password>"
    value.converter.apicurio.registry.request.ssl.truststore.type: "PKCS12"
    ```
+
+
 1. To use the Apicurio Avro converter in your Kafka Connect configuration, set the `value.converter` and `key.converter` properties to `io.apicurio.registry.utils.converter.AvroConverter` in your connector configuration.
 
 For example:

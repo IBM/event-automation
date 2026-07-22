@@ -25,7 +25,7 @@ Two options are available for configuring TLS on your operator-managed {{site.da
 
 The best way to create and manage TLS certificates is to use cert-manager. Cert-manager creates TLS certificates based on a YAML definition, stores them in Kubernetes secrets, and automatically renews them before they expire. Cert-manager supports integration with external public signers, and can also create self-signed certificates.
 
-On Kubernetes, install the cert-manager [community operator](https://cert-manager.io/docs/){:target="_blank"}. Cert-manager is included on [Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-securing-routes){:target="_blank"}. 
+On Kubernetes, install the cert-manager [community operator](https://cert-manager.io/docs/){:target="_blank"}. Cert-manager is included on [Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-securing-routes){:target="_blank"}. 
 
 The {{site.data.reuse.egw}} YAML files that the {{site.data.reuse.eem_name}} UI creates includes the definitions of a self-signed certificate and issuer.
 
@@ -112,7 +112,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
               certificateType: WILDCARD
       ```
 
-      **Note:** Wildcard routes are not enabled by default in {{site.data.reuse.openshift_short}}. See [wildcard policy](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/operator_apis/ingresscontroller-operator-openshift-io-v1#spec-routeadmission){:target="_blank"} to enable wildcard routes in your Ingress Controller.
+      **Note:** Wildcard routes are not enabled by default in {{site.data.reuse.openshift_short}}. See [wildcard policy](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/operator_apis/ingresscontroller-operator-openshift-io-v1#spec-routeadmission){:target="_blank"} to enable wildcard routes in your Ingress Controller.
 
       **Note:** Wildcard hostnames on operator-managed gateways are supported only in {{site.data.reuse.openshift_short}}.
 

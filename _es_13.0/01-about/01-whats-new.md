@@ -7,9 +7,30 @@ toc: true
 ---
 
 
+
 Find out what is new in {{site.data.reuse.es_name}} version 13.0.x.
 
 ## Release {{site.data.reuse.es_current_version}}
+{: #release-1301}
+
+### Support for {{site.data.reuse.openshift}} 4.22
+{: #support-for-openshift-422}
+
+{{site.data.reuse.es_name}} version 13.0.1 introduces [support]({{ 'support/matrix/#event-streams' | relative_url }}) for {{site.data.reuse.openshift}} 4.22.
+
+### Apicurio version updated to 3.2.6
+{: #apicurio-version-updated-to-326}
+
+{{site.data.reuse.es_name}} 13.0.1 includes Apicurio Registry version 3.2.6 for [managing schemas](../../schemas/overview/#schema-registry). For more information about client application requirements, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1301}
+
+{{site.data.reuse.es_name}} release 13.0.1 contains security and bug fixes.
+
+
+## Release 13.0.0
 
 ### Redesigned user interface
 {: #redesigned-user-interface}

@@ -68,3 +68,55 @@ spec:
 ```
 
 You can specify all the broker configuration options supported by Kafka except those managed directly by {{site.data.reuse.es_name}}. For further information, see the list of [supported configuration options](https://strimzi.io/docs/operators/1.0.0/configuring.html#type-KafkaClusterSpec-reference){:target="_blank"}.
+
+## Modifying message browser configuration settings
+{: #modifying-message-browser-configuration-settings}
+
+The message browser, available through the **Messages** tab in the {{site.data.reuse.es_name}} UI, displays messages from your topics. The message browser uses a Kafka consumer client configured with default Kafka settings. The consumer reads all messages from all partitions and processes the partitions in batches. For topics with a large number of partitions, the messages are consumed in batches of up to 20 partitions at a time. If the partitions contain large messages, you can reduce the number of partitions in the batch to reduce the amount of data transferred in each consumer poll. If the message sizes are very small, you can consume from more than 20 partitions at a time. You can modify this batch size based on your topic configuration.
+
+The Kafka consumer client defaults limit the consumer to fetch a maximum of 1 MiB per partition and a maximum of 50 MiB total per topic on each fetch. This means the message browser cannot read messages larger than 1 MiB. For topics with larger messages, you must increase these limits to view those messages.
+
+The Kafka consumer client reads messages as an infinite stream through multiple polling calls. To simulate this behavior within the HTTP request and response window, the Kafka consumer client issues one or more polls until all messages are returned, or until either the time limit is reached or the maximum number of consecutive empty polls is reached. The message browser allows a maximum of 5 seconds for the consumer to retrieve messages. In a busy cluster, it is possible that a consumer poll might return no messages. If 10 consecutive poll requests return no messages, the request is also terminated. You can modify these values to increase the time limit or the maximum number of consecutive empty polls.
+
+To reduce memory usage, the message browser limits the size of message data that it displays. Message header values are limited to 1024 bytes, and message keys and values are limited to 8192 bytes each. You can modify these limits if your messages exceed these values or if you want to adjust memory usage.
+
+The following table shows the environment variables you can configure for the message browser:
+
+| Environment variable | Type | Default | Description |
+|---------------------|------|---------|-------------|
+| `MESSAGE_BROWSER_BATCH_SIZE` | Integer | 20 | Number of partitions to process in each batch. |
+| `MESSAGE_BROWSER_MAX_PARTITION_FETCH_BYTES` | Integer | 1,048,576 (1 MiB) | Maximum bytes per partition per request. |
+| `MESSAGE_BROWSER_FETCH_MAX_BYTES` | Integer | 52,428,800 (50 MiB) | Maximum total bytes per request. |
+| `MESSAGE_BROWSER_MAX_FETCH_TIME` | Long | 5000 (5 seconds) | Maximum time to retrieve messages. |
+| `MESSAGE_BROWSER_MAX_EMPTY_POLLS` | Integer | 10 | Maximum consecutive empty reads before stopping. |
+| `MESSAGE_BROWSER_HEADER_VALUE_LENGTH` | Integer | 1024 | Maximum size for message headers. |
+| `MESSAGE_BROWSER_KEY_LENGTH` | Integer | 8192 | Maximum size for message keys. |
+| `MESSAGE_BROWSER_VALUE_LENGTH` | Integer | 8192 | Maximum size for message values. |
+
+To configure the environment variables, edit the `eventstreams` custom resource and add the variables to the `adminApi` section of the `spec`. For example:
+
+```yaml
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: EventStreams
+# ...
+spec:
+  # ...
+  adminApi:
+    env:
+      - name: MESSAGE_BROWSER_BATCH_SIZE
+        value: '20'
+      - name: MESSAGE_BROWSER_MAX_PARTITION_FETCH_BYTES
+        value: '1048576'
+      - name: MESSAGE_BROWSER_FETCH_MAX_BYTES
+        value: '52428800'
+      - name: MESSAGE_BROWSER_MAX_FETCH_TIME
+        value: '5000'
+      - name: MESSAGE_BROWSER_MAX_EMPTY_POLLS
+        value: '10'
+      - name: MESSAGE_BROWSER_HEADER_VALUE_LENGTH
+        value: '1024'
+      - name: MESSAGE_BROWSER_KEY_LENGTH
+        value: '8192'
+      - name: MESSAGE_BROWSER_VALUE_LENGTH
+        value: '8192'
+```

@@ -46,6 +46,10 @@ To use Kafka topics to store events in {{site.data.reuse.es_name}}, create and c
 9. Click **Create**.
 
    After the topic is created, you can view it from the **Topics** tab located in the primary navigation. The **Topics** page lists all topics in the cluster and displays details about each topic, including the number of replicas, partitions, geo-replication status, tiered storage settings, and the current state of the topic.
+   
+   You can click a topic to view topic details. To browse messages, click the **Messages** tab.
+   
+   **Note:** If some messages are not shown due to default limits, you can [modify the configuration settings](../../administering/modifying-installation/#modifying-message-browser-configuration-settings).
 
 ## By using the CLI
 {: #by-using-the-cli}

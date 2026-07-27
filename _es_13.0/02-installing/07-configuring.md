@@ -360,7 +360,7 @@ spec:
 # ...
 ```
 
-If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/storage/dynamic-provisioning){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
+If present, existing persistent volumes with the specified storage class are used after installation, or if a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/storage/dynamic-provisioning){:target="_blank"} is configured for the specified storage class, new persistent volumes are created.
 
 Where optional values are not specified:
 
@@ -866,12 +866,12 @@ When secure listeners are configured, {{site.data.reuse.es_name}} will automatic
 
 Open Authorization (OAuth) is an open standard for authentication and authorization that allows client applications secure delegated access to specified resources. OAuth works over HTTPS and uses access tokens for authorization rather than credentials.
 
-**Important:** The `oauth` authentication type is no longer supported in {{site.data.reuse.es_name}} 13.0.0 and later. Use the `custom` authentication type instead.
+**Important:** The `oauth` authentication type is not supported in {{site.data.reuse.es_name}} 13.0.0 and later. Use the `custom` authentication type instead.
 
 ### Enable OAuth authentication
 {: #enable-oauth-authentication}
 
-To configure OAuth authentication, configure a Kafka listener with type `oauth`, and set the listener to use one of the following token validation methods:
+To configure OAuth authentication, configure a Kafka listener with type `custom`, and set the listener to use one of the following token validation methods:
 
 - **Fast local JSON Web Token (JWT) validation:** a signed token is verified against the OAuth authentication server's public certificate, and a check ensures that the token has not expired on the Kafka cluster. This means that the OAuth authorization server does not need to be contacted, which speeds up the validation.
 
@@ -886,9 +886,9 @@ To configure OAuth authentication, configure a Kafka listener with type `oauth`,
 #### Configuring OAuth to use fast local JWT validation
 {: #configuring-oauth-to-use-fast-local-jwt-validation}
 
-To configure an OAuth listener to use fast local JWT validation authentication, add the following snippet to your `EventStreams` custom resource, and edit the  settings as follows:
-- Add the respective URIs of the OAuth authentication server to the `jwksEndpointUri` and `validIssuerUri` properties.
-- Create a secret that contains the public CA certificate of the OAuth authentication Server, and reference this secret in the `tlsTrustedCertificates` property of the listener configuration. The `certificate` element in the `tlsTrustedCertificates` references the secret key that contains the CA certificate.
+To configure an OAuth listener to use fast local JWT validation authentication, add the following snippet to your `EventStreams` custom resource. Before you begin, create and mount a Kubernetes secret that contains your OAuth server truststore (JKS or PEM format).
+
+The following example shows a listener configuration that validates JWTs by using a JWKS endpoint:
 
 ```yaml
 # ...
@@ -898,30 +898,63 @@ spec:
     # ...
     kafka:
       listeners:
-        - name: extoauth
+        - name: extfastjwt
           port: 9094
+          type: route
           tls: true
           authentication:
             type: custom
-            jwksEndpointUri: <OAuth-authentication-server-JWKS-certificate-endpoint>
-            maxSecondsWithoutReauthentication: 3600
-            tlsTrustedCertificates:
-              - certificate: <CA-certificate-secret-key>
-                secretName: <CA-certificate-secret-name>
-            userNameClaim: preferred_username
-            validIssuerUri: <OAuth-authentication-server-token-issuer-endpoint>
-          type: route
+            sasl: true
+            listenerConfig:
+              sasl.enabled.mechanisms: OAUTHBEARER
+              oauthbearer.sasl.server.callback.handler.class: io.strimzi.kafka.oauth.server.JaasServerOauthValidatorCallbackHandler
+              oauthbearer.sasl.jaas.config: |
+                org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required
+                  oauth.valid.issuer.uri="https://<oauth-server-host>/realms/<realm-name>"
+                  oauth.jwks.endpoint.uri="https://<oauth-server-host>/realms/<realm-name>/protocol/openid-connect/certs"
+                  oauth.username.claim="preferred_username"
+                  oauth.ssl.truststore.location="<truststore-location>" 
+                  oauth.ssl.truststore.password="<truststore-password>"
+                  oauth.ssl.truststore.type="JKS"
+                  unsecuredLoginStringClaim_sub="thePrincipalName";
+              oauthbearer.connections.max.reauth.ms: 3600000
+    nodePools:
+      - name: kafka
+        # ... other nodePool configuration ...
+        template:
+          kafkaContainer:
+            volumeMounts:
+              - name: <oauth-truststore-name>
+                mountPath: /mnt/oauth-certs
+                readOnly: true
+          pod:
+            volumes:
+              - name: <oauth-truststore-name>
+                secret:
+                  secretName: <truststore-secret>
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
+Where:
+
+- `<oauth-server-host>` is the hostname of your OAuth authentication server.
+- `<realm-name>` is the name of your OAuth realm.
+- `<truststore-location>` is the path to the mounted truststore file containing the OAuth server's CA certificate. For example, "/mnt/oauth-certs/truststore.jks".
+- `<truststore-password>` is the password for the JKS truststore.
+- `<oauth-truststore-name>` is the name of the Kubernetes volume that mounts the truststore secret into the Kafka pod. The value must match in both the `volumeMounts` and `volumes` sections.
+- `<truststore-secret>` is the name of the Kubernetes Secret containing your OAuth server's CA certificate.
+
+The previous example shows a configuration containing the most commonly used properties. For more information, see [using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
 
 #### Configuring OAuth to use token validation by using an introspection endpoint
 {: #configuring-oauth-to-use-token-validation-by-using-an-introspection-endpoint}
 
-To configure an OAuth listener to use introspection endpoint token validation, add the following snippet to your `EventStreams` custom resource, and edit the  settings as follows:
-- Add the respective URIs of the OAuth authentication server to the `validIssuerUri` and `introspectionEndpointUri` properties.
-- Create a secret that contains the public CA certificate of the OAuth authentication Server, and reference this secret in the `tlsTrustedCertificates` property of the listener configuration. The `certificate` element in the `tlsTrustedCertificates` references the secret key that contains the CA certificate.
-- Create another secret that contains the secret value of the `userid` as defined in the `clientId` property of the configuration, and reference this secret in the `clientSecret` property of the configuration. In the `key` property, add the key from the Kubernetes secret that contains the secret value for the `userid`.
+To configure an OAuth listener to use introspection endpoint token validation, add the following snippet to your `EventStreams` custom resource, and edit the settings as follows:
+
+- Create a Kubernetes Secret containing the client secret in a properties file (for example, `oauth.properties` with `client.secret=<your-secret-value>`).
+- Configure the Kafka config provider to load secrets from files using `config.providers` and `config.providers.file.class`.
+- Create a Kubernetes Secret containing your OAuth server's truststore (JKS or PEM format) and mount it into the Kafka pods.
+
+The following example shows a listener configuration that validates opaque access tokens by using an OAuth 2.0 introspection endpoint. The Kafka broker authenticates with the authorization server by using a client ID and a client secret loaded securely from a file:
 
 ```yaml
 # ...
@@ -930,62 +963,179 @@ spec:
   strimziOverrides:
     # ...
     kafka:
+      config:
+        config.providers: file
+        config.providers.file.class: org.apache.kafka.common.config.provider.FileConfigProvider
       listeners:
-        - name: extoauth
+        - name: exttoken
           port: 9094
+          type: route
           tls: true
           authentication:
             type: custom
-            clientId: <client-id>
-            clientSecret:
-              secretName: <secret-name-containing-clientid-password>
-              key: <secret-key-containing-client-password>
-            validIssuerUri: <OAuth-authentication-server-token-issuer-endpoint>
-            introspectionEndpointUri: <OAuth-authentication-server-token-introspection-endpoint>
-            userNameClaim: preferred_username
-            maxSecondsWithoutReauthentication: 3600
-            tlsTrustedCertificates:
-              - certificate: <CA-certificate-secret-key>
-                secretName: <CA-certificate-secret-name>
-          type: route
-
+            sasl: true
+            listenerConfig:
+              sasl.enabled.mechanisms: OAUTHBEARER
+              oauthbearer.sasl.server.callback.handler.class: io.strimzi.kafka.oauth.server.JaasServerOauthValidatorCallbackHandler
+              oauthbearer.sasl.jaas.config: |
+                org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required
+                  oauth.access.token.is.jwt="false"  # This value must be "false" only for opaque (non-JWT) access tokens.
+                  oauth.client.id="kafka"
+                  oauth.client.secret="${file:<oauth-file-config-mount-path>/<properties-file>:<client-secret-key>}"
+                  oauth.valid.issuer.uri="https://<oauth-server-host>/realms/<realm-name>"
+                  oauth.introspection.endpoint.uri="https://<oauth-server-host>/realms/<realm-name>/protocol/openid-connect/token/introspect"
+                  oauth.username.claim="preferred_username"
+                  oauth.ssl.truststore.location="<truststore-location>"
+                  oauth.ssl.truststore.password="<truststore-password>"
+                  oauth.ssl.truststore.type="JKS"
+                  unsecuredLoginStringClaim_sub="thePrincipalName";
+              oauthbearer.connections.max.reauth.ms: 3600000
+    nodePools:
+      - name: kafka
+        # ... other nodePool configuration ...
+        template:
+          kafkaContainer:
+            volumeMounts:
+              - name: <oauth-truststore-name>
+                mountPath: /mnt/oauth-certs
+                readOnly: true
+              - name: <oauth-file-config-volume-name>
+                mountPath: /mnt/oauth-file-config
+                readOnly: true
+          pod:
+            volumes:
+              - name: <oauth-truststore-name>
+                secret:
+                  secretName: <truststore-secret>
+              - name: <oauth-file-config-volume-name>
+                secret:
+                  secretName: <client-file-secret>
 ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [Using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
+Where:
 
+- `<oauth-server-host>` is the hostname of your OAuth authentication server.
+- `<realm-name>` is the name of your OAuth realm.
+- `<oauth-file-config-mount-path>` is the path where the client secret properties file secret is mounted in the Kafka pod. For example, `/mnt/oauth-file-config`.
+- `<properties-file>` is the filename of the properties file inside the mounted secret. For example, `oauth.properties`.
+- `<client-secret-key>` is the property key in the file that contains the client secret value. For example, `client.secret`.
+- `<truststore-location>` is the path to the OAuth server's truststore file. For example, "/mnt/oauth-certs/truststore.jks".
+- `<truststore-password>` is the password for the OAuth server's truststore file.
+- `<truststore-secret>` is the name of the Kubernetes Secret containing your OAuth server's CA certificate.
+- `<client-file-secret>` is the name of the Kubernetes Secret containing the client secret properties file.
+- `<oauth-truststore-name>` is the name of the Kubernetes volume that mounts the truststore secret into the Kafka pod. The value must match in both the `volumeMounts` and `volumes` sections.
+- `<oauth-file-config-volume-name>` is the name of the Kubernetes volume that mounts the client secret properties file secret into the Kafka pod. The value must match in both the `volumeMounts` and `volumes` sections.
+
+Kafka supports multiple configuration providers (for example, File, Directory, Environment variable, Kubernetes secret, and Kubernetes ConfigMap providers) for loading external configuration values. For more information, see [loading configuration values from external sources](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-loading-config-with-providers-str){:target="_blank"} and [using OAuth 2.0 token-based authentication](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
 
 ### Enable OAuth authorization
 {: #enable-oauth-authorization}
 
 To use OAuth for authorizing access to Kafka resources in {{site.data.reuse.es_name}}, enable OAuth in the {{site.data.reuse.es_name}} custom resource, and then configure your Access Control List (ACL) rules in your selected OAuth server.
 
-To enable OAuth authorization for {{site.data.reuse.es_name}}, add the following snippet to your `EventStreams` custom resource, and edit the  settings as follows:
-- Ensure you set the `delegateToKafkaAcls` property to `true`. If this property is set to `false`, some {{site.data.reuse.es_name}} components will not work as expected.
-- If you configure OAuth authorization, include in the `superUsers` property the user IDs of the Kubernetes Cluster admin users that administer {{site.data.reuse.es_name}} through the UI or the CLI. If you are not using OAuth authorization, you do not need to specify any `superUsers`.
+**Important:** The `oauth` authorization type is not supported in {{site.data.reuse.es_name}} 13.0.0 and later. To enable authorization for OAuth-authenticated clients, use either the `simple` authorization type or the `custom` authorization type with an appropriate authorizer class.
 
-<!-- No change required. -->
+For clients authenticated through OAuth, the following examples show how to configure `simple` and `custom` authorization:
 
-```yaml
-# ...
-spec:
+- `Simple` authorization:
+
+  Use Kafka's built-in `StandardAuthorizer` for simple, reliable authorization without external dependencies.
+
+  ```yaml
   # ...
-  strimziOverrides:
+  spec:
     # ...
-    kafka:
-      authorization:
-        clientId: <client-id>
-        delegateToKafkaAcls: true
-        tlsTrustedCertificates:
-          - certificate: ca.crt
-            secretName: keycloak-ca-cert
-        tokenEndpointUri: <OAuth-authentication-server-token-endpoint>
-        type: custom
-        superUsers:
-          - "admin"
-          - "kubeadmin"
-```
+    strimziOverrides:
+      # ...
+      kafka:
+        authorization:
+          type: simple
+          superUsers:
+            - <super-user-principal-1>
+            - <super-user-principal-2>
+          supportsAdminApi: true
+  ```
 
-The snippet provided shows a configuration containing the most commonly used properties. For information about further OAuth properties, see [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
+  This option works with OAuth authentication and uses Kafka's native ACL system. No additional volume configuration is required.
+
+- `Custom` authorization with `KeycloakAuthorizer`:
+
+  **Note:** `KeycloakAuthorizer` is one example of a custom authorizer class. You can specify a different custom authorizer class based on your requirements.
+
+  Use `KeycloakAuthorizer` to enable centralized authorization management across multiple clusters, or to use OAuth-based groups and roles. To configure this option, add the following snippet to your `EventStreams` custom resource and edit the settings as follows:
+  - Set the `type` property to `custom`.
+  - Specify the `authorizerClass` as `io.strimzi.kafka.oauth.server.authorizer.`KeycloakAuthorizer`.
+  - Define `superUsers` who have unlimited access rights. Include the user IDs of Kubernetes cluster administrators through the {{site.data.reuse.es_name}} UI or CLI.
+  - Set `supportsAdminApi` to `true` to enable ACL management through the Kafka Admin API.
+  - Add OAuth authorization configuration properties to the `kafka.config` section, including the token endpoint URI, client ID, and delegation settings.
+
+  ```yaml
+  # ...
+  spec:
+    # ...
+    strimziOverrides:
+      # ...
+      kafka:
+        authorization:
+          type: custom
+          authorizerClass: io.strimzi.kafka.oauth.server.authorizer.KeycloakAuthorizer
+          superUsers:
+            - <super-user-principal-1>
+            - <super-user-principal-2>
+          supportsAdminApi: true
+        config:
+          # Needed for OAuth authentication and Keycloak authorization
+          principal.builder.class: io.strimzi.kafka.oauth.server.OAuthKafkaPrincipalBuilder
+          # Keycloak authorization configuration
+          strimzi.authorization.token.endpoint.uri: https://<oauth-server-host>/realms/<realm-name>/protocol/openid-connect/token
+          strimzi.authorization.client.id: kafka
+          strimzi.authorization.delegate.to.kafka.acl: "true"
+          strimzi.authorization.ssl.truststore.location: <truststore-location>
+          strimzi.authorization.ssl.truststore.password: <truststore-password>
+          strimzi.authorization.ssl.truststore.type: JKS
+  ```
+
+  Where:
+
+  - `<oauth-server-host>` is the hostname of your OAuth authentication server.
+  - `<realm-name>` is the name of your OAuth realm.
+  - `<super-user-principal-1>` and `<super-user-principal-2>` are user identities with unrestricted access. The values must exactly match the principal names produced by your authentication configuration.
+  - `<truststore-location>` is the path to the mounted truststore file containing the OAuth server's CA certificate. For example, "/mnt/oauth-certs/truststore.jks".
+  - `<truststore-password>` is the password for the OAuth server's truststore file.
+
+  `KeycloakAuthorizer` requires the OAuth truststore to be available on all Kafka nodes, including controllers. You must add the following volume configuration to each node pool in your `EventStreams` custom resource:
+
+  ```yaml
+  spec:
+    strimziOverrides:
+      nodePools:
+      - name: <node-pool-name>  # Apply to each node pool (controllers and brokers)
+        template:
+          kafkaContainer:
+            volumeMounts:
+            - mountPath: /mnt/oauth-certs
+              name: oauth-truststore
+              readOnly: true
+          pod:
+            volumes:
+            - name: oauth-truststore
+              secret:
+                secretName: kafka-oauth-truststore  # Your OAuth truststore secret
+  ```
+
+  Where `<node-pool-name>` specifies the name of each node pool.
+
+  The `kafka-oauth-truststore` secret must contain the CA certificate of your OAuth server in JKS or PEM format, matching the truststore type specified in `strimzi.authorization.ssl.truststore.type`.
+
+**Important:**
+- Ensure you set `strimzi.authorization.delegate.to.kafka.acl` to `true`. If this property is set to `false`, some {{site.data.reuse.es_name}} components might not function as expected.
+- The `super.user` option in the `config` property is ignored when using custom authorization. Instead, define super users in the `authorization.superUsers` property.
+- You must mount the OAuth truststore volume on all node pools (both controllers and brokers). If this configuration is missing, pods fail to start with a `FileNotFoundException` for the truststore.
+
+**Note:** If you use OAuth authentication with a `groupsClaim` configuration to extract user group information from JWT tokens, you can use this group information in authorization decisions through the `OAuthKafkaPrincipal` object.
+
+For more information about OAuth authorization properties, see [using custom authorization](https://strimzi.io/docs/operators/1.0.0/deploying.html#type-KafkaAuthorizationCustom-reference){:target="_blank"} and [configuring an OAuth 2.0 authorization server](https://strimzi.io/docs/operators/1.0.0/deploying.html#assembly-oauth-security-str){:target="_blank"}.
+
 
 ## Configuring node affinity for components
 {: #configuring-node-affinity-for-components}

@@ -26,6 +26,8 @@ If you do not have these cluster-level permissions, the UI cannot complete the v
 ## Resolving the problem
 {: #resolving-the-problem}
 
+**Note:** This issue is resolved in {{site.data.reuse.es_name}} 13.0.1 and later versions.
+
 Use one of the following workarounds to avoid this problem:
 
 ### Grant cluster permissions

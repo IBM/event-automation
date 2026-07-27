@@ -17,8 +17,8 @@ Ensure your environment meets the following prerequisites before installing {{si
 
 If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
 
-- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/overview/welcome-index){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
-- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+- A supported version of {{site.data.reuse.openshift_short}} on a supported system [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/overview/welcome-index){:target="_blank"}. For supported container platform versions and systems, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
 
 If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
@@ -110,7 +110,7 @@ For instructions about setting up geo-replication, see [planning for geo-replica
 ## Red Hat OpenShift Security Context Constraints
 {: #red-hat-openshift-security-context-constraints}
 
-If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
+If used, {{site.data.reuse.es_name}} requires a [Security Context Constraint (SCC)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/authentication_and_authorization/managing-pod-security-policies){:target="_blank"} to be bound to the target namespace prior to installation.
 
 By default, {{site.data.reuse.es_name}} complies with `restricted` or `restricted-v2` SCC depending on your {{site.data.reuse.openshift_short}} version.
 

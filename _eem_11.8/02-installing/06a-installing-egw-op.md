@@ -78,6 +78,8 @@ If your certificate is not signed by a well-known public CA chain, then you must
 ## Operator-managed {{site.data.reuse.egw}} installation steps
 {: #install-steps}
 
+**Note:** If you have an {{site.data.reuse.egw}} custom resource YAML file that you want to use, and your {{site.data.reuse.egw}} is in the same namespace as your {{site.data.reuse.eem_manager}}, then you can skip the {{site.data.reuse.eem_name}} UI gateway YAML generate steps, and start at step [6](#update-yaml). Sample {{site.data.reuse.egw}} custom resource YAML files are available at: [Event Gateway samples](https://github.com/IBM/ibm-event-automation/tree/main/event-endpoint-management/cr-examples/eventgateway), and in the {{site.data.reuse.openshift_short}} web console.
+
 1. In the navigation pane, click **Administration > Event Gateways**.
 2. Click **Add gateway**.
 3. Select the **Operator-managed deployment** tile, then click **Next**.
@@ -93,7 +95,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
     **Important:** Keep the `<gateway name>-gateway_cr_original.yaml` file in a safe location and do not edit it. To remove write permissions to avoid accidental updates to this file, you can run `chmod a-w <filename>`.
 
-6. Update the `<gateway name>-gateway_cr.yaml` file and set `spec.license.accept` to `true`.
+6. {: #update-yaml} Update the `<gateway name>-gateway_cr.yaml` file and set `spec.license.accept` to `true`.
 
 7. (Optional) To create a gateway using wildcard routes, update `<gateway name>-gateway_cr.yaml` and add the listener groups `endpoint` property. Also set `endpoint.type` and `tls.certificateType` to WILDCARD. For example:
 
@@ -177,7 +179,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
       
       **Important:** If you do not supply a CA certificate in the secret that is referenced by `spec.listeners[listener].tls.secretName` and use it from `spec.listeners[listener].tls.caCertificate`, then users cannot download the gateway certificate from the {{site.data.reuse.eem_name}} UI catalog page.
 
-9. If you are deploying an operator-managed gateway on other Kubernetes platforms, then add the `spec.listeners[].groups[].endpoint` section to your `<gateway name>-gateway_cr.yaml` file:
+9. If you are deploying an operator-managed gateway on other Kubernetes platforms, or you want to specify custom hosts, then add the `spec.listeners[].groups[].endpoint` section to your `<gateway name>-gateway_cr.yaml` file:
 
       ```yaml
       spec:

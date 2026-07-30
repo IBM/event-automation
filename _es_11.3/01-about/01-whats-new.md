@@ -23,7 +23,7 @@ IBM support is now available for the [FilePulse source connector]({{ 'connectors
 
 ### IBM Support for additional databases when using the JDBC sink connector
 
-In addition to the support for Oracle databases, IBM Support is now extended to DB2, Microsoft SQL Server, MySQL, and PostgreSQL databases when using the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).
+In addition to the support for Oracle databases, IBM Support is now extended to Db2, Microsoft SQL Server, MySQL, and PostgreSQL databases when using the [JDBC sink connector]({{ 'connectors/kc-sink-jdbc-aiven/installation' | relative_url}}).
 
 ### Support for {{site.data.reuse.openshift}} 4.15
 

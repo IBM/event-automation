@@ -10,7 +10,9 @@ toc: true
 
 - Docker container. The {{site.data.reuse.eem_name}} UI generates a Docker command to run an {{site.data.reuse.egw}}.
 - Kubernetes Deployment. The {{site.data.reuse.eem_name}} UI generates the YAML for a Kubernetes Deployment that runs the {{site.data.reuse.egw}}. 
-- Operator-managed custom resource (CR). The {{site.data.reuse.eem_name}} UI generates the YAML for a custom resource that runs the {{site.data.reuse.egw}}. Your {{site.data.reuse.eem_name}} operator manages this custom resource.
+- Operator-managed custom resource. The {{site.data.reuse.eem_name}} UI generates the YAML for a custom resource that runs the {{site.data.reuse.egw}}. Your {{site.data.reuse.eem_name}} operator manages this custom resource. 
+
+    **Note:** For operator-managed gateways that are in the same namespace as the {{site.data.reuse.eem_manager}}, instead of generating your gateway YAML in the {{site.data.reuse.eem_name}} UI, you can also install from your own {{site.data.reuse.egw}} custom resource YAML file.
 
 
 Key points to consider:

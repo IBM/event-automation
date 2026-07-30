@@ -69,7 +69,7 @@ You can now use [content filtering](../../describe/event-data-controls#content-f
 ### {{site.data.reuse.egw}} deployment and configuration enhancements
 {: #operator-gateway-deploy}
 
-In {{site.data.reuse.eem_name}} 11.8.0 and later, the {{site.data.reuse.eem_name}} operator can deploy the {{site.data.reuse.egw}} without requiring users to create a configuration in the {{site.data.reuse.eem_name}} UI beforehand.
+In {{site.data.reuse.eem_name}} 11.8.0 and later, the {{site.data.reuse.eem_name}} operator can deploy operator-managed {{site.data.reuse.egw}}s without requiring users to create a configuration in the {{site.data.reuse.eem_name}} UI beforehand. The gateway must be in the same namespace as the {{site.data.reuse.eem_manager}}. For more details, see [install operator-managed {{site.data.reuse.egw}}](../../installing/install-opman-egw#install-steps).
 
 {{site.data.reuse.egw}} configuration procedures are updated to suit the gateway deployment type: operator-managed gateways are configured in the custom resource, Kubernetes Deployment gateways are configured with a ConfigMap. For more details, see [gateway properties reference](../../reference/gateway-properties). 
 

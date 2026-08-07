@@ -173,13 +173,13 @@ maven_prereq: "Ensure you have Java version 8. Also, ensure you have [Apache Mav
 
 
 # {{site.data.reuse.task_openshift_navigate_installed_operators}}
-task_openshift_navigate_installed_operators: "Expand the **Operators** dropdown and select **Installed Operators** to open the **Installed Operators** page."
+task_openshift_navigate_installed_operators: "Expand the **Operators** drop-down menu and select **Installed Operators** to open the **Installed Operators** page."
 
 # {{site.data.reuse.task_openshift_select_project}}
-task_openshift_select_project: "Expand the **Project** dropdown and select the project the instance is installed in."
+task_openshift_select_project: "Expand the **Project** drop-down menu and select the project the instance is installed in."
 
 # {{site.data.reuse.task_openshift_select_routes}}
-task_openshift_select_routes: "Expand the **Networking** dropdown and select **Routes**."
+task_openshift_select_routes: "Expand the **Networking** drop-down menu and select **Routes**."
 
 #########
 # Event Streams Tasks #
@@ -216,7 +216,7 @@ es_ui_login_nonadmin_samesection: "Log in to the Event Streams UI from a support
 es_cli_init: "Run the following command to initialize the Event Streams CLI: `cloudctl es init`"
 
 # {{site.data.reuse.task_openshift_select_operator}}
-task_openshift_select_operator: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Streams** managing the project."
+task_openshift_select_operator: "Expand the **Project** drop-down menu and select the project the instance is installed in. Click the operator called **IBM Event Streams** managing the project."
 
 # {{site.data.reuse.task_openshift_select_instance}}
 task_openshift_select_instance: "Select the **Event Streams** tab and search the **Name** column for the installed instance and click it."
@@ -233,7 +233,7 @@ eem_ui_login: "Log in to your Event Endpoint Management UI from a supported web 
 #########
 
 # {{site.data.reuse.task_openshift_select_operator_ep}}
-task_openshift_select_operator_ep: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Processing** managing the project."
+task_openshift_select_operator_ep: "Expand the **Project** drop-down menu and select the project the instance is installed in. Click the operator called **IBM Event Processing** managing the project."
 
 # {{site.data.reuse.task_openshift_select_instance_ep}}
 task_openshift_select_instance_ep: "Select the **Event Processing** tab and search the **Name** column for the installed instance and click it."
@@ -257,7 +257,7 @@ node_connect: "Connect the node to an event source by dragging the **Output port
 ###############
 
 # {{site.data.reuse.task_openshift_select_operator_flink}}
-task_openshift_select_operator_flink: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Operator for Apache Flink**."
+task_openshift_select_operator_flink: "Expand the **Project** drop-down menu and select the project the instance is installed in. Click the operator called **IBM Operator for Apache Flink**."
 
 # {{site.data.reuse.task_openshift_select_instance_flink}}
 task_openshift_select_instance_flink: "Click the **IBM Operator for Apache Flink** tab and search the **Name** column for the installed instance and click the name."
@@ -267,7 +267,7 @@ task_openshift_select_instance_flink: "Click the **IBM Operator for Apache Flink
 #########
 
 # {{site.data.reuse.task_openshift_select_operator_eem}}
-task_openshift_select_operator_eem: "Expand the **Project** dropdown and select the project the instance is installed in. Click the operator called **IBM Event Endpoint Management**."
+task_openshift_select_operator_eem: "Expand the **Project** drop-down menu and select the project the instance is installed in. Click the operator called **IBM Event Endpoint Management**."
 
 # {{site.data.reuse.task_openshift_select_instance_eem}}
 task_openshift_select_instance_eem: "Click the **Event Endpoint Management** tab and search the **Name** column for the installed instance and click the name."

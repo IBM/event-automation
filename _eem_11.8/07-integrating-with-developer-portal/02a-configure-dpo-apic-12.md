@@ -15,157 +15,123 @@ The following sections provide instructions for configuring the integration of y
 
 ## Before you begin
 
-- In {{site.data.reuse.apic_short}}, [identify a user](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=users-user-onboarding){:target="_blank"} with Administrator privileges, or create a new one.  In a next step, you will provide the username and password of this user in the {{site.data.reuse.eem_manager}}.
-<!-- In a next step, you will provide the username and password of this user in the {{site.data.reuse.eem_manager}} configuration for allowing the service-to-service authentication. Guidance for this operation is provided in the {{site.data.reuse.apic_short}} documentation. -->
-- In {{site.data.reuse.apic_short}}, obtain a copy of the Certificate Authority (CA) certificate from the secret [devportal-admin-client](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=certificates-tls-organized-by-usage){:target="_blank"}.
+In {{site.data.reuse.apic_short}}, [identify a {{site.data.reuse.wm_portal_short}} user](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=users-user-onboarding){:target="_blank"} that has administrator privileges, or create a new user that has administrator privileges.  
 
 
-## Create a secret with credentials for the {{site.data.reuse.eem_name}} REST API
-{: #secret}
+## Create a secret that contains your {{site.data.reuse.wm_portal_short}} credentials
+{: #create-user-secret}
 
-In the Kubernetes cluster running {{site.data.reuse.eem_name}}, create a secret that contains the basic authentication credentials of the administrator that you identified or created.
+In the {{site.data.reuse.eem_name}} namespace, create a secret that contains the basic authentication credentials of your {{site.data.reuse.wm_portal_short}} user. The user must have administrator privileges.
 
-1. Log in to your cluster:   
-- {{site.data.reuse.openshift_ui_login}} Alternatively,   
-- {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to create a secret called `devportal-api-secret`:
-   ```bash
-   kubectl -n <ns_containing_EEM> secret generic devportal-api-secret \
-     --from-literal="key"="<username>:<password>"
-   ```
- 
-## Create a secret to store the {{site.data.reuse.apic_short}} certificate
-{: #secret-certificate}
+Run the following command to create a secret called `devportal-api-secret` that contains your {{site.data.reuse.wm_portal_short}} user credentials:
+```bash
+kubectl -n <event endpoint management namespace> create secret generic devportal-api-secret \
+  --from-literal="key"="<username>:<password>"
+```
 
-Create a secret to store the {{site.data.reuse.apic_short}} certificate as follows:
+Substitute `<username>:<password>` with the authentication credentials or your {{site.data.reuse.wm_portal_short}} user.
 
-### By using the {{site.data.reuse.openshift_short}} web console
-{: #secret-certificate-ops}
+## Enable TLS trust between {{site.data.reuse.eem_name}} and the {{site.data.reuse.wm_portal_short}}
+{: #copy-admin-client-cert}
 
-**Note:** When you create a secret in the {{site.data.reuse.openshift_short}} UI, the input value must not be encoded. Therefore, ensure you retrieve a decoded value in step 1, or if you have a Base64-encoded certificate, decode it before you complete the following steps.
+Copy the [`devportal-admin-client`](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=certificates-tls-organized-by-usage){:target="_blank"} secret to your {{site.data.reuse.eem_name}} namespace so that your {{site.data.reuse.eem_manager}} instance and your {{site.data.reuse.wm_portal_short}} instance trust each other.
 
-1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Workloads** drop-down menu and select **Secrets**.
-3. Expand the **Project** drop-down menu and select the project the {{site.data.reuse.eem_manager}} instance is installed in.
-4. Expand the **Create** drop-down menu and select **Key/value secret**.
-5. Enter `devportal-ca` as the **Secret name**.
-6. Enter `ca.crt` as the **Key**.
-7. Under **Value**, select the text area, and enter the decoded certificate.
-8. Click **Create**.
-
-### By using the CLI
-{: #secret-certificate-cli}
-
-**Note:** When you create a secret by using the CLI, the certificate must be Base64-encoded.
-
-1. {{site.data.reuse.cncf_cli_login}}
-2. Run the following command to create a secret called `devportal-ca`:
+1. Log in to your {{site.data.reuse.wm_portal_short}} container environment.
+2. Extract the [`devportal-admin-client`](https://www.ibm.com/docs/en/api-connect/software/12.1.1?topic=certificates-tls-organized-by-usage){:target="_blank"} secret to a file called `devportal-admin-client.yaml`:
 
    ```bash
-   cat <<EOF | kubectl apply -f -
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: devportal-ca
-     namespace: <namespace the {{site.data.reuse.eem_manager}} instance is installed in>
-   data:
-     ca.crt: >-
-     <Base64-certificate>
-   type: Opaque
-   EOF
+   kubectl -n <api connect namespace> get secret devportal-admin-client -o yaml > devportal-admin-client.yaml
    ```
+3. Edit the `devportal-admin-client.yaml` file. Set `metadata.name=devportal-ca` and delete all the other `metadata` fields. The resulting file contents look like this:
 
-   Where:
-   - `<namespace>` is the namespace the {{site.data.reuse.eem_manager}} instance is installed in.
-   - `<Base64-certificate>` is the Base64-encoded certificate that you obtained in the [Before you begin](#before-you-begin) secton.
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: devportal-ca
+    type: kubernetes.io/tls
+    data:
+      ca.crt: ...
+      tls.crt: ...
+      tls.key: ...
+    ```
+
+4. Create the `devportal-ca` secret in your {{site.data.reuse.eem_name}} namespace.
+
+    - To create the secret by using the CLI, run the following command:
+
+      ```bash
+      kubectl -n <event endpoint management namespace> apply -f devportal-admin-client.yaml
+      ``` 
+    - To create the secret by using the {{site.data.reuse.openshift_short}} web console, follow these steps:
+
+      a. {{site.data.reuse.openshift_ui_login}}
+
+      b. Expand the **Project** drop-down menu and select the project where your {{site.data.reuse.eem_name}} instance is installed.
+
+      c. Click the **+** (Quick create) icon on the upper-right corner of the window.
+
+      d. Paste the contents of `devportal-admin-client.yaml` in the YAML editor.
+
+      e. Click **Create**.
+
+
 
 ## Configure {{site.data.reuse.eem_name}} to integrate with API Connect {{site.data.reuse.wm_portal_short}}
 {: #configure-eem}
 
-<!--_**DRAFT COMMENT**: Section title TBD_-->
+Update your {{site.data.reuse.eem_name}} custom resource with the {{site.data.reuse.apic_short}} configuration details as follows:
 
-Update your {{site.data.reuse.eem_name}} instance with the {{site.data.reuse.apic_short}} configuration details as follows:
+Create or update the `spec.manager.apic.developerPortal` section as follows:
+{: #developerPortal}
+
+```yaml
+spec:
+  manager:
+   apic:
+     developerPortal:
+       - organization: eem
+         endpoint: <devportal URL>
+         authentication:
+           secretName: devportal-ca
+           key: key
+```
+
+Set `<devportal URL>` to the URL of the {{site.data.reuse.wm_portal_short}}. For example, `https://devportal.apps.example.com`. Do not include the `/devportal` path in the URL.   
+
+In the `spec.manager.tls.trustedCertificates` property, add the `devportal-ca` certificate:
+{: #trustedCerts}
+
+```yaml
+spec:
+  manager:
+    tls:
+     trustedCertificates:
+       - certificate: ca.crt 
+         secretName: devportal-ca
+```
+
+### By using the CLI
+{: #cli-update}
+
+1. Edit the `EventEndpointManagement` custom resource:
+
+    ```bash
+    kubectl -n <event endpoint management namespace> edit eventendpointmanagement/<custom-resource-name>
+    ```
+2. Make the required updates to [`spec.manager.apic.developerPortal`](#developerPortal) and [`trustedCertificates`](#trustedCerts).
 
 ### By using the {{site.data.reuse.openshift_short}} web console
-{: # }
-
-Use the web console to edit the configuration of your `EventEndpointManagement` instance:
+{: #webconsole-update}
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
 3. {{site.data.reuse.task_openshift_select_operator_eem}}
 4. {{site.data.reuse.task_openshift_select_instance_eem}}
 5. Click the **YAML** tab to edit the custom resource.
-6. In the `spec.manager` field, add the following snippet:
+6. Make the required updates to [`spec.manager.apic.developerPortal`](#developerPortal) and [`trustedCertificates`](#trustedCerts).
+7. Click **Save** to apply your changes.
 
-   ```yaml
-   apic:
-     developerPortal:
-       - organization: eem
-         endpoint: <devportal_URL>
-         authentication:
-           secretName: <secret_name>
-           key: <key_name>
-   ```
-
-   Where:
-   - `organization`: must be `eem`.  
-   - `endpoint`: the URL of {{site.data.reuse.wm_portal_short}}. For example: `https://devportal.apps.mycluster.com`. Do not include in the URL the `/devportal` path.  
-   - `secretName`: the name of the Kubernetes secret containing the Basic Authentication credentials of a {{site.data.reuse.wm_portal_short}} user with Administrator privileges. Example: `devportal-admin-credentials`.  
-   - `key`: the name of the key in the Kubernetes secret containing the credentials.
-
-7. In the `spec.manager.tls` field, add the following snippet:
-
-   ```yaml
-   trustedCertificates:
-     - certificate: ca.crt
-       secretName: <secret_name>
-   ```
-   Where:
-   - `certificate`: the name of the key in the secret.
-   - `secretName`: the name of the Kubernetes secret containing the certificate.
-
-8. Click **Save** to apply your changes.
-
-### By using other Kubernetes platforms
-{: # }
-
-On other Kubernetes platforms, you can either edit the configuration of your `EventEndpointManagement` instance by using the `kubectl edit` command, or modify your original configuration file as follows.  
-
-1. {{site.data.reuse.cncf_cli_login}}
-1. Ensure you are in the namespace where your {{site.data.reuse.eem_manager}} instance is installed:  
-```shell
-kubectl config set-context --current --namespace=<namespace>
-```  
-1. Update your `EventEndpointManagement` instance's YAML file on your local system. In the `spec.manager` field, add the following snippet:  
-
-   ```yaml
-   apic:
-     developerPortal:
-       - organization: eem
-         endpoint: <devportal_URL>
-         authentication:
-           secretName: <secret_name>
-           key: <key_name>
-   ``` 
-
-   Where:
-   - `organization`: Must be `eem`.
-   - `endpoint`: The URL of {{site.data.reuse.wm_portal_short}}. Example: `https://devportal.apps.mycluster.com`. Do not include in the URL the `/devportal` path.
-   - `secretName`: The name of the Kubernetes secret containing the Basic Authentication credentials of a {{site.data.reuse.wm_portal_long}} user with Administrator privileges. Example: `devportal-admin-credentials`.
-   - `key`: The name of the key in the Kubernetes secret containing the credentials.  
-
-1. Also in the YAML, in the `spec.manager.tls` field, add the following snippet:  
-
-   ```yaml 
-   trustedCertificates:
-     - certificate: ca.crt
-       secretName: <secret_name>
-   ```
-1. Apply the YAML to the Kubernetes cluster:
-   ```shell
-   kubectl apply -f <file_name>
-   ```
 
            
 ## Verify the configuration
@@ -173,19 +139,16 @@ kubectl config set-context --current --namespace=<namespace>
 
 To verify that the integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_long}} deployed successfully, complete the following steps:
 
-1. Log into the {{site.data.reuse.eem_manager}} UI using an account Administrator role.
+1. Log in to the {{site.data.reuse.eem_manager}} UI with an account that has the Administrator role.
 2. Navigate to **Administration > External integrations**.
 
-A tile for {{site.data.reuse.apic_short}} is displayed with the URL that you specified when you [configured {{site.data.reuse.eem_name}}](#configure-sitedatareuseeem_name). 
+A tile for {{site.data.reuse.apic_short}} is displayed with the URL that you specified when you [configured the {{site.data.reuse.eem_name}} {{site.data.reuse.wm_portal_short}} integration](#configure-eem). 
 
+If you do not see the tile for {{site.data.reuse.apic_short}}, then check the pod logs of the {{site.data.reuse.eem_manager}} instance and verify the contents of the `devportal-api-secret` and `devportal-ca` secrets that you created. 
 
 ## Post configuration tasks
 {: #post-config-tasks}
 
- To troubleshoot any issues you experience after you finish the configuration, complete the following steps:
+Update your {{site.data.reuse.eem_name}} [backup](../../installing/backup-restore) so that you do not lose your {{site.data.reuse.wm_portal_short}} integration configuration.
 
-- Check if the {{site.data.reuse.eem_manager}} is reachable.
-- Check if you can log into the {{site.data.reuse.eem_manager}} UI using the user account with Administrator privileges that you configured when you [created a secret](#create-a-secret).
-- Check the validity of the CA certificate you configured [before you began](#before-you-begin).
-- Check the logs of the {{site.data.reuse.eem_manager}} pods.
 

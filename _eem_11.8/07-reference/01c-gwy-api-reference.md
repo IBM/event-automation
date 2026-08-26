@@ -38,7 +38,7 @@ Find out more about the {{site.data.reuse.egw}} custom resource properties.
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| mode | string | The value for Federal Information Processing Standard (FIPS) mode. Valid value is 'wall'. <!-- _DRAFT COMMENT: Raise dev issue to make consistent with k8s deploy https://ibm-middleware.atlassian.net/browse/EVI-69812?focusedCommentId=5586162_ --> |
+| mode | string | The value for Federal Information Processing Standard (FIPS) mode. The valid value is 'wall'. |
 
 
 ### `spec.license`
@@ -58,7 +58,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| annotations | object | Annotations that are added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and subsequently deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
+| annotations | object | Annotations that are added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and later deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
 | labels | object | Labels that are added to all Kubernetes resources used by the instance. |
 | pod | [pod](#gwy-resource-pod) | Object containing pod override configuration. |
 
@@ -179,7 +179,7 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 | Field              | Type                                           | Description                                                                                                                |
 |--------------------|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | endpoint           | [listenerEndpoint](#gwy-resource-listenerendpoint) | Object containing endpoint configuration for the listener group. Set this property to configure ingress and custom hosts.                                                   |
-| maxNumKafkaBrokers | integer                                        | The maximum number of Kafka brokers your Event Gateway can connect to. Default is 20. (minimum: 1, maximum: 50)           |
+| maxNumKafkaBrokers | integer                                        | The maximum number of Kafka brokers your Event Gateway can connect to. Default is 20. Minimum: 1, maximum: 50.           |
 | name               | string                                         | Name of the group in the listener.                                                                                         |
 | type               | string                                         | Type of the group: 'EXPLICIT' or 'WILDCARD'. Default is 'EXPLICIT'.                                                       |
 

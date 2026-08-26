@@ -13,7 +13,7 @@ You can publish virtual topics from {{site.data.reuse.eem_name}} to {{site.data.
 
 Ensure that you have the following prerequisites in place:
 
-- {{site.data.reuse.wm_portal_long}} v12.1.1 or later is installed and accessible.
+- {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later is installed and accessible.
 - Integration between {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_short}} is [configured](../../dpo-integration/configure-eem-for-dpo-apic12/).
 - At least one [gateway group](../../about/key-concepts#gateway-group) is associated with your {{site.data.reuse.eem_manager}} instance.
 - The virtual topic is configured with an authentication set that uses [SASL credentials](../../describe/security-option-controls/#sasl).

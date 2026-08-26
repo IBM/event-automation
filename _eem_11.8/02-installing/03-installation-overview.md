@@ -30,5 +30,5 @@ Installing {{site.data.reuse.eem_name}} includes the following high-level steps:
 3. Using the operator, install an instance of the {{site.data.reuse.eem_manager}} by applying the `EventEndpointManagement` custom resource type.
 4. Install one or more instances of the {{site.data.reuse.egw}}:
    - If you want to install the {{site.data.reuse.egw}} on the same cluster as the {{site.data.reuse.eem_manager}}, use the [operator-managed](../install-gateway#operator-managed-gateways) {{site.data.reuse.egw}} custom resource. 
-   - If you want to install the {{site.data.reuse.egw}} on a different cluster, for example, to locate it closer to where your Kafka installation is, you can install an {{site.data.reuse.egw}} as a [Docker container or a Kubernetes Deployment](../install-gateway#remote-gateways).
+   - If you want to install the {{site.data.reuse.egw}} on a different cluster, for example, to locate it closer to your Kafka installation, you can install an {{site.data.reuse.egw}} as a [Docker container or a Kubernetes Deployment](../install-gateway#remote-gateways).
 

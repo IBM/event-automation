@@ -101,7 +101,7 @@ It is your responsibility to update the CA certificates before they expire. Foll
 
 If you want to use an OAuth2 provider to authenticate a client, then specify a client authentication set that has OAuth2 control in the [**Security controls**](#edit-controls) pane.  
 
-The details of the OAuth 2.0 provider are supplied by users with the admin role when defining an authentication set that has [OAuth 2.0 control configured](../../security/cred-sets#oauth).
+The details of the OAuth 2.0 provider are supplied by users with the admin role when they define an authentication set that has [OAuth 2.0 control configured](../../security/cred-sets#oauth).
 
 
 ## SASL credentials

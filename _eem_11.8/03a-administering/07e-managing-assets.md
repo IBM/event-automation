@@ -17,14 +17,14 @@ You can transfer the following assets from one user to another:
 - [Applications](../../about/key-concepts#application)
 - [CA Certificates](../../security/cred-sets#config-mtls)
 
-**Note:** The CA certificates that are stored in a user's profile are replicated to the target user's profile during the transfer process. This ensures that any [controls](../../about/key-concepts#control) reliant on the CA certificate remain uninterrupted and functional.
+**Note:** The CA certificates that are stored in a user's profile are replicated to the target user's profile during the transfer process. This replication ensures that any [controls](../../about/key-concepts#control) reliant on the CA certificate remain uninterrupted and functional.
 
 ## Before you begin
 {: #pre-req}
 
 * You must have the [admin user role](../../security/user-roles) to transfer assets. 
 * You cannot select the assets to transfer. If a user owns more than one asset, you must transfer all of them.
-* You can only transfer assets to a user with the same role as the current owner. For example,
+* You can transfer assets only to users with the same role as the current owner. For example,
   - You can transfer assets that are owned by an admin (such as organization CA certs, or gateways) to another admin only.  
   - You can transfer assets that are owned by an author (such as clusters, source topics, virtual topics, or applications) to another author only.
   - You can transfer assets that are owned by a viewer (such as applications) to another viewer or an author because authors have viewer permissions.
@@ -36,7 +36,7 @@ You can transfer the following assets from one user to another:
 
 1. In the navigation pane, click **Administration** > **Asset management**. 
 1. In the table that is displayed, find the user that you want to transfer assets from and click **Transfer assets**. 
-  **Note:** If no users with the correct permission to own the assets are available then **Asset transfer unavailable** is displayed and you cannot transfer any assets.  
+  **Note:** If no users with the correct permission to own the assets are available, then **Asset transfer unavailable** is displayed and you cannot transfer any assets.  
 
 1. In the **Transfer assets** panel, click the **Select user** dropdown menu to select a user. Only users that the assets can be transferred to is displayed. 
 1. (Optional) You can also search for a user by typing their name into the textbox.

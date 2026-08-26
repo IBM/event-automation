@@ -17,7 +17,7 @@ java.lang.RuntimeException: java.security.NoSuchAlgorithmException: <Algorithm>
     at io.vertx.ext.auth.impl.jose.JWK.<init>(JWK.java:464) ~[vertx-auth-common-4.4.1.jar:4.4.1]
 ```
 
-Where `<Algorithm>` indicates the unsupported algorithm. Keycloak, for example, does not support the algorithm `RSA-OAEP`. 
+Where `<Algorithm>` indicates the unsupported algorithm; Keycloak, for example, does not support the algorithm `RSA-OAEP`. 
 
 ## Causes
 {: #causes}
@@ -27,6 +27,6 @@ The OIDC provider has a `JWK` in its `jwks_uri` endpoint that uses an algorithm 
 ## Resolving the problem
 {: #resolving-the-problem}
 
-Typically, this warning can be ignored because the key is not needed in the OIDC flow. For example, when using a default Keycloak setup, the `jwks_uri` endpoint from the OIDC discovery document returns two keys, and the key with `"use": "sig"` (for validating the tokens) has the `RSA256` algorithm which is supported, so the OIDC flow can complete successfully despite the warning.
+Typically, this warning can be ignored because the key is not needed in the OIDC flow. For example, when you use a default Keycloak setup, the `jwks_uri` endpoint from the OIDC discovery document returns two keys, and the key with `"use": "sig"` (for validating the tokens) has the `RSA256` algorithm, which is supported, so the OIDC flow can complete successfully despite the warning.
 
-If the only key returned from the `jwks_uri` endpoint uses an unsupported algorithm, this will cause the login to fail. To resolve this, you need to configure the OIDC provider to use a different algorithm, such as `RSA256`. If the OIDC provider does not support an alternative algorithm, you have to use a different OIDC provider, or raise a request with {{site.data.reuse.eem_name}} to support that algorithm.
+If the only key that is returned from the `jwks_uri` endpoint uses an unsupported algorithm, this causes the login to fail. To resolve this problem, you need to configure the OIDC provider to use a different algorithm, such as `RSA256`. If the OIDC provider does not support an alternative algorithm, you must use a different OIDC provider, or raise a request with {{site.data.reuse.eem_name}} to support that algorithm.

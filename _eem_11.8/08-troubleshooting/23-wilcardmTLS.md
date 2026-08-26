@@ -14,7 +14,7 @@ The **Application** page of the {{site.data.reuse.eem_name}} UI shows the follow
 ## Causes
 {: #causes}
 
-In {{site.data.reuse.eem_name}} 11.7.x, if you define a virtual topic as secured by mTLS and an additional security control (OAuth or SASL), then it is possible to create a subscription that provides only OAuth or SASL credentials, and not supply the mTLS credentials. In 11.8.x, applications that specify mTLS must always include the mTLS credentials. If any of your subscriptions specified mTLS, but did not include mTLS credentials, then when the subscription is converted to an application, appropriate mTLS credentials are automatically generated.
+In {{site.data.reuse.eem_name}} 11.7.x, if you define a virtual topic as secured by mTLS and an extra security control (OAuth or SASL), then it is possible to create a subscription that provides only OAuth or SASL credentials, and not supply the mTLS credentials. In 11.8.x, applications that specify mTLS must always include the mTLS credentials. If any of your subscriptions specified mTLS, but did not include mTLS credentials, then when the subscription is converted to an application, appropriate mTLS credentials are automatically generated.
 
 You can also receive this warning if you use the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }}) in version 11.8.x to create subscriptions. When you create subscriptions with the Admin API, you are not required to provide mTLS credentials, and so wildcard credentials are automatically generated.
 

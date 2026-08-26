@@ -6,13 +6,12 @@ slug: post-installation
 toc: true
 ---
 
-Consider the following tasks after installing {{site.data.reuse.eem_name}}.
+Tasks to complete after you install {{site.data.reuse.eem_name}}.
  
 ## Verifying an installation
 {: #verifying-an-installation}
 
-To verify that your {{site.data.reuse.eem_name}} installation deployed successfully, you can check the status of your
-instance either by using the command line (CLI), or if you are running on {{site.data.reuse.openshift_short}}, by using the web console (UI).
+To verify that your {{site.data.reuse.eem_name}} installation deployed successfully, you can check the status of your instance either by using the command line (CLI), or if you are running on {{site.data.reuse.openshift_short}}, by using the web console (UI).
 
 ### Using the {{site.data.reuse.openshift_short}} UI
 {: #using-the-openshift-ui}
@@ -79,10 +78,10 @@ Edit the `spec.manager.authConfig` section to include `authType` as `LOCAL`, `OI
 For more information, see [managing access](../../security/managing-access) and [managing roles](../../security/user-roles).
 
 
-## Backup the data encryption key
+## Back up the data encryption key
 {: #backup-the-data-encryption-key}
 
-The secret `<instance-name>-ibm-eem-mek` contains an important key for decrypting the data that is stored by {{site.data.reuse.eem_name}}. Ensure you back up and store the key safely outside your cluster.
+The secret `<instance-name>-ibm-eem-mek` contains an important key for decrypting the data that is stored by {{site.data.reuse.eem_name}}. Ensure that you back up and store the key safely outside your cluster.
 
 To save the key to a file, complete the following steps.
 
@@ -107,7 +106,7 @@ To save the key to a file, complete the following steps.
 
 You can confirm if a usage-based deployment is operating as expected by checking the logs and the `/ready` endpoint of a running {{site.data.reuse.eem_manager}} instance.
 
-When you start the {{site.data.reuse.eem_manager}} instance, verify in the {{site.data.reuse.eem_manager}} logs if it is operating in usage-based mode. If it is, the Manager performs an initial test of the provided configuration settings. The following example shows a successful check:
+When you start the {{site.data.reuse.eem_manager}} instance, verify in the {{site.data.reuse.eem_manager}} logs if it is operating in usage-based mode. If it is, the {{site.data.reuse.eem_manager}} performs an initial test of the provided configuration settings. The following example shows a successful check:
 
 ```shell
 ...
@@ -117,14 +116,14 @@ When you start the {{site.data.reuse.eem_manager}} instance, verify in the {{sit
 ...
 ```
 
-If at any time an issue occurs when reporting metrics, including the initial test, a message is written to the logs, detailing the cause of the error, and the payload that was being sent. The following example shows an error message:
+If an error occurs reporting usage metrics (including the initial test), a log message that details the cause of the error and the payload. The following example shows an error message:
 
 ```shell
 ...
 <DATETIME> WARN  com.ibm.ei.eim.ubp.UBPCollector (UBP Collector) - [lambda$sendMetrics$18:295] Failed to send data to the license service : <ENDPOINT> : <ERROR> : <PAYLOAD>
 ```
 
-**Note:** If an error occurs when submitting the number of API calls to the Licensing Service, the actual number of API calls made is not lost. They will be reported, in addition to any new API calls, in the next submission.
+**Note:** If an error occurs when the number of API calls is submitted to the Licensing Service, the actual number of API calls made is not lost. They will be reported, in addition to any new API calls, in the next submission.
 
 This message and status is also available in the {{site.data.reuse.eem_manager}} instance `/ready` endpoint on port 8081, under the `UBP.Reporting.Status` ID. This endpoint can be queried at any time. The following example shows a query:
 
@@ -132,7 +131,7 @@ This message and status is also available in the {{site.data.reuse.eem_manager}}
 kubectl exec $(kubectl get pod -l app.kubernetes.io/instance=<INSTANCE_NAME> -n <NAMESPACE> -o name) -n <NAMESPACE> curl http://localhost:8081/ready
 ```
 
-The result returns the current status of the gateway. The following example shows the result from a healthy system with usage-based licensing configured:
+The result returns the status of the gateway. The following example shows the result from a system with usage-based licensing configured:
 
 ```json
 {
@@ -172,7 +171,7 @@ The result returns the current status of the gateway. The following example show
 }
 ```
 
-The following example shows the result of a system that has usage-based licensing configured, but is running with errors:
+The following example shows the result of a system that is configured for usage-based licensing, but is running with errors:
 
 ```json
 {

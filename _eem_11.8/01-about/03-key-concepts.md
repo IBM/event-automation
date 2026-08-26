@@ -124,7 +124,7 @@ Example gateway groupings:
 - {{site.data.reuse.egw}}s that are colocated within the same geographical area.
 - {{site.data.reuse.egw}}s that manage traffic for different Kafka topics that are at different stages of maturity. For example, development, test, or production.
 
-When [deploying an {{site.data.reuse.egw}}](../../installing/install-gateway), you must specify the gateway group that it belongs to.
+When you [deploy an {{site.data.reuse.egw}}](../../installing/install-gateway), you must specify the gateway group that it belongs to.
 
 When a new {{site.data.reuse.egw}} starts, it contacts the {{site.data.reuse.eem_manager}}, which responds with all the virtual topics that are published to the gateway's group. Kafka clients can then access the published virtual topics through the new {{site.data.reuse.egw}}.
 

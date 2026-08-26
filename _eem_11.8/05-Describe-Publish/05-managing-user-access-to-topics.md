@@ -6,7 +6,7 @@ slug: managing-user-access-to-topics
 toc: true
 ---
 
-After socializing a virtual topic to the {{site.data.reuse.eem_name}} **Catalog**, users subscribe to the virtual topics with [applications](../../about/key-concepts#application). 
+After a virtual topic is socialized to the {{site.data.reuse.eem_name}} **Catalog**, users subscribe to the virtual topics with [applications](../../about/key-concepts#application). 
 
 The **Manage** tab of the **Topic details** page displays the list of [applications](../../about/key-concepts#application) that subscribe to virtual topics on your source topic.
 
@@ -20,7 +20,7 @@ To view and manage the users of your virtual topics, complete the following step
 2. In the navigation pane, click **Manage > Topics**, then from the list select the source topic that you want to manage.
 3. Click the **Manage** tab.
 
-The **Subscriptions** view shows the application subscriptions for the virtual topics related to your source topic. The **Requests** list details all the currently pending access requests for virtual topics related to your source topic. 
+The **Subscriptions** view shows the application subscriptions for the virtual topics that are related to your source topic. The **Requests** list details all the currently pending access requests for virtual topics that are related to your source topic. 
 
 ## Removing subscriptions
 {: #removing-subscriptions}
@@ -41,7 +41,7 @@ To unpublish an archived virtual topic, you must remove all subscriptions. After
 ## Reviewing requests
 {: #reviewing-requests}
 
-After socializing a virtual topic with approval enabled, you can review requests for subscriptions to the topic, and approve or reject as required.
+After a virtual topic with approval enabled is socialized, you can review requests for subscriptions to the topic, and approve or reject as required.
 
 To approve or reject a request, complete the following steps:
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.

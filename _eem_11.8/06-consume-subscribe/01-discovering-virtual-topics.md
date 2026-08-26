@@ -50,7 +50,7 @@ To export a virtual topic as an AsyncAPI document, complete the following steps:
 
 1. In the catalog, select the virtual topic that you want to work with. A new window is displayed with more information about the virtual topic.
 1. Click **Export AsyncAPI**.
-1. Select the version of the AsyncAPI specification to use when exporting the document.
+1. Select the version of the AsyncAPI specification to use.
 1. Click **Export**.
 
 The virtual topic details are downloaded and saved to your computer. The AsyncAPI document contains the same information about the virtual topic as presented in the catalog, and can be used in downstream tools to generate code snippets or socialize the virtual topic further.
@@ -72,7 +72,7 @@ To discover virtual topics in {{site.data.reuse.wm_portal_short}}:
 1. Log in to {{site.data.reuse.wm_portal_short}}.
 2. Go to the **Asset gallery**.
 3. Search for the virtual topic that you want to work with.
-4. Click on the virtual topic to view its details, including:
+4. Click the virtual topic to view its details, including:
    - Description and documentation
    - Schema information
    - Sample messages

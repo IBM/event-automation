@@ -1,15 +1,15 @@
 ---
 title: "Configure Event Endpoint Management to integrate with IBM API Connect Developer Portal"
-excerpt: "Find out how to configure Event Endpoint Management to integrate with IBM API Connect Developer Portal 12.1.1 or later."
+excerpt: "Find out how to configure Event Endpoint Management to integrate with IBM API Connect Developer Portal 12.1.1.2 or later."
 categories: dpo-integration
 slug: configure-eem-for-dpo-apic12
 toc: true
 ---
 
-The following sections provide instructions for configuring the integration of your {{site.data.reuse.eem_manager}} instance with [{{site.data.reuse.apic_long}} 12.1.1](https://www.ibm.com/docs/en/api-connect/software/12.1.1){:target="_blank"} or later.
+The following sections provide instructions for configuring the integration of your {{site.data.reuse.eem_manager}} instance with [{{site.data.reuse.apic_long}} 12.1.1.2](https://www.ibm.com/docs/en/api-connect/software/12.1.1){:target="_blank"} or later.
 
 **Important:**
-- You can configure an integration with either {{site.data.reuse.apic_short}} 10.x.x or {{site.data.reuse.apic_short}} 12.1.1 or later, but not both simultaneously.
+- You can configure an integration with either {{site.data.reuse.apic_short}} 10.x.x or {{site.data.reuse.apic_short}} 12.1.1.2 or later, but not both simultaneously.
 - Each {{site.data.reuse.eem_name}} instance integrates with only one {{site.data.reuse.apic_short}} instance, and each {{site.data.reuse.apic_short}} instance integrates with only one {{site.data.reuse.eem_name}} instance.
 
 
@@ -88,13 +88,13 @@ Create or update the `spec.manager.apic.developerPortal` section as follows:
 ```yaml
 spec:
   manager:
-   apic:
-     developerPortal:
-       - organization: eem
-         endpoint: <devportal URL>
-         authentication:
-           secretName: devportal-ca
-           key: key
+    apic:
+      developerPortal:
+        - organization: eem
+          endpoint: <devportal URL>
+          authentication:
+            secretName: devportal-ca
+            key: key
 ```
 
 Set `<devportal URL>` to the URL of the {{site.data.reuse.wm_portal_short}}. For example, `https://devportal.apps.example.com`. Do not include the `/devportal` path in the URL.   
@@ -106,9 +106,9 @@ In the `spec.manager.tls.trustedCertificates` property, add the `devportal-ca` c
 spec:
   manager:
     tls:
-     trustedCertificates:
-       - certificate: ca.crt 
-         secretName: devportal-ca
+      trustedCertificates:
+        - certificate: ca.crt
+          secretName: devportal-ca
 ```
 
 ### By using the CLI
@@ -132,8 +132,6 @@ spec:
 6. Make the required updates to [`spec.manager.apic.developerPortal`](#developerPortal) and [`trustedCertificates`](#trustedCerts).
 7. Click **Save** to apply your changes.
 
-
-           
 ## Verify the configuration
 {: #config-verification}
 
@@ -150,5 +148,4 @@ If you do not see the tile for {{site.data.reuse.apic_short}}, then check the po
 {: #post-config-tasks}
 
 Update your {{site.data.reuse.eem_name}} [backup](../../installing/backup-restore) so that you do not lose your {{site.data.reuse.wm_portal_short}} integration configuration.
-
 

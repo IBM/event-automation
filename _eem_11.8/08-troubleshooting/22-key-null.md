@@ -22,7 +22,7 @@ The client identity is misconfigured. Multiple clients connect by using the same
 
 
 ## Resolving the problem
-Set both client ID and group ID, and ensure every client that shares the [application](../../about/key-concepts#application) uses the same pair of values. For example,
+Set both client ID and group ID, and ensure that every client that shares the [application](../../about/key-concepts#application) uses the same pair of values. For example,
 
 ```
 myClientApplication1: <GROUP_ID>=BOB, <CLIENT_ID>=ABC

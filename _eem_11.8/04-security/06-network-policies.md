@@ -11,7 +11,7 @@ toc: true
 
 [Network policies](https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/network-policies/){:target="_blank"} are used to control inbound connections into pods. These connections can be from pods within the cluster, or from external sources.
 
-When you install an instance of the {{site.data.reuse.eem_manager}}, the required network policies will be automatically created unless they are disabled through configuration options. To review the network policies that have been applied:
+When you install an instance of the {{site.data.reuse.eem_manager}}, the required network policies are automatically created unless they are disabled through configuration options. To review the current network policies:
 
 1. {{site.data.reuse.cncf_cli_login}}
 2. Run the following command to display the installed network policies for a specific namespace:\\
@@ -36,11 +36,11 @@ The following tables provide information about the network policies that are app
 
 To delete the network policy of the {{site.data.reuse.eem_name}} operator:
 
-- On Kubernetes platforms other than OpenShift: install the Helm chart by specifying `--set deployOperatorNetworkPolicy=false`.
+- On Kubernetes platforms other than {{site.data.reuse.openshift_short}}: install the Helm chart by specifying `--set deployOperatorNetworkPolicy=false`.
 
-- On {{site.data.reuse.openshift_short}}: modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`.  Do this after the initial installation of the operator.
+- On {{site.data.reuse.openshift_short}}: modify the subscription that was used to install the operator and set the `DEPLOY_OPERATOR_NETWORK_POLICY` environment variable to `false`. Do this operation after the installation of the operator.
 
-  **By using the OpenShift console**:
+  **By using the {{site.data.reuse.openshift_short}} console**:
 
   1. {{site.data.reuse.openshift_ui_login}}
   2. Expand `Home` in the navigation menu and click `Search`.
@@ -89,9 +89,9 @@ To delete the network policy of the {{site.data.reuse.eem_name}} operator:
 
 
 
-**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses OpenShift software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://v1-35.docs.kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods by using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
+**Note:** On {{site.data.reuse.openshift_short}}, if the cluster uses {{site.data.reuse.openshift_short}} software-defined networking (SDN) in its default network isolation mode, or OVN-Kubernetes as the [Cluster Network Interface (CNI) plug-in](https://v1-35.docs.kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/){:target="_blank"}, you can create a more secure network policy that restricts ingress communication to the host-network pods by using a namespace `matchLabel` set to `policy-group.network.openshift.io/host-network: ''`
 
-The following is an example network policy that provides this increased security:
+Example network policy that provides increased security:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -118,7 +118,7 @@ spec:
 
 If you are using a different CNI plug-in that supports network policies, it might be possible to create a network policy that permits traffic from the Kubernetes API server by allowing access to one or more Classless Inter-Domain Routing (CIDR) blocks. For example, if you are using [Calico](https://www.tigera.io/project-calico/){:target="_blank"}, you can specify CIDR blocks for the IPv4 addresses of the master nodes (`ipv4IPIPTunnelAddr`). You can view CIDR blocks by running and inspecting the output from `kubectl cluster-info dump`.
 
-The following is an example network policy that allows access to a CIDR block:
+Example network policy that allows access to a CIDR block:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -152,7 +152,7 @@ spec:
 | TCP      | Anywhere             | 3000     | External access to UI | Always                                                                                                 |
 | TCP      | Anywhere             | 8081     | Readiness probe       | Always                                                                                                 |
 
-**Note:** To stop the automatic deployment of the instance's network policy, set the  `spec.deployNetworkPolicies` option for the instance to `false`.
+**Note:** To stop the automatic deployment of the instance's network policy, set the `spec.deployNetworkPolicies` option for the instance to `false`.
 
 
 ### {{site.data.reuse.egw}} pod
@@ -168,7 +168,7 @@ spec:
 ### Considerations for ingress
 {: #inbound-considerations-for-ingress}
 
-Consider the use of a deny-all-ingress network policy to limit communication with all pods in a namespace to only those communications specifically allowed in network policies. A deny-all network policy is not created by default as it would interfere with other applications installed in the namespace that do not have the required network policies set to allow inbound communications. 
+Consider the use of a deny-all-ingress network policy to limit communication with all pods in a namespace to only those communications allowed in network policies. A deny-all network policy is not created by default as it would interfere with other applications that are installed in the namespace that do not have the required network policies set to allow inbound communications. 
 
 To create a deny-all-ingress network policy, apply the following YAML to your cluster in the namespaces where you installed {{site.data.reuse.eem_name}}.
 

@@ -103,7 +103,7 @@ data:
     trace.spec=<value>
 ```
 
-Do not surround `<value>` with quotes.
+Do not surround `<value>` with quotation marks.
 
 For more information about updating the gateway ConfigMap, refer to the [gateway properties reference](../../reference/gateway-properties).
 

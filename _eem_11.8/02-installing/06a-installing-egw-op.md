@@ -54,7 +54,7 @@ The Subject Alternative Names (SANs) in your certificate must include the path t
 
 If your certificate is not signed by a well-known public CA chain, then you must provide the full signing chain.
 
-1. Create a file called `custom-gateway-cert.yaml` and paste in the following contents:
+1. Create a file that is called `custom-gateway-cert.yaml` and paste in the following contents:
 
    ```yaml
    apiVersion: v1
@@ -68,7 +68,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
    type: kubernetes.io/tls
    ```
 
-2. Apply the file to create the Kubenetes secret in the same namespace where your {{site.data.reuse.egw}} is to be deployed:
+2. Apply the file to create the Kubernetes secret in the same namespace where your {{site.data.reuse.egw}} is to be deployed:
 
    ```shell
    kubectl -n <namespace> apply -f custom-gateway-cert.yaml
@@ -97,7 +97,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
 
 6. {: #update-yaml} Update the `<gateway name>-gateway_cr.yaml` file and set `spec.license.accept` to `true`.
 
-7. (Optional) To create a gateway using wildcard routes, update `<gateway name>-gateway_cr.yaml` and add the listener groups `endpoint` property. Also set `endpoint.type` and `tls.certificateType` to WILDCARD. For example:
+7. (Optional) To create a gateway that uses wildcard routes, update `<gateway name>-gateway_cr.yaml` and add the listener groups `endpoint` property. Also set `endpoint.type` and `tls.certificateType` to `WILDCARD`. For example:
 
       ```yaml
       spec:
@@ -114,7 +114,7 @@ If your certificate is not signed by a well-known public CA chain, then you must
               certificateType: WILDCARD
       ```
 
-      **Note:** Wildcard routes are not enabled by default in {{site.data.reuse.openshift_short}}. See [wildcard policy](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/operator_apis/ingresscontroller-operator-openshift-io-v1#spec-routeadmission){:target="_blank"} to enable wildcard routes in your Ingress Controller.
+      **Note:** Wildcard routes are not enabled by default in {{site.data.reuse.openshift_short}}. See [wildcard policy](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/operator_apis/ingresscontroller-operator-openshift-io-v1#spec-routeadmission){:target="_blank"} to enable wildcard routes in your ingress controller.
 
       **Note:** Wildcard hostnames on operator-managed gateways are supported only in {{site.data.reuse.openshift_short}}.
 

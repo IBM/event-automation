@@ -61,26 +61,26 @@ Obtain the list of {{site.data.reuse.eem_name}}-certified container images to ve
 ### Prepare your bastion host
 {: #prepare-your-bastion-host}
 
-Ensure you meet the following prerequisites before downloading the CASE archive and obtaining the images:
+Ensure that you meet the following prerequisites before you download the CASE archive and obtaining the images:
 
 - A computer with internet access on which you can run the required commands. This computer must also have access to the cluster, and is referred to as a **bastion host**.
 - A cluster that is already set up and running a supported version of the {{site.data.reuse.openshift}}. For more information, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for supported versions.
-- A private Docker registry that can be accessed by the cluster and the bastion host, and which will be used to store all images on your restricted network.
+- A private Docker registry that can be accessed by the cluster and the bastion host, and which is used to store all images on your restricted network.
 
-If the cluster has a bastion host which has access to the public internet, then the following steps can be performed from the bastion host.
+If the cluster has a bastion host that has access to the public internet, then the following steps can be performed from the bastion host.
 
-**Note:** In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device that has access to the public internet to download the CASE archive and images, and also has access to the target registry where the images are mirrored.
 
 ### Download the CASE archive
 {: #download-the-case-archive}
 
-Download the Container Application Software for Enterprises (CASE) archive. This archive, which is typically provided for installing within a restricted network, includes metadata and files that you will require later.
+Download the Container Application Software for Enterprises (CASE) archive. This archive, which is typically provided for installing within a restricted network, includes metadata and files that are required later.
 
 Complete the following steps to download the CASE archive:
 
 1. {{site.data.reuse.openshift_cli_login}}
 
-2. Configure the public IBM Cloud-Pak Github repository for downloading the CASE archive:
+2. Configure the public IBM Cloud-Pak GitHub repository for downloading the CASE archive:
 
    ```shell
    oc ibm-pak config repo 'default' -r "https://github.com/IBM/cloud-pak/raw/master/repo/case/" --enable
@@ -98,7 +98,7 @@ Complete the following steps to download the CASE archive:
    oc ibm-pak get ibm-eventendpointmanagement --version {{site.data.reuse.eem_current_version}}
    ```
 
-   By default, the CASE will be downloaded and extracted to `~/.ibm-pak/data/cases`. The following output is displayed:
+   By default, the CASE is downloaded to `~/.ibm-pak/data/cases`. The following output is displayed:
 
    ```shell
    Downloading and extracting the CASE ...
@@ -118,7 +118,7 @@ Complete the following steps to download the CASE archive:
    Download of CASE: ibm-eventendpointmanagement, version: {{site.data.reuse.eem_current_version}} is complete
    ```
 
-5. Verify that the CASE archive and images `.csv` files have been generated for {{site.data.reuse.eem_name}}. For example, ensure you have the following files generated for the {{site.data.reuse.eem_name}} CASE.
+5. Verify that the CASE archive and images `.csv` files are generated for {{site.data.reuse.eem_name}}. For example, ensure that the following files are generated for the {{site.data.reuse.eem_name}} CASE.
 
    ```shell
    $ tree ~/.ibm-pak
@@ -150,17 +150,15 @@ Complete the following steps to download the CASE archive:
 ### Obtain the files
 {: #obtain-the-files}
 
-Obtain the required files as follows: 
+Obtain the following files:
 
-1. After meeting the required prerequisites and downloading the CASE archive, obtain the following files:
-  
-   - The downloaded CASE archives, which contain metadata for the container images required to deploy each {{site.data.reuse.eem_name}} capability. Each CASE archive also contains the required scripts to mirror images to a private registry, and to configure the target cluster to use the private registry as a mirror.
+- The downloaded CASE archives, which contain metadata for the container images that are required to deploy each {{site.data.reuse.eem_name}} capability. Each CASE archive also contains the required scripts to mirror images to a private registry, and to configure the target cluster to use the private registry as a mirror.
 
-   - Generated comma-separated value (CSV) files listing the images. Obtain an IBM Entitled Registry entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}. The CSV files, combined with your entitlement key, are used for downloading or mirroring the images manually.
+- Generated comma-separated value (CSV) files that list the images. Obtain an IBM Entitled Registry entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}. The CSV files and your entitlement key are used for downloading or mirroring the images manually.
 
-    To verify the image signatures for a {{site.data.reuse.eem_name}}-certified container, use the file that is named in the format `ibm-eventendpointmanagement-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.eem_name}} CASE version.
+ To verify the image signatures for a {{site.data.reuse.eem_name}}-certified container, use the file that is named in the format `ibm-eventendpointmanagement-<v.r.m>-images.csv`, where `v.r.m` represents the {{site.data.reuse.eem_name}} CASE version.
 
-2. Use a shell script to parse through the CSV file and print out the list of "manifest list images" with their tags. You can use the listed names when pulling and verifying image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plug-in will download the CASE archive. Run the following command to list images by tag:
+Use a shell script to parse through the CSV file and print the list of "manifest list images" with their tags. You can use the listed names when you pull and verify the image signatures. In the `tail` command, `~/.ibm-pak/data/cases` represents the default directory where the ibm-pak plug-in downloads the CASE archive. Run the following command to list images by tag:
 
    ```shell
    tail -q -n +2 ~/.ibm-pak/data/cases/ibm-eventendpointmanagement/{{site.data.reuse.eem_current_version}}/ibm-eventendpointmanagement-{{site.data.reuse.eem_current_version}}-images.csv \
@@ -171,7 +169,7 @@ Obtain the required files as follows:
    done
    ```
 
-  **Note:** You can also copy the output to a file for ease of reference while verifying the image signatures.
+**Note:** You can also copy the output to a file for ease of reference while you verify the image signatures.
 
 ## Verifying the signature
 {: #verifying-the-signature}
@@ -196,9 +194,9 @@ To verify the image signatures, complete the following steps:
        fingerprint=$(gpg --fingerprint --with-colons | grep fpr | tr -d 'fpr:')
        ```
 
-    This command stores the key's fingerprint in an environment variable called `fingerprint`, which is needed for the command to verify the signature.
+    This command stores the key's fingerprint in an environment variable that is called `fingerprint`, which is needed for the command to verify the signature.
 
-    **Note:** When you exit your shell session, the variable will be deleted. The next time you log in to your computer, you can set the environment variable again by rerunning the command in this step.
+    **Note:** When you exit your shell session, the variable is deleted. The next time that you log in to your computer, you can set the environment variable again by rerunning the command in this step.
 
 3. Log in to `skopeo` to access the entitled registry. Use `cp` as the username and your entitlement key as the password. 
    For example:
@@ -207,7 +205,7 @@ To verify the image signatures, complete the following steps:
    skopeo login cp.icr.io --username cp --password myEntitlementKey
    ```
 
-4. Create a directory (for example, `images`) for the image. Then use `skopeo` to pull the image into local storage, where `imageName` represents the image name.
+4. Create a directory (for example, `images`) for the image. Use `skopeo` to pull the image into local storage, where `imageName` represents the image name.
 
    ```shell
    mkdir images
@@ -221,7 +219,7 @@ To verify the image signatures, complete the following steps:
    skopeo copy docker://icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:{{site.data.reuse.eem_current_version}} dir:./images
    ```
 
-   This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
+   This command downloads the `image` as a set of files and places them in the `images` directory, or in a directory that you specified. A manifest file named `images/manifest.json`, and a set of signature files that are named `images/signature-1`, `images/signature-2`, and `images/signature-3` are added to the directory. You will use these files to verify the signature in the next step.
 
 5. Verify the signature for each required image, where `imageName` is the name of the image and `signature-N` relates to a format for the name.
 
@@ -235,7 +233,7 @@ To verify the image signatures, complete the following steps:
    skopeo standalone-verify ./images/manifest.json icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:{{site.data.reuse.eem_current_version}} ${fingerprint} ./images/signature-1
    ```
 
-   You will receive a confirmation similar to the following:
+   You receive a confirmation similar to the following:
 
    ```shell
    Signature verified, digest sha256:0000000000000000000000000000000000000000000000000000000000000000

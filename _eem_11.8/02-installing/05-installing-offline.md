@@ -8,25 +8,25 @@ toc: true
 
 If you are working in an environment where your cluster is not connected to the internet, you can install {{site.data.reuse.eem_name}} by using the container-based software that is provided as a Container Application Software for Enterprises (CASE) bundle.
 
-CASE is a specification that defines metadata and structure for packaging, managing, and unpacking containerized applications. When deploying in an offline (also referred to as air-gapped or disconnected) environment, you mimic a typical online installation by using images in your own registry. You can use the CASE content to mirror images to an internal registry within your restricted environment, and to install the images from that registry.
+CASE is a specification that defines metadata and structure for packaging, managing, and unpacking containerized applications. When you deploy in an offline (also referred to as air-gapped or disconnected) environment, you mimic a typical online installation by using images in your own registry. You can use the CASE content to mirror images to an internal registry within your restricted environment, and to install the images from that registry.
 
-Follow the instructions to download the {{site.data.reuse.eem_name}} CASE bundle, mirror the image, apply the catalog source, and install the operator on OpenShift and other Kubernetes platforms.
+Follow the instructions to download the {{site.data.reuse.eem_name}} CASE bundle, mirror the image, apply the catalog source, and install the operator on {{site.data.reuse.openshift_short}} and other Kubernetes platforms.
 
-**Note:** For completing tasks by using the command line, you can use both `kubectl` and `oc` commands if your deployment is on the {{site.data.reuse.openshift_short}}. This documentation set includes instructions that use the `kubectl` command, except for cases where the task is specific to OpenShift.
+**Note:** For completing tasks by using the command line, you can use both `kubectl` and `oc` commands if your deployment is on the {{site.data.reuse.openshift_short}}. This documentation set includes instructions that use the `kubectl` command, except for cases where the task is specific to {{site.data.reuse.openshift_short}}.
 
 
 ## Prerequisites
 {: #prerequisites}
 
-Ensure you have the following set up for your environment:
+Ensure that your environment has the following configuration and software installed:
 
 - A computer with access to both the public internet and the network-restricted environment on which you can run the required commands. This computer must also have access to a local registry and to the {{site.data.reuse.openshift_short}} clusters, and is referred to as a *bastion host*.
 - [Docker](https://docs.docker.com/engine/install/){:target="_blank"} or [Podman CLI](https://podman.io/getting-started/installation.html){:target="_blank"} installed.
-- A private container registry that can be accessed by the cluster and the bastion host, and which will be used to store all images in your restricted network.
+- A private container registry that can be accessed by the cluster and the bastion host, and which is used to store all images in your restricted network.
   
-  **Important:** If your private container registry is using a self-signed certificate, ensure that the certificate is trusted by your OpenShift or Kubernetes cluster. Contact your cluster vendor for more information.
+  **Important:** If your private container registry is using a self-signed certificate, ensure that the certificate is trusted by your {{site.data.reuse.openshift_short}} or Kubernetes cluster. Contact your cluster vendor for more information.
 
-- The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. This plug-in allows you to run `kubectl ibm-pak` commands against the cluster. To run `kubectl ibm-pak` commands, complete the following steps:
+- The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"} so that you can run `kubectl ibm-pak` commands against the cluster. To install the plug-in, complete the following steps:
 
   1. [Download](https://github.com/IBM/ibm-pak/releases){:target="_blank"} the recent version of the `ibm-pak` plug-in for your architecture and operating system.
 
@@ -52,16 +52,16 @@ Ensure you have the following set up for your environment:
      ```
 
 
-If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
+If you are using {{site.data.reuse.openshift}}, ensure that your environment meets the following requirements:
 
 - A supported version of {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
-If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
+If you are using other Kubernetes platforms, ensure that your environment meets the following requirements:
 
-- A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
+- A supported version of a Kubernetes platform is installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-streams' | relative_url }}).
 - The Kubernetes command-line tool (`kubectl`) [installed](https://v1-35.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
-- The Helm command-line tool (`helm`)  [installed](https://helm.sh/docs/intro/install/).
+- The Helm command-line tool (`helm`) [installed](https://helm.sh/docs/intro/install/).
 - Skopeo [installed](https://github.com/containers/skopeo/blob/main/install.md) to move images from one repository to another.
 
 
@@ -73,12 +73,12 @@ You must be able to connect your bastion host to the internet and to the restric
 Ensure that the prerequisites are set up and that the bastion host can access:
 
 - The public internet to download the CASE and images.
-- The target (internal) image registry where all the images will be mirrored to.
-- The OpenShift or other Kubernetes cluster to install the operator on.
+- The target (internal) image registry where all the images are mirrored to.
+- The {{site.data.reuse.openshift_short}} or other Kubernetes cluster to install the operator on.
 
-**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images will be mirrored.
+**Note:** In the absence of a bastion host, prepare a portable device with public internet access to download the CASE and images and a target registry where the images are mirrored.
 
-**Important:** Ensure you have access to the Kubernetes cluster by running the `kubectl get namespaces` command which lists all the available namespaces.
+**Important:** Ensure that you have access to the Kubernetes cluster by running the `kubectl get namespaces` command, which lists all the available namespaces.
 
 ## Download the CASE bundle
 {: #download-the-case-bundle}
@@ -119,9 +119,9 @@ Before mirroring your images, set the environment variables for the CASE images 
 
    **Note:** You can also specify the version of the CASE you want to install by using `--version <case-version>`.
 
-3. Verify that the CASE and images (`.csv`) files have been generated for {{site.data.reuse.eem_name}}.
+3. Verify that the CASE and images (`.csv`) files were generated for {{site.data.reuse.eem_name}}.
 
-   For example, ensure that the following files have been generated for {{site.data.reuse.eem_name}}.
+   For example, ensure that the following files were generated for {{site.data.reuse.eem_name}}.
 
    ```shell
    tree ~/.ibm-pak
@@ -156,7 +156,7 @@ Before mirroring your images, set the environment variables for the CASE images 
 
 To mirror images across both the source registry and the target (internal) registry where all images are available publicly, you must create an authentication secret for each. A Docker CLI login (`docker login`) or Podman CLI login (`podman login`) is required for configuring the registry.
 
-A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms other than OpenShift.
+A Skopeo CLI login (`skopeo login`) is also required for Kubernetes platforms other than {{site.data.reuse.openshift_short}}.
 
 For {{site.data.reuse.eem_name}}, all images are either present in the IBM Entitled Registry (`cp.icr.io`), which requires authentication, or in the IBM Container Registry (`icr.io/cpopen`), which does not.
 
@@ -175,7 +175,7 @@ Where:
 - `<source-registry-user>` is your username.
 - `<source-registry-pass>` is your entitlement key.
 
-Additionally, if you are installing on Kubernetes platforms other than OpenShift, run the following command:
+Additionally, if you are installing on Kubernetes platforms other than {{site.data.reuse.openshift_short}}, run the following command:
 
 
 ```shell
@@ -191,7 +191,7 @@ Run the following command to create an authentication secret for the target regi
 docker login <target-registry> --username <target-registry-user> --password <target-registry-pass>
 ```
 
-Additionally, if you are running on Kubernetes platforms other than OpenShift, run the following command:
+Additionally, if you are running on Kubernetes platforms other than {{site.data.reuse.openshift_short}}, run the following command:
 
 ```shell
 skopeo login <target-registry> -u <target-registry-user> -p <target-registry-pass>
@@ -239,7 +239,7 @@ Complete the following steps to mirror the images from your host to your offline
    oc image mirror -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/images-mapping.txt --filter-by-os '.*' --insecure --skip-multiple-scopes --max-per-registry=1
    ```
 
-   If you are installing on Kubernetes platforms other than OpenShift, run the following command:
+   If you are installing on Kubernetes platforms other than {{site.data.reuse.openshift_short}}, run the following command:
 
    ```shell
    cat ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/images-mapping.txt | awk -F'=' '{ print "skopeo copy --all docker://"$1" docker://"$2 }' | xargs -I {} sh -c 'echo {}; {}'
@@ -257,15 +257,14 @@ Complete the following steps to mirror the images from your host to your offline
    - `<case-version>` is the version of the CASE file to be copied.
 
 
-Ensure that all the images have been mirrored to the target registry by checking the registry.
+Ensure that all the images are mirrored to the target registry by checking the registry.
 
-## Create image mirror configuration on OpenShift platform
+## Create image mirror configuration on {{site.data.reuse.openshift_short}}
 {: #create-image-mirror-configuration-on-openshift-platform}
 
-**Note:** Only applicable when installing {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
 
 1. {{site.data.reuse.openshift_cli_login}}
-1. Update the global image pull secret for your OpenShift cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. This enables your cluster to have proper authentication credentials to pull images from your `target-registry`.
+1. Update the global image pull secret for your {{site.data.reuse.openshift_short}} cluster by following the steps in [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}. Updating the secret enables your cluster to have proper authentication credentials to pull images from your `target-registry`.
 1. Ensure that an `ImageDigestMirrorSet` YAML file is [created](#mirror-the-images) for {{site.data.reuse.eem_name}}. For example:
 
    ```yaml
@@ -314,10 +313,9 @@ Ensure that all the images have been mirrored to the target registry by checking
 For more information about configuring `ImageDigestMirrorSet`, see the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/images/image-configuration-classic#images-configuration-registry-mirror-configuring_image-configuration){:target="_blank"}.
 
 
-## Apply catalog sources to your cluster on OpenShift platform
+## Apply catalog sources to your cluster on {{site.data.reuse.openshift_short}}
 {: #apply-catalog-sources-to-your-cluster-on-openshift-platform}
 
-**Note:** Only applicable when you install {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}.
 
 Apply the catalog sources for the operator to the cluster by running the following command:
 
@@ -325,7 +323,7 @@ Apply the catalog sources for the operator to the cluster by running the followi
 oc apply -f ~/.ibm-pak/data/mirror/ibm-eventendpointmanagement/<case-version>/catalog-sources.yaml
 ``` 
 
-Where `<case-version>` is the version of the CASE you want to install.
+Where `<case-version>` is the version of the CASE that you want to install.
 
 ## Install the operator
 {: #install-the-operator}
@@ -334,9 +332,9 @@ If you are installing the operator for the first time, complete the instructions
 
 If you are upgrading an existing offline installation, follow the [upgrading](../upgrading) instructions to upgrade your operator to the version that you [downloaded](#download-the-case-bundle) and [mirrored](#mirror-the-images) earlier.
 
-**Important:** You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+**Important:** You can install only one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
-### Installing on OpenShift
+### Installing on {{site.data.reuse.openshift_short}}
 {: #installing-on-openshift}
  
 After you consider the operator requirements, resource requirements, and cluster-scoped permissions, you can install the operator by using the {{site.data.reuse.openshift_short}} web console or command line. For more information, see the instructions for installing the [{{site.data.reuse.eem_name}} operator](../../installing/installing/#install-the-event-endpoint-management-operator).
@@ -361,8 +359,8 @@ Complete the following steps to install the operator:
 
    Where:
    - `<target-registry-user>` is the username that you provide to authenticate with your internal registry.
-   - `<target-registry-password>` is the password associated with the `<target-registry-user>`.
-   - `<target-registry>` is the internal registry hosting the operator images.
+   - `<target-registry-password>` is the password that is associated with the `<target-registry-user>`.
+   - `<target-registry>` is the internal registry that hosts the operator images.
    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.eem_name}}.
    
    **Note:** If you are installing the instance in a different namespace, create the image pull secret (`ibm-entitlement-key`) again in the namespace where you want to install the instance.
@@ -404,5 +402,5 @@ The {{site.data.reuse.eem_manager}} instance can be created after the operators 
 
 Follow the instructions in [installing an {{site.data.reuse.egw}}](../install-gateway) to install an {{site.data.reuse.egw}} on the same cluster.
 
-**Note:** Docker and Kubernetes Deployment {{site.data.reuse.egw}} instances can only be installed in an online environment.
+**Note:** Docker and Kubernetes Deployment {{site.data.reuse.egw}} instances can be installed only in an online environment.
 

@@ -46,7 +46,7 @@ If you see this error, delete the {{site.data.reuse.eem_manager}} pod. After the
 ### [Docker](../../installing/install-gateway#remote-gateways) {{site.data.reuse.egw}}s
 {: #dockerinstallinginstall-gatewayremote-gateways-gateways}
 
-Update the contents of the certificate files supplied in your Docker `run` command. For example:   `-v "path:/certs/client.pem" -v "path:/certs/client.key"`.
+Update the contents of the certificate files supplied in your Docker `run` command. Example:   `-v "path:/certs/client.pem" -v "path:/certs/client.key"`.
 
 If you change the certificate file names, then you must restart the {{site.data.reuse.egw}} with the updated name in the Docker `run` command.
 

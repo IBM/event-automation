@@ -6,7 +6,7 @@ slug: prerequisites
 toc: true
 ---
 
-Ensure your environment meets the following prerequisites before installing {{site.data.reuse.eem_name}}.
+Ensure that your environment meets the following prerequisites before you install {{site.data.reuse.eem_name}}.
 
 ## Container environment
 {: #container-environment}
@@ -14,14 +14,14 @@ Ensure your environment meets the following prerequisites before installing {{si
 {{site.data.reuse.eem_name}} 11.8.x is supported on the {{site.data.reuse.openshift}} and other Kubernetes platforms that support the Red Hat Universal Base Images (UBI) containers.
 
 
-If you are using {{site.data.reuse.openshift}}, ensure you have the following set up for your environment:
+If you are using {{site.data.reuse.openshift}}, ensure that your environment meets the following requirements:
 
-- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22){:target="_blank"}.  For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- A supported version of the {{site.data.reuse.openshift_short}} [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22){:target="_blank"}. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
 
-If you are using other Kubernetes platforms, ensure you have the following set up for your environment:
+If you are using other Kubernetes platforms, ensure that your environment meets the following requirements:
 
-- A supported version of a Kubernetes platform installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
+- A supported version of a Kubernetes platform is installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 - The Kubernetes command-line tool (`kubectl`) [installed](https://v1-35.docs.kubernetes.io/docs/tasks/tools/){:target="_blank"}.
 
 If you plan to run the {{site.data.reuse.egw}} as a Docker container, the minimum requirements for the Docker environment where the gateway runs are 2 CPU cores and 2 GiB of memory.
@@ -29,14 +29,14 @@ If you plan to run the {{site.data.reuse.egw}} as a Docker container, the minimu
 ## Hardware requirements
 {: #hardware-requirements}
 
-Ensure your hardware can accommodate the [resource requirements](#resource-requirements) for your planned deployment.
+Ensure that your hardware can accommodate the [resource requirements](#resource-requirements) for your planned deployment.
 
 ## Resource requirements
 {: #resource-requirements}
 
 {{site.data.reuse.eem_name}} resource requirements depend on several factors. The following sections provide guidance about minimum requirements for a quick start deployment, and options for initial production configurations.
 
-Minimum resource requirements for an {{site.data.reuse.eem_name}} deployment with an [operator-managed {{site.data.reuse.egw}}](../install-gateway#operator-managed-gateways) are as follows, and are based on the total of requests set for the deployment. You will require more resources to accommodate the limit settings (see more about "requests" and "limits" later in this section).
+Minimum resource requirements for an {{site.data.reuse.eem_name}} deployment with an [operator-managed {{site.data.reuse.egw}}](../install-gateway#operator-managed-gateways) are as follows, and are based on the total of requests set for the deployment. More resources are required to accommodate the limit settings (see more about "requests" and "limits" later in this section).
 
 | Deployment                                                                                   | CPU (cores) | Memory (GiB) | Chargeable cores (see [licensing]({{ '/support/licensing/#calculating-licenses-required' | relative_url }})) |
 | -------------------------------------------------------------------------------------------- | ----------- | ----------- | ---------------------------------------------- |
@@ -44,34 +44,34 @@ Minimum resource requirements for an {{site.data.reuse.eem_name}} deployment wit
 | [{{site.data.reuse.eem_manager}} instance](../planning#example-deployment-quick-start)          | 0.5         | 0.5         | 1                                            |
 | [{{site.data.reuse.egw}} instance](../planning#deciding-gateway-type) | 1.0         | 1.0         | 1                                            |
 
-**Note:** {{site.data.reuse.eem_name}} provides sample {{site.data.reuse.eem_manager}} configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If you do not have an {{site.data.reuse.eem_name}} installation on your system yet, always ensure you include the resource requirements for the operator together with the intended {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instance requirements (quick start or production).
+**Note:** {{site.data.reuse.eem_name}} provides sample {{site.data.reuse.eem_manager}} configurations to help you get started with deployments. The resource requirements for these specific samples are detailed in the [planning](../planning/#sample-deployments) section. If {{site.data.reuse.eem_name}} is not installed on your system yet, ensure that you consider the resource requirements for the {{site.data.reuse.eem_name}} operator together with the intended {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instance requirements (quick start or production).
 
 [Requests and limits](https://v1-35.docs.kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/){:target="_blank"} are Kubernetes concepts for controlling resource types such as CPU and memory.
 
-- Requests set the minimum requirements a container requires to be scheduled. If your system does not have the required request value, then the services will not start up.
+- Requests set the minimum requirements for a container to be scheduled. If your system does not meet the request value, then the services cannot start.
 - Limits set the value beyond which a container cannot consume the resource. It is the upper limit within your system for the service. Containers that exceed a CPU resource limit are throttled, and containers that exceed a memory resource limit are terminated by the system.
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service these requirements. Your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances can be dynamically updated later. 
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service these requirements. Your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances can be dynamically updated later. 
 
 
 ### Operator requirements
 {: #operator-requirements}
 
-The {{site.data.reuse.eem_name}} operator requires the following minimum resource requirements. Ensure you always include sufficient CPU capacity and physical memory in your environment to service the operator requirements.
+The {{site.data.reuse.eem_name}} operator requires the following minimum resource requirements. Ensure that you include sufficient CPU capacity and physical memory in your environment to service the operator requirements.
 
 | CPU request (cores) | CPU limit (cores) | Memory request (GiB) | Memory limit (GiB) |
 | ------------------- | ----------------- | ------------------- | ----------------- |
 | 0.2                 | 1.0               | 0.5                | 1               |
 
-You can only install one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+You can install only one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 #### Cluster-scoped permissions required
 {: #cluster-scoped-permissions-required}
 
-The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped permissions, even if the operator is set manage instances in a single namespace:
+The {{site.data.reuse.eem_name}} operator requires the following cluster-scoped permissions, even if the operator is set to manage instances in a single namespace:
 
 - **Permission to retrieve storage classes**: The {{site.data.reuse.eem_name}} operator uses admission webhooks to provide immediate validation and feedback about the creation and modification of the {{site.data.reuse.eem_manager}} and operator-managed {{site.data.reuse.egw}} instances. The permission to retrieve storage classes is used by the webhooks to find a default storage class.
-- **Permission to list specific CustomResourceDefinitions**: This allows {{site.data.reuse.eem_name}} to identify whether other optional dependencies have been installed into the cluster.
+- **Permission to list specific CustomResourceDefinitions**: Allows {{site.data.reuse.eem_name}} to identify whether other optional dependencies are installed into the cluster.
 
 ## Red Hat OpenShift Security Context Constraints
 {: #red-hat-openshift-security-context-constraints}
@@ -90,8 +90,8 @@ By default, {{site.data.reuse.eem_name}} complies with `restricted` or `restrict
 
 To expose {{site.data.reuse.eem_name}} services externally outside your cluster, the {{site.data.reuse.eem_name}} operator creates:
 
-- OpenShift routes when installing on {{site.data.reuse.openshift}}.
-- Kubernetes ingress resources when installing on other Kubernetes platforms.
+- OpenShift routes on {{site.data.reuse.openshift}}.
+- Kubernetes ingress resources on other Kubernetes platforms.
 
 
 To use ingress, ensure you install and run an [ingress controller](https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/){:target="_blank"} on your Kubernetes platform. The SSL passthrough must be enabled in the ingress controller for your {{site.data.reuse.eem_name}} services to work. Refer to your ingress controller documentation for more information.
@@ -103,14 +103,14 @@ To use ingress, ensure you install and run an [ingress controller](https://v1-35
 
 {{site.data.reuse.eem_name}} supports any [Container Storage Interface (CSI)](https://v1-35.docs.kubernetes.io/blog/2019/01/15/container-storage-interface-ga/){:target="_blank"} compatible storage classes. 
 
-Specifically for RedHat OpenShift Kubernetes Service (ROKS), you can use either:
+Specifically, for RedHat OpenShift Kubernetes Service (ROKS), you can use either:
 
 - IBM Cloud Block storage, `ibmc-block-<tier>`, where `<tier>` can be `gold`, `silver` or `bronze`
 - (Only on Single-Zone clusters) IBM Cloud File storage with support for supplemental group IDs, `ibmc-file-<tier>-gid`
 
 You can use the storage classes to set up persistent storage or to [back up](../backup-restore/#backing-up) and [restore](../backup-restore#restoring) your data.
 
-If you want to set up [persistent storage](../planning/#planning-for-persistent-storage), ensure the cluster administrator has created one or more storage classes that support `ReadWriteOnce` and allows read and write access to non-root users.
+If you want to set up [persistent storage](../planning/#planning-for-persistent-storage), ensure that the cluster administrator created one or more storage classes that support `ReadWriteOnce` and allows read and write access to non-root users.
 
 For example, you can use one of the following systems:
 
@@ -120,7 +120,7 @@ For example, you can use one of the following systems:
 - Portworx Storage version 2.5.5 or later
 - Rook Ceph
 
-**Important:** The previous list includes storage providers that you can use to provision persistent volumes for {{site.data.reuse.eem_name}}. There is no guarantee that all features of a storage provider, such as snapshot-based backup and restore of the volumes, are supported. If you want to back up and restore your {{site.data.reuse.eem_manager}} instance, ensure you use a storage provider compatible with the CSI specification for snapshotting.
+**Important:** The previous list includes storage providers that you can use to provision persistent volumes for {{site.data.reuse.eem_name}}. Some providers might not support all features of a storage provider, such as snapshot-based backup and restore of the volumes. If you want to back up and restore your {{site.data.reuse.eem_manager}} instance, ensure you use a storage provider compatible with the CSI specification for taking snapshots.
 
 ## {{site.data.reuse.egw}} compatibility
 {: #event-gateway-compatibility}
@@ -148,7 +148,7 @@ A certificate manager is required to manage the {{site.data.reuse.eem_name}} int
 ### The cert-manager Operator for {{site.data.reuse.openshift}}
 {: #the-cert-manager-operator-for-openshift}
 
-If you already have the cert-manager Operator for Red Hat OpenShift installed on your cluster, you can skip this section.
+If you already have the cert-manager Operator for Red Hat OpenShift installed on your cluster, you can skip this check.
 
  - To check whether the cert-manager Operator for Red Hat OpenShift is installed on your cluster by using the OpenShift web console, complete the following steps:
 
@@ -166,7 +166,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
 - If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
 
-**Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
+**Important:** You can have only one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version based on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator already and note the version.
 
 ## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i}}
 {: #prereqs-keycloak}

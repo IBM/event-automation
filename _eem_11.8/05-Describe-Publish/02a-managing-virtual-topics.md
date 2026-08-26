@@ -6,7 +6,7 @@ slug: managing-virtual-topics
 toc: true
 ---
 
-Virtual topics enable you to socialize one source topic multiple times and in different ways. By publishing multiple virtual topics for a single source topic, you can provide clients with different ways to access the topic according to their requirements. 
+Virtual topics are used to socialize one source topic multiple times and in different ways. By publishing multiple virtual topics for a single source topic, you can provide clients with different ways to access the topic according to their requirements. 
 
 A virtual topic can have various [security](../security-controls) and [event data](../event-data-controls) controls that you can use to have greater control over how virtual topics are accessed and how events are sent and received. One source topic can have many virtual topics and each virtual topic can contain numerous controls as demonstrated in the following diagram. 
 
@@ -36,7 +36,7 @@ To create a virtual topic, complete the following steps:
       - [Quota enforcement](../event-data-controls#quota-enforcement): Set a quota for the maximum megabytes or messages per second that can be read from the topic.
       - [Schema filtering](../event-data-controls#schema-filter): Removes events that do not match the schema that is defined for the source topic.
       - [Redaction](../event-data-controls#consume-redaction): Redact specific fields in events with a replacement or hash value. Redaction is available only when a schema is defined for the source topic, or if its message format is specified as JSON.
-      - [Content filtering](../event-data-controls/#content-filtering): Control which events are delivered to subscribers based on event properties or subscriber data. This ensures that only relevant events are delivered through a virtual topic.
+      - [Content filtering](../event-data-controls/#content-filtering): Control which events are delivered to subscribers based on event properties or subscriber data.
 
    For produce-enabled topics, the following event data controls are available:
       - [Quota enforcement](../event-data-controls#quota-enforcement): Set a quota for the maximum megabytes or messages per second that can be sent to the topic.
@@ -50,7 +50,7 @@ To create a virtual topic, complete the following steps:
    If the group you want is not displayed, then click **Add user group** to add a group.  
 
    **Important:** Any user groups that you add manually must exist within the organization that is provided by your external identity provider.   
-8. {: #security-controls}In the **Security controls** pane, select the **Client authentication set** that you want to use to secure your virtual topic, and if you want users to require approval when subscribing. For more information, see [adding security controls to virtual topics](../security-controls).
+8. {: #security-controls}In the **Security controls** pane, select the **Client authentication set** that you want to use to secure your virtual topic, and if you want users to require approval when they subscribe. For more information, see [adding security controls to virtual topics](../security-controls).
 
 You can [publish the virtual topic](../publishing-virtual-topics) from the **Virtual topics** tab when you are ready.
 
@@ -66,12 +66,12 @@ To edit a virtual topic, complete the following steps:
 1. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "The more options icon."){:height="30px" width="15px"} **More options** on the topic that you want to edit, and select **Edit**. The **Edit virtual topic** window is displayed. 
 1. In the **Details** pane, edit the fields that you want to change. 
 
-    **Note:**  You can only edit the **Alias** when the virtual topic is in an [unpublished state](#virtual-topic-lifecycle-states).
+    **Note:**  You can edit the **Alias** only when the virtual topic is in an [unpublished state](#virtual-topic-lifecycle-states).
 1. On the **Event data controls** pane, edit the event data controls as required.
 1. On the **Visibility** pane, select or add the user groups that you want to make the virtual topic available to.  
 
     **Note**: You cannot remove groups from published or archived virtual topics.
-1. On the **Security controls** pane, select the **Client authentication set** that you want to use to secure your virtual topic, and if you want users to require approval when subscribing. When you are finished, click **Save**.
+1. On the **Security controls** pane, select the **Client authentication set** that you want to use to secure your virtual topic, and if you want users to require approval when they subscribe. When you are finished, click **Save**.
 
 
 ## Virtual topic lifecycle states

@@ -26,10 +26,10 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| accept | boolean | Setting to true will declare that you have accepted the license terms and conditions. (default: false) |
-| license | string | The license with which you are installing the product. |
-| metric | string | The license metric being used for your product license. |
-| use | string | The usage of the license with which you are installing the product. |
+| accept | boolean | Setting to true declares that you accept the license terms and conditions. (default: false) |
+| license | string | The license string. |
+| metric | string | The license metric used for your product license. |
+| use | string | The license usage. |
 
 
 ### `spec.manager`
@@ -52,11 +52,11 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 #### `spec.manager.apic`
 {: #manager-resource-apic}
 
-For integration with {{site.data.reuse.apic_long}} v12.1.1 and later releases:
+For integration with {{site.data.reuse.apic_long}} v12.1.1.2 and later releases:
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| developerPortal | array[developerPortal](#manager-resource-developer-portal) | Array of objects containing {{site.data.reuse.apic_short}} configuration. |
+| developerPortal | array[developerPortal](#manager-resource-developer-portal) | Array of objects that contain {{site.data.reuse.apic_short}} configuration. |
 
 For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x releases:
 
@@ -64,7 +64,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | ----------- | ----------- | ----------- |
 | clientSubjectDN | string | Common name used for mTLS with {{site.data.reuse.apic_long}}. |
 | jwks | [jwks](#manager-resource-jwks) | Object containing jwks configuration. |
-| tls | boolean | Enable/Disable mTLS with {{site.data.reuse.apic_short}}. |
+| tls | boolean | Enable or disable mTLS with {{site.data.reuse.apic_short}}. |
 
 ##### `spec.manager.apic.developer-portal`
 {: #manager-resource-developer-portal}
@@ -72,7 +72,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | organization | string | The organization name. Must use `"eem"`. |
-| endpoint | string | The {{site.data.reuse.apic_long}} v12.1.1 or later URL. Must use https protocol. |
+| endpoint | string | The {{site.data.reuse.apic_long}} v12.1.1.2 or later URL. Must use https protocol. |
 | authentication | [authentication](#manager-resource-developer-portal-authentication) | Authentication configuration. |
 
 ##### `spec.manager.apic.developerPortal`
@@ -81,7 +81,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | key | string | The key in the secret that holds the value of the basic authentication credentials in the format `<username>:<password>`. |
-| secretName | string | The name of the secret holding the credentials. |
+| secretName | string | The name of the secret that holds the credentials. |
 
 
 ##### `spec.manager.apic.jwks`
@@ -97,7 +97,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| authType | string | The authentication method you are going to use. One of `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK`. |
+| authType | string | The authentication method to use. One of `LOCAL`, `OIDC`, or `INTEGRATION_KEYCLOAK`. |
 | oidcConfig | [oidcConfig](#manager-resource-oidcconfig) | Object containing OIDC configuration. |
 
 ##### `spec.manager.authConfig.oidcConfig`
@@ -105,8 +105,8 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| additionalScopes | array[string] | Additional scopes over openid, profile, email that should be required, useful when using the `authorizationClaimPointer`. |
-| authorizationClaimPointer | string | A JSON pointer to a claim in the ID token from the provider, which will be used for mapping authorization roles (for example, `"/resource_access/client_id/roles"`). |
+| additionalScopes | array[string] | Additional scopes over openid, profile, and email that are required. Useful with `authorizationClaimPointer`. |
+| authorizationClaimPointer | string | A JSON pointer to a claim in the ID token from the provider, which is used for mapping authorization roles (for example, `"/resource_access/client_id/roles"`). |
 | authorizationPath | string | The path to the authorization endpoint of this provider. |
 | clientIDKey | string | The key in the secret that contains the OIDC Client ID. |
 | clientSecretKey | string | The key in the secret that contains the OIDC Secret Key. |
@@ -135,14 +135,14 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field       | Type              | Description                                                                                                                |
 |-------------|-------------------|----------------------------------------------------------------------------------------------------------------------------|
-| annotations | map[string]string | The annotations to use in place of the [default ingress annotations](../../installing/configuring/#ingress-default-settings). |
+| annotations | map[string] | The annotations to use in place of the [default ingress annotations](../../installing/configuring/#ingress-default-settings). |
 | class       | string            | The ingress class name to use on the ingress resource, defaults to `nginx`.                                                |
 | host        | string            | The DNS resolvable hostname to set on the ingress endpoint.                                                                |
-| name        | string            | The name of the endpoint being configured. For valid values, see the following important notes.   
+| name        | string            | The name of the endpoint. For valid values, see the following important notes.   
 
 **Important:**
 - On the {{site.data.reuse.openshift_short}}, `annotations` and `class` are not valid configuration options because OpenShift routes are created.
-- On other Kubernetes platforms you must specify host values for exposed endpoints. <!--_DRAFT COMMENT: Host must be provided in OCP while creating wildcarded routes._-->
+- On other Kubernetes platforms, you must specify host values for exposed endpoints. <!--_DRAFT COMMENT: Host must be provided in OCP while creating wildcarded routes._-->
 - Valid values for `name` are: `ui`, `gateway`, `admin`, `server`, and `apic`.
 
 #### `spec.manager.fips`
@@ -157,8 +157,8 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| annotations | object | Annotations that will be added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and subsequently deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
-| labels | object | Labels that will be added to all Kubernetes resources used by the instance. |
+| annotations | object | Annotations that are added to all Kubernetes resources used by the instance. Any annotations that are added to the template object and later deleted are not automatically removed from resources that are already instantiated. These annotations need to be manually removed from the existing resources. |
+| labels | object | Labels that are added to all Kubernetes resources used by the instance. |
 | pod | [pod](#manager-resource-pod) | Object containing pod override configuration. |
 
 ##### `spec.manager.template.pod`
@@ -174,10 +174,10 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| deleteClaim | boolean | Specifies if the persistent volume claim has to be deleted when the instance is deleted. |
+| deleteClaim | boolean | Specifies whether the persistent volume claim must be deleted when the instance is deleted. |
 | existingClaimName | string | The name of a pre-created Persistence Volume Claim (PVC). |
-| root | string | The root storage path where data will be stored. |
-| rotationSecretName | string | The Kubernetes secret used for supplying a new encryption key. This field should only be set temporarily during the process of rotating the encryption key. |
+| root | string | The root storage path where data is stored. |
+| rotationSecretName | string | The Kubernetes secret that is used for supplying a new encryption key. This field should only be set temporarily during the process of rotating the encryption key. |
 | selectors | object | Labels to be used during PVC bind. |
 | size | string | The storage size limit for the volume. Default is 500Mi. |
 | storageClassName | string | The storage class name to use on created Persistent Volume Claims (PVCs). |
@@ -189,11 +189,11 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | caCertificate | string | The key in the secret that holds the value of the CA certificate. |
-| caSecretName | string | The name of a secret containing a root CA certificate that the product should use when creating additional certificates. |
+| caSecretName | string | The name of a secret that contains a root CA certificate that the product uses when it creates additional certificates. |
 | key | string | The key in the secret that holds the value of the private key. |
-| secretName | string | The name of a secret containing certificates for securing component communications. |
+| secretName | string | The name of a secret that contains certificates for securing component communications. |
 | serverCertificate | string | The key in the secret that holds the value of the server certificate. |
-| trustedCertificates | array[[trustedCertificate](#manager-resource-trustedcertificate)] | A set of secrets containing certificates which the {{site.data.reuse.eem_manager}} should trust when communicating with other services, such as gateways or OIDC providers. |
+| trustedCertificates | array[[trustedCertificate](#manager-resource-trustedcertificate)] | A set of secrets that contain certificates that the {{site.data.reuse.eem_manager}} must trust to communicate with other services, such as gateways or OIDC providers. |
 | ui | [ui](#manager-resource-ui) | Object containing TLS configuration explicitly for the UI. (Not present in eventgateway.events.ibm.com/v1beta1) |
 
 #### `spec.manager.tls.trustedCertificates`
@@ -202,7 +202,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | certificate | string | The key within the specified secret that holds the value of the CA certificate. |
-| secretName | string | The name of a Kubernetes secret containing a CA certificate to add to the truststore. |
+| secretName | string | The name of a Kubernetes secret that contains a CA certificate to add to the truststore. |
 
 #### `spec.manager.tls.ui`
 {: #manager-resource-ui}
@@ -219,11 +219,11 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field            | Type    | Description |
 | ---------------- | --------| ----------- |
-| endpoint         | string  | The endpoint to send the OpenTelemetry metrics.  Must include protocol http:// or https:// |
+| endpoint         | string  | The endpoint to send the OpenTelemetry metrics. Must include `http://` or `https://` |
 | protocol         | string  | The transport protocol to use, grpc (default) or http/protobuf. |
 | interval         | integer | The interval between reporting of metrics in milliseconds. Default is 30000. |
 | tls              | [otelTLS](#manager-resource-opentelemetry-tls) | The configuration of SSL Certificates for mTLS and a trusted certificate for endpoint server validation. |
-| instrumentations | [][instrumentation](#manager-resource-instrumentation) | A list of instrumentations to enable in addition to those for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}. |
+| instrumentations | [][instrumentation](#manager-resource-instrumentation) | A list of instrumentations to enable in addition to the instrumentations for the {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}}. |
 
 #### `spec.manager.openTelemetry.tls`
 {: #manager-resource-opentelemetry-tls}
@@ -233,7 +233,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | clientCertificate | string | The key in the secret that holds the value of the PKCS8 encoded client certificate to use for mutualTLS (mTLS). |
 | clientKey | string | The key in the secret that holds the value of the PKCS8 encoded private key certificate to use for mutualTLS (mTLS). |
 | secretName | string | The name of a secret containing certificates for securing component communications for mutualTLS (mTLS). |
-| trustedCertificate | [] | Configuration of a secret containing a TLS certificate to trust to validate the endpoint servers identity. |
+| trustedCertificate | [] | Configuration of a secret that contains a TLS certificate to trust to validate the endpoint servers identity. |
 
 
 
@@ -246,7 +246,7 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | enabled      | boolean  | Whether to enable or disabled the specified instrumentation. |
 
 **Important:**
-- The instrumentation name should be the instrumentation shortname. The supplied shortname is then configured as an env var against the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>` automatically.
+- The instrumentation name must be the instrumentation shortname. The supplied shortname is then configured as an env var against the relevant pod as `OTEL_INSTRUMENTATION_<name>_ENABLED=<enabled>` automatically.
 
 
 ## `status`
@@ -254,10 +254,10 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
-| conditions | array[[condition](#manager-status-resource-condition)] | A list of conditions representing the state of the custom resource. |
+| conditions | array[[condition](#manager-status-resource-condition)] | A list of conditions that represent the state of the custom resource. |
 | versions | [versions](#manager-status-resource-versions) | Object containing versioning information. |
 | endpoints | array[[endpoint](#manager-status-resource-endpoint)] | A list of endpoints exposed by the instance. |
-| phase | string | A value representing the phase in which the instance is operating. One of `Running`, `Failed` or `Pending`. |
+| phase | string | Represents the phase in which the instance is operating. One of `Running`, `Failed`, or `Pending`. |
 
 ### `status.versions`
 {: #status-resource-versions}
@@ -298,9 +298,9 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | lastTransitionTime | string | The time at which the condition was applied. |
-| message | string | Human-readable message indicating details about the condition. |
-| reason | string | Machine-readable, UpperCamelCase text indicating the reason for the condition. |
-| status | string | Indicates whether that condition is applicable. One of `True`, `False` or `Unknown`. |
+| message | string | Human-readable message that contains details about the condition. |
+| reason | string | Machine-readable, UpperCamelCase text that indicates the reason for the condition. |
+| status | string | Indicates whether that condition is applicable. One of `True`, `False`, or `Unknown`. |
 
 ### `status.endpoints`
 {: #manager-status-resource-endpoint}
@@ -308,8 +308,8 @@ For integration with {{site.data.reuse.apic_long}} v10.0.6 and later 10.x.x rele
 | Field | Type | Description |
 | ----------- | ----------- | ----------- |
 | name | string | Unique name for the endpoint. |
-| type | string | Type of service the endpoint is exposing. For example `UI` or `API`. |
-| scope | string | The scope of the endpoint. For example `External`, `Internal`. |
+| type | string | Type of service the endpoint exposes. For example, `UI` or `API`. |
+| scope | string | The scope of the endpoint. For example, `External`, `Internal`. |
 | uri | string | The URI of the endpoint. |
 
 

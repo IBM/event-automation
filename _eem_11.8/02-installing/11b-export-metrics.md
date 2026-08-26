@@ -36,7 +36,7 @@ To configure an {{site.data.reuse.eem_manager}} to emit OpenTelemetry data, you 
 
    Where:
 
-   `endpoint`: The server endpoint where the OpenTelemetry data is sent. This is a required property when you configure the OpenTelemetry section and the specified endpoint must include the protocol, `http://` or `https://`.
+   `endpoint`: The server endpoint where the OpenTelemetry data is sent. The endpoint is a required property when you configure the OpenTelemetry section and the specified endpoint must include the protocol, `http://` or `https://`.
 
    `protocol`: The communication protocol to use for communicating to the endpoint. Example values are `grpc` and `http/protobuf`, the default value is `grpc`.
 
@@ -46,7 +46,7 @@ To configure an {{site.data.reuse.eem_manager}} to emit OpenTelemetry data, you 
 
    `tls.clientKey`: The key in the secret that holds the encoded client key, for example `tls.key`. The certificate must be created with PKCS8 encoding.
 
-   `tls.clientCertificate`: The key in the secret that holds the PKCS8 encoded client certificate/chain, for example `tls.crt`. The certificate must be created with PKCS8 encoding.
+   `tls.clientCertificate`: The key in the secret that holds the PKCS8 encoded client certificate chain, for example `tls.crt`. The certificate must be created with PKCS8 encoding.
 
    `tls.trustedCertificate.secretName`: A secret that contains a CA certificate to trust to verify the endpoint server's certificate.
 
@@ -54,9 +54,9 @@ To configure an {{site.data.reuse.eem_manager}} to emit OpenTelemetry data, you 
 
    `instrumentations`: Here you can define additional instrumentations to enable. {{site.data.reuse.eem_manager}} metrics are enabled by default when OpenTelemetry is enabled.
 
-   - `name`: An instrumentation name. This name is then added into an environment variable of the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`, for a list of instrumentation names, see [Suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}.  You do not need to specify the environment variable, only the instrumentation name.
+   - `name`: An instrumentation name. This name is then added into an environment variable of the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`. For a list of instrumentation names, see [Suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}. You do not need to specify the environment variable, only the instrumentation name.
 
-   - `enabled`: A boolean indicating whether to enable or disable the specified instrumentation.
+   - `enabled`: A Boolean that indicates whether to enable or disable the specified instrumentation.
 
 If you want to add additional configuration for the OpenTelemetry agent, then you can [set environment variables](../advancedconfig#setting-manager-env-vars).
 
@@ -78,11 +78,11 @@ To enable traces from the {{site.data.reuse.eem_manager}}, first configure OpenT
 
 Where `trace.name` can be one of the following values: 
 
-- `httpInfo`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 100-199
-- `httpSuccess`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 200-299
-- `httpRedirect`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 300-399
-- `httpClientError`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 400-499
-- `httpServerError`: emits otel spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 500-599
+- `httpInfo`: emits OTEL spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 100-199
+- `httpSuccess`: emits OTEL spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 200-299
+- `httpRedirect`: emits OTEL spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 300-399
+- `httpClientError`: emits OTEL spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 400-499
+- `httpServerError`: emits OTEL spans for calls within the {{site.data.reuse.eem_manager}} with the status code between 500-599
 
 You can put multiple entries in to the `tracesEnablement` array to see multiple ranges of status code in your distributed tracing tool such as [Jaeger](https://www.jaegertracing.io/){:target="_blank"}.
 
@@ -198,11 +198,11 @@ openTelemetry:
 
 Where:
 
-`endpoint`: The server endpoint where the OpenTelemetry data is sent. This is a required property when you configure the OpenTelemetry section, and the specified endpoint must include the protocol, `http://` or `https://`.
+`endpoint`: The server endpoint where the OpenTelemetry data is sent. This endpoint is a required property when you configure the OpenTelemetry section, and the specified endpoint must include the protocol, `http://` or `https://`.
 
 `protocol`: The communication protocol to use for communicating with the endpoint. Example values are `grpc` and `http/protobuf`, the default value is `grpc`.
 
-`interval`: The interval in milliseconds between the start of two metrics export attempts. The default value is 30000 (30 second intervals).
+`interval`: The interval in milliseconds between the start of two metrics export attempts. The default value is 30000 (30-second intervals).
 
 `tls.secretName`: A secret that contains the client's certificates to use for mutualTLS (mTLS).
 
@@ -216,9 +216,9 @@ Where:
 
 `instrumentations`: Section for defining additional instrumentation to enable. {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} metrics are enabled by default when OpenTelemetry is enabled.
 
-- `name`: An instrumentation name. This name is then added to an environment variable with the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`. For a list of instrumentation names, see [suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}.  You do not need to specify the environment variable, only the instrumentation name.
+- `name`: An instrumentation name. This name is then added to an environment variable with the format `OTEL_INSTRUMENTATION_[NAME]_ENABLED`. For a list of instrumentation names, see [suppressing specific instrumentation](https://opentelemetry.io/docs/zero-code/java/agent/disable/#suppressing-specific-agent-instrumentation){:target="_blank"}. You do not need to specify the environment variable, only the instrumentation name.
 
-- `enabled`: A boolean indicating whether to enable or disable the specified instrumentation.
+- `enabled`: A Boolean that indicates whether to enable or disable the specified instrumentation.
 
 If you want to add additional configuration for the OpenTelemetry agent, then you can add environment variables to the custom resource.
 

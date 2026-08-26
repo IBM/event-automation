@@ -27,7 +27,7 @@ To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway 
     a. The image reference. Set the image reference to your target version. For example:
 
     ```shell
-    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.8.1
+    -d icr.io/cpopen/ibm-eventendpointmanagement/egw:11.8.2
     ```
     
     <!-- only include below license line when the release has a new license -->
@@ -46,7 +46,7 @@ To upgrade a Docker {{site.data.reuse.egw}}, delete the existing Docker gateway 
 To upgrade a Kubernetes Deployment {{site.data.reuse.egw}}, edit the Kubernetes Deployment and update the Docker image name that is specified in `spec.template.spec.containers[egw].image`. Set the image name to the target {{site.data.reuse.eem_name}} version. For example: 
 
 ```
-icr.io/cpopen/ibm-eventendpointmanagement/egw:11.8.1
+icr.io/cpopen/ibm-eventendpointmanagement/egw:11.8.2
 ```
 
 <!-- Add back line below when license needs updating -->

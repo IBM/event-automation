@@ -6,18 +6,16 @@ slug: planning
 toc: true
 ---
 
-Consider the following when planning your installation of {{site.data.reuse.eem_name}}.
-
 Decide the purpose of your deployment, for example, whether you want to try a starter deployment for testing purposes, or start setting up a production deployment.
 
 - Use the sample deployments described in the following sections as a starting point if you need something to base your deployment on.
-- For production use, and whenever you want your data to be saved in the event of a restart, set up [persistent storage](#planning-for-persistent-storage).
+- For production use, and when you don't want to lose your data after a restart, set up [persistent storage](#planning-for-persistent-storage).
 - Consider the options for [securing](#planning-for-security) your deployment.
 
 ## Sample deployments for {{site.data.reuse.eem_manager}}
 {: #sample-deployments-for-event-manager}
 
-A number of sample configurations are available when installing {{site.data.reuse.eem_name}} on which you can base your deployment. These range from smaller deployments for non-production development or general experimentation to deployments that can handle a production workload.
+A number of {{site.data.reuse.eem_name}} sample configurations are available, from which you can base your deployment. These samples range from smaller deployments for non-production development to deployments that can handle a production workload.
 
 If you are installing on the {{site.data.reuse.openshift_short}} or on other Kubernetes platforms, the following samples are available:
 
@@ -25,7 +23,7 @@ If you are installing on the {{site.data.reuse.openshift_short}} or on other Kub
 - [Quick start - with ephemeral storage](#example-deployment-quick-start-with-ephemeral)
 - [Quick start with {{site.data.reuse.apic_short}} v10 integration](#example-deployment-quick-start-with-api-connect-integration)
 - [Production](#example-deployment-production)
-- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
+- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
 
 If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
@@ -33,7 +31,7 @@ If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the fol
 - [Quick start - with ephemeral storage](#example-deployment-quick-start-with-ephemeral)
 - [Quick start with {{site.data.reuse.apic_short}} v10 integration](#example-deployment-quick-start-with-api-connect-integration)
 - [Production](#example-deployment-production)
-- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
+- [Production with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
 - [Usage-based pricing](#example-deployment-usage-based-pricing)
 
 The sample configurations for both the {{site.data.reuse.openshift_short}} and other Kubernetes platforms are also available in [GitHub](https://ibm.biz/ea-eem-samples){:target="_blank"} where you can select the GitHub tag for your {{site.data.reuse.eem_name}} version, and then go to `/cr-examples/eventendpointmanagement/openshift` or `/cr-examples/eventendpointmanagement/kubernetes` to access the samples.
@@ -45,7 +43,7 @@ The sample configurations for both the {{site.data.reuse.openshift_short}} and o
 
 Overview: A development {{site.data.reuse.eem_manager}} instance with reduced resources, dynamically provisioned persistence storage, and local authentication.
 
-This example provides a starter deployment that can be used if you simply want to try {{site.data.reuse.eem_name}} with a minimum resource footprint. This example is deployed with persistence and reduced resources.
+This example provides a starter deployment that can be used if you want to try {{site.data.reuse.eem_name}} with a minimum resource footprint. This example is deployed with persistence and reduced resources.
 
 Resource requirements for this deployment:
 
@@ -53,14 +51,14 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.25                | 0.5               | 0.25                | 0.5               | 1     |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Quick start - with ephemeral**
 {: #example-deployment-quick-start-with-ephemeral}
 
 Overview: A development {{site.data.reuse.eem_manager}} instance with reduced resources that uses ephemeral storage and local authentication, suitable for prototyping, but not long-term use.
 
-This example provides a starter deployment that can be used if you simply want to try {{site.data.reuse.eem_name}} with a minimum resource footprint. This example is deployed without persistence and reduced resources.
+This example provides a starter deployment that can be used if you want to try {{site.data.reuse.eem_name}} with a minimum resource footprint. This example is deployed without persistence and reduced resources.
 
 Resource requirements for this deployment:
 
@@ -68,16 +66,16 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.25                | 0.5               | 0.25                | 0.5               | 1     |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
-**Important:** All data will be lost if the manager pod is restarted.
+**Important:** All data is lost if the manager pod is restarted.
 
 ### Example deployment: **Production**
 {: #example-deployment-production}
 
 Overview: A production instance with support for persistence and OpenID Connect (OIDC) authentication.
 
-This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, using OIDC authentication with keycloak, using provided CA and custom UI certificates.
+This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, OIDC authentication with keycloak, and specified CA and UI certificates.
 
 Resource requirements for this deployment:
 
@@ -86,12 +84,12 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
-### Example deployment: Production with {{site.data.reuse.wm_portal_long}} v12.1.1 or later integration
+### Example deployment: Production with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later integration
 {: #example-deployment-production-with-api-connect-dpo-integration}
 
-This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, using OIDC authentication with keycloak, using a provided CA and custom UI certificates, and configuration options for the integration with {{site.data.reuse.wm_portal_long}} v12.1.1 or later.
+This example installs a production-ready {{site.data.reuse.eem_manager}} instance, with dynamically provisioned persistence, OIDC authentication with keycloak, specified CA and UI certificates, and configuration options for the integration with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later.
 
 Resource requirements for this deployment:
 
@@ -99,7 +97,7 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: Quick start with {{site.data.reuse.apic_short}} integration v10 integration
 {: #example-deployment-quick-start-with-api-connect-integration}
@@ -114,7 +112,7 @@ Resource requirements for this deployment:
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ### Example deployment: **Usage-based pricing**
 {: #example-deployment-usage-based-pricing}
@@ -125,17 +123,17 @@ Overview: A production instance with additional fields to point to an installed 
 | ------------------- | ----------------- | ------------------- | ----------------- | ---------------------------------- |
 | 0.5                 | 1.0               | 0.5                 | 1.0               | 1                                |
 
-Ensure you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
+Ensure that you have sufficient CPU capacity and physical memory in your environment to service at least the resource **request** values. The resource **limit** values constrain the amount of resource the {{site.data.reuse.eem_manager}} instance is able to consume.
 
 ## Planning for persistent storage
 {: #planning-for-persistent-storage}
 
-If you plan to have persistent volumes, consider the disk space required for storage. {{site.data.reuse.eem_name}} stores
-data in JSON format. The amount of data stored is proportional to the number of entries in the {{site.data.reuse.eem_name}}
-catalog and the number of subscribers. For storage classes that support resizing, it might be sufficient to begin with `100Mi`,
-monitor and extend as needed. By default, a value of `500Mi` is used. <!-- DRAFT COMMENT: impact of applications? !>
+If you plan to have persistent volumes, consider the disk space that is required for storage. {{site.data.reuse.eem_name}} stores
+data in JSON format. The amount of data that is stored is proportional to the number of entries in the {{site.data.reuse.eem_name}}
+catalog and the number of subscribers. For storage classes that support resizing, it might be sufficient to begin with `100Mi` and
+monitor and extend as needed. By default, a value of `500Mi` is used.
 
-You either need to create a [persistent volume](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
+You either need to create a [persistent volume](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#static){:target="_blank"}, a persistent volume, and persistent volume claim, or specify a storage class that supports [dynamic provisioning](https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#dynamic){:target="_blank"}.
 
 For information about creating persistent volumes and creating a storage class that supports dynamic provisioning:
 
@@ -144,10 +142,10 @@ For information about creating persistent volumes and creating a storage class t
 
 You must have the `Cluster Administrator` role for creating persistent volumes or a storage class.
 
-- If these persistent volumes are to be created manually, this must be done by the cluster administrator before installing {{site.data.reuse.eem_name}}. These will then be claimed from a central pool when the {{site.data.reuse.eem_manager}} instance is deployed.
-- If these persistent volumes are to be created automatically, ensure a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
+- If these persistent volumes are to be created manually, the cluster administrator must create the volumes before {{site.data.reuse.eem_name}} is installed. The volumes are claimed from a central pool when the {{site.data.reuse.eem_manager}} instance is deployed.
+- If these persistent volumes are to be created automatically, ensure that a [dynamic provisioner](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/storage/dynamic-provisioning){:target="_blank"} is configured for the storage class you want to use. See [data storage requirements](../prerequisites/#data-storage-requirements) for information about storage systems supported by {{site.data.reuse.eem_name}}.
 
-**Important:** When creating persistent volumes ensure the **Access mode** is set to `ReadWriteOnce` for the volume.
+**Important:** When you create persistent volumes, ensure that the **Access mode** is set to `ReadWriteOnce` for the volume.
 
 To use persistent storage, [configure the storage properties](../configuring#enabling-persistent-storage) in your `EventEndpointManagement` custom resource.
 
@@ -185,7 +183,7 @@ To secure {{site.data.reuse.eem_manager}} endpoints, use one of the following co
 - **Custom CA certificate**: Provide a secret that contains a certificate authority (CA) certificate, which is used to generate the {{site.data.reuse.eem_manager}} server certificate. See [Custom CA certificate](../../security/config-tls#custom-ca-certificate-manager).
 - **Custom certificate**: Provide a secret that contains a CA certificate, server certificate, and a key that has the required DNS names for accessing the {{site.data.reuse.eem_manager}}. See [Custom CA and leaf certificates](../../security/config-tls#custom-ca-and-leaf).
 
-To secure your {{site.data.reuse.egw}} endpoint on Kubernetes and OpenShift platforms, you must either create a Kubernetes secret that contains your CA certificate, server certificate, and key, or provide these as separate PEM files. <!-- CONTEXT: I know you don't actually need the server cert for operator-managed gway, but I don't think it's vital user knows this at this point and it would only complicate this section. -->
+To secure your {{site.data.reuse.egw}} endpoint on Kubernetes and OpenShift platforms, you must either create a Kubernetes secret that contains your CA certificate, server certificate, and key, or provide these as separate PEM files. 
 
 To secure a Docker {{site.data.reuse.egw}} endpoint, you must provide a CA certificate, server certificate, and key as separate PEM files.
 
@@ -201,7 +199,7 @@ Deciding which method to use for your gateway deployment depends on the location
 
 If the Kafka cluster is located in a different environment from your {{site.data.reuse.eem_manager}}, then to minimize latency it is recommended to install a gateway as a [Docker container or Kubernetes Deployment](../install-gateway#remote-gateways) in the same environment as the Kafka cluster, or as close as possible.
 
-If the Kafka cluster is located in the same environment as your {{site.data.reuse.eem_manager}}, then it is recommended to install the [operator-managed](../install-gateway#operator-managed-gateways) gateway, so that your gateway is monitored and maintained by the {{site.data.reuse.eem_name}} operator.
+If the Kafka cluster is located in the same environment as your {{site.data.reuse.eem_manager}}, then it is recommended to install the [operator-managed](../install-gateway#operator-managed-gateways) gateway, so that the {{site.data.reuse.eem_name}} operator monitors and maintains your gateway.
 
 Key points:
 

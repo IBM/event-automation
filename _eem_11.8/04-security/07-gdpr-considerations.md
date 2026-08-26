@@ -30,7 +30,7 @@ any law or regulation.
 
 _GDPR_ stands for General Data Protection Regulation.
 
-GDPR has been adopted by the European Union and will apply from May 25, 2018.
+GDPR is adopted by the European Union and applies from May 25, 2018.
 
 ### Why is GDPR important?
 {: #why-is-gdpr-important}
@@ -60,7 +60,7 @@ This document is intended to help you in your preparations for GDPR readiness.
 The GDPR legislation requires that personal data is strictly controlled and that the
 integrity of the data is maintained. This requires the data to be secured against loss
 through system failure and also through unauthorized access or via theft of computer equipment or storage media.
-The exact requirements will depend on the nature of the information that will be sent to {{site.data.reuse.ep_name}}.
+The exact requirements depend on the nature of the information that is sent to {{site.data.reuse.ep_name}}.
 Areas for consideration to address these aspects of the GDPR legislation include:
 
 - Physical access to the assets where the product is installed.
@@ -70,7 +70,7 @@ Areas for consideration to address these aspects of the GDPR legislation include
 ## Data Life Cycle
 {: #data-life-cycle}
 
-{{site.data.reuse.eem_name}} socializes streams of data received through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"}
+{{site.data.reuse.eem_name}} socializes streams of data that is received through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"}
 topics.
 
 {{site.data.reuse.eem_name}} consists of two components:
@@ -79,7 +79,7 @@ topics.
 
 - {{site.data.reuse.egw}} - With {{site.data.reuse.egw}}, you can access the information that is described in the {{site.data.reuse.eem_manager}}.
 
-As a result, {{site.data.reuse.eem_name}} can be used for socializing any data, some of which could potentially be subject to GDPR.
+As a result, {{site.data.reuse.eem_name}} can be used for socializing any data, some of which might potentially be subject to GDPR.
 
 ### What types of data flow through {{site.data.reuse.eem_name}}?
 {: #what-types-of-data-flow-through-event-endpoint-management}
@@ -94,27 +94,26 @@ See the [data Storage](#data-storage) section for details about how information 
 ### Personal data used for online contact with IBM
 {: #personal-data-used-for-online-contact-with-ibm}
 
-{{site.data.reuse.eem_name}} clients can submit online comments/feedback requests to contact IBM about {{site.data.reuse.eem_name}} in a variety of
-ways, primarily:
+{{site.data.reuse.eem_name}} clients can submit online comments and feedback to IBM about {{site.data.reuse.eem_name}} in various ways, primarily:
 
-- Private issue reporting via IBM Support
+- Private issue reporting with IBM Support
 
 Typically, only the client name and email address are used to enable personal replies for the subject of the contact. The use of personal data conforms to the [IBM Online Privacy Statement](https://www.ibm.com/privacy/us/en/){:target="_blank"}.
 
 ## Data Collection
 {: #data-collection}
 
-{{site.data.reuse.eem_name}} can be used to collect personal data. When assessing your use of {{site.data.reuse.eem_name}} and the demands of GDPR, you should consider the types of personal data which in your circumstances are passing through the system. You may wish to consider aspects such as:
+{{site.data.reuse.eem_name}} can be used to collect personal data. When you assess your use of {{site.data.reuse.eem_name}} and the demands of GDPR, you should consider the types of personal data that in your circumstances are passing through the system. You may wish to consider aspects such as:
 
 - What data is being passed to {{site.data.reuse.eem_name}}?
-- What type of storage has been configured within {{site.data.reuse.eem_name}}? Has encryption been enabled? For more information, see [data storage](#data-storage).
-- Has the internal network traffic been encrypted? For more information, see [data processing](#data-processing).
+- What type of storage is configured within {{site.data.reuse.eem_name}}? Has encryption been enabled? For more information, see [data storage](#data-storage).
+- Is internal network traffic encrypted? For more information, see [data processing](#data-processing).
 - Can you limit what personal information is accessible within {{site.data.reuse.eem_name}} by clients of your virtual topics? For more information, see [redaction control](../../describe/event-data-controls#consume-redaction).
 
 ## Data Storage
 {: #data-storage}
 
-{{site.data.reuse.eem_name}} stores data on stateful media within the cluster. The data stored by {{site.data.reuse.eem_name}} pods is encrypted by default.
+{{site.data.reuse.eem_name}} stores data on stateful media within the cluster. The data that is stored by {{site.data.reuse.eem_name}} pods is encrypted by default.
 
 In production deployments, persistent storage is used. For encrypting the persistent storage used by {{site.data.reuse.eem_name}}, see the documentation for your storage provider, for example, [Red Hat Ceph Storage - Encryption and Key Management](https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/6/html/data_security_and_hardening_guide/assembly-encryption-and-key-management){:target="_blank"}.
 

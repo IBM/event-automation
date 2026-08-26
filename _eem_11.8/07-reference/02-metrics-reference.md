@@ -60,4 +60,4 @@ Find out more about the OpenTelemetry metrics emitted by the {{site.data.reuse.e
 | Metric | Type |  Description |
 | ----------- | ----------- | ----------- |
 | apic_dp_api_error_count | LongCounter | Number of failed API requests (with HTTP status code greater or equal to 400) to the {{site.data.reuse.wm_portal_short}}.  |
-| apic_dp_desync_count | LongGauge | Number of 'assets' which are currently out of sync between {{site.data.reuse.wm_portal_short}} and the {{site.data.reuse.eem_name}} instance from which those assets were deployed to. An 'asset' can be a {{site.data.reuse.wm_portal_short}} provider or an AsyncAPI. |
+| apic_dp_desync_count | LongGauge | Number of 'assets' that are currently out of sync between {{site.data.reuse.wm_portal_short}} and the {{site.data.reuse.eem_name}} instance from which those assets were deployed to. An 'asset' can be a {{site.data.reuse.wm_portal_short}} provider or an AsyncAPI. |

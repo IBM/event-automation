@@ -170,18 +170,17 @@ spec:
 ```
 
 
-For the operator-managed {{site.data.reuse.egw}} instance, set the gateway endpoint host in the `spec.listeners[].groups[].endpoint` section of your `EventGateway` custom resource, as shown in the following code snippet:
+For the operator-managed {{site.data.reuse.egw}} instance, set the gateway endpoint host in the `spec.listeners[].groups[].endpoint` section of your `EventGateway` custom resource:
 
-
-      ```yaml
-      spec:
-        listeners:
-          - name: 
-            groups:
-            - name: 
-              endpoint:
-                host: my-gateway.example.com
-      ```
+```yaml
+spec:
+  listeners:
+    - name: 
+      groups:
+      - name: 
+        endpoint:
+          host: my-gateway.example.com
+```
 
 <!-- K8S deployment gateway users should be able to work it out, but it would be good to add a Kubernetes Deployment example here. This is NA for docker gateway btw. -->
 

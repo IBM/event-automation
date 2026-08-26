@@ -34,7 +34,7 @@ To add a user group to edit source topics, complete the following steps:
 1. Select the topics that you want the group to access. 
 1. Click **Save**. 
 
-The new group is added to the table in the **Topic editors** tab with all the  topics that the group can edit displayed.
+The new group is added to the table in the **Topic editors** tab with all the topics that the group can edit displayed.
 
 ## Editing user group permissions to topics
 {: #edit-group-permission-source-topics}

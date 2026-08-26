@@ -188,7 +188,7 @@ Open the `<gateway name>-gateway_k8s.yaml` file that you [generated](#generating
 - If you do not want the gateway CA certificate to be downloadable by users from the [{{site.data.reuse.eem_name}} UI](../../subscribe/configure-your-application-to-connect#configuring-a-client), then in the ConfigMap section, delete the `kafka.listener.listener.group.group.trust.pem` property.
 - If you did not provide TLS certificates and a key in [step 4](#ui-details), then delete the `<group name>-<gateway ID>-certs` secret from the YAML file and verify that the name of the secret you [created](#self-signed) matches the value in `spec.template.spec.containers[egw].volumes[certs].secret.secretName`, and set the `items` property to map the key names of your certificate to the names used in the gateway deployment. For example:
 
-   ```
+   ```yaml
    spec:
      containers:
      - name: egw

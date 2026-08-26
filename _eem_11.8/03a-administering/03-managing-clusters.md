@@ -6,7 +6,7 @@ slug: managing-clusters
 toc: true
 ---
 
-The **Manage clusters** page displays all the Kafka clusters you have added to {{site.data.reuse.eem_name}}. You can add new clusters, edit cluster details, and delete the clusters.
+The **Manage clusters** page displays all the Kafka clusters are added to {{site.data.reuse.eem_name}}. You can add new clusters, edit cluster details, and delete the clusters.
 
 To access the **Manage clusters** page:
 
@@ -93,7 +93,7 @@ The **Gateway visibility** column in the **Manage clusters** page displays the s
 
 | Gateway visibility | Description |
 | -----------------  | ----------- |
-| All gateways connected | All the gateways in the group successfully connected to the Kafka cluster. |
+| All gateways connected | All the gateways in the group are successfully connected to the Kafka cluster. |
 | All gateways connected (with a green triangle) |  All gateway groups contain an earlier version of the gateway that is not able to complete validation checking. |
 | Some gateways connected | One or more gateway groups contain a gateway that cannot connect to the Kafka cluster. Check the validation message to see which gateways.       |
 | Pending validation | Waiting for a gateway group to report a validation status. |

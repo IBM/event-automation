@@ -10,7 +10,7 @@ toc: true
 
 For more information about {{site.data.reuse.eem_name}} concepts and constructs, see the [key concepts topic](../../about/key-concepts/).
 
-For more information about the integration of {{site.data.reuse.eem_name}} with specific {{site.data.reuse.apic_long}} versions, see [Integration with {{site.data.reuse.wm_portal_long}} v12.1.1 or later](../../dpo-integration/overview) and [Integration with {{site.data.reuse.wm_portal_long}} v10](../../integrating-with-apic/overview).
+For more information about the integration of {{site.data.reuse.eem_name}} with specific {{site.data.reuse.apic_long}} versions, see [Integration with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later](../../dpo-integration/overview) and [Integration with {{site.data.reuse.wm_portal_long}} v10](../../integrating-with-apic/overview).
 
 ## Terminology
 {: #terminology}
@@ -92,7 +92,7 @@ When [{{site.data.reuse.apic_short}} and {{site.data.reuse.eem_name}} are integr
 
 A logical grouping of related [APIs](#api) and [Plans](#plan) to access those APIs. After an AsyncAPI document is [imported](../generate-asyncapi), the [AsyncAPI specification](#asyncapi) representing the [virtual topic](../../about/key-concepts/#virtual-topic) from {{site.data.reuse.eem_name}} can be added to any Product for publishing later.
 
-**Important:** For the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} v10, Products support only one [gateway](#gateway) type for enforcement. Products do not apply to the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.wm_portal_long}} v12.1.1 or later.
+**Important:** For the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.apic_long}} v10, Products support only one [gateway](#gateway) type for enforcement. Products do not apply to the integration of {{site.data.reuse.eem_name}} with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later.
 
 **Note:** Currently, there is no direct equivalent Product concept in {{site.data.reuse.eem_name}}.
 
@@ -154,7 +154,7 @@ When the integration is set up between {{site.data.reuse.apic_short}} and {{site
 
 An Application invokes exposed [APIs](#api). To use an API, an Application must first be registered by using the [Developer portal](#developer-portal), through which access credentials are generated for the Application. 
 
-When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_long}} v12.1.1 or later, users can create {{site.data.reuse.wm_portal_short}} applications to request access to virtual topics published from {{site.data.reuse.eem_name}}.
+When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later, users can create {{site.data.reuse.wm_portal_short}} applications to request access to virtual topics published from {{site.data.reuse.eem_name}}.
 
 When the integration is set up between {{site.data.reuse.eem_name}} and {{site.data.reuse.apic_long}} v10, applications register themselves with a [Product's](#product) [Plans](#plan) to gain access for invoking the plan's APIs. A single Application can register with more than one plan. Applications registered for Product Plans will have access to [virtual topics](../../about/key-concepts/#virtual-topic) from {{site.data.reuse.eem_name}}.
 

@@ -22,7 +22,7 @@ To access the topic details page:
 The details of your topic appear in three sections:
 
 - **Information**: This section displays all the topic information that is presented when the topic is [socialized in the catalog](../publishing-virtual-topics) as a virtual topic.
-- **Virtual topics**: This section displays all the virtual topics created for this source topic. Virtual topics can be added or removed by [creating a virtual topic](../managing-virtual-topics#create-virtual-topic) or [deleting a virtual topic](../managing-virtual-topics#delete-virtual-topic).
+- **Virtual topics**: This section displays all the virtual topics that are created for this source topic. Virtual topics can be added or removed by [creating a virtual topic](../managing-virtual-topics#create-virtual-topic) or [deleting a virtual topic](../managing-virtual-topics#delete-virtual-topic).
 - **Manage**: This section displays the current [lifecycle status](../managing-virtual-topics#virtual-topic-lifecycle-states) of your virtual topics for this source topic in {{site.data.reuse.eem_name}}, including [the ability for users to discover and subscribe to](../publishing-virtual-topics) your virtual topic and [subscribed applications](../../subscribe/managing-apps).
 
 You can also [delete](#deleting-source-topic) your topic from this page, or [import this source topic for use with {{site.data.reuse.apic_long}}](../../integrating-with-apic/generate-asyncapi/).
@@ -48,8 +48,8 @@ You can view and edit the following information in this pane. Restrictions and v
 
 - **Name**: The name of your source topic in {{site.data.reuse.eem_name}}.
 - **Kafka topic**: The name of the Kafka topic on the Kafka cluster. You cannot edit this name.
-- **Description**: Free text description of your topic.
-- **Tags**: Comma-separated list of tags that you can use to make the topic easier to identify in the catalog. For example, `Product,Refunds,Damage Returns`.
+- **Description**: Text description of your topic.
+- **Tags**: Comma-separated list of tags that you can use to make the topic identifiable in the catalog. For example, `Product,Refunds,Damage Returns`.
 - **Contact**: Email address of the source topic owner. 
 - **Additonal contacts**: Additional contact addresses for the source topic.
 
@@ -63,7 +63,7 @@ The event information provides details to help use the events from the topic.
   You can also provide a schema in JSON format that describes the structure of the messages in your topic.
 
 - **Schema description:** Add detailed information about the schema. 
-- **Sample message:** Provide an example of the messages that are emitted by the topic. This is useful when the sample messages do not follow a required format. You can provide a sample message instead of a schema.
+- **Sample message:** Provide an example of the messages that are emitted by the topic. You can provide a sample message instead of a schema.
 
 ### Editing nested Avro schemas
 {: #editing-nested-avro-schemas}

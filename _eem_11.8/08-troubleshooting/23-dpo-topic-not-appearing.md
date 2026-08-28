@@ -1,5 +1,5 @@
 ---
-title: "Virtual topic is not displayed in IBM API Connect Developer Portal v12.1.1 or later"
+title: "Virtual topic is not displayed in IBM API Connect Developer Portal v12.1.1.2 or later"
 excerpt: "Virtual topic does not appear in IBM Developer Portal after publishing."
 categories: troubleshooting
 slug: dpo-topic-not-appearing
@@ -9,7 +9,7 @@ toc: true
 ## Symptoms
 {: #symptoms}
 
-A virtual topic does not appear in {{site.data.reuse.wm_portal_long}} after it has been published.
+A virtual topic does not appear in {{site.data.reuse.wm_portal_long}} after it is published.
 
 ## Causes
 {: #causes}

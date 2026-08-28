@@ -25,7 +25,7 @@ Key points to consider:
 ## System requirements
 {: #system-requirements}
 
-The {{site.data.reuse.egw}} container is provided as a multi-architecture docker image, with support for Linux 64-bit (x86_64) systems and Linux on IBM z (s390x) architectures. For more information about container and resource requirements see [Resource requirements](../prerequisites).
+The {{site.data.reuse.egw}} container is provided as a multi-architecture docker image, with support for Linux 64-bit (x86_64) systems and Linux on IBM Z (s390x) architectures. For more information about container and resource requirements, see [Resource requirements](../prerequisites).
 
 ## {{site.data.reuse.egw}} planning
 {: #gateway-planning}
@@ -35,7 +35,7 @@ Consider the following:
 - How many {{site.data.reuse.egw}}s and [gateway groups](../../about/key-concepts#gateway-group) do you require?
 - Where do you want to run your {{site.data.reuse.egw}}s? In the same environment as your {{site.data.reuse.eem_manager}}, or closer to your Kafka cluster?
 - How will the {{site.data.reuse.egw}}s be run and managed? As an operator-managed gateway, a Kubernetes Deployment, or as a stand-alone Docker container?
-- What network access is required? Are your Kafka clients connecting from the public internet, or from a private network?
+- What network access is required? Do your Kafka clients connect from the public internet, or from a private network?
 - What certificates will secure the {{site.data.reuse.egw}} endpoint? You must provide the TLS certificates to secure your {{site.data.reuse.egw}}. If your organization does not have its own certificates, then you can create your own:
   - For operator-managed and Kubernetes Deployment gateways, use [cert-manager](../install-k8s-egw#self-signed) to generate certificates stored in Kubernetes secrets. 
   - For Docker gateways, use [openssl](../install-docker-egw#openssl) to create certificate files.
@@ -69,7 +69,7 @@ The typical scenario for using Kubernetes Deployment or Docker gateways is when 
 
 - The Docker {{site.data.reuse.egw}} is provided as a Docker image and can be used only where a single Docker engine is deployed on the host. 
 
-- Entitlement and usage are tracked by different licensing tools depending on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Management Tool](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} for any other deployments. <!--_DRAFT COMMENT: Update based on outcome of https://jsw.ibm.com/browse/EVI-13487_ -->
+- Entitlement and usage are tracked by different licensing tools based on your deployment. If you have a usage-based license for tracking the number of API calls, ensure that you configure the gateway for the IBM License Service. Otherwise, use the [IBM License Management Tool](https://www.ibm.com/docs/en/license-metric-tool?topic=tool-installing){:target="_blank"} for any other deployments. <!--_DRAFT COMMENT: Update based on outcome of https://jsw.ibm.com/browse/EVI-13487_ -->
 
 
 ## Installing an operator-managed {{site.data.reuse.egw}}
@@ -126,7 +126,7 @@ To verify the connection between the gateway and your Kafka clusters, complete t
 
 The {{site.data.reuse.egw}} must use the same license as the {{site.data.reuse.eem_manager}}. You accept the license by setting `ACCEPT_LICENSE` to `"true"` in the gateway configuration.
 
-The gateway configuration templates generated from the {{site.data.reuse.eem_name}} UI preset the `LICENSE_ID` based on the license used by the  {{site.data.reuse.eem_manager}}. 
+The gateway configuration templates that are generated from the {{site.data.reuse.eem_name}} UI preset the `LICENSE_ID` based on the license that is used by the {{site.data.reuse.eem_manager}}. 
 
 If your {{site.data.reuse.eem_manager}} is not using a usage-based license and your gateway is not operator-managed, then you must install additional IBM licensing software:
 

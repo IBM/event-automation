@@ -6,14 +6,14 @@ slug: user-groups
 toc: true
 ---
 
-You can manage which virtual topics are available to users by assigning specific [user groups](../../about/key-concepts/#user-groups) to selected virtual topics. This means that only users in the groups you select can view and subscribe to the virtual topics that you have specified. 
+You can manage which virtual topics are available to users by assigning specific [user groups](../../about/key-concepts/#user-groups) to selected virtual topics. This means that only users in the groups you select can view and subscribe to the virtual topics that you specified. 
 
 User group visibility to virtual topics requires an external identity provider, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, capable of managing user groups. When {{site.data.reuse.eem_name}} connects to your external identity provider, it suggests groups that are already in use, or that you belong to. You can then select one or more of these user groups to add to virtual topics. 
 
 
 **Important:** Not all groups that are defined in the external identity provider are displayed. Only a filtered list based on the user's membership and virtual topic associations.
 
-To manage which user groups can view and subscribe to the virtual topic in the catalog after you have published it, you can assign user groups when you [create a virtual topic](../../describe/managing-virtual-topics/#create-virtual-topic), [edit a virtual topic](../../describe/managing-virtual-topics/#edit-virtual-topic), or through the [**User groups**](#add-group) page.
+To manage which user groups can view and subscribe to the virtual topic in the catalog after you publish it, you can assign user groups when you [create a virtual topic](../../describe/managing-virtual-topics/#create-virtual-topic), [edit a virtual topic](../../describe/managing-virtual-topics/#edit-virtual-topic), or through the [**User groups**](#add-group) page.
 
 The **User groups** page displays all the virtual topics that are visible to user groups. You can use the **User groups** page to [add](#add-group) and [edit](#edit-group-visible-virtual-topics) user groups.
 
@@ -25,7 +25,7 @@ To access the **User groups** page:
 ## Adding a user group
 {: #add-group}
 
-Complete the following steps to add a user group to view virtual topic:
+Complete the following steps to add a user group to view virtual topics:
 
 1. In the navigation pane, click **Manage > User groups**. The **Virtual topic viewers** tab is displayed.
 1. Click **Add user group**. The **Authorize a user group to view virtual topics** pane is displayed.   
@@ -53,7 +53,7 @@ Complete the following steps to edit the virtual topics available to a user grou
 **Note:** The following rules apply when you edit the visibility for published and archived virtual topics:
 - You cannot change public virtual topics to be custom.
 - You can change custom virtual topics to be public.
-- You can add groups to custom virtual topics, but you cannot remove existing groups already added to a custom virtual topic.
+- You can add groups to custom virtual topics, but you cannot remove existing groups that are already added to a custom virtual topic.
 
 
 If you need to perform an action that is not permitted (for example, removing groups from a published custom virtual topic), complete the following steps:
@@ -68,7 +68,7 @@ If you need to perform an action that is not permitted (for example, removing gr
 
 To remove a user group from a virtual topic, complete the following steps:
 
-**Note**: You can only remove user groups from [unpublished](../../describe/managing-virtual-topics/#virtual-topic-lifecycle-states) virtual topics.
+**Note**: You can remove user groups only from [unpublished](../../describe/managing-virtual-topics/#virtual-topic-lifecycle-states) virtual topics.
 
 1. In the navigation pane, click **Manage > Topics**.
 1. Click the source topic that you want to work with. 

@@ -112,7 +112,7 @@ Your OAuth 2.0 provider must expose either a `userinfo` endpoint or an `introspe
    Depending on your selection, different fields are displayed:
    
    - If you selected **UserInfo**:
-     - **UserInfo URL**: Enter the URL for your OAuth 2.0 provider's userinfo endpoint. For example: `https://example.com/userinfo`.
+     - **UserInfo URL**: Enter the URL for your OAuth 2.0 provider's `userinfo` endpoint. For example: `https://example.com/userinfo`.
    
    - If you selected **Introspection**:
      - **Introspection URL**: Enter the URL for your OAuth 2.0 provider's introspection endpoint. For example: `https://example.com/introspect`.

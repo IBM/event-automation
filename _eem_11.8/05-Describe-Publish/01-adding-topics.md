@@ -36,9 +36,9 @@ To add a topic to {{site.data.reuse.eem_name}} from a Kafka cluster, complete th
 
      b. Enter a bootstrap server URL for the Kafka cluster.   
 
-     c. Optional: You can click **Add URL**, and add one or more additional bootstrap servers, then click **Next**.  
+     c. Optional: You can click **Add URL**, and add one or more bootstrap servers, then click **Next**.  
 
-        **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While validating the URLs, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
+        **Note:** After you click **Next**, {{site.data.reuse.eem_name}} validates the entered bootstrap server URLs. While the URLs are validated, if any untrusted certificates are found on the bootstrap server URLs, you are asked to confirm whether you accept the certificates found. If you do, select the **Accept all certificates** checkbox, and click **Next**.   
 
      d. If a **No connection** information message is displayed, {{site.data.reuse.eem_name}} could not connect to the URL that you entered. Click **Skip connection checks** to add a cluster and bypass the connection tests.  
 

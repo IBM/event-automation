@@ -139,7 +139,7 @@ When the Velero instance is configured, complete the following steps to create a
 
 5. If you have gateways that are not managed by your {{site.data.reuse.eem_name}} operator (such as Docker container or Kubernetes Deployment gateways), then the backup is the configuration that you [downloaded](../installing/install-gateway) from the {{site.data.reuse.eem_name}} UI and updated manually.
 
-If you have problems creating a backup, see the [troubleshooting information for OADP](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/backup_and_restore/oadp-application-backup-and-restore){:target="_blank"}.
+If you have problems when you create a backup, see the [troubleshooting information for OADP](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/backup_and_restore/oadp-application-backup-and-restore){:target="_blank"}.
 
 ### Backing up your {{site.data.reuse.egw}} instances
 {: #backup-gateway}

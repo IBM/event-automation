@@ -32,7 +32,7 @@ The default deployment of {{site.data.reuse.eem_name}} allows only `TLS v1.3` co
 ## Resolving the problem
 {: #resolving-the-problem}
 
-To resolve the problem, configure the {{site.data.reuse.eem_manager}} deployment to support earlier versions of the TLS protocol by setting an [environment variable](../../installing/advancedconfig#setting-manager-env-vars) for `TLS_VERSIONS` on the `containers.manager` section of the `EventEndpointManagement` custom resource. For example:
+To resolve the problem, configure the {{site.data.reuse.eem_manager}} deployment to support earlier versions of the TLS protocol by setting an [environment variable](../../installing/advancedconfig#setting-manager-env-vars) for `TLS_VERSIONS` on the `containers.manager` section of the `EventEndpointManagement` custom resource. Example:
 
 ```yaml
 # `EventEndpointManagement` CRD 

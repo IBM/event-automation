@@ -10,7 +10,7 @@ When you upgrade from {{site.data.reuse.eem_name}} 11.7.x, your subscriptions ar
 
 **Important:** Multi-topic subscriptions for applications are not enabled until **all** gateway groups are updated to have {{site.data.reuse.egw}}s that support multi-topic subscriptions. 
 
-The procedure to update your gateway groups involves adding new multi-topic gateways to each gateway group, confirming they are running, updating your clients to use the new gateways, and then removing the previous gateways.
+The procedure to update your gateway groups involves adding new multi-topic gateways to each gateway group, confirming that they are running, updating your clients to use the new gateways, and then removing the previous gateways.
 
 **Note:** When you complete this procedure, Kafka client applications might experience a short outage as the network routes are updated to the new gateways.
 

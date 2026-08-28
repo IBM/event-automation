@@ -21,7 +21,7 @@ To create an application, follow these steps:
 3. Click **Create application**.
 4. Enter a name for your application, description, and your contact details.
 5. If user groups are enabled, then select the user groups that are allowed to edit this application (Collaborators). If user groups are not enabled, then only the user who created the application can edit it.
-6. Select the client authentication sets that this application supports. The application can only be subscribed to virtual topics that specify the same client authentication sets. For example, an application can only subscribe to an mTLS-secured virtual topic if the application has mTLS credentials that match the requirements of the virtual topic.
+6. Select the client authentication sets that this application supports. The application can be subscribed only to virtual topics that specify the same client authentication sets. For example, an application can only subscribe to an mTLS-secured virtual topic if the application has mTLS credentials that match the requirements of the virtual topic.
 7. If your selected authentication sets require more configuration information, then click **Configure authentication**. Mutual TLS requires that you provide the details of your client certificate. Application credentials must be unique.
 8. Click **Create**.
 9. If the authentication sets that you specified include SASL credentials, then the username and password that clients must use is displayed. Click **Download credentials** to download the application credentials.

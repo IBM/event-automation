@@ -193,7 +193,7 @@ latest_eemdocs:
       - title: "Integrating with API Connect: concepts and glossary"
         url: /api-and-event-management/apic-eem-concepts/
 
-  - title: "Integrating with IBM API Connect Developer Portal v12.1.1 or later"
+  - title: "Integrating with IBM API Connect Developer Portal v12.1.1.2 or later"
     children:
       - title: "Overview"
         url: /dpo-integration/overview/

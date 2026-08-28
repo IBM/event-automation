@@ -33,7 +33,7 @@ status:
 ## Causes
 {: #causes}
 
-When the {{site.data.reuse.eem_manager}} pod is started, a handshake takes place between the pod and the operator to initialize storage encryption. If the {{site.data.reuse.eem_manager}} pod restarts while initializing the encryption, the handshake might not complete successfully, leaving the {{site.data.reuse.eem_manager}} instance and the operator out-of-sync. As a result, the {{site.data.reuse.eem_manager}} pod never goes into a `Ready` state.
+When the {{site.data.reuse.eem_manager}} pod is started, a handshake takes place between the pod and the operator to initialize storage encryption. If the {{site.data.reuse.eem_manager}} pod restarts while the encryption initializes, the handshake might not complete successfully, resulting in the {{site.data.reuse.eem_manager}} instance and the operator out-of-sync. As a result, the {{site.data.reuse.eem_manager}} pod never goes into a `Ready` state.
 
 ## Resolving the problem
 {: #resolving-the-problem}

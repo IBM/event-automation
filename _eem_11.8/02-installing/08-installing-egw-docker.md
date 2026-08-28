@@ -122,7 +122,7 @@ In this example, the FQDN of the gateway is `localhost`, and the gateway manages
    openssl x509 -in gateway.crt -text -noout
    ```
 
-After completing these steps, you should have the three PEM files that you need to deploy your gateway: `ca.crt`, `gateway.key`, `gateway.crt`.
+After you complete these steps, confirm that you have the three PEM files that you need to deploy your gateway: `ca.crt`, `gateway.key`, `gateway.crt`.
 
 
 

@@ -92,7 +92,7 @@ The following are examples of audit events that are logged by the {{site.data.re
 {{site.data.reuse.eem_name}} can be configured to write audit logging to one of the following destinations:
 
 1. `FILE`: Audit logging is written to a file in the {{site.data.reuse.eem_name}} manager pod. Maximum file size, rotation, and retention can be configured with [environment variables](../../installing/advancedconfig#setting-manager-env-vars).
-2. `STDOUT`: Audit logging is written to the {{site.data.reuse.eem_name}} manager pod logs as an INFO level log message.
+2. `STDOUT`: Audit logging is written to the {{site.data.reuse.eem_name}} manager pod logs as an `INFO` level log message.
 
 ### {{site.data.reuse.eem_manager}} audit logging environment variables
 {: #mgr-environment-variables}
@@ -103,11 +103,11 @@ The following environment variables can be used to control audit logging:
 |---|---|---|---|
 |`AUDIT_LOG_FORMAT`|`CADF`, `SIMPLE`, `NONE`|`SIMPLE`|See [Configuring Audit Logging](#configuring-audit-logging)|
 |`AUDIT_LOG_WRITER`|`FILE`, `STDOUT`|`FILE`|See [Configuring Audit Logging](#configuring-audit-logging)|
-|`AUDIT_LOG_DIRECTORY`|string|`/var/log/audit`||
-|`AUDIT_LOG_FILE`|string|`eem-audit.log`||
-|`AUDIT_LOG_FILE_WRITER_MAX_FILES`|int|5|The maximum number of previous log files to be retained.|
-|`AUDIT_LOG_FILE_WRITER_MAX_FILE_MBYTES`|int|50|The maximum size in Mb of log files before rotation to a new file.|
-|`AUDIT_LOG_WRITE_INTERVAL_SECONDS`|int|30|The maximum interval in seconds before log entries are flushed to file.|
+|`AUDIT_LOG_DIRECTORY`|String|`/var/log/audit`||
+|`AUDIT_LOG_FILE`|String|`eem-audit.log`||
+|`AUDIT_LOG_FILE_WRITER_MAX_FILES`|Integer|5|The maximum number of previous log files to be retained.|
+|`AUDIT_LOG_FILE_WRITER_MAX_FILE_MBYTES`|Integer|50|The maximum size in Mb of log files before rotation to a new file.|
+|`AUDIT_LOG_WRITE_INTERVAL_SECONDS`|Integer|30|The interval between log entry flushes to file.|
 
 Environment variables can be set in the `EventEndpointManagement` custom resource as follows:
 

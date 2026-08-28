@@ -31,7 +31,7 @@ To subscribe to a virtual topic, follow these steps:
    If approval is required, then enter a justification for the subscription request.
 4. Select the application that you want to use for the subscription and then click **Subscribe**, or if approval is required, click **Request subscription**. If no applications are available, then you can click **Create application** to [create a new application](../managing-apps#create-app).
 
-If the virtual topic requires subscription approval, then you cannot start using the virtual topic until the subscription is approved. When the virtual topic owner approves or denies your request, you are notified in the {{site.data.reuse.eem_name}} UI and if the request is approved then your subscription is enabled. You can check your pending subscription requests when you view the virtual topic details.
+If the virtual topic requires subscription approval, then you cannot use the virtual topic until the subscription is approved. When the virtual topic owner approves or denies your request, you are notified in the {{site.data.reuse.eem_name}} UI and if the request is approved then your subscription is enabled. You can check your pending subscription requests when you view the virtual topic details.
 
 **Important:** The following restrictions apply when creating subscriptions:
 - Applications that have one subscription can be used with earlier gateways. Applications that have two or more subscriptions can be used only with gateways from {{site.data.reuse.eem_name}} version 11.8.0 and later.

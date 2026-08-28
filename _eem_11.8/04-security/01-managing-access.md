@@ -152,7 +152,7 @@ You can use local authentication to define users explicitly with usernames and p
    kubectl patch secret <custom-resource-name>-ibm-eem-user-credentials --type='json' -p='[{"op" : "replace" ,"path" : "/data/user-credentials.json" ,"value" : "<your-Base64-value>"}]'
    ```
    
-   where:
+   Where:
      - `<custom-resource-name>` is the name of your {{site.data.reuse.eem_manager}} instance.
      - `<your-base64-value>` is the Base64-encoded string from the `myusers.json` file.
    
@@ -192,11 +192,11 @@ Before you start, retrieve the following configuration values for your OIDC prov
 If your OIDC provider does not implement the Open ID Connect Discovery standard, ensure that you also have the following values:
   - The `tokenPath` used by that provider (this path extends the OIDC Provider base URL noted earlier).
   - The `authorizationPath` used by that provider, which also extends the base URL.
-  - Optional: The `endSessionPath` for that provider, which also extends the base URL.
+  - Optional: The `endSessionPath` for that provider. This path extends the base URL.
 
 When you create an OIDC client in your provider, it asks for redirect URLs for logging in to the UI, and potentially for logging out as well. Set these URLs to the appropriate {{site.data.reuse.eem_name}} UI URLs. If you already installed {{site.data.reuse.eem_name}}, then see step 8 in [the UI steps](#oidc-ui-step-8) for the value of these URLs before proceeding. Otherwise, add the URL `http://www.example.com/`, and proceed with creating the client. You can update the redirect URLs in a later step.
 
-**Important:** If your OIDC provider is Microsoft EntraID, then the `spec.manager.authConfig.oidcConfig` section of the `EventEndpointManagement` custom resource requires different properties. Two additional environment variables are also required:
+**Important:** If your OIDC provider is Microsoft EntraID, then the `spec.manager.authConfig.oidcConfig` section of the `EventEndpointManagement` custom resource requires different properties. Two more environment variables are also required:
 
 ```
    manager:
@@ -267,7 +267,7 @@ When you create an OIDC client in your provider, it asks for redirect URLs for l
             site: <oidc_provider_base_url>
       ...
     ```
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If there is no discovery endpoint, the URL preceding the required path is used.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If no discovery endpoint exists, then the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 
@@ -345,7 +345,7 @@ When you create an OIDC client in your provider, it asks for redirect URLs for l
               site: <oidc_provider_base_url>
    ```
 
-    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If there is no discovery endpoint, the URL preceding the required path is used.
+    **Note:** The values of `clientIDKey` and `clientSecretKey` must match the keys in the secret that is created in previous step. The `oidc_provider_base_url` is the URL for your OIDC provider where discovery is performed (with `/.well-known/openid-configuration` removed from the end of the path). If no discovery endpoint exists, then the URL preceding the required path is used.
 
     **Important:** If your OIDC provider does not support OIDC Discovery, add the following parameters in the `oidcConfig` section:
 

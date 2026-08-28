@@ -28,7 +28,7 @@ To find the virtual topic name, bootstrap server addresses, and gateway server c
 1. Log in to the {{site.data.reuse.eem_name}} UI by using your login credentials.
 2. In the navigation pane, click **Catalog**.
 3. Click the topic that you want to subscribe to.
-4. In the **Virtual topics** section, click the virtual topic that you want to use. The name of the virtual topic is the name displayed in the card.
+4. In the **Virtual topics** section, click the virtual topic that you want to use. The name of the virtual topic is the name that is displayed in the card.
 5. The bootstrap server addresses and server certificate are available in the **Selected virtual topic server URLs** section.
 
 If you configure multiple clients that use the same [application](../../about/key-concepts#application) and the same group ID, then you must also use the same client ID. The group ID and client ID are not required to match, but each client that shares an [application](../../about/key-concepts#application) must reuse the same pair of values. For example,
@@ -80,7 +80,7 @@ You can test the virtual topic configuration by using the [code accelerator samp
    - `<CREDENTIALS_PASSWORD>` - set to your SASL password.
 
    **Note:** When you set the client ID, reuse the same values across all clients that subscribe with the same [application](../../about/key-concepts#application) and group ID.
-9. Run the kcat sample command. For example:
+9. Run the kcat sample command. Example:
 
    ```
    kcat -J -G group1 \
@@ -96,7 +96,7 @@ You can test the virtual topic configuration by using the [code accelerator samp
      "noop"; : # Note: in some versions of kcat the '-t' flag must precede the topic name
    ```
 
-   The kcat command output displays the events that the virtual topic produces. For example:
+   The kcat command output displays the events that the virtual topic produces. Example:
 
    ```
    % Waiting for group rebalance

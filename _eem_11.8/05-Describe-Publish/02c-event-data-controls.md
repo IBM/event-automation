@@ -61,7 +61,7 @@ To add a schema or provide the message format, [edit the topic](../managing-sour
 
 To configure a redaction control in the [**Event data controls**](#edit-controls) pane, follow these steps:
 
-1. In the **Property to redact** field, enter the JSON path to the property. If a schema is defined for the topic, then you can select a property from the schema displayed in the section on the right.
+1. In the **Property to redact** field, enter the JSON path to the property. If a schema is defined for the topic, then you can select a property from the schema that is displayed in the section on the right.
 
    To redact specific fields, you can use a wildcard in an array of objects or all values in an array of simple types. For example:  
 
@@ -128,7 +128,7 @@ To add a schema to your topic, [edit the topic details](../managing-source-topic
 ## Content filtering (consume-enabled topics only)
 {: #content-filtering}
 
-If you want to control which events are delivered to subscribers, you can apply filters to event content. You can define rules based on event properties or subscriber data, so that only relevant events are delivered through a virtual topic.
+If you want to control which events are delivered to subscribers, you can apply filters to event content. You can define rules based on event properties or subscriber data so that only relevant events are delivered through a virtual topic.
 
 A virtual topic can have only one content filtering control.
 
@@ -149,14 +149,14 @@ To add a schema or provide the message format, [edit the topic](../managing-sour
 
 To configure a content filtering control in the [**Event data controls**](#edit-controls) pane, follow these steps:
 
-1. In the **Property** field, enter the JSON path to the property. If a schema is defined for the topic, then you can select a property from the schema displayed in the section on the right.
+1. In the **Property** field, enter the JSON path to the property. If a schema is defined for the topic, then you can select a property from the schema that is displayed in the section on the right.
 1. Select the comparison value source:
 
    * **Fixed value**: Compares the property to a fixed value. The value must match the property’s data type.
 
-   * **Subscriber data**: Compares the property to a value from the subscriber’s data. For example, the User ID.
-1. (Optional) If you selected **Fixed value**, in the **Value to match** field, enter a value that matches the property’s data type.
-1. (Optional) If you selected **Subscriber data**, in the **Subscriber data** field, select one of the following options:
+   * **Subscriber data**: Compares the property to a value from the subscriber’s data. For example, the user ID.
+1. (Optional) If you selected **Fixed value** in the **Value to match** field, enter a value that matches the property’s data type.
+1. (Optional) If you selected **Subscriber data** in the **Subscriber data** field, select one of the following options:
 
    * **User ID**: Uses the authenticated ID of the connected user.  
 

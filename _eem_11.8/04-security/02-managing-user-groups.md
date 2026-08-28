@@ -6,14 +6,14 @@ slug: groups
 toc: true
 ---
 
-After you [configure access](../managing-access) to your {{site.data.reuse.eem_manager}} instance, you can configure {{site.data.reuse.eem_name}} to access and utilize [user groups](../../about/key-concepts/#user-groups) that are provided by an external identity provider. This means that {{site.data.reuse.eem_name}} can recognize and manage the user groups that are established by your organization's administrators to control visibility to {{site.data.reuse.eem_name}} components such as [virtual topics](../../about/key-concepts/#virtual-topics).
+After you [configure access](../managing-access) to your {{site.data.reuse.eem_manager}} instance, you can configure {{site.data.reuse.eem_name}} to access and use [user groups](../../about/key-concepts/#user-groups) that are provided by an external identity provider. This means that {{site.data.reuse.eem_name}} can recognize and manage the user groups that are established by your organization's administrators to control visibility to {{site.data.reuse.eem_name}} components such as [virtual topics](../../about/key-concepts/#virtual-topics).
 
 **Note:** Access to user groups is available with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/){:target="_blank"} authentication only.
 
 ## User group actions
 {: #group-actions}
 
-You can use user groups to enable members of the group to edit source topics and maintain clusters. When users are added as part of a group to perform a particular task, they can only perform certain actions. The following sections describe the different types of users and the actions that they can perform. As the owner, you have elevated permissions, including the ability to assign user groups to tasks.
+You can use user groups to enable members of the group to edit source topics and maintain clusters. When users are added as part of a group to perform a particular task, they can perform only certain actions. The following sections describe the different types of users and the actions that they can perform. As the owner, you have elevated permissions, including the ability to assign user groups to tasks.
 
 In the UI, users are identified as follows with an **Editor**, **Maintainer**, **Viewer**, **Collaborator**, or **Owner** graphic:
 
@@ -23,7 +23,7 @@ In the UI, users are identified as follows with an **Editor**, **Maintainer**, *
 - **Application collaborator**: ![Application collaborator pill]({{ 'images' | relative_url }}/CollaboratorText.svg "Application collaborator pill.") 
 - **Owner**:                ![Owner pill]({{ 'images' | relative_url }}/OwnerText.svg "Owner pill.")
    
-**Note:** As the user assigning user groups to a task, you are identified as the owner.
+**Note:** As the user that assigns user groups to a task, you are identified as the owner.
 
 
 ### Virtual topic viewers
@@ -110,7 +110,7 @@ spec:
 #...
 ```
 
-**Note:** The property that you use must refer to a string or a list of strings. Do not use forward slashes (`/`) in the property names. Forward slashes are used as a JSON path separator, but will fail to work correctly if present in a property name.
+**Note:** The property that you use must refer to a string or a list of strings. Do not use forward slashes (`/`) in the property names. Forward slashes are used as a JSON path separator, but fail to work correctly if present in a property name.
 
 To configure the `userGroupClaimPointer` field, use the `/auth/protected/userinfo` endpoint to view all attributes determined about you from your login, ID token, access token (if it is a JWT), or user information endpoint. Set the URL path to `/auth/protected/userinfo` to display these attributes, which helps you configure the `userGroupClaimPointer` field correctly.
 
@@ -136,7 +136,7 @@ Determine the required path from the source that you are interested in. For exam
   }
 }
 ```
-If you want to map groups from the user info, set the `userGroupClaimPointer` value to `/meta/organization`. This path is derived from the `userInfo` source, which contains the `organization` value that you need.
+If you want to map groups from `userInfo`, set the `userGroupClaimPointer` value to `/meta/organization`. This path is derived from the `userInfo` source, which contains the `organization` value that you need.
 
 **Note:** This data includes your PII and you must not share it with others or IBM support.
 
@@ -145,11 +145,11 @@ If you want to map groups from the user info, set the `userGroupClaimPointer` va
 
 The following example describes how to set up user groups.
 
-An OIDC provider always provides an ID token, but you might receive additional data from the provider, and you can use this data as the source for a user group.
+An OIDC provider always provides an ID token, but you might receive extra data from the provider, and you can use this data as the source for a user group.
 
-The OIDC provider might store additional user information that can be returned to the client (in this case, {{site.data.reuse.eem_name}}) if the client asks for it by requesting the appropriate scope.
+The OIDC provider might store extra user information that can be returned to the client (in this case, {{site.data.reuse.eem_name}}) if the client asks for it by requesting the appropriate scope.
 
-For example, the provider supports a `data` scope that returns the following additional user information when requested:
+For example, the provider supports a `data` scope that returns the following extra user information when requested:
 
 ```json
 {
@@ -214,14 +214,14 @@ The `offline_access` scope allows {{site.data.reuse.eem_name}} to refresh user i
 
 **Important:** Some OIDC providers allow the length of time before offline access expires to be configured. In such cases, the offline access might expire before the {{site.data.reuse.eem_name}} token expires. If this happens, the user must log back in to the UI to enable {{site.data.reuse.eem_name}} to refresh offline access.
 
-**Note:** Not all OIDC providers support the `offline_access` scope. Also, you might not want to give {{site.data.reuse.eem_name}} permission to perform offline access. In either of these cases, an Admin API user cannot use groups, and will see public virtual topics only.
+**Note:** Not all OIDC providers support the `offline_access` scope. Also, you might not want to give {{site.data.reuse.eem_name}} permission to perform offline access. In either of these cases, an Admin API user cannot use groups, and can see public virtual topics only.
 
 ## Disabling user groups
 {: #disable-user-groups}
 
 If you want to disable user groups, review the following behaviors to avoid unintended consequences:
 
-- If a source topic is configured with custom visibility, the associated virtual topic will no longer be visible to any users.
+- If a source topic is configured with custom visibility, the associated virtual topic will not be visible to any users.
 - Before you disable group visibility, ensure that any virtual topic that you want to keep accessible is set to public visibility.
 - Existing subscriptions to virtual topics will continue to work.
 - Owners can remove subscriptions, but no new subscriptions can be created.

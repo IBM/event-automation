@@ -50,7 +50,7 @@ The following diagram shows how {{site.data.reuse.eem_name}} fits into the overa
 ### Operation flow
 {: #operation-flow}
 
-The following diagram shows the flow of operations in {{site.data.reuse.eem_name}}; from a Kafka administrator adding a topic in {{site.data.reuse.eem_manager}}, to a client application accessing the virtual topic through the {{site.data.reuse.egw}}.
+The following diagram shows the flow of operations in {{site.data.reuse.eem_name}}, from when a Kafka administrator adds a topic in {{site.data.reuse.eem_manager}}, to when a client application accesses the virtual topic through the {{site.data.reuse.egw}}.
 
 ![Overview of Event Endpoint Management.]({{ 'images' | relative_url }}/EEM_Overview.jpg "Diagram that shows the overview of Event Endpoint Management."){:height=“100%” width=“100%“}
 
@@ -59,9 +59,9 @@ The following diagram shows the flow of operations in {{site.data.reuse.eem_name
    The Kafka administrator creates virtual topics (with controls, if required) to define different ways of presenting the original topic in the catalog.
    
 2. The Kafka administrator publishes a virtual topic. The virtual topic is then available in the catalog for application developers to discover and use.
-3. In the catalog, the application developer can browse the available entries and discover information about the kind of event data available, based on which they can decide which one to use in their applications.
+3. In the catalog, the application developer can browse the available virtual topics and discover information about the kind of event data available. Based on the information, they can decide which virtual topics to use in their applications.
 4. The application developer chooses an appropriate virtual topic for their application to use. They subscribe to that virtual topic to provide their application with access to the topic through the {{site.data.reuse.egw}}. The developers can manage their subscriptions through the {{site.data.reuse.eem_name}} UI.
-5. The application developer connects their application to the virtual topic, and this sets up their application with access to the events through the {{site.data.reuse.egw}}.
+5. The application developer configures their application to connect to the virtual topic through the {{site.data.reuse.egw}}.
 6. The application connects to the {{site.data.reuse.egw}} for access to the topic's event stream, by using the virtual topic.
 7. The {{site.data.reuse.egw}} routes traffic securely to and from the Kafka cluster that holds the topic, providing the access to the application to interact with the topic through the related virtual topic.
 

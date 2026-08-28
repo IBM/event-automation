@@ -15,9 +15,9 @@ The following features are available by using the Admin API:
 - [Clusters](../../administering/managing-clusters) (Create, Read, Update, Delete)
 - [Source topics](../../describe/adding-topics) (Create, Read, Update, Delete)
 - [Virtual topic lifecycle states](../../describe/managing-virtual-topics#virtual-topic-lifecycle-states) (Publish, Unpublish, Archive)
-- [Subscriptions](../../subscribe/managing-apps/) (Create, Read, Update, Delete)
+- [Applications](../../subscribe/managing-apps/) (Create, Read, Update, Delete)
 
-  **Note:** In {{site.data.reuse.eem_name}} 11.8.x, subscriptions created with the Admin API are [converted to applications](../../installing/upgrading#planning-upgrade).
+  **Note:** The applications API is available from version 11.8.2. In versions 11.8.0 and 11.8.1, use the subscriptions API (subscriptions that are created with the Admin API are [converted to applications](../../installing/upgrading#planning-upgrade)).
 - [Gateways](../../administering/managing-gateways) (Read gateway list)
 
 **Note:** If you [skipped the connection checks](../../administering/managing-clusters#skip-conneciton-checks) when you added your Kafka cluster, then after you create a source topic you must wait for your gateways to complete connection tests with your cluster. Only after these checks complete successfully can you proceed to publish any virtual topics that you create for the source topic.
@@ -27,18 +27,18 @@ The following features are available by using the Admin API:
 
 If you installed {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift_short}}, the {{site.data.reuse.eem_name}} Admin API is enabled by default and is accessible from outside the cluster.
 
-If you installed {{site.data.reuse.eem_name}} on a Kubernetes platform other than OpenShift, ensure you [configure ingress](../../installing/configuring/#configuring-ingress) for the Admin API by setting the correct values in the `spec.manager.endpoints[]` section of the `EventEndpointManagement` custom resource that defines your {{site.data.reuse.eem_manager}} instance.
+If you installed {{site.data.reuse.eem_name}} on a Kubernetes platform other than {{site.data.reuse.openshift_short}}, ensure that you [configure ingress](../../installing/configuring/#configuring-ingress) for the Admin API by setting the correct values in the `spec.manager.endpoints[]` section of the `EventEndpointManagement` custom resource that defines your {{site.data.reuse.eem_manager}} instance.
 
 The URL for the Admin API is displayed in the {{site.data.reuse.eem_name}} [**Profile** page](#api-access-tokens).
 
 The Admin API is available from outside the cluster.
 
 **Note:** To manage access to {{site.data.reuse.eem_name}}, authorization is provided through [role mappings](../user-roles/). When using OpenID Connect (OIDC) authorization and a custom claim from your OIDC provider, retrieving authorization depends on whether your provider supports offline access or not.
-- If your OIDC provider supports the [offline access scope](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess){:target="_blank"}, you can retrieve authorizations for a user when the user is not logged into the UI. To use this feature, ensure `offline_access` is added to the  [additional scopes configuration](../../reference/mgr-api-reference/#resource-oidcconfig).
-- If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure you [add the user to the role mappings file](../user-roles#assigning-individual-roles-to-users). 
+- If your OIDC provider supports the [offline access scope](https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess){:target="_blank"}, you can retrieve authorizations for a user when the user is not logged in to the UI. To use this feature, ensure that `offline_access` is added to the [additional scopes configuration](../../reference/mgr-api-reference/#resource-oidcconfig).
+- If your OIDC provider does not support the `offline_access` scope, or you do not want to use it, ensure that you [add the user to the role mappings file](../user-roles#assigning-individual-roles-to-users). 
 
   **Important:** 
-  - When using `offline_access`, your provider might control how long the offline session can last before expiring. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (maximum 365 days), then the user might receive unauthorized error responses when trying to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
+  - When using `offline_access`, your provider might control how long the offline session can last before it expires. If the session lifetime is shorter than the [lifetime of {{site.data.reuse.eem_name}} tokens](#creating-a-token) (maximum 365 days), then the user might receive unauthorized error responses when they try to make API calls with their token. To use the API again, the user must log in to the {{site.data.reuse.eem_name}} UI again to retrieve a new offline access token.
  
 ## API access tokens
 {: #api-access-tokens}
@@ -72,7 +72,7 @@ To create an access token, complete the following steps:
    - To view the token, click **Show token** within the **Token** field.
    - To copy the token, click **Copy token**.
 
-   **Note:** The API access token is displayed one time, it cannot be retrieved later. Ensure you copy and save the token. If you forget the token, you need to [delete it](#removing-an-api-token) from the list of tokens and create a new token to access the API.
+   **Note:** The API access token is displayed one time, it cannot be retrieved later. Ensure that you copy and save the token. If you forget the token, you need to [delete it](#removing-an-api-token) from the list of tokens and create a new token to access the API.
 
 8. Click **Close** to close the dialog.
 

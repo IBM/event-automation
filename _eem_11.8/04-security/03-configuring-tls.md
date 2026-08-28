@@ -290,7 +290,7 @@ The following example uses OpenSSL and [gettext](https://www.gnu.org/software/ge
    - MANAGER_NAME is the name of the {{site.data.reuse.eem_manager}} instance.
    - CLUSTER_API is the cluster URL that can be obtained from the cluster. If the URL is `https://console-openshift-console.apps.clusterapi.example.com/` then the CLUSTER_API must be set to `apps.clusterapi.example.com`.
 
-2. Create a file called `csr_ca.txt` and paste in the following contents:
+2. Create a file that is called `csr_ca.txt` and paste in the following contents:
 
    ```shell
    [req]
@@ -315,7 +315,7 @@ The following example uses OpenSSL and [gettext](https://www.gnu.org/software/ge
    authorityKeyIdentifier=keyid,issuer
    ```
 
-3. Create a file called `my-eem-manager_answer.txt` and paste in the following contents:
+3. Create a file that is called `my-eem-manager_answer.txt` and paste in the following contents:
 
    ```shell
    [req]

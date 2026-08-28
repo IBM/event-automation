@@ -8,13 +8,13 @@ toc: true
 
 The data that is stored in your {{site.data.reuse.eem_manager}} instance is encrypted. The data is encrypted with a data encryption key, and the data encryption key itself is encrypted with a master key.
 
-When an {{site.data.reuse.eem_manager}} instance is created, a secret called `<instance-name>-ibm-eem-mek` is created. This secret contains the master key for decrypting the stored data.
+When an {{site.data.reuse.eem_manager}} instance is created, a secret that is called `<instance-name>-ibm-eem-mek` is created. This secret contains the master key for decrypting the stored data.
 
 **Important:** If you enabled persistence for your {{site.data.reuse.eem_manager}} instance and set the `deleteClaim` storage property to `false`, a backup of the `<instance-name>-ibm-eem-mek` secret is created. This backup secret is not automatically deleted when you uninstall an {{site.data.reuse.eem_manager}} instance. Therefore, the backup of the master key is still available to decrypt persisted data.
 
 The master key is responsible for encrypting the data encryption key, which encrypts the {{site.data.reuse.eem_name}} data. While the master key is stored in the secret `<instance-name>-ibm-eem-mek`, the data encryption key is stored in the disk space and is not exposed.
 
-The separation of the master key and the data encryption key means there is usually no reason to rotate the data encryption key. The rotation of the master key, which is used to protect the data encryption key, can be done efficiently without the need to decrypt and re-encrypt the data itself.
+The separation of the master key and the data encryption key means that there is usually no reason to rotate the data encryption key. The rotation of the master key, which is used to protect the data encryption key, can be done efficiently without the need to decrypt and reencrypt the data itself.
 
 ## Rotating the encryption key
 {: #rotating-the-encryption-key}
@@ -29,7 +29,7 @@ To create a custom key and use it instead of the master key:
    $ openssl enc -aes128 -k secret -P -md sha1 -pbkdf2 -iter 65535
    ```
 
-   An output similar to the following is displayed:
+   Example output:
 
    ```bash
    salt=194B6AEFEDBF7FCE
@@ -39,7 +39,7 @@ To create a custom key and use it instead of the master key:
 
    Where `<key>` is the new encryption key.
 
-   **Important:** This command is based on `openssl`.  You can use any method to produce an AES key. If the `key` and `iv` are generated with another tool, you must verify that the output is hex-encoded and that the size of the key for the 128-bit key is 32 characters.
+   **Important:** This command is based on `openssl`. You can use any method to produce an AES key. If the `key` and `iv` are generated with another tool, you must verify that the output is hex-encoded and that the size of the key for the 128-bit key is 32 characters.
 
 
 2. Create a secret with the encryption key that you generated in the previous step:
@@ -70,6 +70,6 @@ To create a custom key and use it instead of the master key:
 
 5. You can remove the `spec.manager.storage.rotationSecretName` field from the `EventEndpointManagement` custom resource and delete the rotation secret.
 
-   **Note:** Remove the `spec.manager.storage.rotationSecretName` field after completing the previous steps to avoid errors that might occur within the operator when the operator tries to find a secret that does not exist.
+   **Note:** Remove the `spec.manager.storage.rotationSecretName` field after you complete the previous steps to avoid errors that might occur within the operator when the operator tries to find a secret that does not exist.
 
 Your data encryption key is encrypted with the new custom master key that you created.

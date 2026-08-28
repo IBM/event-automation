@@ -11,8 +11,8 @@ The following sections provide instructions about installing {{site.data.reuse.e
 ## Before you begin
 {: #before-you-begin}
 
-- Ensure that you have set up your environment [according to the prerequisites](../prerequisites).
-- Ensure that you have [planned for your installation](../planning), such as preparing for persistent storage, and considering security options.
+- Ensure that your environment is setup [according to the prerequisites](../prerequisites).
+- [Plan your installation](../planning), such as preparing for persistent storage, and considering security options.
 - Obtain the connection details for your Kubernetes cluster from your administrator.
 
 ## Create a namespace
@@ -40,7 +40,7 @@ helm repo add ibm-helm https://raw.githubusercontent.com/IBM/charts/master/repo/
 
 Review the {{site.data.reuse.eem_name}} operator [requirements](../prerequisites/#operator-requirements), including resource requirements and the required cluster-scoped permissions.
 
-**Important:** You can install only one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share the same Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
+**Important:** You can install only one version of the {{site.data.reuse.eem_name}} operator on a cluster. Installing multiple versions on a single cluster is not supported due to possible compatibility issues as they share Custom Resource Definitions (CRDs), making them unsuitable for coexistence.
 
 ### Install the CRDs
 {: #install-the-crds}
@@ -70,11 +70,11 @@ Before you install the {{site.data.reuse.eem_name}} operator, decide whether you
 
 - Manage instances in **any namespace**.
 
-  To use this option, set `watchAnyNamespace: true` when you install the operator. The operator is deployed into the specified namespace, and will be able to manage instances of the {{site.data.reuse.eem_manager}} in any namespace.
+  To use this option, set `watchAnyNamespace: true` when you install the operator. The operator is deployed into the specified namespace, and is able to manage instances of the {{site.data.reuse.eem_manager}} in any namespace.
 
 - Manage only instances in a **single namespace**.
 
-  This is the default option: if `watchAnyNamespace` is not set, then it defaults `false`. The operator is deployed into the specified namespace, and will be able to manage only instances of the {{site.data.reuse.eem_manager}} in that namespace.
+  Single namespace is the default option: if `watchAnyNamespace` is not set, then it defaults `false`. The operator is deployed into the specified namespace, and is able to manage only instances of the {{site.data.reuse.eem_manager}} in that namespace.
 
 **Note:** If the Kubernetes service Domain Name System (DNS) domain for your cluster is not `cluster.local`, set `kubernetesServiceDnsDomain` as required.
 
@@ -103,7 +103,7 @@ Where:
 - `kubernetesServiceDnsDomain=<your.k8s.svc.dns.domain>` specifies the domain that is used when the operator generates certificates. The value that you enter is used as the suffix on hosts in the `dnsNames` section of the certificate. The default is `cluster.local`.
 - `watchAnyNamespace=<true/false>` determines whether the operator manages instances of the {{site.data.reuse.eem_manager}} in any namespace or only a single namespace (default is `false` if not specified).
 
-  Set to `true` for the operator to manage instances in any namespace, or do not specify if you want the operator to manage only instances in a single namespace.
+  Set to `true` for the operator to manage instances in any namespace.
 
 For example, to install the operator on a cluster where it manages all instances of the {{site.data.reuse.eem_manager}}, run the command as follows:
 
@@ -133,7 +133,7 @@ kubectl get deploy ibm-eem-operator -n <namespace>
 Where:
 - `<namespace>` is the name of the namespace where the operator is installed.
 
-A successful installation returns a result similar to the following with `1/1` in the `READY` column:
+A successful installation returns a result similar to the following example, with `1/1` in the `READY` column:
 
 ```shell
 NAME                            READY   UP-TO-DATE   AVAILABLE   AGE

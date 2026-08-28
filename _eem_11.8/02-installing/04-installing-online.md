@@ -29,7 +29,7 @@ Ensure that you use a namespace that is dedicated to a single deployment of {{si
 {: #creating-a-project-by-using-the-web-console}
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Home** dropdown and select **Projects** to open the **Projects** panel.
+2. Expand the **Home** menu and select **Projects** to open the **Projects** panel.
 3. Click **Create Project**.
 4. Enter a new project name in the **Name** field, and optionally, a display name in the **Display Name** field, and a description in the **Description** field.
 5. Click **Create**.
@@ -53,7 +53,7 @@ Ensure that you use a namespace that is dedicated to a single deployment of {{si
 Before you install an instance, create an image pull secret that is called `ibm-entitlement-key` in the namespace where you want to create an instance of the {{site.data.reuse.eem_manager}}. The secret enables container images to be pulled from the registry.
 
 1. Obtain an entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary){:target="_blank"}.
-2. Create the secret in the namespace that will be used to deploy an instance of the {{site.data.reuse.eem_manager}} as follows.
+2. Create the secret in the namespace where the {{site.data.reuse.eem_manager}} is to be installed.
 
    Name the secret `ibm-entitlement-key`, use `cp` as the username, your entitlement key as the password, and `cp.icr.io` as the docker server:
 
@@ -93,9 +93,9 @@ Before you can install the required operator versions and use them to create ins
 
 **Note:** This procedure must be done by using the CLI.
 
-1. Before you begin, ensure that you have the following set up for your environment:
+1. Before you begin, ensure that you have the following installed in your environment:
 
-   - The {{site.data.reuse.openshift_short}} CLI (`oc`) [installed](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
+   - The {{site.data.reuse.openshift_short}} [CLI (`oc`)](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/cli_tools/openshift-cli-oc#cli-about-cli_cli-developer-commands){:target="_blank"}.
    - The IBM Catalog Management Plug-in for IBM Cloud Paks (`ibm-pak`) [installed](https://github.com/IBM/ibm-pak#readme){:target="_blank"}. After the plug-in is installed, you can run `oc ibm-pak` commands against the cluster. Run the following command to confirm that `ibm-pak` is installed:
 
    ```shell
@@ -205,9 +205,9 @@ Follow the instructions to install the {{site.data.reuse.eem_name}} operator.
 To install the operator by using the {{site.data.reuse.openshift_short}} web console, complete the following steps:
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Operators** dropdown and select **OperatorHub** to open the **OperatorHub** dashboard.
+2. Expand the **Operators** menu and select **OperatorHub** to open the **OperatorHub** dashboard.
 
-   **Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** dropdown is called **Ecosystem**, and the **OperatorHub** is called **Software Catalog**.
+   **Note:** In the {{site.data.reuse.openshift_short}} web console version 4.20 and later, the **Operators** menu is called **Ecosystem**, and the **OperatorHub** is called **Software Catalog**.
 3. In the **All Items** search box, enter `IBM Event Endpoint Management` to locate the operator title.
 4. Click the **IBM Event Endpoint Management** tile to open the install side panel.
 5. Click **Install** to open the **Install Operator** dashboard.
@@ -232,15 +232,15 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
    oc project <target-namespace>
    ```
 
-2. Check whether there is an existing `OperatorGroup` in your target namespace:
+2. Check whether `OperatorGroup` exists in your target namespace:
    
    ```shell
    oc get OperatorGroup
    ```
    
-   If there is an existing `OperatorGroup`, continue to the next step to create a `Subscription`.
+   If `OperatorGroup` exists, continue to the next step to create a `Subscription`.
 
-   If there is no `OperatorGroup`, create one as follows:
+   If `OperatorGroup` does not exist, then create `OperatorGroup` as follows:
 
    a. Create a YAML file with the following content, replacing `<target-namespace>` with your namespace:
 
@@ -286,7 +286,7 @@ To install the operator by using the {{site.data.reuse.openshift_short}} command
 
    - `<target-namespace>` is the namespace where you want to install {{site.data.reuse.eem_name}} (`openshift-operators` if you are installing in all namespaces, or a custom name if you are installing in a specific namespace).
    - `<current_channel>` is the operator channel for the release you want to install (see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }})). For example: "v8".
-   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. Set this property to `ibm-eventendpointmanagement-catalog` when installing a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
+   - `<catalog-source-name>` is the name of the catalog source that was created for this operator. Set this property to `ibm-eventendpointmanagement-catalog` when you install a specific version by using a CASE bundle, or `ibm-operator-catalog` if the source is the IBM Operator Catalog.
 
    b. Save the file as `subscription.yaml`.
 
@@ -310,7 +310,7 @@ You can view the status of the installed operator as follows.
 4. Scroll down to the **ClusterServiceVersion details** section of the page.
 5. Check the **Status** field. After the operator is successfully installed, the status changes to `Succeeded`.
 
-**Note:** If the operator is installed into a specific namespace, then it appears only under the associated project. If the operator is installed for all namespaces, and you select **all projects** from the **Project** dropdown, the operator is shown multiple times in the resulting list (once for each project).
+**Note:** If the operator is installed into a specific namespace, then it appears only under the associated project. If the operator is installed for all namespaces, and you select **all projects** from the **Project** menu, the operator is shown multiple times in the resulting list (once for each project).
 
 
 #### By using the CLI
@@ -450,7 +450,7 @@ To configure an `EventEndpointManagement` custom resource, complete the followin
 
 5. Optional: You can configure other components in **Manager**, such as **Extension Service** and **Auth Config** to suit your requirements.
 
-   - If you are installing with a usage-based license, ensure that you [copy the secrets]({{ 'support/licensing#additional-steps-for-usage-based-license' | relative_url }}) created by the IBM License Service before you install the {{site.data.reuse.eem_manager}} instance, and then complete the following steps to provide details of your License Service:
+   - If you are installing with a usage-based license, ensure that you [copy the secrets]({{ 'support/licensing#additional-steps-for-usage-based-license' | relative_url }}) created by the IBM License Service before you install the {{site.data.reuse.eem_manager}} instance, and then complete the following steps to provide details of your license service:
 
       a. In **Manager > extensionServices**, click **Add extensionService**.
 

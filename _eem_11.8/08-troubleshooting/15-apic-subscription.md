@@ -9,7 +9,7 @@ toc: true
 ## Symptoms
 {: #symptoms}
 
-A Kafka client can connect to topics as virtual topics through {{site.data.reuse.eem_name}} by using {{site.data.reuse.apic_short}} [application credentials](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=portal-registering-application){:target="_blank"}. However, the client can only interact with one of the topics that the application is subscribed to. The client returns an `unknown topic` error message similar to the following if it attempts to connect to any of the other topics.
+A Kafka client can connect to topics as virtual topics through {{site.data.reuse.eem_name}} by using {{site.data.reuse.apic_short}} [application credentials](https://www.ibm.com/docs/en/api-connect/10.0.x?topic=portal-registering-application){:target="_blank"}. However, the client can interact only with one of the topics that the application is subscribed to. The client returns an `unknown topic` error message similar to the following if it attempts to connect to any of the other topics.
 
 ```
 Waiting for group rebalance
@@ -23,9 +23,9 @@ Topics can be socialized through {{site.data.reuse.eem_name}}, and made availabl
 
 The `unknown topic` error message occurs when more than one API is published to a single product and an application is subscribed to that product. This error can also occur when the application is subscribed to multiple products.
 
-As a result, the single application is subscribed to multiple virtual topics in {{site.data.reuse.eem_name}}. This causes the {{site.data.reuse.egw}} to incorrectly handle requests to those virtual topics. It will only process one of the requests successfully, even if the virtual topics are being accessed from different consumers, or if one request is for producing and the other for consuming.
+As a result, the single application is subscribed to multiple virtual topics in {{site.data.reuse.eem_name}}. This causes the {{site.data.reuse.egw}} to incorrectly handle requests to those virtual topics. It processes only one of the requests successfully, even if the virtual topics are being accessed from different consumers, or if one request is for producing and the other for consuming.
 
 ## Resolving the problem
 {: #resolving-the-problem}
 
-Verify you can publish the AsyncAPI documents to separate products in the {{site.data.reuse.apic_short}} catalog. In addition, ensure that only one {{site.data.reuse.apic_short}} application is subscribed to a single product. This means that your clients will use unique {{site.data.reuse.apic_short}} credentials to interact with each topic.
+Verify that you can publish the AsyncAPI documents to separate products in the {{site.data.reuse.apic_short}} catalog. In addition, ensure that only one {{site.data.reuse.apic_short}} application is subscribed to a single product. This means that your clients will use unique {{site.data.reuse.apic_short}} credentials to interact with each topic.

@@ -6,16 +6,16 @@ slug: publishing-virtual-topics
 toc: true
 ---
 
-After [adding your source topic](../adding-topics) and [creating a virtual topic](../managing-virtual-topics#create-virtual-topic), you can publish your virtual topic to a set of [gateway groups](../../about/key-concepts#gateway-group) which will make it available in the catalog.
+After you [add your source topic](../adding-topics) and [create a virtual topic](../managing-virtual-topics#create-virtual-topic), you can publish your virtual topic to a set of [gateway groups](../../about/key-concepts#gateway-group) that will make it available in the catalog.
 
-You can publish virtual topics to the {{site.data.reuse.eem_name}} catalog, {{site.data.reuse.wm_portal_long}}, or both. All published virtual topics are displayed in the selected destination, along with source topic name, tags, and status information. The source topic owner can edit or delete their virtual topics after publishing them, as described in [managing virtual topics](../managing-virtual-topics#edit-virtual-topic).
+You can publish virtual topics to the {{site.data.reuse.eem_name}} catalog, {{site.data.reuse.wm_portal_long}}, or both. All published virtual topics are displayed in the selected destination, along with source topic name, tags, and status information. The source topic owner can edit or delete their virtual topics after they are published, as described in [managing virtual topics](../managing-virtual-topics#edit-virtual-topic).
 
 
 Users can then [discover](../../subscribe/discovering-virtual-topics/) available virtual topics and [subscribe](../../subscribe/subscribing-apps/) to them.
 
 ## Before you begin
 {: #before-you-begin}
-A gateway is required to publish a virtual topic. Ensure that you have at least one gateway group associated with your {{site.data.reuse.eem_manager}} instance. For more information, see [managing gateways](../../administering/managing-gateways).
+A gateway is required to publish a virtual topic. Ensure that you have at least one gateway group that is associated with your {{site.data.reuse.eem_manager}} instance. For more information, see [managing gateways](../../administering/managing-gateways).
 
 To publish virtual topics to the {{site.data.reuse.wm_portal_short}} ensure that the following prerequisites are in place:
 - [{{site.data.reuse.wm_portal_short}}](https://www.ibm.com/docs/en/api-connect/software/12.1.0?topic=portal-overview){:target="_blank"} is installed in {{site.data.reuse.apic_long}} and is accessible.
@@ -72,7 +72,7 @@ After the virtual topic is published, users can discover and subscribe to the co
 1. Log in to {{site.data.reuse.wm_portal_short}}.
 2. Go to the **Asset gallery**.
 3. Search for the published virtual topic that you want to work with.
-4. Click on the virtual topic to view its details, including:
+4. Click the virtual topic to view its details, including:
    - Description and documentation
    - Schema information
    - Sample messages

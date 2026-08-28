@@ -16,5 +16,5 @@ While API management and event management offerings provide similar capabilities
 
 {{site.data.reuse.eem_name}} can be integrated with API management and developer portal solutions from IBM:
 
-- [{{site.data.reuse.wm_portal_long}} v12.1.1 or later releases](../../dpo-integration/overview) for socializing event streams alongside your organization's APIs.
+- [{{site.data.reuse.wm_portal_long}} v12.1.1.2 or later releases](../../dpo-integration/overview) for socializing event streams alongside your organization's APIs.
 - [{{site.data.reuse.apic_long}} v10.x.x releases](../../integrating-with-apic/overview) for comprehensive API lifecycle and governance management.

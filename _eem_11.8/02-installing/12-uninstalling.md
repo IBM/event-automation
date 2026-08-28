@@ -40,7 +40,7 @@ To delete an {{site.data.reuse.egw}} instance in an {{site.data.reuse.openshift_
 {: #ui-check-uninstallation-progress}
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Workloads** dropdown and select **Pods** to open the **Pods** dashboard.
+2. Expand the **Workloads** menu and select **Pods** to open the **Pods** dashboard.
 3. Click **Select All Filters** to display pods in any state.
 4. Enter the name of the {{site.data.reuse.eem_manager}} instance that is being deleted in the **Filter by name** box.
 5. Wait for all the {{site.data.reuse.eem_name}} pods to be displayed as **Terminating** and then be removed from the list.
@@ -61,8 +61,8 @@ To remove any remaining storage, delete the PVCs first, and then delete any rema
 Delete the Persistent Volume Claims (PVCs):
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Storage** dropdown and select **Persistent Volume Claims** to open the **Persistent Volume Claims** page.
-3. In the **Project** dropdown, select the required namespace.
+2. Expand the **Storage** menu and select **Persistent Volume Claims** to open the **Persistent Volume Claims** page.
+3. In the **Project** menu, select the required namespace.
 4. Click **Select All Filters** to display PVCs in any state.
 5. Enter the name of the {{site.data.reuse.eem_manager}} instance in the **Filter by name** box.
 6. For each PVC to be deleted, make a note of the **Persistent Volume** that is listed for that PVC and then click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
@@ -72,8 +72,8 @@ Delete the Persistent Volume Claims (PVCs):
 Delete remaining Persistent Volumes (PVs):
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Storage** dropdown and select **Persistent Volumes** to open the **Persistent Volumes** page.
-3. In the **Project** dropdown, select the required namespace.
+2. Expand the **Storage** menu and select **Persistent Volumes** to open the **Persistent Volumes** page.
+3. In the **Project** menu, select the required namespace.
 4. For each PV that you made a note of when you deleted PVCs, click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
 5. Click the **Delete Persistent Volume** menu option to open the confirmation panel.
 6. Check the PV name and click **Delete** to remove the PV.
@@ -198,7 +198,7 @@ To delete the {{site.data.reuse.eem_name}} operator:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. In the **Project** dropdown, select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
+3. In the **Project** menu, select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
 4. Click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the {{site.data.reuse.eem_name}} operator to be deleted to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
@@ -306,7 +306,7 @@ To delete a certificate manager operator:
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
-3. In the **Project** dropdown, select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
+3. In the **Project** menu, select the required namespace. For cluster-wide operators, select the `openshift-operators` project.
 4. Find the certificate manager that you want to delete, and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** to open the actions menu.
 5. Click the **Uninstall Operator** menu option to open the confirmation panel.
 6. Check the namespace and operator name, then click **Remove** to uninstall the operator.
@@ -322,7 +322,7 @@ Secrets that are created by the Cert Manager are not deleted automatically. You 
 To delete {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} secrets by using the web console:
 
 1. {{site.data.reuse.openshift_ui_login}}
-2. Expand the **Workloads** dropdown and select **Secrets** to open the **Secrets** dashboard.
+2. Expand the **Workloads** menu and select **Secrets** to open the **Secrets** dashboard.
 3. The secrets that are created for {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} begin with the name of your {{site.data.reuse.eem_manager}} and {{site.data.reuse.egw}} instances.
 4. Search the instance by name and click ![More options icon]({{ 'images' | relative_url }}/more_options.png "More options icon at end of each row."){:height="30px" width="15px"} **More options** next to the secret to be deleted to open the actions menu.
 5. Click the **Delete Secret** menu option to open the confirmation panel.

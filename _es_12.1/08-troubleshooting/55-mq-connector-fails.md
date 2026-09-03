@@ -17,8 +17,8 @@ In some of these failure scenarios, an IBM MQ administrator should remove messag
 ## `MQRC_NOT_AUTHORIZED` exception in MQ sink connector when enabling MQMD
 {: #mqrc_not_authorized-exception-in-mq-sink-connector-when-enabling-mqmd}
 
-### Sypmtoms
-{: #sypmtoms}
+### Symptoms
+{: #symptoms}
 When attempting to send a message to an IBM MQ queue, an MQException with code `MQRC_NOT_AUTHORIZED` (reason code `2035`) and completion code 2 is thrown. 
 
 ### Causes

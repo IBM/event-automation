@@ -19,6 +19,20 @@ Find out what is new in {{site.data.reuse.es_name}} version 13.0.x.
 
 {{site.data.reuse.es_name}} 13.0.2 includes Apicurio Registry version 3.3.1 for [managing schemas](../../schemas/overview/#schema-registry). For more information about client application requirements, see [prerequisites](../../installing/prerequisites#schema-requirements).
 
+### Deprecation of Connectivity Pack connectors
+{: #deprecation-of-connectivity-pack-connectors}
+
+The IBM Connectivity Pack and its connectors are deprecated and will be removed in a future release:
+
+- [GitHub source]({{ 'connectors/kc-source-github/installation' | relative_url }})
+- [Google BigQuery sink]({{ 'connectors/kc-sink-gbq/installation' | relative_url }})
+- [Google Calendar source]({{ 'connectors/kc-source-google-calendar/installation' | relative_url }})
+- [Hadoop Distributed File System (HDFS) source]({{ 'connectors/kc-source-hdfs/installation' | relative_url }})
+- [Jira source]({{ 'connectors/kc-source-jira/installation' | relative_url }})
+- [Salesforce source]({{ 'connectors/kc-source-salesforce/installation' | relative_url }})
+- [ServiceNow sink]({{ 'connectors/kc-sink-servicenow/installation' | relative_url }})
+- [ServiceNow source]({{ 'connectors/kc-source-servicenow/installation' | relative_url }})
+
 ### Documentation: Highlighting differences between versions
 {: #documentation-highlighting-differences-between-versions-1302}
 

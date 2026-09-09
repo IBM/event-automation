@@ -3,6 +3,7 @@ title: Salesforce
 sortTitle: Salesforce
 connectorID: kc-source-salesforce
 direction: source
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: Sf

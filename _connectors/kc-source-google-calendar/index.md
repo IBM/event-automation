@@ -3,6 +3,7 @@ title: Google Calendar
 sortTitle: Google Calendar
 connectorID: kc-source-google-calendar
 direction: source
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: Gc

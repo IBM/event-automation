@@ -3,6 +3,7 @@ title: GitHub
 sortTitle: GitHub
 connectorID: kc-source-github
 direction: source
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: Gh

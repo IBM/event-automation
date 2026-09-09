@@ -115,7 +115,7 @@ layout: default
                 {% capture connectorURL %}{{ site.url }}{{ site.baseurl }}{{ connector.url }}{% endcapture %}
                 {%- comment -%}index.md is used to prevent subpages appearing as tiles{%- endcomment -%}
                 {% if connector.path contains "index.md" %}
-                  {% include connectorCard.html countInc=count connectorID=connectorID gradientID=connectorGradient connectorInitialString=connectorInitial pageConnectorID=pageConnectorID connectorTags=connectorTags connectorURL=connectorURL connectorSupport=connectorSupport connectorType=connectorType className="connector-card" %}
+                  {% include connectorCard.html countInc=count connectorID=connectorID gradientID=connectorGradient connectorInitialString=connectorInitial pageConnectorID=pageConnectorID connectorTags=connectorTags connectorURL=connectorURL connectorSupport=connectorSupport connectorType=connectorType connectorDeprecated=connector.deprecated className="connector-card" %}
                 {% endif %}
               {% endfor %}
                <!-- Message when filter is active and no card found -->

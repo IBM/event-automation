@@ -3,6 +3,7 @@ title: Jira
 sortTitle: Jira
 connectorID: kc-source-jira
 direction: source
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: J

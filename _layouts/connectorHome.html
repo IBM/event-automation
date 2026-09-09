@@ -29,17 +29,15 @@ layout: connectorsAll
             {% include loadingSpinner.html theme="dark" %}
           </div>
           <div class="heroFadeArea">
-            {% if page.support contains "community" %}
-              <div class="IBMSupported">
+            <div class="IBMSupported">
+              {% if page.support contains "community" %}
                 <div class="pill supportLevel large">
                   <div class="text">
                     <p class="secondary">Support is provided by the community</p>
                   </div>
                 </div>
-              </div>
-            {% endif %}
-            {% if page.support contains "IBM" %}
-              <div class="IBMSupported">
+              {% endif %}
+              {% if page.support contains "IBM" %}
                 <div class="pill supportLevel ibm large">
                   <div class="checkbox">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -51,8 +49,22 @@ layout: connectorsAll
                     <p class="secondary">Support is provided by IBM</p>
                   </div>
                 </div>
-              </div>
-            {% endif %}
+              {% endif %}
+              {% if page.deprecated %}
+                <div class="pill supportLevel deprecated large">
+                  <div class="checkbox">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="8" fill="#161616"/>
+                      <rect x="7.25" y="4" width="1.5" height="5.5" rx="0.75" fill="#f1c21b"/>
+                      <rect x="7.25" y="10.5" width="1.5" height="1.5" rx="0.75" fill="#f1c21b"/>
+                    </svg>
+                  </div>
+                  <div class="text">
+                    <p class="secondary">Deprecated</p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
             <div class="heroContent">
               <div class="imageContainer {{ page.direction }}">
                 <div class="diagram">

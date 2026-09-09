@@ -3,6 +3,7 @@ title: "Google BigQuery"
 sortTitle: "GBQ"
 connectorID: kc-sink-gbq
 direction: sink
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: Gbq

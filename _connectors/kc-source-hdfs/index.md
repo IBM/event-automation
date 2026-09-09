@@ -3,6 +3,7 @@ title: Hadoop Distributed File System (HDFS)
 sortTitle: HDFS
 connectorID: kc-source-hdfs
 direction: source
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: hdfs

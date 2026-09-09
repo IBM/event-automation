@@ -85,19 +85,35 @@ active
           <h3 class="cardconnectorTitle" id="heading{{ connectorID }}">{{ connector.title }} </h3>
           <div style="display: none" class = "cardConnectorDescription" id="heading{{ connectorID }}">{{ connector.excerpt }}</div>
         </div>
-        {% if include.connectorSupport == "IBM" %}
-          <div class="pill supportLevel ibm">
-            <div class="checkbox">
-              <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                <path class="cls-1"
-                  d="M11.29,4.67,6.75,9.21l-2-2L3.29,8.58,6.75,12l6-6ZM8,16a8,8,0,1,1,8-8A8,8,0,0,1,8,16Z" />
-              </svg>
+        <div class="cardBadges">
+          {% if include.connectorSupport == "IBM" %}
+            <div class="pill supportLevel ibm">
+              <div class="checkbox">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                  <path class="cls-1"
+                    d="M11.29,4.67,6.75,9.21l-2-2L3.29,8.58,6.75,12l6-6ZM8,16a8,8,0,1,1,8-8A8,8,0,0,1,8,16Z" />
+                </svg>
+              </div>
+              <div class="text">
+                <p class="secondary">IBM supported</p>
+              </div>
             </div>
-            <div class="text">
-              <p class="secondary">IBM supported</p>
+          {% endif %}
+          {% if include.connectorDeprecated %}
+            <div class="pill supportLevel deprecated">
+              <div class="checkbox">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="8" fill="#161616"/>
+                  <rect x="7.25" y="4" width="1.5" height="5.5" rx="0.75" fill="#f1c21b"/>
+                  <rect x="7.25" y="10.5" width="1.5" height="1.5" rx="0.75" fill="#f1c21b"/>
+                </svg>
+              </div>
+              <div class="text">
+                <p class="secondary">Deprecated</p>
+              </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
     </div>
   </button>

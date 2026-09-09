@@ -631,11 +631,16 @@ $paddingSides: 3rem;
             .IBMSupported {
               margin: .5rem;
               display: flex;
-              align-self: flex-end;
-              justify-content: flex-end;
+              flex-direction: column;
+              align-items: flex-end;
+              gap: .25rem;
               position: absolute;
               top: 0;
               right: 0;
+
+              .pill {
+                margin-bottom: 0;
+              }
             }
 
             .titleDesc {
@@ -1216,6 +1221,19 @@ $paddingSides: 3rem;
 
     p.secondary {
       color: #071908;
+    }
+  }
+
+  &.deprecated {
+    background-color: #f1c21b;
+    color: #161616;
+    fill: #161616;
+    width: 100%;
+    justify-content: flex-start;
+
+    p.secondary {
+      color: #161616;
+      font-size: .75rem;
     }
   }
 }

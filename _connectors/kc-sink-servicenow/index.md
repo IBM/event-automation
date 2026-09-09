@@ -3,6 +3,7 @@ title: "ServiceNow"
 sortTitle: "servicenow"
 connectorID: kc-sink-servicenow
 direction: sink
+deprecated: true
 support: IBM
 type: kafkaConnect
 iconInitial: SN

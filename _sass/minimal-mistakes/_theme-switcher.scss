@@ -1468,6 +1468,20 @@ html.theme-dark {
               background-color: transparent !important;
             }
           }
+
+          // Preserve deprecated badge - keep yellow
+          &.deprecated {
+            background-color: #f1c21b !important;
+            color: #161616 !important;
+
+            p.secondary {
+              color: #161616 !important;
+            }
+
+            svg, img {
+              background-color: transparent !important;
+            }
+          }
         }
       }
     }

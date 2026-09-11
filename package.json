@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "kind-of": "^6.0.3",
-    "lunr": "^2.3.6",
-    "node-sass": "^9.0.0"
+    "lunr": "^2.3.6"
   }
 }

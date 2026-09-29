@@ -14,6 +14,9 @@ eem_name: "Event Endpoint Management"
 # {{site.data.reuse.ipaas_name}}
 ipaas_name: "IBM webMethods Hybrid Integration"
 
+# {{site.data.reuse.ipaas-new}}
+ipaas-new: "IBM Integration SaaS"
+
 # {{site.data.reuse.wm_portal_long}}
 wm_portal_long: "IBM API Connect Developer Portal"
 
@@ -30,7 +33,7 @@ es_current_version: "13.0.2"
 es_current_case_version: "13.0.2"
 
 # {{site.data.reuse.eem_current_version}} 
-eem_current_version: "11.8.2"
+eem_current_version: "11.9.0"
 
 # {{site.data.reuse.ep_current_version}}
 ep_current_version: "1.5.4"
@@ -65,6 +68,7 @@ apic_long: IBM API Connect
 # {{site.data.reuse.apic_short}}
 apic_short: API Connect
 
+
 # {{site.data.reuse.cpf_long}}
 cpf_long: "Confluent Platform for Apache Flink"
 
@@ -88,6 +92,9 @@ openshift_short: "OpenShift Container Platform"
 
 # {{site.data.reuse.cp4i}}
 cp4i: "IBM Cloud Pak for Integration"
+
+# {{site.data.reuse.cp4i-new}}
+cp4i-new: IBM Integration Software
 
 # {{site.data.reuse.icpcs}}
 icpcs: "IBM Cloud Platform Common Services"
@@ -130,12 +137,6 @@ jmx-secret: <releasename>ibm-es-jmx-secret
 
 # {{site.data.reuse.jmx-secret-name}}
 jmx-secret-name: <clustername>-jmx
-
-# {{site.data.reuse.apic_long}}
-apic_long: IBM API Connect
-
-# {{site.data.reuse.apic_short}}
-apic_short: API Connect
 
 
 ###############

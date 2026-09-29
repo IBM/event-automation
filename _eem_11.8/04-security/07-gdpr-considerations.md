@@ -9,18 +9,10 @@ toc: true
 ## Notice:
 {: #notice}
 
-Clients are responsible for ensuring their own compliance with various laws
-and regulations, including the European Union General Data Protection Regulation.
-Clients are solely responsible for obtaining advice of competent legal counsel as to
-the identification and interpretation of any relevant laws and regulations that may
-affect the clients’ business and any actions the clients may need to take to comply
-with such laws and regulations.
+Clients are responsible for ensuring their own compliance with various laws and regulations, including the European Union General Data Protection Regulation.
+Clients are solely responsible for obtaining advice of competent legal counsel as to the identification and interpretation of any relevant laws and regulations that may affect the clients’ business and any actions the clients may need to take to comply with such laws and regulations.
 
-The products, services, and other capabilities
-described herein are not suitable for all client situations and may have restricted
-availability. IBM does not provide legal, accounting, or auditing advice or represent or
-warrant that its services or products will ensure that clients are in compliance with
-any law or regulation.
+The products, services, and other capabilities described herein are not suitable for all client situations and may have restricted availability. IBM does not provide legal, accounting, or auditing advice or represent or warrant that its services or products will ensure that clients are in compliance with any law or regulation.
 
 ## GDPR Overview
 {: #gdpr-overview}
@@ -57,9 +49,7 @@ This document is intended to help you in your preparations for GDPR readiness.
 #### Configuration to support data handling requirements
 {: #configuration-to-support-data-handling-requirements}
 
-The GDPR legislation requires that personal data is strictly controlled and that the
-integrity of the data is maintained. This requires the data to be secured against loss
-through system failure and also through unauthorized access or via theft of computer equipment or storage media.
+The GDPR legislation requires that personal data is strictly controlled and that the integrity of the data is maintained. This requires the data to be secured against loss through system failure and also through unauthorized access or via theft of computer equipment or storage media.
 The exact requirements depend on the nature of the information that is sent to {{site.data.reuse.ep_name}}.
 Areas for consideration to address these aspects of the GDPR legislation include:
 
@@ -70,8 +60,7 @@ Areas for consideration to address these aspects of the GDPR legislation include
 ## Data Life Cycle
 {: #data-life-cycle}
 
-{{site.data.reuse.eem_name}} socializes streams of data that is received through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"}
-topics.
+{{site.data.reuse.eem_name}} socializes streams of data that is received through [Apache Kafka®](https://kafka.apache.org/){:target="_blank"} topics.
 
 {{site.data.reuse.eem_name}} consists of two components:
 

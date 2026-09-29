@@ -20,7 +20,7 @@ The following features are available by using the Admin API:
   **Note:** The applications API is available from version 11.8.2. In versions 11.8.0 and 11.8.1, use the subscriptions API (subscriptions that are created with the Admin API are [converted to applications](../../installing/upgrading#planning-upgrade)).
 - [Gateways](../../administering/managing-gateways) (Read gateway list)
 
-**Note:** If you [skipped the connection checks](../../administering/managing-clusters#skip-conneciton-checks) when you added your Kafka cluster, then after you create a source topic you must wait for your gateways to complete connection tests with your cluster. Only after these checks complete successfully can you proceed to publish any virtual topics that you create for the source topic.
+**Note:** If you [skipped the connection checks](../../administering/managing-clusters#skip-connection-checks) when you added your Kafka cluster, then after you create a source topic you must wait for your gateways to complete connection tests with your cluster. Only after these checks complete successfully can you proceed to publish any virtual topics that you create for the source topic.
 
 ## Prerequisites
 {: #prerequisites}
@@ -29,7 +29,7 @@ If you installed {{site.data.reuse.eem_name}} on the {{site.data.reuse.openshift
 
 If you installed {{site.data.reuse.eem_name}} on a Kubernetes platform other than {{site.data.reuse.openshift_short}}, ensure that you [configure ingress](../../installing/configuring/#configuring-ingress) for the Admin API by setting the correct values in the `spec.manager.endpoints[]` section of the `EventEndpointManagement` custom resource that defines your {{site.data.reuse.eem_manager}} instance.
 
-The URL for the Admin API is displayed in the {{site.data.reuse.eem_name}} [**Profile** page](#api-access-tokens).
+The URL for the Admin API is displayed in the {{site.data.reuse.eem_name}} [Profile page](#api-access-tokens).
 
 The Admin API is available from outside the cluster.
 

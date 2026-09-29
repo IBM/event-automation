@@ -236,7 +236,7 @@ Secure instances of {{site.data.reuse.es_name}} will make use of TLS to protect 
 ### {{site.data.reuse.es_name}} UI and CLI access
 {: #event-streams-ui-and-cli-access}
 
-You can [configure secure access](../../installing/configuring/#configuring-ui-and-cli-security) to the {{site.data.reuse.es_name}} UI and CLI. You can log in to the UI or CLI by using a Kafka user configured with SCRAM-SHA-512 authentication, or by using Keycloak as part of {{site.data.reuse.cp4i}}. For more information about accessing the UI and CLI securely, see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
+You can [configure secure access](../../installing/configuring/#configuring-ui-and-cli-security) to the {{site.data.reuse.es_name}} UI and CLI. You can log in to the UI or CLI by using a Kafka user configured with SCRAM-SHA-512 authentication, or by using Keycloak as part of {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}). For more information about accessing the UI and CLI securely, see [managing access](../../security/managing-access/#accessing-the-event-streams-ui-and-cli).
 
 #### SCRAM
 {: #scram}
@@ -248,9 +248,9 @@ Whilst it is highly recommended to always configure {{site.data.reuse.es_name}} 
 #### Keycloak
 {: #keycloak}
 
-By default, in Keycloak, the secure {{site.data.reuse.es_name}} instance will require an `eventstreams-admin` or `admin` [role](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=management-cloud-pak-roles-permissions){:target="_blank"} to authorize access.
+By default, in Keycloak, the secure {{site.data.reuse.es_name}} instance will require an `eventstreams-admin` or `admin` [role](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=management-cloud-pak-roles-permissions){:target="_blank"} to authorize access.
 
-You can add users and groups directly to Keycloak, connect Keycloak to an LDAP user registry to import users and groups, or connect Keycloak to an OpenID Connect (OIDC) or Security Assertion Markup Language (SAML) identity provider to manage users and groups. See how to [add users and groups](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=groups-managing-users-in-keycloak){:target="_blank"} based on your preference.
+You can add users and groups directly to Keycloak, connect Keycloak to an LDAP user registry to import users and groups, or connect Keycloak to an OpenID Connect (OIDC) or Security Assertion Markup Language (SAML) identity provider to manage users and groups. See how to [add users and groups](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=groups-managing-users-in-keycloak){:target="_blank"} based on your preference.
 
 ### REST endpoint security
 {: #rest-endpoint-security}
@@ -273,7 +273,7 @@ By default, Pod-to-Pod encryption is enabled. You can [configure encryption betw
 
 If you are looking for a more resilient setup, or want to plan for [disaster recovery](../../installing/disaster-recovery), consider setting up multiple availability zones and creating mirrored topics in other clusters. Also, set up your environment to support Kafka's inherent high availability design.
 
-In {{site.data.reuse.es_name}} 12.3.0 and later, you can install {{site.data.reuse.es_name}} clusters for disaster recovery purposes by using {{site.data.reuse.cp4i}} licenses that have the `CloudPakForIntegrationDisasterRecovery` license use option. Disaster recovery instances use a 2:1 ratio, where 2 VPCs in the disaster recovery instance count as 1 VPC for licensing purposes.
+In {{site.data.reuse.es_name}} 12.3.0 and later, you can install {{site.data.reuse.es_name}} clusters for disaster recovery purposes by using {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) licenses that have the `CloudPakForIntegrationDisasterRecovery` license use option. Disaster recovery instances use a 2:1 ratio, where 2 VPCs in the disaster recovery instance count as 1 VPC for licensing purposes.
 
 For more information, see [disaster recovery licensing]({{ 'support/licensing/#disaster-recovery-licensing' | relative_url }}).
 

@@ -143,7 +143,7 @@ For the {{site.data.reuse.eem_manager}} instance, the `spec.manager.endpoints[]`
 
    **Note:**
    - The `server` service endpoint is required to [deploy](../../installing/install-gateway/#remote-gateways) an {{site.data.reuse.egw}} by using the {{site.data.reuse.eem_name}} UI.
-   - The `server` service endpoint also exposes the {{site.data.reuse.eem_name}} [Admin API](../../security/api-tokens/) on path `/admin`, and can be used for making API requests to {{site.data.reuse.eem_name}} programmatically. The Admin API URL is displayed on the [**Profile** page](../../security/api-tokens/#api-access-tokens).
+   - The `server` service endpoint also exposes the {{site.data.reuse.eem_name}} [Admin API](../../security/api-tokens/) on path `/admin`, and can be used for making API requests to {{site.data.reuse.eem_name}} programmatically. The Admin API URL is displayed on the [Profile page](../../security/api-tokens/#api-access-tokens).
    - The value that is supplied in `endpoints[server].host` must start with `eem.`
    
 For each service endpoint, set the following values:
@@ -160,13 +160,13 @@ spec:
   manager:
     endpoints:
       - name: ui
-        host: my-eem-ui.mycluster.com
+        host: my-eem-ui.mycluster.example.com
       - name: gateway
-        host: my-eem-gateway.mycluster.com
+        host: my-eem-gateway.mycluster.example.com
       - name: admin
-        host: my-eem-admin.mycluster.com
+        host: my-eem-admin.mycluster.example.com
       - name: server
-        host: eem.my-eem-server.mycluster.com
+        host: eem.my-eem-server.mycluster.example.com
 ```
 
 
@@ -192,7 +192,7 @@ If you are not running on the {{site.data.reuse.openshift}}, the following ingre
 
 - `class`: The ingress class name is set by default to `nginx`. Set the `class` field on endpoints to use a different ingress class.
 
-- `annotations`: The following annotations are set by default on generated ingress endpoints:
+- `annotations`: The following nginx-specific annotations are automatically set on generated ingress endpoints only when the `nginx` ingress class is used (either explicitly or by default):
 
 ```yaml
   ingress.kubernetes.io/ssl-passthrough: 'true'
@@ -200,7 +200,7 @@ If you are not running on the {{site.data.reuse.openshift}}, the following ingre
   nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
 ```
 
-If you specify a `spec.manager.tls.ui.secretName` on an `EventEndpointManagement` instance, the following reencrypt annotations are set on the `ui` ingress. Other ingresses are configured for pass-through.
+If you specify a `spec.manager.tls.ui.secretName` on an `EventEndpointManagement` instance, the following reencrypt annotations are set on the `ui` ingress when using the `nginx` class. Other ingresses are configured for pass-through.
 
 ```yaml
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
@@ -210,7 +210,58 @@ If you specify a `spec.manager.tls.ui.secretName` on an `EventEndpointManagement
     nginx.ingress.kubernetes.io/proxy-ssl-verify: 'on'
 ```
 
-Ingress annotations can be overridden by specifying an alternative set of annotations on an endpoint. The following code snippet is an example of overriding the annotations set on an operator-managed `EventGateway` gateway endpoint ingress.
+**Important:** When you set `class` to any value other than `nginx`, no annotations are automatically injected by the operator. You must supply all required annotations explicitly by using the `annotations` field on each endpoint. SSL passthrough is required by {{site.data.reuse.eem_name}}. Refer to your ingress controller documentation for the correct annotation keys to enable SSL passthrough.
+
+You can override or provide ingress annotations by specifying an `annotations` map on an endpoint. When using the `nginx` class, this replaces the default nginx annotations. When using any other class, this is the only way annotations are applied to the ingress resource.
+
+#### Using a non-nginx ingress controller
+{: #non-nginx-ingress}
+
+If your cluster uses an ingress controller other than nginx, set the `class` field to match your controller's ingress class name, and provide the annotations required by that controller to enable SSL passthrough.
+
+The following example shows how to configure {{site.data.reuse.eem_manager}} endpoints for the [HAProxy Kubernetes Ingress Controller](https://www.haproxy.com/documentation/kubernetes-ingress/){:target="_blank"} (passthrough mode):
+
+```yaml
+apiVersion: events.ibm.com/v1beta1
+kind: EventEndpointManagement
+# ...
+spec:
+  manager:
+    endpoints:
+      - name: ui
+        host: my-eem-ui.mycluster.example.com
+        class: haproxy
+        annotations:
+          haproxy.org/ssl-passthrough: "true"
+      - name: gateway
+        host: my-eem-gateway.mycluster.example.com
+        class: haproxy
+        annotations:
+          haproxy.org/ssl-passthrough: "true"
+      - name: admin
+        host: my-eem-admin.mycluster.example.com
+        class: haproxy
+        annotations:
+          haproxy.org/ssl-passthrough: "true"
+      - name: server
+        host: eem.my-eem-server.mycluster.example.com
+        class: haproxy
+        annotations:
+          haproxy.org/ssl-passthrough: "true"
+```
+
+If you also set `spec.manager.tls.ui.secretName`, the `ui` ingress must be configured for reencrypt mode. Replace the `ui` endpoint annotations with the reencrypt annotations required by your ingress controller. The following example shows the annotations for HAProxy:
+
+```yaml
+      - name: ui
+        host: my-eem-ui.mycluster.example.com
+        class: haproxy
+        annotations:
+          haproxy.org/server-ssl: "true"
+          haproxy.org/server-ca: "<NAMESPACE>/<SECRETNAME>"
+```
+
+The following example shows how to configure an operator-managed `EventGateway` endpoint for the HAProxy ingress controller:
 
 ```yaml
 apiVersion: events.ibm.com/v1beta1
@@ -226,9 +277,9 @@ spec:
         # ...
         endpoint:
           host: my-gateway.example.com
+          class: haproxy
           annotations:
-            some.annotation.foo: "true"
-            some.other.annotation: value
+            haproxy.org/ssl-passthrough: "true"
 ```
 
 <!-- K8S deployment gateway users should be able to work it out, but it would be good to add a Kubernetes Deployment example here. This is NA for docker gateway btw. -->

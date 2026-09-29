@@ -167,7 +167,7 @@ All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade ar
 ### Upgrading Subscription by using the OpenShift web console
 {: #ocp-console-upgrade}
 
-If you are using the {{site.data.reuse.openshift_eem_name}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
+If you are using the {{site.data.reuse.openshift_short}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.

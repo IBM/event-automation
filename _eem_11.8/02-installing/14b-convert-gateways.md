@@ -28,7 +28,7 @@ Identify all gateway configuration properties that you customized, for example, 
 Repeat the following steps for each [gateway group](../../about/key-concepts#gateway-group).
 
 1. Identify an {{site.data.reuse.egw}} in the gateway group to replace.
-2. Create the custom resource YAML for a new gateway. Follow the [install operator-managed gateway](../../_eem_11.8/02-installing/06a-installing-egw-op.md#operator-managed-sitedatareuseegw-installation-steps) procedure. Set the gateway name so that you can identify the gateway that it is replacing, for example, `<original gateway name>-apps`. Specify the same gateway group and other properties as the gateway that you want to replace. 
+2. Create the custom resource YAML for a new gateway. Follow the [install operator-managed gateway](../../installing/installing/#install-an-event-manager-instance) procedure. Set the gateway name so that you can identify the gateway that it is replacing, for example, `<original gateway name>-apps`. Specify the same gateway group and other properties as the gateway that you want to replace. 
 3. Save the custom resource YAML to a file called `<gateway-name>-1180-update.yaml`.
 4. Review the custom resource of the gateway that you are replacing and copy the value from `spec.tls.caSecretName`. Update `spec.listeners[].tls.caSecret.secretName` in `<gateway-name>-1180-update.yaml` to use the value specified for `spec.tls.caSecretName` in the gateway that you are replacing.
 5. If you made customizations to your gateway, then update the corresponding properties in your `<gateway-name>-1180-update.yaml` file.

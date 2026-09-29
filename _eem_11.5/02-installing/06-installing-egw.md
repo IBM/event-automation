@@ -42,7 +42,7 @@ When you install an instance of the operator-managed {{site.data.reuse.egw}}, en
 ## Manually deployed gateways
 {: #remote-gateways}
 
-The typical scenario for using Kubernetes Deployment or Docker gateways is when your Kafka cluster is in a different environment from your {{site.data.reuse.eem}} operator, and you want to locate the gateway as close as possible to the Kafka cluster for optimum performance. 
+The typical scenario for using Kubernetes Deployment or Docker gateways is when your Kafka cluster is in a different environment from your {{site.data.reuse.eem_name}} operator, and you want to locate the gateway as close as possible to the Kafka cluster for optimum performance. 
 
 **Note:** Kubernetes Deployment or Docker {{site.data.reuse.egw}} instances can be installed only in an online environment.
 

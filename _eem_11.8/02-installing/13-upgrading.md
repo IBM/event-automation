@@ -13,6 +13,21 @@ Review the upgrade procedure and decide the right steps to take for your deploym
 ## Planning your upgrade
 {: #planning-upgrade}
 
+### Deprecated Admin API endpoints
+{: #api-deprecation}
+
+The following [Admin API]({{ 'eem-api' | relative_url }}) endpoints are deprecated in 11.8.0 and later:
+
+| Deprecated path | Replacement path |
+|-----------------|------------------|
+| /requests | /applications/requests |
+| /subscriptions  | /applications |
+| /eventsources | /sourcetopics |
+| /options | /virtualtopics |
+
+If you have scripts that use these deprecated endpoints, then update them to use the replacement endpoints.
+
+
 ### Additional considerations when upgrading from 11.8.0
 {: #upgrading-from-118}
 
@@ -55,7 +70,7 @@ All applications that use automatically generated mTLS credentials display a war
 #### Admin API
 {: #admin-api}
 
-The [application](../../about/key-concept#application) feature is not available in the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }}) in versions 11.8.1 and 11.8.0. Upgrade to 11.8.2 to manage applications with the Admin API. You can continue to use the [Admin API]({{ 'eem-api' | relative_url }}) in 11.8.1 and 11.8.0 to manage subscriptions, but all existing and any new subscriptions you create are converted to applications. If you are creating subscriptions that specify mTLS security, then you must provide the mTLS credentials. Otherwise, credentials are automatically-created when the subscription is converted to an application.
+The [application](../../about/key-concepts#application) feature is not available in the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }}) in versions 11.8.1 and 11.8.0. Upgrade to 11.8.2 to manage applications with the Admin API. You can continue to use the [Admin API]({{ 'eem-api' | relative_url }}) in 11.8.1 and 11.8.0 to manage subscriptions, but all existing and any new subscriptions you create are converted to applications. If you are creating subscriptions that specify mTLS security, then you must provide the mTLS credentials. Otherwise, credentials are automatically-created when the subscription is converted to an application.
 
 #### Open subscription approval requests
 {: #approval-requests}
@@ -88,7 +103,7 @@ On other Kubernetes platforms, you must update the Helm repository and then upgr
 
 - Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}), ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i-new}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
 - To keep your data, persistent storage must be enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, then all data is lost.
 
@@ -225,7 +240,7 @@ All {{site.data.reuse.eem_name}} pods that are updated as part of the upgrade ar
 ### Upgrading Subscription by using the {{site.data.reuse.openshift_short}} web console
 {: #ocp-console-upgrade}
 
-If you are using the {{site.data.reuse.openshift_eem_name}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
+If you are using the {{site.data.reuse.openshift_short}} web console, complete the steps in the following sections to upgrade your {{site.data.reuse.eem_name}} installation.
 
 1. {{site.data.reuse.openshift_ui_login}}
 2. Expand **Operators** in the navigation on the left, and click **Installed Operators**.
@@ -297,7 +312,7 @@ Complete the following steps to plan your upgrade on other Kubernetes platforms.
    helm show chart ibm-helm/ibm-eem-operator
    ```
       
-   Check the `version:` value in the output, for example: `version: {{site.data.reuse.eem_current_version}}`
+   Check the `version:` value in the output, for example: `version: 11.8.2`
 
 If the chart version for your existing deployment is 11.7.x, then proceed to [upgrading by using Helm](#helm-upgrade-steps).
 
@@ -364,10 +379,9 @@ You can upgrade your {{site.data.reuse.eem_name}} on other Kubernetes platforms 
 ### Verifying the upgrade
 {: #verify-upgrade}
 
-Confirm that your upgrade completed successfully. 
+Confirm that your upgrade completed successfully.
 
-After all the components of an {{site.data.reuse.eem_manager}} instance are upgraded, the status of the `EventEndPointManagement`
-custom resource reports `Running`, and the `reconciled` version is your target version.
+After all the components of an {{site.data.reuse.eem_manager}} instance are upgraded, the status of the `EventEndPointManagement` custom resource reports `Running`, and the `reconciled` version is your target version.
 
 ### Verifying the upgrade in the {{site.data.reuse.openshift_short}} UI
 {: #verify-ui}
@@ -379,8 +393,7 @@ custom resource reports `Running`, and the `reconciled` version is your target v
    Verify that the {{site.data.reuse.eem_name}} operator version shown is your target version.
 
 4. Select the **{{site.data.reuse.eem_name}}** tab.
-5. The **Status** column displays the current state of the `EventEndpointManagement` custom resource. When the 
-{{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
+5. The **Status** column displays the current state of the `EventEndpointManagement` custom resource. When the {{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
 6. Click your {{site.data.reuse.eem_manager}} instance to view more details.
 7. Switch to the **YAML** tab and confirm that `status.versions.reconciled` is your target version.
 
@@ -405,6 +418,8 @@ eem-manager           Running   11.8.2
 
 Describe the `EventEndpointManagement` custom resource:
 
-`kubectl -n <namespace> get -o yaml eventendpointmanagement`
+```shell
+kubectl -n <namespace> get -o yaml eventendpointmanagement
+```
 
 Review the output and confirm that `status.phase=Running` and `status.versions.reconciled=<target version>`.

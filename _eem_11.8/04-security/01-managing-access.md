@@ -11,12 +11,12 @@ You can manage access to {{site.data.reuse.eem_name}} by defining authentication
 You can set up authentication in {{site.data.reuse.eem_name}} in one of the following ways:
 - Create [local definitions](#setting-up-local-authentication) on the cluster where {{site.data.reuse.eem_name}} runs.
 - Integrate with an [external identity provider](#setting-up-openid-connect-oidc-based-authentication){:target="_blank"} that follows the [OpenID Connect (OIDC) standard](https://openid.net/developers/how-connect-works/){:target="_blank"}, such as [Keycloak](https://www.keycloak.org/){:target="_blank"}, your existing corporate ID provider, or various public login services.
-- Integrate with the [local Keycloak](#keycloak-authentication) provided by a {{site.data.reuse.cp4i}} installation on the cluster.
+- Integrate with the [local Keycloak](#keycloak-authentication) provided by an {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) installation on the cluster.
 
 After a user is authenticated, they are authorized to perform actions based on their assigned roles. You can set up authorization in one of the following ways:
 1. Create local definitions to assign roles to specific users.
 2. If you use an OIDC provider for authentication, then set up mappings to control roles through your OIDC provider.
-3. If you integrate with the {{site.data.reuse.cp4i}} identity provider (Keycloak), then set up mappings to control roles through Keycloak.
+3. If you integrate with the {{site.data.reuse.cp4i-new}} identity provider (Keycloak), then set up mappings to control roles through Keycloak.
 
 For more information about these options, see [managing roles](../user-roles).
 
@@ -404,10 +404,10 @@ spec:
         - ...
 ```
 
-## {{site.data.reuse.cp4i}}: Setting up Keycloak authentication
+## {{site.data.reuse.cp4i-new}}: Setting up Keycloak authentication
 {: #keycloak-authentication}
 
-You can authenticate users by using the Keycloak that is provided by {{site.data.reuse.cp4i}}. This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
+You can authenticate users by using the Keycloak that is provided by {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}). This means that you can configure user access to all capabilities within Cloud Pak for Integration by using the same Keycloak instance.
 
 
 ### Using {{site.data.reuse.openshift_short}} UI

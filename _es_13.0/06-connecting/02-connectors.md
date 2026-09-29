@@ -95,7 +95,7 @@ Kafka Connect will need authorization to:
 
 The connect catalog contains a list of connectors, converters, and transformations that are supported either by IBM or the community.
 
-Community supported connectors are supported through the community that maintains them. IBM supported connectors are fully supported as part of the official {{site.data.reuse.es_name}} support entitlement if you have a license for {{site.data.reuse.ea_long}} or {{site.data.reuse.cp4i}}.
+Community supported connectors are supported through the community that maintains them. IBM supported connectors are fully supported as part of the official {{site.data.reuse.es_name}} support entitlement if you have a license for {{site.data.reuse.ea_long}} or {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}).
 
 See the [connect catalog]({{ 'connectors' | relative_url }}) for a list of connectors, converters, and transformations that work with {{site.data.reuse.es_name}}.
 

@@ -230,7 +230,7 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
 - If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install){:target="_blank"}.
 
-**Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
+**Important:** You can only have one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version depending on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) deployment, check whether you have a {{site.data.reuse.fs}} operator running already and note the version.
 
 ## Schema registry requirements
 {: #schema-registry-requirements}

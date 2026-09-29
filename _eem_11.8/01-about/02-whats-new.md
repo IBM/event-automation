@@ -8,12 +8,13 @@ toc: true
 
 
 
+
 Find out what is new in {{site.data.reuse.eem_name}} version 11.8.x.
 
-## Release {{site.data.reuse.eem_current_version}}
+## Release 11.8.2
 {: #release-1182}
 
-### Support for applications in the {{site.data.reuse.eem_name}} [Admin API]({{ 'eem-api' | relative_url }})
+### Support for applications in the {{site.data.reuse.eem_name}} Admin API
 {: #application-api}
 
 {{site.data.reuse.eem_name}} 11.8.2 adds the ability to manage your applications with the [Admin API]({{ 'eem-api' | relative_url }}).
@@ -71,7 +72,7 @@ Any difference in features or behavior that is introduced by {{site.data.reuse.e
 ### Multiple topic subscriptions: applications
 {: #applications-1180}
 
-Users can now subscribe to multiple virtual topics with the same credentials by using a new feature called [**applications**](../key-concepts#application). Applications allow clients to access multiple virtual topics with the same credentials.
+Users can now subscribe to multiple virtual topics with the same credentials by using a new feature called [applications](../key-concepts#application). Applications allow clients to access multiple virtual topics with the same credentials.
 
 Existing subscriptions are converted to applications that subscribe to the same virtual topic and use the same credentials.
 

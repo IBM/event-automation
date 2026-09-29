@@ -213,7 +213,7 @@ If you encounter client-side issues, IBM can assist you to resolve those issues.
 ## Optional: Authenticate {{site.data.reuse.es_name}} with Keycloak
 {: #prereqs-keycloak}
 
-If you are installing on the {{site.data.reuse.openshift_short}}, you can configure access for your integration capabilities such as {{site.data.reuse.es_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-identity-access-management){:target="_blank"}.
+If you are installing on the {{site.data.reuse.openshift_short}}, you can configure access for your integration capabilities such as {{site.data.reuse.es_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=administering-identity-access-management){:target="_blank"}.
 
 In {{site.data.reuse.es_name}} 13.0.0 and later, Keycloak is supported with {{site.data.reuse.cp4i}} version 16.2.0 or later. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
 

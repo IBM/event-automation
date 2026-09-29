@@ -204,6 +204,7 @@ Open the `<gateway name>-gateway_k8s.yaml` file that you [generated](#generating
               - key: ca.crt
                 path: ca.pem
    ```
+
 - The generated YAML includes a Kubernetes service definition for your gateway. A Kubernetes service is required for client access to your gateway. If the generated service configuration does not suit your requirements then you can either update it in the generated YAML, or delete the definition from the YAML and [create the Kubernetes](#create-kube-service) service later.
 
 ## Install your Kubernetes Deployment {{site.data.reuse.egw}}

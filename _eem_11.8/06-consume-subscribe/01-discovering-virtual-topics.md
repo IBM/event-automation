@@ -23,7 +23,7 @@ The information that is documented for each virtual topic can include the follow
 - Contact information for the virtual topic owner.
 - Schema details if the virtual topic uses a schema. Schemas define the structure of the data in a message to ensure that the expected structure is used.
 - Sample messages to show what information the topic holds.
-- A [**Code accelerator**](#code-accelerator-samples) section that provides sample Java, [Node.JS](https://nodejs.org/){:target="_blank"}, and [kcat](https://github.com/edenhill/kcat){:target="_blank"} client template code.
+- A [Code accelerator](#code-accelerator-samples) section that provides sample Java, [Node.js](https://nodejs.org/){:target="_blank"}, and [kcat](https://github.com/edenhill/kcat){:target="_blank"} client template code.
 
 Access to the event data from virtual topics is granted by subscribing an application to the virtual topic. The application credentials can be used to access the virtual topic through the {{site.data.reuse.egw}}. For more information, see how you can [subscribe to virtual topics](../subscribing-apps).
 
@@ -58,7 +58,7 @@ The virtual topic details are downloaded and saved to your computer. The AsyncAP
 ## Code accelerator samples
 {: #code-accelerator-samples}
 
-Expand the **Code accelerator** section to access sample Java, [Node.JS](https://nodejs.org/){:target="_blank"}, and [kcat](https://github.com/edenhill/kcat){:target="_blank"} client template code.
+Expand the **Code accelerator** section to access sample Java, [Node.js](https://nodejs.org/){:target="_blank"}, and [kcat](https://github.com/edenhill/kcat){:target="_blank"} client template code.
 
 Update the template code with your client credentials to verify access to your virtual topics. For more information about configuring a client application to access a virtual topic, see information about how to [set up your applications to access virtual topics](../configure-your-application-to-connect).
 

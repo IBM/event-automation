@@ -18,7 +18,7 @@ After you [configure access](../managing-access) to your {{site.data.reuse.eem_m
 You can set up authorization in one of the following ways:
 1. [Assign individual roles to users](#assigning-individual-roles-to-users) with local or OIDC authentication.
 2. Optional: If you are using an OIDC provider for authentication, you can [set up roles by using a custom identifier](#setting-up-roles-by-using-a-custom-identifier), where the custom identifier maps to fields in your external security manager.
-3. If you are using the {{site.data.reuse.cp4i}} identity provider, you must [assign roles to specific Keycloak groups](#assign-roles-keycloak) to match your {{site.data.reuse.cp4i}} installation, then manage authorization though its Keycloak instance.
+3. If you are using the {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) identity provider, you must [assign roles to specific Keycloak groups](#assign-roles-keycloak) to match your {{site.data.reuse.cp4i-new}} installation, then manage authorization though its Keycloak instance.
 
 ## Assigning individual roles to users
 {: #assigning-individual-roles-to-users}
@@ -316,13 +316,13 @@ For each {{site.data.reuse.eem_name}} instance, a Keycloak client is created wit
 - `eem-viewer`
 - `author` (deprecated). 
 
-For your user or group to have author privileges in the UI, assign the `eem-author` role to the user or group in the {{site.data.reuse.cp4i}} security console as follows:
+For your user or group to have author privileges in the UI, assign the `eem-author` role to the user or group in the {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) security console as follows:
 
 1. {{site.data.reuse.openshift_ui_login}}
 1. Expand the **Networking** drop-down, and select **Routes** to open the **Routes** page. 
 1. Select the project where the Keycloak operator is installed.
 1. In the row for **Keycloak**, select the link that is provided in the **Location** column. For example, `https://keycloak-<namespace>.apps.<cluster-domain>`.
-1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. See how to [retrieve](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=management-getting-initial-administrator-password){:target="_blank"} your credentials.
+1. In the **Red Hat build of Keycloak** welcome page, select **Administration Console** and log in with your credentials. See how to [retrieve](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=management-getting-initial-administrator-password){:target="_blank"} your credentials.
 1. To display the list of realms, click the arrow and select **cloudpak** in the navigation on the left.
 1. Select either **Users** or **Groups**.
 1. Click the name of the user or group that you want to work with.
@@ -331,14 +331,14 @@ For your user or group to have author privileges in the UI, assign the `eem-auth
 1. In the drop-down menu, select **Filter by clients**, and then click the eem-author role that is defined by the relevant Keycloak client.
 1. Click **Assign**.
 
-**Note:** The following table lists the roles that INTEGRATION_KEYCLOAK provides for {{site.data.reuse.cp4i}} components:
+**Note:** The following table lists the roles that INTEGRATION_KEYCLOAK provides for {{site.data.reuse.cp4i-new}} components:
 
 | Role | Description |
 | --- | --- |
-| **admin** | Admin and author access to all {{site.data.reuse.cp4i}} components |
-|**viewer** | Viewer access to all {{site.data.reuse.cp4i}} components |
-| **eventendpointmanagement-admin** | Author access to any {{site.data.reuse.eem_name}} instance created within {{site.data.reuse.cp4i}} |
-| **eventendpointmanagement-viewer** | Viewer access to any {{site.data.reuse.eem_name}} instance within {{site.data.reuse.cp4i}} |
+| **admin** | Admin and author access to all {{site.data.reuse.cp4i-new}} components |
+|**viewer** | Viewer access to all {{site.data.reuse.cp4i-new}} components |
+| **eventendpointmanagement-admin** | Author access to any {{site.data.reuse.eem_name}} instance created within {{site.data.reuse.cp4i-new}} |
+| **eventendpointmanagement-viewer** | Viewer access to any {{site.data.reuse.eem_name}} instance within {{site.data.reuse.cp4i-new}} |
 
 
 ## Retrieving roles for the Admin API

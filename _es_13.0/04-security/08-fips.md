@@ -6,7 +6,7 @@ slug: fips
 toc: true
 ---
 
-Find out how to set up {{site.data.reuse.es_name}} to be FIPS-compliant by using a boundary approach that is enabled by the ["FIPS Wall"](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=reference-fips-compliance){:target="_blank"}.
+Find out how to set up {{site.data.reuse.es_name}} to be FIPS-compliant by using a boundary approach that is enabled by the ["FIPS Wall"](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=reference-fips-compliance){:target="_blank"}.
 
 ## Requirements
 {: #requirements}

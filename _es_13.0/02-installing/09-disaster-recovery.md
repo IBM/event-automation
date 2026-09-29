@@ -16,7 +16,7 @@ You can configure {{site.data.reuse.es_name}} for disaster recovery (DR) by usin
 ## Active-Passive topology
 {: #active-passive-topology}
 
-**Note:** {{site.data.reuse.es_name}} 12.3.0 and later supports disaster recovery licensing with a 2:1 ratio for Active-Passive topologies when deployed with {{site.data.reuse.cp4i}} licenses. For more information, see the [licensing reference]({{ '/support/licensing/#disaster-recovery-licensing' | relative_url }}).
+**Note:** {{site.data.reuse.es_name}} 12.3.0 and later supports disaster recovery licensing with a 2:1 ratio for Active-Passive topologies when deployed with {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) licenses. For more information, see the [licensing reference]({{ '/support/licensing/#disaster-recovery-licensing' | relative_url }}).
 
 In the Active-Passive topology, there are two Kafka clusters; one active and one passive, which are in two different locations. The active cluster is the primary cluster where the data is processed, while the passive cluster serves as a backup for disaster recovery purposes.
 

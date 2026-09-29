@@ -20,14 +20,12 @@ To verify that your {{site.data.reuse.eem_name}} installation deployed successfu
 2. {{site.data.reuse.task_openshift_navigate_installed_operators}}
 3. {{site.data.reuse.task_openshift_select_operator_eem}}
 4. Select the **{{site.data.reuse.eem_name}}** tab.
-5. The **Status** column displays the current state of the `EventEndpointManagement` custom resource. When the 
-{{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
+5. The **Status** column displays the current state of the `EventEndpointManagement` custom resource. When the {{site.data.reuse.eem_manager}} instance is ready, the status displays `Phase: Running`.
 
 ### Using the CLI
 {: #using-the-cli}
 
-After all the components of an {{site.data.reuse.eem_manager}} instance are active and ready, the `EventEndPointManagement`
-custom resource will have a `Running` phase in the status.
+After all the components of an {{site.data.reuse.eem_manager}} instance are active and ready, the `EventEndPointManagement` custom resource will have a `Running` phase in the status.
 
 To verify the status:
 
@@ -50,12 +48,11 @@ To verify the status:
 ## Setting up access
 {: #setting-up-access}
 
-After the {{site.data.reuse.eem_manager}} instance is successfully created, set up user authentication, authorization, and roles
-for your chosen implementation.
+After the {{site.data.reuse.eem_manager}} instance is successfully created, set up user authentication, authorization, and roles for your chosen implementation.
 
 - LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
 - OIDC: Use an existing [OIDC-compatible](https://openid.net/connect/){:target="_blank"} security provider that is available in your environment.
-- INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
+- INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) installation on the same cluster to manage users and roles.
 
 Authentication is configured in the `EventEndpointManagement` custom resource.
 

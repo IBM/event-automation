@@ -90,7 +90,7 @@ To build the connector image by using the {{site.data.reuse.es_name}} operator, 
 
   Each connector can be specified as a plug-in with a name and a list of artifacts that represent the connector and any other dependencies you want to use with that connector.
 
-  Each artifact has a type, and additional fields that define how the artifact can be downloaded and used. {{site.data. reuse.es_name}} supports the following types of artifacts:
+  Each artifact has a type, and additional fields that define how the artifact can be downloaded and used. {{site.data.reuse.es_name}} supports the following types of artifacts:
 
   - JAR files, which are downloaded and used directly
   - TGZ and ZIP archives, which are downloaded and unpacked
@@ -157,7 +157,7 @@ If the build process needs to pull or push images from or to a secured container
       pullSecret: ibm-entitlement-key
   ```
 
-- If running on other Kubernetes platforms, specify the secret in `spec.template.builPod.imagePullSecrets` section:
+- If running on other Kubernetes platforms, specify the secret in `spec.template.buildPod.imagePullSecrets` section:
 
   ```yaml
   template:
@@ -166,7 +166,7 @@ If the build process needs to pull or push images from or to a secured container
         - name: ibm-entitlement-key
   ```
 
-- To provide the secret for pulling any of the images that are used by the specific pod where Kafka Connect is running, specify the secret in `spec.template.pod.imagePullSecrets` section:.
+- To provide the secret for pulling any of the images that are used by the specific pod where Kafka Connect is running, specify the secret in `spec.template.pod.imagePullSecrets` section:
 
   ```yaml
   template:
@@ -238,7 +238,7 @@ You can create a container image with Kafka Connect and all the required connect
 - Specify the image in the `spec.image` field of `KafkaConnect` resource to start Kafka Connect with the image you have built with your connectors.
 
 #### Rebuild the Kafka Connect image
-{: #rebuild-the-kafka-connect-image}
+{: #rebuild-the-kafka-connect-image-manual}
 
 Rebuild the Kafka Connect image regularly with a new unique tag and update the `KafkaConnect` resource to use the new image. This ensures that your Kafka Connect environment is up-to-date with changes to Kafka Connect and any new releases of connectors.
 
@@ -369,7 +369,7 @@ Rebuild the Kafka Connect image regularly with a new unique tag and update the `
         Version:            1.3.2
         Class:              com.ibm.eventstreams.connect.mqsink.MQSinkConnector
         Type:               sink
-        Version             1.5.0
+        Version:            1.5.0
   ```
 
 **Note:** If Kafka Connect fails to connect to Kafka with timeout errors, then ensure that all the connection details are correct. If the problem persists, try duplicating the following connection properties in your `KafkaConnect` custom resource, adding the `producer` prefix for source connectors, the `consumer` prefix for sink connectors, or both if both sink and source connectors are in use.
@@ -482,7 +482,7 @@ Status:
           State:            RUNNING
           worker_id:        mq-connectors-connect-0.mq-connectors-connect-0.es.svc:8083
         Type:               sink
-    Observerd Generation:   1
+    Observed Generation:    1
     Tasks Max:              1
 ```
 
@@ -602,27 +602,27 @@ To enable topic creation, follow these steps:
 
 1. In the `KafkaConnect` custom resource, ensure that `topic.creation.enable` is set to `true` to enable topic creation (the default setting is `true`):
 
-     ```yaml
-    topic.creation.enable: true
-     ```
+   ```yaml
+   topic.creation.enable: true
+   ```
 
-    When set to `true`, Kafka Connect will create topics that are required by the connector.
+   When set to `true`, Kafka Connect will create topics that are required by the connector.
 
 2. In the `KafkaConnector` custom resource, provide default topic settings by adding the following configurations:
 
-     ```yaml
-    topic.creation.default.partitions: 3
-    topic.creation.default.replication.factor: 1
-     ```
+   ```yaml
+   topic.creation.default.partitions: 3
+   topic.creation.default.replication.factor: 1
+   ```
 
-    Where:
-      - **`topic.creation.default.partitions`**: Specifies the default number of partitions for newly created topics.
-      - **`topic.creation.default.replication.factor`**: Specifies the replication factor for newly created topics.
+   Where:
+   - **`topic.creation.default.partitions`**: Specifies the default number of partitions for newly created topics.
+   - **`topic.creation.default.replication.factor`**: Specifies the replication factor for newly created topics.
 
-    **Important:** You must specify the default number of partitions and the replication factor for newly created topics. If these values are not provided, Kafka Connect will not create topics, causing connectors that require new topics to fail with errors similar to the following example:
+   **Important:** You must specify the default number of partitions and the replication factor for newly created topics. If these values are not provided, Kafka Connect will not create topics, causing connectors that require new topics to fail with errors similar to the following example:
 
-      ```shell
-      Error while fetching metadata with correlation id x, UNKNOWN_TOPIC_OR_PARTITION
-      ```
+   ```shell
+   Error while fetching metadata with correlation id x, UNKNOWN_TOPIC_OR_PARTITION
+   ```
 
-    For more information about setting partitions and replicas, see [managing topics](../../getting-started/managing-topics/).
+   For more information about setting partitions and replicas, see [managing topics](../../getting-started/managing-topics/).

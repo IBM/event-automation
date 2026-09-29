@@ -189,8 +189,8 @@ For more information about licensing, see the [licensing reference]({{ 'support/
 
 | Field       | Type              | Description                                    |
 |-------------|-------------------|------------------------------------------------|
-| annotations | map[string] | Annotations for ingress resources.             |
-| class       | string            | The ingress class name.                        |
+| annotations | map[string] | The annotations to apply to the ingress resource. When `class` is `nginx` (the default), this overrides the [default nginx annotations](../../installing/configuring/#ingress-default-settings). When `class` is set to any other value, no annotations are injected automatically and this field is the only way to set annotations on the ingress resource. |
+| class       | string            | The ingress class name, defaults to `nginx`. When set to a value other than `nginx`, you must also set `annotations` with the SSL passthrough annotation keys for your ingress controller. For an example, see [using a non-nginx ingress controller](../../installing/configuring/#non-nginx-ingress). |
 | host        | string            | The host to set on the endpoint resource.      |
 
 

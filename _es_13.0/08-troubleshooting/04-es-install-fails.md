@@ -11,7 +11,7 @@ toc: true
 
 When installing a new instance of {{site.data.reuse.es_name}} on an {{site.data.reuse.openshift_short}} cluster, installation fails with status of the {{site.data.reuse.es_name}} instance as `Blocked`.
 
-The following condition message related to {{site.data.reuse.cp4i}} is displayed in the status of the instance:
+The following condition message related to {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) is displayed in the status of the instance:
 
   ```terminal
   This instance requires IBM Cloud Pak for Integration operator version 7.2.0 or later.
@@ -22,10 +22,10 @@ The following condition message related to {{site.data.reuse.cp4i}} is displayed
 ## Causes
 {: #causes}
 
-There could be several reasons, for example, you are trying to install your instance with Keycloak authentication, but {{site.data.reuse.cp4i}} is not installed in your cluster.
+There could be several reasons, for example, you are trying to install your instance with Keycloak authentication, but {{site.data.reuse.cp4i-new}} is not installed in your cluster.
 
 
 ## Resolving the problem
 {: #resolving-the-problem}
 
-Based on your requirements, [install](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing){:target="_blank"} {{site.data.reuse.cp4i}} before installing an instance of {{site.data.reuse.es_name}}.
+Based on your requirements, [install](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=installing){:target="_blank"} {{site.data.reuse.cp4i-new}} before installing an instance of {{site.data.reuse.es_name}}.

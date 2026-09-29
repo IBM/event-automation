@@ -9,7 +9,7 @@ toc: true
 The following sections provide instructions about installing {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift}}. The instructions are based on using the {{site.data.reuse.openshift_short}} web console and `oc` command-line utility.
 
 
-{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=installing-deploying-instances){:target="_blank"}.
+{{site.data.reuse.es_name}} can also be installed as part of [{{site.data.reuse.cp4i-new}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=installing-deploying-instances){:target="_blank"} (formerly {{site.data.reuse.cp4i}}).
 
 ## Overview
 {: #overview}
@@ -28,7 +28,7 @@ Installing {{site.data.reuse.es_name}} has two phases:
 - If you want to authenticate with Keycloak, ensure you have {{site.data.reuse.cp4i}} 16.2.0 or later [installed](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=installing){:target="_blank"}, including the required dependencies.
 - Ensure you have [planned for your installation](../planning), such as preparing for persistent storage, considering security options, and considering adding resilience through multiple availability zones.
 - Obtain the connection details for your {{site.data.reuse.openshift_short}} cluster from your administrator.
-- The {{site.data.reuse.es_name}} UI includes dashboards for monitoring [Kafka health](../../administering/cluster-health/#viewing-the-preconfigured-dashboard) and [topic health](../../administering/topic-health/). To provide metrics for these dashboards, ensure you enable the {{site.data.reuse.openshift_short}} monitoring stack as described in the {{site.data.reuse.cp4i}} [documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-enabling-openshift-container-platform-monitoring){:target="_blank"}.
+- The {{site.data.reuse.es_name}} UI includes dashboards for monitoring [Kafka health](../../administering/cluster-health/#viewing-the-preconfigured-dashboard) and [topic health](../../administering/topic-health/). To provide metrics for these dashboards, ensure you enable the {{site.data.reuse.openshift_short}} monitoring stack as described in the {{site.data.reuse.cp4i-new}} [documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=administering-enabling-openshift-container-platform-monitoring){:target="_blank"}.
 
 ## Create a project (namespace)
 {: #create-a-project-namespace}

@@ -132,7 +132,7 @@ To display metrics in the monitoring dashboards of the {{site.data.reuse.es_name
 
 - If you are running {{site.data.reuse.es_name}} on the {{site.data.reuse.openshift_short}}, complete the following steps to enable the [dashboard](../../administering/cluster-health#viewing-the-preconfigured-dashboard):
 
-  1. Ensure that you [enable](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.1.2?topic=administering-enabling-openshift-container-platform-monitoring){:target="_blank"} the monitoring stack.
+  1. Ensure that you [enable](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=administering-enabling-openshift-container-platform-monitoring){:target="_blank"} the monitoring stack.
 
   1. To create a `ClusterRoleBinding` in the next step, obtain the ServiceAccount name for your instance. The ServiceAccount is named `<es-instance-name>-ibm-es-admapi`. For example, `authorized-instance-ibm-es-admapi`
   

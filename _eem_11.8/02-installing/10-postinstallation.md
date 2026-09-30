@@ -52,7 +52,7 @@ After the {{site.data.reuse.eem_manager}} instance is successfully created, set 
 
 - LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
 - OIDC: Use an existing [OIDC-compatible](https://openid.net/connect/){:target="_blank"} security provider that is available in your environment.
-- INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) installation on the same cluster to manage users and roles.
+- INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
 
 Authentication is configured in the `EventEndpointManagement` custom resource.
 

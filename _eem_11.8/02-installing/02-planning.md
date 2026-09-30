@@ -25,7 +25,7 @@ If you are installing on the {{site.data.reuse.openshift_short}} or on other Kub
 - [Production](#example-deployment-production)
 - [Production with {{site.data.reuse.wm_portal_long}} v12.1.1.2 or later integration](#example-deployment-production-with-api-connect-dpo-integration)
 
-If you are installing in the {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) UI, you can select the following sample configurations:
+If you are installing in the {{site.data.reuse.cp4i}} UI, you can select the following sample configurations:
 
 - [Quick start](#example-deployment-quick-start)
 - [Quick start - with ephemeral storage](#example-deployment-quick-start-with-ephemeral)
@@ -162,7 +162,7 @@ To authenticate users of the {{site.data.reuse.eem_name}} UI, you can choose fro
 
    - LOCAL: Define a list of users and passwords locally in your {{site.data.reuse.eem_name}} environment.
    - OIDC: Use an existing [OIDC-compatible](https://openid.net/connect/){:target="_blank"} security provider that is available in your environment.
-   - INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i-new}} installation on the same cluster to manage users and roles.
+   - INTEGRATION_KEYCLOAK: Use an {{site.data.reuse.cp4i}} installation on the same cluster to manage users and roles.
 
 To modify your authentication configuration, see [managing access](../../security/managing-access)
 
@@ -219,7 +219,7 @@ The total number of hostnames for all gateways in a gateway group must be the sa
 ## Licensing
 {: #licensing}
 
-Licensing tracking as part of an {{site.data.reuse.cp4i-new}} deployment is either based on Virtual Processing Cores (VPCs) or Monthly API Calls (usage-based license) depending on the purchased license. If you are using an Event Automation license, VPCs are the only option.
+Licensing tracking as part of an {{site.data.reuse.cp4i}} deployment is either based on Virtual Processing Cores (VPCs) or Monthly API Calls (usage-based license) depending on the purchased license. If you are using an Event Automation license, VPCs are the only option.
 
 For more information about available licenses, chargeable components, and tracking license usage, see the [licensing reference]({{ 'support/licensing' | relative_url }}).
 

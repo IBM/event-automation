@@ -154,7 +154,7 @@ After you complete these steps, confirm that you have the three PEM files that y
 
     - `swid`: If the `swid` property is included in the Docker command, then set it as follows: 
       - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.ea_short}} license, then set `swid="EA"`.
-      - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) license, then set `swid="CP4I"`.
+      - If your {{site.data.reuse.eem_manager}} uses an {{site.data.reuse.cp4i}} license, then set `swid="CP4I"`.
 
 
 6. Back up the Docker command to a file and keep it in a safe location.

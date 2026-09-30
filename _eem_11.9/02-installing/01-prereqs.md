@@ -166,15 +166,13 @@ If you already have the cert-manager Operator for Red Hat OpenShift installed on
 
 - If you need to install the cert-manager Operator for Red Hat OpenShift, follow the instructions in the [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift#cert-manager-operator-install).
 
-**Important:** You can have only one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version based on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i}} deployment, check whether you have a {{site.data.reuse.fs}} operator already and note the version.
+**Important:** You can have only one cert-manager Operator for Red Hat OpenShift installed on your cluster. Choose the appropriate version based on what other software is running in your environment. If you have an existing {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) deployment, check whether you have a {{site.data.reuse.fs}} operator already and note the version.
 
-## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i}}
+## Optional: Authenticate with Keycloak provided by {{site.data.reuse.cp4i-new}}
 {: #prereqs-keycloak}
 
-If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=administering-identity-access-management){:target="_blank"}.
+If you are installing on the {{site.data.reuse.openshift_short}} as part of {{site.data.reuse.cp4i-new}}, you can configure access for your integration capabilities such as {{site.data.reuse.eem_name}} by using [Keycloak](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=administering-identity-access-management){:target="_blank"}.
 
-Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i}}.
+Keycloak is supported in {{site.data.reuse.eem_name}} when an {{site.data.reuse.cp4i}} version 16.1.0 (operator 7.3.0) or later is available. See the [{{site.data.reuse.cp4i-new}} documentation](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=installing){:target="_blank"} for information about installing {{site.data.reuse.cp4i-new}}.
 
 For more information, see [managing access with Keycloak](../../security/managing-access#keycloak-authentication).
-
-

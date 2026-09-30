@@ -52,7 +52,7 @@ To allow communication between {{site.data.reuse.apic_short}} and {{site.data.re
 
    The CA certificate can be found in a secret called `ingress-ca`, which is created as a part of your {{site.data.reuse.apic_short}} instance. For more information about `ingress-ca`, see the [API Connect documentation](https://www.ibm.com/docs/en/api-connect/10.0.8?topic=information-api-connect-tls-certificates){:target="_blank"}.
 
-   **Note:** If installed as a part of an {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}) instance, the name of your secret is prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`.
+   **Note:** If installed as a part of an {{site.data.reuse.cp4i}} instance, the name of your secret is prefixed by the name of your `APIConnectCluster` resource. For example: `<name>-ingress-ca`.
 
    You can obtain the CA certificate from the Kubernetes cluster where your {{site.data.reuse.apic_short}} instance is installed by using the Openshift UI if running in an Openshift environment, or by using the CLI.
 

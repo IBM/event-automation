@@ -123,11 +123,19 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    e. Copy the `statements.sql` file to the [sql-scripts](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example/sql-scripts){:target="_blank"} directory.
 
-   f. The {{site.data.reuse.ep_name}} dependencies that are used by Flink jobs authored by the {{site.data.reuse.ep_name}} UI are in the `ibm-ep-job-dependencies` folder. Copy the `ibm-ep-job-dependencies.jar` from `/opt/flink/ibm-ep-job-dependencies` to `/opt/flink/lib`.
+   f. The {{site.data.reuse.ep_name}} dependencies that are used by Flink jobs authored by the {{site.data.reuse.ep_name}} UI are in the `ibm-ep-job-dependencies` folder. Copy the `ibm-ep-job-dependencies.jar` file from `/opt/flink/ibm-ep-job-dependencies` to the appropriate directory based on your Flink version:
 
-   ```shell
-   RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar 
-   ```
+   - **{{site.data.reuse.ep_name}} 1.4.5 and later** (Apache Flink 1.20.2 and later): copy to `/opt/flink/lib`.
+
+     ```shell
+     RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/lib/ibm-ep-job-dependencies.jar
+     ```
+
+   - **{{site.data.reuse.ep_name}} 1.4.0 to 1.4.4** (Apache Flink 1.20.1): copy to `/opt/flink/usrlib` to avoid an SLF4J class path conflict with the logging libraries present in `/opt/flink/lib`, which can result in Flink logs not being populated.
+
+     ```shell
+     RUN cp /opt/flink/ibm-ep-job-dependencies/ibm-ep-job-dependencies.jar /opt/flink/usrlib/ibm-ep-job-dependencies.jar
+     ```
 
    g. [Build the docker image](https://github.com/apache/flink-kubernetes-operator/blob/main/examples/flink-sql-runner-example/README.md#usage){:target="_blank"} and push it to a registry accessible from your {{site.data.reuse.openshift_short}}. If your registry requires authentication, configure the image pull secret, for example, by using the [global cluster pull secret](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets){:target="_blank"}.
 

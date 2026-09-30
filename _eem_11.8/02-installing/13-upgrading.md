@@ -103,7 +103,7 @@ On other Kubernetes platforms, you must update the Helm repository and then upgr
 
 - Ensure that you have a supported version of the {{site.data.reuse.openshift_short}} installed. For supported versions, see the [support matrix]({{ 'support/matrix/#event-endpoint-management' | relative_url }}).
 
-- If you installed as part of {{site.data.reuse.cp4i-new}} (formerly {{site.data.reuse.cp4i}}), ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i-new}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.1?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
+- If you installed as part of {{site.data.reuse.cp4i}}, ensure that you followed the [upgrade steps for {{site.data.reuse.cp4i}}](https://www.ibm.com/docs/en/cloud-paks/cp-integration/16.2.0?topic=upgrading){:target="_blank"} before you upgrade {{site.data.reuse.eem_name}}.
 
 - To keep your data, persistent storage must be enabled. If you upgrade an {{site.data.reuse.eem_manager}} instance with ephemeral storage, then all data is lost.
 

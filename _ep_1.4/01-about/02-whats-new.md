@@ -36,7 +36,7 @@ In {{site.data.reuse.ep_name}} 1.4.7 and later, you can enable caching in databa
 ### Apache Flink updated to 1.20.3
 {: #apache-flink-updated-to-1203}
 
-{{site.data.reuse.ibm_flink_operator}} version 1.4.7 update includes Apache Flink version 1.20.3.
+{{site.data.reuse.ibm_flink_operator}} version 1.4.7 update includes Apache Flink version 1.20.3. For more information about what changed in this release, see the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"}.
 
 ### Documentation: Highlighting differences between versions
 {: #documentation-highlighting-between-differences-147}
@@ -138,7 +138,7 @@ In {{site.data.reuse.ep_name}} 1.4.5 and later, you can create a filter expressi
 ### Apache Flink updated to 1.20.2
 {: #apache-flink-updated-to-1202}
 
-{{site.data.reuse.ibm_flink_operator}} version 1.4.5 update includes Apache Flink version 1.20.2.
+{{site.data.reuse.ibm_flink_operator}} version 1.4.5 update includes Apache Flink version 1.20.2. For more information about what changed in this release, see the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"}.
 
 ### Documentation: Highlighting differences between versions
 {: #documentation-highlighting-differences-between-versions-145}

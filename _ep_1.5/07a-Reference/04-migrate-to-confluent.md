@@ -21,7 +21,7 @@ The following table describes the methods available in {{site.data.reuse.ep_name
 | Workload type | Migration process |
 |---|---|
 | Flows created in the {{site.data.reuse.ep_name}} low-code visual editor | Flows are exported as SQL files, migrated, and executed on {{site.data.reuse.cpf_long}} as an application, ensuring native {{site.data.reuse.cpf_long}} support. The following sections explain how to migrate flows. |
-| Java applications written directly to Flink's Datastream and Table APIs | Outside the scope of this document. The following are the high level steps to migrate a Java application: <br><br>1. Understand how your Flink application is deployed and what state it holds. <br><br>2. Read the [{{site.data.reuse.cpf_long}} documentation](https://docs.confluent.io/cp-flink/current/overview.html){:target="_blank"}. <br><br>3. [Repackage your application](https://docs.confluent.io/cp-flink/current/jobs/applications/packaging.html){:target="_blank"} for {{site.data.reuse.cpf_long}}. <br><br>4. Migrate your state. The [copy-savepoint.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/copy-savepoint.sh){:target="_blank"} script might be useful. <br><br>5. Deploy your application. The [deploy.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/deploy.sh){:target="_blank"} script might also help. |
+| Java applications written directly to Flink's Datastream and Table APIs | Outside the scope of this document. The following are the high level steps to migrate a Java application: <br><br>1. Understand how your Flink application is deployed and what state it holds. <br><br>2. Read the [{{site.data.reuse.cpf_long}} documentation](https://docs.confluent.io/cp-flink/current/overview.html){:target="_blank"}. <br><br>3. [Repackage your application](https://docs.confluent.io/cp-flink/current/jobs/applications/packaging.html){:target="_blank"} for {{site.data.reuse.cpf_long}}. <br><br>4. Migrate your state. The [copy-savepoint.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/copy-savepoint.sh){:target="_blank"} script might be useful. <br><br> ![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") If your application contains the [deduplicate node](../../nodes/processornodes#deduplicate) and was deployed from a `flow.json` exported in {{site.data.reuse.ep_name}} 1.5.5 or later, the deduplicate node PTF state can be preserved when migrating to {{site.data.reuse.cpf_long}} by using the [copy-savepoint.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/copy-savepoint.sh){:target="_blank"} script as described in [Migrate the state of your Flink deployment](#migrating-state-flink-deployment). <br><br>5. Deploy your application. The [deploy.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/deploy.sh){:target="_blank"} script might also help. |
 
 Resources to assist with migrating your flows are available in the [{{site.data.reuse.ea_long}} GitHub repository](https://github.com/IBM/ibm-event-automation/tree/main/event-processing/migration-tools){:target="_blank"}.
 
@@ -29,10 +29,13 @@ Resources to assist with migrating your flows are available in the [{{site.data.
 ## Limitations
 {: #limitations}
 
-- {{site.data.reuse.ep_name}} flows that use the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate) cannot be migrated directly to {{site.data.reuse.cpf_long}}.
+- {{site.data.reuse.ep_name}} flows that use the [detect patterns node](../../nodes/processornodes#detect-patterns) cannot be migrated directly to {{site.data.reuse.cpf_long}}.
 
-- In many cases, pattern detection nodes can be replaced with a [Free SQL](../../nodes/custom/) node that uses Flink's `MATCH_RECOGNIZE` syntax. In some cases, it is necessary to rewrite those flows as Flink Java applications that use the [Complex Event Processing API](https://nightlies.apache.org/flink/flink-docs-stable/docs/libs/cep/){:target="_blank"}.
-- Deduplicate nodes can be replaced with a [Free SQL](../../nodes/custom/) node that uses Flink's `ROW_NUMBER() AS rownum ... WHERE rownum=1` syntax (see the [Flink SQL cookbook](https://github.com/ververica/flink-sql-cookbook/blob/main/aggregations-and-analytics/06_dedup/06_dedup.md){:target="_blank"}).
+  **Note:** In many cases, pattern detection nodes can be replaced with a [Free SQL](../../nodes/custom/) node that uses Flink's `MATCH_RECOGNIZE` syntax. In some cases, it is necessary to rewrite those flows as Flink Java applications that use the [Complex Event Processing API](https://nightlies.apache.org/flink/flink-docs-stable/docs/libs/cep/){:target="_blank"}.
+
+- ![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") Flows that use the [deduplicate node](../../nodes/processornodes#deduplicate) can be migrated directly to {{site.data.reuse.cpf_long}}, because the deduplicate node is now implemented as a PTF that is callable from SQL.
+
+  For flows deployed with {{site.data.reuse.ep_name}} versions earlier than 1.5.5, deduplicate nodes can be replaced with a [Free SQL](../../nodes/custom/) node that uses Flink's `ROW_NUMBER() AS rownum ... WHERE rownum=1` syntax (see the [Flink SQL cookbook](https://github.com/ververica/flink-sql-cookbook/blob/main/aggregations-and-analytics/06_dedup/06_dedup.md){:target="_blank"}).
 
 ## Prerequisites
 {: #prerequisites}
@@ -42,7 +45,7 @@ This migration process applies to {{site.data.reuse.ep_name}} flows that have at
 Before you begin, complete the following steps:
 
 1. [Export](../../advanced/exporting-flows/) each of your flows from {{site.data.reuse.ep_name}} as an SQL file.
-1. Restore [redacted credentials](../../advanced/deploying-production/#prerequisites) and amend the SQL for the target environment.
+1. Restore [redacted credentials](../../advanced/exporting-flows/#exporting-flows) and amend the SQL for the target environment.
 1. Install [{{site.data.reuse.cmf_long}}](https://docs.confluent.io/cp-flink/current/get-started/get-started-application.html){:target="_blank"} and [Confluent for Kubernetes](https://docs.confluent.io/operator/current/co-deploy-cfk.html){:target="_blank"} in your target environment.
 
 ## How deployed flows are structured
@@ -58,8 +61,8 @@ Migrating to {{site.data.reuse.cpf_long}} changes the following:
 
 - The Java dependencies used at compilation and runtime.
 - The base Apache Flink image.
-- The source of Flink connectors.
-- The source of user-defined functions (UDFs) and process table functions (PTFs).
+- The Confluent Flink connectors required by the migrated application.
+- The open-sourced user-defined functions (UDFs) and process table functions (PTFs).
 - The deployment mechanism.
 
 The flow SQL exported from {{site.data.reuse.ep_name}} requires custom libraries at runtime:
@@ -69,10 +72,10 @@ The flow SQL exported from {{site.data.reuse.ep_name}} requires custom libraries
 Migrated flows therefore assemble the following components:
 
 - Confluent's Apache Flink runtime image.
-- A JAR file containing the `TO_TIMESTAMP_LTZ` UDF and the deduplicate node PTF.
+- A JAR file containing the `TO_TIMESTAMP_UDF`, `TO_TIMESTAMP_LTZ_UDF`, and the `DEDUPLICATE_PTF`.
 - The exported `flow.sql` file.
 - Connectors supported by Confluent, from Confluent's Maven repository.
-- Connectors not supported by Confluent, either from IBM or the Apache Flink project.
+- Connectors not supported by Confluent, from the Apache Flink project.
 - An Apache Flink SQL Runner JAR file.
 
 ## Step 1: Build the application Docker image
@@ -108,8 +111,8 @@ The following dependencies are required by all migrated flows. See the [Confluen
 |---|---|---|
 | Confluent Apache Flink image | Base image for {{site.data.reuse.cpf_long}} applications | [confluentinc/cp-flink](https://hub.docker.com/r/confluentinc/cp-flink){:target="_blank"}, as described in the [Confluent documentation](https://docs.confluent.io/cp-flink/current/jobs/applications/create.html#create-the-application){:target="_blank"} |
 | `flow.sql` | The exported flow SQL file | [Exported from {{site.data.reuse.ep_name}}](../../advanced/exporting-flows) |
-| Apache Flink SQL Runner JAR | The SQL runner entry point, patched and built as described in [New application base: Apache Flink SQL runner](#new-application-base-apache-flink-sql-runner) | Built from the Apache Flink Kubernetes Operator repository |
-| IBM UDF+PTF JAR | Contains the `TO_TIMESTAMP_LTZ` UDF and the deduplicate node PTF | Available to [download](https://github.com/IBM/ibm-event-automation/releases){:target="_blank"} from the {{site.data.reuse.ea_short}} GitHub repository |
+| Apache Flink SQL Runner JAR | The SQL runner entry point, patched and built as described in [New application base: Apache Flink SQL runner](#new-application-base-apache-flink-sql-runner) | Built from the [Apache Flink Kubernetes Operator repository](https://github.com/apache/flink-kubernetes-operator/tree/main/examples/flink-sql-runner-example){:target="_blank"} |
+| IBM UDF+PTF JAR | Contains the `TO_TIMESTAMP_UDF`, `TO_TIMESTAMP_LTZ_UDF`, and `DEDUPLICATE_PTF` functions | [Download](https://github.com/IBM/ibm-event-automation/releases/latest){:target="_blank"} from the {{site.data.reuse.ea_short}} GitHub releases page |
 
 ### Connectors from Confluent
 {: #connectors-from-confluent}
@@ -135,6 +138,8 @@ Confluent-supported connectors are listed in the [Confluent documentation](https
 {: #migrating-state-flink-deployment}
 
 To preserve the state of a running Flink deployment, stop the Flink deployment and take a savepoint before migrating.
+
+**Important:** ![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") If the job being migrated was deployed from a `flow.json` exported in {{site.data.reuse.ep_name}} 1.5.5 or later and contains the [deduplicate node](../../nodes/processornodes#deduplicate), the Flink state for that node is not preserved when migrating to {{site.data.reuse.cpf_long}}. The [copy-savepoint.sh](https://github.com/IBM/ibm-event-automation/blob/main/event-processing/migration-tools/copy-savepoint.sh){:target="_blank"} script can copy the savepoint files to the target environment, but the deduplicate node PTF state within the savepoint cannot be restored on {{site.data.reuse.cpf_long}}. The migrated job will restart deduplicate processing from the point of migration without any prior deduplication history.
 
 **Note:** If your source and target deployments share a Kubernetes namespace, you can skip this step and reuse the original persistent volume. However, the {{site.data.reuse.ibm_flink_operator}} and the {{site.data.reuse.cpf_long}} Operator cannot be configured to manage resources in the same namespace because both operators manage the same custom resources. Before installing the {{site.data.reuse.cpf_long}} Operator, you must delete or suspend all existing `FlinkDeployment` custom resources and uninstall the {{site.data.reuse.ibm_flink_operator}}.
 

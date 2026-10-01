@@ -32,6 +32,8 @@ If you are upgrading from {{site.data.reuse.ep_name}} version 1.2.x or earlier, 
 
 - If your Flink instance is an [application cluster](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/concepts/flink-architecture/#flink-application-cluster){:target="_blank"} for deploying flows in [production environments](../../advanced/deploying-production), the automatic upgrade cannot update the custom Flink image built by extending the IBM-provided Flink image. In this case, after the successful upgrade of the operator, complete steps 1 and 2c in [build and deploy a Flink SQL runner](../../advanced/deploying-production#build-and-deploy-a-flink-sql-runner) to make use of the upgraded Flink image.
 
+- If your upgrade includes a new version of Apache Flink, review the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"} to identify any deprecations or breaking changes that might affect your upgrade.
+
 **Important:** You will experience some downtime during the {{site.data.reuse.ep_name}} upgrade while the pods for the relevant components are recycled.
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}

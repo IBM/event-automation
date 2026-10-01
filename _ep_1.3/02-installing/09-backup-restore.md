@@ -93,6 +93,10 @@ To restore a previously backed-up Flink instance, ensure that the PVC bound to a
 
    c. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported in `status.path` field of the `FlinkStateSnapshots` custom resource that you saved earlier.
 
+   d. Optionally, set `spec.job.allowNonRestoredState` to `true`.
+
+   **Important:** Setting `allowNonRestoredState` to `true` silently discards the skipped state, which can affect the correctness of your application. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/savepoints/#allowing-non-restored-state){:target="_blank"}.
+
    For example:
 
    ```yaml
@@ -116,6 +120,8 @@ To restore a previously backed-up Flink `SessionJob` instance, ensure that the P
    b. Set the value of `spec.job.state` to `running` to resume the Flink job.
 
    c. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported in `status.path` field of the `FlinkStateSnapshots` custom resource that you saved earlier.
+
+   d. Optionally, set `spec.job.allowNonRestoredState` to `true`.
 
    For example:
 

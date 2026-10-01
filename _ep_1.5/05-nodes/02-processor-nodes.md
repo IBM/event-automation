@@ -546,6 +546,15 @@ To configure the detect patterns node, complete the following steps:
 
 A deduplicate node processes a stream of an ordered sequence of events and removes duplicate events based on a specified property or set of properties within the specified time interval. This ensures that only unique events pass through, reducing redundancy and improving the efficiency of downstream processing.
 
+![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") In {{site.data.reuse.ep_name}} 1.5.5 and later, the deduplicate node is reimplemented as a Process Table Function (PTF), a custom stateful function that is callable from SQL. This enables the following capabilities that were not available before 1.5.5:
+
+- Exporting flows that contain the deduplicate node as SQL for use with the [Flink SQL client](../../advanced/deploying-development) or the [Apache SQL Runner sample](../../advanced/deploying-production).
+- Migrating flows that contain the deduplicate node directly to {{site.data.reuse.cpf_long}}. For more information about state considerations, see [migrating flows to {{site.data.reuse.cpf_long}}](../../reference/migrate-to-confluent#migrating-state-flink-deployment).
+
+**Note:** 
+- Existing jobs that were deployed before 1.5.5 are not affected on upgrade and retain their application state. Only jobs deployed in 1.5.5 or later use the new deduplicate implementation.
+- New flows and existing flows are automatically updated to use this implementation when you open them in the UI. If you encounter issues, you can [revert to the earlier implementation](../../troubleshooting/reverting-to-earlier-node-implementations/).
+
 Deduplication is useful in multiple scenarios such as:
 
 - In IoT systems, to eliminate repeated sensor readings caused by network glitches.

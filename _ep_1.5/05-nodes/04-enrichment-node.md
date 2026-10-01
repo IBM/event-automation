@@ -163,6 +163,8 @@ User actions are [saved](../../getting-started/canvas/#save) automatically. For 
 
 In situations where the data in the source table might not offer significant insights on its own, making calls to external APIs and integrating data from the API responses can yield a more comprehensive result.
 
+![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") In {{site.data.reuse.ep_name}} 1.5.5 and later, the API node uses an enhanced implementation. New flows and existing flows are automatically updated to use this implementation when you open them in the UI. If you encounter issues, you can [revert to the earlier implementation](../../troubleshooting/reverting-to-earlier-node-implementations/).
+
 ### Prerequisites and limitations
 {: #prerequisites-and-limitations}
 
@@ -289,6 +291,8 @@ To configure an API node, complete the following steps:
 {: #watsonx-node}
 
 In situations where the data in the source table might not offer significant insights on its own, you can use the watsonx.ai node to enrich the events by generating AI-powered responses by using foundation models. It enables dynamic calls to IBM watsonx.ai APIs as part of the event flow, bringing contextual, language-based intelligence into your processing. Currently, the watsonx.ai node supports only watsonx.ai on IBM Cloud and is limited to text generation services.
+
+![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") In {{site.data.reuse.ep_name}} 1.5.5 and later, the watsonx.ai node uses an enhanced implementation. New flows and existing flows are automatically updated to use this implementation when you open them in the UI. If you encounter issues, you can [revert to the earlier implementation](../../troubleshooting/reverting-to-earlier-node-implementations/).
 
 With the watsonx.ai node, you can perform text generation services such as:
 

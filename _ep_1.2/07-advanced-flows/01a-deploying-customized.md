@@ -296,6 +296,10 @@ You can resume a suspended job from the exact point where it stopped by using th
 
    d. Set the value of `spec.job.initialSavepointPath` to the savepoint location found as described in step 3 of [suspended](./#stop-a-flink-job-with-a-savepoint) the job.
 
+   e. Optionally, set `spec.job.allowNonRestoredState` to `true` to allow Flink to skip the savepoint state that cannot be mapped to any operator in the restored job (for example, because an operator was removed). By default, Flink rejects the restore operation if any savepoint state cannot be mapped.
+
+   **Important:** Setting `allowNonRestoredState` to `true` silently discards the skipped state, which can affect the correctness of your application. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/savepoints/#allowing-non-restored-state){:target="_blank"}.
+
    For example:
 
    ```yaml

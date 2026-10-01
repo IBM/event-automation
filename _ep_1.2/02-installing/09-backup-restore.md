@@ -97,6 +97,10 @@ To restore a previously backed-up Flink instance, ensure that the PVC bound to a
 
    d. Set the value of `spec.job.initialSavepointPath` to the savepoint location reported during the backing up operation in step 1.d.
 
+   e. Optionally, set `spec.job.allowNonRestoredState` to `true` to allow Flink to skip the savepoint state that cannot be mapped to any operator in the restored job (for example, because an operator was removed). By default, Flink rejects the restore operation if any savepoint state cannot be mapped.
+
+   **Important:** Setting `allowNonRestoredState` to `true` silently discards the skipped state, which can affect the correctness of your application. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/savepoints/#allowing-non-restored-state){:target="_blank"}.
+
    For example:
 
    ```yaml

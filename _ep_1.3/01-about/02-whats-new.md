@@ -38,7 +38,7 @@ In {{site.data.reuse.ep_name}} 1.3.1 and later, you can use watsonx.ai node to c
 
 ### Apache Flink updated to 1.20.1
 
-{{site.data.reuse.ibm_flink_operator}} version 1.3.1 update includes Apache Flink version 1.20.1.
+{{site.data.reuse.ibm_flink_operator}} version 1.3.1 update includes Apache Flink version 1.20.1. For more information about what changed in this release, see the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"}.
 
 
 ### Support for {{site.data.reuse.openshift}} 4.18
@@ -67,7 +67,7 @@ Body parameters can now be mapped with complex array properties or complex array
 
 ### Apache Flink updated to 1.20
 
-{{site.data.reuse.ibm_flink_operator}} version 1.3.0 update includes Apache Flink version 1.20.
+{{site.data.reuse.ibm_flink_operator}} version 1.3.0 update includes Apache Flink version 1.20. For more information about what changed in this release, see the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"}.
 
 ### Support for Kubernetes 1.32
 

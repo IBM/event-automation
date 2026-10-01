@@ -45,6 +45,8 @@ If you are upgrading from {{site.data.reuse.ep_name}} version 1.3.x or earlier, 
     flinkVersion: v1_20
   ```
 
+- If your upgrade includes a new version of Apache Flink, review the [Apache Flink 2.2 release notes](https://nightlies.apache.org/flink/flink-docs-release-2.2/release-notes/flink-2.2/){:target="_blank"} and the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"} to identify any deprecations or breaking changes that might affect your upgrade.
+
 **Important:** You will experience some downtime during the {{site.data.reuse.ep_name}} upgrade while the pods for the relevant components are recycled.
 
 ## Upgrading on the {{site.data.reuse.openshift_short}}

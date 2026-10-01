@@ -210,6 +210,11 @@ Some adaptations to this procedure are required to build the Docker image and us
      mode: native
    ```
 
+   
+   Where `allowNonRestoredState: true` allows Flink to skip the savepoint state that cannot be mapped to any operator in the restarted job (for example, because an operator was removed). By default, Flink rejects the restart operation if any savepoint state cannot be mapped.
+
+   **Important:** Setting `allowNonRestoredState` to `true` silently discards the skipped state, which can affect the correctness of your application. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.19/docs/ops/state/savepoints/#allowing-non-restored-state){:target="_blank"}.
+
    In {{site.data.reuse.ep_name}} versions earlier than 1.2.3, select the [Production - Flink Application cluster](../../installing/planning/#flink-production-application-cluster-sample) sample.
 
    **Note:** The Flink instance must be configured with persistent storage.
@@ -285,7 +290,6 @@ hide autoscaler -->
        parallelism: 2
        state: running
        upgradeMode: savepoint
-       allowNonRestoredState: true
    ```
 
 2. Apply the modified `FlinkDeployment` custom resource.
@@ -381,6 +385,8 @@ You can resume a suspended job from the exact point where it stopped by using th
    c. Remove `spec.job.savepointTriggerNonce` and its value.
 
    d. Set the value of `spec.job.initialSavepointPath` to the savepoint location described in step 3 of [suspended](./#stop-a-flink-sql-job-with-a-savepoint) the Flink job.
+
+   e. Optionally, set `spec.job.allowNonRestoredState` to `true`.
 
    For example:
 

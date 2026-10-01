@@ -237,6 +237,10 @@ Some adaptations to this procedure are required to build the Docker image and us
 
    - `<jks-secret>` is the secret containing the keystores and truststores for your deployment, and `<jks-password>` is the password for those stores. For more information, see [configuring TLS for Flink](../../installing/configuring/#configuring-tls-to-secure-communication-with-flink-deployments).
 
+   - `allowNonRestoredState: true` allows Flink to skip the savepoint state that cannot be mapped to any operator in the restarted job (for example, because an operator was removed). By default, Flink rejects the restart operation if any savepoint state cannot be mapped.
+
+   **Important:** Setting `allowNonRestoredState` to `true` silently discards the skipped state, which can affect the correctness of your application. For more information, see the [Flink documentation](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/ops/state/savepoints/#allowing-non-restored-state){:target="_blank"}.
+
 
    **Note:** The Flink instance must be [configured](../../installing/planning/#deploying-the-flink-pvc) with persistent storage.
 
@@ -315,7 +319,6 @@ hide autoscaler -->
        parallelism: 2
        state: running
        upgradeMode: savepoint
-       allowNonRestoredState: true
    ```
 
 2. Apply the modified `FlinkDeployment` custom resource.
@@ -406,6 +409,8 @@ You can resume a suspended job from the exact point where it stopped by using th
    b. Set that the value of `spec.job.state` is `running` to resume the Flink job.
 
    c. Set the value of `spec.job.initialSavepointPath` to the savepoint location found in the `status.path` field of the `FlinkStateSnapshots` custom resource from step 4 of [stopping a Flink job with a savepoint](./#stop-a-flink-job-with-a-savepoint).
+
+   d. Optionally, set `spec.job.allowNonRestoredState` to `true`.
 
    For example:
 

@@ -12,7 +12,8 @@ Find out how to deploy your flows in a Flink [session cluster](https://nightlies
 
 - You can use the **JSON and configuration YAML** flow [export format](../exporting-flows/#exporting-flows) for [deploying jobs customized for production or test environments](../deploying-customized). In most cases, this provides a better user experience, and can be used with an automation in a continuous integration and continuous delivery (CI/CD) pipeline.
 
-- You cannot deploy Flink jobs by using the Flink SQL client for flows that contain the [detect patterns node](../../nodes/processornodes#detect-patterns) or the [deduplicate node](../../nodes/processornodes#deduplicate) node.
+- You cannot deploy Flink jobs by using the Flink SQL client for flows that contain the [detect patterns node](../../nodes/processornodes#detect-patterns).
+- ![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.") You can deploy Flink jobs by using the Flink SQL client for flows that contain the [deduplicate node](../../nodes/processornodes#deduplicate).
 
 ## Prerequisites
 {: #prerequisites}

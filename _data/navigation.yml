@@ -1936,6 +1936,10 @@ latest_epdocs:
         url: /troubleshooting/missing-flink-resources
       - title: "Job manager pod crashes after High Availability data deletion"
         url: /troubleshooting/not-able-to-recover-flink-job
+      - title: "Reverting nodes to an earlier implementation"
+        url: /troubleshooting/reverting-to-earlier-node-implementations
+      - title: "Events are silently dropped in flows that contain a watsonx.ai node"
+        url: /troubleshooting/watsonx-events-lost-rate-limiting
 
 
 # Event Processing 1.4 docs

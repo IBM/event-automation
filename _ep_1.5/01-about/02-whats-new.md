@@ -17,9 +17,46 @@ IBM's conditions of support for Apache Flink in {{site.data.reuse.ea_long}} has 
 
 
 
+
 Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 
 ## Release {{site.data.reuse.ep_current_version}}
+{: #release-155}
+
+
+### Deduplicate node: export as SQL and direct migration to Confluent Platform for Apache Flink
+{: #deduplicate-ptf-sql-155}
+
+The [deduplicate node](../../nodes/processornodes/#deduplicate) is reimplemented as a Process Table Function (PTF), a custom stateful function that is callable from SQL. This enables the following capabilities that were not available before 1.5.5:
+
+- **Export as SQL**: Flows containing the deduplicate node can now be exported in the **SQL** format and deployed by using the [Flink SQL client](../../advanced/deploying-development) or the [Apache SQL Runner sample](../../advanced/deploying-production).
+- **Direct migration to {{site.data.reuse.cpf_long}}**: Flows that contain the deduplicate node can be migrated directly to {{site.data.reuse.cpf_long}}. For more information, see [migrating flows to {{site.data.reuse.cpf_long}}](../../reference/migrate-to-confluent).
+
+**Note:** Existing jobs that were deployed before 1.5.5 are not affected on upgrade and retain their application state. Only jobs deployed in 1.5.5 or later use the new deduplicate implementation.
+
+### API enrichment node: Apache Flink HTTP Connector
+{: #api-enrichment-flink-http-connector-155}
+
+The [API enrichment node](../../nodes/enrichmentnode/#enrichment-from-an-api) now uses the official Apache Flink HTTP Connector, replacing the previous community-maintained connector. The following aspects of the node have changed:
+
+- The connector is an officially supported Apache Flink component.
+- Request and response payloads use standard JSON.
+- Literal values can be injected directly into query creator configuration.
+- External API responses are mapped to event fields by using schema definitions.
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-155}
+
+Any difference in features or behavior introduced by {{site.data.reuse.ep_name}} 1.5.5 compared to 1.5.4 or earlier is highlighted in this documentation by using the following graphic: ![Event Processing 1.5.5 icon]({{ 'images' | relative_url }}/1.5.5.svg "In Event Processing 1.5.5 and later.")
+
+
+### Security and bug fixes
+{: #security-and-bug-fixes-155}
+
+{{site.data.reuse.ep_name}} release 1.5.5 contains security and bug fixes.
+
+
+## Release 1.5.4
 {: #release-154}
 
 ### Event source node: Select topic from {{site.data.reuse.eem_name}}
@@ -73,7 +110,7 @@ For more information, see [monitoring event activity](../../administering/flow-m
 ### Apache Flink updated to 1.20.4
 {: #apache-flink-updated-to-1204}
 
-{{site.data.reuse.ibm_flink_operator}} version 1.5.4 update includes Apache Flink version 1.20.4.
+{{site.data.reuse.ibm_flink_operator}} version 1.5.4 update includes Apache Flink version 1.20.4. For more information about what changed in this release, see the [Apache Flink 1.20 release notes](https://nightlies.apache.org/flink/flink-docs-release-1.20/release-notes/flink-1.20/){:target="_blank"}.
 
 Flink 1.20 is supported only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.
 
@@ -131,9 +168,9 @@ For more information, see [monitoring session cluster](../../administering/sessi
 ### Apache Flink updated to 2.2.1
 {: #apache-flink-updated-to-221}
 
-{{site.data.reuse.ibm_flink_operator}} version 1.5.3 update includes Apache Flink version 2.2.1.
+{{site.data.reuse.ibm_flink_operator}} version 1.5.3 update includes Apache Flink version 2.2.1. For more information about what changed in this release, see the [Apache Flink 2.2 release notes](https://nightlies.apache.org/flink/flink-docs-release-2.2/release-notes/flink-2.2/){:target="_blank"}.
 
-Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. 
+Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI.
 The {{site.data.reuse.ep_name}} UI is not supported when running a Flink instance with Flink 1.20.3.
 
 
@@ -231,7 +268,7 @@ Any difference in features or behavior introduced by {{site.data.reuse.ep_name}}
 ### Support for Apache Flink 2.2.0
 {: #support-for-apache-flink-220}
 
-{{site.data.reuse.ep_name}} 1.5.0 and later supports Apache Flink 2.2.0 for both UI-based flows and for Flink jobs deployed outside the {{site.data.reuse.ep_name}} UI.
+{{site.data.reuse.ep_name}} 1.5.0 and later supports [Apache Flink 2.2.0](https://nightlies.apache.org/flink/flink-docs-release-2.2/release-notes/flink-2.2/){:target="_blank"} for both UI-based flows and for Flink jobs deployed outside the {{site.data.reuse.ep_name}} UI.
 
 Flink 1.20.3 is also supported, but only for deploying Flink jobs outside the {{site.data.reuse.ep_name}} UI. This includes:
 

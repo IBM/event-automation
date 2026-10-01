@@ -9,9 +9,29 @@ toc: true
 
 
 
+
 Find out what is new in {{site.data.reuse.es_name}} version 13.0.x.
 
 ## Release {{site.data.reuse.es_current_version}}
+{: #release-1303}
+
+### Apicurio Registry version updated to 3.3.3
+{: #apicurio-registry-version-updated-to-333}
+
+{{site.data.reuse.es_name}} 13.0.3 includes Apicurio Registry version 3.3.3 for [managing schemas](../../schemas/overview/#schema-registry). For more information about client application requirements, see [prerequisites](../../installing/prerequisites#schema-requirements).
+
+### Documentation: Highlighting differences between versions
+{: #documentation-highlighting-differences-between-versions-1303}
+
+Any difference in features or behavior introduced by {{site.data.reuse.es_name}} 13.0.3 compared to 13.0.2 or earlier is highlighted in this documentation by using the following graphic: ![Event Streams 13.0.3 icon]({{ 'images' | relative_url }}/13.0.3.svg "In Event Streams 13.0.3 and later.")
+
+### Security and bug fixes
+{: #security-and-bug-fixes-1303}
+
+{{site.data.reuse.es_name}} release 13.0.3 contains security and bug fixes.
+
+
+## Release 13.0.2
 {: #release-1302}
 
 ### Apicurio Registry version updated to 3.3.1

@@ -2874,6 +2874,52 @@ latestdocs:
         url: /troubleshooting/helm-diff-plugin-failure/
       - title: "Cannot create topics in the UI with only topic-level ACLs"
         url: /troubleshooting/topic-create-acl-validation/
+  - title: Migrating Event Streams to Confluent Platform
+    children:
+      - title: "Introduction"
+        url: /migration/overview/
+      - title: "Migration phases"
+        url: /migration/migration-phases/
+      - title: "Planning your migration"
+        url: /migration/planning/
+      - title: "Before you begin"
+        url: /migration/preparation/
+      - title: "Component mapping"
+        url: /migration/feature-compatibility/
+      - title: "Setting up certificates"
+        url: /migration/certificates/
+      - title: "Configuring rack awareness"
+        url: /migration/migrating-rack-awareness/
+      - title: "Setting up Confluent Platform"
+        url: /migration/setup/
+      - title: "Migrating components and applications overview"
+        url: /migration/migrating-components/
+      - title: "Migrating users"
+        url: /migration/migrating-users/
+      - title: "Migrating mTLS users"
+        url: /migration/migrating-mtls-users/
+      - title: "Migrating schemas"
+        url: /migration/migrate-schemas/
+      - title: "Migrating topic configuration and data"
+        url: /migration/migrating-topics/
+      - title: "Migrating applications"
+        url: /migration/migrating-applications/
+      - title: "Migrating Kafka Bridge and REST producer"
+        url: /migration/migrating-to-rest-proxy/
+      - title: "Migrating Kafka Connect"
+        url: /migration/connect-migration/
+      - title: "Migrating connectors"
+        url: /migration/connector-migration/
+      - title: "IBM MQ source connector"
+        url: /connector-migration/ibm-mq-source/
+      - title: "IBM MQ sink connector"
+        url: /connector-migration/ibm-mq-sink/
+      - title: "Migrating MirrorMaker 2"
+        url: /migration/migrating-mirrormaker/
+      - title: "Validating your migration"
+        url: /migration/validation/
+      - title: "Decommissioning Event Streams"
+        url: /migration/decommission/
 
 # Event Streams 12.3 docs
 123docs:

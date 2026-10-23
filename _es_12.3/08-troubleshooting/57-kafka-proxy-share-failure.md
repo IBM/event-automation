@@ -33,4 +33,4 @@ Sharing topics from the {{site.data.reuse.es_name}} UI with {{site.data.reuse.ee
 To share topics in this scenario, do one of the following steps:
 
 - [Remove the Kafka Proxy](../../installing/upgrading#remove-kafka-proxy) and verify that clients can connect directly to the Kafka brokers.
-- [Add the topics]({{ 'eem/describe/adding-topics/#add-topic' | relative_url }}) manually in the {{site.data.reuse.eem_name}} UI and connect the topics to the appropriate Kafka cluster.
+- [Add the topics](https://ibm.biz/eem-adding-topics){:target="_blank"} manually in the {{site.data.reuse.eem_name}} UI and connect the topics to the appropriate Kafka cluster.

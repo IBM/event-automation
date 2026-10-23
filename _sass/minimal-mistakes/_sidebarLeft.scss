@@ -136,23 +136,31 @@ $event-streams-primary-action: #602797;
 
 
   .sidebar.nav-close {
-    height: 3.5rem;                  
+    height: 3.5rem;
     min-height: unset;
     flex-basis: 3.5rem;
+    width: 3.5rem;
     background: transparent;
     z-index: 1;
     position: relative;
+    border-right: none;
 
-    .versionContainer#sidebarVersionPill {
-      display: none;
+    #versionDropdown,
+    .versionsBar {
+      display: none !important;
+    }
+
+    .versionContainer#sidebarVersionPill,
+    .versionContainer#navbarVersionPill {
+      display: none !important;
     }
 
     .sidebar-inner {
       justify-content: start;
-      background: white;
-      align-items: center;           
+      background: transparent;
+      align-items: center;
       padding-top: 0.25rem;
-
+      width: 3.5rem;
     }
 
     .sidebar-inner::after {
@@ -161,7 +169,7 @@ $event-streams-primary-action: #602797;
 
     .nav__list {
       transform: translateX(-100%);
-      transition: none; 
+      transition: none;
     }
 
     .nav__close-btn {

@@ -101,19 +101,19 @@ bootstrap.servers=<bootstrapServers>
 security.protocol=SASL_SSL
 ssl.protocol=TLSv1.2
 ssl.truststore.location=/opt/kafka/es-cert.jks
-ssl.truststore.password=password
+ssl.truststore.password=<password>
 sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="<apiKey>";
 producer.security.protocol=SASL_SSL
 producer.ssl.protocol=TLSv1.2
 producer.ssl.truststore.location=/opt/kafka/es-cert.jks
-producer.ssl.truststore.password=password
+producer.ssl.truststore.password=<password>
 producer.sasl.mechanism=PLAIN
 producer.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="<apiKey>";
 consumer.security.protocol=SASL_SSL
 consumer.ssl.protocol=TLSv1.2
 consumer.ssl.truststore.location=/opt/kafka/es-cert.jks
-consumer.ssl.truststore.password=password
+consumer.ssl.truststore.password=<password>
 consumer.sasl.mechanism=PLAIN
 consumer.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="token" password="<apiKey>";
 plugin.path=/opt/connectors

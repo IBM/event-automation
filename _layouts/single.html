@@ -17,7 +17,7 @@ layout: default
 {% assign currentVersion = site.collections | where: "label", page.collection | first %}
 
 
-<main id="main" class="mainContainer" role="main">
+<main id="main" class="mainContainer {% if page.layout == 'splash' and page.latest and page.product == 'eem' %}full-width{% endif %}" role="main">
     {% if page.collection == "tutorials" or page.collection == "support" and page.layout == "single" %}
 
     {% elsif page.collection == "faq" %}

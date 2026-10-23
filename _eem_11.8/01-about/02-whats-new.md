@@ -95,3 +95,6 @@ In {{site.data.reuse.eem_name}} 11.8.0 and later, the {{site.data.reuse.eem_name
 
 {{site.data.reuse.egw}} configuration procedures are updated to suit the gateway deployment type: operator-managed gateways are configured in the custom resource. Kubernetes Deployment gateways are configured with a ConfigMap. For more details, see [gateway properties reference](../../reference/gateway-properties). 
 
+### Support for Kubernetes 1.34 and 1.35
+
+{{site.data.reuse.eem_name}} release 11.8.0 introduces [support]({{ 'support/matrix/#event-endpoint-management' | relative_url }}) for Kubernetes platforms versions 1.34 and 1.35 that support the Red Hat Universal Base Images (UBI) containers.

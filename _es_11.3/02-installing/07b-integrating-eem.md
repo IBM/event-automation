@@ -8,7 +8,7 @@ toc: true
 
 ![Event Streams 11.3.1 icon]({{ 'images' | relative_url }}/11.3.1.svg "In Event Streams 11.3.1 and later.") {{site.data.reuse.eem_name}} provides the capability to describe and catalog your Kafka topics as event sources, and to share the details of the topics with application developers within the organization. Application developers can discover the event sources and configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream.
 
-{{site.data.reuse.es_name}} can be integrated with [{{site.data.reuse.eem_name}}]({{ 'eem/about/overview/' | relative_url }}), after which you can share topics as event sources with {{site.data.reuse.eem_name}} from the {{site.data.reuse.es_name}} UI. You can then create options for each topic to control how the topic’s stream of events are presented to consumers, and publish the option you want in the {{site.data.reuse.eem_name}} UI.
+{{site.data.reuse.es_name}} can be integrated with [{{site.data.reuse.eem_name}}](https://ibm.biz/eem-overview){:target="_blank"}, after which you can share topics as event sources with {{site.data.reuse.eem_name}} from the {{site.data.reuse.es_name}} UI. You can then create options for each topic to control how the topic’s stream of events are presented to consumers, and publish the option you want in the {{site.data.reuse.eem_name}} UI.
 
 Follow the instructions as an administrator to integrate your {{site.data.reuse.es_name}} deployment with {{site.data.reuse.eem_name}}.
 
@@ -19,9 +19,9 @@ Follow the instructions as an administrator to integrate your {{site.data.reuse.
 Ensure your environment meets the following prerequisites.
 
 - To authenticate {{site.data.reuse.eem_name}} to access {{site.data.reuse.es_name}}, ensure that an external listener is [configured](../../installing/configuring/#kafka-ingress-example) with SCRAM authentication.
-- {{site.data.reuse.eem_name}} version 11.1.1 or later is [installed]({{ 'eem/installing/overview' | relative_url }}).
-- You have an [access token]({{ 'eem/security/api-tokens/#creating-a-token' | relative_url }}) from the {{site.data.reuse.eem_name}} UI.
-- You [downloaded]({{ 'eem/integrating-with-apic/configure-eem-for-apic/#obtain-certificates-for-a-tls-client-profile-on-openshift' | relative_url}}) the SSL certificate of your {{site.data.reuse.eem_name}} instance as a `.crt` file and then formatted the certificate by running the following command:
+- {{site.data.reuse.eem_name}} version 11.1.1 or later is [installed](https://ibm.biz/eem-install-overview){:target="_blank"}.
+- You have an [access token](https://ibm.biz/eem-access-token){:target="_blank"} from the {{site.data.reuse.eem_name}} UI.
+- You [downloaded](https://ibm.biz/eem-get-cert){:target="_blank"} the SSL certificate of your {{site.data.reuse.eem_name}} instance as a `.crt` file and then formatted the certificate by running the following command:
 
   ```shell
   awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' <eem-ssl-certificate>.crt
@@ -66,10 +66,10 @@ To set up a connection between your {{site.data.reuse.es_name}} and {{site.data.
    - `<event-streams-instance>` is the name of the {{site.data.reuse.es_name}} instance.
    - `<event-streams-namespace>` is the namespace where your {{site.data.reuse.es_name}} instance is installed.
    - `<event-endpoint-management-instance>` is the name of the {{site.data.reuse.eem_name}} instance.
-   - `<eem-api-hostname>` is the hostname of the [API endpoint URI]({{ 'eem/getting-started/logging-in/#retrieving-the-urls' | relative_url}}) of the {{site.data.reuse.eem_manager}}.
-   - `<eem-api-port>` is the port number of the [API endpoint URI]({{ 'eem/getting-started/logging-in/#retrieving-the-urls' | relative_url}}) of the {{site.data.reuse.eem_manager}}.
+   - `<eem-api-hostname>` is the hostname of the [API endpoint URI](https://ibm.biz/eem-get-urls){:target="_blank"} of the {{site.data.reuse.eem_manager}}.
+   - `<eem-api-port>` is the port number of the [API endpoint URI](https://ibm.biz/eem-get-urls){:target="_blank"} of the {{site.data.reuse.eem_manager}}.
    - `<eem-ssl-certificate>` is the CA certificate of the {{site.data.reuse.eem_name}} instance that you downloaded earlier.
-   - `<ui-url-eem-instance>` is the hostname of the [UI endpoint URI]({{ 'eem/getting-started/logging-in/#retrieving-the-urls' | relative_url}}) of the {{site.data.reuse.eem_name}} UI.
+   - `<ui-url-eem-instance>` is the hostname of the [UI endpoint URI](https://ibm.biz/eem-get-urls){:target="_blank"} of the {{site.data.reuse.eem_name}} UI.
 
 2. Apply the ConfigMap by running the following command:
 

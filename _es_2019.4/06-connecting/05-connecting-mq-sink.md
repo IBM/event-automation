@@ -119,7 +119,7 @@ The final configuration file will resemble the following:
 		"mq.channel.name": "MYSVRCONN",
 		"mq.queue": "MYQSINK",
 		"mq.user.name": "alice",
-		"mq.password": "passw0rd",
+		"mq.password": "<password>",
 		"mq.message.builder": "com.ibm.eventstreams.connect.mqsink.builders.DefaultMessageBuilder",
 		"key.converter": "org.apache.kafka.connect.storage.StringConverter",
 		"value.converter": "org.apache.kafka.connect.storage.StringConverter"

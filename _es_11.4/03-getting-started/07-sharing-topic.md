@@ -15,7 +15,7 @@ Complete the following steps to share your topic with {{site.data.reuse.eem_name
 2. Click the **Topics** tab in the primary navigation and then select a topic from the list of topics.
 3. Click **Share for reuse**.
 3. In the **Select an instance** section, select the {{site.data.reuse.eem_name}} instance that you want to share your {{site.data.reuse.es_name}} topic with, and then click **Next**.
-4. In the **Provide access token** section, enter the [access token]({{ 'eem/security/api-tokens/#creating-a-token' | relative_url }}) that you created earlier, and click **Next**.
+4. In the **Provide access token** section, enter the [access token](https://ibm.biz/eem-access-token){:target="_blank"} that you created earlier, and click **Next**.
 5. In the **Review details** section, enter a topic alias.
 
    - Optional: If available, a sample message of your topic is displayed in the **Sample message** text box. You can also add a sample message now, or edit the sample.
@@ -23,13 +23,13 @@ Complete the following steps to share your topic with {{site.data.reuse.eem_name
      **Note:** Ensure that you review the sample message in case sensitive information is displayed, as the sample will be available in the {{site.data.reuse.eem_name}} catalog for other users to view.
    - Optional: To select a schema from the schema registry, click **Select**.
 
-     **Important:** In {{site.data.reuse.es_name}} 11.3.1 and earlier, if you select a nested Avro schema with custom record type, you must replace the custom record type name in it with the entire schema definition before publishing the topic as an option in {{site.data.reuse.eem_name}}. You can find the schema with the required definition in your schema registry. For more information about editing nested Avro schemas, see [Event Endpoint Management documentation]({{ 'eem/describe/managing-event-sources/#editing-nested-avro-schemas' | relative_url }}).
+     **Important:** In {{site.data.reuse.es_name}} 11.3.1 and earlier, if you select a nested Avro schema with custom record type, you must replace the custom record type name in it with the entire schema definition before publishing the topic as an option in {{site.data.reuse.eem_name}}. You can find the schema with the required definition in your schema registry. For more information about editing nested Avro schemas, see [Event Endpoint Management documentation](https://ibm.biz/eem-edit-avro-schemas){:target="_blank"}.
 
      **Note:** If the schema registry is empty, the **Select** option is unavailable.
      
 6. Click **Share for reuse** to share your topic with {{site.data.reuse.eem_name}}.
 
-You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create]({{ 'eem/describe/managing-options/#create_option' | relative_url}}) and [publish]({{ 'eem/describe/publishing-options' | relative_url}}) the topic data as an option. After you have published the option, consumers can [subscribe]({{ 'eem/describe/managing-user-access-to-topics' | relative_url}}) to an option as required.
+You are redirected to the {{site.data.reuse.eem_name}} UI from where you can [create](https://ibm.biz/eem-controls){:target="_blank"} and [publish](https://ibm.biz/eem-publishing){:target="_blank"} the topic date as a virtual topic. After you have published the virtual topic, consumers can [subscribe](https://ibm.biz/eem-manage-topic-access){:target="_blank"} to a virtual topic as required.
 
 **Note:** When you create an event source in {{site.data.reuse.eem_name}}, the following items are also created:
 

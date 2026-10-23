@@ -87,7 +87,7 @@ To migrate a Kafka producer application that uses the Confluent Platform schema 
 3. Set the Java SSL truststore JVM properties to allow the Confluent Platform schema registry client library to make HTTPS calls to the {{site.data.reuse.es_name}} schema registry. For example:\\
    ```
    export KAFKA_OPTS="-Djavax.net.ssl.trustStore=/path/to/es-cert.jks \ 
-      -Djavax.net.ssl.trustStorePassword=password"
+      -Djavax.net.ssl.trustStorePassword=<password>"
    ```
 
 ## Migrating a Kafka consumer application
@@ -111,5 +111,5 @@ To migrate a Kafka consumer application that uses the Confluent Platform schema 
 3. Set the Java SSL truststore JVM properties to allow the Confluent Platform schema registry client library to make HTTPS calls to the {{site.data.reuse.es_name}} schema registry. For example:\\
    ```
    export KAFKA_OPTS="-Djavax.net.ssl.trustStore=/path/to/es-cert.jks \ 
-       -Djavax.net.ssl.trustStorePassword=password"
+       -Djavax.net.ssl.trustStorePassword=<password>"
    ```

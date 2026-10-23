@@ -36,7 +36,6 @@ if (dropdownElement) {
 }
 
 function toggleDropdown(override) {
-    expandedHeight = document.querySelector('#allVersions').scrollHeight;
     if (override == "hide") {
         closeDropdown();
     } else if (override == "open") {
@@ -70,6 +69,11 @@ function closeDropdown() {
 }
 
 function openDropdown() {
+    if (desktopSidebar && !desktopSidebar.classList.contains('nav-open')) {
+        openDesktopSidebar();
+        desktopSidebar.classList.add('version-only');
+    }
+    expandedHeight = innerContent.scrollHeight;
     dropdownElement.classList.add("open");
     innerContent.style.height = expandedHeight + 'px';
     dropdownElement.setAttribute('data-isopen', 'true');

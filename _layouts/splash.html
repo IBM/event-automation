@@ -8,36 +8,42 @@ layout: single
 <div id="splashHeaderContent" class="splashHeaderContent">
   <div id="homePanel" class="panel homepanel">
     <div class="heroContainer pageSpacing">
+      <div class="intro">
+        {% if mastheadNavTitle == "Event Endpoint Management" and page.latest %}
+          <div class="redirectHeader">
+            <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/collaboration-white.svg" alt="Event Endpoint Management icon" />
+            <h1 class="hero redirectTitle">Event Endpoint Management documentation is moving</h1>
+          </div>
+          <p class="esIntro redirectMessage">To view the documentation for the latest versions (11.9.x and later), see the <a href="https://ibm.biz/eem-documentation" target="_blank" rel="noopener noreferrer">new home</a> for Event Endpoint Management software content. <br> <br> For earlier releases, <a onclick="toggleDropdown('open'); return false;" href="#">select the version</a> you are interested in.</p>
+        {% else %}
           {% if mastheadNavTitle == "Event Streams" %}
-            <div class="intro">
-                <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/movement-of-items-white.svg" alt="Event Streams icon" />
-              <h1 class="hero small">
-              Welcome to Event Streams {% endif %}
-          {% if mastheadNavTitle == "Event Endpoint Management" %}
-            <div class="intro">
-              <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/collaboration-white.svg" alt="Event Endpoint Management icon" />
+            <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/movement-of-items-white.svg" alt="Event Streams icon" />
             <h1 class="hero small">
-            Welcome to Event Endpoint Management {% endif %}
-          {% if mastheadNavTitle == "Event Processing" %}
-            <div class="intro">
-              <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/accelerating-transformation-white.svg" alt="Event Processing icon" />
+              Welcome to Event Streams
+          {% elsif mastheadNavTitle == "Event Endpoint Management" %}
+            <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/collaboration-white.svg" alt="Event Endpoint Management icon" />
             <h1 class="hero small">
-            Welcome to Event Processing {% endif %}
-          <a onclick="toggleDropdown('open');" href="#" aria-label="Change Version"
-            tabindex="0" class="versionPill">{{ currentVersion.version }}</a>
-        </h1>
-        <h1 class="hero">
-          Documentation
-        </h1>
-        {% if page.latest %}
-        {% if mastheadNavTitle == "Event Streams" %}
-        <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Streams is a high-throughput, fault-tolerant, event
-          streaming platform that helps you build intelligent, responsive, event-driven applications.</p> {% endif %}
-          {% if mastheadNavTitle == "Event Endpoint Management" %}
-          <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Endpoint Management provides the capability to describe and catalog your Kafka event sources, and to socialize them with application developers.</p> {% endif %}
-          {% if mastheadNavTitle == "Event Processing" %}
-          <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Processing is a scalable, low-code, event stream processing platform that helps you transform and act on data in real time. Event Processing offers web-based authoring experience for gaining insights from the stream of event data available to your organization.</p> {% endif %}
+              Welcome to Event Endpoint Management
+          {% elsif mastheadNavTitle == "Event Processing" %}
+            <img class="pictogramHero" src="{{ site.url }}{{ site.baseurl }}/assets/images/branding/accelerating-transformation-white.svg" alt="Event Processing icon" />
+            <h1 class="hero small">
+              Welcome to Event Processing
+          {% endif %}
+              <a onclick="toggleDropdown('open');" href="#" aria-label="Change Version"
+                tabindex="0" class="versionPill">{{ currentVersion.version }}</a>
+            </h1>
+            <h1 class="hero">
+              Documentation
+            </h1>
+          {% if page.latest %}
+            {% if mastheadNavTitle == "Event Streams" %}
+              <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Streams is a high-throughput, fault-tolerant, event
+                streaming platform that helps you build intelligent, responsive, event-driven applications.</p>
+            {% elsif mastheadNavTitle == "Event Processing" %}
+              <p class="esIntro">Included in IBM’s event-driven solution, IBM Event Automation, Event Processing is a scalable, low-code, event stream processing platform that helps you transform and act on data in real time. Event Processing offers web-based authoring experience for gaining insights from the stream of event data available to your organization.</p>
             {% endif %}
+          {% endif %}
+        {% endif %}
       </div>
     </div>
 

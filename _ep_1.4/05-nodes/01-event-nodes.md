@@ -60,7 +60,7 @@ To configure your event source node, complete the following steps:
 
    A bootstrap server address must be defined in the form: `hostname:port`. For example: `kafkaBoostrapServer:9000`
 
-   If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/configure-your-application-to-connect' | relative_url }}) documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
+   If your topics are published in {{site.data.reuse.eem_name}}, follow the [{{site.data.reuse.eem_name}}](https://ibm.biz/eem-config-app){:target="_blank"} documentation to retrieve the bootstrap server address. If your topics are available in {{site.data.reuse.es_name}}, retrieve the bootstrap server address as described in the [{{site.data.reuse.es_name}}]({{ 'es/getting-started/connecting' | relative_url }}) documentation.
 
    **Note:** To add more addresses, click **Add bootstrap server +** and enter the additional server address.
 
@@ -77,7 +77,7 @@ To configure your event source node, complete the following steps:
      Retrieve the credentials from your cluster administrator and complete the following steps:
 
      1. In the **Access Credentials** section, select the security mechanism from the drop-down menu.
-     2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}]({{ 'eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}) documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
+     2. Provide the username and password for this cluster. If you are subscribed to the topic by using {{site.data.reuse.eem_name}}, see the [{{site.data.reuse.eem_name}}](https://ibm.biz/eem-subscribe-apps){:target="_blank"} documentation. If you are using {{site.data.reuse.es_name}} to access your Kafka resources, see the [{{site.data.reuse.es_name}}]({{ 'es/security/managing-access/#managing-access-to-kafka-resources' | relative_url }}) documentation.
      3. Click **Next**.
 
 1. In the **Topic selection** pane, the list of topics that are hosted in this Kafka cluster is displayed. Select the radio button ![radio button]({{ 'images' | relative_url }}/radio-button.svg "Icon showing unchecked radio button."){:height="30px" width="15px"} of the topic from where you want to receive the stream of events. You can use the search field to get a filtered list of matching topics.

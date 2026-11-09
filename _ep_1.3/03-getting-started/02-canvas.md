@@ -19,7 +19,7 @@ The steps in this getting started tutorial should take you about 10 minutes to c
 1. Keep your instance open on the topic page because you need to use information from it when you create your flow.
 1. Open {{site.data.reuse.ep_name}} in a separate window or tab.
 
-This getting started scenario assumes that there is an order details available through a Kafka topic, and the topic is discoverable in [{{site.data.reuse.eem_name}}]({{ '/eem/describe/adding-topics' | relative_url }}). For example, in this scenario, the clothing company have a topic in their {{site.data.reuse.eem_name}} catalog called `ORDERS.NEW`. This topic emits events for every new order that is made.
+This getting started scenario assumes that there is an order details available through a Kafka topic, and the topic is discoverable in [{{site.data.reuse.eem_name}}](https://ibm.biz/eem-adding-topics){:target="_blank"}. For example, in this scenario, the clothing company have a topic in their {{site.data.reuse.eem_name}} catalog called `ORDERS.NEW`. This topic emits events for every new order that is made.
 
 ## Step 1: Create a flow
 {: #Create}
@@ -60,7 +60,7 @@ User actions are saved automatically. For save status updates, see the canvas he
 
 
 1. Click **Next**. The **Access credentials** pane is displayed.
-1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to event endpoints]({{ '/eem/subscribe/subscribing-to-event-endpoints/' | relative_url }}).
+1. Provide the credentials that are required to access your Kafka cluster and topic. You can generate access credentials for accessing a stream of events from the {{site.data.reuse.eem_name}} page. For more information, see [subscribing to event endpoints](https://ibm.biz/eem-subscribe-apps){:target="_blank"}.
 1. Click **Next**. The **Topic selection** pane is displayed.
 1. Use the radio buttons to confirm the name of the topic that you want to process events from.
 1. Click **Next**. The **Message format** pane is displayed.

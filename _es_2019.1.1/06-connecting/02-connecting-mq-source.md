@@ -116,7 +116,7 @@ mq.connection.name.list=localhost(1414)
 mq.channel.name=MYSVRCONN
 mq.queue=MYQSOURCE
 mq.user.name=alice
-mq.password=passw0rd
+mq.password=<password>
 topic=TSOURCE
 ```
 

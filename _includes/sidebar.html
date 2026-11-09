@@ -5,7 +5,7 @@
 <div id="sidebarMask" class="sidebarMask">
 
   </div>
-  <div id="sidebar" class="sidebar nav-open sticky">
+  <div id="sidebar" class="sidebar {% if page.layout == 'splash' and page.latest and page.product == 'eem' %}nav-close{% else %}nav-open{% endif %} sticky">
     <div class="sidebar-inner">
       
       <button id="hamburgerMenu" class="menuIcon" aria-label="Open navigation" title="Open table of contents" style="position: static; margin-right: 10px;">
@@ -26,14 +26,14 @@
             <div class="selectedVersion" id="selectedVersion">
               <div class="versionContainer" id="sidebarVersionPill" >
                 {% if page.collection %}
-                    <a id="versionPillCurrent" class="versionPill">{{ currentVersion.version }}</a>
-                    <a class="versionChange">Change Version</a>      
+                    <a id="versionPillCurrent" class="versionPill">{{ currentVersion.version | default: version1Pages.first.version }}</a>
+                    <a class="versionChange">Change Version</a>
                 {% endif %}
               </div>
               <div class="versionContainer" id="navbarVersionPill" >
                 {% if page.collection %}
-                    <a id="versionPillCurrent" class="versionPill">{{ currentVersion.version }}</a>
-                    <a class="versionChange">Change Version</a>      
+                    <a id="versionPillCurrent" class="versionPill">{{ currentVersion.version | default: version1Pages.first.version }}</a>
+                    <a class="versionChange">Change Version</a>
                 {% endif %}
               </div>
             </div>
@@ -68,7 +68,7 @@
                           {% endif %}
                         </div>
                         <div class="latest">
-                          {{ collection.tag }}
+                          {% unless collection.hide_latest_label %}{{ collection.tag }}{% endunless %}
                         </div>
                       </li>
                   {% endfor %}

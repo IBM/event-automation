@@ -75,6 +75,41 @@
               margin-bottom: 2.5rem;
               height: 7.5rem;
             }
+            .redirectHeader {
+              display: flex;
+              align-items: center;
+              gap: 1.5rem;
+              padding-left: 1rem;
+              margin-bottom: 1.5rem;
+
+              .pictogramHero {
+                padding-left: 0;
+                margin-bottom: 0;
+                height: 5.5rem;
+                flex-shrink: 0;
+              }
+
+              .redirectTitle {
+                padding-left: 0;
+                margin: 0;
+                font-size: 2.25rem;
+                line-height: 1.2;
+              }
+
+              @media (max-width: 600px) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+
+                .pictogramHero {
+                  height: 4rem;
+                }
+
+                .redirectTitle {
+                  font-size: 1.75rem;
+                }
+              }
+            }
             * {
               // margin-left: 0;
             }
@@ -85,6 +120,12 @@
               margin-top: 0.5rem;
               max-width: 40em;
               padding-left: 1rem;
+
+              &.redirectMessage {
+                font-size: 1.375rem;
+                line-height: 1.5;
+                max-width: 48rem;
+              }
             }
             .pillContainer {
               display: flex;

@@ -267,14 +267,14 @@ If a Flink job JAR file is in a registry which requires basic authentication, yo
 
 To view the available topics in {{site.data.reuse.eem_name}} 11.8.0 or later, complete the following steps:
 
-1. Ensure that you set up OpenID Connect (OIDC) authentication for both [{{site.data.reuse.eem_name}}]({{ 'eem/security/managing-access/#setting-up-openid-connect-oidc-based-authentication' | relative_url }}) and [{{site.data.reuse.ep_name}}]({{ 'ep/security/managing-access/#setting-up-openid-connect-oidc-based-authentication' | relative_url }}) and have roles assigned.
+1. Ensure that you set up OpenID Connect (OIDC) authentication for both [{{site.data.reuse.eem_name}}](https://ibm.biz/eem-oidc-config){:target="_blank"} and [{{site.data.reuse.ep_name}}]({{ 'ep/security/managing-access/#setting-up-openid-connect-oidc-based-authentication' | relative_url }}) and have roles assigned.
 
 1. Set the following environment variables in the `EventProcessing` custom resource:
 
    - `EEM_MANAGER_UI_BASE_URL`: The base URL for the {{site.data.reuse.eem_name}} UI endpoint. This corresponds to the `ui` service endpoint in your {{site.data.reuse.eem_name}} instance. Configure this environment variable in the `ui` container.
    - `EEM_MANAGER_ADMIN_BASE_URL`: The base URL for the {{site.data.reuse.eem_name}} Admin API endpoint. This corresponds to the `server` service endpoint in your {{site.data.reuse.eem_name}} instance. Configure this environment variable in the `backend` container.
 
-   **Note:** The URLs must be accessible from the {{site.data.reuse.ep_name}} instance. If your {{site.data.reuse.eem_name}} instance uses self-signed certificates or certificates issued by an internal CA, configure the certificates as described in [configuring SSL for {{site.data.reuse.eem_name}}](#configuring-ssl-for-api-server-database-and-schema-registry). For information about retrieving the {{site.data.reuse.eem_name}} CA certificates, see [Configuring TLS]({{ 'eem/security/config-tls/' | relative_url }}) in the {{site.data.reuse.eem_name}} documentation.
+   **Note:** The URLs must be accessible from the {{site.data.reuse.ep_name}} instance. If your {{site.data.reuse.eem_name}} instance uses self-signed certificates or certificates issued by an internal CA, configure the certificates as described in [configuring SSL for {{site.data.reuse.eem_name}}](#configuring-ssl-for-api-server-database-and-schema-registry). For information about retrieving the {{site.data.reuse.eem_name}} CA certificates, see [Configuring TLS](https://ibm.biz/eem-configure-tls){:target="_blank"} in the {{site.data.reuse.eem_name}} documentation.
 
 See the following example snippet:
 
@@ -306,7 +306,7 @@ Where:
 - `my-eem-ui.mycluster.com` is the hostname for the {{site.data.reuse.eem_name}} UI endpoint.
 - `eem.my-eem-server.mycluster.com` is the hostname for the {{site.data.reuse.eem_name}} Admin API endpoint.
 
-For more information about {{site.data.reuse.eem_name}} endpoints and how to retrieve the URLs, see the [{{site.data.reuse.eem_name}} documentation]({{ 'eem/installing/configuring/#configuring-ingress' | relative_url }}).
+For more information about {{site.data.reuse.eem_name}} endpoints and how to retrieve the URLs, see the [{{site.data.reuse.eem_name}} documentation](https://ibm.biz/eem-install-config){:target="_blank"}.
 
 ### Enabling persistent storage
 {: #enabling-persistent-storage}
@@ -789,7 +789,7 @@ To enable SSL connections to an API server, database, and a schema registry from
 
    For example, to obtain the certificate from an {{site.data.reuse.es_name}} schema registry, see the [{{site.data.reuse.es_name}} documentation]({{ 'es/schemas/using-with-rest-producer/' | relative_url }}).
 
-   ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") To obtain the CA certificate from an {{site.data.reuse.eem_name}} instance, see [Configuring TLS]({{ 'eem/security/config-tls/' | relative_url }}) in the {{site.data.reuse.eem_name}} documentation.
+   ![Event Processing 1.5.4 icon]({{ 'images' | relative_url }}/1.5.4.svg "In Event Processing 1.5.4 and later.") To obtain the CA certificate from an {{site.data.reuse.eem_name}} instance, see [Configuring TLS](https://ibm.biz/eem-configure-tls){:target="_blank"} in the {{site.data.reuse.eem_name}} documentation.
 
    To retrieve the certificate from a REST endpoint of an API server, run the following command:
 

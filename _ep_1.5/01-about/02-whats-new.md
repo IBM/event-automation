@@ -24,7 +24,7 @@ Find out what is new in {{site.data.reuse.ep_name}} version 1.5.x.
 {: #release-155}
 
 
-### Deduplicate node: export as SQL and direct migration to Confluent Platform for Apache Flink
+### Deduplicate node: export as SQL and directly migrate to Confluent Platform for Apache Flink
 {: #deduplicate-ptf-sql-155}
 
 The [deduplicate node](../../nodes/processornodes/#deduplicate) is reimplemented as a Process Table Function (PTF), a custom stateful function that is callable from SQL. This enables the following capabilities that were not available before 1.5.5:
@@ -34,10 +34,10 @@ The [deduplicate node](../../nodes/processornodes/#deduplicate) is reimplemented
 
 **Note:** Existing jobs that were deployed before 1.5.5 are not affected on upgrade and retain their application state. Only jobs deployed in 1.5.5 or later use the new deduplicate implementation.
 
-### API enrichment node: Apache Flink HTTP Connector
+### API enrichment node now uses the Apache Flink HTTP connector
 {: #api-enrichment-flink-http-connector-155}
 
-The [API enrichment node](../../nodes/enrichmentnode/#enrichment-from-an-api) now uses the official Apache Flink HTTP Connector, replacing the previous community-maintained connector. The following aspects of the node have changed:
+The [API enrichment node](../../nodes/enrichmentnode/#enrichment-from-an-api) now uses the official Apache Flink HTTP connector, replacing the previous community-maintained connector. The following aspects of the node have changed:
 
 - The connector is an officially supported Apache Flink component.
 - Request and response payloads use standard JSON.

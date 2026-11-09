@@ -6,11 +6,11 @@ slug: integrating-eem
 toc: true
 ---
 
-[{{site.data.reuse.eem_name}}]({{ 'eem/about/overview/' | relative_url }}) provides the capability to describe and catalog your Kafka topics as event sources, and to share the details of the topics with application developers within the organization. Application developers can discover the event sources and configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream.
+[{{site.data.reuse.eem_name}}](https://ibm.biz/eem-overview){:target="_blank"} provides the capability to describe and catalog your Kafka topics as event sources, and to share the details of the topics with application developers within the organization. Application developers can discover the event sources and configure their applications to subscribe to the stream of events, providing self-service access to the message content from the event stream.
 
 The following methods are available to integrate {{site.data.reuse.eem_name}} with {{site.data.reuse.es_name}}:
 
-- Share all topics in your {{site.data.reuse.es_name}} instance with an {{site.data.reuse.eem_name}} instance. You must have administrator access to the {{site.data.reuse.eem_name}} UI and your {{site.data.reuse.eem_name}} instance must have access to your {{site.data.reuse.es_name}} bootstrap endpoint. The procedure is described in the [{{site.data.reuse.eem_name}} documentation]({{ '/eem/administering/managing-clusters' | relative_url }}).
+- Share all topics in your {{site.data.reuse.es_name}} instance with an {{site.data.reuse.eem_name}} instance. You must have administrator access to the {{site.data.reuse.eem_name}} UI and your {{site.data.reuse.eem_name}} instance must have access to your {{site.data.reuse.es_name}} bootstrap endpoint. The procedure is described in the [{{site.data.reuse.eem_name}} documentation](https://ibm.biz/eem-managing-clusters){:target="_blank"}.
 - Share specific topics from your {{site.data.reuse.es_name}} instance with an {{site.data.reuse.eem_name}} instance. The procedure is described in this topic.
 
 
@@ -23,9 +23,9 @@ Ensure that your environment meets the following prerequisites:
 - [Keycloak](../../security/managing-access#managing-access-with-keycloak) users must be authenticated to the {{site.data.reuse.openshift_short}} UI.
 - [SCRAM](../../security/managing-access#managing-access-to-the-ui-and-cli-with-scram) users must have an administrator role with the `cluster.alter` permission enabled.
 - Kafka Proxy is not enabled. If you previously enabled it, [remove the proxy](../../installing/upgrading#remove-kafka-proxy) and verify that clients can connect directly to the Kafka brokers.
-- {{site.data.reuse.eem_name}} version 11.1.1 or later is [installed]({{ 'eem/installing/overview' | relative_url }}).
-- You have an [access token]({{ 'eem/security/api-tokens/#creating-a-token' | relative_url }}) from the {{site.data.reuse.eem_name}} UI.
-- You [downloaded]({{ 'eem/integrating-with-apic/configure-eem-for-apic/#obtain-certificates-for-a-tls-client-profile-on-openshift' | relative_url}}) the TLS CA certificate of your {{site.data.reuse.eem_name}} instance as a PEM file and then formatted the certificate to be a single line by running the following command:
+- {{site.data.reuse.eem_name}} version 11.1.1 or later is [installed](https://ibm.biz/eem-install-overview){:target="_blank"}.
+- You have an [access token](https://ibm.biz/eem-access-token){:target="_blank"} from the {{site.data.reuse.eem_name}} UI.
+- You [downloaded](https://ibm.biz/eem-get-cert){:target="_blank"} the TLS CA certificate of your {{site.data.reuse.eem_name}} instance as a PEM file and then formatted the certificate to be a single line by running the following command:
 
   ```shell
   awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' cluster-ca.pem
@@ -71,14 +71,14 @@ To set up a connection between your {{site.data.reuse.es_name}} and {{site.data.
    - `<event streams instance>` is the name of the {{site.data.reuse.es_name}} instance. 
    - `<event streams namespace>` is the namespace where your {{site.data.reuse.es_name}} instance is installed.
    - `<event endpoint management instance>` is the name of the {{site.data.reuse.eem_name}} instance. To get this name, run `kubectl get eventendpointmanagement` in your {{site.data.reuse.eem_name}} namespace.
-   - `<eem admin endpoint>` is the {{site.data.reuse.eem_name}} [admin API endpoint]({{ 'eem/installing/configuring#configuring-ingress' | relative_url}}). For example: `eeminst-eem-admin-1.test.example.com`. <!-- FUTURE: We need a better EEM link than this (is non-OCP specific), but it's the best one we have that covers the admin API endpoint atm. -->
+   - `<eem admin endpoint>` is the {{site.data.reuse.eem_name}} [admin API endpoint](https://ibm.biz/eem-install-config){:target="_blank"}. For example: `eeminst-eem-admin-1.test.example.com`. <!-- FUTURE: We need a better EEM link than this (is non-OCP specific), but it's the best one we have that covers the admin API endpoint atm. -->
    - `<event manager CA certificate>` is the CA certificate of the {{site.data.reuse.eem_name}} instance that you downloaded earlier, and formatted as a single line. For example:
 
       ```yaml
       "certificates": ["-----BEGIN CERTIFICATE-----\nMIIDbTCCAlWgAwIBAgIRAOfIo8zI8tnbTM/k5yJ0P6gwDQYJKoZIhvcNAQELBQAw\nUD...sY=\n-----END CERTIFICATE-----\n"]
       ```
 
-   - `<event manager UI FQDN>` is the fully qualified domain name of the [{{site.data.reuse.eem_name}} UI]({{ 'eem/getting-started/logging-in/#retrieving-the-urls' | relative_url}}). For example: `eeminst-eem-ui-1.test.example.com`
+   - `<event manager UI FQDN>` is the fully qualified domain name of the [{{site.data.reuse.eem_name}} UI](https://ibm.biz/eem-get-urls){:target="_blank"}. For example: `eeminst-eem-ui-1.test.example.com`
 
 3. Create the ConfigMap by running the following command:
 

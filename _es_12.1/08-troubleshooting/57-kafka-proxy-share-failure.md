@@ -30,4 +30,4 @@ Sharing topics from the {{site.data.reuse.es_name}} UI with {{site.data.reuse.ee
 ## Resolving the problem
 {: #resolving-the-problem}
 
-To share topics in this scenario, [add the topics]({{ 'eem/describe/adding-topics/#add-topic' | relative_url }}) manually in the {{site.data.reuse.eem_name}} UI and connect the topics to the appropriate Kafka cluster.
+To share topics in this scenario, [add the topics](https://ibm.biz/eem-adding-topics){:target="_blank"} manually in the {{site.data.reuse.eem_name}} UI and connect the topics to the appropriate Kafka cluster.
